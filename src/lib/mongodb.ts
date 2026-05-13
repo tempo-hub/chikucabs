@@ -1,12 +1,6 @@
 import mongoose from "mongoose";
 import dns from "dns";
 
-const MONGODB_URI = process.env.MONGODB_URI!;
-
-if (!MONGODB_URI) {
-  throw new Error("Please define MONGODB_URI in .env.local");
-}
-
 /**
  * Resolve a mongodb+srv:// URI into a standard mongodb:// URI
  * using Google DNS (8.8.8.8) to bypass ISP DNS that can't handle SRV records.
@@ -69,6 +63,12 @@ if (!cached) {
 }
 
 export async function connectDB() {
+  const MONGODB_URI = process.env.MONGODB_URI;
+
+  if (!MONGODB_URI) {
+    throw new Error("Please define MONGODB_URI in .env.local");
+  }
+
   if (cached!.conn) return cached!.conn;
 
   if (!cached!.promise) {
