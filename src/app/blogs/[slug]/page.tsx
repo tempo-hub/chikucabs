@@ -3,6 +3,9 @@ import { connectDB } from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import Image from "next/image";
 
+// Prevent build-time pre-rendering — this page needs a live MongoDB connection
+export const dynamic = "force-dynamic";
+
 export default async function BlogDetailPage({
   params,
 }: {
