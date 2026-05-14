@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { delhiRoutes } from "@/data/delhiRoutes";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
 import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 import { CalendarCheck, ShieldCheck, Bus, CreditCard } from "lucide-react";
 
@@ -26,8 +24,6 @@ export default function Page() {
 
   return (
     <div className="bg-background min-h-screen">
-      <Navbar />
-
       {/* Breadcrumb */}
       <nav className="flex flex-wrap items-center gap-2 max-w-7xl mx-auto px-4 py-6">
         <Link
@@ -295,12 +291,7 @@ export default function Page() {
               >
                 <div className="p-6">
                   <h3 className="text-2xl font-bold mb-4">
-                    <Link
-                      href={item.href}
-                      className="hover:text-primary hover:underline underline-offset-4"
-                    >
-                      {item.title}
-                    </Link>
+                    {item.title}
                   </h3>
 
                   <div className="space-y-3 text-muted-foreground">
@@ -678,9 +669,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-
-      {/* Footer Section */}
-      <Footer />
 
       {/* Whatsapp Float */}
       <WhatsAppFloat />
