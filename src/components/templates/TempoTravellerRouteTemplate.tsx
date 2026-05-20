@@ -1,8 +1,5 @@
 import { ParsedRouteData } from "@/lib/urlParser";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
 import EEATSection from "@/components/shared/EEATSection";
-import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 import { getNearbyRoutes, getAnchorText } from "@/lib/internalLinks";
 import { routesByCity } from "@/data/allRoutes";
 
@@ -17,11 +14,12 @@ export default function TempoTravellerRouteTemplate({
   const citySlug = startCity.toLowerCase().replace(/\s+/g, "-");
 
   const link =
-    citySlug === "delhi" ? "/tempo-from-delhi" : `/tempo-from-${citySlug}`;
+    citySlug === "delhi" ? "/tempo-from-delhi" : `/tempo-traveller-${citySlug}`;
 
   const currentUrl = `/${citySlug}/tempo-traveller-hire-${citySlug}-to-${endCity
     .toLowerCase()
     .replace(/\s+/g, "-")}`;
+    
   const routes = routesByCity[citySlug] || [];
 
   const routePages = routes.map((r: { slug: string }) => ({

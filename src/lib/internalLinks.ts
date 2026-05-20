@@ -4,7 +4,7 @@ function getDestination(url?: string) {
 }
 
 function normalize(dest: string) {
-  return dest.toLowerCase().split("-")[0];
+  return dest.toLowerCase().replace(/-/g, " ").trim();
 }
 
 const REGION_MAP: Record<string, string> = {
@@ -32,6 +32,158 @@ const REGION_MAP: Record<string, string> = {
   tira: "himachal",
   tirthan: "himachal",
   tosh: "himachal",
+
+  // Tamil Nadu
+  madurai: "tamilnadu",
+  rameswaram: "tamilnadu",
+  kodaikanal: "tamilnadu",
+  dindigul: "tamilnadu",
+  theni: "tamilnadu",
+  sivakasi: "tamilnadu",
+  virudhunagar: "tamilnadu",
+  tirunelveli: "tamilnadu",
+  thoothukudi: "tamilnadu",
+  kanyakumari: "tamilnadu",
+  nagercoil: "tamilnadu",
+  coimbatore: "tamilnadu",
+  ooty: "tamilnadu",
+  mettupalayam: "tamilnadu",
+  palani: "tamilnadu",
+  karur: "tamilnadu",
+  salem: "tamilnadu",
+  erode: "tamilnadu",
+  namakkal: "tamilnadu",
+  tiruppur: "tamilnadu",
+  pollachi: "tamilnadu",
+  chennai: "tamilnadu",
+  trichy: "tamilnadu",
+  "madurai airport": "tamilnadu",
+  yercaud: "tamilnadu",
+  coonoor: "tamilnadu",
+  kotagiri: "tamilnadu",
+  valparai: "tamilnadu",
+  tanjore: "tamilnadu",
+  kumbakonam: "tamilnadu",
+  chidambaram: "tamilnadu",
+  velankanni: "tamilnadu",
+  nagapattinam: "tamilnadu",
+  pondicherry: "tamilnadu",
+  mahabalipuram: "tamilnadu",
+  vellore: "tamilnadu",
+  yelagiri: "tamilnadu",
+  hogenakkal: "tamilnadu",
+  dharmapuri: "tamilnadu",
+  krishnagiri: "tamilnadu",
+  hosur: "tamilnadu",
+
+  // Nearby connected South India tourist routes
+  bangalore: "tamilnadu",
+  mysore: "tamilnadu",
+  wayanad: "tamilnadu",
+  kochi: "tamilnadu",
+  munnar: "tamilnadu",
+  thekkady: "tamilnadu",
+  alleppey: "tamilnadu",
+  trivandrum: "tamilnadu",
+  guruvayur: "tamilnadu",
+  kovalam: "tamilnadu",
+
+  // Madhya Pradesh
+  indore: "mp",
+  bhopal: "mp",
+  omkareshwar: "mp",
+  maheshwar: "mp",
+  dewas: "mp",
+  ratlam: "mp",
+  mandsaur: "mp",
+  neemuch: "mp",
+  jaora: "mp",
+  shajapur: "mp",
+  "agar malwa": "mp",
+  khargone: "mp",
+  khandwa: "mp",
+  burhanpur: "mp",
+  dhar: "mp",
+  mandu: "mp",
+  sehore: "mp",
+  vidisha: "mp",
+  pachmarhi: "mp",
+  sanchi: "mp",
+  gwalior: "mp",
+  jabalpur: "mp",
+  amarkantak: "mp",
+  chitrakoot: "mp",
+  orchha: "mp",
+  khajuraho: "mp",
+
+  // Nearby states / connected tourist routes
+  nagpur: "mp",
+  kota: "mp",
+  jaipur: "mp",
+  ahmedabad: "mp",
+  udaipur: "mp",
+  "mount abu": "mp",
+  ajmer: "mp",
+  pushkar: "mp",
+  jodhpur: "mp",
+  bikaner: "mp",
+  chittorgarh: "mp",
+  bundi: "mp",
+  shirdi: "mp",
+  nashik: "mp",
+  aurangabad: "mp",
+  ellora: "mp",
+  ajanta: "mp",
+  pune: "mp",
+  mumbai: "mp",
+  surat: "mp",
+  vadodara: "mp",
+  dwarka: "mp",
+  somnath: "mp",
+  saputara: "mp",
+
+  // Andhra Pradesh
+  visakhapatnam: "andhra",
+  "araku valley": "andhra",
+  annavaram: "andhra",
+  rajahmundry: "andhra",
+  kakinada: "andhra",
+  vijayawada: "andhra",
+  guntur: "andhra",
+  tirupati: "andhra",
+  srikakulam: "andhra",
+  vizianagaram: "andhra",
+
+  // Odisha connected routes
+  bhubaneswar: "andhra",
+  puri: "andhra",
+  cuttack: "andhra",
+
+  // Telangana connected routes
+  hyderabad: "andhra",
+  warangal: "andhra",
+  khammam: "andhra",
+
+  // Andhra major cities
+  nellore: "andhra",
+  ongole: "andhra",
+  kurnool: "andhra",
+  kadapa: "andhra",
+  chittoor: "andhra",
+  amaravati: "andhra",
+  eluru: "andhra",
+  machilipatnam: "andhra",
+  yanam: "andhra",
+
+  // Tourist destinations
+  simhachalam: "andhra",
+  lambasingi: "andhra",
+  "borra caves": "andhra",
+
+  // Nearby connected states
+  jagdalpur: "andhra",
+  raipur: "andhra",
+  kolkata: "andhra",
 };
 
 function getRegion(dest: string): string {
@@ -40,7 +192,7 @@ function getRegion(dest: string): string {
 
 export function getNearbyRoutes(
   currentUrl: string,
-  routes: { slug: string }[]
+  routes: { slug: string }[],
 ) {
   const currentDest = getDestination(currentUrl);
   const currentRegion = getRegion(currentDest);
@@ -61,8 +213,7 @@ export function getAnchorText(slug: string) {
 
   const dest = slug.split("-to-")[1] || "";
 
-  const formattedCity =
-    city.charAt(0).toUpperCase() + city.slice(1);
+  const formattedCity = city.charAt(0).toUpperCase() + city.slice(1);
 
   const formattedDest = dest
     .split("-")
