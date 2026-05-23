@@ -43,10 +43,7 @@ function getRegion(dest: string) {
 }
 
 // MAIN FUNCTION
-export function getNearbyRoutes(
-  currentUrl: string,
-  routes: { url: string }[]
-) {
+export function getNearbyRoutes(currentUrl: string, routes: { url: string }[]) {
   const currentDest = getDestination(currentUrl);
   const currentRegion = getRegion(currentDest);
 
@@ -73,17 +70,15 @@ export function getNearbyRoutes(
   return result.slice(0, 8);
 }
 
-// anchor text
-export function getAnchorText(url: string) {
+export function getAnchorText(url: string, origin: string) {
   const dest = getDestination(url);
 
-  return (
-    "Delhi → " +
-    dest
-      .split("-")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ")
-  );
+  const formattedDest = dest
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+
+  return `${origin} → ${formattedDest}`;
 }
 
 // ─── DEFAULT EXPORT: React Component ───────────────────────────────────────────
@@ -98,9 +93,15 @@ export default function InternalLinks({ parsedData }: InternalLinksProps) {
     ? currentSlug
     : `/${currentSlug}`;
 
+  if (
+    currentUrl.includes("-cab-fare")
+  ) {
+    return null;
+  }
+
   // Filter routes that contain "-to-" to get only navigable route pages
   const routePages = (routeData as { url: string }[]).filter((r) =>
-    r.url.includes("-to-")
+    r.url.includes("-to-"),
   );
 
   const nearbyUrls = getNearbyRoutes(currentUrl, routePages);
@@ -120,19 +121,31 @@ export default function InternalLinks({ parsedData }: InternalLinksProps) {
       </p>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {nearbyUrls.map((url) => (
-          <a key={url} href={url} className="homepage-service-card group">
-            <h3 className="text-xl font-semibold mb-2">
-              {getAnchorText(url)}
-            </h3>
+        {nearbyUrls.map((url) => {
+          const destination = getDestination(url);
 
-            <p className="text-muted-foreground mb-4">
-              {parsedData.vehicle || "Cab"} Booking
-            </p>
+          const dynamicUrl = `/${originCity.toLowerCase()}/tempo-traveller-hire-${originCity
+            .toLowerCase()
+            .replace(/\s+/g, "-")}-to-${destination}`;
 
-            <span className="text-primary font-semibold">View Details →</span>
-          </a>
-        ))}
+          return (
+            <a
+              key={dynamicUrl}
+              href={dynamicUrl}
+              className="homepage-service-card group"
+            >
+              <h3 className="text-xl font-semibold mb-2">
+                {getAnchorText(dynamicUrl, originCity)}
+              </h3>
+
+              <p className="text-muted-foreground mb-4">
+                {parsedData.vehicle || "Cab"} Booking
+              </p>
+
+              <span className="text-primary font-semibold">View Details →</span>
+            </a>
+          );
+        })}
       </div>
     </section>
   );

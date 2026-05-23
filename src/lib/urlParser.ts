@@ -86,22 +86,54 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
     }
   }
   // 3. Outstation Route parsing (-to-)
+  // else if (lowerSegment.includes("-to-")) {
+  //   routeType = lowerSegment.endsWith("-fare")
+  //     ? "Outstation Route Fare"
+  //     : "Outstation Route";
+
+  //   // Extract Origin and Destination
+  //   // For example: "varanasi-to-lucknow-cab" or "tempo-traveller-hire-delhi-to-mukteshwar"
+  //   const parts = lowerSegment.split("-to-");
+
+  //   if (parts.length === 2) {
+  //     const beforeToWords = parts[0].split("-"); // e.g., ["varanasi"] or ["tempo", "traveller", "hire", "delhi"]
+  //     const afterToWords = parts[1].split("-"); // e.g., ["lucknow", "cab"]
+
+  //     origin = beforeToWords[beforeToWords.length - 1]; // usually the word right before '-to-'
+  //     destination = afterToWords[0]; // usually the word right after '-to-'
+  //   }
+  // }
+
+  // 3. Outstation Route parsing (-to-)
   else if (lowerSegment.includes("-to-")) {
     routeType = lowerSegment.endsWith("-fare")
       ? "Outstation Route Fare"
       : "Outstation Route";
 
-    // Extract Origin and Destination
-    // For example: "varanasi-to-lucknow-cab" or "tempo-traveller-hire-delhi-to-mukteshwar"
     const parts = lowerSegment.split("-to-");
-    if (parts.length === 2) {
-      const beforeToWords = parts[0].split("-"); // e.g., ["varanasi"] or ["tempo", "traveller", "hire", "delhi"]
-      const afterToWords = parts[1].split("-"); // e.g., ["lucknow", "cab"]
 
-      origin = beforeToWords[beforeToWords.length - 1]; // usually the word right before '-to-'
-      destination = afterToWords[0]; // usually the word right after '-to-'
+    if (parts.length === 2) {
+      const beforeToWords = parts[0].split("-");
+      let afterTo = parts[1];
+
+      // remove common suffix keywords
+      afterTo = afterTo
+        .replace(/-cab-fare$/, "")
+        .replace(/-taxi-fare$/, "")
+        .replace(/-tempo-traveller-fare$/, "")
+        .replace(/-fare$/, "")
+        .replace(/-cab$/, "")
+        .replace(/-taxi$/, "");
+
+      origin = beforeToWords[beforeToWords.length - 1];
+
+      destination = afterTo
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
     }
   }
+
   // 3. Local City Service Parsing
   else if (
     lowerSegment.includes("-in-") ||
@@ -152,8 +184,16 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
   }
 
   // Capitalize Helper
+  // const capitalize = (str: string | null) =>
+  //   str ? str.charAt(0).toUpperCase() + str.slice(1) : str;
+
   const capitalize = (str: string | null) =>
-    str ? str.charAt(0).toUpperCase() + str.slice(1) : str;
+    str
+      ? str
+          .split(" ")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")
+      : str;
 
   // Determine vehicleCategory
   const lowerVehicle = (vehicle || "cab").toLowerCase();

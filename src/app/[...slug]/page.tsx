@@ -16,6 +16,7 @@ import TempoTravellerRouteTemplate from "@/components/templates/TempoTravellerRo
 import InnovaServiceTemplate from "@/components/templates/InnovaServiceTemplate";
 import InnovaRouteTemplate from "@/components/templates/InnovaRouteTemplate";
 import DriverServiceTemplate from "@/components/templates/DriverServiceTemplate";
+import CityCabRoutesTemplate from "@/components/templates/CityCabRoutesTemplate";
 
 export async function generateStaticParams() {
   return routeData.map((route: { url: string }) => {
@@ -452,6 +453,14 @@ export default function DynamicRoutePage({
 
   // Select template: Vehicle category first, then route type
   const renderTemplate = () => {
+    const citySlugPattern = /^\/[a-z-]+$/;
+
+    if (citySlugPattern.test(currentPath)) {
+      const city = currentPath.replace(/^\/+/, "");
+
+      return <CityCabRoutesTemplate city={city} />;
+    }
+
     if (parsed.vehicleCategory === "tempo-traveller") {
       if (
         parsed.routeType === "Outstation Route" ||

@@ -1,6 +1,14 @@
-function getDestination(url?: string) {
+export function getDestination(url?: string) {
   if (!url || !url.includes("-to-")) return "";
-  return url.split("-to-")[1] || "";
+
+  return (
+    url
+      .split("-to-")[1]
+      ?.replace(/-cab-fare$/, "")
+      ?.replace(/-tempo-traveller-fare$/, "")
+      ?.replace(/-taxi-fare$/, "")
+      ?.trim() || ""
+  );
 }
 
 function normalize(dest: string) {
@@ -184,6 +192,95 @@ const REGION_MAP: Record<string, string> = {
   jagdalpur: "andhra",
   raipur: "andhra",
   kolkata: "andhra",
+
+  // Varanasi Region Routes
+  varanasi: "varanasi",
+  prayagraj: "varanasi",
+  allahabad: "varanasi",
+  ayodhya: "varanasi",
+  faizabad: "varanasi",
+  lucknow: "varanasi",
+  gorakhpur: "varanasi",
+  patna: "varanasi",
+  bodh: "varanasi",
+  "bodh gaya": "varanasi",
+  gaya: "varanasi",
+  ranchi: "varanasi",
+  kanpur: "varanasi",
+  delhi: "varanasi",
+  agra: "varanasi",
+  mathura: "varanasi",
+  vrindavan: "varanasi",
+  // jaipur: "varanasi",
+  haridwar: "varanasi",
+  rishikesh: "varanasi",
+  dehradun: "varanasi",
+  kathmandu: "varanasi",
+  sonbhadra: "varanasi",
+  mirzapur: "varanasi",
+  chunar: "varanasi",
+  ghazipur: "varanasi",
+  ballia: "varanasi",
+  mau: "varanasi",
+  azamgarh: "varanasi",
+  jaunpur: "varanasi",
+  sultanpur: "varanasi",
+  amethi: "varanasi",
+  raebareli: "varanasi",
+  basti: "varanasi",
+  kushinagar: "varanasi",
+  "nepal border": "varanasi",
+  sasaram: "varanasi",
+  "aurangabad bihar": "varanasi",
+  dhanbad: "varanasi",
+  // kolkata: "varanasi",
+  // puri: "varanasi",
+  // bhubaneswar: "varanasi",
+  jamshedpur: "varanasi",
+  hazaribagh: "varanasi",
+  rewa: "varanasi",
+  satna: "varanasi",
+  // khajuraho: "varanasi",
+  // jabalpur: "varanasi",
+  // bhopal: "varanasi",
+  // indore: "varanasi",
+  "allahabad airport": "varanasi",
+  "lal bahadur shastri airport": "varanasi",
+  "agra airport": "varanasi",
+  "lucknow airport": "varanasi",
+  "gorakhpur airport": "varanasi",
+  "patna airport": "varanasi",
+  "bodh gaya airport": "varanasi",
+  sarnath: "varanasi",
+  ramnagar: "varanasi",
+  vindhyachal: "varanasi",
+  shaktinagar: "varanasi",
+  robertsganj: "varanasi",
+  "dehri on sone": "varanasi",
+  buxar: "varanasi",
+  ara: "varanasi",
+  hajipur: "varanasi",
+  muzaffarpur: "varanasi",
+  darbhanga: "varanasi",
+  sitamarhi: "varanasi",
+  motihari: "varanasi",
+  bettiah: "varanasi",
+  siwan: "varanasi",
+  chapra: "varanasi",
+  gopalganj: "varanasi",
+  lumbini: "varanasi",
+  // chitrakoot: "varanasi",
+  noida: "varanasi",
+  "greater noida": "varanasi",
+  gurgaon: "varanasi",
+  faridabad: "varanasi",
+  jhansi: "varanasi",
+  "varanasi airport": "varanasi",
+  daltonganj: "varanasi",
+  latehar: "varanasi",
+  chatra: "varanasi",
+  deoghar: "varanasi",
+  parasnath: "varanasi",
 };
 
 function getRegion(dest: string): string {
@@ -206,12 +303,12 @@ export function getNearbyRoutes(
     .slice(0, 8);
 }
 
-// 🔥 FINAL FIXED
+// FINAL FIXED
 export function getAnchorText(slug: string) {
   const parts = slug.split("/");
   const city = parts[1] || "city";
 
-  const dest = slug.split("-to-")[1] || "";
+  const dest = getDestination(slug);
 
   const formattedCity = city.charAt(0).toUpperCase() + city.slice(1);
 

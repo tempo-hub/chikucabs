@@ -1,9 +1,6 @@
 import { ParsedRouteData } from "@/lib/urlParser";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
 import EEATSection from "@/components/shared/EEATSection";
 import InternalLinks from "@/components/shared/InternalLinks";
-import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 
 export default function OutstationRouteFareTemplate({
   parsedData,
@@ -46,7 +43,7 @@ export default function OutstationRouteFareTemplate({
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
           <div className="flex-1 text-center md:text-left">
             <div className="section-badge" style={{ display: "inline-flex" }}>
-              TRANSPARENT PRICING 2024
+              TRANSPARENT PRICING {new Date().getFullYear()}
             </div>
             <h1 className="text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tighter">
               {startCity} to {endCity} <br />
@@ -117,7 +114,7 @@ export default function OutstationRouteFareTemplate({
             >
               {item.best && (
                 <div
-                  className="absolute"
+                  className="absolute text-white"
                   style={{
                     top: 0,
                     right: 0,
@@ -428,7 +425,7 @@ export default function OutstationRouteFareTemplate({
           </div>
           {[
             {
-              q: `What is the ${vehicle} fare from ${startCity} to {endCity}?`,
+              q: `What is the ${vehicle} fare from ${startCity} to ${endCity}?`,
               a: `The ${vehicle} fare from ${startCity} to ${endCity} starts from ₹9 per km for a sedan. The total fare depends on the vehicle type, trip type (one-way or round-trip), and any applicable tolls. Call 8448445504 for an exact quote.`,
             },
             {
