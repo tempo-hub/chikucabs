@@ -1,8 +1,5 @@
 import { ParsedRouteData } from "@/lib/urlParser";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
 import EEATSection from "@/components/shared/EEATSection";
-import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 import InternalLinks from "@/components/shared/InternalLinks";
 
 export default function OutstationRouteTemplate({

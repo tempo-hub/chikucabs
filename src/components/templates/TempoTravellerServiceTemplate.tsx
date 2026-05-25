@@ -533,64 +533,66 @@ export default function TempoTravellerServiceTemplate({
       </section>
 
       {/* Popular Routes Section */}
-      <section className="py-24 px-4 bg-muted/20 border-y">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div
-              className="section-badge mx-auto"
-              style={{ display: "inline-flex" }}
-            >
-              POPULAR ROUTES
+      {city !== "India" && (
+        <section className="py-24 px-4 bg-muted/20 border-y">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <div
+                className="section-badge mx-auto"
+                style={{ display: "inline-flex" }}
+              >
+                POPULAR ROUTES
+              </div>
+
+              <h2 className="section-title">
+                Popular Tempo Traveller Routes from {city}
+              </h2>
+
+              <p className="section-subtitle mx-auto">
+                Explore the most booked outstation tempo traveller routes.
+              </p>
             </div>
 
-            <h2 className="section-title">
-              Popular Tempo Traveller Routes from {city}
-            </h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {(
+                cityRoutes[city?.toLowerCase() as keyof typeof cityRoutes] || []
+              ).map((destination, i) => (
+                <Link
+                  key={i}
+                  href={`/${city.toLowerCase()}/tempo-traveller-hire-${city.toLowerCase()}-to-${destination
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
+                  className="group rounded-3xl border bg-card p-6 hover:border-primary transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-4xl">🚐</div>
 
-            <p className="section-subtitle mx-auto">
-              Explore the most booked outstation tempo traveller routes.
-            </p>
+                    <span className="text-primary text-sm font-bold">
+                      Popular
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-black mb-2">
+                    {city} to {destination}
+                  </h3>
+
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Book tempo traveller from {city} to {destination}.
+                  </p>
+
+                  <div className="mt-6 flex items-center justify-between">
+                    <span className="text-primary font-bold">View Route →</span>
+
+                    <span className="text-xs text-muted-foreground">
+                      Starting ₹18/km
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
-
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {(
-              cityRoutes[city?.toLowerCase() as keyof typeof cityRoutes] || []
-            ).map((destination, i) => (
-              <Link
-                key={i}
-                href={`/${city.toLowerCase()}/tempo-traveller-hire-${city.toLowerCase()}-to-${destination
-                  .toLowerCase()
-                  .replace(/\s+/g, "-")}`}
-                className="group rounded-3xl border bg-card p-6 hover:border-primary transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="text-4xl">🚐</div>
-
-                  <span className="text-primary text-sm font-bold">
-                    Popular
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-black mb-2">
-                  {city} to {destination}
-                </h3>
-
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Book tempo traveller from {city} to {destination}.
-                </p>
-
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="text-primary font-bold">View Route →</span>
-
-                  <span className="text-xs text-muted-foreground">
-                    Starting ₹18/km
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* SEO Content Section */}
       {city !== "India" && (
