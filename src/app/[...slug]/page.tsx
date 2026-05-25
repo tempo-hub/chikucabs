@@ -453,12 +453,23 @@ export default function DynamicRoutePage({
 
   // Select template: Vehicle category first, then route type
   const renderTemplate = () => {
-    const citySlugPattern = /^\/[a-z-]+$/;
+    const CITY_SLUGS = [
+      "delhi",
+      "mumbai",
+      "varanasi",
+      "lucknow",
+      "madurai",
+      "indore",
+      "visakhapatnam",
+      "ujjain",
+      "agra",
+      "noida",
+    ];
 
-    if (citySlugPattern.test(currentPath)) {
-      const city = currentPath.replace(/^\/+/, "");
+    const slugValue = currentPath.replace(/^\/+/, "");
 
-      return <CityCabRoutesTemplate city={city} />;
+    if (CITY_SLUGS.includes(slugValue)) {
+      return <CityCabRoutesTemplate city={slugValue} />;
     }
 
     if (parsed.vehicleCategory === "tempo-traveller") {
