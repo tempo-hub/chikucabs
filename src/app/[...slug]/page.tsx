@@ -455,15 +455,20 @@ export default function DynamicRoutePage({
   const renderTemplate = () => {
     const CITY_SLUGS = [
       "delhi",
-      "mumbai",
-      "varanasi",
-      "lucknow",
-      "madurai",
-      "indore",
-      "visakhapatnam",
       "ujjain",
-      "agra",
-      "noida",
+      "indore",
+      "haridwar",
+      "mumbai",
+      "chennai",
+      "varanasi",
+      "ayodhya",
+      "lucknow",
+      "bangalore",
+      "madurai",
+      "hyderabad",
+      "rameshwaram",
+      "kanyakumari",
+      "pondicherry",
     ];
 
     const slugValue = currentPath.replace(/^\/+/, "");
