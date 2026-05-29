@@ -18,14 +18,8 @@ import InnovaRouteTemplate from "@/components/templates/InnovaRouteTemplate";
 import DriverServiceTemplate from "@/components/templates/DriverServiceTemplate";
 import CityCabRoutesTemplate from "@/components/templates/CityCabRoutesTemplate";
 
-export async function generateStaticParams() {
-  return routeData.map((route: { url: string }) => {
-    const slugParams = route.url.replace(/^\//, "").split("/").filter(Boolean);
-    return {
-      slug: slugParams,
-    };
-  });
-}
+// We do NOT pre-render all 4476 routes at build time (causes timeout on Vercel).
+// Pages are generated on first request and cached via ISR (revalidate below).
 
 export async function generateMetadata({
   params,
@@ -186,7 +180,7 @@ export async function generateMetadata({
 }
 
 export const revalidate = 3600;
-export const dynamicParams = false;
+export const dynamicParams = true; // Allow on-demand ISR for all slug routes
 
 export default function DynamicRoutePage({
   params,

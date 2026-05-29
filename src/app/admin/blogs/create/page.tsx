@@ -263,6 +263,7 @@ export default function CreateBlog() {
                 src={preview}
                 alt="Preview"
                 fill
+                unoptimized
                 className="object-cover"
               />
             </div>

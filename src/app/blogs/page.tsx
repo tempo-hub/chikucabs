@@ -78,6 +78,7 @@ export default function BlogsPage() {
                     }
                     alt={blog.title}
                     fill
+                    unoptimized
                     className="object-cover transition"
                   />
                 </div>

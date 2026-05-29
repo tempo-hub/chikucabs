@@ -365,6 +365,7 @@ export default function AdminBlogs() {
                   src={preview}
                   alt="Preview"
                   fill
+                  unoptimized
                   className="object-cover"
                 />
               </div>
@@ -472,6 +473,7 @@ export default function AdminBlogs() {
                       src={`/api/image/${blog.imageId}`}
                       alt={blog.title}
                       fill
+                      unoptimized
                       className="object-cover"
                     />
                   </div>
