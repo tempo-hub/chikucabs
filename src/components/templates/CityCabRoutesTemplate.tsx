@@ -16,6 +16,45 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
 
   const formattedCity = formatCityName(city);
 
+  const services = [
+    {
+      icon: "🏙️",
+      title: "Local Cab Service",
+      desc: `Book local taxi service in ${formattedCity} for daily travel and city rides.`,
+      url: "/local-cab-service",
+    },
+    {
+      icon: "✈️",
+      title: "Airport Transfer",
+      desc: `24/7 airport pickup and drop taxi service in ${formattedCity}.`,
+      url: "/airport-taxi",
+    },
+    {
+      icon: "🛣️",
+      title: "Outstation Cab",
+      desc: `Affordable one way and round trip outstation taxi service.`,
+      url: "/outstation-cabs",
+    },
+    {
+      icon: "💼",
+      title: "Corporate Cab",
+      desc: `Reliable employee and corporate transportation solutions.`,
+      url: "/corporate-cab-service",
+    },
+    {
+      icon: "💍",
+      title: "Wedding Car Rental",
+      desc: `Luxury and premium cars for weddings and events.`,
+      url: "/wedding-car-rental",
+    },
+    {
+      icon: "🚐",
+      title: "Tempo Traveller",
+      desc: `12 to 26 seater Tempo Traveller booking for group trips.`,
+      url: "/tempo-traveller-on-rent",
+    },
+  ];
+
   return (
     <div className="bg-background min-h-screen">
       {/* HERO */}
@@ -41,10 +80,10 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
         <div className="max-w-5xl mx-auto px-4">
           <div className="stats-grid">
             {[
-              { num: "1L+", label: "Trips Completed" },
-              { num: "500+", label: "Expert Drivers" },
-              { num: "100+", label: "Cities in India" },
-              { num: "4.9 ★", label: "Customer Rating" },
+              { num: "800+", label: "Monthly Group Trips" },
+              { num: "₹2M+", label: "Group Savings" },
+              { num: "4.9/5", label: "Google Rating" },
+              { num: "Verified", label: "Local Drivers" },
             ].map((stat, i) => (
               <div key={i} className="stat-item">
                 <div className="stat-number">{stat.num}</div>
@@ -169,7 +208,7 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
               WHY CHOOSE US
             </div>
             <h2 className="section-title">
-              Why Our One Way Service is the Best
+              Why Choose Chiku Cabs for One Way Taxi Service?
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -239,45 +278,18 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: "🏙️",
-                title: "Local Cab Service",
-                desc: `Book local taxi service in ${formattedCity} for daily travel and city rides.`,
-              },
-              {
-                icon: "✈️",
-                title: "Airport Transfer",
-                desc: `24/7 airport pickup and drop taxi service in ${formattedCity}.`,
-              },
-              {
-                icon: "🛣️",
-                title: "Outstation Cab",
-                desc: `Affordable one way and round trip outstation taxi service.`,
-              },
-              {
-                icon: "💼",
-                title: "Corporate Cab",
-                desc: `Reliable employee and corporate transportation solutions.`,
-              },
-              {
-                icon: "💍",
-                title: "Wedding Car Rental",
-                desc: `Luxury and premium cars for weddings and events.`,
-              },
-              {
-                icon: "🚐",
-                title: "Tempo Traveller",
-                desc: `12 to 26 seater Tempo Traveller booking for group trips.`,
-              },
-            ].map((service, i) => (
-              <div key={i} className="premium-card">
+            {services.map((service, i) => (
+              <Link
+                key={i}
+                href={service.url}
+                className="premium-card block hover:scale-[1.02] transition-transform"
+              >
                 <div className="text-4xl mb-4">{service.icon}</div>
 
                 <h3 className="text-xl font-bold mb-3">{service.title}</h3>
 
                 <p className="text-muted-foreground">{service.desc}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

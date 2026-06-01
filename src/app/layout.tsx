@@ -6,11 +6,15 @@ import Footer from "@/components/shared/Footer";
 import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://chikucabs.com"),
   title: "Chiku Cabs | Premium Taxi Service in India",
   description:
     "Book premium cabs, tempos, and buses with Chiku Cabs. India's top-rated outstation and local cab rental service with verified drivers.",
   verification: {
     google: "m03tk-J2zYcDgTnZ_1MznNurLakrwcqn8sdTYOGWNCM",
+  },
+  icons: {
+    icon: "/yt.png",
   },
 };
 
