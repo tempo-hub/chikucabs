@@ -1,15 +1,137 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BookingModal from "./BookingModal";
+
+// Helper function to extract vehicle name from element text
+function extractVehicleFromText(text: string): string | undefined {
+  const lowerText = text.toLowerCase();
+  
+  if (lowerText.includes("sedan") || lowerText.includes("dzire") || lowerText.includes("etios")) {
+    return "Sedan (4+1 Seater)";
+  }
+  if (lowerText.includes("suv") || lowerText.includes("ertiga") || lowerText.includes("marazzo")) {
+    return "SUV (6+1 Seater)";
+  }
+  if (lowerText.includes("innova") || lowerText.includes("crysta")) {
+    return "Innova (7+1 Seater)";
+  }
+  if (
+    lowerText.includes("tempo") ||
+    lowerText.includes("traveller") ||
+    lowerText.includes("urbania") ||
+    lowerText.includes("minibus") ||
+    lowerText.includes("seater")
+  ) {
+    const match = lowerText.match(/(\d+)-seater/);
+    if (match) {
+      const seats = match[1];
+      if (seats === "9") return "9-Seater (Best for families)";
+      if (seats === "12") return "12-Seater (Popular for pilgrimages)";
+      if (seats === "13") return "13-Seater (Popular for pilgrimages)";
+      if (seats === "15") return "15-Seater (Comfortable group)";
+      if (seats === "16") return "16-Seater";
+      if (seats === "17") return "17-Seater";
+      if (seats === "20") return "20-Seater (Large groups)";
+      if (seats === "21") return "21-Seater (Large groups)";
+      if (seats === "24") return "24-Seater (Large groups)";
+      if (seats === "26") return "26-Seater (Wedding/Baraat special)";
+    }
+    
+    if (lowerText.includes("9")) return "9-Seater (Best for families)";
+    if (lowerText.includes("12")) return "12-Seater (Popular for pilgrimages)";
+    if (lowerText.includes("13")) return "13-Seater (Popular for pilgrimages)";
+    if (lowerText.includes("15")) return "15-Seater (Comfortable group)";
+    if (lowerText.includes("16")) return "16-Seater";
+    if (lowerText.includes("17")) return "17-Seater";
+    if (lowerText.includes("20")) return "20-Seater (Large groups)";
+    if (lowerText.includes("21")) return "21-Seater (Large groups)";
+    if (lowerText.includes("24")) return "24-Seater (Large groups)";
+    if (lowerText.includes("26")) return "26-Seater (Wedding/Baraat special)";
+    
+    return "9-Seater (Best for families)";
+  }
+  return undefined;
+}
 
 export default function WhatsAppFloat() {
   const [open, setOpen] = useState(false);
+  const [vehicleType, setVehicleType] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    const handleGlobalClick = (e: MouseEvent) => {
+      let target = e.target as HTMLElement | null;
+      while (target && target !== document.body) {
+        if (target.tagName === "A" || target.tagName === "BUTTON") {
+          const href = target.getAttribute("href") || "";
+          const text = (target.textContent || "").trim();
+          const className = target.className || "";
+
+          // Don't intercept if clicking inside the booking modal content
+          const isInsideModal = target.closest(".booking-modal-content") || target.closest(".fixed.inset-0.z-\\[100\\]");
+          if (isInsideModal) {
+            return;
+          }
+
+          const hasWhatsAppText = /whatsapp/i.test(text);
+          const hasBookNowText = /book\s+now/i.test(text);
+          const isWhatsAppHref = href.includes("wa.me") || href.includes("api.whatsapp");
+          const isCallHref = href.startsWith("tel:");
+          
+          let isCTA = false;
+          if (isCallHref) {
+            // Only intercept tel: links if they explicitly say "Book Now" (case insensitive, ignoring icon emojis/spaces)
+            const cleanText = text.toLowerCase().replace(/[^a-z0-9]/g, "");
+            if (cleanText === "booknow") {
+              isCTA = true;
+            } else {
+              isCTA = false; // Bypass completely for phone call links
+            }
+          } else {
+            if (isWhatsAppHref || hasWhatsAppText || className.includes("whatsapp-float") || className.includes("footer-whatsapp")) {
+              isCTA = true;
+            } else if (hasBookNowText) {
+              isCTA = true;
+            }
+          }
+
+          if (isCTA) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Try to find if this button is inside a package-card to extract the vehicle name
+            let cardVehicle: string | null = null;
+            const packageCard = target.closest(".package-card");
+            if (packageCard) {
+              const h3 = packageCard.querySelector("h3");
+              if (h3) {
+                cardVehicle = h3.textContent;
+              }
+            }
+
+            const vehicle = extractVehicleFromText(cardVehicle || text || target.getAttribute("aria-label") || "");
+            setVehicleType(vehicle);
+            setOpen(true);
+            return;
+          }
+        }
+        target = target.parentElement;
+      }
+    };
+
+    document.addEventListener("click", handleGlobalClick, true);
+    return () => {
+      document.removeEventListener("click", handleGlobalClick, true);
+    };
+  }, []);
 
   return (
     <>
       <button
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setVehicleType(undefined);
+          setOpen(true);
+        }}
         className="whatsapp-float"
         aria-label="Chat on WhatsApp"
       >
@@ -25,6 +147,7 @@ export default function WhatsAppFloat() {
       <BookingModal
         isOpen={open}
         onClose={() => setOpen(false)}
+        vehicleType={vehicleType}
       />
     </>
   );
