@@ -4,6 +4,10 @@ import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
+import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chikucabs.com"),
@@ -24,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", inter.variable)}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

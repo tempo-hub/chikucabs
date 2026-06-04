@@ -1,8 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
+import { ChevronDownIcon } from "lucide-react";
+import { format } from "date-fns";
+
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 type BookingModalProps = {
   isOpen: boolean;
@@ -12,45 +21,103 @@ type BookingModalProps = {
 
 const normalizeVehicleType = (v: string): string => {
   const lower = v.toLowerCase();
-  if (lower.includes("sedan") || lower.includes("dzire") || lower.includes("etios")) {
+  if (
+    lower.includes("sedan") ||
+    lower.includes("dzire") ||
+    lower.includes("etios")
+  ) {
     return "Sedan (4+1 Seater)";
   }
-  if (lower.includes("suv") || lower.includes("ertiga") || lower.includes("marazzo")) {
+  if (
+    lower.includes("suv") ||
+    lower.includes("ertiga") ||
+    lower.includes("marazzo")
+  ) {
     return "SUV (6+1 Seater)";
   }
   if (lower.includes("innova") || lower.includes("crysta")) {
     return "Innova (7+1 Seater)";
   }
-  if (lower.includes("9-seater") || lower.includes("9 seater") || lower === "9s" || lower === "9") {
+  if (
+    lower.includes("9-seater") ||
+    lower.includes("9 seater") ||
+    lower === "9s" ||
+    lower === "9"
+  ) {
     return "9-Seater (Best for families)";
   }
-  if (lower.includes("12-seater") || lower.includes("12 seater") || lower === "12s" || lower === "12") {
+  if (
+    lower.includes("12-seater") ||
+    lower.includes("12 seater") ||
+    lower === "12s" ||
+    lower === "12"
+  ) {
     if (lower.includes("urbania")) return "12-Seater Urbania";
     return "12-Seater (Popular for pilgrimages)";
   }
-  if (lower.includes("13-seater") || lower.includes("13 seater") || lower === "13s" || lower === "13") {
+  if (
+    lower.includes("13-seater") ||
+    lower.includes("13 seater") ||
+    lower === "13s" ||
+    lower === "13"
+  ) {
     return "13-Seater (Popular for pilgrimages)";
   }
-  if (lower.includes("15-seater") || lower.includes("15 seater") || lower === "15s" || lower === "15") {
+  if (
+    lower.includes("15-seater") ||
+    lower.includes("15 seater") ||
+    lower === "15s" ||
+    lower === "15"
+  ) {
     return "15-Seater (Comfortable group)";
   }
-  if (lower.includes("16-seater") || lower.includes("16 seater") || lower === "16s" || lower === "16") {
+  if (
+    lower.includes("16-seater") ||
+    lower.includes("16 seater") ||
+    lower === "16s" ||
+    lower === "16"
+  ) {
     return "16-Seater";
   }
-  if (lower.includes("17-seater") || lower.includes("17 seater") || lower === "17s" || lower === "17") {
+  if (
+    lower.includes("17-seater") ||
+    lower.includes("17 seater") ||
+    lower === "17s" ||
+    lower === "17"
+  ) {
     if (lower.includes("urbania")) return "17-Seater Urbania";
     return "17-Seater";
   }
-  if (lower.includes("20-seater") || lower.includes("20 seater") || lower === "20s" || lower === "20") {
+  if (
+    lower.includes("20-seater") ||
+    lower.includes("20 seater") ||
+    lower === "20s" ||
+    lower === "20"
+  ) {
     return "20-Seater (Large groups)";
   }
-  if (lower.includes("21-seater") || lower.includes("21 seater") || lower === "21s" || lower === "21") {
+  if (
+    lower.includes("21-seater") ||
+    lower.includes("21 seater") ||
+    lower === "21s" ||
+    lower === "21"
+  ) {
     return "21-Seater (Large groups)";
   }
-  if (lower.includes("24-seater") || lower.includes("24 seater") || lower === "24s" || lower === "24") {
+  if (
+    lower.includes("24-seater") ||
+    lower.includes("24 seater") ||
+    lower === "24s" ||
+    lower === "24"
+  ) {
     return "24-Seater (Large groups)";
   }
-  if (lower.includes("26-seater") || lower.includes("26 seater") || lower === "26s" || lower === "26") {
+  if (
+    lower.includes("26-seater") ||
+    lower.includes("26 seater") ||
+    lower === "26s" ||
+    lower === "26"
+  ) {
     return "26-Seater (Wedding/Baraat special)";
   }
   if (lower.includes("urbania")) {
@@ -65,8 +132,10 @@ const normalizeVehicleType = (v: string): string => {
 
 const getEstimatedFare = (vehicle: string) => {
   const v = vehicle.toLowerCase();
-  if (v.includes("sedan") || v.includes("dzire") || v.includes("etios")) return "₹9/km";
-  if (v.includes("suv") || v.includes("ertiga") || v.includes("marazzo")) return "₹12/km";
+  if (v.includes("sedan") || v.includes("dzire") || v.includes("etios"))
+    return "₹9/km";
+  if (v.includes("suv") || v.includes("ertiga") || v.includes("marazzo"))
+    return "₹12/km";
   if (v.includes("innova")) return "₹15/km";
   return "₹9/km";
 };
@@ -76,11 +145,15 @@ export default function BookingModal({
   onClose,
   vehicleType,
 }: BookingModalProps) {
+  const [travelDate, setTravelDate] = useState<Date>();
+
   const [formData, setFormData] = useState({
     from: "",
     to: "",
     tripType: "One Way",
-    tempoSize: vehicleType ? normalizeVehicleType(vehicleType) : "9-Seater (Best for families)",
+    tempoSize: vehicleType
+      ? normalizeVehicleType(vehicleType)
+      : "9-Seater (Best for families)",
     travelDate: "",
     pickupTime: "",
     name: "",
@@ -148,7 +221,9 @@ export default function BookingModal({
     }
 
     const isTempo = /seater|urbania|minibus/i.test(formData.tempoSize);
-    const bookingTitle = isTempo ? "New Tempo Traveller Booking Request" : "New Cab Booking Request";
+    const bookingTitle = isTempo
+      ? "New Tempo Traveller Booking Request"
+      : "New Cab Booking Request";
     const vehicleLabel = isTempo ? "Tempo Size" : "Vehicle Type";
 
     const message = `
@@ -196,26 +271,6 @@ _Sent via chikucabs.com booking form_
           >
             ✕
           </button>
-        </div>
-
-        {/* Trust Badge */}
-        <div className="mb-6 bg-[hsl(var(--primary))]/5 rounded-xl p-3 flex items-center justify-between border border-[hsl(var(--primary))]/15">
-          <div className="flex items-center gap-2">
-            <span className="text-[hsl(var(--primary))] text-sm">✓</span>
-            <span className="text-xs text-gray-700">
-              Fixed price • No surge
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-[hsl(var(--primary))] text-sm">✓</span>
-            <span className="text-xs text-gray-700">
-              WhatsApp booking in 60s
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-[hsl(var(--primary))] text-sm">✓</span>
-            <span className="text-xs text-gray-700">9–26 seater available</span>
-          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-5">
@@ -301,19 +356,80 @@ _Sent via chikucabs.com booking form_
             </p>
           </div>
 
-          {/* Travel Date */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               Travel Date <span className="text-red-500">*</span>
             </label>
-            <input
-              type="date"
-              name="travelDate"
-              className="w-full h-11 px-4 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:bg-white focus:border-[hsl(var(--primary))] focus:ring-2 focus:ring-[hsl(var(--primary))]/20 focus:outline-none transition-all duration-200 hover:border-gray-400"
-              onChange={handleChange}
-            />
-            <p className="text-xs text-gray-500 mt-1">
-              Book 3-7 days in advance for best fare
+
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  type="button"
+                  data-empty={!travelDate}
+                  className="w-full h-11 justify-between text-left font-normal bg-gray-50 border border-gray-300 rounded-lg hover:bg-white data-[empty=true]:text-gray-500"
+                >
+                  {travelDate ? (
+                    format(travelDate, "PPP")
+                  ) : (
+                    <span>Select travel date</span>
+                  )}
+
+                  <ChevronDownIcon className="h-4 w-4 opacity-60" />
+                </Button>
+              </PopoverTrigger>
+
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={travelDate}
+                  defaultMonth={travelDate}
+                  onSelect={(date) => {
+                    if (!date) return;
+
+                    setTravelDate(date);
+
+                    setFormData((prev) => ({
+                      ...prev,
+                      travelDate: format(date, "yyyy-MM-dd"),
+                    }));
+                  }}
+                  disabled={(date) =>
+                    date < new Date(new Date().setHours(0, 0, 0, 0))
+                  }
+                />
+              </PopoverContent>
+            </Popover>
+
+            <div className="flex flex-wrap gap-2 mt-3">
+              {[
+                { label: "Today", days: 0 },
+                { label: "Tomorrow", days: 1 },
+                { label: "After 2 Days", days: 2 },
+              ].map((item) => (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => {
+                    const date = new Date();
+                    date.setDate(date.getDate() + item.days);
+
+                    setTravelDate(date);
+
+                    setFormData((prev) => ({
+                      ...prev,
+                      travelDate: format(date, "yyyy-MM-dd"),
+                    }));
+                  }}
+                  className="px-3 py-1.5 text-xs font-medium rounded-full border border-[#FE6A01]/20 text-[#FE6A01] hover:bg-[#FE6A01] hover:text-white transition"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            <p className="mt-2 text-xs text-gray-500">
+              Book 3–7 days in advance for best fare
             </p>
           </div>
 
@@ -409,13 +525,17 @@ _Sent via chikucabs.com booking form_
               <p className="text-xs text-[hsl(var(--primary))] font-medium">
                 Estimated Fare (starting from)
               </p>
-              <p className="text-xl font-bold text-[hsl(var(--primary))]">{getEstimatedFare(formData.tempoSize)}</p>
+              <p className="text-xl font-bold text-[hsl(var(--primary))]">
+                {getEstimatedFare(formData.tempoSize)}
+              </p>
             </div>
             <div className="text-right">
               <p className="text-xs text-[hsl(var(--primary))]">
                 Fixed price • No surge
               </p>
-              <p className="text-xs text-[hsl(var(--primary))]">Driver charges included</p>
+              <p className="text-xs text-[hsl(var(--primary))]">
+                Driver charges included
+              </p>
             </div>
           </div>
 

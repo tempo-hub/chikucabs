@@ -156,280 +156,204 @@ export default function OutstationRouteFareTemplate({
       </section>
 
       {/* Travel Time Section */}
-      <section className="py-24 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-24 px-4 bg-muted/30">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <div
-              className="section-badge mx-auto"
-              style={{ display: "inline-flex" }}
-            >
-              TRAVEL TIME
-            </div>
+            <div className="section-badge mx-auto">JOURNEY PLANNER</div>
 
             <h2 className="section-title">
-              {startCity} to {endCity} Travel Time
+              {startCity} to {endCity} Travel Guide
             </h2>
-
-            <p className="text-muted-foreground max-w-3xl mx-auto mt-4">
-              Check the estimated travel duration for your journey from{" "}
-              {startCity} to {endCity} and plan your trip accordingly.
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="premium-card text-center">
-              <div className="text-5xl mb-4">📍</div>
-              <h3 className="text-xl font-bold mb-2">Distance</h3>
-              <p className="text-4xl font-black text-primary">{distance} km</p>
+          <div className="space-y-8">
+            <div className="premium-card flex gap-4">
+              <div className="text-4xl">🌅</div>
+              <div>
+                <h3 className="font-bold text-xl mb-2">Best Departure Time</h3>
+                <p className="text-muted-foreground">
+                  Start between 5 AM and 8 AM to avoid city traffic and reach
+                  your destination faster.
+                </p>
+              </div>
             </div>
 
-            <div className="premium-card text-center">
-              <div className="text-5xl mb-4">⏱️</div>
-              <h3 className="text-xl font-bold mb-2">Estimated Time</h3>
-              <p className="text-4xl font-black text-primary">
-                {estimatedHours} Hours
-              </p>
+            <div className="premium-card flex gap-4">
+              <div className="text-4xl">🍴</div>
+              <div>
+                <h3 className="font-bold text-xl mb-2">
+                  Food & Refreshment Stops
+                </h3>
+                <p className="text-muted-foreground">
+                  Multiple restaurants, fuel stations and restrooms are
+                  available on the route.
+                </p>
+              </div>
             </div>
 
-            <div className="premium-card text-center">
-              <div className="text-5xl mb-4">🚖</div>
-              <h3 className="text-xl font-bold mb-2">Travel Mode</h3>
-              <p className="text-lg font-bold">Taxi / Cab Service</p>
-            </div>
-          </div>
-
-          <div className="premium-card mt-10">
-            <h3 className="text-2xl font-black mb-4">
-              Estimated Journey Duration
-            </h3>
-
-            <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-              The average travel time from <strong>{startCity}</strong> to{" "}
-              <strong>{endCity}</strong> is approximately{" "}
-              <strong>{estimatedHours} hours</strong> for a distance of{" "}
-              <strong>{distance} km</strong>.
-            </p>
-
-            <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-              Travel duration may vary depending on traffic conditions, weather,
-              road quality, toll plaza waiting time, and the number of breaks
-              taken during the journey.
-            </p>
-
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Chiku Cabs provides experienced drivers and comfortable vehicles
-              to ensure a smooth and timely journey between {startCity} and{" "}
-              {endCity}.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mt-10">
-            <div className="premium-card">
-              <h3 className="font-bold mb-3">🌅 Best Departure Time</h3>
-              <p className="text-muted-foreground">
-                Early morning departures generally help avoid traffic and reduce
-                travel time.
-              </p>
+            <div className="premium-card flex gap-4">
+              <div className="text-4xl">🚦</div>
+              <div>
+                <h3 className="font-bold text-xl mb-2">Traffic Conditions</h3>
+                <p className="text-muted-foreground">
+                  Weekend and holiday traffic may increase travel time.
+                </p>
+              </div>
             </div>
 
-            <div className="premium-card">
-              <h3 className="font-bold mb-3">🚦 Traffic Conditions</h3>
-              <p className="text-muted-foreground">
-                Travel time can increase during weekends, holidays, and peak
-                city traffic hours.
-              </p>
-            </div>
-
-            <div className="premium-card">
-              <h3 className="font-bold mb-3">☕ Rest Stops</h3>
-              <p className="text-muted-foreground">
-                Drivers can stop at restaurants, fuel stations, and refreshment
-                points during the trip.
-              </p>
+            <div className="premium-card flex gap-4">
+              <div className="text-4xl">🛡️</div>
+              <div>
+                <h3 className="font-bold text-xl mb-2">Safe Travel Tips</h3>
+                <p className="text-muted-foreground">
+                  Keep your phone charged and share trip details with family
+                  members.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Pricing Comparison Cards */}
-      <section className="max-w-7xl mx-auto px-4 py-24 -mt-12">
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              tier: "STANDARD",
-              car: "Hatchback",
-              price: "9",
-              desc: "Swift, WagonR or similar",
-              best: false,
-            },
-            {
-              tier: "POPULAR",
-              car: "Sedan",
-              price: "12",
-              desc: "Dzire, Ertiga, Innova",
-              best: true,
-            },
-            {
-              tier: "LUXURY",
-              car: "Innova",
-              price: "18",
-              desc: "Innova Crysta, Force 12S",
-              best: false,
-            },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className={`premium-card relative overflow-hidden flex flex-col pt-12 pb-8 px-8 ${item.best ? "border-primary scale-105 z-10" : ""}`}
-              style={
-                item.best ? { boxShadow: "0 0 0 4px hsla(45,90%,50%,0.1)" } : {}
-              }
-            >
-              {item.best && (
-                <div
-                  className="absolute text-white"
-                  style={{
-                    top: 0,
-                    right: 0,
-                    background: "hsl(var(--primary))",
-                    padding: "0.25rem 1rem",
-                    fontSize: "10px",
-                    fontWeight: 900,
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Best Value
-                </div>
-              )}
-              <div className="text-xs font-black opacity-40 mb-2 uppercase">
-                {item.tier} CHOICE
-              </div>
-              <h3 className="text-2xl font-black mb-2">{item.car}</h3>
-              <p className="text-muted-foreground text-sm mb-8">{item.desc}</p>
-
-              <div style={{ marginTop: "auto", marginBottom: "2.5rem" }}>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-sm font-black opacity-50">FROM</span>
-                  <span className="text-5xl font-black">₹{item.price}</span>
-                  <span className="text-sm font-black opacity-50">/ KM</span>
-                </div>
-                <div className="text-xs font-bold text-green-600 mt-2 italic">
-                  INTERCITY BEST GUARANTEE
-                </div>
-              </div>
-
-              <ul className="space-y-3 mb-10 list-none">
-                {[
-                  "Driver Allowance Incl.",
-                  "State Tax Coverage",
-                  "Multi-modal Tolls",
-                  "24/7 Support",
-                ].map((f, j) => (
-                  <li
-                    key={j}
-                    className="flex items-center gap-3 text-sm font-medium"
-                  >
-                    <span className="text-primary text-xl">✓</span> {f}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="tel:+918448445504"
-                className={`w-full py-4 rounded-xl font-black tracking-tight text-center ${item.best ? "btn-primary" : ""}`}
-                style={
-                  !item.best
-                    ? { background: "hsl(var(--muted))", display: "block" }
-                    : { display: "block" }
-                }
-              >
-                GET QUOTE NOW
-              </a>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Detailed Fare Table */}
       <section className="bg-muted/30 py-24 border-y">
-        <div className="max-w-5xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <div
               className="section-badge mx-auto"
               style={{ display: "inline-flex" }}
             >
-              FARE BREAKDOWN
+              VEHICLE PRICING
             </div>
+
             <h2 className="section-title">
-              {startCity} to {endCity} Fare Details
+              {startCity} to {endCity} Cab Fare by Vehicle Type
             </h2>
+
+            <p className="text-muted-foreground max-w-3xl mx-auto mt-4">
+              Compare taxi fares for Hatchback, Sedan, and Innova vehicles.
+              Choose the best cab option based on your travel budget, passenger
+              count, and comfort requirements for your journey from {startCity}{" "}
+              to {endCity}.
+            </p>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b" style={{ borderBottomWidth: "2px" }}>
-                  <th className="py-4 px-4 text-left font-black text-sm">
-                    COMPONENT
-                  </th>
-                  <th className="py-4 px-4 text-center font-black text-sm">
-                    HATCHBACK
-                  </th>
-                  <th className="py-4 px-4 text-center font-black text-sm">
-                    SEDAN
-                  </th>
-                  <th className="py-4 px-4 text-center font-black text-sm">
-                    INNOVA
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  {
-                    item: "Base Fare (per km)",
-                    sedan: "₹9/km",
-                    suv: "₹12/km",
-                    innova: "₹18/km",
-                  },
-                  {
-                    item: "Driver Allowance",
-                    sedan: "Included",
-                    suv: "Included",
-                    innova: "Included",
-                  },
-                  {
-                    item: "Fuel Charges",
-                    sedan: "Included",
-                    suv: "Included",
-                    innova: "Included",
-                  },
-                  {
-                    item: "GST (5%)",
-                    sedan: "Included",
-                    suv: "Included",
-                    innova: "Included",
-                  },
-                  {
-                    item: "Toll Taxes",
-                    sedan: "As per actual",
-                    suv: "As per actual",
-                    innova: "As per actual",
-                  },
-                  {
-                    item: "Night Charges",
-                    sedan: "Included",
-                    suv: "Included",
-                    innova: "Included",
-                  },
-                ].map((row, i) => (
-                  <tr key={i} className="border-b">
-                    <td className="py-4 px-4 font-bold">{row.item}</td>
-                    <td className="py-4 px-4 text-center">{row.sedan}</td>
-                    <td className="py-4 px-4 text-center">{row.suv}</td>
-                    <td className="py-4 px-4 text-center">{row.innova}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                tier: "STANDARD",
+                car: "Hatchback",
+                price: "9",
+                desc: "Swift, WagonR or similar",
+                best: false,
+              },
+              {
+                tier: "POPULAR",
+                car: "Sedan",
+                price: "12",
+                desc: "Dzire, Ertiga or similar",
+                best: true,
+              },
+              {
+                tier: "LUXURY",
+                car: "Innova",
+                price: "18",
+                desc: "Innova Crysta, Force Urbania",
+                best: false,
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className={`premium-card relative overflow-hidden flex flex-col pt-12 pb-8 px-8 transition-all duration-300 hover:-translate-y-2 ${
+                  item.best ? "border-primary scale-105 z-10" : ""
+                }`}
+                style={
+                  item.best
+                    ? {
+                        boxShadow: "0 0 0 4px hsla(45,90%,50%,0.12)",
+                      }
+                    : {}
+                }
+              >
+                {item.best && (
+                  <div
+                    className="absolute text-white"
+                    style={{
+                      top: 0,
+                      right: 0,
+                      background: "hsl(var(--primary))",
+                      padding: "0.35rem 1rem",
+                      fontSize: "10px",
+                      fontWeight: 900,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Most Popular
+                  </div>
+                )}
+
+                <div className="text-xs font-black opacity-40 mb-2 uppercase">
+                  {item.tier} CHOICE
+                </div>
+
+                <h3 className="text-2xl font-black mb-2">{item.car}</h3>
+
+                <p className="text-muted-foreground text-sm mb-8">
+                  {item.desc}
+                </p>
+
+                <div style={{ marginTop: "auto", marginBottom: "2.5rem" }}>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-sm font-black opacity-50">FROM</span>
+
+                    <span className="text-5xl font-black">₹{item.price}</span>
+
+                    <span className="text-sm font-black opacity-50">/ KM</span>
+                  </div>
+
+                  <div className="text-xs font-bold text-green-600 mt-2 italic">
+                    INTERCITY BEST PRICE GUARANTEE
+                  </div>
+                </div>
+
+                <ul className="space-y-3 mb-10 list-none">
+                  {[
+                    "Driver Allowance Included",
+                    "State Permit Included",
+                    "Clean & Sanitized Vehicle",
+                    "24×7 Customer Support",
+                  ].map((feature, j) => (
+                    <li
+                      key={j}
+                      className="flex items-center gap-3 text-sm font-medium"
+                    >
+                      <span className="text-primary text-xl">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="tel:+918448445504"
+                  className={`w-full py-4 rounded-xl font-black tracking-tight text-center ${
+                    item.best ? "btn-primary" : ""
+                  }`}
+                  style={
+                    !item.best
+                      ? {
+                          background: "hsl(var(--muted))",
+                          display: "block",
+                        }
+                      : {
+                          display: "block",
+                        }
+                  }
+                >
+                  GET QUOTE NOW
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -502,111 +426,6 @@ export default function OutstationRouteFareTemplate({
               </strong>{" "}
               route, call us at <strong>8448445504</strong>.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Route Information */}
-      <section className="bg-muted/30 py-24 border-y">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <div
-              className="section-badge mx-auto"
-              style={{ display: "inline-flex" }}
-            >
-              ROUTE INFORMATION
-            </div>
-
-            <h2 className="section-title">
-              {startCity} to {endCity} Route Information
-            </h2>
-
-            <p className="text-muted-foreground max-w-3xl mx-auto mt-4">
-              Get complete route details for your journey from {startCity} to{" "}
-              {endCity}, including travel distance, estimated duration, road
-              conditions, and travel recommendations.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="premium-card text-center">
-              <div className="text-4xl mb-4">📍</div>
-              <h3 className="font-bold mb-2">Distance</h3>
-              <p className="text-2xl font-black text-primary">{distance} km</p>
-            </div>
-
-            <div className="premium-card text-center">
-              <div className="text-4xl mb-4">⏱️</div>
-              <h3 className="font-bold mb-2">Travel Time</h3>
-              <p className="text-2xl font-black text-primary">
-                {Math.ceil(distance / 55)} Hrs
-              </p>
-            </div>
-
-            <div className="premium-card text-center">
-              <div className="text-4xl mb-4">🛣️</div>
-              <h3 className="font-bold mb-2">Road Condition</h3>
-              <p className="text-lg font-bold">Good Highway Route</p>
-            </div>
-
-            <div className="premium-card text-center">
-              <div className="text-4xl mb-4">🚖</div>
-              <h3 className="font-bold mb-2">Trip Type</h3>
-              <p className="text-lg font-bold">One Way & Round Trip</p>
-            </div>
-          </div>
-
-          <div className="premium-card mt-10">
-            <h3 className="text-2xl font-black mb-4">
-              About the {startCity} to {endCity} Route
-            </h3>
-
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              The route from <strong>{startCity}</strong> to{" "}
-              <strong>{endCity}</strong> covers approximately{" "}
-              <strong>{distance} km</strong>. The average travel duration is
-              around <strong>{Math.ceil(distance / 55)} hours</strong>,
-              depending on traffic conditions, weather, and road construction
-              activities.
-            </p>
-
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Chiku Cabs provides reliable taxi services on this route with
-              experienced drivers, well-maintained vehicles, and transparent
-              pricing. Customers can choose between one-way cab booking,
-              round-trip taxi services, and premium vehicle options.
-            </p>
-
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              This route is frequently booked by tourists, business travelers,
-              families, and corporate clients looking for a comfortable and
-              hassle-free travel experience between {startCity} and {endCity}.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mt-10">
-            <div className="premium-card">
-              <h3 className="font-bold mb-3">🚗 Best Travel Option</h3>
-              <p className="text-muted-foreground">
-                Sedan and Innova cabs are the most popular choices for this
-                route.
-              </p>
-            </div>
-
-            <div className="premium-card">
-              <h3 className="font-bold mb-3">🛡️ Safety Features</h3>
-              <p className="text-muted-foreground">
-                GPS-enabled vehicles, verified drivers, and 24×7 customer
-                support.
-              </p>
-            </div>
-
-            <div className="premium-card">
-              <h3 className="font-bold mb-3">📞 Easy Booking</h3>
-              <p className="text-muted-foreground">
-                Instant booking confirmation with flexible pickup timing.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -944,110 +763,6 @@ export default function OutstationRouteFareTemplate({
         </div>
       </section>
 
-      {/* Inclusions vs Exclusions */}
-      {/* <section className="py-24">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="section-title">What's Included vs Not Included?</h2>
-          </div>
-          <div className="incl-excl-grid">
-            <div className="incl-card">
-              <h3
-                className="text-xl font-bold mb-6"
-                style={{ color: "#16a34a" }}
-              >
-                ✅ Included in Fare
-              </h3>
-              {[
-                "Base fare per km",
-                "Driver batta / allowance",
-                "Fuel charges",
-                "GST (5%)",
-                "Night driving charges",
-                "State permit charges",
-              ].map((item, i) => (
-                <div key={i} className="incl-item">
-                  <span className="text-green-500">✔</span> {item}
-                </div>
-              ))}
-            </div>
-            <div className="excl-card">
-              <h3
-                className="text-xl font-bold mb-6"
-                style={{ color: "#dc2626" }}
-              >
-                ❌ Not Included
-              </h3>
-              {[
-                "Toll taxes (as per actual)",
-                "Parking fees",
-                "Monument entry tickets",
-                "Extra km beyond package",
-                "Driver tip (optional)",
-              ].map((item, i) => (
-                <div key={i} className="excl-item">
-                  <span style={{ color: "#dc2626" }}>✗</span> {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* SEO Content */}
-      <section className="bg-muted/30 py-24 border-y">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="prose max-w-none">
-            <h2 className="text-4xl font-black mb-8">
-              Find the Most Affordable {vehicle} Fare from {startCity} to{" "}
-              {endCity}
-            </h2>
-            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-              <p>
-                When it comes to{" "}
-                <strong>
-                  {startCity} to {endCity} cab charges
-                </strong>
-                , Chiku Cabs offers the most competitive pricing in the market.
-                Our{" "}
-                <strong>
-                  {startCity} to {endCity} taxi fare
-                </strong>{" "}
-                is designed to be pocket-friendly without compromising on the
-                quality of service.
-              </p>
-              <div
-                className="premium-card"
-                style={{ background: "hsla(0,0%,96.1%,0.2)", padding: "3rem" }}
-              >
-                <h3 className="text-2xl font-black mb-6">
-                  💰 Price Match Promise
-                </h3>
-                <p className="text-lg opacity-80 leading-relaxed mb-4">
-                  Found a lower{" "}
-                  <strong>
-                    rate for {startCity} to {endCity}
-                  </strong>
-                  ? Share the quote with us, and we'll match it plus give you a
-                  5% discount on your current booking.
-                </p>
-                <a href="tel:+918448445504" className="font-black text-primary">
-                  CALL FOR PRICE MATCH → 8448445504
-                </a>
-              </div>
-              <p>
-                Whether you need a one-way trip or a round-trip package, our{" "}
-                <strong>
-                  {vehicle} per km rate from {startCity}
-                </strong>{" "}
-                remains consistent and fair. You can also opt for fixed-price
-                bundles for frequent business travelers.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Customer Testimonials */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4">
@@ -1198,8 +913,12 @@ export default function OutstationRouteFareTemplate({
               href="https://wa.me/918448445504"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline text-lg px-10 py-4"
-              style={{ color: "white", borderColor: "rgba(255,255,255,0.3)" }}
+              className="text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all hover:scale-105"
+              style={{
+                backgroundColor: "#25D366",
+                color: "#fff",
+                border: "none",
+              }}
             >
               💬 WhatsApp Us
             </a>
