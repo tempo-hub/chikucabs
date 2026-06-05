@@ -1,9 +1,6 @@
 import { ParsedRouteData } from "@/lib/urlParser";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
 import EEATSection from "@/components/shared/EEATSection";
 import InternalLinks from "@/components/shared/InternalLinks";
-import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 
 export default function DriverServiceTemplate({
   parsedData,
@@ -50,22 +47,18 @@ export default function DriverServiceTemplate({
       </section>
 
       {/* Stats Bar */}
-      <section className="border-b py-12 bg-muted/30">
+      <section className="border-y py-12">
         <div className="max-w-5xl mx-auto px-4">
           <div className="stats-grid">
             {[
-              { num: "50,000+", label: "Happy Clients" },
-              { num: "5,000+", label: "Verified Drivers" },
-              { num: "24/7", label: "Availability" },
-              { num: "4.9 ★", label: "Driver Rating" },
+              { num: "800+", label: "Monthly Group Trips" },
+              { num: "₹2M+", label: "Group Savings" },
+              { num: "4.9/5", label: "Google Rating" },
+              { num: "Verified", label: "Local Drivers" },
             ].map((stat, i) => (
-              <div key={i} className="stat-item text-center">
-                <div className="text-3xl font-black text-primary mb-2">
-                  {stat.num}
-                </div>
-                <div className="text-sm text-muted-foreground font-bold">
-                  {stat.label}
-                </div>
+              <div key={i} className="stat-item">
+                <div className="stat-number">{stat.num}</div>
+                <div className="stat-label">{stat.label}</div>
               </div>
             ))}
           </div>

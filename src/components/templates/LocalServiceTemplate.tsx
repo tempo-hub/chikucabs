@@ -1,9 +1,6 @@
 import { ParsedRouteData } from "@/lib/urlParser";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
 import EEATSection from "@/components/shared/EEATSection";
 import InternalLinks from "@/components/shared/InternalLinks";
-import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 
 export default function LocalServiceTemplate({
   parsedData,
@@ -135,6 +132,7 @@ export default function LocalServiceTemplate({
               Choose the perfect package for your local travel needs.
             </p>
           </div>
+          
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
             {[
               {

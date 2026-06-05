@@ -1259,13 +1259,12 @@ a {
 }
 
 /* CTA Banner */
-.cta-banner {
-  background: hsl(var(--foreground));
-  color: hsl(var(--background));
-  border-radius: 1.5rem;
+ .cta-banner {
+  background-color: var(--foreground);
+  color: var(--background);
+  border-radius: 24px;
   padding: 3.5rem 2rem;
   text-align: center;
-  position: relative;
   overflow: hidden;
 }
 .cta-banner::before {

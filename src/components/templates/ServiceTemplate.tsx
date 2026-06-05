@@ -97,63 +97,14 @@ export default function ServiceTemplate({
         <div className="max-w-5xl mx-auto px-4">
           <div className="stats-grid">
             {[
-              { num: "1L+", label: "Trips Completed" },
-              { num: "500+", label: "Expert Drivers" },
-              { num: "100+", label: "Cities in India" },
-              { num: "4.9 ★", label: "Customer Rating" },
+              { num: "800+", label: "Monthly Group Trips" },
+              { num: "₹2M+", label: "Group Savings" },
+              { num: "4.9/5", label: "Google Rating" },
+              { num: "Verified", label: "Local Drivers" },
             ].map((stat, i) => (
               <div key={i} className="stat-item">
                 <div className="stat-number">{stat.num}</div>
                 <div className="stat-label">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-24 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <div
-              className="section-badge mx-auto"
-              style={{ display: "inline-flex" }}
-            >
-              HOW IT WORKS
-            </div>
-            <h2 className="section-title">
-              Book Your {vehicle} in 3 Easy Steps
-            </h2>
-            <div className="section-divider mx-auto"></div>
-          </div>
-          <div className="steps-container">
-            {[
-              {
-                num: "1",
-                icon: "📱",
-                title: "Tell Us Your Plan",
-                desc: "Call 8448445504 or WhatsApp us with your pickup location, destination, and travel date.",
-              },
-              {
-                num: "2",
-                icon: "🚗",
-                title: "Choose Your Vehicle",
-                desc: `Select from Sedan, SUV, Innova, or ${vehicle} based on your group size and budget.`,
-              },
-              {
-                num: "3",
-                icon: "✅",
-                title: "Confirm & Ride",
-                desc: "Get instant confirmation. Your verified driver arrives at your doorstep, on time, every time.",
-              },
-            ].map((step, i) => (
-              <div key={i} className="step-card">
-                <div className="step-number">{step.num}</div>
-                <div className="step-icon">{step.icon}</div>
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {step.desc}
-                </p>
               </div>
             ))}
           </div>
@@ -240,55 +191,120 @@ export default function ServiceTemplate({
               Travellers.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                name: "Sedan",
-                models: "Dzire, Etios, Amaze",
-                price: "₹9/km",
-                capacity: "4+1",
-                icon: "🚘",
+                tier: "STANDARD",
+                car: "Hatchback",
+                price: "9",
+                desc: "Swift, WagonR or similar",
+                best: false,
               },
               {
-                name: "SUV",
-                models: "Ertiga, Marazzo, XUV",
-                price: "₹12/km",
-                capacity: "6+1",
-                icon: "🚙",
+                tier: "POPULAR",
+                car: "Sedan",
+                price: "12",
+                desc: "Dzire, Ertiga or similar",
+                best: true,
               },
               {
-                name: "Innova Crysta",
-                models: "Innova, Crysta HyCross",
-                price: "₹15/km",
-                capacity: "7+1",
-                icon: "✨",
+                tier: "LUXURY",
+                car: "Innova",
+                price: "18",
+                desc: "Innova Crysta, Force Urbania",
+                best: false,
               },
-              {
-                name: "Tempo Traveller",
-                models: "Force 12S, 16S, 20S",
-                price: "₹20/km",
-                capacity: "12-20",
-                icon: "🚌",
-              },
-            ].map((car, i) => (
-              <div key={i} className="premium-card text-center p-6">
-                <div className="text-4xl mb-4">{car.icon}</div>
-                <h3 className="text-xl font-black mb-1">{car.name}</h3>
-                <p className="text-xs text-muted-foreground mb-4">
-                  {car.models}
+            ].map((item, i) => (
+              <div
+                key={i}
+                className={`premium-card relative overflow-hidden flex flex-col pt-12 pb-8 px-8 transition-all duration-300 hover:-translate-y-2 ${
+                  item.best ? "border-primary scale-105 z-10" : ""
+                }`}
+                style={
+                  item.best
+                    ? {
+                        boxShadow: "0 0 0 4px hsla(45,90%,50%,0.12)",
+                      }
+                    : {}
+                }
+              >
+                {item.best && (
+                  <div
+                    className="absolute text-white"
+                    style={{
+                      top: 0,
+                      right: 0,
+                      background: "hsl(var(--primary))",
+                      padding: "0.35rem 1rem",
+                      fontSize: "10px",
+                      fontWeight: 900,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Most Popular
+                  </div>
+                )}
+
+                <div className="text-xs font-black opacity-40 mb-2 uppercase">
+                  {item.tier} CHOICE
+                </div>
+
+                <h3 className="text-2xl font-black mb-2">{item.car}</h3>
+
+                <p className="text-muted-foreground text-sm mb-8">
+                  {item.desc}
                 </p>
-                <div className="text-2xl font-black text-primary mb-1">
-                  {car.price}
+
+                <div style={{ marginTop: "auto", marginBottom: "2.5rem" }}>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-sm font-black opacity-50">FROM</span>
+
+                    <span className="text-5xl font-black">₹{item.price}</span>
+
+                    <span className="text-sm font-black opacity-50">/ KM</span>
+                  </div>
+
+                  <div className="text-xs font-bold text-green-600 mt-2 italic">
+                    INTERCITY BEST PRICE GUARANTEE
+                  </div>
                 </div>
-                <div className="text-xs opacity-50 font-bold mb-6">
-                  {car.capacity} Passengers
-                </div>
+
+                <ul className="space-y-3 mb-10 list-none">
+                  {[
+                    "Driver Allowance Included",
+                    "State Permit Included",
+                    "Clean & Sanitized Vehicle",
+                    "24×7 Customer Support",
+                  ].map((feature, j) => (
+                    <li
+                      key={j}
+                      className="flex items-center gap-3 text-sm font-medium"
+                    >
+                      <span className="text-primary text-xl">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
                 <a
                   href="tel:+918448445504"
-                  className="btn-primary w-full py-3 text-sm"
-                  style={{ display: "block", textAlign: "center" }}
+                  className={`w-full py-4 rounded-xl font-black tracking-tight text-center ${
+                    item.best ? "btn-primary" : ""
+                  }`}
+                  style={
+                    !item.best
+                      ? {
+                          background: "hsl(var(--muted))",
+                          display: "block",
+                        }
+                      : {
+                          display: "block",
+                        }
+                  }
                 >
-                  Book Now
+                  BOOK NOW
                 </a>
               </div>
             ))}
@@ -475,12 +491,12 @@ export default function ServiceTemplate({
             >
               📞 Call 8448445504
             </a>
+
             <a
               href="https://wa.me/918448445504"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline text-lg px-10 py-4"
-              style={{ color: "white", borderColor: "rgba(255,255,255,0.3)" }}
+              className="bg-green-500 hover:bg-green-600 text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all hover:scale-105 shadow-lg"
             >
               💬 WhatsApp Us
             </a>

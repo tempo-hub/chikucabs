@@ -29,17 +29,6 @@ export default function OutstationRouteTemplate({
 
   return (
     <div className="bg-background min-h-screen">
-      {/* Breadcrumbs */}
-      <div className="bg-muted/30 border-b py-3">
-        <div className="max-w-7xl mx-auto px-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-60">
-          <a href="/">Home</a> <span>/</span> <span>Outstation</span>{" "}
-          <span>/</span>{" "}
-          <span className="text-primary">
-            {startCity} to {endCity}
-          </span>
-        </div>
-      </div>
-
       {/* Hero + Booking Card */}
       <section className="relative py-16 lg:py-24 px-4">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-start">
@@ -263,105 +252,123 @@ export default function OutstationRouteTemplate({
               Select the perfect ride for your {startCity} to {endCity} journey.
             </p>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b" style={{ borderBottomWidth: "2px" }}>
-                  <th className="py-6 px-4 text-left font-black text-sm">
-                    VEHICLE CLASS
-                  </th>
-                  <th className="py-6 px-4 text-center font-black text-sm">
-                    CAPACITY
-                  </th>
-                  <th className="py-6 px-4 text-center font-black text-sm">
-                    FEATURES
-                  </th>
-                  <th className="py-6 px-4 text-center font-black text-sm">
-                    LUGGAGE
-                  </th>
-                  <th className="py-6 px-4 text-right font-black text-sm">
-                    FARE
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  {
-                    name: "Executive Sedan",
-                    model: "Swift Dzire, Etios",
-                    cap: "4+1",
-                    features: "Dual AC",
-                    bags: "2 Large",
-                    price: "₹2,499",
-                    icon: "🚘",
-                  },
-                  {
-                    name: "Premium SUV",
-                    model: "Ertiga, Marazzo",
-                    cap: "6+1",
-                    features: "Rear AC Vents",
-                    bags: "4 Large",
-                    price: "₹3,999",
-                    icon: "🚐",
-                  },
-                  {
-                    name: "Luxury Innova",
-                    model: "Innova Crysta",
-                    cap: "7+1",
-                    features: "Captain Seats",
-                    bags: "5 Large",
-                    price: "₹4,499",
-                    icon: "✨",
-                  },
-                  {
-                    name: "Tempo Traveller",
-                    model: "Force 12S/16S",
-                    cap: "12-16",
-                    features: "Pushback Seats",
-                    bags: "8+ Large",
-                    price: "₹7,999",
-                    icon: "🚌",
-                  },
-                ].map((car, i) => (
-                  <tr
-                    key={i}
-                    className="border-b group"
-                    style={{ cursor: "pointer" }}
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                tier: "STANDARD",
+                car: "Hatchback",
+                price: "9",
+                desc: "Swift, WagonR or similar",
+                best: false,
+              },
+              {
+                tier: "POPULAR",
+                car: "Sedan",
+                price: "12",
+                desc: "Dzire, Ertiga or similar",
+                best: true,
+              },
+              {
+                tier: "LUXURY",
+                car: "Innova",
+                price: "18",
+                desc: "Innova Crysta, Force Urbania",
+                best: false,
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className={`premium-card relative overflow-hidden flex flex-col pt-12 pb-8 px-8 transition-all duration-300 hover:-translate-y-2 ${
+                  item.best ? "border-primary scale-105 z-10" : ""
+                }`}
+                style={
+                  item.best
+                    ? {
+                        boxShadow: "0 0 0 4px hsla(45,90%,50%,0.12)",
+                      }
+                    : {}
+                }
+              >
+                {item.best && (
+                  <div
+                    className="absolute text-white"
+                    style={{
+                      top: 0,
+                      right: 0,
+                      background: "hsl(var(--primary))",
+                      padding: "0.35rem 1rem",
+                      fontSize: "10px",
+                      fontWeight: 900,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                    }}
                   >
-                    <td className="py-6 px-4">
-                      <div className="flex items-center gap-4">
-                        <span className="text-2xl">{car.icon}</span>
-                        <div>
-                          <div className="font-black text-lg">{car.name}</div>
-                          <div className="text-xs opacity-50">{car.model}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-6 px-4 text-center font-bold">
-                      {car.cap}
-                    </td>
-                    <td className="py-6 px-4 text-center font-bold">
-                      {car.features}
-                    </td>
-                    <td className="py-6 px-4 text-center font-bold">
-                      {car.bags}
-                    </td>
-                    <td className="py-6 px-4 text-right">
-                      <div className="font-black text-xl text-primary">
-                        {car.price}
-                      </div>
-                      <a
-                        href="tel:+918448445504"
-                        className="text-xs font-bold text-primary mt-1"
-                        style={{ display: "inline-block" }}
-                      >
-                        BOOK →
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    Most Popular
+                  </div>
+                )}
+
+                <div className="text-xs font-black opacity-40 mb-2 uppercase">
+                  {item.tier} CHOICE
+                </div>
+
+                <h3 className="text-2xl font-black mb-2">{item.car}</h3>
+
+                <p className="text-muted-foreground text-sm mb-8">
+                  {item.desc}
+                </p>
+
+                <div style={{ marginTop: "auto", marginBottom: "2.5rem" }}>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-sm font-black opacity-50">FROM</span>
+
+                    <span className="text-5xl font-black">₹{item.price}</span>
+
+                    <span className="text-sm font-black opacity-50">/ KM</span>
+                  </div>
+
+                  <div className="text-xs font-bold text-green-600 mt-2 italic">
+                    INTERCITY BEST PRICE GUARANTEE
+                  </div>
+                </div>
+
+                <ul className="space-y-3 mb-10 list-none">
+                  {[
+                    "Driver Allowance Included",
+                    "State Permit Included",
+                    "Clean & Sanitized Vehicle",
+                    "24×7 Customer Support",
+                  ].map((feature, j) => (
+                    <li
+                      key={j}
+                      className="flex items-center gap-3 text-sm font-medium"
+                    >
+                      <span className="text-primary text-xl">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="tel:+918448445504"
+                  className={`w-full py-4 rounded-xl font-black tracking-tight text-center ${
+                    item.best ? "btn-primary" : ""
+                  }`}
+                  style={
+                    !item.best
+                      ? {
+                          background: "hsl(var(--muted))",
+                          display: "block",
+                        }
+                      : {
+                          display: "block",
+                        }
+                  }
+                >
+                  BOOK NOW
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>

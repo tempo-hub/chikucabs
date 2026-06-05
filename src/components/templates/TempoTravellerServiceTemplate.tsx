@@ -74,34 +74,18 @@ export default function TempoTravellerServiceTemplate({
       </section>
 
       {/* Stats Bar */}
-      <section
-        className="border-y py-12"
-        style={{
-          background: "hsl(var(--foreground))",
-          color: "hsl(var(--background))",
-        }}
-      >
+      <section className="border-y py-12">
         <div className="max-w-5xl mx-auto px-4">
           <div className="stats-grid">
             {[
-              { num: "50,000+", label: "Group Trips Done" },
-              { num: "500+", label: "Tempo Travellers" },
-              { num: "100+", label: "Cities Covered" },
-              { num: "4.9 ★", label: "Customer Rating" },
+              { num: "800+", label: "Monthly Group Trips" },
+              { num: "₹2M+", label: "Group Savings" },
+              { num: "4.9/5", label: "Google Rating" },
+              { num: "Verified", label: "Local Drivers" },
             ].map((stat, i) => (
               <div key={i} className="stat-item">
-                <div
-                  className="stat-number"
-                  style={{ color: "hsl(var(--primary))" }}
-                >
-                  {stat.num}
-                </div>
-                <div
-                  className="stat-label"
-                  style={{ color: "hsla(0,0%,100%,0.5)" }}
-                >
-                  {stat.label}
-                </div>
+                <div className="stat-number">{stat.num}</div>
+                <div className="stat-label">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -357,6 +341,7 @@ export default function TempoTravellerServiceTemplate({
             </h2>
             <div className="section-divider mx-auto"></div>
           </div>
+
           <div className="steps-container">
             {[
               {
@@ -523,8 +508,7 @@ export default function TempoTravellerServiceTemplate({
               href="https://wa.me/918448445504"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline text-lg px-10 py-4"
-              style={{ color: "white", borderColor: "rgba(255,255,255,0.3)" }}
+              className="bg-[#25D366] hover:bg-[#20bd5a] text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all duration-300 hover:scale-105 shadow-lg"
             >
               💬 WhatsApp Us
             </a>

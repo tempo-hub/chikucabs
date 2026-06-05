@@ -30,17 +30,6 @@ export default function OneWayRouteTemplate({
 
   return (
     <div className="bg-background min-h-screen">
-      {/* Breadcrumbs */}
-      <div className="bg-muted/30 border-b py-3">
-        <div className="max-w-7xl mx-auto px-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-60">
-          <a href="/">Home</a> <span>/</span> <span>One Way Drop</span>{" "}
-          <span>/</span>{" "}
-          <span className="text-primary">
-            {startCity} to {endCity}
-          </span>
-        </div>
-      </div>
-
       {/* Hero Section */}
       <section className="relative pt-20 pb-24 px-4 overflow-hidden bg-muted/30">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">

@@ -2,16 +2,6 @@
 
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { ChevronDownIcon } from "lucide-react";
-import { format } from "date-fns";
-
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 
 type BookingModalProps = {
   isOpen: boolean;
@@ -145,7 +135,6 @@ export default function BookingModal({
   onClose,
   vehicleType,
 }: BookingModalProps) {
-  const [travelDate, setTravelDate] = useState<Date>();
 
   const [formData, setFormData] = useState({
     from: "",
@@ -356,80 +345,19 @@ _Sent via chikucabs.com booking form_
             </p>
           </div>
 
+          {/* Travel Date */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               Travel Date <span className="text-red-500">*</span>
             </label>
-
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  type="button"
-                  data-empty={!travelDate}
-                  className="w-full h-11 justify-between text-left font-normal bg-gray-50 border border-gray-300 rounded-lg hover:bg-white data-[empty=true]:text-gray-500"
-                >
-                  {travelDate ? (
-                    format(travelDate, "PPP")
-                  ) : (
-                    <span>Select travel date</span>
-                  )}
-
-                  <ChevronDownIcon className="h-4 w-4 opacity-60" />
-                </Button>
-              </PopoverTrigger>
-
-              <PopoverContent className="w-auto p-0" align="start">
-                <Calendar
-                  mode="single"
-                  selected={travelDate}
-                  defaultMonth={travelDate}
-                  onSelect={(date) => {
-                    if (!date) return;
-
-                    setTravelDate(date);
-
-                    setFormData((prev) => ({
-                      ...prev,
-                      travelDate: format(date, "yyyy-MM-dd"),
-                    }));
-                  }}
-                  disabled={(date) =>
-                    date < new Date(new Date().setHours(0, 0, 0, 0))
-                  }
-                />
-              </PopoverContent>
-            </Popover>
-
-            <div className="flex flex-wrap gap-2 mt-3">
-              {[
-                { label: "Today", days: 0 },
-                { label: "Tomorrow", days: 1 },
-                { label: "After 2 Days", days: 2 },
-              ].map((item) => (
-                <button
-                  key={item.label}
-                  type="button"
-                  onClick={() => {
-                    const date = new Date();
-                    date.setDate(date.getDate() + item.days);
-
-                    setTravelDate(date);
-
-                    setFormData((prev) => ({
-                      ...prev,
-                      travelDate: format(date, "yyyy-MM-dd"),
-                    }));
-                  }}
-                  className="px-3 py-1.5 text-xs font-medium rounded-full border border-[#FE6A01]/20 text-[#FE6A01] hover:bg-[#FE6A01] hover:text-white transition"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-
-            <p className="mt-2 text-xs text-gray-500">
-              Book 3–7 days in advance for best fare
+            <input
+              type="date"
+              name="travelDate"
+              className="w-full h-11 px-4 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:bg-white focus:border-[#FE6A01] focus:ring-2 focus:ring-[#FE6A01]/20 focus:outline-none transition-all duration-200 hover:border-gray-400"
+              onChange={handleChange}
+            />
+            <p className="text-xs text-gray-500 mt-1">
+              Book 3-7 days in advance for best fare
             </p>
           </div>
 

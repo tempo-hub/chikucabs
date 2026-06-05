@@ -350,7 +350,7 @@ export default function OutstationRouteFareTemplate({
                         }
                   }
                 >
-                  GET QUOTE NOW
+                  BOOK NOW
                 </a>
               </div>
             ))}

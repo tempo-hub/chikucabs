@@ -27,25 +27,6 @@ export default function OutstationTaxiDelhiTemplate() {
 
   return (
     <div className="bg-background min-h-screen">
-      {/* Breadcrumb */}
-      <nav className="flex flex-wrap items-center gap-2 max-w-7xl mx-auto px-4 py-6">
-        <Link
-          href="/"
-          className="text-muted-foreground hover:text-primary transition-colors"
-        >
-          Home
-        </Link>
-
-        <span>›</span>
-
-        <Link
-          href="/airport-taxi"
-          className="text-muted-foreground hover:text-primary transition-colors"
-        >
-          Outstation Taxi Delhi
-        </Link>
-      </nav>
-
       {/* Hero */}
       <section className="py-24 px-4 bg-muted/30">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
@@ -108,10 +89,9 @@ export default function OutstationTaxiDelhiTemplate() {
 
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { name: "Sedan", price: "₹11/km" },
-              { name: "SUV", price: "₹14/km" },
+              { name: "Sedan", price: "₹9/km" },
+              { name: "Hatchback", price: "₹12/km" },
               { name: "Innova", price: "₹18/km" },
-              { name: "Crysta", price: "₹22/km" },
             ].map((item, i) => (
               <div key={i} className="premium-card p-8 text-center">
                 <h3 className="text-2xl font-bold mb-4">{item.name}</h3>

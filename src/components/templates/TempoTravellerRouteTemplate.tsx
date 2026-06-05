@@ -19,7 +19,7 @@ export default function TempoTravellerRouteTemplate({
   const currentUrl = `/${citySlug}/tempo-traveller-hire-${citySlug}-to-${endCity
     .toLowerCase()
     .replace(/\s+/g, "-")}`;
-    
+
   const routes = routesByCity[citySlug] || [];
 
   const routePages = routes.map((r: { slug: string }) => ({
@@ -114,6 +114,64 @@ export default function TempoTravellerRouteTemplate({
         </div>
       </section>
 
+      {/* Why Tempo Traveller */}
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="section-title">
+              Why Hire a Tempo Traveller from {startCity}?
+            </h2>
+            <p className="section-subtitle mx-auto">
+              The best <strong>tempo traveller on rent</strong> for your group's{" "}
+              <strong>outstation tempo traveller</strong> needs. Our{" "}
+              <strong>group travel service</strong> provides the most reliable{" "}
+              <strong>tempo traveller booking</strong> experience for large
+              families and corporate teams.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                icon: "👥",
+                title: "Travel Together",
+                desc: `Keep your entire group together in one vehicle from ${startCity} to ${endCity}. No need for multiple cabs.`,
+              },
+              {
+                icon: "💰",
+                title: "Cost Effective",
+                desc: "Split the fare among group members and save 40-60% compared to booking individual cabs.",
+              },
+              {
+                icon: "🧳",
+                title: "Ample Luggage Space",
+                desc: "Roof carrier and boot space to accommodate luggage for the entire group.",
+              },
+              {
+                icon: "🛡️",
+                title: "Safe & Verified",
+                desc: "GPS-tracked vehicles with experienced, background-verified drivers familiar with the route.",
+              },
+            ].map((feature, i) => (
+              <div key={i} className="premium-card">
+                <div className="flex items-center gap-4 mb-4">
+                  <div
+                    className="w-12 h-12 rounded-lg flex items-center justify-center text-2xl"
+                    style={{ background: "hsla(358,73%,43%,0.1)" }}
+                  >
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-lg font-bold">{feature.title}</h3>
+                </div>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {feature.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Pricing by Seating */}
       <section className="py-24 px-4">
         <div className="max-w-7xl mx-auto">
@@ -193,113 +251,6 @@ export default function TempoTravellerRouteTemplate({
                 >
                   Book {pkg.seats}
                 </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Inclusions vs Exclusions */}
-      <section className="bg-muted/30 py-24 border-y">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="section-title">What's Included vs Not Included?</h2>
-          </div>
-          <div className="incl-excl-grid">
-            <div className="incl-card">
-              <h3
-                className="text-xl font-bold mb-6"
-                style={{ color: "#16a34a" }}
-              >
-                ✅ Included in Fare
-              </h3>
-              {[
-                "Base fare per km",
-                "Driver allowance",
-                "Fuel charges",
-                "AC Tempo Traveller",
-                "Pushback reclining seats",
-                "Night driving charges",
-              ].map((item, i) => (
-                <div key={i} className="incl-item">
-                  <span className="text-green-500">✔</span> {item}
-                </div>
-              ))}
-            </div>
-            <div className="excl-card">
-              <h3
-                className="text-xl font-bold mb-6"
-                style={{ color: "#dc2626" }}
-              >
-                ❌ Not Included
-              </h3>
-              {[
-                "Toll taxes (as per actual)",
-                "Parking fees",
-                "State permit charges",
-                "Monument entry tickets",
-                "Driver tip (optional)",
-              ].map((item, i) => (
-                <div key={i} className="excl-item">
-                  <span style={{ color: "#dc2626" }}>✗</span> {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Tempo Traveller */}
-      <section className="py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="section-title">
-              Why Hire a Tempo Traveller from {startCity}?
-            </h2>
-            <p className="section-subtitle mx-auto">
-              The best <strong>tempo traveller on rent</strong> for your group's{" "}
-              <strong>outstation tempo traveller</strong> needs. Our{" "}
-              <strong>group travel service</strong> provides the most reliable{" "}
-              <strong>tempo traveller booking</strong> experience for large
-              families and corporate teams.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                icon: "👥",
-                title: "Travel Together",
-                desc: `Keep your entire group together in one vehicle from ${startCity} to ${endCity}. No need for multiple cabs.`,
-              },
-              {
-                icon: "💰",
-                title: "Cost Effective",
-                desc: "Split the fare among group members and save 40-60% compared to booking individual cabs.",
-              },
-              {
-                icon: "🧳",
-                title: "Ample Luggage Space",
-                desc: "Roof carrier and boot space to accommodate luggage for the entire group.",
-              },
-              {
-                icon: "🛡️",
-                title: "Safe & Verified",
-                desc: "GPS-tracked vehicles with experienced, background-verified drivers familiar with the route.",
-              },
-            ].map((feature, i) => (
-              <div key={i} className="premium-card">
-                <div className="flex items-center gap-4 mb-4">
-                  <div
-                    className="w-12 h-12 rounded-lg flex items-center justify-center text-2xl"
-                    style={{ background: "hsla(358,73%,43%,0.1)" }}
-                  >
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-lg font-bold">{feature.title}</h3>
-                </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {feature.desc}
-                </p>
               </div>
             ))}
           </div>
@@ -434,8 +385,7 @@ export default function TempoTravellerRouteTemplate({
               href="https://wa.me/918448445504"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline text-lg px-10 py-4"
-              style={{ color: "white", borderColor: "rgba(255,255,255,0.3)" }}
+              className="bg-green-500 hover:bg-green-600 text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all duration-300 hover:scale-105 shadow-lg"
             >
               💬 WhatsApp Us
             </a>
