@@ -7,7 +7,7 @@ import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chikucabs.com"),
@@ -43,19 +43,21 @@ export default function RootLayout({
       </head>
 
       <body>
-        <Navbar />
+        <div className="site-wrapper">
+          <Navbar />
 
-        {children}
+          {children}
 
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            duration: 3000,
-          }}
-        />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              duration: 3000,
+            }}
+          />
 
-        <Footer />
-        <WhatsAppFloat />
+          <Footer />
+          <WhatsAppFloat />
+        </div>
       </body>
     </html>
   );

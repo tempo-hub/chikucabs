@@ -98,37 +98,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════
-                STATS BAR
-            ═══════════════════════════════════════════ */}
-      <section
-        className="border-y py-12"
-        style={{
-          background: "hsl(var(--foreground))",
-          color: "hsl(var(--background))",
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-4">
+      {/* Stats Bar */}
+      <section className="border-y py-12">
+        <div className="max-w-5xl mx-auto px-4">
           <div className="stats-grid">
             {[
-              { num: "1 Lakh+", label: "Trips Completed" },
-              { num: "500+", label: "Expert Drivers" },
-              { num: "100+", label: "Cities in India" },
-              { num: "4.9 ★", label: "Customer Rating" },
+              { num: "800+", label: "Monthly Group Trips" },
+              { num: "₹2M+", label: "Group Savings" },
+              { num: "4.9/5", label: "Google Rating" },
+              { num: "Verified", label: "Local Drivers" },
             ].map((stat, i) => (
-              <div key={i} className="stat-item" style={{ padding: "1rem" }}>
-                <div
-                  className="stat-number"
-                  style={{ color: "hsl(var(--primary))" }}
-                >
-                  {stat.num}
-                </div>
-                <div
-                  className="stat-label"
-                  style={{ color: "hsla(0,0%,100%,0.5)" }}
-                >
-                  {stat.label}
-                </div>
+              <div key={i} className="stat-item">
+                <div className="stat-number">{stat.num}</div>
+                <div className="stat-label">{stat.label}</div>
               </div>
             ))}
           </div>

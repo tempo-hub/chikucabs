@@ -1,5 +1,4 @@
 import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
-import Link from "next/link";
 
 export default function AirportTaxiTemplate() {
   const faqs = [
@@ -183,7 +182,7 @@ export default function AirportTaxiTemplate() {
               {
                 tier: "LUXURY",
                 car: "Innova",
-                price: "18",
+                price: "17",
                 desc: "Innova Crysta, Force Urbania",
                 best: false,
               },

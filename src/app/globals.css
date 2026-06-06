@@ -33,6 +33,8 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
 }
 
 body {
@@ -47,6 +49,15 @@ body {
   color: hsl(var(--foreground));
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.site-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  position: relative;
 }
 
 a {
@@ -127,9 +138,9 @@ a {
 .hamburger-line {
   width: 22px;
   height: 2px;
-  background: hsl(var(--foreground));
+  background: #000;
   border-radius: 2px;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 @media (min-width: 768px) {
@@ -1260,6 +1271,7 @@ a {
 
 /* CTA Banner */
  .cta-banner {
+  position: relative;
   background-color: var(--foreground);
   color: var(--background);
   border-radius: 24px;
