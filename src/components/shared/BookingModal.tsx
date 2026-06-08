@@ -135,7 +135,6 @@ export default function BookingModal({
   onClose,
   vehicleType,
 }: BookingModalProps) {
-
   const [formData, setFormData] = useState({
     from: "",
     to: "",
