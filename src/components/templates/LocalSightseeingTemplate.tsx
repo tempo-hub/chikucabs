@@ -146,16 +146,16 @@ const VEHICLE_DETAILS_MAP: Record<
   },
   innova: {
     icon: "✨",
-    image: "/innova.png",
-    pricePerKm: 17,
+    image: "/innova-crysta.png",
+    pricePerKm: 16,
     capacity: "6-7 Passengers",
     luggage: "4-5 Bags",
     features: ["Leather Seats", "AC", "WiFi", "Charging Ports"],
   },
   default: {
     icon: "🚘",
-    image: "/hatchback.png",
-    pricePerKm: 9,
+    image: "/suzuki-dzire.png",
+    pricePerKm: 10,
     capacity: "4 Passengers",
     luggage: "2-3 Bags",
     features: ["AC", "Comfortable Seats", "Charging Ports", "Boot Space"],
@@ -370,12 +370,12 @@ const generateFAQs = (vehicle: string): FAQItem[] => [
 ];
 
 // --- Main Component ---
-export default function ServiceTemplate({
+export default function LocalSightseeingTemplate({
   parsedData,
 }: {
   parsedData: ParsedRouteData;
 }) {
-  const vehicle = parsedData.vehicle || DEFAULT_VEHICLE;
+  const vehicle = parsedData?.vehicle || DEFAULT_VEHICLE;
   const vehicleDetails = useMemo(() => getVehicleDetails(vehicle), [vehicle]);
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -392,6 +392,9 @@ export default function ServiceTemplate({
   const [dropLocation, setDropLocation] = useState("");
   const [travelDate, setTravelDate] = useState("");
   const [travelTime, setTravelTime] = useState("");
+  const [returnDate, setReturnDate] = useState("");
+  const [tripType, setTripType] = useState("one-way");
+  const [selectedVehicle, setSelectedVehicle] = useState("");
 
   // Scroll handler for sticky CTA
   useEffect(() => {
@@ -460,6 +463,7 @@ export default function ServiceTemplate({
       "₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}",
   };
 
+  // Handle get estimate
   const handleGetEstimate = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -468,21 +472,33 @@ export default function ServiceTemplate({
       return;
     }
 
-    const message = `
-🚖 Fare Estimate Request
+    if (tripType === "round-trip" && !returnDate) {
+      toast.error("Please select return date");
+      return;
+    }
 
-📍 Pickup: ${pickupLocation}
-🎯 Drop: ${dropLocation}
-📅 Date: ${travelDate}
-⏰ Time: ${travelTime}
-🚘 Vehicle: ${vehicle}
-`;
+    const message = `🚖 *Fare Estimate Request*
 
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      message,
-    )}`;
+🚕 *Trip Type:* ${tripType === "one-way" ? "One Way" : "Round Trip"}
+🛣️ *Route:* ${pickupLocation} → ${dropLocation}
+📅 *Travel Date:* ${travelDate}
+⏰ *Travel Time:* ${travelTime}
+${tripType === "round-trip" ? `🔄 *Return Date:* ${returnDate}\n` : ""}
+🚘 *Vehicle Type:* ${selectedVehicle || vDetails.name}
 
+Please share the best fare.`;
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
+
+    // Clear form fields
+    setPickupLocation("");
+    setDropLocation("");
+    setTravelDate("");
+    setTravelTime("");
+    setReturnDate("");
+    setSelectedVehicle("");
+    setTripType("one-way");
   };
 
   const generateTimes = () => {
@@ -626,7 +642,7 @@ export default function ServiceTemplate({
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                  Premium <span className="text-primary">{vehicle}</span> Rental
+                  <span className="text-primary">{vehicle}</span> Rental
                   <br />
                   Starting @ ₹{vehicleDetails.pricePerKm}/km
                 </h1>
@@ -674,83 +690,124 @@ export default function ServiceTemplate({
                 </div>
               </div>
 
-              {/* Right Content - Booking Widget (Like Uber) */}
+              {/* Right Content - Booking Widget */}
               <div className="bg-white rounded-2xl shadow-2xl p-6 lg:p-8">
-                <h3 className="text-2xl font-bold mb-4">Book Your {vehicle}</h3>
+                <h3 className="text-2xl font-bold mb-4">
+                  Book Your {vehicleDetails?.name || "Outstation Cab"}
+                </h3>
                 <p className="text-gray-600 mb-6">
                   Get instant confirmation & best price
                 </p>
 
-                <form className="space-y-5">
+                <form className="space-y-5" onSubmit={handleGetEstimate}>
                   {/* Pickup Location */}
                   <div className="relative">
-                    <FaLocationDot className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg" />
-
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
+                      📍
+                    </span>
                     <input
                       type="text"
                       value={pickupLocation}
                       onChange={(e) => setPickupLocation(e.target.value)}
                       placeholder="Enter Pickup Location"
                       className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-      focus:bg-white
-      focus:border-primary
-      focus:ring-4
-      focus:ring-primary/10
-      outline-none
-      transition-all duration-300"
+                focus:bg-white
+                focus:border-primary
+                focus:ring-4
+                focus:ring-primary/10
+                outline-none
+                transition-all duration-300"
+                      required
                     />
                   </div>
 
                   {/* Drop Location */}
                   <div className="relative">
-                    <TbTargetArrow className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg" />
-
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
+                      🎯
+                    </span>
                     <input
                       type="text"
                       value={dropLocation}
                       onChange={(e) => setDropLocation(e.target.value)}
                       placeholder="Enter Drop Location"
                       className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-      focus:bg-white
-      focus:border-primary
-      focus:ring-4
-      focus:ring-primary/10
-      outline-none
-      transition-all duration-300"
+                focus:bg-white
+                focus:border-primary
+                focus:ring-4
+                focus:ring-primary/10
+                outline-none
+                transition-all duration-300"
+                      required
                     />
+                  </div>
+
+                  {/* Trip Type Selection (Outstation Specific) */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setTripType("one-way")}
+                      className={`py-3 rounded-xl font-semibold transition-all ${
+                        tripType === "one-way"
+                          ? "bg-primary text-white shadow-lg shadow-primary/20"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      One Way
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setTripType("round-trip")}
+                      className={`py-3 rounded-xl font-semibold transition-all ${
+                        tripType === "round-trip"
+                          ? "bg-primary text-white shadow-lg shadow-primary/20"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      Round Trip
+                    </button>
                   </div>
 
                   {/* Date & Time */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Date */}
+                    {/* Pickup Date */}
                     <div className="relative">
-                      <SlCalender className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base" />
-
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                        📅
+                      </span>
                       <input
                         type="date"
                         value={travelDate}
                         onChange={(e) => setTravelDate(e.target.value)}
                         className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-        focus:bg-white
-        focus:border-primary
-        focus:ring-4
-        focus:ring-primary/10
-        outline-none
-        transition-all duration-300"
+                  focus:bg-white
+                  focus:border-primary
+                  focus:ring-4
+                  focus:ring-primary/10
+                  outline-none
+                  transition-all duration-300"
+                        required
                       />
                     </div>
 
-                    {/* Time */}
+                    {/* Pickup Time */}
                     <div className="relative">
-                      <FaRegClock className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base" />
-
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                        ⏰
+                      </span>
                       <select
                         value={travelTime}
                         onChange={(e) => setTravelTime(e.target.value)}
-                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl"
+                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+                  focus:bg-white
+                  focus:border-primary
+                  focus:ring-4
+                  focus:ring-primary/10
+                  outline-none
+                  transition-all duration-300"
+                        required
                       >
                         <option value="">Select Time</option>
-
                         {timeOptions.map((time) => (
                           <option key={time} value={time}>
                             {time}
@@ -760,16 +817,85 @@ export default function ServiceTemplate({
                     </div>
                   </div>
 
+                  {/* Return Date (Only for Round Trip) */}
+                  {tripType === "round-trip" && (
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                        🔄
+                      </span>
+                      <input
+                        type="date"
+                        value={returnDate}
+                        onChange={(e) => setReturnDate(e.target.value)}
+                        placeholder="Return Date"
+                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+                  focus:bg-white
+                  focus:border-primary
+                  focus:ring-4
+                  focus:ring-primary/10
+                  outline-none
+                  transition-all duration-300"
+                      />
+                    </div>
+                  )}
+
+                  {/* Vehicle Selection (Outstation Specific) */}
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                      🚙
+                    </span>
+                    <select
+                      value={selectedVehicle}
+                      onChange={(e) => setSelectedVehicle(e.target.value)}
+                      className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+                focus:bg-white
+                focus:border-primary
+                focus:ring-4
+                focus:ring-primary/10
+                outline-none
+                transition-all duration-300"
+                    >
+                      <option value="">Select Vehicle Type</option>
+                      <option value="swift-dzire">
+                        Swift Dzire (4 Seater)
+                      </option>
+                      <option value="innova-crysta">Innova Crysta</option>
+                      <option value="amaze">Amaze</option>
+                      <option value="ertiga">Ertiga (7 Seater)</option>
+                      <option value="tempo">Tempo Traveller (12 Seater)</option>
+                      <option value="9-Seater">
+                        9-Seater (Best for families)
+                      </option>
+                      <option value="12-Seater">
+                        12-Seater (Popular for pilgrimages)
+                      </option>
+                      <option value="13-Seater">
+                        13-Seater (Popular for pilgrimages)
+                      </option>
+                      <option value="20-Seater">
+                        20-Seater (Large groups)
+                      </option>
+                      <option value="21-Seater">
+                        21-Seater (Large groups)
+                      </option>
+                      <option value="24-Seater">
+                        24-Seater (Large groups)
+                      </option>
+                      <option value="26-Seater">
+                        26-Seater (Wedding/Baraat special)
+                      </option>
+                    </select>
+                  </div>
+
                   {/* CTA Button */}
                   <button
-                    type="button"
-                    onClick={handleGetEstimate}
+                    type="submit"
                     className="group w-full h-14 rounded-2xl bg-primary text-white font-semibold text-lg
-    shadow-lg shadow-primary/20
-    hover:shadow-xl hover:shadow-primary/30
-    hover:-translate-y-0.5
-    active:translate-y-0
-    transition-all duration-300"
+              shadow-lg shadow-primary/20
+              hover:shadow-xl hover:shadow-primary/30
+              hover:-translate-y-0.5
+              active:translate-y-0
+              transition-all duration-300"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Get Fare Estimate
@@ -783,92 +909,14 @@ export default function ServiceTemplate({
                   <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-gray-500 pt-1">
                     <span>✓ No Booking Fee</span>
                     <span>•</span>
-                    <span>✓ Easy Cancellation</span>
+                    <span>✓ Free Cancellation</span>
                     <span>•</span>
                     <span>✓ 24×7 Support</span>
+                    <span>•</span>
+                    <span>✓ Driver Details</span>
                   </div>
                 </form>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Fleet Gallery */}
-        <section className="py-24 px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <div className="section-badge mx-auto">OUR FLEET</div>
-              <h2 className="section-title">Choose Your Perfect Ride</h2>
-              <p className="section-subtitle mx-auto">
-                From budget-friendly sedans to luxury Innovas and spacious Tempo
-                Travellers.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {FLEET_DATA.map((item, i) => (
-                <div
-                  key={i}
-                  className={`premium-card relative overflow-hidden flex flex-col pt-12 pb-8 px-8 transition-all duration-300 hover:-translate-y-2 ${
-                    item.best
-                      ? "border border-primary shadow-xl scale-105 z-10 bg-white"
-                      : "border hover:border-primary hover:shadow-lg"
-                  }`}
-                >
-                  {item.best && (
-                    <div className="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-xs font-black uppercase rounded-bl-lg">
-                      Most Popular
-                    </div>
-                  )}
-                  <div className="text-xs font-black opacity-40 mb-2 uppercase">
-                    {item.tier} CHOICE
-                  </div>
-                  <h3 className="text-2xl font-black mb-2">{item.car}</h3>
-                  <p className="text-muted-foreground text-sm mb-8">
-                    {item.desc}
-                  </p>
-                  <div className="mt-auto mb-10">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-sm font-black opacity-50">
-                        FROM
-                      </span>
-                      <span className="text-5xl font-black">₹{item.price}</span>
-                      <span className="text-sm font-black opacity-50">
-                        / KM
-                      </span>
-                    </div>
-                    <div className="text-xs font-bold text-green-600 mt-2 italic">
-                      INTERCITY BEST PRICE GUARANTEE
-                    </div>
-                  </div>
-                  <ul className="space-y-3 mb-10 list-none">
-                    {[
-                      "Driver Allowance Included",
-                      "State Permit Included",
-                      "Clean & Sanitized Vehicle",
-                      "24×7 Customer Support",
-                    ].map((feature, j) => (
-                      <li
-                        key={j}
-                        className="flex items-center gap-3 text-sm font-medium"
-                      >
-                        <span className="text-primary text-xl">✓</span>{" "}
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={`tel:${PHONE_NUMBER}`}
-                    className={`w-full py-4 rounded-xl font-black tracking-tight text-center transition-all ${
-                      item.best
-                        ? "btn-primary shadow-lg"
-                        : "bg-muted hover:bg-muted/80"
-                    }`}
-                  >
-                    BOOK NOW
-                  </a>
-                </div>
-              ))}
             </div>
           </div>
         </section>
@@ -899,6 +947,136 @@ export default function ServiceTemplate({
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Available Vehicles */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                Available Vehicles
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Choose from our fleet of well-maintained vehicles for your
+                outstation trip
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Vehicle 1 - Dzire */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div className="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                  <img
+                    src="/suzuki-dzire.png"
+                    alt="Maruti Suzuki Dzire"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+
+                <div className="p-5">
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    Maruti Suzuki Dzire
+                  </h3>
+                  <div className="flex justify-between text-sm text-gray-600 mb-3">
+                    <span>👥 4 Seats</span>
+                    <span>🧳 2 Luggage</span>
+                    <span>❄️ AC</span>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-primary">₹10</span>
+                    <span className="text-gray-500">/km</span>
+                  </div>
+                  <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                    Book Now
+                  </button>
+                </div>
+              </div>
+
+              {/* Vehicle 2 - Amaze */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div className="h-48 bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center">
+                  <img
+                    src="/honda-amaze.png"
+                    alt="Honda Amaze"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    Honda Amaze
+                  </h3>
+                  <div className="flex justify-between text-sm text-gray-600 mb-3">
+                    <span>👥 4 Seats</span>
+                    <span>🧳 3 Luggage</span>
+                    <span>❄️ AC</span>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-primary">₹10</span>
+                    <span className="text-gray-500">/km</span>
+                  </div>
+                  <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                    Book Now
+                  </button>
+                </div>
+              </div>
+
+              {/* Vehicle 3 - Ertiga */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div className="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                  <img
+                    src="/maruti-ertiga.png"
+                    alt="Maruti Ertiga"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    Maruti Ertiga
+                  </h3>
+                  <div className="flex justify-between text-sm text-gray-600 mb-3">
+                    <span>👥 7 Seats</span>
+                    <span>🧳 3 Luggage</span>
+                    <span>❄️ AC</span>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-primary">₹13</span>
+                    <span className="text-gray-500">/km</span>
+                  </div>
+                  <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                    Book Now
+                  </button>
+                </div>
+              </div>
+
+              {/* Vehicle 4 - Innova Crysta */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div className="h-48 bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
+                  <img
+                    src="/innova-crysta.png"
+                    alt="Toyota Innova Crysta"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    Toyota Innova Crysta
+                  </h3>
+                  <div className="flex justify-between text-sm text-gray-600 mb-3">
+                    <span>👥 7 Seats</span>
+                    <span>🧳 4 Luggage</span>
+                    <span>❄️ AC | Premium</span>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-primary">₹16</span>
+                    <span className="text-gray-500">/km</span>
+                  </div>
+                  <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                    Book Now
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -1112,28 +1290,6 @@ export default function ServiceTemplate({
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Service Coverage */}
-        <section className="py-24">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <div className="section-badge mx-auto">SERVICE AREAS</div>
-              <h2 className="section-title">
-                Available Across Major Indian Cities
-              </h2>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-              {CITIES.map((city) => (
-                <div key={city.name} className="premium-card text-center">
-                  <h3 className="font-bold text-lg">{city.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    {city.services.join(" • ")}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
         </section>

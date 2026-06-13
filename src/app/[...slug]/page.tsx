@@ -11,12 +11,17 @@ import OneWayRouteTemplate from "@/components/templates/OneWayRouteTemplate";
 import OutstationRouteFareTemplate from "@/components/templates/OutstationRouteFareTemplate";
 
 // Vehicle-specific templates
-import TempoTravellerServiceTemplate from "@/components/templates/TempoTravellerServiceTemplate";
 import TempoTravellerRouteTemplate from "@/components/templates/TempoTravellerRouteTemplate";
 import InnovaServiceTemplate from "@/components/templates/InnovaServiceTemplate";
 import InnovaRouteTemplate from "@/components/templates/InnovaRouteTemplate";
 import DriverServiceTemplate from "@/components/templates/DriverServiceTemplate";
 import CityCabRoutesTemplate from "@/components/templates/CityCabRoutesTemplate";
+
+import OneWayTemplate from "@/components/templates/OneWayTemplate";
+import OutstationTemplate from "@/components/templates/OutstationTemplate";
+import AirportTaxiTemplate from "@/components/templates/AirportTaxiTemplate";
+import TempoTravellerTemplate from "@/components/templates/TempoTravellerTemplate";
+import LocalSightseeingTemplate from "@/components/templates/LocalSightseeingTemplate";
 
 // We do NOT pre-render all 4476 routes at build time (causes timeout on Vercel).
 // Pages are generated on first request and cached via ISR (revalidate below).
@@ -24,9 +29,10 @@ import CityCabRoutesTemplate from "@/components/templates/CityCabRoutesTemplate"
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string[] };
+  params: Promise<{ slug: string[] }>;
 }): Promise<Metadata> {
-  const currentPath = `/${params.slug.join("/")}`;
+  const { slug } = await params;
+  const currentPath = `/${slug.join("/")}`;
   const isValidRoute = routeData.some(
     (r: { url: string }) =>
       r.url === currentPath || r.url === `${currentPath}.php`,
@@ -36,7 +42,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const parsed = parseUrlSlug(params.slug);
+  const parsed = parseUrlSlug(slug);
 
   let title =
     "Chiku Cabs | India's Most Trusted Cab Booking Service Since 2015";
@@ -153,12 +159,12 @@ export async function generateMetadata({
       },
     },
     alternates: {
-      canonical: `https://chikucabs.com/${params.slug.join("/")}`,
+      canonical: `https://chikucabs.com/${slug.join("/")}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://chikucabs.com/${params.slug.join("/")}`,
+      url: `https://chikucabs.com/${slug.join("/")}`,
       siteName: "Chiku Cabs",
       locale: "en_IN",
       type: "website",
@@ -182,12 +188,13 @@ export async function generateMetadata({
 export const revalidate = 3600;
 export const dynamicParams = true; // Allow on-demand ISR for all slug routes
 
-export default function DynamicRoutePage({
+export default async function DynamicRoutePage({
   params,
 }: {
-  params: { slug: string[] };
+  params: Promise<{ slug: string[] }>;
 }) {
-  const currentPath = `/${params.slug.join("/")}`;
+  const { slug } = await params;
+  const currentPath = `/${slug.join("/")}`;
   const isValidRoute = routeData.some(
     (r: { url: string }) =>
       r.url === currentPath || r.url === `${currentPath}.php`,
@@ -197,8 +204,8 @@ export default function DynamicRoutePage({
     notFound();
   }
 
-  const parsed = parseUrlSlug(params.slug);
-  const currentUrl = `https://chikucabs.com/${params.slug.join("/")}`;
+  const parsed = parseUrlSlug(slug);
+  const currentUrl = `https://chikucabs.com/${slug.join("/")}`;
 
   // --- STRUCTURED DATA (JSON-LD) ---
 
@@ -471,6 +478,22 @@ export default function DynamicRoutePage({
       return <CityCabRoutesTemplate city={slugValue} />;
     }
 
+    if (slugValue === "outstation-cabs") {
+      return <OutstationTemplate parsedData={parsed} />;
+    }
+    if (slugValue === "one-way-cabs") {
+      return <OneWayTemplate parsedData={parsed} />;
+    }
+    if (slugValue === "local-sightseeing-taxi") {
+      return <LocalSightseeingTemplate parsedData={parsed} />;
+    }
+    if (slugValue === "airport-taxi") {
+      return <AirportTaxiTemplate parsedData={parsed} />;
+    }
+    if (slugValue === "tempo-traveller-on-rent") {
+      return <TempoTravellerTemplate parsedData={parsed} />;
+    }
+
     if (parsed.vehicleCategory === "tempo-traveller") {
       if (
         parsed.routeType === "Outstation Route" ||
@@ -478,7 +501,7 @@ export default function DynamicRoutePage({
       ) {
         return <TempoTravellerRouteTemplate parsedData={parsed} />;
       }
-      return <TempoTravellerServiceTemplate parsedData={parsed} />;
+      return <ServiceTemplate parsedData={parsed} />;
     }
     if (parsed.vehicleCategory === "innova") {
       if (

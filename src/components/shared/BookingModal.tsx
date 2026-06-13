@@ -305,9 +305,12 @@ _Sent via chikucabs.com booking form_
             >
               <option>One Way</option>
               <option>Round Trip</option>
+              <option>Outstation</option>
+              <option>Airport Transfer</option>
               <option>Local Sightseeing (Varanasi)</option>
               <option>Wedding/Baraat Package</option>
-              <option>Multi-Day Pilgrimage Tour</option>
+              <option>Multi City</option>
+              <option>Pilgrimage Tour</option>
             </select>
           </div>
 
@@ -322,9 +325,10 @@ _Sent via chikucabs.com booking form_
               className="w-full h-11 px-4 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:bg-white focus:border-[hsl(var(--primary))] focus:ring-2 focus:ring-[hsl(var(--primary))]/20 focus:outline-none transition-all duration-200 hover:border-gray-400"
               onChange={handleChange}
             >
-              <option>Sedan (4+1 Seater)</option>
-              <option>SUV (6+1 Seater)</option>
-              <option>Innova (7+1 Seater)</option>
+              <option>Dzire</option>
+              <option>Amaze</option>
+              <option>Ertiga</option>
+              <option>Innova Crysta</option>
               <option>9-Seater (Best for families)</option>
               <option>12-Seater (Popular for pilgrimages)</option>
               <option>13-Seater (Popular for pilgrimages)</option>

@@ -370,12 +370,12 @@ const generateFAQs = (vehicle: string): FAQItem[] => [
 ];
 
 // --- Main Component ---
-export default function ServiceTemplate({
+export default function OneWayTemplate({
   parsedData,
 }: {
   parsedData: ParsedRouteData;
 }) {
-  const vehicle = parsedData.vehicle || DEFAULT_VEHICLE;
+  const vehicle = parsedData?.vehicle || DEFAULT_VEHICLE;
   const vehicleDetails = useMemo(() => getVehicleDetails(vehicle), [vehicle]);
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -626,7 +626,7 @@ export default function ServiceTemplate({
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                  Premium <span className="text-primary">{vehicle}</span> Rental
+                  One Way <span className="text-primary">{vehicle}</span> Rental
                   <br />
                   Starting @ ₹{vehicleDetails.pricePerKm}/km
                 </h1>

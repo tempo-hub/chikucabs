@@ -3,8 +3,10 @@
 import { ParsedRouteData } from "@/lib/urlParser";
 import EEATSection from "@/components/shared/EEATSection";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import Head from "next/head";
-import Script from "next/script";
+import Link from "next/link";
+import { cityRoutes } from "@/data/routes";
+import toast from "react-hot-toast";
+import { CiClock1 } from "react-icons/ci";
 import {
   FaCarSide,
   FaUserTie,
@@ -17,8 +19,6 @@ import {
   FaTimesCircle,
   FaStar,
   FaChartLine,
-  FaShieldAlt,
-  FaArrowRight,
   FaCar,
   FaCaravan,
   FaBus,
@@ -36,11 +36,11 @@ import {
   FaMicrochip,
   FaRegLightbulb,
 } from "react-icons/fa";
-import { CiClock1 } from "react-icons/ci";
-import toast from "react-hot-toast";
 import { FaLocationDot, FaRegClock } from "react-icons/fa6";
 import { TbTargetArrow } from "react-icons/tb";
 import { SlCalender } from "react-icons/sl";
+import Head from "next/head";
+import Script from "next/script";
 
 // --- Type Definitions ---
 interface FormData {
@@ -67,33 +67,6 @@ interface StatItem {
   label: string;
 }
 
-interface FleetItem {
-  tier: string;
-  car: string;
-  price: string;
-  image: string;
-  desc: string;
-  best: boolean;
-  capacity: string;
-}
-
-interface FAQItem {
-  q: string;
-  a: string;
-}
-
-interface Testimonial {
-  name: string;
-  text: string;
-  rating: string;
-  location?: string;
-}
-
-interface CityService {
-  name: string;
-  services: string[];
-}
-
 // --- Constants ---
 const PHONE_NUMBER = "+918448445504";
 const WHATSAPP_NUMBER = "918448445504";
@@ -108,7 +81,7 @@ const VEHICLE_DETAILS_MAP: Record<
   tempo: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
+    pricePerKm: 24,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -169,36 +142,6 @@ const STATS: StatItem[] = [
   { num: "Verified", label: "Local Drivers" },
 ];
 
-const FLEET_DATA: FleetItem[] = [
-  {
-    tier: "STANDARD",
-    car: "Hatchback",
-    price: "9",
-    image: "/hatchback.png",
-    desc: "Swift, WagonR or similar",
-    best: false,
-    capacity: "4 Passengers",
-  },
-  {
-    tier: "POPULAR",
-    car: "Sedan",
-    price: "11",
-    image: "/sedan.png",
-    desc: "Dzire, Ertiga or similar",
-    best: true,
-    capacity: "4 Passengers",
-  },
-  {
-    tier: "LUXURY",
-    car: "Innova",
-    price: "17",
-    image: "/innova.png",
-    desc: "Innova Crysta, Force Urbania",
-    best: false,
-    capacity: "6-7 Passengers",
-  },
-];
-
 const STEPS = [
   {
     step: "01",
@@ -214,71 +157,6 @@ const STEPS = [
     step: "03",
     title: "Enjoy Journey",
     desc: "Professional driver arrives on time for a comfortable trip.",
-  },
-];
-
-const FEATURES = [
-  {
-    icon: "🛡️",
-    title: "Verified Chauffeurs",
-    desc: "Highly trained and background-verified drivers ensuring your safety.",
-  },
-  {
-    icon: "🚗",
-    title: "Luxury Fleet",
-    desc: "Meticulously maintained vehicles equipped with modern amenities.",
-  },
-  {
-    icon: "💰",
-    title: "Transparent Billing",
-    desc: "Fixed pricing with no hidden costs. Pay only what you see.",
-  },
-  {
-    icon: "⏰",
-    title: "24/7 Availability",
-    desc: "Round the clock service for all your travel needs.",
-  },
-  {
-    icon: "📍",
-    title: "GPS Tracking",
-    desc: "Real-time location tracking for every ride.",
-  },
-  {
-    icon: "🔄",
-    title: "Easy Cancellation",
-    desc: "Cancel your booking up to 24 hours before the trip at zero charges.",
-  },
-];
-
-const CITIES: CityService[] = [
-  { name: "Delhi", services: ["Local", "Airport", "Outstation"] },
-  { name: "Noida", services: ["Local", "Airport", "Outstation"] },
-  { name: "Gurgaon", services: ["Local", "Airport", "Outstation"] },
-  { name: "Agra", services: ["Local", "Airport", "Outstation"] },
-  { name: "Jaipur", services: ["Local", "Airport", "Outstation"] },
-  { name: "Lucknow", services: ["Local", "Airport", "Outstation"] },
-  { name: "Chandigarh", services: ["Local", "Airport", "Outstation"] },
-  { name: "Varanasi", services: ["Local", "Airport", "Outstation"] },
-];
-
-const TESTIMONIALS: Testimonial[] = [
-  {
-    name: "Rajesh Khanna",
-    text: "Best taxi service I've used. Professional drivers and spotless cars!",
-    rating: "★★★★★",
-    location: "Delhi",
-  },
-  {
-    name: "Meera Joshi",
-    text: "Used for family wedding trip. The Innova was luxurious and on time.",
-    rating: "★★★★★",
-    location: "Mumbai",
-  },
-  {
-    name: "Aman Tiwari",
-    text: "Excellent corporate cab service. Punctual, clean cars, and easy booking.",
-    rating: "★★★★★",
-    location: "Bangalore",
   },
 ];
 
@@ -299,7 +177,7 @@ const COMPARISON_FEATURES = [
     other: "❌ Chat bot only",
   },
   {
-    feature: "Easy Cancellation",
+    feature: "Free Cancellation",
     chiku: "✓ Up to 24 hours",
     other: "❌ Cancellation fee",
   },
@@ -334,47 +212,75 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
   };
 };
 
-const generateFAQs = (vehicle: string): FAQItem[] => [
+const TEMPO_DATA = [
   {
-    q: `What is the minimum booking duration for ${vehicle} rental?`,
-    a: `The minimum booking duration for ${vehicle} rental is 4 hours for local trips and 8 hours for outstation trips. For one-way trips, there is no minimum duration, you pay only for the distance traveled. Weekend packages start from 12 hours.`,
+    seater: 9,
+    tier: "PREMIUM",
+    desc: "Perfect for small family trips & executive travel",
+    price: 24,
+    seating: "2+2+2+3 Pushback",
+    luggage: "8-10 Bags",
+    best: false,
+    popular: true,
   },
   {
-    q: `Does the ${vehicle} rental price include driver allowance and fuel?`,
-    a: `Yes! Our ${vehicle} rental price is all-inclusive. It covers driver allowance, fuel cost, state permits (for outstation), toll taxes, and GST. Extra charges only apply for night travel (11 PM - 5 AM: 25% extra), parking fees, and waiting time beyond 15 minutes.`,
+    seater: 12,
+    tier: "STANDARD",
+    desc: "Ideal for medium groups & corporate outings",
+    price: 25,
+    seating: "3+3+3+3 Pushback",
+    luggage: "12-15 Bags",
+    best: true,
+    popular: false,
   },
   {
-    q: `Can I book ${vehicle} for a one-way trip?`,
-    a: `Absolutely! We offer one-way ${vehicle} rental at special discounted rates. You only pay for the distance traveled from pickup to drop location. No charges for the return journey. Perfect for airport transfers, one-way outstation trips, or inter-city travel.`,
+    seater: 15,
+    tier: "PREMIUM",
+    desc: "Great for large families & group tours",
+    price: 26,
+    seating: "3+3+3+3+3 Pushback",
+    luggage: "15-18 Bags",
+    best: false,
+    popular: false,
   },
   {
-    q: `What safety measures are followed for ${vehicle} rental?`,
-    a: `Your safety is our priority! All our ${vehicle}s are sanitized before every trip. Drivers are police-verified, wear masks, and carry sanitizers. GPS tracking is active 24/7. Emergency buttons are installed in every vehicle for immediate assistance.`,
+    seater: 16,
+    tier: "STANDARD",
+    desc: "Spacious for long journeys & luggage",
+    price: 26,
+    seating: "4+4+4+4 Pushback",
+    luggage: "18-20 Bags",
+    best: false,
+    popular: false,
   },
   {
-    q: `How much advance booking is required for ${vehicle}?`,
-    a: `We recommend booking at least 24 hours in advance for guaranteed availability, especially during weekends and festival seasons. However, we also accept last-minute bookings subject to vehicle availability. Call us for immediate booking confirmation.`,
+    seater: 18,
+    tier: "PREMIUM",
+    desc: "Perfect for big groups & destination weddings",
+    price: 28,
+    seating: "3+3+3+3+3+3 Pushback",
+    luggage: "20-25 Bags",
+    best: false,
+    popular: false,
   },
   {
-    q: `Do you provide child seats in ${vehicle}?`,
-    a: `Yes, we provide child seats absolutely free on request. Please mention your requirement at the time of booking so we can arrange it. We have seats suitable for children aged 0-12 years.`,
-  },
-  {
-    q: `What is the cancellation policy for ${vehicle} booking?`,
-    a: `Easy cancellation up to 24 hours before the trip. 50% cancellation charges apply between 12-24 hours. No refund for cancellation within 12 hours or no-show. You can also reschedule your booking at no extra cost up to 12 hours before the trip.`,
-  },
-  {
-    q: `Can I modify my ${vehicle} booking after confirmation?`,
-    a: `Yes! Free modifications are allowed up to 12 hours before your scheduled trip. You can change pickup time, drop location, or date. Call our customer support at ${PHONE_NUMBER} for any modifications. Last-minute changes depend on vehicle availability.`,
+    seater: 20,
+    tier: "LUXURY",
+    desc: "Max capacity for large events & tours",
+    price: 30,
+    seating: "4+4+4+4+4 Pushback",
+    luggage: "25-30 Bags",
+    best: false,
+    popular: false,
   },
 ];
 
-// --- Main Component ---
-export default function ServiceTemplate({
+export default function TempoTravellerTemplate({
   parsedData,
 }: {
   parsedData: ParsedRouteData;
 }) {
+  const city = parsedData.origin || "India";
   const vehicle = parsedData.vehicle || DEFAULT_VEHICLE;
   const vehicleDetails = useMemo(() => getVehicleDetails(vehicle), [vehicle]);
   const [formData, setFormData] = useState<FormData>({
@@ -387,7 +293,6 @@ export default function ServiceTemplate({
   });
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const faqs = useMemo(() => generateFAQs(vehicle), [vehicle]);
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropLocation, setDropLocation] = useState("");
   const [travelDate, setTravelDate] = useState("");
@@ -418,26 +323,93 @@ export default function ServiceTemplate({
     // Don't calculate here - let onMouseUp handle it for better UX
   };
 
-  // Structured Data for SEO
+  // Structured Data for Tempo Traveller SEO - Improved Version
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: `${vehicle} Rental Service`,
-    description: `Book ${vehicle} for local, outstation, and airport transfers. Best price guaranteed. Professional drivers, 24/7 support.`,
-    brand: { "@type": "Brand", name: SITE_NAME },
+    name: `Tempo Traveller Rental Service${city !== "India" ? ` in ${city}` : ""}`,
+    description: `Book 9, 12, 15, 16, 18, and 20 seater tempo traveller on rent in ${city !== "India" ? city : "India"}. Perfect for group travel, outstation trips, weddings, corporate events, and local sightseeing. All vehicles come with AC, pushback reclining seats, music system, LED TV (in most models), and dedicated luggage space. Professional drivers, 24/7 customer support, and best price guarantee.`,
+    brand: {
+      "@type": "Brand",
+      name: "Chiku Cabs",
+    },
+    image: "https://chikucabs.com/tempo_traveller.png",
+    category: "Ground Transportation",
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "INR",
-      lowPrice: vehicleDetails.pricePerKm,
-      highPrice: vehicleDetails.pricePerKm * 2,
-      offerCount: 3,
+      lowPrice: "24",
+      highPrice: "30",
+      offerCount: 6,
       availability: "https://schema.org/InStock",
+      validFrom: "2024-01-01",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        priceType: "https://schema.org/PerKilometer",
+        price: "24",
+        priceCurrency: "INR",
+        eligibleTransactionVolume: {
+          "@type": "QuantitativeValue",
+          minValue: 50,
+          maxValue: 2000,
+          unitCode: "KMT",
+        },
+      },
     },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.9",
       reviewCount: "1250",
+      bestRating: "5",
+      worstRating: "1",
     },
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "Seating Options",
+        value: "9, 12, 15, 16, 18, 20 Seater",
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Vehicle Type",
+        value: "Tempo Traveller",
+      },
+      {
+        "@type": "PropertyValue",
+        name: "AC",
+        value: "Yes",
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Pushback Reclining Seats",
+        value: "Yes",
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Music System",
+        value: "Yes",
+      },
+      {
+        "@type": "PropertyValue",
+        name: "LED TV",
+        value: "In Most Models",
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Luggage Space",
+        value: "Ample dedicated luggage carrier",
+      },
+    ],
+    areaServed: {
+      "@type": "City",
+      name: city !== "India" ? city : "All Major Cities in India",
+    },
+    audience: {
+      "@type": "Audience",
+      name: "Group Travelers, Families, Corporate Teams, Wedding Parties, Pilgrims",
+    },
+    serviceType: "Tempo Traveller Rental",
+    url: `https://chikucabs.com/tempo-traveller-on-rent${city !== "India" ? `-in-${city.toLowerCase().replace(/\s+/g, "-")}` : ""}`,
   };
 
   const organizationData = {
@@ -692,12 +664,12 @@ export default function ServiceTemplate({
                       onChange={(e) => setPickupLocation(e.target.value)}
                       placeholder="Enter Pickup Location"
                       className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-      focus:bg-white
-      focus:border-primary
-      focus:ring-4
-      focus:ring-primary/10
-      outline-none
-      transition-all duration-300"
+            focus:bg-white
+            focus:border-primary
+            focus:ring-4
+            focus:ring-primary/10
+            outline-none
+            transition-all duration-300"
                     />
                   </div>
 
@@ -711,12 +683,12 @@ export default function ServiceTemplate({
                       onChange={(e) => setDropLocation(e.target.value)}
                       placeholder="Enter Drop Location"
                       className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-      focus:bg-white
-      focus:border-primary
-      focus:ring-4
-      focus:ring-primary/10
-      outline-none
-      transition-all duration-300"
+            focus:bg-white
+            focus:border-primary
+            focus:ring-4
+            focus:ring-primary/10
+            outline-none
+            transition-all duration-300"
                     />
                   </div>
 
@@ -731,12 +703,12 @@ export default function ServiceTemplate({
                         value={travelDate}
                         onChange={(e) => setTravelDate(e.target.value)}
                         className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-        focus:bg-white
-        focus:border-primary
-        focus:ring-4
-        focus:ring-primary/10
-        outline-none
-        transition-all duration-300"
+              focus:bg-white
+              focus:border-primary
+              focus:ring-4
+              focus:ring-primary/10
+              outline-none
+              transition-all duration-300"
                       />
                     </div>
 
@@ -765,11 +737,11 @@ export default function ServiceTemplate({
                     type="button"
                     onClick={handleGetEstimate}
                     className="group w-full h-14 rounded-2xl bg-primary text-white font-semibold text-lg
-    shadow-lg shadow-primary/20
-    hover:shadow-xl hover:shadow-primary/30
-    hover:-translate-y-0.5
-    active:translate-y-0
-    transition-all duration-300"
+          shadow-lg shadow-primary/20
+          hover:shadow-xl hover:shadow-primary/30
+          hover:-translate-y-0.5
+          active:translate-y-0
+          transition-all duration-300"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Get Fare Estimate
@@ -783,7 +755,7 @@ export default function ServiceTemplate({
                   <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-gray-500 pt-1">
                     <span>✓ No Booking Fee</span>
                     <span>•</span>
-                    <span>✓ Easy Cancellation</span>
+                    <span>✓ Free Cancellation</span>
                     <span>•</span>
                     <span>✓ 24×7 Support</span>
                   </div>
@@ -793,46 +765,74 @@ export default function ServiceTemplate({
           </div>
         </section>
 
-        {/* Fleet Gallery */}
-        <section className="py-24 px-4">
+        {/* Tempo Traveller Fleet Gallery */}
+        <section className="py-24 px-4 bg-gradient-to-b from-white to-gray-50">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <div className="section-badge mx-auto">OUR FLEET</div>
-              <h2 className="section-title">Choose Your Perfect Ride</h2>
+              <div className="section-badge mx-auto">TEMPO TRAVELLER FLEET</div>
+              <h2 className="section-title">Group Travel Made Comfortable</h2>
               <p className="section-subtitle mx-auto">
-                From budget-friendly sedans to luxury Innovas and spacious Tempo
-                Travellers.
+                Spacious Tempo Travellers for family trips, corporate outings,
+                and group adventures. Choose your perfect seater.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              {FLEET_DATA.map((item, i) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {TEMPO_DATA.map((item, i) => (
                 <div
                   key={i}
                   className={`premium-card relative overflow-hidden flex flex-col pt-12 pb-8 px-8 transition-all duration-300 hover:-translate-y-2 ${
                     item.best
-                      ? "border border-primary shadow-xl scale-105 z-10 bg-white"
-                      : "border hover:border-primary hover:shadow-lg"
+                      ? "border-2 border-primary shadow-xl scale-105 z-10 bg-white"
+                      : item.popular
+                        ? "border border-primary/50 hover:border-primary shadow-lg"
+                        : "border hover:border-primary hover:shadow-lg"
                   }`}
                 >
+                  {/* Badges */}
                   {item.best && (
                     <div className="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-xs font-black uppercase rounded-bl-lg">
+                      Best Value
+                    </div>
+                  )}
+                  {item.popular && !item.best && (
+                    <div className="absolute top-0 right-0 bg-amber-500 text-white px-4 py-1 text-xs font-black uppercase rounded-bl-lg">
                       Most Popular
                     </div>
                   )}
+
+                  {/* Seater Badge */}
+                  <div className="absolute top-4 left-4 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-black">
+                    {item.seater} Seater
+                  </div>
+
+                  {/* Vehicle Icon/Emoji */}
+                  <div className="text-5xl mb-4">
+                    {item.seater <= 12 ? "🚐" : item.seater <= 16 ? "🚌" : "🚍"}
+                  </div>
+
                   <div className="text-xs font-black opacity-40 mb-2 uppercase">
                     {item.tier} CHOICE
                   </div>
-                  <h3 className="text-2xl font-black mb-2">{item.car}</h3>
+
+                  <h3 className="text-2xl font-black mb-2">
+                    Tempo Traveller <br />
+                    <span className="text-primary">{item.seater} Seater</span>
+                  </h3>
+
                   <p className="text-muted-foreground text-sm mb-8">
                     {item.desc}
                   </p>
-                  <div className="mt-auto mb-10">
+
+                  {/* Price */}
+                  <div className="mt-auto mb-6">
                     <div className="flex items-baseline gap-1">
                       <span className="text-sm font-black opacity-50">
                         FROM
                       </span>
-                      <span className="text-5xl font-black">₹{item.price}</span>
+                      <span className="text-5xl font-black text-primary">
+                        ₹{item.price}
+                      </span>
                       <span className="text-sm font-black opacity-50">
                         / KM
                       </span>
@@ -841,34 +841,84 @@ export default function ServiceTemplate({
                       INTERCITY BEST PRICE GUARANTEE
                     </div>
                   </div>
-                  <ul className="space-y-3 mb-10 list-none">
-                    {[
-                      "Driver Allowance Included",
-                      "State Permit Included",
-                      "Clean & Sanitized Vehicle",
-                      "24×7 Customer Support",
-                    ].map((feature, j) => (
-                      <li
-                        key={j}
-                        className="flex items-center gap-3 text-sm font-medium"
-                      >
-                        <span className="text-primary text-xl">✓</span>{" "}
-                        {feature}
-                      </li>
-                    ))}
+
+                  {/* Features */}
+                  <ul className="space-y-2 mb-8 list-none">
+                    <li className="flex items-center gap-3 text-sm font-medium">
+                      <span className="text-primary text-lg">✓</span>
+                      {item.seating} Comfortable Seats
+                    </li>
+                    <li className="flex items-center gap-3 text-sm font-medium">
+                      <span className="text-primary text-lg">✓</span>
+                      Luggage Space: {item.luggage}
+                    </li>
+                    <li className="flex items-center gap-3 text-sm font-medium">
+                      <span className="text-primary text-lg">✓</span>
+                      AC/Non-AC Available
+                    </li>
+                    <li className="flex items-center gap-3 text-sm font-medium">
+                      <span className="text-primary text-lg">✓</span>
+                      Driver + Fuel Included
+                    </li>
+                    <li className="flex items-center gap-3 text-sm font-medium">
+                      <span className="text-primary text-lg">✓</span>
+                      State Permit & Insurance
+                    </li>
                   </ul>
-                  <a
-                    href={`tel:${PHONE_NUMBER}`}
-                    className={`w-full py-4 rounded-xl font-black tracking-tight text-center transition-all ${
-                      item.best
-                        ? "btn-primary shadow-lg"
-                        : "bg-muted hover:bg-muted/80"
-                    }`}
-                  >
-                    BOOK NOW
-                  </a>
+
+                  {/* CTA Buttons */}
+                  <div className="space-y-3">
+                    <a
+                      href={`tel:${PHONE_NUMBER}`}
+                      className={`w-full py-4 rounded-xl font-black tracking-tight text-center block transition-all ${
+                        item.best || item.popular
+                          ? "btn-primary shadow-lg hover:shadow-xl"
+                          : "bg-gray-800 text-white hover:bg-gray-900"
+                      }`}
+                    >
+                      BOOK NOW
+                    </a>
+                    <a
+                      href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20${item.seater}%20seater%20Tempo%20Traveller`}
+                      target="_blank"
+                      className="w-full py-3 rounded-xl font-medium text-center block border border-green-500 text-green-600 hover:bg-green-50 transition-all"
+                    >
+                      💬 Get Best Deal on WhatsApp
+                    </a>
+                  </div>
                 </div>
               ))}
+            </div>
+
+            {/* Additional Info Banner */}
+            <div className="mt-16 bg-primary/5 rounded-2xl p-6 text-center border border-primary/20">
+              <div className="flex flex-wrap justify-center gap-8 items-center">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">🎉</span>
+                  <span className="text-sm font-medium">
+                    Group Discount Available
+                  </span>
+                </div>
+                <div className="w-px h-8 bg-primary/20 hidden md:block"></div>
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">📍</span>
+                  <span className="text-sm font-medium">All India Permit</span>
+                </div>
+                <div className="w-px h-8 bg-primary/20 hidden md:block"></div>
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">👨‍✈️</span>
+                  <span className="text-sm font-medium">
+                    Experienced Drivers
+                  </span>
+                </div>
+                <div className="w-px h-8 bg-primary/20 hidden md:block"></div>
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">🧼</span>
+                  <span className="text-sm font-medium">
+                    Sanitized Before Every Trip
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -1116,28 +1166,6 @@ export default function ServiceTemplate({
           </div>
         </section>
 
-        {/* Service Coverage */}
-        <section className="py-24">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <div className="section-badge mx-auto">SERVICE AREAS</div>
-              <h2 className="section-title">
-                Available Across Major Indian Cities
-              </h2>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-              {CITIES.map((city) => (
-                <div key={city.name} className="premium-card text-center">
-                  <h3 className="font-bold text-lg">{city.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    {city.services.join(" • ")}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Vehicle Comparison - Modern UI with React Icons */}
         <section className="py-24 bg-gradient-to-b from-white to-gray-50">
           <div className="max-w-7xl mx-auto px-4">
@@ -1369,7 +1397,7 @@ export default function ServiceTemplate({
                       ₹9
                     </td>
                     <td className="p-5 text-center bg-primary/5 font-extrabold text-primary text-lg">
-                      ₹11
+                      ₹12
                     </td>
                     <td className="p-5 text-center font-semibold text-gray-700">
                       ₹17
@@ -1664,7 +1692,7 @@ export default function ServiceTemplate({
                           return <FaWallet className="text-primary text-lg" />;
                         case "24/7 Customer Support":
                           return <FaHeadset className="text-primary text-lg" />;
-                        case "Easy Cancellation":
+                        case "Free Cancellation":
                           return <FaSyncAlt className="text-primary text-lg" />;
                         case "GPS Tracking":
                           return (
@@ -1738,130 +1766,287 @@ export default function ServiceTemplate({
           </div>
         </section>
 
-        {/* Feature Grid - Modern UI with React Icons */}
-        <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-primary/5">
-          <div className="max-w-7xl mx-auto px-4">
+        {/* Amenities - Modern Redesign */}
+        <section className="bg-gradient-to-b from-white to-gray-50 py-24 px-4">
+          <div className="max-w-7xl mx-auto">
             {/* Section Header */}
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-                <FaShieldAlt className="text-primary text-sm" />
-                <span className="text-primary font-bold text-sm uppercase tracking-wider">
-                  WHY CHIKU CABS
+              <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-primary text-lg">✨</span>
+                <span className="section-badge !inline-block !mx-0">
+                  PREMIUM AMENITIES
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black mb-4">
-                Why We're India's{" "}
-                <span className="gradient-text">Most Trusted</span> Cab Service
+              <h2 className="section-title mb-4">
+                What's Inside Our Tempo Travellers
+                {city !== "India" ? ` in ${city}` : ""}
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Experience the difference with our premium features and
-                customer-first approach
+                Experience comfort, convenience, and luxury with our
+                thoughtfully equipped fleet
               </p>
             </div>
 
-            {/* Feature Grid */}
+            {/* Amenities Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {FEATURES.map((feature, i) => (
+              {[
+                {
+                  icon: "❄️",
+                  title: "Powerful AC",
+                  desc: "High-capacity air conditioning that keeps the entire cabin cool even in peak summer.",
+                  gradient: "from-blue-500/10 to-cyan-500/10",
+                  color: "blue",
+                },
+                {
+                  icon: "💺",
+                  title: "Pushback Reclining Seats",
+                  desc: "Comfortable reclining seats with individual armrests for long journeys.",
+                  gradient: "from-purple-500/10 to-pink-500/10",
+                  color: "purple",
+                },
+                {
+                  icon: "🎵",
+                  title: "Music & Entertainment",
+                  desc: "Bluetooth-enabled music system with speakers throughout the cabin.",
+                  gradient: "from-green-500/10 to-emerald-500/10",
+                  color: "green",
+                },
+                {
+                  icon: "🧳",
+                  title: "Spacious Luggage",
+                  desc: "Dedicated luggage space and overhead carrier to store all your bags safely.",
+                  gradient: "from-orange-500/10 to-amber-500/10",
+                  color: "orange",
+                },
+                {
+                  icon: "🔌",
+                  title: "Charging Points",
+                  desc: "USB and mobile charging points at every seat row to keep devices powered.",
+                  gradient: "from-indigo-500/10 to-violet-500/10",
+                  color: "indigo",
+                },
+                {
+                  icon: "🪟",
+                  title: "Large Windows",
+                  desc: "Wide windows with curtains for scenic views and privacy during travel.",
+                  gradient: "from-teal-500/10 to-cyan-500/10",
+                  color: "teal",
+                },
+              ].map((amenity, i) => (
                 <div
                   key={i}
-                  className="group relative bg-white rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-gray-100 overflow-hidden"
+                  className="group relative bg-white rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-100 overflow-hidden"
                 >
                   {/* Background Gradient on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${amenity.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                  />
 
                   {/* Icon with Animation */}
                   <div className="relative">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center mb-5 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                      <span className="text-white text-2xl">
-                        {feature.icon}
-                      </span>
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-3xl">{amenity.icon}</span>
                     </div>
-
-                    {/* Decorative Circle */}
-                    <div className="absolute -top-2 -right-2 w-20 h-20 bg-primary/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
-                    {feature.title}
-                  </h3>
+                  {/* Content */}
+                  <div className="relative">
+                    <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                      {amenity.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      {amenity.desc}
+                    </p>
+                  </div>
 
-                  {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed text-sm">
-                    {feature.desc}
-                  </p>
+                  {/* Decorative Line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                  {/* Hover Underline Effect */}
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-primary/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+        {/* Use Cases - Modern Grid Layout */}
+        <section className="py-24 px-4 bg-gradient-to-b from-white to-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
+                <span className="text-primary text-lg">🎯</span>
+                <span className="text-sm font-bold text-primary tracking-wide">
+                  USE CASES
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black mb-4">
+                Perfect for Every{" "}
+                <span className="text-primary">Group Occasion</span>
+                {city !== "India" ? ` in ${city}` : ""}
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                From spiritual journeys to corporate retreats, we've got you
+                covered
+              </p>
+              <div className="w-20 h-1 bg-primary/30 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: "🕉️",
+                  title: "Pilgrimages",
+                  desc: "Char Dham, Vaishno Devi, Golden Temple, Tirupati & more",
+                  color: "from-orange-500/10 to-red-500/10",
+                  borderColor: "border-orange-200",
+                  iconBg: "bg-orange-100",
+                  stat: "500+ Trips",
+                },
+                {
+                  icon: "💒",
+                  title: "Weddings",
+                  desc: "Baarat pickup, guest transfers, family travel & destination weddings",
+                  color: "from-pink-500/10 to-rose-500/10",
+                  borderColor: "border-pink-200",
+                  iconBg: "bg-pink-100",
+                  stat: "200+ Weddings",
+                },
+                {
+                  icon: "🏔️",
+                  title: "Hill Stations",
+                  desc: "Manali, Shimla, Nainital, Mussoorie, Munnar & Ooty",
+                  color: "from-blue-500/10 to-cyan-500/10",
+                  borderColor: "border-blue-200",
+                  iconBg: "bg-blue-100",
+                  stat: "1000+ Trips",
+                },
+                {
+                  icon: "🏢",
+                  title: "Corporate Outings",
+                  desc: "Team building, offsites, annual retreats & conference transfers",
+                  color: "from-indigo-500/10 to-purple-500/10",
+                  borderColor: "border-indigo-200",
+                  iconBg: "bg-indigo-100",
+                  stat: "300+ Events",
+                },
+                {
+                  icon: "🎓",
+                  title: "School/College Trips",
+                  desc: "Educational tours, sports events, picnics & excursion",
+                  color: "from-green-500/10 to-emerald-500/10",
+                  borderColor: "border-green-200",
+                  iconBg: "bg-green-100",
+                  stat: "150+ Trips",
+                },
+                {
+                  icon: "✈️",
+                  title: "Airport Transfers",
+                  desc: "Large group airport pickups, drops & flight tracking included",
+                  color: "from-purple-500/10 to-violet-500/10",
+                  borderColor: "border-purple-200",
+                  iconBg: "bg-purple-100",
+                  stat: "24/7 Service",
+                },
+              ].map((useCase, i) => (
+                <div
+                  key={i}
+                  className="group relative bg-white rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-100 overflow-hidden cursor-pointer"
+                >
+                  {/* Hover Gradient Background */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${useCase.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                  />
+
+                  <div className="relative">
+                    {/* Icon with Animation */}
+                    <div
+                      className={`w-16 h-16 rounded-2xl ${useCase.iconBg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}
+                    >
+                      <span className="text-3xl">{useCase.icon}</span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                      {useCase.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                      {useCase.desc}
+                    </p>
+
+                    {/* Stat Badge */}
+                    <div className="inline-flex items-center gap-2 text-xs font-semibold text-primary bg-primary/10 px-3 py-1.5 rounded-full">
+                      <span className="text-primary">✓</span>
+                      {useCase.stat}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
 
-            {/* Bottom CTA */}
-            <div className="text-center mt-12">
-              <div className="inline-flex items-center gap-4 bg-white px-6 py-3 rounded-full shadow-md">
-                <div className="flex -space-x-2">
-                  {[...Array(4)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs border-2 border-white"
-                    >
-                      {String.fromCharCode(65 + i)}
-                    </div>
-                  ))}
+            {/* Trust Banner */}
+            <div className="mt-16 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-2xl p-6 text-center">
+              <div className="flex flex-wrap justify-center gap-8 items-center">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">🎉</span>
+                  <span className="font-semibold">10,000+ Happy Groups</span>
                 </div>
-                <span className="text-sm font-medium text-muted-foreground">
-                  Join <span className="text-primary font-bold">50,000+</span>{" "}
-                  happy customers
-                </span>
-                <FaArrowRight className="text-primary text-sm" />
+                <div className="w-px h-6 bg-primary/20 hidden md:block"></div>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">⭐</span>
+                  <span className="font-semibold">
+                    4.9 Rating (2000+ Reviews)
+                  </span>
+                </div>
+                <div className="w-px h-6 bg-primary/20 hidden md:block"></div>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">🚐</span>
+                  <span className="font-semibold">
+                    50+ Tempo Travellers Fleet
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Customer Reviews Section */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <span className="text-primary font-bold text-sm uppercase">
-                TESTIMONIALS
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2">
-                What Our Customers Say
-              </h2>
-              <div className="flex justify-center items-center gap-2 mt-4">
-                <div className="flex text-yellow-400 text-xl">★★★★★</div>
-                <span className="font-bold">4.9</span>
-                <span className="text-gray-600">(1,250+ reviews)</span>
+        {/* Testimonials */}
+        <section className="py-24 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <div
+                className="section-badge mx-auto"
+                style={{ display: "inline-flex" }}
+              >
+                CUSTOMER REVIEWS
               </div>
+              <h2 className="section-title">
+                What Group Travelers in {city !== "India" ? city : "India"} Say
+              </h2>
             </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {TESTIMONIALS.map((review, i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xl">
-                        {review.name[0]}
-                      </div>
-                      <div>
-                        <h4 className="font-bold">{review.name}</h4>
-                        <div className="text-yellow-400 text-sm">
-                          {review.rating}
-                        </div>
-                      </div>
-                    </div>
-                    <span className="text-green-600 text-sm">✓ Verified</span>
-                  </div>
-                  <p className="text-gray-600 mb-4">"{review.text}"</p>
-                  <div className="flex items-center gap-2 text-sm text-gray-400">
-                    <span>{new Date().toLocaleDateString()}</span>
-                    <span>•</span>
-                    <span>{review.location || "India"}</span>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  name: "Vikram & Family",
+                  text: "Booked a 16 seater for our Char Dham Yatra. The tempo was brand new with pushback seats. Driver was experienced with hill roads. Amazing trip!",
+                  rating: "★★★★★",
+                },
+                {
+                  name: "Rahul (Corporate)",
+                  text: "Used Chiku Cabs for our office team outing of 20 people. The 20-seater tempo was clean, spacious, and the driver was very courteous. Will use again!",
+                  rating: "★★★★★",
+                },
+                {
+                  name: "Priya Wedding Group",
+                  text: "Booked 2 tempo travellers for our wedding guest transfers. Both arrived on time, well-decorated, and the drivers handled everything professionally.",
+                  rating: "★★★★★",
+                },
+              ].map((review, i) => (
+                <div key={i} className="testimonial-card">
+                  <div className="testimonial-stars">{review.rating}</div>
+                  <p className="testimonial-text">"{review.text}"</p>
+                  <div className="testimonial-author">{review.name}</div>
+                  <div className="testimonial-route">
+                    Tempo Traveller Service
                   </div>
                 </div>
               ))}
@@ -1870,34 +2055,70 @@ export default function ServiceTemplate({
         </section>
 
         {/* FAQ */}
-        <section className="py-24 px-4 bg-muted/20">
+        <section className="bg-muted/30 py-24 border-y px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <div className="section-badge mx-auto inline-flex">FAQ</div>
+              <div
+                className="section-badge mx-auto"
+                style={{ display: "inline-flex" }}
+              >
+                FAQ
+              </div>
               <h2 className="section-title">
-                Frequently Asked Questions About {vehicle} Rental
+                Tempo Traveller Rental Questions{" "}
+                {city !== "India" ? `for ${city}` : ""}
               </h2>
-              <p className="text-muted-foreground mt-4">
-                Everything you need to know before booking your {vehicle}
-              </p>
             </div>
-            <div className="space-y-4">
-              {faqs.map((faq, i) => (
-                <details key={i} className="faq-item group">
-                  <summary className="flex items-center justify-between p-6 font-bold cursor-pointer list-none hover:bg-muted/50 transition-colors rounded-lg">
-                    {faq.q}
-                    <span className="transition-transform group-open:rotate-180 text-primary">
-                      ▼
-                    </span>
-                  </summary>
-                  <div className="pl-12 pt-4 pb-2">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {faq.a}
-                    </p>
-                  </div>
-                </details>
-              ))}
-            </div>
+            {[
+              {
+                q: `What seating options are available for tempo traveller on rent in ${city}?`,
+                a: `We offer 9 seater, 12 seater, 15 seater, 16 seater, 18 seater, and 20 seater tempo traveller on rent in ${city}. All options come with AC, pushback reclining seats, and ample luggage space.`,
+              },
+              {
+                q: `How much does a tempo traveller booking cost per day in ${city}?`,
+                a: `Pricing for tempo traveller booking in ${city} starts from ₹24/km. Total cost depends on distance, duration, and the seating capacity you choose.`,
+              },
+              {
+                q: `Are the vehicles well-maintained for outstation tempo traveller trips?`,
+                a: `Yes! Our entire outstation tempo traveller fleet in ${city} is regularly serviced and deeply sanitized to provide a premium group travel service.`,
+              },
+              {
+                q: `Can I book a tempo traveller on rent for a one-way trip from ${city}?`,
+                a: `Yes, we offer specialized one-way tempo traveller booking from ${city} to various destinations at special reduced rates for group travel service.`,
+              },
+              {
+                q: `Is the driver experienced with outstation tempo traveller routes?`,
+                a: `Absolutely. Every driver for our outstation tempo traveller service in ${city} is specifically trained for long-distance and mountain road driving.`,
+              },
+              {
+                q: `Do you provide tempo traveller on rent for local sightseeing in ${city}?`,
+                a: `Yes, our local tempo traveller on rent packages in ${city} are perfect for family outings, corporate groups, and local city tours.`,
+              },
+              {
+                q: `What are the amenities included in your tempo traveller booking?`,
+                a: `Every tempo traveller booking includes high-quality AC, a music system, LED TV (in most models), pushback seats, and a dedicated luggage carrier.`,
+              },
+              {
+                q: `Is it possible to hire a tempo traveller on rent for a wedding in ${city}?`,
+                a: `Yes, we specialize in tempo traveller booking for weddings in ${city}, providing guest transfers and luxury travel for the bridal party.`,
+              },
+              {
+                q: `How can I calculate the per km rate for tempo traveller booking?`,
+                a: `The per km rate for tempo traveller booking starts at ₹24. Use our app or call 8448445504 for a transparent quote for your ${city} itinerary.`,
+              },
+              {
+                q: `Are there any night charges for outstation tempo traveller service?`,
+                a: `Our outstation tempo traveller service includes night charges in the package, ensuring a stress-free and transparent tempo traveller booking experience.`,
+              },
+            ].map((faq, i) => (
+              <details key={i} className="faq-item">
+                <summary>
+                  {faq.q}
+                  <span className="faq-chevron">▼</span>
+                </summary>
+                <div className="faq-answer">{faq.a}</div>
+              </details>
+            ))}
           </div>
         </section>
 
@@ -1920,27 +2141,28 @@ export default function ServiceTemplate({
           </div>
         </div>
 
-        {/* Final CTA */}
+        {/* CTA */}
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto cta-banner">
             <h2 className="text-4xl font-extrabold mb-4">
-              Ready to Book Your Ride?
+              Ready to Book Your Tempo Traveller?
             </h2>
             <p className="text-xl opacity-70 mb-8">
-              Call now and get instant confirmation for your {vehicle} rental.
+              Call now for the best group travel rates. Instant confirmation
+              guaranteed.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href={`tel:${PHONE_NUMBER}`}
-                className="btn-primary text-xl px-12 py-5 shadow-2xl"
+                href="tel:+918448445504"
+                className="btn-primary text-lg px-10 py-4 shadow-2xl"
               >
-                📞 Call {PHONE_NUMBER}
+                📞 Call 8448445504
               </a>
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                href="https://wa.me/918448445504"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-500 hover:bg-green-600 text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all hover:scale-105 shadow-lg"
+                className="bg-[#25D366] hover:bg-[#20bd5a] text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all duration-300 hover:scale-105 shadow-lg"
               >
                 💬 WhatsApp Us
               </a>
@@ -1948,7 +2170,139 @@ export default function ServiceTemplate({
           </div>
         </section>
 
-        <EEATSection vehicle={vehicle} />
+        {/* Popular Routes Section */}
+        {city !== "India" && (
+          <section className="py-24 px-4 bg-muted/20 border-y">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-16">
+                <div
+                  className="section-badge mx-auto"
+                  style={{ display: "inline-flex" }}
+                >
+                  POPULAR ROUTES
+                </div>
+
+                <h2 className="section-title">
+                  Popular Tempo Traveller Routes from {city}
+                </h2>
+
+                <p className="section-subtitle mx-auto">
+                  Explore the most booked outstation tempo traveller routes.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {(
+                  cityRoutes[city?.toLowerCase() as keyof typeof cityRoutes] ||
+                  []
+                ).map((destination, i) => (
+                  <Link
+                    key={i}
+                    href={`/${city.toLowerCase()}/tempo-traveller-hire-${city.toLowerCase()}-to-${destination
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")}`}
+                    className="group rounded-3xl border bg-card p-6 hover:border-primary transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="text-4xl">🚐</div>
+
+                      <span className="text-primary text-sm font-bold">
+                        Popular
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-black mb-2">
+                      {city} to {destination}
+                    </h3>
+
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Book tempo traveller from {city} to {destination}.
+                    </p>
+
+                    <div className="mt-6 flex items-center justify-between">
+                      <span className="text-primary font-bold">
+                        View Route →
+                      </span>
+
+                      <span className="text-xs text-muted-foreground">
+                        Starting ₹18/km
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* SEO Content Section */}
+        {city !== "India" && (
+          <section className="py-24 px-4 bg-muted/10 border-t">
+            <div className="max-w-4xl mx-auto text-muted-foreground text-lg leading-relaxed">
+              <h2 className="text-3xl md:text-4xl font-black mb-8 text-foreground tracking-tight">
+                Hire the Best Tempo Traveller in {city}
+              </h2>
+              <div className="space-y-6">
+                <p>
+                  Are you planning a group trip from <strong>{city}</strong>?
+                  Whether for a wedding or corporate offsite, hiring a{" "}
+                  <strong>tempo traveller on rent in {city}</strong> is the most
+                  comfortable choice. Chiku Cabs offers premium{" "}
+                  <strong>tempo traveller booking</strong> for 12 to 26-seater
+                  vehicles, ensuring a reliable{" "}
+                  <strong>group travel service</strong> for all your{" "}
+                  <strong>outstation tempo traveller</strong> needs.
+                </p>
+                <h3 className="text-2xl font-bold mb-6 mt-12 text-foreground border-b pb-4">
+                  Top Uses for Tempo Traveller Rentals in {city}
+                </h3>
+                <ul className="space-y-4 mb-10">
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary mt-1 text-xl">✔</span>
+                    <span>
+                      <strong>Local Sightseeing in {city}:</strong> Explore
+                      tourist attractions comfortably with our{" "}
+                      <strong>local tempo traveller service</strong> specialized
+                      for groups.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary mt-1 text-xl">✔</span>
+                    <span>
+                      <strong>Outstation tempo traveller from {city}:</strong>{" "}
+                      Plan weekend getaways securely with our verified
+                      commercial <strong>tempo traveller service</strong>{" "}
+                      drivers.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary mt-1 text-xl">✔</span>
+                    <span>
+                      <strong>{city} Airport Taxi:</strong> Need to transfer a
+                      large group? Our <strong>airport transfer</strong> service
+                      with spacious luggage carriers has you covered.
+                    </span>
+                  </li>
+                </ul>
+                <div className="bg-card p-8 rounded-2xl border shadow-sm mt-8">
+                  <p className="mb-0 text-card-foreground">
+                    Booking your{" "}
+                    <strong>tempo traveller on rent in {city}</strong> is easy
+                    via our <strong>tempo traveller booking</strong> app. We
+                    offer 100% transparent pricing for both local and{" "}
+                    <strong>outstation tempo traveller</strong> trips from{" "}
+                    {city}.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        <EEATSection
+          city={city !== "India" ? city : undefined}
+          vehicle="Tempo Traveller"
+        />
       </div>
     </>
   );

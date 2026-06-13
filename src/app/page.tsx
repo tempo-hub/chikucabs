@@ -1,7 +1,4 @@
 import { Metadata } from "next";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
-import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 
 export const metadata: Metadata = {
   title: "Chiku Cabs | India's #1 Premium Taxi & Cab Rental Service",
@@ -26,6 +23,18 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+interface StatItem {
+  num: string;
+  label: string;
+}
+
+const STATS: StatItem[] = [
+  { num: "800+", label: "Monthly Group Trips" },
+  { num: "₹2M+", label: "Group Savings" },
+  { num: "4.9/5", label: "Google Rating" },
+  { num: "Verified", label: "Local Drivers" },
+];
 
 export default function HomePage() {
   return (
@@ -98,19 +107,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="border-y py-12">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="stats-grid">
-            {[
-              { num: "800+", label: "Monthly Group Trips" },
-              { num: "₹2M+", label: "Group Savings" },
-              { num: "4.9/5", label: "Google Rating" },
-              { num: "Verified", label: "Local Drivers" },
-            ].map((stat, i) => (
-              <div key={i} className="stat-item">
-                <div className="stat-number">{stat.num}</div>
-                <div className="stat-label">{stat.label}</div>
+      {/* Stats Bar - Professional Version */}
+      <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-primary/10">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="section-badge mx-auto">OUR REVIEWS</div>
+            <h2 className="section-title">What Our Customers Say About Us</h2>
+            <p className="section-subtitle mx-auto">
+              Trusted by thousands of travelers across India. Here's what they
+              have to say about their experience with Chiku Cabs.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {STATS.map((stat, i) => (
+              <div key={i} className="text-center group">
+                <div className="relative inline-block">
+                  <div className="text-4xl md:text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
+                    {stat.num}
+                  </div>
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
+                </div>
+                <div className="text-sm md:text-base font-medium text-muted-foreground uppercase tracking-wide mt-3">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
