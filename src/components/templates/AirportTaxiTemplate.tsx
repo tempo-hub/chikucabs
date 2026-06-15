@@ -55,6 +55,9 @@ import { FaLocationDot, FaRegClock } from "react-icons/fa6";
 import { TbTargetArrow } from "react-icons/tb";
 import { SlCalender } from "react-icons/sl";
 import Script from "next/script";
+import Link from "next/link";
+import { airportCabRoutes } from "@/data/airportRoutes";
+import { IoLocationSharp } from "react-icons/io5";
 
 interface FleetItem {
   tier: string;
@@ -147,16 +150,16 @@ const VEHICLE_DETAILS_MAP: Record<
   },
   innova: {
     icon: "✨",
-    image: "/innova.png",
-    pricePerKm: 17,
+    image: "/innova-crysta.png",
+    pricePerKm: 16,
     capacity: "6-7 Passengers",
     luggage: "4-5 Bags",
     features: ["Leather Seats", "AC", "WiFi", "Charging Ports"],
   },
   default: {
     icon: "🚘",
-    image: "/hatchback.png",
-    pricePerKm: 9,
+    image: "/suzuki-dzire.png",
+    pricePerKm: 10,
     capacity: "4 Passengers",
     luggage: "2-3 Bags",
     features: ["AC", "Comfortable Seats", "Charging Ports", "Boot Space"],
@@ -285,17 +288,6 @@ const COMPARISON_FEATURES = [
   },
 ];
 
-const CITIES: CityService[] = [
-  { name: "Delhi", services: ["Local", "Airport", "Outstation"] },
-  { name: "Noida", services: ["Local", "Airport", "Outstation"] },
-  { name: "Gurgaon", services: ["Local", "Airport", "Outstation"] },
-  { name: "Agra", services: ["Local", "Airport", "Outstation"] },
-  { name: "Jaipur", services: ["Local", "Airport", "Outstation"] },
-  { name: "Lucknow", services: ["Local", "Airport", "Outstation"] },
-  { name: "Chandigarh", services: ["Local", "Airport", "Outstation"] },
-  { name: "Varanasi", services: ["Local", "Airport", "Outstation"] },
-];
-
 export default function AirportTaxiTemplate({
   parsedData,
 }: {
@@ -317,6 +309,9 @@ export default function AirportTaxiTemplate({
   const [dropLocation, setDropLocation] = useState("");
   const [travelDate, setTravelDate] = useState("");
   const [travelTime, setTravelTime] = useState("");
+  const [returnDate, setReturnDate] = useState("");
+  const [tripType, setTripType] = useState("one-way");
+  const [selectedVehicle, setSelectedVehicle] = useState("");
 
   // Scroll handler for sticky CTA
   useEffect(() => {
@@ -458,21 +453,28 @@ export default function AirportTaxiTemplate({
       return;
     }
 
-    const message = `
-  🚖 Fare Estimate Request
-  
-  📍 Pickup: ${pickupLocation}
-  🎯 Drop: ${dropLocation}
-  📅 Date: ${travelDate}
-  ⏰ Time: ${travelTime}
-  🚘 Vehicle: ${vehicle}
-  `;
+    const message = `🚖 *Fare Estimate Request*
 
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      message,
-    )}`;
+🚕 *Trip Type:* ${tripType === "one-way" ? "One Way" : "Round Trip"}
+🛣️ *Route:* ${pickupLocation} → ${dropLocation}
+📅 *Travel Date:* ${travelDate}
+⏰ *Travel Time:* ${travelTime}
+${tripType === "round-trip" ? `🔄 *Return Date:* ${returnDate}\n` : ""}
+🚘 *Vehicle Type:* ${selectedVehicle || vDetails.name}
 
+Please share the best fare.`;
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
+
+    // Clear form fields
+    setPickupLocation("");
+    setDropLocation("");
+    setTravelDate("");
+    setTravelTime("");
+    setReturnDate("");
+    setSelectedVehicle("");
+    setTripType("one-way");
   };
 
   const generateTimes = () => {
@@ -676,83 +678,124 @@ export default function AirportTaxiTemplate({
                 </div>
               </div>
 
-              {/* Right Content - Booking Widget (Like Uber) */}
+              {/* Right Content - Booking Widget */}
               <div className="bg-white rounded-2xl shadow-2xl p-6 lg:p-8">
-                <h3 className="text-2xl font-bold mb-4">Book Your {vehicle}</h3>
+                <h3 className="text-2xl font-bold mb-4">
+                  Book Your {vehicleDetails?.name || "Outstation Cab"}
+                </h3>
                 <p className="text-gray-600 mb-6">
                   Get instant confirmation & best price
                 </p>
 
-                <form className="space-y-5">
+                <form className="space-y-5" onSubmit={handleGetEstimate}>
                   {/* Pickup Location */}
                   <div className="relative">
-                    <FaLocationDot className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg" />
-
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
+                      📍
+                    </span>
                     <input
                       type="text"
                       value={pickupLocation}
                       onChange={(e) => setPickupLocation(e.target.value)}
                       placeholder="Enter Pickup Location"
                       className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-              focus:bg-white
-              focus:border-primary
-              focus:ring-4
-              focus:ring-primary/10
-              outline-none
-              transition-all duration-300"
-                    />
-                  </div>
-
-                  {/* Drop Location */}
-                  <div className="relative">
-                    <TbTargetArrow className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg" />
-
-                    <input
-                      type="text"
-                      value={dropLocation}
-                      onChange={(e) => setDropLocation(e.target.value)}
-                      placeholder="Enter Drop Location"
-                      className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-              focus:bg-white
-              focus:border-primary
-              focus:ring-4
-              focus:ring-primary/10
-              outline-none
-              transition-all duration-300"
-                    />
-                  </div>
-
-                  {/* Date & Time */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Date */}
-                    <div className="relative">
-                      <SlCalender className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base" />
-
-                      <input
-                        type="date"
-                        value={travelDate}
-                        onChange={(e) => setTravelDate(e.target.value)}
-                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
                 focus:bg-white
                 focus:border-primary
                 focus:ring-4
                 focus:ring-primary/10
                 outline-none
                 transition-all duration-300"
+                      required
+                    />
+                  </div>
+
+                  {/* Drop Location */}
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
+                      🎯
+                    </span>
+                    <input
+                      type="text"
+                      value={dropLocation}
+                      onChange={(e) => setDropLocation(e.target.value)}
+                      placeholder="Enter Drop Location"
+                      className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+                focus:bg-white
+                focus:border-primary
+                focus:ring-4
+                focus:ring-primary/10
+                outline-none
+                transition-all duration-300"
+                      required
+                    />
+                  </div>
+
+                  {/* Trip Type Selection (Outstation Specific) */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setTripType("one-way")}
+                      className={`py-3 rounded-xl font-semibold transition-all ${
+                        tripType === "one-way"
+                          ? "bg-primary text-white shadow-lg shadow-primary/20"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      One Way
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setTripType("round-trip")}
+                      className={`py-3 rounded-xl font-semibold transition-all ${
+                        tripType === "round-trip"
+                          ? "bg-primary text-white shadow-lg shadow-primary/20"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      Round Trip
+                    </button>
+                  </div>
+
+                  {/* Date & Time */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Pickup Date */}
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                        📅
+                      </span>
+                      <input
+                        type="date"
+                        value={travelDate}
+                        onChange={(e) => setTravelDate(e.target.value)}
+                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+                  focus:bg-white
+                  focus:border-primary
+                  focus:ring-4
+                  focus:ring-primary/10
+                  outline-none
+                  transition-all duration-300"
+                        required
                       />
                     </div>
 
-                    {/* Time */}
+                    {/* Pickup Time */}
                     <div className="relative">
-                      <FaRegClock className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base" />
-
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                        ⏰
+                      </span>
                       <select
                         value={travelTime}
                         onChange={(e) => setTravelTime(e.target.value)}
-                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl"
+                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+                  focus:bg-white
+                  focus:border-primary
+                  focus:ring-4
+                  focus:ring-primary/10
+                  outline-none
+                  transition-all duration-300"
+                        required
                       >
                         <option value="">Select Time</option>
-
                         {timeOptions.map((time) => (
                           <option key={time} value={time}>
                             {time}
@@ -762,16 +805,85 @@ export default function AirportTaxiTemplate({
                     </div>
                   </div>
 
+                  {/* Return Date (Only for Round Trip) */}
+                  {tripType === "round-trip" && (
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                        🔄
+                      </span>
+                      <input
+                        type="date"
+                        value={returnDate}
+                        onChange={(e) => setReturnDate(e.target.value)}
+                        placeholder="Return Date"
+                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+                  focus:bg-white
+                  focus:border-primary
+                  focus:ring-4
+                  focus:ring-primary/10
+                  outline-none
+                  transition-all duration-300"
+                      />
+                    </div>
+                  )}
+
+                  {/* Vehicle Selection (Outstation Specific) */}
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                      🚙
+                    </span>
+                    <select
+                      value={selectedVehicle}
+                      onChange={(e) => setSelectedVehicle(e.target.value)}
+                      className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+                focus:bg-white
+                focus:border-primary
+                focus:ring-4
+                focus:ring-primary/10
+                outline-none
+                transition-all duration-300"
+                    >
+                      <option value="">Select Vehicle Type</option>
+                      <option value="swift-dzire">
+                        Swift Dzire (4 Seater)
+                      </option>
+                      <option value="innova-crysta">Innova Crysta</option>
+                      <option value="amaze">Amaze</option>
+                      <option value="ertiga">Ertiga (7 Seater)</option>
+                      <option value="tempo">Tempo Traveller (12 Seater)</option>
+                      <option value="9-Seater">
+                        9-Seater (Best for families)
+                      </option>
+                      <option value="12-Seater">
+                        12-Seater (Popular for pilgrimages)
+                      </option>
+                      <option value="13-Seater">
+                        13-Seater (Popular for pilgrimages)
+                      </option>
+                      <option value="20-Seater">
+                        20-Seater (Large groups)
+                      </option>
+                      <option value="21-Seater">
+                        21-Seater (Large groups)
+                      </option>
+                      <option value="24-Seater">
+                        24-Seater (Large groups)
+                      </option>
+                      <option value="26-Seater">
+                        26-Seater (Wedding/Baraat special)
+                      </option>
+                    </select>
+                  </div>
+
                   {/* CTA Button */}
                   <button
-                    type="button"
-                    onClick={handleGetEstimate}
+                    type="submit"
                     className="group w-full h-14 rounded-2xl bg-primary text-white font-semibold text-lg
-            shadow-lg shadow-primary/20
-            hover:shadow-xl hover:shadow-primary/30
-            hover:-translate-y-0.5
-            active:translate-y-0
-            transition-all duration-300"
+              shadow-lg shadow-primary/20
+              hover:shadow-xl hover:shadow-primary/30
+              hover:-translate-y-0.5
+              active:translate-y-0
+              transition-all duration-300"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Get Fare Estimate
@@ -788,95 +900,11 @@ export default function AirportTaxiTemplate({
                     <span>✓ Free Cancellation</span>
                     <span>•</span>
                     <span>✓ 24×7 Support</span>
+                    <span>•</span>
+                    <span>✓ Driver Details</span>
                   </div>
                 </form>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Fleet Gallery */}
-        <section className="py-24 px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                <MdFlightTakeoff className="w-4 h-4" />
-                24/7 AIRPORT TAXI SERVICE
-              </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                Delhi Airport Taxi - Pickup & Drop
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                Book reliable airport taxi service for IGI Airport with
-                professional drivers, fixed pricing, and flight tracking.
-                Available 24x7 for all terminals.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {FLEET_DATA.map((item, i) => (
-                <div
-                  key={i}
-                  className={`premium-card relative overflow-hidden flex flex-col pt-12 pb-8 px-8 transition-all duration-300 hover:-translate-y-2 ${
-                    item.best
-                      ? "border border-primary shadow-xl scale-105 z-10 bg-white"
-                      : "border hover:border-primary hover:shadow-lg"
-                  }`}
-                >
-                  {item.best && (
-                    <div className="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-xs font-black uppercase rounded-bl-lg">
-                      Most Popular
-                    </div>
-                  )}
-                  <div className="text-xs font-black opacity-40 mb-2 uppercase">
-                    {item.tier} CHOICE
-                  </div>
-                  <h3 className="text-2xl font-black mb-2">{item.car}</h3>
-                  <p className="text-muted-foreground text-sm mb-8">
-                    {item.desc}
-                  </p>
-                  <div className="mt-auto mb-10">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-sm font-black opacity-50">
-                        FROM
-                      </span>
-                      <span className="text-5xl font-black">₹{item.price}</span>
-                      <span className="text-sm font-black opacity-50">
-                        / KM
-                      </span>
-                    </div>
-                    <div className="text-xs font-bold text-green-600 mt-2 italic">
-                      INTERCITY BEST PRICE GUARANTEE
-                    </div>
-                  </div>
-                  <ul className="space-y-3 mb-10 list-none">
-                    {[
-                      "Driver Allowance Included",
-                      "State Permit Included",
-                      "Clean & Sanitized Vehicle",
-                      "24×7 Customer Support",
-                    ].map((feature, j) => (
-                      <li
-                        key={j}
-                        className="flex items-center gap-3 text-sm font-medium"
-                      >
-                        <span className="text-primary text-xl">✓</span>{" "}
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={`tel:${PHONE_NUMBER}`}
-                    className={`w-full py-4 rounded-xl font-black tracking-tight text-center transition-all ${
-                      item.best
-                        ? "btn-primary shadow-lg"
-                        : "bg-muted hover:bg-muted/80"
-                    }`}
-                  >
-                    BOOK NOW
-                  </a>
-                </div>
-              ))}
             </div>
           </div>
         </section>
@@ -907,6 +935,141 @@ export default function AirportTaxiTemplate({
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Fleet Gallery */}
+        <section className="py-24 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <MdFlightTakeoff className="w-4 h-4" />
+                24/7 AIRPORT TAXI SERVICE
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Delhi Airport Taxi - Pickup & Drop
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+                Book reliable airport taxi service for IGI Airport with
+                professional drivers, fixed pricing, and flight tracking.
+                Available 24x7 for all terminals.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Vehicle 1 - Dzire */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div className="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                  <img
+                    src="/suzuki-dzire.png"
+                    alt="Maruti Suzuki Dzire"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+
+                <div className="p-5">
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    Maruti Suzuki Dzire
+                  </h3>
+                  <div className="flex justify-between text-sm text-gray-600 mb-3">
+                    <span>👥 4 Seats</span>
+                    <span>🧳 2 Luggage</span>
+                    <span>❄️ AC</span>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-primary">₹10</span>
+                    <span className="text-gray-500">/km</span>
+                  </div>
+                  <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                    Book Now
+                  </button>
+                </div>
+              </div>
+
+              {/* Vehicle 2 - Amaze */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div className="h-48 bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center">
+                  <img
+                    src="/honda-amaze.png"
+                    alt="Honda Amaze"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    Honda Amaze
+                  </h3>
+                  <div className="flex justify-between text-sm text-gray-600 mb-3">
+                    <span>👥 4 Seats</span>
+                    <span>🧳 3 Luggage</span>
+                    <span>❄️ AC</span>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-primary">₹10</span>
+                    <span className="text-gray-500">/km</span>
+                  </div>
+                  <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                    Book Now
+                  </button>
+                </div>
+              </div>
+
+              {/* Vehicle 3 - Ertiga */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div className="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                  <img
+                    src="/maruti-ertiga.png"
+                    alt="Maruti Ertiga"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    Maruti Ertiga
+                  </h3>
+                  <div className="flex justify-between text-sm text-gray-600 mb-3">
+                    <span>👥 7 Seats</span>
+                    <span>🧳 3 Luggage</span>
+                    <span>❄️ AC</span>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-primary">₹13</span>
+                    <span className="text-gray-500">/km</span>
+                  </div>
+                  <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                    Book Now
+                  </button>
+                </div>
+              </div>
+
+              {/* Vehicle 4 - Innova Crysta */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div className="h-48 bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
+                  <img
+                    src="/innova-crysta.png"
+                    alt="Toyota Innova Crysta"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    Toyota Innova Crysta
+                  </h3>
+                  <div className="flex justify-between text-sm text-gray-600 mb-3">
+                    <span>👥 7 Seats</span>
+                    <span>🧳 4 Luggage</span>
+                    <span>❄️ AC | Premium</span>
+                  </div>
+                  <div className="mb-4">
+                    <span className="text-2xl font-bold text-primary">₹16</span>
+                    <span className="text-gray-500">/km</span>
+                  </div>
+                  <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                    Book Now
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -1048,67 +1211,6 @@ export default function AirportTaxiTemplate({
                   <span className="font-semibold text-gray-800">
                     {item.text}
                   </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <div className="section-badge mx-auto animate-pulse">
-                ⚡ SIMPLE & FAST
-              </div>
-              <h2 className="section-title mt-4">
-                Book Your Ride in{" "}
-                <span className="gradient-text">3 Easy Steps</span>
-              </h2>
-              <p className="section-subtitle mx-auto mt-4">
-                Experience hassle-free cab booking with our streamlined process
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 relative">
-              {/* Connecting Line (Desktop) */}
-              <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2 z-0">
-                <div className="absolute left-1/3 right-1/3 h-full bg-primary"></div>
-              </div>
-
-              {STEPS.map((item, i) => (
-                <div key={i} className="relative group">
-                  {/* Step Number Circle */}
-                  <div className="relative z-10">
-                    <div className="text-center">
-                      <div className="relative inline-block">
-                        <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-all duration-300">
-                          <div className="text-4xl font-black text-black">
-                            {item.step}
-                          </div>
-                        </div>
-                        {/* Pulse Effect */}
-                        <div className="absolute inset-0 bg-primary rounded-2xl opacity-0 group-hover:opacity-20 animate-ping"></div>
-                      </div>
-
-                      {/* Step Content */}
-                      <div className="mt-6 premium-card text-center group-hover:-translate-y-2 transition-all duration-300">
-                        <h3 className="font-bold text-xl mb-3 group-hover:text-primary transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-
-                      {/* Arrow Indicator (Desktop) */}
-                      {i < STEPS.length - 1 && (
-                        <div className="hidden md:block absolute top-12 -right-6 text-3xl text-primary/50 group-hover:text-primary transition-colors">
-                          →
-                        </div>
-                      )}
-                    </div>
-                  </div>
                 </div>
               ))}
             </div>
@@ -1267,6 +1369,81 @@ export default function AirportTaxiTemplate({
           </div>
         </section>
 
+        {/* Popular Airport Taxi Routes */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-3">
+                Popular Airport Taxi Routes
+              </h2>
+              <p className="text-gray-600">
+                Book affordable airport cabs on India's most searched routes
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <div className="section-badge mx-auto animate-pulse">
+                ⚡ SIMPLE & FAST
+              </div>
+              <h2 className="section-title mt-4">
+                Book Your Ride in{" "}
+                <span className="gradient-text">3 Easy Steps</span>
+              </h2>
+              <p className="section-subtitle mx-auto mt-4">
+                Experience hassle-free cab booking with our streamlined process
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 relative">
+              {/* Connecting Line (Desktop) */}
+              <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2 z-0">
+                <div className="absolute left-1/3 right-1/3 h-full bg-primary"></div>
+              </div>
+
+              {STEPS.map((item, i) => (
+                <div key={i} className="relative group">
+                  {/* Step Number Circle */}
+                  <div className="relative z-10">
+                    <div className="text-center">
+                      <div className="relative inline-block">
+                        <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-all duration-300">
+                          <div className="text-4xl font-black text-black">
+                            {item.step}
+                          </div>
+                        </div>
+                        {/* Pulse Effect */}
+                        <div className="absolute inset-0 bg-primary rounded-2xl opacity-0 group-hover:opacity-20 animate-ping"></div>
+                      </div>
+
+                      {/* Step Content */}
+                      <div className="mt-6 premium-card text-center group-hover:-translate-y-2 transition-all duration-300">
+                        <h3 className="font-bold text-xl mb-3 group-hover:text-primary transition-colors">
+                          {item.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+
+                      {/* Arrow Indicator (Desktop) */}
+                      {i < STEPS.length - 1 && (
+                        <div className="hidden md:block absolute top-12 -right-6 text-3xl text-primary/50 group-hover:text-primary transition-colors">
+                          →
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Service Areas Section - Clean Version */}
         <section className="py-20 px-4 bg-gray-50">
           <div className="max-w-7xl mx-auto">
@@ -1286,17 +1463,6 @@ export default function AirportTaxiTemplate({
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-              {CITIES.map((city) => (
-                <div key={city.name} className="premium-card text-center">
-                  <h3 className="font-bold text-lg">{city.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    {city.services.join(" • ")}
-                  </p>
-                </div>
-              ))}
-            </div>
-
             {/* Contact CTA */}
             <div className="text-center mt-10">
               <p className="text-gray-500">
@@ -1308,696 +1474,6 @@ export default function AirportTaxiTemplate({
                   Call us now
                 </a>
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Vehicle Comparison - Modern UI with React Icons */}
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
-          <div className="max-w-7xl mx-auto px-4">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-                <FaCar className="text-primary text-sm" />
-                <span className="text-primary font-bold text-sm uppercase tracking-wider">
-                  COMPARE VEHICLES
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black mb-4">
-                Choose Your <span className="gradient-text">Perfect Ride</span>
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Compare our fleet and find the perfect vehicle for your journey
-              </p>
-            </div>
-
-            {/* Mobile Card View */}
-            <div className="lg:hidden space-y-6">
-              {[
-                {
-                  name: "Hatchback",
-                  price: "9",
-                  capacity: "4",
-                  luggage: "2-3",
-                  ac: true,
-                  wifi: false,
-                  charging: true,
-                  bestFor: "Budget Travel",
-                  popular: false,
-                  icon: <FaCar />,
-                },
-                {
-                  name: "Sedan",
-                  price: "12",
-                  capacity: "4",
-                  luggage: "3-4",
-                  ac: true,
-                  wifi: true,
-                  charging: true,
-                  bestFor: "Corporate & Family",
-                  popular: true,
-                  icon: <FaCarSide />,
-                },
-                {
-                  name: "Innova",
-                  price: "17",
-                  capacity: "6-7",
-                  luggage: "5-6",
-                  ac: true,
-                  wifi: true,
-                  charging: true,
-                  bestFor: "Luxury Travel",
-                  popular: false,
-                  icon: <FaCaravan />,
-                },
-                {
-                  name: "Tempo Traveller",
-                  price: "19",
-                  capacity: "9-12",
-                  luggage: "10-12",
-                  ac: true,
-                  wifi: true,
-                  charging: true,
-                  bestFor: "Group Tours",
-                  popular: false,
-                  icon: <FaBus />,
-                },
-              ].map((vehicle, idx) => (
-                <div
-                  key={idx}
-                  className={`relative bg-white rounded-2xl p-6 shadow-lg border ${vehicle.popular ? "border-primary shadow-xl" : "border-gray-100"}`}
-                >
-                  {vehicle.popular && (
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-black px-4 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                      <FaStar className="text-yellow-400 text-xs" />
-                      Most Popular
-                    </div>
-                  )}
-                  <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${vehicle.popular ? "bg-gradient-to-r from-primary to-secondary text-white" : "bg-primary/10 text-primary"}`}
-                    >
-                      {vehicle.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">{vehicle.name}</h3>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-2xl font-black text-primary">
-                          ₹{vehicle.price}
-                        </span>
-                        <span className="text-sm text-muted-foreground">
-                          /km
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-                        <FaUsers className="text-primary text-xs" /> Capacity
-                      </span>
-                      <span className="font-semibold">
-                        {vehicle.capacity} Persons
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-                        <FaSuitcase className="text-primary text-xs" /> Luggage
-                      </span>
-                      <span className="font-semibold">
-                        {vehicle.luggage} Bags
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-                        <FaMicrochip className="text-primary text-xs" />{" "}
-                        Features
-                      </span>
-                      <div className="flex gap-2">
-                        {vehicle.ac && (
-                          <FaSnowflake
-                            className="text-blue-500 text-sm"
-                            title="AC"
-                          />
-                        )}
-                        {vehicle.wifi && (
-                          <FaWifi
-                            className="text-green-500 text-sm"
-                            title="WiFi"
-                          />
-                        )}
-                        {vehicle.charging && (
-                          <FaBatteryFull
-                            className="text-yellow-500 text-sm"
-                            title="Charging Ports"
-                          />
-                        )}
-                      </div>
-                    </div>
-                    <div className="flex justify-between items-center pt-3 border-t border-gray-100">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-                        <FaMedal className="text-primary text-xs" /> Best For
-                      </span>
-                      <span
-                        className={`text-sm font-bold ${vehicle.popular ? "text-primary" : ""}`}
-                      >
-                        {vehicle.bestFor}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Desktop Table View - PERFECT THEAD ALIGNMENT */}
-            <div className="hidden lg:block overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-gradient-to-r from-gray-900 to-gray-800">
-                    <th className="p-5 text-left text-white font-bold text-base w-48 rounded-tl-2xl">
-                      <div className="flex items-center gap-2">
-                        <FaList className="text-primary text-lg" />
-                        <span>Features</span>
-                      </div>
-                    </th>
-                    <th className="p-5 text-center text-white font-bold text-base">
-                      <div className="flex flex-col items-center justify-center gap-1">
-                        <div className="flex items-center justify-center gap-2">
-                          <FaCar className="text-xl" />
-                          <span>Hatchback</span>
-                        </div>
-                        <span className="text-xs text-gray-300 font-normal">
-                          Economy
-                        </span>
-                      </div>
-                    </th>
-                    <th className="p-5 text-center text-white font-bold text-base relative">
-                      <div className="flex flex-col items-center justify-center gap-1">
-                        <div className="flex items-center justify-center gap-2">
-                          <FaCarSide className="text-xl" />
-                          <span>Sedan</span>
-                        </div>
-                        <span className="text-xs text-gray-300 font-normal">
-                          Popular Choice
-                        </span>
-                      </div>
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-3 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-1 whitespace-nowrap shadow-md z-10">
-                        <FaStar className="text-xs text-yellow-700" /> Most
-                        Popular
-                      </div>
-                    </th>
-                    <th className="p-5 text-center text-white font-bold text-base">
-                      <div className="flex flex-col items-center justify-center gap-1">
-                        <div className="flex items-center justify-center gap-2">
-                          <FaCaravan className="text-xl" />
-                          <span>Innova</span>
-                        </div>
-                        <span className="text-xs text-gray-300 font-normal">
-                          Luxury
-                        </span>
-                      </div>
-                    </th>
-                    <th className="p-5 text-center text-white font-bold text-base rounded-tr-2xl">
-                      <div className="flex flex-col items-center justify-center gap-1">
-                        <div className="flex items-center justify-center gap-2">
-                          <FaBus className="text-xl" />
-                          <span>Tempo Traveller</span>
-                        </div>
-                        <span className="text-xs text-gray-300 font-normal">
-                          Group
-                        </span>
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* Price per km */}
-                  <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800 bg-gray-50/50">
-                      <div className="flex items-center gap-2">
-                        <FaMoneyBillWave className="text-primary" />
-                        Price per km
-                      </div>
-                    </td>
-                    <td className="p-5 text-center font-semibold text-gray-700">
-                      ₹9
-                    </td>
-                    <td className="p-5 text-center bg-primary/5 font-extrabold text-primary text-lg">
-                      ₹12
-                    </td>
-                    <td className="p-5 text-center font-semibold text-gray-700">
-                      ₹17
-                    </td>
-                    <td className="p-5 text-center font-semibold text-gray-700">
-                      ₹19
-                    </td>
-                  </tr>
-
-                  {/* Capacity */}
-                  <tr className="border-b border-gray-100 bg-gray-50/30 hover:bg-gray-100 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800">
-                      <div className="flex items-center gap-2">
-                        <FaUsers className="text-primary" />
-                        Capacity
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaUser className="text-gray-500 text-sm" /> 4 Persons
-                      </div>
-                    </td>
-                    <td className="p-5 text-center bg-primary/5">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaUser className="text-primary text-sm" /> 4 Persons
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaUser className="text-gray-500 text-sm" /> 6-7 Persons
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaUsers className="text-gray-500 text-sm" /> 9-12
-                        Persons
-                      </div>
-                    </td>
-                  </tr>
-
-                  {/* Luggage Capacity */}
-                  <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800 bg-gray-50/50">
-                      <div className="flex items-center gap-2">
-                        <FaSuitcase className="text-primary" />
-                        Luggage Capacity
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaSuitcase className="text-gray-400 text-xs" /> 2-3
-                        Bags
-                      </div>
-                    </td>
-                    <td className="p-5 text-center bg-primary/5">
-                      <div className="flex items-center justify-center gap-1 font-semibold">
-                        <FaSuitcase className="text-primary text-xs" /> 3-4 Bags
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaSuitcase className="text-gray-400 text-xs" /> 5-6
-                        Bags
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaSuitcase className="text-gray-400 text-xs" /> 10-12
-                        Bags
-                      </div>
-                    </td>
-                  </tr>
-
-                  {/* AC */}
-                  <tr className="border-b border-gray-100 bg-gray-50/30 hover:bg-gray-100 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800">
-                      <div className="flex items-center gap-2">
-                        <FaSnowflake className="text-primary" />
-                        Air Conditioning
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center bg-primary/5">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                  </tr>
-
-                  {/* WiFi */}
-                  <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800 bg-gray-50/50">
-                      <div className="flex items-center gap-2">
-                        <FaWifi className="text-primary" />
-                        WiFi Connectivity
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaTimesCircle className="text-red-400 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center bg-primary/5">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                  </tr>
-
-                  {/* Charging Ports */}
-                  <tr className="border-b border-gray-100 bg-gray-50/30 hover:bg-gray-100 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800">
-                      <div className="flex items-center gap-2">
-                        <FaBatteryFull className="text-primary" />
-                        USB / Charging Ports
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center bg-primary/5">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                  </tr>
-
-                  {/* Best For */}
-                  <tr className="hover:bg-gray-50 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800 bg-gray-50/50 rounded-bl-2xl">
-                      <div className="flex items-center gap-2">
-                        <FaMedal className="text-primary" />
-                        Best For
-                      </div>
-                    </td>
-                    <td className="p-5 text-center text-sm">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaWallet className="text-gray-500 text-sm" /> Budget
-                        Travel
-                      </div>
-                    </td>
-                    <td className="p-5 text-center bg-primary/5 font-bold text-primary text-sm">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaBriefcase className="text-primary text-sm" />{" "}
-                        Corporate & Family
-                      </div>
-                    </td>
-                    <td className="p-5 text-center text-sm">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaGem className="text-gray-500 text-sm" /> Luxury
-                        Travel
-                      </div>
-                    </td>
-                    <td className="p-5 text-center text-sm rounded-br-2xl">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaUsers className="text-gray-500 text-sm" /> Group
-                        Tours
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            {/* Recommendation Note */}
-            <div className="mt-12 p-6 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl border border-primary/20">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                    <FaRegLightbulb className="text-primary text-xl" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg">
-                      Not sure which vehicle to choose?
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      Our experts can help you find the perfect ride for your
-                      needs
-                    </p>
-                  </div>
-                </div>
-                <button className="px-6 py-2 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition shadow-md">
-                  Get Expert Advice
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Choose Us vs Competitors - Modern UI with React Icons */}
-        <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
-          <div className="max-w-7xl mx-auto px-4">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-                <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-                <span className="text-primary font-bold text-sm uppercase tracking-wider">
-                  WHY WE'RE BETTER
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black mb-4">
-                Chiku Cabs <span className="gradient-text">vs</span> Others
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                See why thousands of customers choose us over traditional cab
-                services
-              </p>
-            </div>
-
-            {/* Comparison Cards - Mobile Friendly */}
-            <div className="lg:hidden space-y-4">
-              {COMPARISON_FEATURES.map((row, i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-2xl p-5 shadow-lg border border-gray-100"
-                >
-                  <div className="font-bold text-lg mb-4 pb-2 border-b border-gray-100">
-                    {row.feature}
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                          <FaCarSide className="text-primary text-sm" />
-                        </div>
-                        <span className="font-semibold">Chiku Cabs</span>
-                      </div>
-                      <div className="text-green-600 font-medium">
-                        {row.chiku}
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                          <FaCarSide className="text-gray-500 text-sm" />
-                        </div>
-                        <span className="font-semibold text-gray-500">
-                          Others
-                        </span>
-                      </div>
-                      <div className="text-red-500 font-medium">
-                        {row.other}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Comparison Table - Desktop */}
-            <div className="hidden lg:block overflow-x-auto">
-              <table className="w-full border-separate border-spacing-0">
-                <thead>
-                  <tr>
-                    <th className="p-6 text-left bg-gray-900 rounded-tl-2xl text-white font-bold text-lg">
-                      Features
-                    </th>
-                    <th className="p-6 text-center bg-gradient-to-r from-primary to-primary/80 text-white font-bold text-lg">
-                      <div className="flex items-center justify-center gap-2 text-[#BE1E23]">
-                        <FaCarSide className="text-xl" />
-                        Chiku Cabs
-                        <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">
-                          Winner
-                        </span>
-                      </div>
-                    </th>
-                    <th className="p-6 text-center bg-gray-800 rounded-tr-2xl text-white font-bold text-lg">
-                      Other Services
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {COMPARISON_FEATURES.map((row, i) => {
-                    // Icon mapping for features
-                    const getFeatureIcon = (feature: string) => {
-                      switch (feature) {
-                        case "Professional Drivers":
-                          return <FaUserTie className="text-primary text-lg" />;
-                        case "Transparent Pricing":
-                          return <FaWallet className="text-primary text-lg" />;
-                        case "24/7 Customer Support":
-                          return <FaHeadset className="text-primary text-lg" />;
-                        case "Free Cancellation":
-                          return <FaSyncAlt className="text-primary text-lg" />;
-                        case "GPS Tracking":
-                          return (
-                            <FaMapMarkerAlt className="text-primary text-lg" />
-                          );
-                        case "Clean & Sanitized":
-                          return (
-                            <FaSprayCan className="text-primary text-lg" />
-                          );
-                        default:
-                          return (
-                            <FaCheckCircle className="text-primary text-lg" />
-                          );
-                      }
-                    };
-
-                    return (
-                      <tr
-                        key={i}
-                        className={`transition-all duration-300 hover:shadow-lg ${
-                          i % 2 === 0 ? "bg-white" : "bg-gray-50"
-                        }`}
-                      >
-                        <td className="p-5 font-bold text-gray-800 border-b border-gray-100">
-                          <div className="flex items-center gap-3">
-                            {getFeatureIcon(row.feature)}
-                            <span>{row.feature}</span>
-                          </div>
-                        </td>
-                        <td className="p-5 text-center border-b border-gray-100 bg-primary/5">
-                          <div className="inline-flex items-center gap-2 bg-green-100 px-3 py-1.5 rounded-full">
-                            <span className="text-green-600 font-bold">
-                              {row.chiku}
-                            </span>
-                            <FaCheckCircle className="text-green-600 text-sm" />
-                          </div>
-                        </td>
-                        <td className="p-5 text-center border-b border-gray-100">
-                          <div className="inline-flex items-center gap-2 bg-red-50 px-3 py-1.5 rounded-full">
-                            <FaTimesCircle className="text-red-500 text-sm" />
-                            <span className="text-red-500 font-medium">
-                              {row.other}
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Trust Badge */}
-            <div className="mt-12 text-center">
-              <div className="inline-flex items-center gap-3 bg-primary/5 px-6 py-3 rounded-full flex-wrap justify-center">
-                <div className="flex text-yellow-400 text-lg">
-                  {[...Array(5)].map((_, i) => (
-                    <FaStar key={i} className="fill-current" />
-                  ))}
-                </div>
-                <div className="h-4 w-px bg-gray-300 hidden sm:block"></div>
-                <span className="font-bold text-primary">
-                  Trusted by 50,000+ Customers
-                </span>
-                <div className="h-4 w-px bg-gray-300 hidden sm:block"></div>
-                <span className="text-sm text-muted-foreground flex items-center gap-1">
-                  <FaChartLine className="text-green-500" /> 4.9/5 Rating
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Chiku Cabs - Airport Taxi Specialized Features */}
-        <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-primary/5">
-          <div className="max-w-7xl mx-auto px-4">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-                <FaShieldAlt className="text-primary text-sm" />
-                <span className="text-primary font-bold text-sm uppercase tracking-wider">
-                  WHY CHIKU CABS
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black mb-4">
-                Delhi NCR's{" "}
-                <span className="gradient-text">
-                  Most Reliable Airport Taxi
-                </span>{" "}
-                Service
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Experience stress-free airport transfers with our premium
-                features and customer-first approach
-              </p>
-            </div>
-
-            {/* Feature Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {FEATURES.map((feature, i) => (
-                <div
-                  key={i}
-                  className="group relative bg-white rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-gray-100 overflow-hidden"
-                >
-                  {/* Background Gradient on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  {/* Icon with Animation */}
-                  <div className="relative">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center mb-5 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                      <span className="text-white text-2xl">
-                        {feature.icon}
-                      </span>
-                    </div>
-
-                    {/* Decorative Circle */}
-                    <div className="absolute -top-2 -right-2 w-20 h-20 bg-primary/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed text-sm">
-                    {feature.desc}
-                  </p>
-
-                  {/* Hover Underline Effect */}
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-primary/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                </div>
-              ))}
-            </div>
-
-            {/* Airport-Specific Bottom CTA */}
-            <div className="text-center mt-12">
-              <div className="inline-flex flex-wrap items-center justify-center gap-4 bg-white px-6 py-3 rounded-full shadow-md">
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs border-2 border-white">
-                    ✈️
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs border-2 border-white">
-                    🚕
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs border-2 border-white">
-                    ⭐
-                  </div>
-                </div>
-                <span className="text-sm font-medium text-muted-foreground">
-                  Trusted by{" "}
-                  <span className="text-primary font-bold">50,000+</span>{" "}
-                  airport travelers
-                </span>
-                <div className="flex text-yellow-400 text-sm">
-                  ★★★★★ <span className="text-gray-600 ml-1">4.9</span>
-                </div>
-                <FaArrowRight className="text-primary text-sm" />
-              </div>
             </div>
           </div>
         </section>
@@ -2015,88 +1491,82 @@ export default function AirportTaxiTemplate({
               <div className="flex justify-center items-center gap-2 mt-4">
                 <div className="flex text-yellow-400 text-xl">★★★★★</div>
                 <span className="font-bold">4.9</span>
-                <span className="text-gray-600">(2,350+ reviews)</span>
+                <span className="text-gray-600">(1,250+ reviews)</span>
               </div>
-              <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
-                Trusted by thousands of travelers for reliable airport transfers
-                across Delhi NCR
-              </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  name: "Rajesh Khanna",
-                  location: "Business Traveler, Mumbai",
-                  text: "Booked an airport pickup from Delhi IGI at 2 AM. The driver was already waiting with a name board when my flight landed. Smooth experience, clean car, and very professional service. Will definitely use again!",
-                  rating: "★★★★★",
-                  type: "Airport Pickup",
-                },
-                {
-                  name: "Neha Sharma",
-                  location: "Frequent Flyer, Delhi",
-                  text: "Chiku Cabs has been my go-to for airport transfers for over a year. The flight tracking feature is amazing - they adjusted my pickup when my flight was delayed. Cars are always spotless and drivers are courteous.",
-                  rating: "★★★★★",
-                  type: "Airport Drop",
-                },
-                {
-                  name: "Amit Verma",
-                  location: "Family Traveler, Noida",
-                  text: "Booked an Innova for my family from Delhi Airport to Noida. The vehicle was spacious and clean, driver helped with all our luggage. Very reasonable pricing compared to other services. Highly recommended!",
-                  rating: "★★★★★",
-                  type: "Airport Transfer",
-                },
-              ].map((review, i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xl">
-                        {review.name[0]}
-                      </div>
-                      <div>
-                        <h4 className="font-bold">{review.name}</h4>
-                        <div className="text-yellow-400 text-sm">
-                          {review.rating}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-end gap-1">
-                      <span className="text-green-600 text-xs bg-green-50 px-2 py-0.5 rounded-full">
-                        ✓ Verified
-                      </span>
-                      <span className="text-xs text-primary font-medium">
-                        {review.type}
-                      </span>
-                    </div>
+              {/* Review 1 */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "Excellent service! Driver was professional and car was clean.
+                  Reached on time, very reasonable pricing."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                    RK
                   </div>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    "{review.text}"
-                  </p>
-                  <div className="flex items-center gap-2 text-sm text-gray-400">
-                    <span>{new Date().toLocaleDateString()}</span>
-                    <span>•</span>
-                    <span>{review.location}</span>
+                  <div>
+                    <p className="font-semibold text-gray-800">Rajesh Kumar</p>
+                    <p className="text-xs text-gray-500">Delhi to Jaipur</p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            {/* Google Reviews Badge */}
-            <div className="text-center mt-10">
-              <a
-                href="https://g.page/r/CdF7jKp8xLZLEBM/review"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white border border-gray-200 px-6 py-3 rounded-full hover:shadow-md transition"
-              >
-                <span className="text-blue-600 font-bold">Google</span>
-                <div className="flex text-yellow-400">★★★★★</div>
-                <span className="text-gray-600">4.9 (2,350+ reviews)</span>
-                <FiArrowRight className="text-primary" />
-              </a>
+              {/* Review 2 */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "Best outstation taxi service. On-time pickup and smooth ride.
+                  Highly recommend Chiku Cabs!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                    PS
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800">Priya Sharma</p>
+                    <p className="text-xs text-gray-500">Mumbai to Pune</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Review 3 */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "Great experience with Chiku Cabs. The driver was very polite
+                  and knew the route well. Will book again!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                    AS
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800">Amit Singh</p>
+                    <p className="text-xs text-gray-500">Bangalore to Mysore</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -2121,7 +1591,7 @@ export default function AirportTaxiTemplate({
                 },
                 {
                   q: "What is the starting fare for airport taxi service?",
-                  a: "Airport taxi fare starts from ₹9/km for hatchback, ₹12/km for sedan, ₹15/km for SUV, ₹17/km for Innova Crysta, ₹22/km for Tempo Traveller, and ₹45/km for luxury cars. Final fare depends on pickup location, drop point, vehicle type, waiting time, tolls, and travel timing. No surge pricing ever!",
+                  a: "Airport taxi fare starts from ₹10/km for Maruti Suzuki Dzire, ₹10/km for Honda Amaze, ₹13/km for Maruti Ertiga, ₹16/km for Toyota Innova Crysta, ₹24/km for Tempo Traveller. Final fare depends on pickup location, drop point, vehicle type, waiting time, tolls, and travel timing. No surge pricing ever!",
                 },
                 {
                   q: "Do you provide 24x7 airport pickup and drop service?",

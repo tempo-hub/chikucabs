@@ -3,12 +3,31 @@ import { cityCabRoutes } from "@/data/cityCabRoutes";
 import EEATSection from "@/components/shared/EEATSection";
 import { MapPin } from "lucide-react";
 
+interface StatItem {
+  num: string;
+  label: string;
+}
+
+// --- Constants ---
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "918448445504";
+const SITE_NAME = "Chiku Cabs";
+const DEFAULT_VEHICLE = "Premium Cab";
+const currentYear = new Date().getFullYear();
+
 const formatCityName = (cityName: string) => {
   return cityName
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(" ");
 };
+
+const STATS: StatItem[] = [
+  { num: "800+", label: "Monthly Group Trips" },
+  { num: "₹2M+", label: "Group Savings" },
+  { num: "4.9/5", label: "Google Rating" },
+  { num: "Verified", label: "Local Drivers" },
+];
 
 export default function CityCabRoutesTemplate({ city }: { city: string }) {
   const routes =
@@ -18,40 +37,34 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
 
   const services = [
     {
-      icon: "🏙️",
-      title: "Local Cab Service",
-      desc: `Book local taxi service in ${formattedCity} for daily travel and city rides.`,
-      url: "/local-cab-service",
-    },
-    {
-      icon: "✈️",
-      title: "Airport Transfer",
-      desc: `24/7 airport pickup and drop taxi service in ${formattedCity}.`,
-      url: "/airport-taxi",
+      icon: "🚖",
+      title: "Local Sightseeing Taxi",
+      desc: `Explore popular attractions, temples, markets, and landmarks with our local sightseeing taxi service in ${formattedCity}.`,
+      url: "/local-sightseeing-taxi",
     },
     {
       icon: "🛣️",
       title: "Outstation Cab",
-      desc: `Affordable one way and round trip outstation taxi service.`,
+      desc: `Affordable one-way and round-trip outstation taxi service from ${formattedCity} to nearby cities and destinations.`,
       url: "/outstation-cabs",
     },
     {
-      icon: "💼",
-      title: "Corporate Cab",
-      desc: `Reliable employee and corporate transportation solutions.`,
-      url: "/corporate-cab-service",
-    },
-    {
-      icon: "💍",
-      title: "Wedding Car Rental",
-      desc: `Luxury and premium cars for weddings and events.`,
-      url: "/wedding-car-rental",
+      icon: "✈️",
+      title: "Airport Taxi",
+      desc: `24/7 airport pickup and drop taxi service with on-time arrivals and professional drivers.`,
+      url: "/airport-taxi",
     },
     {
       icon: "🚐",
       title: "Tempo Traveller",
-      desc: `12 to 26 seater Tempo Traveller booking for group trips.`,
+      desc: `12, 17, 20, and 26-seater Tempo Traveller rentals for family trips, tours, and group travel.`,
       url: "/tempo-traveller-on-rent",
+    },
+    {
+      icon: "➡️",
+      title: "One Way Cab",
+      desc: `Book one-way taxi services and pay only for your journey without return fare charges.`,
+      url: "/one-way-cabs",
     },
   ];
 
@@ -75,124 +88,162 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="border-y py-12">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="stats-grid">
-            {[
-              { num: "800+", label: "Monthly Group Trips" },
-              { num: "₹2M+", label: "Group Savings" },
-              { num: "4.9/5", label: "Google Rating" },
-              { num: "Verified", label: "Local Drivers" },
-            ].map((stat, i) => (
-              <div key={i} className="stat-item">
-                <div className="stat-number">{stat.num}</div>
-                <div className="stat-label">{stat.label}</div>
+      {/* Stats Bar - Professional Version */}
+      <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-primary/10">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="section-badge mx-auto">OUR REVIEWS</div>
+            <h2 className="section-title">What Our Customers Say About Us</h2>
+            <p className="section-subtitle mx-auto">
+              Trusted by thousands of travelers across India. Here's what they
+              have to say about their experience with Chiku Cabs.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {STATS.map((stat, i) => (
+              <div key={i} className="text-center group">
+                <div className="relative inline-block">
+                  <div className="text-4xl md:text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
+                    {stat.num}
+                  </div>
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
+                </div>
+                <div className="text-sm md:text-base font-medium text-muted-foreground uppercase tracking-wide mt-3">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing / Packages */}
-      <section className="py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div
-              className="section-badge mx-auto"
-              style={{ display: "inline-flex" }}
-            >
-              ONE WAY FARES
-            </div>
-            <p className="section-subtitle mx-auto">
-              Transparent per kilometer pricing. No return journey charges.
+      {/* Available Vehicles */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              Available Vehicles
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Choose from our fleet of well-maintained vehicles for your
+              outstation trip
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              {
-                name: "Executive Sedan",
-                model: "Dzire, Etios",
-                price: "₹9/km",
-                bags: "2 Bags",
-                seats: "4+1 Seats",
-                icon: "🚘",
-                popular: false,
-              },
-              {
-                name: "Premium SUV",
-                model: "Ertiga, Marazzo",
-                price: "₹12/km",
-                bags: "4 Bags",
-                seats: "6+1 Seats",
-                icon: "🚙",
-                popular: true,
-              },
-              {
-                name: "Luxury Innova",
-                model: "Innova Crysta",
-                price: "₹15/km",
-                bags: "4 Bags",
-                seats: "7+1 Seats",
-                icon: "✨",
-                popular: false,
-              },
-              {
-                name: "Tempo Traveller",
-                model: "Force 12S/16S",
-                price: "₹18-20/km",
-                bags: "8+ Bags",
-                seats: "12-16 Seats",
-                icon: "🚐",
-                popular: false,
-              },
-            ].map((pkg, i) => (
-              <div
-                key={i}
-                className={`package-card ${pkg.popular ? "popular" : ""}`}
-              >
-                {pkg.popular && (
-                  <div className="package-badge">Most Popular</div>
-                )}
-                <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>
-                  {pkg.icon}
-                </div>
-                <h3 className="text-lg font-black mb-1">{pkg.name}</h3>
-                <p className="text-xs text-muted-foreground mb-4">
-                  {pkg.model}
-                </p>
-                <div
-                  className="package-price"
-                  style={{ color: "hsl(var(--primary))" }}
-                >
-                  {pkg.price}
-                </div>
-                <div className="package-unit">Base Rate</div>
-                <ul className="package-features">
-                  <li>
-                    <span className="text-green-500">✔</span> {pkg.seats}
-                  </li>
-                  <li>
-                    <span className="text-green-500">✔</span> {pkg.bags}{" "}
-                    Capacity
-                  </li>
-                  <li>
-                    <span className="text-green-500">✔</span> AC & Music System
-                  </li>
-                  <li>
-                    <span className="text-green-500">✔</span> Driver Allowance
-                    Included
-                  </li>
-                </ul>
-                <a
-                  href="tel:+918448445504"
-                  className="btn-primary w-full py-3 text-sm"
-                  style={{ display: "block", textAlign: "center" }}
-                >
-                  Book Now
-                </a>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Vehicle 1 - Dzire */}
+            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                <img
+                  src="/suzuki-dzire.png"
+                  alt="Maruti Suzuki Dzire"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                />
               </div>
-            ))}
+
+              <div className="p-5">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">
+                  Maruti Suzuki Dzire
+                </h3>
+                <div className="flex justify-between text-sm text-gray-600 mb-3">
+                  <span>👥 4 Seats</span>
+                  <span>🧳 2 Luggage</span>
+                  <span>❄️ AC</span>
+                </div>
+                <div className="mb-4">
+                  <span className="text-2xl font-bold text-primary">₹10</span>
+                  <span className="text-gray-500">/km</span>
+                </div>
+                <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                  Book Now
+                </button>
+              </div>
+            </div>
+
+            {/* Vehicle 2 - Amaze */}
+            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="h-48 bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center">
+                <img
+                  src="/honda-amaze.png"
+                  alt="Honda Amaze"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">
+                  Honda Amaze
+                </h3>
+                <div className="flex justify-between text-sm text-gray-600 mb-3">
+                  <span>👥 4 Seats</span>
+                  <span>🧳 3 Luggage</span>
+                  <span>❄️ AC</span>
+                </div>
+                <div className="mb-4">
+                  <span className="text-2xl font-bold text-primary">₹10</span>
+                  <span className="text-gray-500">/km</span>
+                </div>
+                <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                  Book Now
+                </button>
+              </div>
+            </div>
+
+            {/* Vehicle 3 - Ertiga */}
+            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                <img
+                  src="/maruti-ertiga.png"
+                  alt="Maruti Ertiga"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">
+                  Maruti Ertiga
+                </h3>
+                <div className="flex justify-between text-sm text-gray-600 mb-3">
+                  <span>👥 7 Seats</span>
+                  <span>🧳 3 Luggage</span>
+                  <span>❄️ AC</span>
+                </div>
+                <div className="mb-4">
+                  <span className="text-2xl font-bold text-primary">₹13</span>
+                  <span className="text-gray-500">/km</span>
+                </div>
+                <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                  Book Now
+                </button>
+              </div>
+            </div>
+
+            {/* Vehicle 4 - Innova Crysta */}
+            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="h-48 bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
+                <img
+                  src="/innova-crysta.png"
+                  alt="Toyota Innova Crysta"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">
+                  Toyota Innova Crysta
+                </h3>
+                <div className="flex justify-between text-sm text-gray-600 mb-3">
+                  <span>👥 7 Seats</span>
+                  <span>🧳 4 Luggage</span>
+                  <span>❄️ AC | Premium</span>
+                </div>
+                <div className="mb-4">
+                  <span className="text-2xl font-bold text-primary">₹16</span>
+                  <span className="text-gray-500">/km</span>
+                </div>
+                <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                  Book Now
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -291,62 +342,6 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
                 <p className="text-muted-foreground">{service.desc}</p>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Inclusions vs Exclusions */}
-      <section className="bg-muted/30 py-24 border-y">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <div
-              className="section-badge mx-auto"
-              style={{ display: "inline-flex" }}
-            >
-              TRANSPARENCY
-            </div>
-            <h2 className="section-title">What's Included in Your Fare?</h2>
-          </div>
-          <div className="incl-excl-grid">
-            <div className="incl-card">
-              <h3
-                className="text-xl font-bold mb-6"
-                style={{ color: "#16a34a" }}
-              >
-                ✅ Included
-              </h3>
-              {[
-                "Base Fare for One Way Trip",
-                "Driver Allowance (Batta)",
-                "Fuel Charges",
-                "GST (5%)",
-                "Night Driving Charges (if applicable)",
-                "State Permit Fees",
-              ].map((item, i) => (
-                <div key={i} className="incl-item">
-                  <span className="text-green-500">✔</span> {item}
-                </div>
-              ))}
-            </div>
-            <div className="excl-card">
-              <h3
-                className="text-xl font-bold mb-6"
-                style={{ color: "#dc2626" }}
-              >
-                ❌ Not Included
-              </h3>
-              {[
-                "Toll Taxes (as per actuals at booths)",
-                "Parking Fees (if stopped at tourist spots)",
-                "Extra KM (if route changed)",
-                "Waiting Charges (if delayed during pickup)",
-                "Meals for Driver",
-              ].map((item, i) => (
-                <div key={i} className="excl-item">
-                  <span style={{ color: "#dc2626" }}>✗</span> {item}
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -505,39 +500,6 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
         </div>
       </section>
 
-      {/* CTA SECTION */}
-      <section className="py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="premium-card text-center">
-            <div className="text-5xl mb-6">🚖</div>
-
-            <h2 className="text-4xl font-black mb-6">
-              Book Your Cab in {formattedCity} Today
-            </h2>
-
-            <p className="text-muted-foreground text-lg mb-8">
-              Affordable fares, verified drivers, and 24/7 support.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+918448445504" className="btn-primary px-8 py-4">
-                📞 Call Now
-              </a>
-
-              <a
-                href="https://wa.me/918448445504"
-                target="_blank"
-                className="btn-secondary px-8 py-4"
-              >
-                💬 WhatsApp Booking
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <EEATSection city={formattedCity} vehicle="Cab" />
-
       {/* FAQ */}
       <section className="py-24 px-4">
         <div className="max-w-4xl mx-auto">
@@ -566,12 +528,12 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
 
             {
               q: `What are the cab charges in ${formattedCity}?`,
-              a: `Cab fares in ${formattedCity} start from ₹9/km for sedan cars. Pricing depends on vehicle type, route, tolls, and travel duration.`,
+              a: `Cab fares in ${formattedCity} start from ₹10/km for suzuki dzire cars. Pricing depends on vehicle type, route, tolls, and travel duration.`,
             },
 
             {
               q: `Which vehicles are available for booking in ${formattedCity}?`,
-              a: `We provide Sedan, SUV, Innova Crysta, Tempo Traveller, and luxury vehicles for local sightseeing, airport transfer, and outstation travel.`,
+              a: `We provide Dzire, Amaze, Ertiga, Innova Crysta, Tempo Traveller, and luxury vehicles for local sightseeing, airport transfer, and outstation travel.`,
             },
 
             {
@@ -604,6 +566,57 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
           ))}
         </div>
       </section>
+
+      {/* Trust Badges */}
+      <div className="py-12 border-y">
+        <div className="flex flex-wrap justify-center gap-12 opacity-60">
+          {[
+            "🛡️ SafeTravels Certified",
+            "📋 ISO 9001:2015",
+            `⭐ Top Rated ${currentYear}`,
+            "🌿 Eco Friendly Fleet",
+          ].map((badge, i) => (
+            <span
+              key={i}
+              className="font-bold text-sm uppercase tracking-widest"
+            >
+              {badge}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Final CTA */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto cta-banner">
+          <h2 className="text-4xl font-black mb-6">
+            Book Your Cab in {formattedCity} Today
+          </h2>
+
+          <p className="text-muted-foreground text-lg mb-8">
+            Affordable fares, verified drivers, and 24/7 support.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href={`tel:${PHONE_NUMBER}`}
+              className="btn-primary text-xl px-12 py-5 shadow-2xl"
+            >
+              📞 Call {PHONE_NUMBER}
+            </a>
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-500 hover:bg-green-600 text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all hover:scale-105 shadow-lg"
+            >
+              💬 WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <EEATSection city={formattedCity} vehicle="Cab" />
     </div>
   );
 }

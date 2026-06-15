@@ -530,11 +530,11 @@ Please share the best fare.`;
               {/* Right Content - Booking Widget */}
               <div className="bg-white rounded-2xl shadow-2xl p-6 lg:p-8">
                 <h3 className="text-2xl font-bold mb-2">
-    Get Outstation Cab Price
-  </h3>
-  <p className="text-gray-600 mb-6 text-sm">
-    Fill the details & get price on WhatsApp instantly
-  </p>
+                  Get Outstation Cab Price
+                </h3>
+                <p className="text-gray-600 mb-6 text-sm">
+                  Fill the details & get price on WhatsApp instantly
+                </p>
 
                 <form className="space-y-5" onSubmit={handleGetEstimate}>
                   {/* Pickup Location */}
@@ -1461,7 +1461,7 @@ Please share the best fare.`;
             {[
               {
                 q: `What is the ${vehicle} fare from ${startCity} to ${endCity} cab fare details?`,
-                a: `The ${vehicle} fare from ${startCity} to ${endCity} starts from ₹9 per km for a sedan. The total fare depends on the vehicle type, trip type (one-way or round-trip), and any applicable tolls. Call 8448445504 for an exact quote.`,
+                a: `The ${vehicle} fare from ${startCity} to ${endCity} starts from ₹10 per km for a maruti suzuki dzire. The total fare depends on the vehicle type, trip type (one-way or round-trip), and any applicable tolls. Call 8448445504 for an exact quote.`,
               },
               {
                 q: `Are toll charges included in the ${vehicle} fare?`,
@@ -1511,6 +1511,25 @@ Please share the best fare.`;
           </div>
         </section>
 
+        {/* Trust Badges */}
+        <div className="py-12 border-y">
+          <div className="flex flex-wrap justify-center gap-12 opacity-60">
+            {[
+              "🛡️ SafeTravels Certified",
+              "📋 ISO 9001:2015",
+              `⭐ Top Rated ${currentYear}`,
+              "🌿 Eco Friendly Fleet",
+            ].map((badge, i) => (
+              <span
+                key={i}
+                className="font-bold text-sm uppercase tracking-widest"
+              >
+                {badge}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* CTA */}
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto cta-banner">
@@ -1545,7 +1564,7 @@ Please share the best fare.`;
           </div>
         </section>
 
-        <InternalLinks parsedData={parsedData} />
+        {/* <InternalLinks parsedData={parsedData} /> */}
         <EEATSection city={startCity} vehicle={vehicle || "Cab"} />
       </div>
     </>
