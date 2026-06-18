@@ -1644,6 +1644,72 @@
     "url": "/varanasi/varanasi-to-lucknow-airport-cab-fare"
   },
   {
+    "url": "/delhi/delhi-to-indira-gandhi-airport-cab-fare"
+  },
+  {
+    "url": "/delhi/delhi-to-hindon-airport-cab-fare"
+  },
+  {
+    "url": "/delhi/delhi-to-agra-airport-cab-fare"
+  },
+  {
+    "url": "/delhi/delhi-to-jaipur-airport-cab-fare"
+  },
+  {
+    "url": "/delhi/delhi-to-chandigarh-airport-cab-fare"
+  },
+  {
+    "url": "/delhi/delhi-to-dehradun-airport-cab-fare"
+  },
+  {
+    "url": "/delhi/delhi-to-lucknow-airport-cab-fare"
+  },
+  {
+    "url": "/delhi/delhi-to-ayodhya-airport-cab-fare"
+  },
+  {
+    "url": "/delhi/delhi-to-varanasi-airport-cab-fare"
+  },
+  {
+    "url": "/delhi/delhi-to-gorakhpur-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-devi-ahilya-bai-holkar-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-bhopal-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-bhopal-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-ujjain-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-vadodara-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-ahemdabad-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-nagpur-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-raipur-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-jaipur-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-mumbai-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-pune-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-hyderabad-airport-cab-fare"
+  },
+  {
     "url": "/varanasi/varanasi-to-gorakhpur-airport-cab-fare"
   },
   {
@@ -1729,6 +1795,695 @@
   },
   {
     "url": "/varanasi/varanasi-to-varanasi-airport-cab-fare"
+  },
+  {
+    "url": "/delhi/delhi-to-delhi-airport-cab-fare"
+  },
+  {
+    "url": "/delhi/delhi-to-jewar-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-lucknow-airport-cab-fare"
+  },
+  {
+    "url": "/indore/indore-to-indore-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-indore-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-devi-ahilya-bai-holkar-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-bhopal-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-vadodara-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-ahemdabad-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-nagpur-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-jaipur-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-mumbai-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-pune-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-hyderabad-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-delhi-airport-cab-fare"
+  },
+  {
+    "url": "/ujjain/ujjain-to-indira-gandhi-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-mumbai-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-chhatrapati-shivaji-maharaj-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-navi-mumbai-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-pune-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-nashik-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-shirdi-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-aurangabad-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-goa-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-mopa-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-belgaum-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-hubli-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-hyderabad-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-nagpur-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-bangalore-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-mangalore-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-chennai-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-tirupati-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-madurai-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-kochi-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-ahmedabad-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-vadodara-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-surat-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-indore-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-bhopal-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-jaipur-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-delhi-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-indira-gandhi-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-lucknow-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-varanasi-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-patna-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-kolkata-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-lucknow-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-ayodhya-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-prayagraj-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-varanasi-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-gorakhpur-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-kanpur-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-agra-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-delhi-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-jewar-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-patna-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-gaya-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-khajuraho-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-bhopal-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-indore-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-jabalpur-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-raipur-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-jaipur-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-udaipur-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-ahmedabad-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-surat-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-mumbai-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-pune-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-nagpur-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-hyderabad-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-bangalore-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-chennai-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-tirupati-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-madurai-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-cochin-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-trivandrum-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-kolkata-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-bhubaneswar-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-bagdogra-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-dehradun-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-chandigarh-airport-cab-fare"
+  },
+  {
+    "url": "/lucknow/lucknow-to-amritsar-airport-cab-fare"
+  },
+  { "url": "/madurai/madurai-to-madurai-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-tuticorin-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-trichy-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-coimbatore-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-chennai-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-pondicherry-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-bangalore-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-mysore-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-hyderabad-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-vijayawada-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-visakhapatnam-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-goa-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-mangalore-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-kochi-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-trivandrum-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-calicut-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-kannur-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-mumbai-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-pune-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-nagpur-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-ahmedabad-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-surat-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-vadodara-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-indore-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-bhopal-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-jabalpur-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-raipur-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-bhubaneswar-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-kolkata-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-patna-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-gaya-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-varanasi-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-prayagraj-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-lucknow-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-ayodhya-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-delhi-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-agra-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-jaipur-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-udaipur-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-tirupati-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-rajahmundry-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-hubli-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-belgaum-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-aurangabad-airport-cab-fare" },
+  { "url": "/madurai/madurai-to-shirdi-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-hyderabad-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-warangal-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-vijayawada-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-rajahmundry-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-visakhapatnam-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-tirupati-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-bangalore-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-mysore-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-hubli-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-belgaum-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-mangalore-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-chennai-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-coimbatore-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-madurai-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-trichy-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-kochi-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-trivandrum-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-calicut-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-kannur-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-goa-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-mumbai-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-pune-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-aurangabad-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-shirdi-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-nagpur-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-ahmedabad-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-vadodara-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-surat-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-indore-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-bhopal-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-jabalpur-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-raipur-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-bhubaneswar-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-kolkata-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-patna-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-gaya-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-varanasi-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-prayagraj-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-lucknow-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-ayodhya-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-delhi-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-agra-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-jaipur-airport-cab-fare" },
+  { "url": "/hyderabad/hyderabad-to-chandigarh-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-dehradun-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-pantnagar-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-delhi-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-chandigarh-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-shimla-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-kullu-manali-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-dharamshala-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-amritsar-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-jammu-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-leh-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-lucknow-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-kanpur-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-ayodhya-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-prayagraj-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-varanasi-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-gorakhpur-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-agra-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-jaipur-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-udaipur-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-jodhpur-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-bikaner-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-kota-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-patna-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-gaya-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-ranchi-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-kolkata-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-bhubaneswar-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-ahmedabad-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-vadodara-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-surat-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-mumbai-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-pune-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-nashik-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-shirdi-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-aurangabad-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-indore-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-bhopal-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-jabalpur-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-nagpur-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-raipur-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-hyderabad-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-bangalore-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-chennai-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-mysore-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-kochi-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-trivandrum-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-madurai-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-coimbatore-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-tirupati-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-goa-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-mangalore-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-visakhapatnam-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-vijayawada-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-rajahmundry-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-hubli-airport-cab-fare" },
+  { "url": "/haridwar/haridwar-to-belgaum-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-chennai-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-bangalore-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-hyderabad-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-pondicherry-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-tirupati-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-vijayawada-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-visakhapatnam-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-coimbatore-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-madurai-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-tuticorin-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-trichy-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-salem-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-mysore-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-mangalore-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-kochi-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-trivandrum-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-calicut-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-kannur-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-goa-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-hubli-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-belgaum-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-pune-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-mumbai-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-nagpur-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-ahmedabad-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-surat-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-vadodara-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-indore-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-bhopal-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-jabalpur-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-raipur-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-jagdalpur-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-bhubaneswar-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-kolkata-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-patna-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-gaya-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-varanasi-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-prayagraj-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-lucknow-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-ayodhya-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-delhi-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-jaipur-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-agra-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-dehradun-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-chandigarh-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-amritsar-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-aurangabad-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-shirdi-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-rajahmundry-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-kadapa-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-warangal-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-nanded-airport-cab-fare" },
+  { "url": "/chennai/chennai-to-bidar-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-ayodhya-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-lucknow-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-varanasi-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-prayagraj-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-gorakhpur-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-kanpur-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-agra-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-delhi-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-noida-international-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-bareilly-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-dehradun-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-pantnagar-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-patna-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-gaya-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-darbhanga-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-ranchi-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-dhanbad-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-kolkata-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-bhopal-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-indore-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-jabalpur-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-nagpur-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-raipur-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-jagdalpur-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-khajuraho-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-gwalior-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-udaipur-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-jaipur-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-jodhpur-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-bikaner-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-ahmedabad-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-vadodara-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-surat-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-rajkot-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-diu-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-mumbai-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-pune-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-nashik-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-shirdi-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-aurangabad-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-hyderabad-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-visakhapatnam-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-vijayawada-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-bhubaneswar-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-puri-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-chandigarh-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-amritsar-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-jammu-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-leh-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-bangalore-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-mysore-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-kochi-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-trivandrum-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-madurai-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-chennai-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-goa-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-hubli-airport-cab-fare" },
+  { "url": "/ayodhya/ayodhya-to-belgaum-airport-cab-fare" },
+  {
+    "url": "/bangalore/bangalore-to-kempegowda-international-airport-cab-fare"
+  },
+  { "url": "/bangalore/bangalore-to-mysore-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-hubli-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-belgaum-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-mangalore-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-bidar-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-shivamogga-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-chennai-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-coimbatore-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-madurai-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-trichy-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-salem-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-tuticorin-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-hyderabad-airport-cab-fare" },
+  {
+    "url": "/bangalore/bangalore-to-rajiv-gandhi-international-airport-cab-fare"
+  },
+  { "url": "/bangalore/bangalore-to-tirupati-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-kadapa-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-vijayawada-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-rajahmundry-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-visakhapatnam-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-kurnool-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-kochi-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-calicut-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-kannur-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-trivandrum-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-goa-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-manohar-international-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-dabolim-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-pune-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-mumbai-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-shirdi-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-aurangabad-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-nagpur-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-ahmedabad-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-vadodara-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-surat-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-rajkot-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-indore-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-bhopal-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-jabalpur-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-raipur-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-delhi-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-noida-international-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-jaipur-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-agra-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-dehradun-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-patna-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-gaya-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-darbhanga-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-varanasi-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-prayagraj-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-ayodhya-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-gorakhpur-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-ranchi-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-jamshedpur-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-bhubaneswar-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-kolkata-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-chandigarh-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-amritsar-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-srinagar-airport-cab-fare" },
+  { "url": "/bangalore/bangalore-to-leh-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-madurai-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-tuticorin-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-trichy-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-coimbatore-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-salem-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-chennai-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-pondicherry-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-bangalore-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-mysore-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-hyderabad-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-vijayawada-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-visakhapatnam-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-tirupati-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-kochi-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-trivandrum-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-calicut-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-kannur-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-mangalore-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-hubli-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-belgaum-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-goa-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-pune-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-mumbai-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-nagpur-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-shirdi-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-aurangabad-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-ahmedabad-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-surat-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-vadodara-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-rajkot-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-indore-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-bhopal-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-jabalpur-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-raipur-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-bhubaneswar-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-kolkata-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-patna-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-gaya-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-darbhanga-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-varanasi-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-prayagraj-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-ayodhya-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-lucknow-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-gorakhpur-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-ranchi-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-delhi-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-noida-international-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-agra-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-jaipur-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-dehradun-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-chandigarh-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-amritsar-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-srinagar-airport-cab-fare" },
+  { "url": "/rameshwaram/rameshwaram-to-leh-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-trivandrum-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-tuticorin-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-madurai-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-kochi-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-coimbatore-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-calicut-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-bangalore-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-chennai-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-hyderabad-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-goa-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-pune-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-visakhapatnam-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-nagpur-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-mumbai-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-ahmedabad-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-jaipur-airport-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-tambaram-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-chennai-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-bangalore-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-tirupati-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-hyderabad-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-vijayawada-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-coimbatore-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-madurai-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-tiruchirappalli-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-tuticorin-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-trivandrum-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-kochi-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-mangalore-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-mysore-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-kannur-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-goa-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-visakhapatnam-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-nagpur-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-ahmedabad-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-surat-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-vadodara-airport-cab-fare" },
+  { "url": "/pondicherry/pondicherry-to-jaipur-airport-cab-fare" },
+  {
+    "url": "/haridwar/haridwar-to-jolly-grant-airport-cab-fare"
+  },
+  {
+    "url": "/ayodhya/ayodhya-to-ayodhya-airport-cab-fare"
+  },
+  {
+    "url": "/kanyakumari/kanyakumari-to-trivandrum-airport-cab-fare"
+  },
+  {
+    "url": "/mumbai/mumbai-to-mumbai-airport-cab-fare"
+  },
+  {
+    "url": "/hyderabad/hyderabad-to-hyderabad-airport-cab-fare"
+  },
+  {
+    "url": "/chennai/chennai-to-chennai-airport-cab-fare"
+  },
+  {
+    "url": "/bangalore/bangalore-to-bangalore-airport-cab-fare"
+  },
+  {
+    "url": "/rameshwaram/rameshwaram-to-madurai-airport-cab-fare"
+  },
+  {
+    "url": "/pondicherry/pondicherry-to-chennai-airport-cab-fare"
   },
   {
     "url": "/varanasi/varanasi-to-daltonganj-cab-fare"
@@ -6460,6 +7215,7 @@
   { "url": "/kanyakumari/kanyakumari-to-alwar-cab-fare" },
   { "url": "/kanyakumari/kanyakumari-to-bharatpur-cab-fare" },
   { "url": "/kanyakumari/kanyakumari-to-sariska-cab-fare" },
+  { "url": "/kanyakumari/kanyakumari-to-tambaram-cab-fare" },
   {
     "url": "/pondicherry"
   },
@@ -9035,6 +9791,9 @@
   },
   {
     "url": "/sitapur/sitapur-to-lucknow-cab-fare"
+  },
+  {
+    "url": "tempo-traveller-misrikh"
   },
   {
     "url": "/misrikh/misrikh-to-lucknow-tempo-traveller"

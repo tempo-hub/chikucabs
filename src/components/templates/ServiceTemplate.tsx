@@ -154,8 +154,8 @@ const VEHICLE_DETAILS_MAP: Record<
   },
   default: {
     icon: "🚘",
-    image: "/hatchback.png",
-    pricePerKm: 9,
+    image: "/suzuki-dzire.png",
+    pricePerKm: 10,
     capacity: "4 Passengers",
     luggage: "2-3 Bags",
     features: ["AC", "Comfortable Seats", "Charging Ports", "Boot Space"],

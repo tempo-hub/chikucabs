@@ -4,6 +4,7 @@ import { ParsedRouteData } from "@/lib/urlParser";
 import EEATSection from "@/components/shared/EEATSection";
 import InternalLinks from "@/components/shared/InternalLinks";
 import { cityCabRoutes } from "@/data/cityCabRoutes";
+import { POPULAR_ROUTES as airportCabRoutes } from "@/data/airportRoutes";
 import RouteMapSection from "../shared/RouteMapSection";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import {
@@ -170,13 +171,21 @@ export default function OutstationRouteFareTemplate({
     distance: "50",
   });
 
-  const routeInfo = Object.values(cityCabRoutes)
-    .flat()
-    .find(
-      (route) =>
-        route.from.toLowerCase() === startCity.toLowerCase() &&
-        route.to.toLowerCase() === endCity.toLowerCase(),
-    );
+  const routeInfo =
+    Object.values(cityCabRoutes)
+      .flat()
+      .find(
+        (route) =>
+          route.from.toLowerCase() === startCity.toLowerCase() &&
+          route.to.toLowerCase() === endCity.toLowerCase(),
+      ) ||
+    Object.values(airportCabRoutes)
+      .flat()
+      .find(
+        (route) =>
+          route.from.toLowerCase() === startCity.toLowerCase() &&
+          route.to.toLowerCase() === endCity.toLowerCase(),
+      );
 
   const distance = routeInfo?.distance || 0;
   const estimatedHours = Math.ceil(distance / 55);
@@ -1335,7 +1344,7 @@ Please share the best fare.`;
                   step: "02",
                   icon: "🚖",
                   title: "Choose Vehicle",
-                  desc: "Select from Hatchback, Sedan, Innova Crysta, or Tempo Traveller according to your needs.",
+                  desc: "Select from Dzire, Amaze, Ertiga, Innova Crysta, or Tempo Traveller according to your needs.",
                 },
                 {
                   step: "03",

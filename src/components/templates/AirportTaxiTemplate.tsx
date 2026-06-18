@@ -56,8 +56,22 @@ import { TbTargetArrow } from "react-icons/tb";
 import { SlCalender } from "react-icons/sl";
 import Script from "next/script";
 import Link from "next/link";
-import { airportCabRoutes } from "@/data/airportRoutes";
 import { IoLocationSharp } from "react-icons/io5";
+import {
+  POPULAR_AIRPORT_CITIES,
+  POPULAR_ROUTES,
+  getRoutesByCity,
+  getRoutesByCityAndType,
+  getPopularRoutesByCity,
+  getPickupRoutes,
+  getDropRoutes,
+  getRoutesWithPrices,
+  getPickupRoutesWithPrices,
+  getDropRoutesWithPrices,
+  getRouteWithPrice,
+  calculateFare,
+  getPricePerKm,
+} from "@/data/airportRoutes";
 
 interface FleetItem {
   tier: string;
@@ -309,9 +323,10 @@ export default function AirportTaxiTemplate({
   const [dropLocation, setDropLocation] = useState("");
   const [travelDate, setTravelDate] = useState("");
   const [travelTime, setTravelTime] = useState("");
-  const [returnDate, setReturnDate] = useState("");
-  const [tripType, setTripType] = useState("one-way");
+  const [tripType, setTripType] = useState("pickup");
   const [selectedVehicle, setSelectedVehicle] = useState("");
+  const [activeCity, setActiveCity] = useState("Kolkata");
+  const [activeTab, setActiveTab] = useState<"pickup" | "drop">("pickup");
 
   // Scroll handler for sticky CTA
   useEffect(() => {
@@ -394,7 +409,7 @@ export default function AirportTaxiTemplate({
       "24x7 airport taxi service for Delhi IGI Airport pickup and drop. Professional drivers, fixed pricing, flight tracking, and instant booking.",
     image: "https://chikucabs.com/cab.png",
     telephone: "+918448445504",
-    priceRange: "₹9 - ₹25 per km",
+    priceRange: "₹10 - ₹25 per km",
     areaServed: {
       "@type": "City",
       name: "Delhi NCR",
@@ -453,28 +468,33 @@ export default function AirportTaxiTemplate({
       return;
     }
 
-    const message = `🚖 *Fare Estimate Request*
+    const message = `🚖 *Airport Taxi Booking Request*
 
-🚕 *Trip Type:* ${tripType === "one-way" ? "One Way" : "Round Trip"}
-🛣️ *Route:* ${pickupLocation} → ${dropLocation}
+✈️ *Transfer Type:* ${tripType === "pickup" ? "Airport Pickup" : "Airport Drop"}
+
+📍 *Pickup Location:* ${pickupLocation}
+🎯 *Drop Location:* ${dropLocation}
+
 📅 *Travel Date:* ${travelDate}
 ⏰ *Travel Time:* ${travelTime}
-${tripType === "round-trip" ? `🔄 *Return Date:* ${returnDate}\n` : ""}
-🚘 *Vehicle Type:* ${selectedVehicle || vDetails.name}
+
+🚘 *Vehicle Type:* ${selectedVehicle || vehicleDetails?.name || "Cab"}
 
 Please share the best fare.`;
 
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      message,
+    )}`;
+
     window.open(whatsappUrl, "_blank");
 
-    // Clear form fields
+    // Reset Form
     setPickupLocation("");
     setDropLocation("");
     setTravelDate("");
     setTravelTime("");
-    setReturnDate("");
     setSelectedVehicle("");
-    setTripType("one-way");
+    setTripType("pickup");
   };
 
   const generateTimes = () => {
@@ -493,6 +513,22 @@ Please share the best fare.`;
   };
 
   const timeOptions = generateTimes();
+
+  // Get filtered routes with calculated prices based on active city and tab
+  const filteredRoutes = POPULAR_ROUTES.filter(
+    (route) => route.city === activeCity && route.type === activeTab,
+  );
+
+  // Get routes with calculated prices
+  const routesWithPrices = getRoutesWithPrices(filteredRoutes);
+
+  // Get all cities that have routes
+  const citiesWithRoutes = Array.from(
+    new Set(POPULAR_ROUTES.map((r) => r.city)),
+  );
+
+  // Get popular routes for display
+  const popularRoutes = getPopularRoutesByCity("Kolkata");
 
   // Calculate initial fare for default 50 km with driver charge
   useEffect(() => {
@@ -681,7 +717,7 @@ Please share the best fare.`;
               {/* Right Content - Booking Widget */}
               <div className="bg-white rounded-2xl shadow-2xl p-6 lg:p-8">
                 <h3 className="text-2xl font-bold mb-4">
-                  Book Your {vehicleDetails?.name || "Outstation Cab"}
+                  Book Your {vehicleDetails?.name || "Airport Taxi"}
                 </h3>
                 <p className="text-gray-600 mb-6">
                   Get instant confirmation & best price
@@ -693,18 +729,23 @@ Please share the best fare.`;
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
                       📍
                     </span>
+
                     <input
                       type="text"
                       value={pickupLocation}
                       onChange={(e) => setPickupLocation(e.target.value)}
-                      placeholder="Enter Pickup Location"
+                      placeholder={
+                        tripType === "pickup"
+                          ? "Airport Name"
+                          : "Enter Pickup Address"
+                      }
                       className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-                focus:bg-white
-                focus:border-primary
-                focus:ring-4
-                focus:ring-primary/10
-                outline-none
-                transition-all duration-300"
+    focus:bg-white
+    focus:border-primary
+    focus:ring-4
+    focus:ring-primary/10
+    outline-none
+    transition-all duration-300"
                       required
                     />
                   </div>
@@ -714,18 +755,23 @@ Please share the best fare.`;
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
                       🎯
                     </span>
+
                     <input
                       type="text"
                       value={dropLocation}
                       onChange={(e) => setDropLocation(e.target.value)}
-                      placeholder="Enter Drop Location"
+                      placeholder={
+                        tripType === "pickup"
+                          ? "Enter Drop Address"
+                          : "Airport Name"
+                      }
                       className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-                focus:bg-white
-                focus:border-primary
-                focus:ring-4
-                focus:ring-primary/10
-                outline-none
-                transition-all duration-300"
+    focus:bg-white
+    focus:border-primary
+    focus:ring-4
+    focus:ring-primary/10
+    outline-none
+    transition-all duration-300"
                       required
                     />
                   </div>
@@ -734,25 +780,25 @@ Please share the best fare.`;
                   <div className="grid grid-cols-2 gap-4">
                     <button
                       type="button"
-                      onClick={() => setTripType("one-way")}
+                      onClick={() => setTripType("pickup")}
                       className={`py-3 rounded-xl font-semibold transition-all ${
-                        tripType === "one-way"
+                        tripType === "pickup"
                           ? "bg-primary text-white shadow-lg shadow-primary/20"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
-                      One Way
+                      Airport Pickup
                     </button>
                     <button
                       type="button"
-                      onClick={() => setTripType("round-trip")}
+                      onClick={() => setTripType("drop")}
                       className={`py-3 rounded-xl font-semibold transition-all ${
-                        tripType === "round-trip"
+                        tripType === "drop"
                           ? "bg-primary text-white shadow-lg shadow-primary/20"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
-                      Round Trip
+                      Airport Drop
                     </button>
                   </div>
 
@@ -804,28 +850,6 @@ Please share the best fare.`;
                       </select>
                     </div>
                   </div>
-
-                  {/* Return Date (Only for Round Trip) */}
-                  {tripType === "round-trip" && (
-                    <div className="relative">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
-                        🔄
-                      </span>
-                      <input
-                        type="date"
-                        value={returnDate}
-                        onChange={(e) => setReturnDate(e.target.value)}
-                        placeholder="Return Date"
-                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-                  focus:bg-white
-                  focus:border-primary
-                  focus:ring-4
-                  focus:ring-primary/10
-                  outline-none
-                  transition-all duration-300"
-                      />
-                    </div>
-                  )}
 
                   {/* Vehicle Selection (Outstation Specific) */}
                   <div className="relative">
@@ -948,7 +972,7 @@ Please share the best fare.`;
                 24/7 AIRPORT TAXI SERVICE
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                Delhi Airport Taxi - Pickup & Drop
+                Airport Taxi - Pickup & Drop
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto text-lg">
                 Book reliable airport taxi service for IGI Airport with
@@ -1369,17 +1393,192 @@ Please share the best fare.`;
           </div>
         </section>
 
-        {/* Popular Airport Taxi Routes */}
+        {/* POPULAR AIRPORT CABS - All Cities Grid */}
+        {/* ============================================================ */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                Popular Airport Cabs
+              </h2>
+              <p className="text-gray-500 text-lg">
+                Book reliable airport taxi services across major Indian cities
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {POPULAR_AIRPORT_CITIES.map((city) => (
+                <Link
+                  key={city.slug}
+                  href={`airport-cabs/${city.slug}-airport`}
+                  className="group bg-gray-50 hover:bg-[#BE1E23] rounded-xl p-4 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-100"
+                >
+                  <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[#BE1E23]/10 to-[#BE1E23]/5 rounded-full flex items-center justify-center mb-3 group-hover:bg-white/20 transition-colors">
+                    <span className="text-2xl group-hover:text-white transition-colors">
+                      ✈️
+                    </span>
+                  </div>
+                  <h3 className="font-semibold text-gray-800 group-hover:text-white transition-colors text-sm">
+                    {city.name} Airport Cabs
+                  </h3>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* POPULAR CAB ROUTES - Dynamic City Selection with Tabs */}
+        {/* ============================================================ */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-3">
-                Popular Airport Taxi Routes
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                Popular Cab Routes from Indian Airports
               </h2>
-              <p className="text-gray-600">
-                Book affordable airport cabs on India's most searched routes
+              <p className="text-gray-500 text-lg">
+                Handpicked routes our travellers book the most. Transparent
+                fares, verified cabs, and premium comfort.
               </p>
             </div>
+
+            {/* City Selector - Horizontal Scroll */}
+            <div className="flex overflow-x-auto gap-3 mb-8 pb-4 scrollbar-hide justify-center flex-wrap">
+              {citiesWithRoutes.map((city) => (
+                <button
+                  key={city}
+                  onClick={() => {
+                    setActiveCity(city);
+                    setActiveTab("pickup");
+                  }}
+                  className={`px-5 py-2.5 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${
+                    activeCity === city
+                      ? "bg-[#BE1E23] text-white shadow-lg shadow-[#BE1E23]/20"
+                      : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
+                  }`}
+                >
+                  {city} Airport
+                </button>
+              ))}
+            </div>
+
+            {/* Pickup/Drop Toggle Buttons */}
+            <div className="flex justify-center mb-10">
+              <div className="inline-flex bg-white rounded-xl shadow-md p-1.5 border border-gray-200">
+                <button
+                  onClick={() => setActiveTab("pickup")}
+                  className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${
+                    activeTab === "pickup"
+                      ? "bg-[#BE1E23] text-white shadow-lg shadow-[#BE1E23]/20"
+                      : "text-gray-600 hover:text-[#BE1E23] hover:bg-gray-50"
+                  }`}
+                >
+                  ✈️ Airport Pickup
+                </button>
+                <button
+                  onClick={() => setActiveTab("drop")}
+                  className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${
+                    activeTab === "drop"
+                      ? "bg-[#BE1E23] text-white shadow-lg shadow-[#BE1E23]/20"
+                      : "text-gray-600 hover:text-[#BE1E23] hover:bg-gray-50"
+                  }`}
+                >
+                  🏠 Airport Drop
+                </button>
+              </div>
+            </div>
+
+            {/* Routes Grid */}
+            {filteredRoutes.length > 0 ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredRoutes.map((route) => (
+                  <Link
+                    key={route.id}
+                    href={route.url}
+                    className="bg-white rounded-2xl p-6 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 group"
+                  >
+                    {/* Route Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-800 group-hover:text-[#BE1E23] transition-colors">
+                          {route.from} to {route.to}
+                        </h3>
+                        <p className="text-sm text-gray-500 mt-1">
+                          {route.distance}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 bg-green-50 px-2 py-1 rounded-lg">
+                        <span className="text-yellow-400 text-sm">★</span>
+                        <span className="text-sm font-semibold text-gray-700">
+                          {route.rating}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Route Details */}
+                    <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-3">
+                      <span className="bg-gray-100 px-3 py-1 rounded-full">
+                        {route.time}
+                      </span>
+                      <span className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full capitalize">
+                        Recommended: {route.recommended}
+                      </span>
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                          route.type === "pickup"
+                            ? "bg-green-50 text-green-700"
+                            : "bg-orange-50 text-orange-700"
+                        }`}
+                      >
+                        {route.type === "pickup"
+                          ? "Airport Pickup"
+                          : "Airport Drop"}
+                      </span>
+                    </div>
+
+                    {/* Price and CTA with Dynamic Pricing */}
+                    <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                      <div>
+                        <span className="text-xs text-gray-400">
+                          Starting from
+                        </span>
+                        <p className="text-2xl font-bold text-[#BE1E23]">
+                          ₹{getRouteWithPrice(route).calculatedPrice}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#BE1E23] group-hover:underline transition-all">
+                          View Cabs
+                          <span className="group-hover:translate-x-1 transition-transform">
+                            →
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12 bg-white rounded-2xl shadow-md">
+                <p className="text-gray-500 text-lg">
+                  No routes available for {activeCity} Airport{" "}
+                  {activeTab === "pickup" ? "Pickup" : "Drop"}
+                </p>
+              </div>
+            )}
+
+            {/* View All Button */}
+            {filteredRoutes.length > 0 && (
+              <div className="text-center mt-10">
+                <Link
+                  href={`/airport-cabs/${activeCity.toLowerCase()}-airport`}
+                  className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#BE1E23] text-white rounded-xl font-semibold hover:bg-[#a0191e] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                >
+                  View All {activeCity} Airport Routes
+                  <span>→</span>
+                </Link>
+              </div>
+            )}
           </div>
         </section>
 

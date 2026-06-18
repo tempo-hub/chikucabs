@@ -3,7 +3,13 @@ import routeData from "@/data/routeData.json";
 
 // extract destination from URL
 function getDestination(url: string) {
-  return url.split("-to-")[1] || "";
+  const destination = url.split("-to-")[1] || "";
+
+  return destination
+    .replace("-cab-fare", "")
+    .replace("-cab", "")
+    .replace("-taxi", "")
+    .replace("-tempo-traveller", "");
 }
 
 // region mapping (expand gradually)
@@ -93,22 +99,24 @@ export default function InternalLinks({ parsedData }: InternalLinksProps) {
     ? currentSlug
     : `/${currentSlug}`;
 
-  if (
-    currentUrl.includes("-cab-fare")
-  ) {
+  if (currentUrl.includes("-cab-fare") || !currentUrl.includes("-to-")) {
     return null;
   }
 
   // Filter routes that contain "-to-" to get only navigable route pages
-  const routePages = (routeData as { url: string }[]).filter((r) =>
-    r.url.includes("-to-"),
-  );
+  const originCity = (parsedData.origin || "").toLowerCase();
+
+const routePages = (routeData as { url: string }[]).filter(
+  (r) =>
+    r.url.startsWith(`/${originCity}/`) &&
+    r.url.includes("-to-")
+);
 
   const nearbyUrls = getNearbyRoutes(currentUrl, routePages);
 
   if (nearbyUrls.length === 0) return null;
 
-  const originCity = parsedData.origin || "Your City";
+  // const originCity = parsedData.origin || "Your City";
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
@@ -124,9 +132,10 @@ export default function InternalLinks({ parsedData }: InternalLinksProps) {
         {nearbyUrls.map((url) => {
           const destination = getDestination(url);
 
-          const dynamicUrl = `/${originCity.toLowerCase()}/tempo-traveller-hire-${originCity
-            .toLowerCase()
-            .replace(/\s+/g, "-")}-to-${destination}`;
+          // const dynamicUrl = `/${originCity.toLowerCase()}/tempo-traveller-hire-${originCity
+          //   .toLowerCase()
+          //   .replace(/\s+/g, "-")}-to-${destination}`;
+          const dynamicUrl = url;
 
           return (
             <a

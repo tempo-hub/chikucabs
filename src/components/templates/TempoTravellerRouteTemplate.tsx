@@ -13,8 +13,12 @@ export default function TempoTravellerRouteTemplate({
 
   const citySlug = startCity.toLowerCase().replace(/\s+/g, "-");
 
-  const link =
-    citySlug === "delhi" ? "/tempo-from-delhi" : `/tempo-traveller-${citySlug}`;
+  const TEMPO_CITY_PAGES: Record<string, string> = {
+    delhi: "/tempo-from-delhi",
+    ghaziabad: "/tempo-from-ghaziabad",
+  };
+
+  const link = TEMPO_CITY_PAGES[citySlug] || "/tempo-traveller-on-rent";
 
   const currentUrl = `/${citySlug}/tempo-traveller-hire-${citySlug}-to-${endCity
     .toLowerCase()
