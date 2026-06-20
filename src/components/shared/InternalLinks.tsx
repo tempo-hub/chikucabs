@@ -106,11 +106,9 @@ export default function InternalLinks({ parsedData }: InternalLinksProps) {
   // Filter routes that contain "-to-" to get only navigable route pages
   const originCity = (parsedData.origin || "").toLowerCase();
 
-const routePages = (routeData as { url: string }[]).filter(
-  (r) =>
-    r.url.startsWith(`/${originCity}/`) &&
-    r.url.includes("-to-")
-);
+  const routePages = (routeData as { url: string }[]).filter(
+    (r) => r.url.startsWith(`/${originCity}/`) && r.url.includes("-to-"),
+  );
 
   const nearbyUrls = getNearbyRoutes(currentUrl, routePages);
 

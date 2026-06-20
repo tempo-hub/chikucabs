@@ -7,6 +7,8 @@ import Link from "next/link";
 import { cityRoutes } from "@/data/routes";
 import toast from "react-hot-toast";
 import { CiClock1 } from "react-icons/ci";
+import { IoLocationSharp } from "react-icons/io5";
+import routeData from "@/data/routeData.json";
 import {
   FaCarSide,
   FaUserTie,
@@ -280,7 +282,30 @@ export default function TempoTravellerTemplate({
 }: {
   parsedData: ParsedRouteData;
 }) {
-  const city = parsedData.origin || "India";
+  const groupedTempoRoutes = useMemo(() => {
+    const tempoRoutes = (routeData as { url: string }[]).filter((r) =>
+      r.url.includes("tempo-traveller-hire-"),
+    );
+    const grouped: Record<string, { url: string; to: string }[]> = {};
+    tempoRoutes.forEach((r) => {
+      const parts = r.url.split("/");
+      if (parts.length === 3) {
+        const routeCity = parts[1];
+        const routePart = parts[2];
+        if (routePart.includes("-to-")) {
+          const toRaw = routePart.split("-to-")[1];
+          if (toRaw) {
+            const to = toRaw.replace(/-/g, " ");
+            if (!grouped[routeCity]) grouped[routeCity] = [];
+            grouped[routeCity].push({ url: r.url, to });
+          }
+        }
+      }
+    });
+    return grouped;
+  }, []);
+
+  const city = parsedData.city || "India";
   const vehicle = parsedData.vehicle || DEFAULT_VEHICLE;
   const vehicleDetails = useMemo(() => getVehicleDetails(vehicle), [vehicle]);
   const [formData, setFormData] = useState<FormData>({
@@ -297,6 +322,9 @@ export default function TempoTravellerTemplate({
   const [dropLocation, setDropLocation] = useState("");
   const [travelDate, setTravelDate] = useState("");
   const [travelTime, setTravelTime] = useState("");
+  const [returnDate, setReturnDate] = useState("");
+  const [tripType, setTripType] = useState("one-way");
+  const [selectedVehicle, setSelectedVehicle] = useState("");
 
   // Scroll handler for sticky CTA
   useEffect(() => {
@@ -432,6 +460,7 @@ export default function TempoTravellerTemplate({
       "₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}",
   };
 
+  // Handle get estimate
   const handleGetEstimate = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -440,21 +469,33 @@ export default function TempoTravellerTemplate({
       return;
     }
 
-    const message = `
-🚖 Fare Estimate Request
+    if (tripType === "round-trip" && !returnDate) {
+      toast.error("Please select return date");
+      return;
+    }
 
-📍 Pickup: ${pickupLocation}
-🎯 Drop: ${dropLocation}
-📅 Date: ${travelDate}
-⏰ Time: ${travelTime}
-🚘 Vehicle: ${vehicle}
-`;
+    const message = `🚖 *Tempo Traveller Fare Estimate Request*
 
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      message,
-    )}`;
+🚕 *Trip Type:* ${tripType === "one-way" ? "One Way" : "Round Trip"}
+🛣️ *Route:* ${pickupLocation} → ${dropLocation}
+📅 *Travel Date:* ${travelDate}
+⏰ *Travel Time:* ${travelTime}
+${tripType === "round-trip" ? `🔄 *Return Date:* ${returnDate}\n` : ""}
+🚐 *Tempo Traveller:* ${selectedVehicle || vDetails.name}
 
+Please share the best fare.`;
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
+
+    // Clear form fields
+    setPickupLocation("");
+    setDropLocation("");
+    setTravelDate("");
+    setTravelTime("");
+    setReturnDate("");
+    setSelectedVehicle("");
+    setTripType("one-way");
   };
 
   const generateTimes = () => {
@@ -653,76 +694,115 @@ export default function TempoTravellerTemplate({
                   Get instant confirmation & best price
                 </p>
 
-                <form className="space-y-5">
+                <form className="space-y-5" onSubmit={handleGetEstimate}>
                   {/* Pickup Location */}
                   <div className="relative">
-                    <FaLocationDot className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg" />
-
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
+                      📍
+                    </span>
                     <input
                       type="text"
                       value={pickupLocation}
                       onChange={(e) => setPickupLocation(e.target.value)}
                       placeholder="Enter Pickup Location"
                       className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-            focus:bg-white
-            focus:border-primary
-            focus:ring-4
-            focus:ring-primary/10
-            outline-none
-            transition-all duration-300"
+                focus:bg-white
+                focus:border-primary
+                focus:ring-4
+                focus:ring-primary/10
+                outline-none
+                transition-all duration-300"
+                      required
                     />
                   </div>
 
                   {/* Drop Location */}
                   <div className="relative">
-                    <TbTargetArrow className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg" />
-
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
+                      🎯
+                    </span>
                     <input
                       type="text"
                       value={dropLocation}
                       onChange={(e) => setDropLocation(e.target.value)}
                       placeholder="Enter Drop Location"
                       className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-            focus:bg-white
-            focus:border-primary
-            focus:ring-4
-            focus:ring-primary/10
-            outline-none
-            transition-all duration-300"
+                focus:bg-white
+                focus:border-primary
+                focus:ring-4
+                focus:ring-primary/10
+                outline-none
+                transition-all duration-300"
+                      required
                     />
+                  </div>
+
+                  {/* Trip Type Selection (Outstation Specific) */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setTripType("one-way")}
+                      className={`py-3 rounded-xl font-semibold transition-all ${
+                        tripType === "one-way"
+                          ? "bg-primary text-white shadow-lg shadow-primary/20"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      One Way
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setTripType("round-trip")}
+                      className={`py-3 rounded-xl font-semibold transition-all ${
+                        tripType === "round-trip"
+                          ? "bg-primary text-white shadow-lg shadow-primary/20"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      Round Trip
+                    </button>
                   </div>
 
                   {/* Date & Time */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Date */}
+                    {/* Pickup Date */}
                     <div className="relative">
-                      <SlCalender className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base" />
-
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                        📅
+                      </span>
                       <input
                         type="date"
                         value={travelDate}
                         onChange={(e) => setTravelDate(e.target.value)}
                         className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-              focus:bg-white
-              focus:border-primary
-              focus:ring-4
-              focus:ring-primary/10
-              outline-none
-              transition-all duration-300"
+                  focus:bg-white
+                  focus:border-primary
+                  focus:ring-4
+                  focus:ring-primary/10
+                  outline-none
+                  transition-all duration-300"
+                        required
                       />
                     </div>
 
-                    {/* Time */}
+                    {/* Pickup Time */}
                     <div className="relative">
-                      <FaRegClock className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base" />
-
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                        ⏰
+                      </span>
                       <select
                         value={travelTime}
                         onChange={(e) => setTravelTime(e.target.value)}
-                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl"
+                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+                  focus:bg-white
+                  focus:border-primary
+                  focus:ring-4
+                  focus:ring-primary/10
+                  outline-none
+                  transition-all duration-300"
+                        required
                       >
                         <option value="">Select Time</option>
-
                         {timeOptions.map((time) => (
                           <option key={time} value={time}>
                             {time}
@@ -732,16 +812,85 @@ export default function TempoTravellerTemplate({
                     </div>
                   </div>
 
+                  {/* Return Date (Only for Round Trip) */}
+                  {tripType === "round-trip" && (
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                        🔄
+                      </span>
+                      <input
+                        type="date"
+                        value={returnDate}
+                        onChange={(e) => setReturnDate(e.target.value)}
+                        placeholder="Return Date"
+                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+                  focus:bg-white
+                  focus:border-primary
+                  focus:ring-4
+                  focus:ring-primary/10
+                  outline-none
+                  transition-all duration-300"
+                      />
+                    </div>
+                  )}
+
+                  {/* Vehicle Selection (Outstation Specific) */}
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
+                      🚙
+                    </span>
+                    <select
+                      value={selectedVehicle}
+                      onChange={(e) => setSelectedVehicle(e.target.value)}
+                      className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+                focus:bg-white
+                focus:border-primary
+                focus:ring-4
+                focus:ring-primary/10
+                outline-none
+                transition-all duration-300"
+                    >
+                      <option value="">Select Vehicle Type</option>
+                      <option value="swift-dzire">
+                        Swift Dzire (4 Seater)
+                      </option>
+                      <option value="innova-crysta">Innova Crysta</option>
+                      <option value="amaze">Amaze</option>
+                      <option value="ertiga">Ertiga (7 Seater)</option>
+                      <option value="tempo">Tempo Traveller (12 Seater)</option>
+                      <option value="9-Seater">
+                        9-Seater (Best for families)
+                      </option>
+                      <option value="12-Seater">
+                        12-Seater (Popular for pilgrimages)
+                      </option>
+                      <option value="13-Seater">
+                        13-Seater (Popular for pilgrimages)
+                      </option>
+                      <option value="20-Seater">
+                        20-Seater (Large groups)
+                      </option>
+                      <option value="21-Seater">
+                        21-Seater (Large groups)
+                      </option>
+                      <option value="24-Seater">
+                        24-Seater (Large groups)
+                      </option>
+                      <option value="26-Seater">
+                        26-Seater (Wedding/Baraat special)
+                      </option>
+                    </select>
+                  </div>
+
                   {/* CTA Button */}
                   <button
-                    type="button"
-                    onClick={handleGetEstimate}
+                    type="submit"
                     className="group w-full h-14 rounded-2xl bg-primary text-white font-semibold text-lg
-          shadow-lg shadow-primary/20
-          hover:shadow-xl hover:shadow-primary/30
-          hover:-translate-y-0.5
-          active:translate-y-0
-          transition-all duration-300"
+              shadow-lg shadow-primary/20
+              hover:shadow-xl hover:shadow-primary/30
+              hover:-translate-y-0.5
+              active:translate-y-0
+              transition-all duration-300"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Get Fare Estimate
@@ -758,9 +907,41 @@ export default function TempoTravellerTemplate({
                     <span>✓ Free Cancellation</span>
                     <span>•</span>
                     <span>✓ 24×7 Support</span>
+                    <span>•</span>
+                    <span>✓ Driver Details</span>
                   </div>
                 </form>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Bar - Professional Version */}
+        <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-primary/10">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <div className="section-badge mx-auto">OUR REVIEWS</div>
+              <h2 className="section-title">What Our Customers Say About Us</h2>
+              <p className="section-subtitle mx-auto">
+                Trusted by thousands of travelers across India. Here's what they
+                have to say about their experience with Chiku Cabs.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {STATS.map((stat, i) => (
+                <div key={i} className="text-center group">
+                  <div className="relative inline-block">
+                    <div className="text-4xl md:text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
+                      {stat.num}
+                    </div>
+                    <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
+                  </div>
+                  <div className="text-sm md:text-base font-medium text-muted-foreground uppercase tracking-wide mt-3">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -923,97 +1104,6 @@ export default function TempoTravellerTemplate({
           </div>
         </section>
 
-        {/* Stats Bar - Professional Version */}
-        <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-primary/10">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <div className="section-badge mx-auto">OUR REVIEWS</div>
-              <h2 className="section-title">What Our Customers Say About Us</h2>
-              <p className="section-subtitle mx-auto">
-                Trusted by thousands of travelers across India. Here's what they
-                have to say about their experience with Chiku Cabs.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {STATS.map((stat, i) => (
-                <div key={i} className="text-center group">
-                  <div className="relative inline-block">
-                    <div className="text-4xl md:text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
-                      {stat.num}
-                    </div>
-                    <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
-                  </div>
-                  <div className="text-sm md:text-base font-medium text-muted-foreground uppercase tracking-wide mt-3">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <div className="section-badge mx-auto animate-pulse">
-                ⚡ SIMPLE & FAST
-              </div>
-              <h2 className="section-title mt-4">
-                Book Your Ride in{" "}
-                <span className="gradient-text">3 Easy Steps</span>
-              </h2>
-              <p className="section-subtitle mx-auto mt-4">
-                Experience hassle-free cab booking with our streamlined process
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 relative">
-              {/* Connecting Line (Desktop) */}
-              <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2 z-0">
-                <div className="absolute left-1/3 right-1/3 h-full bg-primary"></div>
-              </div>
-
-              {STEPS.map((item, i) => (
-                <div key={i} className="relative group">
-                  {/* Step Number Circle */}
-                  <div className="relative z-10">
-                    <div className="text-center">
-                      <div className="relative inline-block">
-                        <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-all duration-300">
-                          <div className="text-4xl font-black text-black">
-                            {item.step}
-                          </div>
-                        </div>
-                        {/* Pulse Effect */}
-                        <div className="absolute inset-0 bg-primary rounded-2xl opacity-0 group-hover:opacity-20 animate-ping"></div>
-                      </div>
-
-                      {/* Step Content */}
-                      <div className="mt-6 premium-card text-center group-hover:-translate-y-2 transition-all duration-300">
-                        <h3 className="font-bold text-xl mb-3 group-hover:text-primary transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-
-                      {/* Arrow Indicator (Desktop) */}
-                      {i < STEPS.length - 1 && (
-                        <div className="hidden md:block absolute top-12 -right-6 text-3xl text-primary/50 group-hover:text-primary transition-colors">
-                          →
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Route Calculator with Slider */}
         <section className="py-24 bg-gradient-to-r from-primary/5 to-secondary/5">
           <div className="max-w-4xl mx-auto px-4">
@@ -1166,853 +1256,177 @@ export default function TempoTravellerTemplate({
           </div>
         </section>
 
-        {/* Vehicle Comparison - Modern UI with React Icons */}
+        {/* Popular Travel Destinations - All Cities */}
+        <section className="py-16 bg-gray-50 border-y">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                Popular Tempo Traveller Destinations
+              </h2>
+              <p className="text-gray-600">
+                Explore India's most beautiful destinations with our premium
+                tempo travellers
+              </p>
+            </div>
+
+            {/* City Filter Tabs */}
+            <div className="mb-12">
+              <div className="flex flex-wrap justify-center gap-3">
+                {Object.keys(groupedTempoRoutes).map((cityKey) => (
+                  <a
+                    key={cityKey}
+                    href={`#dest-${cityKey}`}
+                    className="
+              px-5
+              py-2.5
+              rounded-full
+              bg-white
+              border
+              border-gray-200
+              text-gray-700
+              text-sm
+              font-semibold
+              shadow-sm
+              hover:bg-[#BE1E23]
+              hover:text-white
+              hover:border-[#BE1E23]
+              hover:shadow-xl
+              hover:scale-105
+              transition-all
+              duration-300
+            "
+                  >
+                    <span className="capitalize">{cityKey}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Destination Cards by City - ALL ROUTES SHOWN */}
+            {Object.entries(groupedTempoRoutes).map(([cityKey, routes]) => {
+              const cityName =
+                cityKey.charAt(0).toUpperCase() + cityKey.slice(1);
+
+              return (
+                <div
+                  key={cityKey}
+                  id={`dest-${cityKey}`}
+                  className="mb-14 scroll-mt-24"
+                >
+                  {/* City Header */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white text-lg">
+                      <IoLocationSharp />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-800">
+                      Top Destinations from {cityName}
+                    </h3>
+                    <span className="text-sm text-gray-400 bg-gray-100 px-3 py-1 rounded-full">
+                      {routes.length} routes
+                    </span>
+                  </div>
+
+                  {/* Cards Grid - ALL ROUTES DISPLAYED */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    {routes.map((route, idx) => (
+                      <Link
+                        key={idx}
+                        href={route.url}
+                        className="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300"
+                      >
+                        {/* Icon */}
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl flex items-center justify-center mb-3 group-hover:from-primary/20 group-hover:to-primary/10 transition-colors">
+                          <span className="text-lg">🚐</span>
+                        </div>
+
+                        {/* Destination Name */}
+                        <h4 className="font-bold text-gray-800 text-sm mb-1 group-hover:text-primary transition-colors leading-tight capitalize">
+                          {route.to}
+                        </h4>
+
+                        {/* Price Indicator */}
+                        <div className="flex items-center justify-between mt-2">
+                          <span className="text-xs font-semibold text-primary">
+                            Starting ₹24/km
+                          </span>
+                          <span className="text-xs text-gray-400 group-hover:text-primary transition-colors">
+                            →
+                          </span>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* How It Works */}
         <section className="py-24 bg-gradient-to-b from-white to-gray-50">
           <div className="max-w-7xl mx-auto px-4">
-            {/* Section Header */}
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-                <FaCar className="text-primary text-sm" />
-                <span className="text-primary font-bold text-sm uppercase tracking-wider">
-                  COMPARE VEHICLES
-                </span>
+              <div className="section-badge mx-auto animate-pulse">
+                ⚡ SIMPLE & FAST
               </div>
-              <h2 className="text-4xl md:text-5xl font-black mb-4">
-                Choose Your <span className="gradient-text">Perfect Ride</span>
+              <h2 className="section-title mt-4">
+                Book Your Ride in{" "}
+                <span className="gradient-text">3 Easy Steps</span>
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Compare our fleet and find the perfect vehicle for your journey
+              <p className="section-subtitle mx-auto mt-4">
+                Experience hassle-free cab booking with our streamlined process
               </p>
             </div>
 
-            {/* Mobile Card View */}
-            <div className="lg:hidden space-y-6">
-              {[
-                {
-                  name: "Hatchback",
-                  price: "9",
-                  capacity: "4",
-                  luggage: "2-3",
-                  ac: true,
-                  wifi: false,
-                  charging: true,
-                  bestFor: "Budget Travel",
-                  popular: false,
-                  icon: <FaCar />,
-                },
-                {
-                  name: "Sedan",
-                  price: "11",
-                  capacity: "4",
-                  luggage: "3-4",
-                  ac: true,
-                  wifi: true,
-                  charging: true,
-                  bestFor: "Corporate & Family",
-                  popular: true,
-                  icon: <FaCarSide />,
-                },
-                {
-                  name: "Innova",
-                  price: "17",
-                  capacity: "6-7",
-                  luggage: "5-6",
-                  ac: true,
-                  wifi: true,
-                  charging: true,
-                  bestFor: "Luxury Travel",
-                  popular: false,
-                  icon: <FaCaravan />,
-                },
-                {
-                  name: "Tempo Traveller",
-                  price: "19",
-                  capacity: "9-12",
-                  luggage: "10-12",
-                  ac: true,
-                  wifi: true,
-                  charging: true,
-                  bestFor: "Group Tours",
-                  popular: false,
-                  icon: <FaBus />,
-                },
-              ].map((vehicle, idx) => (
-                <div
-                  key={idx}
-                  className={`relative bg-white rounded-2xl p-6 shadow-lg border ${vehicle.popular ? "border-primary shadow-xl" : "border-gray-100"}`}
-                >
-                  {vehicle.popular && (
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-black px-4 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                      <FaStar className="text-yellow-400 text-xs" />
-                      Most Popular
-                    </div>
-                  )}
-                  <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${vehicle.popular ? "bg-gradient-to-r from-primary to-secondary text-white" : "bg-primary/10 text-primary"}`}
-                    >
-                      {vehicle.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">{vehicle.name}</h3>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-2xl font-black text-primary">
-                          ₹{vehicle.price}
-                        </span>
-                        <span className="text-sm text-muted-foreground">
-                          /km
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-                        <FaUsers className="text-primary text-xs" /> Capacity
-                      </span>
-                      <span className="font-semibold">
-                        {vehicle.capacity} Persons
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-                        <FaSuitcase className="text-primary text-xs" /> Luggage
-                      </span>
-                      <span className="font-semibold">
-                        {vehicle.luggage} Bags
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-                        <FaMicrochip className="text-primary text-xs" />{" "}
-                        Features
-                      </span>
-                      <div className="flex gap-2">
-                        {vehicle.ac && (
-                          <FaSnowflake
-                            className="text-blue-500 text-sm"
-                            title="AC"
-                          />
-                        )}
-                        {vehicle.wifi && (
-                          <FaWifi
-                            className="text-green-500 text-sm"
-                            title="WiFi"
-                          />
-                        )}
-                        {vehicle.charging && (
-                          <FaBatteryFull
-                            className="text-yellow-500 text-sm"
-                            title="Charging Ports"
-                          />
-                        )}
-                      </div>
-                    </div>
-                    <div className="flex justify-between items-center pt-3 border-t border-gray-100">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-                        <FaMedal className="text-primary text-xs" /> Best For
-                      </span>
-                      <span
-                        className={`text-sm font-bold ${vehicle.popular ? "text-primary" : ""}`}
-                      >
-                        {vehicle.bestFor}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Desktop Table View - PERFECT THEAD ALIGNMENT */}
-            <div className="hidden lg:block overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-gradient-to-r from-gray-900 to-gray-800">
-                    <th className="p-5 text-left text-white font-bold text-base w-48 rounded-tl-2xl">
-                      <div className="flex items-center gap-2">
-                        <FaList className="text-primary text-lg" />
-                        <span>Features</span>
-                      </div>
-                    </th>
-                    <th className="p-5 text-center text-white font-bold text-base">
-                      <div className="flex flex-col items-center justify-center gap-1">
-                        <div className="flex items-center justify-center gap-2">
-                          <FaCar className="text-xl" />
-                          <span>Hatchback</span>
-                        </div>
-                        <span className="text-xs text-gray-300 font-normal">
-                          Economy
-                        </span>
-                      </div>
-                    </th>
-                    <th className="p-5 text-center text-white font-bold text-base relative">
-                      <div className="flex flex-col items-center justify-center gap-1">
-                        <div className="flex items-center justify-center gap-2">
-                          <FaCarSide className="text-xl" />
-                          <span>Sedan</span>
-                        </div>
-                        <span className="text-xs text-gray-300 font-normal">
-                          Popular Choice
-                        </span>
-                      </div>
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-3 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-1 whitespace-nowrap shadow-md z-10">
-                        <FaStar className="text-xs text-yellow-700" /> Most
-                        Popular
-                      </div>
-                    </th>
-                    <th className="p-5 text-center text-white font-bold text-base">
-                      <div className="flex flex-col items-center justify-center gap-1">
-                        <div className="flex items-center justify-center gap-2">
-                          <FaCaravan className="text-xl" />
-                          <span>Innova</span>
-                        </div>
-                        <span className="text-xs text-gray-300 font-normal">
-                          Luxury
-                        </span>
-                      </div>
-                    </th>
-                    <th className="p-5 text-center text-white font-bold text-base rounded-tr-2xl">
-                      <div className="flex flex-col items-center justify-center gap-1">
-                        <div className="flex items-center justify-center gap-2">
-                          <FaBus className="text-xl" />
-                          <span>Tempo Traveller</span>
-                        </div>
-                        <span className="text-xs text-gray-300 font-normal">
-                          Group
-                        </span>
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* Price per km */}
-                  <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800 bg-gray-50/50">
-                      <div className="flex items-center gap-2">
-                        <FaMoneyBillWave className="text-primary" />
-                        Price per km
-                      </div>
-                    </td>
-                    <td className="p-5 text-center font-semibold text-gray-700">
-                      ₹9
-                    </td>
-                    <td className="p-5 text-center bg-primary/5 font-extrabold text-primary text-lg">
-                      ₹12
-                    </td>
-                    <td className="p-5 text-center font-semibold text-gray-700">
-                      ₹17
-                    </td>
-                    <td className="p-5 text-center font-semibold text-gray-700">
-                      ₹19
-                    </td>
-                  </tr>
-
-                  {/* Capacity */}
-                  <tr className="border-b border-gray-100 bg-gray-50/30 hover:bg-gray-100 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800">
-                      <div className="flex items-center gap-2">
-                        <FaUsers className="text-primary" />
-                        Capacity
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaUser className="text-gray-500 text-sm" /> 4 Persons
-                      </div>
-                    </td>
-                    <td className="p-5 text-center bg-primary/5">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaUser className="text-primary text-sm" /> 4 Persons
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaUser className="text-gray-500 text-sm" /> 6-7 Persons
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaUsers className="text-gray-500 text-sm" /> 9-12
-                        Persons
-                      </div>
-                    </td>
-                  </tr>
-
-                  {/* Luggage Capacity */}
-                  <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800 bg-gray-50/50">
-                      <div className="flex items-center gap-2">
-                        <FaSuitcase className="text-primary" />
-                        Luggage Capacity
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaSuitcase className="text-gray-400 text-xs" /> 2-3
-                        Bags
-                      </div>
-                    </td>
-                    <td className="p-5 text-center bg-primary/5">
-                      <div className="flex items-center justify-center gap-1 font-semibold">
-                        <FaSuitcase className="text-primary text-xs" /> 3-4 Bags
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaSuitcase className="text-gray-400 text-xs" /> 5-6
-                        Bags
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaSuitcase className="text-gray-400 text-xs" /> 10-12
-                        Bags
-                      </div>
-                    </td>
-                  </tr>
-
-                  {/* AC */}
-                  <tr className="border-b border-gray-100 bg-gray-50/30 hover:bg-gray-100 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800">
-                      <div className="flex items-center gap-2">
-                        <FaSnowflake className="text-primary" />
-                        Air Conditioning
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center bg-primary/5">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                  </tr>
-
-                  {/* WiFi */}
-                  <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800 bg-gray-50/50">
-                      <div className="flex items-center gap-2">
-                        <FaWifi className="text-primary" />
-                        WiFi Connectivity
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaTimesCircle className="text-red-400 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center bg-primary/5">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                  </tr>
-
-                  {/* Charging Ports */}
-                  <tr className="border-b border-gray-100 bg-gray-50/30 hover:bg-gray-100 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800">
-                      <div className="flex items-center gap-2">
-                        <FaBatteryFull className="text-primary" />
-                        USB / Charging Ports
-                      </div>
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center bg-primary/5">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                    <td className="p-5 text-center">
-                      <FaCheckCircle className="text-green-500 inline text-xl" />
-                    </td>
-                  </tr>
-
-                  {/* Best For */}
-                  <tr className="hover:bg-gray-50 transition-colors">
-                    <td className="p-5 font-semibold text-gray-800 bg-gray-50/50 rounded-bl-2xl">
-                      <div className="flex items-center gap-2">
-                        <FaMedal className="text-primary" />
-                        Best For
-                      </div>
-                    </td>
-                    <td className="p-5 text-center text-sm">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaWallet className="text-gray-500 text-sm" /> Budget
-                        Travel
-                      </div>
-                    </td>
-                    <td className="p-5 text-center bg-primary/5 font-bold text-primary text-sm">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaBriefcase className="text-primary text-sm" />{" "}
-                        Corporate & Family
-                      </div>
-                    </td>
-                    <td className="p-5 text-center text-sm">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaGem className="text-gray-500 text-sm" /> Luxury
-                        Travel
-                      </div>
-                    </td>
-                    <td className="p-5 text-center text-sm rounded-br-2xl">
-                      <div className="flex items-center justify-center gap-1">
-                        <FaUsers className="text-gray-500 text-sm" /> Group
-                        Tours
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            {/* Recommendation Note */}
-            <div className="mt-12 p-6 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl border border-primary/20">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                    <FaRegLightbulb className="text-primary text-xl" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg">
-                      Not sure which vehicle to choose?
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      Our experts can help you find the perfect ride for your
-                      needs
-                    </p>
-                  </div>
-                </div>
-                <button className="px-6 py-2 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition shadow-md">
-                  Get Expert Advice
-                </button>
+            <div className="grid md:grid-cols-3 gap-8 relative">
+              {/* Connecting Line (Desktop) */}
+              <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2 z-0">
+                <div className="absolute left-1/3 right-1/3 h-full bg-primary"></div>
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Why Choose Us vs Competitors - Modern UI with React Icons */}
-        <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
-          <div className="max-w-7xl mx-auto px-4">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-                <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-                <span className="text-primary font-bold text-sm uppercase tracking-wider">
-                  WHY WE'RE BETTER
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black mb-4">
-                Chiku Cabs <span className="gradient-text">vs</span> Others
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                See why thousands of customers choose us over traditional cab
-                services
-              </p>
-            </div>
-
-            {/* Comparison Cards - Mobile Friendly */}
-            <div className="lg:hidden space-y-4">
-              {COMPARISON_FEATURES.map((row, i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-2xl p-5 shadow-lg border border-gray-100"
-                >
-                  <div className="font-bold text-lg mb-4 pb-2 border-b border-gray-100">
-                    {row.feature}
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                          <FaCarSide className="text-primary text-sm" />
-                        </div>
-                        <span className="font-semibold">Chiku Cabs</span>
-                      </div>
-                      <div className="text-green-600 font-medium">
-                        {row.chiku}
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                          <FaCarSide className="text-gray-500 text-sm" />
-                        </div>
-                        <span className="font-semibold text-gray-500">
-                          Others
-                        </span>
-                      </div>
-                      <div className="text-red-500 font-medium">
-                        {row.other}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Comparison Table - Desktop */}
-            <div className="hidden lg:block overflow-x-auto">
-              <table className="w-full border-separate border-spacing-0">
-                <thead>
-                  <tr>
-                    <th className="p-6 text-left bg-gray-900 rounded-tl-2xl text-white font-bold text-lg">
-                      Features
-                    </th>
-                    <th className="p-6 text-center bg-gradient-to-r from-primary to-primary/80 text-white font-bold text-lg">
-                      <div className="flex items-center justify-center gap-2 text-[#BE1E23]">
-                        <FaCarSide className="text-xl" />
-                        Chiku Cabs
-                        <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">
-                          Winner
-                        </span>
-                      </div>
-                    </th>
-                    <th className="p-6 text-center bg-gray-800 rounded-tr-2xl text-white font-bold text-lg">
-                      Other Services
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {COMPARISON_FEATURES.map((row, i) => {
-                    // Icon mapping for features
-                    const getFeatureIcon = (feature: string) => {
-                      switch (feature) {
-                        case "Professional Drivers":
-                          return <FaUserTie className="text-primary text-lg" />;
-                        case "Transparent Pricing":
-                          return <FaWallet className="text-primary text-lg" />;
-                        case "24/7 Customer Support":
-                          return <FaHeadset className="text-primary text-lg" />;
-                        case "Free Cancellation":
-                          return <FaSyncAlt className="text-primary text-lg" />;
-                        case "GPS Tracking":
-                          return (
-                            <FaMapMarkerAlt className="text-primary text-lg" />
-                          );
-                        case "Clean & Sanitized":
-                          return (
-                            <FaSprayCan className="text-primary text-lg" />
-                          );
-                        default:
-                          return (
-                            <FaCheckCircle className="text-primary text-lg" />
-                          );
-                      }
-                    };
-
-                    return (
-                      <tr
-                        key={i}
-                        className={`transition-all duration-300 hover:shadow-lg ${
-                          i % 2 === 0 ? "bg-white" : "bg-gray-50"
-                        }`}
-                      >
-                        <td className="p-5 font-bold text-gray-800 border-b border-gray-100">
-                          <div className="flex items-center gap-3">
-                            {getFeatureIcon(row.feature)}
-                            <span>{row.feature}</span>
+              {STEPS.map((item, i) => (
+                <div key={i} className="relative group">
+                  {/* Step Number Circle */}
+                  <div className="relative z-10">
+                    <div className="text-center">
+                      <div className="relative inline-block">
+                        <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-all duration-300">
+                          <div className="text-4xl font-black text-black">
+                            {item.step}
                           </div>
-                        </td>
-                        <td className="p-5 text-center border-b border-gray-100 bg-primary/5">
-                          <div className="inline-flex items-center gap-2 bg-green-100 px-3 py-1.5 rounded-full">
-                            <span className="text-green-600 font-bold">
-                              {row.chiku}
-                            </span>
-                            <FaCheckCircle className="text-green-600 text-sm" />
-                          </div>
-                        </td>
-                        <td className="p-5 text-center border-b border-gray-100">
-                          <div className="inline-flex items-center gap-2 bg-red-50 px-3 py-1.5 rounded-full">
-                            <FaTimesCircle className="text-red-500 text-sm" />
-                            <span className="text-red-500 font-medium">
-                              {row.other}
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                        </div>
+                        {/* Pulse Effect */}
+                        <div className="absolute inset-0 bg-primary rounded-2xl opacity-0 group-hover:opacity-20 animate-ping"></div>
+                      </div>
 
-            {/* Trust Badge */}
-            <div className="mt-12 text-center">
-              <div className="inline-flex items-center gap-3 bg-primary/5 px-6 py-3 rounded-full flex-wrap justify-center">
-                <div className="flex text-yellow-400 text-lg">
-                  {[...Array(5)].map((_, i) => (
-                    <FaStar key={i} className="fill-current" />
-                  ))}
-                </div>
-                <div className="h-4 w-px bg-gray-300 hidden sm:block"></div>
-                <span className="font-bold text-primary">
-                  Trusted by 50,000+ Customers
-                </span>
-                <div className="h-4 w-px bg-gray-300 hidden sm:block"></div>
-                <span className="text-sm text-muted-foreground flex items-center gap-1">
-                  <FaChartLine className="text-green-500" /> 4.9/5 Rating
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
+                      {/* Step Content */}
+                      <div className="mt-6 premium-card text-center group-hover:-translate-y-2 transition-all duration-300">
+                        <h3 className="font-bold text-xl mb-3 group-hover:text-primary transition-colors">
+                          {item.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
 
-        {/* Amenities - Modern Redesign */}
-        <section className="bg-gradient-to-b from-white to-gray-50 py-24 px-4">
-          <div className="max-w-7xl mx-auto">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
-                <span className="text-primary text-lg">✨</span>
-                <span className="section-badge !inline-block !mx-0">
-                  PREMIUM AMENITIES
-                </span>
-              </div>
-              <h2 className="section-title mb-4">
-                What's Inside Our Tempo Travellers
-                {city !== "India" ? ` in ${city}` : ""}
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Experience comfort, convenience, and luxury with our
-                thoughtfully equipped fleet
-              </p>
-            </div>
-
-            {/* Amenities Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {[
-                {
-                  icon: "❄️",
-                  title: "Powerful AC",
-                  desc: "High-capacity air conditioning that keeps the entire cabin cool even in peak summer.",
-                  gradient: "from-blue-500/10 to-cyan-500/10",
-                  color: "blue",
-                },
-                {
-                  icon: "💺",
-                  title: "Pushback Reclining Seats",
-                  desc: "Comfortable reclining seats with individual armrests for long journeys.",
-                  gradient: "from-purple-500/10 to-pink-500/10",
-                  color: "purple",
-                },
-                {
-                  icon: "🎵",
-                  title: "Music & Entertainment",
-                  desc: "Bluetooth-enabled music system with speakers throughout the cabin.",
-                  gradient: "from-green-500/10 to-emerald-500/10",
-                  color: "green",
-                },
-                {
-                  icon: "🧳",
-                  title: "Spacious Luggage",
-                  desc: "Dedicated luggage space and overhead carrier to store all your bags safely.",
-                  gradient: "from-orange-500/10 to-amber-500/10",
-                  color: "orange",
-                },
-                {
-                  icon: "🔌",
-                  title: "Charging Points",
-                  desc: "USB and mobile charging points at every seat row to keep devices powered.",
-                  gradient: "from-indigo-500/10 to-violet-500/10",
-                  color: "indigo",
-                },
-                {
-                  icon: "🪟",
-                  title: "Large Windows",
-                  desc: "Wide windows with curtains for scenic views and privacy during travel.",
-                  gradient: "from-teal-500/10 to-cyan-500/10",
-                  color: "teal",
-                },
-              ].map((amenity, i) => (
-                <div
-                  key={i}
-                  className="group relative bg-white rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-100 overflow-hidden"
-                >
-                  {/* Background Gradient on Hover */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${amenity.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                  />
-
-                  {/* Icon with Animation */}
-                  <div className="relative">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <span className="text-3xl">{amenity.icon}</span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="relative">
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                      {amenity.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">
-                      {amenity.desc}
-                    </p>
-                  </div>
-
-                  {/* Decorative Line */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Use Cases - Modern Grid Layout */}
-        <section className="py-24 px-4 bg-gradient-to-b from-white to-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
-                <span className="text-primary text-lg">🎯</span>
-                <span className="text-sm font-bold text-primary tracking-wide">
-                  USE CASES
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-black mb-4">
-                Perfect for Every{" "}
-                <span className="text-primary">Group Occasion</span>
-                {city !== "India" ? ` in ${city}` : ""}
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                From spiritual journeys to corporate retreats, we've got you
-                covered
-              </p>
-              <div className="w-20 h-1 bg-primary/30 mx-auto mt-6 rounded-full"></div>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: "🕉️",
-                  title: "Pilgrimages",
-                  desc: "Char Dham, Vaishno Devi, Golden Temple, Tirupati & more",
-                  color: "from-orange-500/10 to-red-500/10",
-                  borderColor: "border-orange-200",
-                  iconBg: "bg-orange-100",
-                  stat: "500+ Trips",
-                },
-                {
-                  icon: "💒",
-                  title: "Weddings",
-                  desc: "Baarat pickup, guest transfers, family travel & destination weddings",
-                  color: "from-pink-500/10 to-rose-500/10",
-                  borderColor: "border-pink-200",
-                  iconBg: "bg-pink-100",
-                  stat: "200+ Weddings",
-                },
-                {
-                  icon: "🏔️",
-                  title: "Hill Stations",
-                  desc: "Manali, Shimla, Nainital, Mussoorie, Munnar & Ooty",
-                  color: "from-blue-500/10 to-cyan-500/10",
-                  borderColor: "border-blue-200",
-                  iconBg: "bg-blue-100",
-                  stat: "1000+ Trips",
-                },
-                {
-                  icon: "🏢",
-                  title: "Corporate Outings",
-                  desc: "Team building, offsites, annual retreats & conference transfers",
-                  color: "from-indigo-500/10 to-purple-500/10",
-                  borderColor: "border-indigo-200",
-                  iconBg: "bg-indigo-100",
-                  stat: "300+ Events",
-                },
-                {
-                  icon: "🎓",
-                  title: "School/College Trips",
-                  desc: "Educational tours, sports events, picnics & excursion",
-                  color: "from-green-500/10 to-emerald-500/10",
-                  borderColor: "border-green-200",
-                  iconBg: "bg-green-100",
-                  stat: "150+ Trips",
-                },
-                {
-                  icon: "✈️",
-                  title: "Airport Transfers",
-                  desc: "Large group airport pickups, drops & flight tracking included",
-                  color: "from-purple-500/10 to-violet-500/10",
-                  borderColor: "border-purple-200",
-                  iconBg: "bg-purple-100",
-                  stat: "24/7 Service",
-                },
-              ].map((useCase, i) => (
-                <div
-                  key={i}
-                  className="group relative bg-white rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-100 overflow-hidden cursor-pointer"
-                >
-                  {/* Hover Gradient Background */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${useCase.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                  />
-
-                  <div className="relative">
-                    {/* Icon with Animation */}
-                    <div
-                      className={`w-16 h-16 rounded-2xl ${useCase.iconBg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <span className="text-3xl">{useCase.icon}</span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                      {useCase.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                      {useCase.desc}
-                    </p>
-
-                    {/* Stat Badge */}
-                    <div className="inline-flex items-center gap-2 text-xs font-semibold text-primary bg-primary/10 px-3 py-1.5 rounded-full">
-                      <span className="text-primary">✓</span>
-                      {useCase.stat}
+                      {/* Arrow Indicator (Desktop) */}
+                      {i < STEPS.length - 1 && (
+                        <div className="hidden md:block absolute top-12 -right-6 text-3xl text-primary/50 group-hover:text-primary transition-colors">
+                          →
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Trust Banner */}
-            <div className="mt-16 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-2xl p-6 text-center">
-              <div className="flex flex-wrap justify-center gap-8 items-center">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">🎉</span>
-                  <span className="font-semibold">10,000+ Happy Groups</span>
-                </div>
-                <div className="w-px h-6 bg-primary/20 hidden md:block"></div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">⭐</span>
-                  <span className="font-semibold">
-                    4.9 Rating (2000+ Reviews)
-                  </span>
-                </div>
-                <div className="w-px h-6 bg-primary/20 hidden md:block"></div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">🚐</span>
-                  <span className="font-semibold">
-                    50+ Tempo Travellers Fleet
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
         {/* Testimonials */}
         <section className="py-24 px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
               <div
                 className="section-badge mx-auto"
                 style={{ display: "inline-flex" }}
@@ -2022,34 +1436,100 @@ export default function TempoTravellerTemplate({
               <h2 className="section-title">
                 What Group Travelers in {city !== "India" ? city : "India"} Say
               </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
+                Real reviews from families, corporate teams, and pilgrimage
+                groups who traveled with us
+              </p>
             </div>
+
             <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: "Vikram & Family",
-                  text: "Booked a 16 seater for our Char Dham Yatra. The tempo was brand new with pushback seats. Driver was experienced with hill roads. Amazing trip!",
-                  rating: "★★★★★",
-                },
-                {
-                  name: "Rahul (Corporate)",
-                  text: "Used Chiku Cabs for our office team outing of 20 people. The 20-seater tempo was clean, spacious, and the driver was very courteous. Will use again!",
-                  rating: "★★★★★",
-                },
-                {
-                  name: "Priya Wedding Group",
-                  text: "Booked 2 tempo travellers for our wedding guest transfers. Both arrived on time, well-decorated, and the drivers handled everything professionally.",
-                  rating: "★★★★★",
-                },
-              ].map((review, i) => (
-                <div key={i} className="testimonial-card">
-                  <div className="testimonial-stars">{review.rating}</div>
-                  <p className="testimonial-text">"{review.text}"</p>
-                  <div className="testimonial-author">{review.name}</div>
-                  <div className="testimonial-route">
-                    Tempo Traveller Service
+              {/* Review 1 - Family Pilgrimage Trip */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "Booked a 16 seater tempo traveller for our family Char Dham
+                  Yatra. The vehicle was brand new with comfortable pushback
+                  seats. The driver was experienced with hill roads and very
+                  patient. Made our pilgrimage stress-free and memorable!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                    VK
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800">
+                      Vikram & Family
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      Char Dham Yatra • 16 Seater
+                    </p>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Review 2 - Corporate Team Outing */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "Used Chiku Cabs for our office team outing of 20 people. The
+                  20-seater tempo was spotless, spacious, and had great music
+                  system. The driver was very professional and punctual.
+                  Everyone in the team loved the experience!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                    RK
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800">
+                      Rahul (Corporate)
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      Team Outing • 20 Seater
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Review 3 - Wedding Guest Transfer */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "Booked 2 tempo travellers for our wedding guest transfers.
+                  Both arrived on time, well-decorated, and the drivers handled
+                  everything professionally. Our guests were very impressed with
+                  the comfort and service. Highly recommend for wedding events!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                    PM
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800">Priya Mehta</p>
+                    <p className="text-xs text-gray-500">
+                      Wedding Transfer • 2 Tempos
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

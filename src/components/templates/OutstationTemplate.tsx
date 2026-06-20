@@ -33,6 +33,7 @@ import toast from "react-hot-toast";
 import { cityCabRoutes } from "@/data/cityCabRoutes";
 import Link from "next/link";
 import { IoLocationSharp } from "react-icons/io5";
+import { CiClock1 } from "react-icons/ci";
 
 // --- Type Definitions ---
 interface FormData {
@@ -594,22 +595,22 @@ Please share the fare estimate.`;
                 </div>
 
                 {/* Trust Badges */}
-                <div className="flex flex-wrap gap-6 mt-8 pt-8 border-t border-white/20">
+                <div className="flex gap-6 mt-8 pt-8 border-t border-white/20">
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">✓</span>
                     <span className="text-sm">Best Price Guarantee</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl">🕐</span>
+                    <span className="text-2xl">
+                      <CiClock1 />
+                    </span>
                     <span className="text-sm">24/7 Support</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl">🚗</span>
+                    <span className="text-2xl">
+                      <FaCarSide />
+                    </span>
                     <span className="text-sm">Sanitized Cars</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">🛡️</span>
-                    <span className="text-sm">Insurance Covered</span>
                   </div>
                 </div>
               </div>

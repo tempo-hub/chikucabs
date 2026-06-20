@@ -12,6 +12,7 @@ import {
   FiArrowRight,
   FiCheck,
   FiStar,
+  FiChevronDown,
 } from "react-icons/fi";
 import {
   FaWhatsapp,
@@ -27,6 +28,7 @@ import {
   FaRegCalendarAlt,
   FaWallet,
   FaMedal,
+  FaStar,
 } from "react-icons/fa";
 import { MdFlightTakeoff, MdSupportAgent } from "react-icons/md";
 import { TbClock24 } from "react-icons/tb";
@@ -149,6 +151,84 @@ const STATS: StatItem[] = [
   { num: "Verified", label: "Local Drivers" },
 ];
 
+// --- About Section Data ---
+const ABOUT_STATS = [
+  { number: "800+", label: "Monthly Airport Trips", icon: <MdFlightTakeoff /> },
+  { number: "₹2M+", label: "Happy Customers", icon: <FaUsers /> },
+  { number: "4.9/5", label: "Average Rating", icon: <FaStar /> },
+  { number: "24/7", label: "Support Available", icon: <FaHeadset /> },
+];
+
+const ABOUT_FEATURES = [
+  {
+    icon: <FaShieldAlt />,
+    title: "Safety First",
+    description:
+      "All vehicles are sanitized, and drivers follow strict safety protocols.",
+  },
+  {
+    icon: <FaWallet />,
+    title: "Transparent Pricing",
+    description:
+      "No hidden charges. Get the exact fare estimate before booking.",
+  },
+  {
+    icon: <FaHeadset />,
+    title: "24/7 Customer Support",
+    description: "Our team is always available to assist you with any queries.",
+  },
+  {
+    icon: <FaMedal />,
+    title: "Trusted Service",
+    description:
+      "Over 1250+ satisfied customers trust us for airport transfers.",
+  },
+];
+
+// --- Sample FAQ Data ---
+const generateFAQs = (cityName: string, airportName: string): FAQ[] => [
+  {
+    id: 1,
+    question: `How do I book a ${cityName} airport taxi?`,
+    answer: `You can book your ${cityName} airport taxi by calling us at ${PHONE_NUMBER}, sending a WhatsApp message, or filling the booking form on this page. We provide instant confirmation and driver details.`,
+  },
+  {
+    id: 2,
+    question: `Do you provide flight tracking service?`,
+    answer: `Yes! Our professional drivers track your flight in real-time and adjust pickup time accordingly. If your flight is delayed, we'll be there when you arrive. Free 60-minute waiting period included.`,
+  },
+  {
+    id: 3,
+    question: `What types of vehicles are available for airport transfers?`,
+    answer: `We offer a range of vehicles including Swift Dzire (4 seater), Honda Amaze (4 seater), Maruti Ertiga (7 seater), Toyota Innova Crysta (7 seater), and Tempo Traveller (9-12 seater) for group transfers. Choose based on your group size and luggage.`,
+  },
+  {
+    id: 4,
+    question: `How much does a ${cityName} airport cab cost?`,
+    answer: `Our ${cityName} airport taxi fares start from ₹10/km. The final fare depends on vehicle type, distance, and time of travel. We offer transparent pricing with no hidden charges. Check our popular routes above for estimated fares.`,
+  },
+  {
+    id: 5,
+    question: `Is it safe to book airport cabs online?`,
+    answer: `Absolutely! We prioritize your safety. All our drivers are verified with proper background checks. Our vehicles are regularly sanitized and maintained. We also share driver details and GPS tracking with you before your trip.`,
+  },
+  {
+    id: 6,
+    question: `Can I cancel my airport cab booking?`,
+    answer: `Yes, you can cancel your booking up to 4 hours before pickup without any charges. Cancellations within 4 hours may attract minimal cancellation fees. Contact our support team for assistance.`,
+  },
+  {
+    id: 7,
+    question: `Do you provide cabs for early morning or late night flights?`,
+    answer: `Yes! We offer 24x7 service. Whether you have an early morning flight or a red-eye flight, we'll be there to pick you up. Our drivers are available round the clock.`,
+  },
+  {
+    id: 8,
+    question: `How can I pay for the airport taxi?`,
+    answer: `You can pay online via UPI, credit/debit cards, or pay directly to the driver. We accept cash and all digital payment methods. Advance payment is not required unless you need a special booking.`,
+  },
+];
+
 // --- Helper Functions ---
 const getVehicleDetails = (vehicle: string): VehicleDetails => {
   const lowerV = vehicle.toLowerCase();
@@ -221,6 +301,8 @@ export default function AirportCityPage({
   const cityRoutes = getRoutesByCity(cityKey);
   const pickupRoutes = getPickupRoutes(cityKey);
   const dropRoutes = getDropRoutes(cityKey);
+  const faqs = generateFAQs(cityName, airportName);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
@@ -1135,6 +1217,113 @@ export default function AirportCityPage({
           </div>
         </section>
 
+        {/* Customer Reviews Section */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <span className="text-primary font-bold text-sm uppercase">
+                TESTIMONIALS
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2">
+                What Our Customers Say
+              </h2>
+              <div className="flex justify-center items-center gap-2 mt-4">
+                <div className="flex text-yellow-400 text-xl">★★★★★</div>
+                <span className="font-bold">4.9</span>
+                <span className="text-gray-600">(1,250+ reviews)</span>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Review 1 */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "Excellent {cityName} airport taxi service! The driver was
+                  waiting at arrivals with a name board. Car was spotless and AC
+                  was perfect. Even with a 2-hour flight delay, the driver
+                  tracked my flight and was there when I landed. Highly
+                  recommend for airport pickups!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                    RK
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800">Rajesh Kumar</p>
+                    <p className="text-xs text-gray-500">
+                      {cityName} Airport Pickup
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Review 2 */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "Best airport drop service in {cityName}! Booked a cab for my
+                  4 AM flight. The driver arrived 15 minutes early and helped
+                  with luggage. Very professional, safe driving, and fixed
+                  pricing with no hidden charges. Will definitely use again!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                    PS
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800">Priya Sharma</p>
+                    <p className="text-xs text-gray-500">
+                      {cityName} Airport Drop
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Review 3 */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-4">
+                  "Amazing experience with Chiku Cabs for {cityName} airport
+                  transfer! Had a midnight flight and was worried about getting
+                  a cab. The driver was professional, car was comfortable, and
+                  pricing was reasonable. They even provided a child seat for my
+                  baby. 5-star service!"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                    AS
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800">Amit Singh</p>
+                    <p className="text-xs text-gray-500">
+                      Late Night {cityName} Airport
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Why Choose Us */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4">
@@ -1206,11 +1395,185 @@ export default function AirportCityPage({
           </div>
         </section>
 
+        {/* FAQ Section - Airport Specific */}
+        <section className="py-24 px-4" id="faq">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <div
+                className="section-badge mx-auto"
+                style={{ display: "inline-flex" }}
+              >
+                FAQ
+              </div>
+              <h2 className="section-title">
+                Frequently Asked Questions About {cityName} Airport Taxi
+              </h2>
+              <p className="text-gray-500 text-lg max-w-2xl mx-auto mt-4">
+                Find answers to common questions about booking airport cabs in{" "}
+                {cityName}. Get instant help for your airport transfers.
+              </p>
+            </div>
+
+            {[
+              {
+                q: `How do I book a ${cityName} airport taxi?`,
+                a: `Booking your ${cityName} airport taxi is simple! Call us at ${PHONE_NUMBER} or send a WhatsApp message with your flight details. You'll get an instant quote and confirmation. We also offer online booking through our website. No app download needed.`,
+              },
+              {
+                q: `Do you provide flight tracking for ${cityName} airport pickups?`,
+                a: `Yes! Our drivers track your flight in real-time using advanced flight tracking systems. If your flight is delayed or arrives early, we adjust the pickup time accordingly. You get a FREE 60-minute waiting period from the actual landing time.`,
+              },
+              {
+                q: `What types of vehicles are available for ${cityName} airport transfers?`,
+                a: `We offer a variety of vehicles for ${cityName} airport transfers including Swift Dzire (4 seater), Honda Amaze (4 seater), Maruti Ertiga (7 seater), Toyota Innova Crysta (7 seater), and Tempo Traveller (9-12 seater). Choose based on your group size and luggage requirements.`,
+              },
+              {
+                q: `How much does a ${cityName} airport cab cost?`,
+                a: `Our ${cityName} airport taxi fares start from ₹10/km. The final fare depends on the vehicle type, distance to your destination, and time of travel. We offer transparent pricing with no hidden charges. Check our popular routes above for estimated fares.`,
+              },
+              {
+                q: `Is it safe to book ${cityName} airport cabs with Chiku Cabs?`,
+                a: `Absolutely! Safety is our top priority. All our drivers are verified with background checks and police verification. Our vehicles are regularly sanitized, and we follow all safety protocols. We also share driver details and live GPS tracking with you before your trip.`,
+              },
+              {
+                q: `Can I cancel my ${cityName} airport cab booking?`,
+                a: `Yes, you can cancel your booking up to 4 hours before pickup without any charges. Cancellations within 4 hours may attract minimal cancellation fees. Contact our 24/7 support team at ${PHONE_NUMBER} for cancellation assistance.`,
+              },
+              {
+                q: `Do you provide cabs for early morning or late night flights at ${cityName} airport?`,
+                a: `Yes! We offer 24x7 service for ${cityName} airport. Whether you have a 4 AM flight or a midnight arrival, our drivers are available round the clock. We specialize in early morning and late night airport transfers.`,
+              },
+              {
+                q: `How can I pay for the ${cityName} airport taxi?`,
+                a: `You can pay online via UPI (Google Pay, PhonePe, Paytm), credit/debit cards, net banking, or pay directly to the driver. We accept both cash and digital payments. Advance payment is not required unless you need a special booking.`,
+              },
+              {
+                q: `Do you offer one-way airport taxi service in ${cityName}?`,
+                a: `Yes! We offer one-way airport taxi service in ${cityName} that can save you up to 50% compared to round-trip bookings. You only pay for the distance traveled from the airport to your destination.`,
+              },
+              {
+                q: `How early should I book a ${cityName} airport cab?`,
+                a: `We recommend booking at least 4-6 hours in advance for guaranteed availability. However, we also accept last-minute bookings based on vehicle availability. For early morning flights, we suggest booking the night before.`,
+              },
+            ].map((faq, i) => (
+              <details key={i} className="faq-item" id={`faq-${i}`}>
+                <summary>
+                  {faq.q}
+                  <span className="faq-chevron">▼</span>
+                </summary>
+                <div className="faq-answer">{faq.a}</div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* 📖 About Chiku Cabs Section - NEW */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left - Image */}
+              <div className="relative">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                  <img
+                    src="/cab.png"
+                    alt="About Chiku Cabs"
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6 text-white">
+                    <p className="text-2xl font-bold">Chiku Cabs</p>
+                    <p className="text-sm opacity-90">
+                      Your Trusted Airport Taxi Partner
+                    </p>
+                  </div>
+                </div>
+
+                {/* Experience Badge */}
+                <div className="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-2xl shadow-xl">
+                  <p className="text-4xl font-black">5+</p>
+                  <p className="text-sm font-semibold">Years of Service</p>
+                </div>
+              </div>
+
+              {/* Right - Content */}
+              <div>
+                <span className="inline-block text-primary font-semibold text-sm uppercase tracking-wider bg-primary/10 px-4 py-2 rounded-full mb-4">
+                  About Us
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+                  Your Trusted{" "}
+                  <span className="text-primary">Airport Taxi</span> Partner
+                </h2>
+                <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                  At Chiku Cabs, we understand that airport travel can be
+                  stressful. That's why we've built a reliable, professional,
+                  and customer-focused airport taxi service that you can count
+                  on.
+                </p>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  With over 5 years of experience, thousands of satisfied
+                  customers, and a fleet of well-maintained vehicles, we're
+                  committed to making your airport transfers seamless,
+                  comfortable, and affordable.
+                </p>
+
+                {/* About Stats */}
+                <div className="grid grid-cols-2 gap-6 mb-8">
+                  {ABOUT_STATS.map((stat, index) => (
+                    <div
+                      key={index}
+                      className="bg-white p-4 rounded-xl shadow-sm border border-gray-100"
+                    >
+                      <div className="flex items-center gap-2 text-primary text-2xl mb-2">
+                        {stat.icon}
+                      </div>
+                      <p className="text-2xl font-bold text-gray-800">
+                        {stat.number}
+                      </p>
+                      <p className="text-sm text-gray-500">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Features */}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {ABOUT_FEATURES.map((feature, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                        {feature.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-800 text-sm">
+                          {feature.title}
+                        </h4>
+                        <p className="text-xs text-gray-500">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <div className="mt-8">
+                  <a
+                    href={`tel:${PHONE_NUMBER}`}
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
+                  >
+                    Book Your Airport Cab Now →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
-        <section className="py-16 bg-[#BE1E23]">
-          <div className="max-w-4xl mx-auto px-4 text-center text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Book Your {cityName} Airport Cab?
+        <section className="py-20 px-4">
+          <div className="max-w-4xl mx-auto cta-banner">
+            <h2 className="text-4xl font-extrabold mb-4">
+              Ready to Book Your{" "}
+              <span className="text-[#BE1E23]">{cityName}</span> Airport Cab?
             </h2>
             <p className="text-lg opacity-90 mb-8">
               Call now for instant confirmation and best rates.

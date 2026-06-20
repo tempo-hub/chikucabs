@@ -562,9 +562,11 @@ Please share the best fare.`;
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                  <span className="text-primary">{vehicle}</span> Rental
+                  Local Sightseeing Cab Service
                   <br />
-                  Starting @ ₹{vehicleDetails.pricePerKm}/km
+                  <span className="text-primary">
+                    Starting at ₹{vehicleDetails?.pricePerKm || "10"}/km
+                  </span>
                 </h1>
 
                 <p className="text-lg mb-8 opacity-90 max-w-lg">

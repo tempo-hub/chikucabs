@@ -1,9 +1,6 @@
 import Link from "next/link";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
 import { ghaziabadRoutes } from "@/data/gzbRoutes";
 import { CalendarCheck, ShieldCheck, Bus, CreditCard } from "lucide-react";
-import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 
 export const metadata = {
   title: "Tempo Traveller from Ghaziabad | Affordable Group Booking",
@@ -16,8 +13,6 @@ export default function Page() {
 
   return (
     <div className="bg-background min-h-screen">
-      <Navbar />
-
       {/* Breadcrumb */}
       <nav className="flex flex-wrap items-center gap-2 max-w-7xl mx-auto px-4 py-6">
         <Link
@@ -663,12 +658,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <Footer />
-
-      {/* Whatsapp Float */}
-      <WhatsAppFloat />
     </div>
   );
 }
