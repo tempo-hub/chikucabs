@@ -280,12 +280,7 @@ export default function Page() {
               >
                 <div className="p-6">
                   <h3 className="text-2xl font-bold mb-4">
-                    <Link
-                      href={item.href}
-                      className="hover:text-primary hover:underline underline-offset-4"
-                    >
-                      {item.title}
-                    </Link>
+                    {item.title}
                   </h3>
 
                   <div className="space-y-3 text-muted-foreground">
@@ -319,7 +314,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Top Tempo Traveller Routes from Delhi */}
+      {/* Top Tempo Traveller Routes from Ghaziabad */}
       <section className="py-20 px-4 bg-muted/20 border-y">
         <div className="max-w-7xl mx-auto">
           {/* Top Content */}

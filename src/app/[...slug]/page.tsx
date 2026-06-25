@@ -470,6 +470,8 @@ export default async function DynamicRoutePage({
       "rameshwaram",
       "kanyakumari",
       "pondicherry",
+      "mirzapur",
+      "jaunpur",
     ];
 
     const slugValue = currentPath.replace(/^\/+/, "");

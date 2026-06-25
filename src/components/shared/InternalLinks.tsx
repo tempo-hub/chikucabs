@@ -104,10 +104,15 @@ export default function InternalLinks({ parsedData }: InternalLinksProps) {
   }
 
   // Filter routes that contain "-to-" to get only navigable route pages
-  const originCity = (parsedData.origin || "").toLowerCase();
+  const originCityLower = (parsedData.origin || "").toLowerCase();
+
+  const displayOrigin = originCityLower
+    .split(" ")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
 
   const routePages = (routeData as { url: string }[]).filter(
-    (r) => r.url.startsWith(`/${originCity}/`) && r.url.includes("-to-"),
+    (r) => r.url.startsWith(`/${originCityLower}/`) && r.url.includes("-to-"),
   );
 
   const nearbyUrls = getNearbyRoutes(currentUrl, routePages);
@@ -119,7 +124,7 @@ export default function InternalLinks({ parsedData }: InternalLinksProps) {
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
       <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
-        Explore More Routes from {originCity}
+        Explore More Routes from {displayOrigin}
       </h2>
 
       <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
@@ -130,8 +135,7 @@ export default function InternalLinks({ parsedData }: InternalLinksProps) {
         {nearbyUrls.map((url) => {
           const destination = getDestination(url);
 
-          // const dynamicUrl = `/${originCity.toLowerCase()}/tempo-traveller-hire-${originCity
-          //   .toLowerCase()
+          // const dynamicUrl = `/${originCityLower}/tempo-traveller-hire-${originCityLower
           //   .replace(/\s+/g, "-")}-to-${destination}`;
           const dynamicUrl = url;
 
@@ -142,7 +146,7 @@ export default function InternalLinks({ parsedData }: InternalLinksProps) {
               className="homepage-service-card group"
             >
               <h3 className="text-xl font-semibold mb-2">
-                {getAnchorText(dynamicUrl, originCity)}
+                {getAnchorText(dynamicUrl, displayOrigin)}
               </h3>
 
               <p className="text-muted-foreground mb-4">
