@@ -50,6 +50,10 @@ export const POPULAR_AIRPORT_CITIES: PopularAirportCity[] = [
   // --- Additional Notable Airports ---
   { name: "Nagpur", slug: "nagpur" },
   { name: "Ranchi", slug: "ranchi" },
+
+  // ---------Added Extra Route----------
+  { name: "Sarnath", slug: "sarnath" },
+  { name: "Mirzapur", slug: "mirzapur" },
 ];
 
 // Price calculation function
@@ -2371,6 +2375,416 @@ export const POPULAR_ROUTES: AirportRoute[] = [
     rating: 4.7,
     type: "drop",
     url: "/airport-cabs/bangalore-airport",
+  },
+
+  // ============================================
+  // SARNATH (VARANASI) AIRPORT - Pickup Routes (To Airport)
+  // ============================================
+  {
+    id: 157,
+    city: "Sarnath",
+    from: "Sarnath",
+    to: "Lal Bahadur Shastri International Airport", // Varanasi Airport
+    distance: "30 kms included",
+    distanceKm: 30,
+    time: "50 min (appx.)",
+    recommended: "dzire",
+    rating: 4.5,
+    type: "pickup",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+  {
+    id: 158,
+    city: "Sarnath",
+    from: "Sarnath Deer Park",
+    to: "Lal Bahadur Shastri International Airport",
+    distance: "31 kms included",
+    distanceKm: 31,
+    time: "55 min (appx.)",
+    recommended: "dzire",
+    rating: 4.4,
+    type: "pickup",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+  {
+    id: 159,
+    city: "Sarnath",
+    from: "Dhamekh Stupa",
+    to: "Lal Bahadur Shastri International Airport",
+    distance: "30 kms included",
+    distanceKm: 30,
+    time: "50 min (appx.)",
+    recommended: "dzire",
+    rating: 4.6,
+    type: "pickup",
+    url: "/airport-cabs/sarnath-airport",
+  },
+  {
+    id: 160,
+    city: "Sarnath",
+    from: "Sarnath Museum",
+    to: "Lal Bahadur Shastri International Airport",
+    distance: "30 kms included",
+    distanceKm: 30,
+    time: "50 min (appx.)",
+    recommended: "dzire",
+    rating: 4.3,
+    type: "pickup",
+    url: "/airport-cabs/sarnath-airport",
+  },
+
+  // ============================================
+  // SARNATH (VARANASI) AIRPORT - Drop Routes (From Airport)
+  // ============================================
+  {
+    id: 161,
+    city: "Sarnath",
+    from: "Lal Bahadur Shastri International Airport", // Varanasi Airport
+    to: "Sarnath",
+    distance: "30 kms included",
+    distanceKm: 30,
+    time: "50 min (appx.)",
+    recommended: "dzire",
+    rating: 4.5,
+    type: "drop",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+  {
+    id: 162,
+    city: "Sarnath",
+    from: "Lal Bahadur Shastri International Airport",
+    to: "Sarnath Deer Park",
+    distance: "31 kms included",
+    distanceKm: 31,
+    time: "55 min (appx.)",
+    recommended: "dzire",
+    rating: 4.4,
+    type: "drop",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+  {
+    id: 163,
+    city: "Sarnath",
+    from: "Lal Bahadur Shastri International Airport",
+    to: "Dhamekh Stupa",
+    distance: "30 kms included",
+    distanceKm: 30,
+    time: "50 min (appx.)",
+    recommended: "dzire",
+    rating: 4.6,
+    type: "drop",
+    url: "/airport-cabs/sarnath-airport",
+  },
+  {
+    id: 164,
+    city: "Sarnath",
+    from: "Lal Bahadur Shastri International Airport",
+    to: "Sarnath Museum",
+    distance: "30 kms included",
+    distanceKm: 30,
+    time: "50 min (appx.)",
+    recommended: "dzire",
+    rating: 4.3,
+    type: "drop",
+    url: "/airport-cabs/sarnath-airport",
+  },
+
+  // ============================================
+  // SARNATH TO PRAYAGRAJ AIRPORT - Pickup Routes
+  // ============================================
+  {
+    id: 165,
+    city: "Sarnath",
+    from: "Sarnath",
+    to: "Prayagraj Airport",
+    distance: "125 kms included",
+    distanceKm: 125,
+    time: "2 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.5,
+    type: "pickup",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // SARNATH TO PRAYAGRAJ AIRPORT - Drop Routes
+  // ============================================
+  {
+    id: 166,
+    city: "Sarnath",
+    from: "Prayagraj Airport",
+    to: "Sarnath",
+    distance: "125 kms included",
+    distanceKm: 125,
+    time: "2 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.5,
+    type: "drop",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // SARNATH TO AYODHYA AIRPORT - Pickup Routes
+  // ============================================
+  {
+    id: 167,
+    city: "Sarnath",
+    from: "Sarnath",
+    to: "Ayodhya Airport",
+    distance: "205 kms included",
+    distanceKm: 205,
+    time: "4 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.4,
+    type: "pickup",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // SARNATH TO AYODHYA AIRPORT - Drop Routes
+  // ============================================
+  {
+    id: 168,
+    city: "Sarnath",
+    from: "Ayodhya Airport",
+    to: "Sarnath",
+    distance: "205 kms included",
+    distanceKm: 205,
+    time: "4 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.4,
+    type: "drop",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // SARNATH TO GAYA AIRPORT - Pickup Routes
+  // ============================================
+  {
+    id: 169,
+    city: "Sarnath",
+    from: "Sarnath",
+    to: "Gaya Airport",
+    distance: "260 kms included",
+    distanceKm: 260,
+    time: "5 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.3,
+    type: "pickup",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // SARNATH TO GAYA AIRPORT - Drop Routes
+  // ============================================
+  {
+    id: 170,
+    city: "Sarnath",
+    from: "Gaya Airport",
+    to: "Sarnath",
+    distance: "260 kms included",
+    distanceKm: 260,
+    time: "5 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.3,
+    type: "drop",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // SARNATH TO LUCKNOW AIRPORT - Pickup Routes
+  // ============================================
+  {
+    id: 171,
+    city: "Sarnath",
+    from: "Sarnath",
+    to: "Lucknow Airport",
+    distance: "285 kms included",
+    distanceKm: 285,
+    time: "5 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.4,
+    type: "pickup",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // SARNATH TO LUCKNOW AIRPORT - Drop Routes
+  // ============================================
+  {
+    id: 172,
+    city: "Sarnath",
+    from: "Lucknow Airport",
+    to: "Sarnath",
+    distance: "285 kms included",
+    distanceKm: 285,
+    time: "5 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.4,
+    type: "drop",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // SARNATH TO PATNA AIRPORT - Pickup Routes
+  // ============================================
+  {
+    id: 173,
+    city: "Sarnath",
+    from: "Sarnath",
+    to: "Patna Airport",
+    distance: "290 kms included",
+    distanceKm: 290,
+    time: "5 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.3,
+    type: "pickup",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // SARNATH TO PATNA AIRPORT - Drop Routes
+  // ============================================
+  {
+    id: 174,
+    city: "Sarnath",
+    from: "Patna Airport",
+    to: "Sarnath",
+    distance: "290 kms included",
+    distanceKm: 290,
+    time: "5 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.3,
+    type: "drop",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // SARNATH TO KUSHINAGAR AIRPORT - Pickup Routes
+  // ============================================
+  {
+    id: 175,
+    city: "Sarnath",
+    from: "Sarnath",
+    to: "Kushinagar International Airport",
+    distance: "250 kms included",
+    distanceKm: 250,
+    time: "5 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.4,
+    type: "pickup",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // SARNATH TO KUSHINAGAR AIRPORT - Drop Routes
+  // ============================================
+  {
+    id: 176,
+    city: "Sarnath",
+    from: "Kushinagar International Airport",
+    to: "Sarnath",
+    distance: "250 kms included",
+    distanceKm: 250,
+    time: "5 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.4,
+    type: "drop",
+    url: "/airport-cabs/sarnath-airport",
+    popular: true,
+  },
+
+  // Mirzapur Airport Drop Routes
+  {
+    id: 1001,
+    city: "Mirzapur",
+    from: "Mirzapur",
+    to: "Varanasi Airport",
+    distance: "75 kms included",
+    distanceKm: 75,
+    time: "1 hr 45 min (appx.)",
+    recommended: "dzire",
+    rating: 4.8,
+    type: "pickup",
+    url: "/airport-cabs/varanasi-airport",
+    popular: true,
+  },
+
+  {
+    id: 1002,
+    city: "Mirzapur",
+    from: "Vindhyachal",
+    to: "Varanasi Airport",
+    distance: "82 kms included",
+    distanceKm: 82,
+    time: "2 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.8,
+    type: "pickup",
+    url: "/airport-cabs/varanasi-airport",
+    popular: true,
+  },
+
+  // drop routes for Mirzapur
+  {
+    id: 1003,
+    city: "Mirzapur",
+    from: "Varanasi Airport",
+    to: "Mirzapur",
+    distance: "75 kms included",
+    distanceKm: 75,
+    time: "1 hr 45 min (appx.)",
+    recommended: "dzire",
+    rating: 4.8,
+    type: "drop",
+    url: "/airport-cabs/varanasi-airport",
+    popular: true,
+  },
+  
+  {
+    id: 1004,
+    city: "Mirzapur",
+    from: "Varanasi Airport",
+    to: "Vindhyachal",
+    distance: "82 kms included",
+    distanceKm: 82,
+    time: "2 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.8,
+    type: "drop",
+    url: "/airport-cabs/varanasi-airport",
+    popular: true,
+  },
+
+  // Varanasi Airport Pickup location
+  {
+    id: 1004,
+    city: "Varanasi",
+    from: "Varanasi Airport",
+    to: "Vindhyachal",
+    distance: "82 kms included",
+    distanceKm: 82,
+    time: "2 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.8,
+    type: "pickup",
+    url: "/airport-cabs/varanasi-airport",
+    popular: true,
   },
 ];
 
