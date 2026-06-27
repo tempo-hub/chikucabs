@@ -447,6 +447,13 @@ Please share the fare estimate.`;
     }
   }, []); // Empty dependency array - runs once on mount
 
+  const CITY_DISPLAY_NAMES: Record<string, string> = {
+    "ddu-railway-station": "DDU Railway Station",
+    bhu: "BHU",
+    "pt-deen-dayal-upadhyaya-junction-ddu":
+      "Pt. Deen Dayal Upadhyaya Junction (DDU)",
+  };
+
   return (
     <>
       <Head>
@@ -1327,8 +1334,14 @@ Please share the fare estimate.`;
               }[];
               // Show first 12 destinations per city
               const displayRoutes = cityRoutes.slice(0, 12);
+              // const cityName =
+              //   cityKey.charAt(0).toUpperCase() + cityKey.slice(1);
               const cityName =
-                cityKey.charAt(0).toUpperCase() + cityKey.slice(1);
+                CITY_DISPLAY_NAMES[cityKey] ??
+                cityKey
+                  .split("-")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" ");
 
               return (
                 <div

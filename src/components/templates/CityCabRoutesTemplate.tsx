@@ -15,7 +15,12 @@ const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
 
+const CITY_DISPLAY_NAMES: Record<string, string> = {
+  "ddu-railway-station": "DDU Railway Station",
+};
+
 const formatCityName = (cityName: string) => {
+  if (CITY_DISPLAY_NAMES[cityName]) return CITY_DISPLAY_NAMES[cityName];
   return cityName
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -31,7 +36,13 @@ const STATS: StatItem[] = [
 
 export default function CityCabRoutesTemplate({ city }: { city: string }) {
   const routes =
-    cityCabRoutes[city.toLowerCase() as keyof typeof cityCabRoutes] || [];
+    cityCabRoutes[city as keyof typeof cityCabRoutes] ||
+    cityCabRoutes[
+      (Object.keys(cityCabRoutes).find(
+        (k) => k.toLowerCase() === city.toLowerCase(),
+      ) || city) as keyof typeof cityCabRoutes
+    ] ||
+    [];
 
   const formattedCity = formatCityName(city);
 

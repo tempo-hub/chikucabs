@@ -71,11 +71,26 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
   // 2. Driver Service parsing
   if (lowerSegment.includes("driver") || lowerSegment.includes("chauffeur")) {
     routeType = "Driver Service";
-    const inMatch = lowerSegment.match(/-in-([a-z0-9]+)/i);
+    const inMatch = lowerSegment.match(/-in-(.+)$/i);
     if (inMatch) {
       origin = inMatch[1];
     } else if (lowerSegment.includes("-")) {
-      const possibleCity = lowerSegment.split("-").pop() || "";
+      let beforeCity = lowerSegment;
+      const prefixesToRemove = [
+        "hire-driver-in-",
+        "hire-driver-",
+        "driver-in-",
+        "driver-",
+        "chauffeur-in-",
+        "chauffeur-",
+      ];
+      for (const prefix of prefixesToRemove) {
+        if (beforeCity.startsWith(prefix)) {
+          beforeCity = beforeCity.substring(prefix.length);
+          break;
+        }
+      }
+      const possibleCity = beforeCity;
       if (
         !["driver", "chauffeur", "hire", "service", "rent"].includes(
           possibleCity,
@@ -125,12 +140,34 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
         .replace(/-cab$/, "")
         .replace(/-taxi$/, "");
 
-      origin = beforeToWords[beforeToWords.length - 1];
+      let beforeTo = parts[0];
+      const prefixesToRemove = [
+        "tempo-traveller-hire-",
+        "tempo-traveller-",
+        "innova-crysta-hire-",
+        "innova-crysta-",
+        "innova-hire-",
+        "innova-",
+        "cab-hire-",
+        "cab-booking-",
+        "cab-book-",
+        "taxi-hire-",
+        "taxi-booking-",
+        "taxi-book-",
+        "hire-",
+        "book-",
+        "cab-",
+        "taxi-",
+      ];
+      for (const prefix of prefixesToRemove) {
+        if (beforeTo.startsWith(prefix)) {
+          beforeTo = beforeTo.substring(prefix.length);
+          break;
+        }
+      }
 
-      destination = afterTo
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
+      origin = beforeTo;
+      destination = afterTo;
     }
   }
 
@@ -161,8 +198,8 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
     routeType = "Local Service";
 
     // Example: "tempo-traveller-in-delhi", "cabs-from-airport"
-    const inMatch = lowerSegment.match(/-in-([a-z0-9]+)/i);
-    const fromMatch = lowerSegment.match(/-from-([a-z0-9]+)/i);
+    const inMatch = lowerSegment.match(/-in-(.+)$/i);
+    const fromMatch = lowerSegment.match(/-from-(.+)$/i);
 
     if (inMatch) {
       origin = inMatch[1];
@@ -174,8 +211,29 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
       origin = slugs[0];
     } else {
       // It's a single slug with a city name at the end, like tempo-traveller-surat
-      const words = lowerSegment.split("-");
-      origin = words[words.length - 1];
+      let beforeCity = lowerSegment;
+      const prefixesToRemove = [
+        "tempo-traveller-for-rent-in-",
+        "tempo-traveller-on-rent-in-",
+        "tempo-traveller-on-rent-",
+        "tempo-traveller-hire-",
+        "tempo-traveller-",
+        "innova-crysta-on-rent-",
+        "innova-crysta-",
+        "innova-on-rent-",
+        "innova-",
+        "cab-on-rent-",
+        "taxi-on-rent-",
+        "hire-driver-in-",
+        "hire-",
+      ];
+      for (const prefix of prefixesToRemove) {
+        if (beforeCity.startsWith(prefix)) {
+          beforeCity = beforeCity.substring(prefix.length);
+          break;
+        }
+      }
+      origin = beforeCity;
     }
   }
   // 4. General Generic Corporate/Service Pages
@@ -190,8 +248,13 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
   const capitalize = (str: string | null) =>
     str
       ? str
+          .replace(/-/g, " ")
           .split(" ")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .map((word) => {
+            const lower = word.toLowerCase();
+            if (lower === "ddu") return "DDU";
+            return word.charAt(0).toUpperCase() + word.slice(1);
+          })
           .join(" ")
       : str;
 

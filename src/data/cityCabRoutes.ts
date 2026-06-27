@@ -7,6 +7,10 @@ type CityDestinations = {
   [key: string]: Destination[];
 };
 
+const CITY_DISPLAY_NAMES: Record<string, string> = {
+  "ddu-railway-station": "DDU Railway Station",
+};
+
 const cityDestinations: CityDestinations = {
   varanasi: [
     { to: "Ayodhya", distance: 220 },
@@ -3053,6 +3057,64 @@ const cityDestinations: CityDestinations = {
     { to: "Pt. Deen Dayal Upadhyaya Junction (DDU)", distance: 22 },
     { to: "Varanasi Junction Railway Station", distance: 10 },
   ],
+
+  "ddu-railway-station": [
+    { to: "Dhanapur", distance: 25 },
+    { to: "Shahabganj", distance: 38 },
+    { to: "Baburi", distance: 18 },
+    { to: "Kamalpur", distance: 45 },
+    { to: "Jaunpur", distance: 80 },
+    { to: "Ghazipur", distance: 95 },
+    { to: "Mau", distance: 130 },
+    { to: "Ahraura", distance: 40 },
+    { to: "Kaimur", distance: 55 },
+    { to: "Latif Shah Dam", distance: 50 },
+    { to: "Devdari Waterfall", distance: 95 },
+    { to: "Chunar", distance: 32 },
+    { to: "Windham Falls", distance: 85 },
+    { to: "Robertsganj", distance: 90 },
+    { to: "Renukoot", distance: 160 },
+    { to: "Obra", distance: 125 },
+    { to: "Rihand Nagar", distance: 180 },
+    { to: "Sonbhadra", distance: 95 },
+    { to: "Dudhi", distance: 210 },
+    { to: "Anpara", distance: 175 },
+    { to: "Pipri", distance: 185 },
+    { to: "Myorpur", distance: 195 },
+    { to: "Patna", distance: 240 },
+    { to: "Buxar", distance: 120 },
+    { to: "Nabinagar", distance: 165 },
+    { to: "Hajipur", distance: 250 },
+    { to: "Muzaffarpur", distance: 310 },
+    { to: "Darbhanga", distance: 370 },
+    { to: "Ballia", distance: 160 },
+    { to: "Azamgarh", distance: 125 },
+    { to: "Gorakhpur", distance: 240 },
+    { to: "Deoria", distance: 195 },
+    { to: "Lucknow", distance: 310 },
+    { to: "Kanpur", distance: 400 },
+    { to: "Chitrakoot", distance: 255 },
+    { to: "Mathura", distance: 715 },
+    { to: "Delhi", distance: 825 },
+    { to: "Noida", distance: 795 },
+    { to: "Agra", distance: 655 },
+    { to: "Gurgaon", distance: 840 },
+    { to: "Sitamarhi", distance: 430 },
+    { to: "Janakpur", distance: 500 },
+    { to: "Ranchi", distance: 470 },
+    { to: "Hazaribagh", distance: 340 },
+    { to: "Dhanbad", distance: 280 },
+    { to: "Bokaro", distance: 340 },
+    { to: "Asansol", distance: 340 },
+    { to: "Kolkata", distance: 690 },
+    { to: "Jamshedpur", distance: 390 },
+    { to: "Japla", distance: 180 },
+    { to: "Palamu", distance: 250 },
+    { to: "Sultanpur", distance: 225 },
+    { to: "Amethi", distance: 210 },
+    { to: "Raebareli", distance: 250 },
+    { to: "Banda", distance: 350 },
+  ],
 };
 
 function slugify(text: string) {
@@ -3075,7 +3137,7 @@ export const cityCabRoutes = Object.fromEntries(
 
       return {
         url: `/${fromSlug}/${fromSlug}-to-${toSlug}-cab-fare`,
-        from: capitalize(cityKey),
+        from: CITY_DISPLAY_NAMES[cityKey] || capitalize(cityKey),
         to: item.to,
         distance: item.distance,
       };

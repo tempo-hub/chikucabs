@@ -473,6 +473,7 @@ export default async function DynamicRoutePage({
       "mirzapur",
       "jaunpur",
       "sarnath",
+      "ddu-railway-station",
     ];
 
     const slugValue = currentPath.replace(/^\/+/, "");
