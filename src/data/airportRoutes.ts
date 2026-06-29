@@ -54,6 +54,8 @@ export const POPULAR_AIRPORT_CITIES: PopularAirportCity[] = [
   // ---------Added Extra Route----------
   { name: "Sarnath", slug: "sarnath" },
   { name: "Mirzapur", slug: "mirzapur" },
+  { name: "Varanasi", slug: "varanasi" },
+  { name: "DDU Railway Station", slug: "ddu-railway-station" },
 ];
 
 // Price calculation function
@@ -2052,7 +2054,7 @@ export const POPULAR_ROUTES: AirportRoute[] = [
   },
 
   // ============================================
-  // BANGALORE AIRPORT - Pickup Routes (To Airport)
+  // BANGALORE AIRPORT - Pickup Routes
   // ============================================
   {
     id: 59,
@@ -2215,7 +2217,7 @@ export const POPULAR_ROUTES: AirportRoute[] = [
   },
 
   // ============================================
-  // BANGALORE AIRPORT - Drop Routes (From Airport)
+  // BANGALORE AIRPORT - Drop Routes
   // ============================================
   {
     id: 71,
@@ -2378,13 +2380,13 @@ export const POPULAR_ROUTES: AirportRoute[] = [
   },
 
   // ============================================
-  // SARNATH (VARANASI) AIRPORT - Pickup Routes (To Airport)
+  // SARNATH (VARANASI) AIRPORT - Pickup Routes
   // ============================================
   {
     id: 157,
     city: "Sarnath",
     from: "Sarnath",
-    to: "Lal Bahadur Shastri International Airport", // Varanasi Airport
+    to: "Lal Bahadur Shastri International Airport",
     distance: "30 kms included",
     distanceKm: 30,
     time: "50 min (appx.)",
@@ -2436,7 +2438,7 @@ export const POPULAR_ROUTES: AirportRoute[] = [
   },
 
   // ============================================
-  // SARNATH (VARANASI) AIRPORT - Drop Routes (From Airport)
+  // SARNATH (VARANASI) AIRPORT - Drop Routes
   // ============================================
   {
     id: 161,
@@ -2755,7 +2757,7 @@ export const POPULAR_ROUTES: AirportRoute[] = [
     url: "/airport-cabs/varanasi-airport",
     popular: true,
   },
-  
+
   {
     id: 1004,
     city: "Mirzapur",
@@ -2786,12 +2788,177 @@ export const POPULAR_ROUTES: AirportRoute[] = [
     url: "/airport-cabs/varanasi-airport",
     popular: true,
   },
+
+  // Varanasi Airport Drop location
+  {
+    id: 1004,
+    city: "Varanasi",
+    from: "Vindhyachal",
+    to: "Varanasi Airport",
+    distance: "82 kms included",
+    distanceKm: 82,
+    time: "2 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.8,
+    type: "drop",
+    url: "/airport-cabs/varanasi-airport",
+    popular: true,
+  },
+
+  // ============================================
+  // DDU RAILWAY STATION - Airport Cab Routes
+  // (Pt. Deen Dayal Upadhyaya Junction)
+  // ============================================
+  // DDU RAILWAY STATION - Airport Pickup Routes
+
+  {
+    id: 1005,
+    city: "DDU Railway Station",
+    from: "DDU Railway Station",
+    to: "Varanasi Airport",
+    distance: "28 kms included",
+    distanceKm: 28,
+    time: "45 min (appx.)",
+    recommended: "dzire",
+    rating: 4.7,
+    type: "drop",
+    url: "/airport-cabs/ddu-railway-station-airport",
+    popular: true,
+  },
+  {
+    id: 1006,
+    city: "DDU Railway Station",
+    from: "DDU Railway Station",
+    to: "Prayagraj Airport",
+    distance: "135 kms included",
+    distanceKm: 135,
+    time: "2 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.6,
+    type: "drop",
+    url: "/airport-cabs/ddu-railway-station-airport",
+    popular: true,
+  },
+  {
+    id: 1007,
+    city: "DDU Railway Station",
+    from: "DDU Railway Station",
+    to: "Patna Airport",
+    distance: "235 kms included",
+    distanceKm: 235,
+    time: "4 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.6,
+    type: "drop",
+    url: "/airport-cabs/ddu-railway-station-airport",
+    popular: true,
+  },
+  {
+    id: 1008,
+    city: "DDU Railway Station",
+    from: "DDU Railway Station",
+    to: "Gaya Airport",
+    distance: "255 kms included",
+    distanceKm: 255,
+    time: "5 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.5,
+    type: "drop",
+    url: "/airport-cabs/ddu-railway-station-airport",
+    popular: true,
+  },
+  {
+    id: 1009,
+    city: "DDU Railway Station",
+    from: "DDU Railway Station",
+    to: "Lucknow Airport",
+    distance: "315 kms included",
+    distanceKm: 315,
+    time: "6 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.6,
+    type: "drop",
+    url: "/airport-cabs/ddu-railway-station-airport",
+    popular: true,
+  },
+
+  // DDU RAILWAY STATION - Airport Pickup Routes
+  {
+    id: 1010,
+    city: "DDU Railway Station",
+    from: "Varanasi Airport",
+    to: "DDU Railway Station",
+    distance: "28 kms included",
+    distanceKm: 28,
+    time: "45 min (appx.)",
+    recommended: "dzire",
+    rating: 4.7,
+    type: "pickup",
+    url: "/airport-cabs/ddu-railway-station-airport",
+    popular: true,
+  },
+  {
+    id: 1011,
+    city: "DDU Railway Station",
+    from: "Prayagraj Airport",
+    to: "DDU Railway Station",
+    distance: "135 kms included",
+    distanceKm: 135,
+    time: "2 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.6,
+    type: "pickup",
+    url: "/airport-cabs/ddu-railway-station-airport",
+    popular: true,
+  },
+  {
+    id: 1012,
+    city: "DDU Railway Station",
+    from: "Patna Airport",
+    to: "DDU Railway Station",
+    distance: "235 kms included",
+    distanceKm: 235,
+    time: "4 hr 30 min (appx.)",
+    recommended: "dzire",
+    rating: 4.6,
+    type: "pickup",
+    url: "/airport-cabs/ddu-railway-station-airport",
+    popular: true,
+  },
+  {
+    id: 1013,
+    city: "DDU Railway Station",
+    from: "Gaya Airport",
+    to: "DDU Railway Station",
+    distance: "255 kms included",
+    distanceKm: 255,
+    time: "5 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.5,
+    type: "pickup",
+    url: "/airport-cabs/ddu-railway-station-airport",
+    popular: true,
+  },
+  {
+    id: 1014,
+    city: "DDU Railway Station",
+    from: "Lucknow Airport",
+    to: "DDU Railway Station",
+    distance: "315 kms included",
+    distanceKm: 315,
+    time: "6 hr (appx.)",
+    recommended: "dzire",
+    rating: 4.6,
+    type: "pickup",
+    url: "/airport-cabs/ddu-railway-station-airport",
+    popular: true,
+  },
 ];
 
 // Helper functions
 export const getRoutesByCity = (city: string): AirportRoute[] => {
   return POPULAR_ROUTES.filter(
-    (route) => route.city.toLowerCase() === city.toLowerCase(),
+    (route) => route.city.toLowerCase().replace(/-/g, " ") === city.toLowerCase().replace(/-/g, " "),
   );
 };
 
@@ -2801,14 +2968,14 @@ export const getRoutesByCityAndType = (
 ): AirportRoute[] => {
   return POPULAR_ROUTES.filter(
     (route) =>
-      route.city.toLowerCase() === city.toLowerCase() && route.type === type,
+      route.city.toLowerCase().replace(/-/g, " ") === city.toLowerCase().replace(/-/g, " ") && route.type === type,
   );
 };
 
 export const getPopularRoutesByCity = (city: string): AirportRoute[] => {
   return POPULAR_ROUTES.filter(
     (route) =>
-      route.city.toLowerCase() === city.toLowerCase() && route.popular === true,
+      route.city.toLowerCase().replace(/-/g, " ") === city.toLowerCase().replace(/-/g, " ") && route.popular === true,
   );
 };
 

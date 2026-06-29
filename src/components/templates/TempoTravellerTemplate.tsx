@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { CiClock1 } from "react-icons/ci";
 import { IoLocationSharp } from "react-icons/io5";
 import routeData from "@/data/routeData.json";
+import { CITY_DISPLAY_NAMES } from "@/data/cityCabRoutes";
 import {
   FaCarSide,
   FaUserTie,
@@ -1296,7 +1297,15 @@ Please share the best fare.`;
               duration-300
             "
                   >
-                    <span className="capitalize">{cityKey}</span>
+                    <span className="capitalize">
+                      {CITY_DISPLAY_NAMES[cityKey] ??
+                        cityKey
+                          .split("-")
+                          .map(
+                            (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                          )
+                          .join(" ")}
+                    </span>
                   </a>
                 ))}
               </div>
@@ -1305,7 +1314,11 @@ Please share the best fare.`;
             {/* Destination Cards by City - ALL ROUTES SHOWN */}
             {Object.entries(groupedTempoRoutes).map(([cityKey, routes]) => {
               const cityName =
-                cityKey.charAt(0).toUpperCase() + cityKey.slice(1);
+                CITY_DISPLAY_NAMES[cityKey] ??
+                cityKey
+                  .split("-")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" ");
 
               return (
                 <div

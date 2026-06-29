@@ -7,8 +7,11 @@ type CityDestinations = {
   [key: string]: Destination[];
 };
 
-const CITY_DISPLAY_NAMES: Record<string, string> = {
+export const CITY_DISPLAY_NAMES: Record<string, string> = {
   "ddu-railway-station": "DDU Railway Station",
+  bhu: "BHU",
+  "pt-deen-dayal-upadhyaya-junction-ddu":
+    "Pt. Deen Dayal Upadhyaya Junction (DDU)",
 };
 
 const cityDestinations: CityDestinations = {
@@ -3114,6 +3117,33 @@ const cityDestinations: CityDestinations = {
     { to: "Amethi", distance: 210 },
     { to: "Raebareli", distance: 250 },
     { to: "Banda", distance: 350 },
+
+    { to: "Mahoba", distance: 390 },
+    { to: "Rewa", distance: 235 },
+    { to: "Satna", distance: 210 },
+    { to: "Khajuraho", distance: 385 },
+    { to: "Panna", distance: 315 },
+    { to: "Nalanda", distance: 285 },
+    { to: "Rajgir", distance: 300 },
+    { to: "Aurangabad (Bihar)", distance: 160 },
+    { to: "Koderma", distance: 210 },
+    { to: "Daltonganj", distance: 260 },
+    { to: "Netarhat", distance: 335 },
+    { to: "Madhupur", distance: 310 },
+    { to: "Manda", distance: 120 },
+    { to: "Jungiganj", distance: 45 },
+    { to: "Aurai", distance: 35 },
+    { to: "Gopiganj", distance: 55 },
+    { to: "Kachhwa", distance: 25 },
+    { to: "Bhadohi", distance: 45 },
+    { to: "Chandauli", distance: 18 },
+    { to: "Chainpur", distance: 50 },
+    { to: "Lohta", distance: 25 },
+    { to: "Pindra", distance: 35 },
+    { to: "Vyas Nagar", distance: 8 },
+    { to: "Sita Samahit Sthal", distance: 70 },
+    { to: "BHU Trauma Centre", distance: 19 },
+    { to: "Sir Sunderlal Hospital", distance: 19 },
   ],
 };
 

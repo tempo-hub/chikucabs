@@ -30,7 +30,7 @@ import {
   FaMapMarkedAlt,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
-import { cityCabRoutes } from "@/data/cityCabRoutes";
+import { cityCabRoutes, CITY_DISPLAY_NAMES } from "@/data/cityCabRoutes";
 import Link from "next/link";
 import { IoLocationSharp } from "react-icons/io5";
 import { CiClock1 } from "react-icons/ci";
@@ -446,13 +446,6 @@ Please share the fare estimate.`;
       calculateFare(); // This already includes ₹500 driver charge
     }
   }, []); // Empty dependency array - runs once on mount
-
-  const CITY_DISPLAY_NAMES: Record<string, string> = {
-    "ddu-railway-station": "DDU Railway Station",
-    bhu: "BHU",
-    "pt-deen-dayal-upadhyaya-junction-ddu":
-      "Pt. Deen Dayal Upadhyaya Junction (DDU)",
-  };
 
   return (
     <>
@@ -1317,7 +1310,13 @@ Please share the fare estimate.`;
         "
                   >
                     <span className="capitalize">
-                      {cityKey.charAt(0).toUpperCase() + cityKey.slice(1)}
+                      {CITY_DISPLAY_NAMES[cityKey] ??
+                        cityKey
+                          .split("-")
+                          .map(
+                            (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                          )
+                          .join(" ")}
                     </span>
                   </a>
                 ))}

@@ -1086,24 +1086,46 @@ export default function AirportCityPage({
 
             {/* City Image Grid - 3 columns as shown in image */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Column 1 - Delhi */}
-              <Link
-                href="/airport-cabs/delhi-airport"
-                className="group relative overflow-hidden rounded-2xl aspect-[4/5] md:aspect-[3/4] block"
-              >
-                <img
-                  src="/delhi-airport.jpg"
-                  alt="Delhi Airport Transfer"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-white text-2xl font-bold group-hover:text-primary transition-colors">
-                    Delhi Airport Transfer
-                  </h3>
-                </div>
-              </Link>
+              {/* Column 1 - Delhi & Varanasi */}
+              <div className="flex flex-col gap-4">
+                {/* Delhi */}
+                <Link
+                  href="/airport-cabs/delhi-airport"
+                  className="group relative overflow-hidden rounded-2xl aspect-[4/5] block flex-1"
+                >
+                  <img
+                    src="/delhi-airport.jpg"
+                    alt="Delhi Airport Transfer"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-white text-2xl font-bold group-hover:text-primary transition-colors">
+                      Delhi Airport Transfer
+                    </h3>
+                  </div>
+                </Link>
+
+                {/* Varanasi */}
+                <Link
+                  href="/airport-cabs/varanasi-airport"
+                  className="group relative overflow-hidden rounded-2xl aspect-[4/3] block flex-1"
+                >
+                  <img
+                    src="/varanasi-airport.jpg"
+                    alt="Varanasi Airport Transfer"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <h3 className="text-white text-xl font-bold group-hover:text-primary transition-colors">
+                      Varanasi Airport Transfer
+                    </h3>
+                  </div>
+                </Link>
+              </div>
 
               {/* Column 2 - Mumbai & Chennai (Stacked) */}
               <div className="flex flex-col gap-4">

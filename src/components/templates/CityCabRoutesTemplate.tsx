@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { cityCabRoutes } from "@/data/cityCabRoutes";
+import { cityCabRoutes, CITY_DISPLAY_NAMES } from "@/data/cityCabRoutes";
 import EEATSection from "@/components/shared/EEATSection";
 import { MapPin } from "lucide-react";
 
@@ -14,10 +14,6 @@ const WHATSAPP_NUMBER = "918448445504";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
-
-const CITY_DISPLAY_NAMES: Record<string, string> = {
-  "ddu-railway-station": "DDU Railway Station",
-};
 
 const formatCityName = (cityName: string) => {
   if (CITY_DISPLAY_NAMES[cityName]) return CITY_DISPLAY_NAMES[cityName];

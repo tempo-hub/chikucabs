@@ -38,7 +38,7 @@ import {
 } from "react-icons/fa";
 import { CiClock1 } from "react-icons/ci";
 import toast from "react-hot-toast";
-import { cityCabRoutes } from "@/data/cityCabRoutes";
+import { cityCabRoutes, CITY_DISPLAY_NAMES } from "@/data/cityCabRoutes";
 import Link from "next/link";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaLocationDot, FaRegClock } from "react-icons/fa6";
@@ -1339,7 +1339,13 @@ Please share the best fare.`;
                 "
                   >
                     <span className="capitalize">
-                      {cityKey.charAt(0).toUpperCase() + cityKey.slice(1)}
+                      {CITY_DISPLAY_NAMES[cityKey] ??
+                        cityKey
+                          .split("-")
+                          .map(
+                            (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                          )
+                          .join(" ")}
                     </span>
                   </a>
                 ))}
@@ -1357,7 +1363,11 @@ Please share the best fare.`;
               // Show first 12 destinations per city
               const displayRoutes = cityRoutes.slice(0, 12);
               const cityName =
-                cityKey.charAt(0).toUpperCase() + cityKey.slice(1);
+                CITY_DISPLAY_NAMES[cityKey] ??
+                cityKey
+                  .split("-")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" ");
 
               return (
                 <div
