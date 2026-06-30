@@ -504,7 +504,7 @@ export default function AirportCityPage({
                   <br />
                   <span className="text-primary">Book Now & Save 10%</span>
                   <br />
-                  Starting @ ₹{vehicleDetails.pricePerKm}/km
+                  Starting at ₹{vehicleDetails.pricePerKm}/km
                 </h1>
 
                 <p className="text-lg mb-8 opacity-90 max-w-lg">
@@ -1589,6 +1589,40 @@ export default function AirportCityPage({
             </div>
           </div>
         </section>
+
+        {/* Other Airport Routes Section */}
+        {POPULAR_AIRPORT_CITIES && POPULAR_AIRPORT_CITIES.length > 0 && (
+          <section className="py-16 bg-gray-50 border-t border-gray-100">
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="text-center mb-10">
+                <h2 className="text-3xl font-bold text-gray-800">
+                  Other Popular Airport Taxi Routes
+                </h2>
+                <p className="text-gray-500 mt-2">
+                  Book reliable airport transfers in other major cities.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {POPULAR_AIRPORT_CITIES.filter((city) => city.slug !== cityKey)
+                  .slice(0, 12)
+                  .map((city, index) => (
+                    <Link
+                      key={index}
+                      href={`/airport-cabs/${city.slug}-airport`}
+                      className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:border-primary hover:shadow-md transition-all group flex flex-col items-center justify-center gap-2"
+                    >
+                      <span className="text-2xl opacity-80 group-hover:text-primary transition-colors">
+                        ✈️
+                      </span>
+                      <p className="font-semibold text-gray-700 group-hover:text-primary">
+                        {city.name} Airport
+                      </p>
+                    </Link>
+                  ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* CTA Section */}
         <section className="py-20 px-4">

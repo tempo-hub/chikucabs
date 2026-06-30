@@ -667,7 +667,7 @@ Please share the best fare.`;
                   <br />
                   <span className="text-primary">You Just Relax.</span>
                   <br />
-                  Starting @ ₹{vehicleDetails.pricePerKm}/km
+                  Starting at ₹{vehicleDetails.pricePerKm}/km
                 </h1>
 
                 <p className="text-lg mb-8 opacity-90 max-w-lg">
