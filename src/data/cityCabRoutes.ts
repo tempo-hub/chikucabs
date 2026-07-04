@@ -3147,6 +3147,9 @@ const cityDestinations: CityDestinations = {
   ],
 };
 
+cityDestinations["ramnagar"] = cityDestinations["ddu-railway-station"];
+cityDestinations["bhu"] = cityDestinations["ddu-railway-station"];
+
 function slugify(text: string) {
   return text
     .toLowerCase()

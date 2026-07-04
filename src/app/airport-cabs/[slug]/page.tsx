@@ -62,6 +62,12 @@ interface BookingFormData {
   distance: string;
 }
 
+interface FAQ {
+  id: number;
+  question: string;
+  answer: string;
+}
+
 interface StatItem {
   num: string;
   label: string;
@@ -368,7 +374,7 @@ export default function AirportCityPage({
   📅 *Travel Date:* ${travelDate}
   ⏰ *Travel Time:* ${travelTime}
   
-  🚘 *Vehicle Type:* ${selectedVehicle || vehicleDetails?.name || "Cab"}
+  🚘 *Vehicle Type:* ${selectedVehicle || vehicle || "Cab"}
   
   Please share the best fare.`;
 
@@ -555,7 +561,7 @@ export default function AirportCityPage({
               {/* Right Content - Booking Widget */}
               <div className="bg-white rounded-2xl shadow-2xl p-6 lg:p-8">
                 <h3 className="text-2xl font-bold mb-4">
-                  Book Your {vehicleDetails?.name || "Airport Taxi"}
+                  Book Your {vehicle || "Airport Taxi"}
                 </h3>
 
                 <p className="text-gray-600 mb-6">

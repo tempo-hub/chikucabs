@@ -253,6 +253,7 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
           .map((word) => {
             const lower = word.toLowerCase();
             if (lower === "ddu") return "DDU";
+            if (lower === "bhu") return "BHU";
             return word.charAt(0).toUpperCase() + word.slice(1);
           })
           .join(" ")

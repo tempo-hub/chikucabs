@@ -306,7 +306,7 @@ export default function TempoTravellerTemplate({
     return grouped;
   }, []);
 
-  const city = parsedData.city || "India";
+  const city = parsedData.origin || "India";
   const vehicle = parsedData.vehicle || DEFAULT_VEHICLE;
   const vehicleDetails = useMemo(() => getVehicleDetails(vehicle), [vehicle]);
   const [formData, setFormData] = useState<FormData>({
@@ -482,7 +482,7 @@ export default function TempoTravellerTemplate({
 📅 *Travel Date:* ${travelDate}
 ⏰ *Travel Time:* ${travelTime}
 ${tripType === "round-trip" ? `🔄 *Return Date:* ${returnDate}\n` : ""}
-🚐 *Tempo Traveller:* ${selectedVehicle || vDetails.name}
+🚐 *Tempo Traveller:* ${selectedVehicle || vehicle}
 
 Please share the best fare.`;
 
