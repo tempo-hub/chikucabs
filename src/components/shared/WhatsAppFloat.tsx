@@ -91,7 +91,10 @@ export default function WhatsAppFloat() {
             if (isWhatsAppHref || hasWhatsAppText || className.includes("whatsapp-float") || className.includes("footer-whatsapp")) {
               isCTA = true;
             } else if (hasBookNowText) {
-              isCTA = true;
+              const isRealLink = href.startsWith("http") || (href.startsWith("/") && !href.startsWith("/#"));
+              if (!isRealLink) {
+                isCTA = true;
+              }
             }
           }
 
