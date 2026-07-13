@@ -40,6 +40,19 @@ const generateRouteSlug = (origin: string, destination: string) => {
   return `${origin.toLowerCase()}-to-${destination.toLowerCase()}-cab`;
 };
 
+const DRIVER_ALLOWANCE = 500;
+
+const calculateFareByDistance = (travelDistance: number) => {
+  if (isNaN(travelDistance) || travelDistance <= 0) {
+    return 0;
+  }
+
+  const perKmRate = travelDistance < 200 ? 18 : 24;
+  const driverAllowance = DRIVER_ALLOWANCE;
+
+  return travelDistance * perKmRate + driverAllowance;
+};
+
 // Helper function to generate structured data
 const generateStructuredData = (
   startCity: string,
@@ -48,7 +61,7 @@ const generateStructuredData = (
   pricePerKm: number,
   vehicleName: string,
 ) => {
-  const baseFare = distance * pricePerKm + 500;
+  const baseFare = calculateFareByDistance(distance);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -143,6 +156,15 @@ const generateStructuredData = (
   return JSON.stringify(structuredData);
 };
 
+interface FormDataState {
+  name: string;
+  phone: string;
+  pickup: string;
+  drop: string;
+  date: string;
+  distance: string;
+}
+
 export default function OutstationRouteFareTemplate({
   parsedData,
 }: {
@@ -163,7 +185,7 @@ export default function OutstationRouteFareTemplate({
   const [selectedVehicle, setSelectedVehicle] = useState("");
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [timeOptions, setTimeOptions] = useState<string[]>([]);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<FormDataState>({
     name: "",
     phone: "",
     pickup: "",
@@ -188,7 +210,7 @@ export default function OutstationRouteFareTemplate({
           route.to.toLowerCase() === endCity.toLowerCase(),
       );
 
-  const distance = routeInfo?.distance || 0;
+  const distance = Number(routeInfo?.distance || 0);
   const estimatedHours = Math.ceil(distance / 55);
 
   const getVehicleDetails = (v: string | null) => {
@@ -255,15 +277,25 @@ export default function OutstationRouteFareTemplate({
 
   const calculateFare = useCallback(() => {
     const distance = parseFloat(formData.distance);
-    const DRIVER_CHARGE = 500;
 
     if (!isNaN(distance) && distance > 0) {
-      const fare = distance * vehicleDetails.pricePerKm + DRIVER_CHARGE;
+      const fare = calculateFareByDistance(distance);
       setEstimatedPrice(fare);
     } else {
       setEstimatedPrice(null);
     }
-  }, [formData.distance, vehicleDetails.pricePerKm]);
+  }, [formData.distance]);
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      distance: String(distance || prev.distance || 50),
+    }));
+  }, [distance]);
+
+  useEffect(() => {
+    calculateFare();
+  }, [calculateFare]);
 
   // Generate time options
   useEffect(() => {
@@ -297,6 +329,8 @@ export default function OutstationRouteFareTemplate({
       return;
     }
 
+    calculateFare();
+
     const message = `🚖 *Fare Estimate Request*
 
 🚕 *Trip Type:* ${tripType === "one-way" ? "One Way" : "Round Trip"}
@@ -327,7 +361,7 @@ Please share the best fare.`;
         {/* Primary Meta Tags */}
         <title>
           {startCity} to {endCity} {vehicleDetails.name} Fare | Book One Way Cab
-          at ₹{vehicleDetails.pricePerKm}/km | Chiku Cabs
+          at ₹{vehicleDetails.pricePerKm}/km | Chiku Cabs | Get upto 500 off extra
         </title>
         <meta
           name="title"
@@ -388,7 +422,6 @@ Please share the best fare.`;
               distance,
               vehicleDetails.pricePerKm,
               vehicleDetails.name,
-              routeInfo,
             ),
           }}
         />
@@ -594,8 +627,8 @@ Please share the best fare.`;
                       type="button"
                       onClick={() => setTripType("one-way")}
                       className={`py-3 rounded-xl font-semibold transition-all ${tripType === "one-way"
-                          ? "bg-primary text-white shadow-lg shadow-primary/20"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                        ? "bg-primary text-white shadow-lg shadow-primary/20"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                         }`}
                     >
                       One Way
@@ -604,8 +637,8 @@ Please share the best fare.`;
                       type="button"
                       onClick={() => setTripType("round-trip")}
                       className={`py-3 rounded-xl font-semibold transition-all ${tripType === "round-trip"
-                          ? "bg-primary text-white shadow-lg shadow-primary/20"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                        ? "bg-primary text-white shadow-lg shadow-primary/20"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                         }`}
                     >
                       Round Trip
@@ -749,6 +782,15 @@ Please share the best fare.`;
                     </span>
                   </button>
 
+                  <div className="rounded-2xl border border-primary/20 bg-primary/5 px-4 py-3 text-sm text-gray-700">
+                    <div className="font-semibold text-gray-800">Estimated Fare</div>
+                    <div className="text-xl font-black text-primary">
+                      {estimatedPrice !== null
+                        ? `₹${estimatedPrice.toLocaleString("en-IN")}`
+                        : "Calculating..."}
+                    </div>
+                  </div>
+
                   {/* Trust Indicators */}
                   <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-gray-500 pt-1">
                     <span>✓ No Booking Fee</span>
@@ -810,7 +852,9 @@ Please share the best fare.`;
                 <h3 className="text-xl font-bold mb-2">One Way Fare Starts</h3>
 
                 <p className="text-4xl font-black text-primary">
-                  ₹{(distance || 250) * vehicleDetails.pricePerKm + 500}
+                  ₹{calculateFareByDistance(distance || 250).toLocaleString(
+                    "en-IN",
+                  )}
                 </p>
 
                 <p className="text-sm text-muted-foreground mt-2">

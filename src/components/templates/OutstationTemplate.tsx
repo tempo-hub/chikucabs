@@ -76,6 +76,16 @@ const WHATSAPP_NUMBER = "918448445504";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
+const DRIVER_ALLOWANCE = 500;
+
+const calculateFareByDistance = (travelDistance: number) => {
+  if (isNaN(travelDistance) || travelDistance <= 0) {
+    return 0;
+  }
+
+  const perKmRate = travelDistance < 200 ? 18 : 24;
+  return travelDistance * perKmRate + DRIVER_ALLOWANCE;
+};
 
 const VEHICLE_DETAILS_MAP: Record<
   string,
@@ -325,20 +335,21 @@ export default function OutstationTemplate({
 
   const calculateFare = useCallback(() => {
     const distance = parseFloat(formData.distance);
-    const DRIVER_CHARGE = 500;
 
     if (!isNaN(distance) && distance > 0) {
-      const fare = distance * vehicleDetails.pricePerKm + DRIVER_CHARGE;
-      setEstimatedPrice(fare);
+      setEstimatedPrice(calculateFareByDistance(distance));
     } else {
       setEstimatedPrice(null);
     }
-  }, [formData.distance, vehicleDetails.pricePerKm]);
+  }, [formData.distance]);
+
+  useEffect(() => {
+    calculateFare();
+  }, [calculateFare]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Don't calculate here - let onMouseUp handle it for better UX
   };
 
   // Structured Data for SEO
@@ -497,9 +508,8 @@ Please share the fare estimate.`;
       <div className="bg-background min-h-screen">
         {/* Sticky CTA Bar with Promo Code */}
         <div
-          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${
-            isScrolled ? "translate-y-0" : "translate-y-full"
-          }`}
+          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${isScrolled ? "translate-y-0" : "translate-y-full"
+            }`}
         >
           <div className="bg-gray-900 text-white shadow-2xl">
             <div className="max-w-7xl mx-auto px-4 py-3">
@@ -672,22 +682,20 @@ Please share the fare estimate.`;
                     <button
                       type="button"
                       onClick={() => setTripType("one-way")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${
-                        tripType === "one-way"
+                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "one-way"
                           ? "bg-primary text-white shadow-lg shadow-primary/20"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
+                        }`}
                     >
                       One Way
                     </button>
                     <button
                       type="button"
                       onClick={() => setTripType("round-trip")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${
-                        tripType === "round-trip"
+                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "round-trip"
                           ? "bg-primary text-white shadow-lg shadow-primary/20"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
+                        }`}
                     >
                       Round Trip
                     </button>
@@ -1173,22 +1181,16 @@ Please share the fare estimate.`;
                       <button
                         key={dist}
                         onClick={() => {
-                          // Update distance
                           setFormData((prev) => ({
                             ...prev,
                             distance: dist.toString(),
                           }));
-                          // Calculate fare WITH driver charge (hidden)
-                          const DRIVER_CHARGE = 500;
-                          const newPrice =
-                            dist * vehicleDetails.pricePerKm + DRIVER_CHARGE;
-                          setEstimatedPrice(newPrice);
+                          setEstimatedPrice(calculateFareByDistance(dist));
                         }}
-                        className={`py-2 rounded-lg text-sm font-medium transition-all ${
-                          Number(formData.distance) === dist
+                        className={`py-2 rounded-lg text-sm font-medium transition-all ${Number(formData.distance) === dist
                             ? "bg-primary text-white"
                             : "bg-muted hover:bg-primary/20"
-                        }`}
+                          }`}
                       >
                         {dist} km
                       </button>
@@ -1198,8 +1200,8 @@ Please share the fare estimate.`;
                   {/* Distance Info Note */}
                   <div className="mt-4 text-xs text-muted-foreground text-center bg-muted/30 p-3 rounded-lg">
                     <span className="font-semibold">Tip:</span> For distances
-                    above 2000 km, additional charges apply at ₹
-                    {vehicleDetails.pricePerKm}/km
+                    over 200 km, the fare changes to ₹24/km plus a fixed driver
+                    allowance of ₹500.
                   </div>
                 </div>
 
@@ -1384,10 +1386,7 @@ Please share the fare estimate.`;
                         {/* Price Indicator */}
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-semibold text-primary">
-                            ₹
-                            {Math.round(
-                              route.distance * 10 + 500,
-                            ).toLocaleString()}
+                            ₹{Math.round(calculateFareByDistance(route.distance)).toLocaleString()}
                           </span>
                           <span className="text-xs text-gray-400 group-hover:text-primary transition-colors">
                             →
@@ -1457,16 +1456,11 @@ Please share the fare estimate.`;
                       { from: "Chennai", to: "Pondicherry", distance: 160 },
                       { from: "Hyderabad", to: "Tirupati", distance: 550 },
                     ].map((route, index) => {
-                      // Calculate One Way Price using same logic as calculateFare
-                      const DRIVER_CHARGE = 500;
-                      const oneWayPrice =
-                        route.distance * vehicleDetails.pricePerKm +
-                        DRIVER_CHARGE;
+                      // Calculate One Way Price using shared route fare formula
+                      const oneWayPrice = calculateFareByDistance(route.distance);
 
                       // Calculate Round Trip Price (2x distance + 2x driver charge with 10% discount)
-                      const roundTripBase =
-                        route.distance * 2 * vehicleDetails.pricePerKm +
-                        DRIVER_CHARGE * 2;
+                      const roundTripBase = calculateFareByDistance(route.distance) * 2;
                       const roundTripDiscount = roundTripBase * 0.1; // 10% discount
                       const roundTripPrice = roundTripBase - roundTripDiscount;
 
@@ -1502,7 +1496,7 @@ Please share the fare estimate.`;
 
         {/* Outstation Travel Benefits */}
         <section className="py-16 bg-gradient-to-b from-white to-gray-50">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 max-w-7xl">
             <div className="text-center mb-12">
               <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-4">
                 Travel Smarter
@@ -1940,7 +1934,7 @@ Please share the fare estimate.`;
         </section>
 
         <section className="py-16 bg-gradient-to-b from-white to-gray-50">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 max-w-7xl">
             {/* Section Header */}
             <div className="text-center mb-12">
               <span className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
