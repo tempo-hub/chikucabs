@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { connectDB } from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import Image from "next/image";
+import BlogContentWithBooking from "@/components/shared/BlogContentWithBooking";
 
 // Prevent build-time pre-rendering — this page needs a live MongoDB connection
 export const dynamic = "force-dynamic";
@@ -56,12 +57,7 @@ export default async function BlogDetailPage({
           </div>
 
           {/* Blog Content */}
-          <div
-            className="blog-content max-w-none overflow-x-auto"
-            dangerouslySetInnerHTML={{
-              __html: blog.content,
-            }}
-          />
+          <BlogContentWithBooking content={blog.content} />
         </div>
       </div>
     </div>

@@ -83,7 +83,7 @@ const calculateFareByDistance = (travelDistance: number) => {
     return 0;
   }
 
-  const perKmRate = travelDistance < 200 ? 18 : 24;
+  const perKmRate = travelDistance < 200 ? 16 : 13;
   return travelDistance * perKmRate + DRIVER_ALLOWANCE;
 };
 

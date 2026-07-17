@@ -1,3 +1,13 @@
+"use client";
+
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaPinterestP,
+  FaXTwitter,
+} from "react-icons/fa6";
+
 export default function Footer() {
   return (
     <footer className="site-footer">
@@ -12,11 +22,13 @@ export default function Footer() {
                 style={{ height: "45px", width: "auto" }}
               />
             </div>
+            
             <p className="footer-desc">
               India's most trusted cab service with 1 Lakh+ completed trips.
               Premium vehicles, verified drivers, and transparent pricing across
               100+ cities.
             </p>
+
             <div className="footer-contact-row">
               <a href="tel:+918448445504" className="footer-phone">
                 📞 +91-8448445504
@@ -28,6 +40,58 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 💬 WhatsApp Us
+              </a>
+            </div>
+
+            <div className="flex items-center gap-3 mt-6">
+              <a
+                href="https://www.facebook.com/chikucabs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="w-11 h-11 rounded-full bg-slate-800 hover:bg-blue-600 flex items-center justify-center transition-all duration-300 hover:scale-110"
+              >
+                <FaFacebookF className="text-white text-lg" />
+              </a>
+
+              <a
+                href="https://www.instagram.com/chikucabs1/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-11 h-11 rounded-full bg-slate-800 hover:bg-pink-600 flex items-center justify-center transition-all duration-300 hover:scale-110"
+              >
+                <FaInstagram className="text-white text-lg" />
+              </a>
+
+              <a
+                href="https://x.com/chiku_cabs"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X (Twitter)"
+                className="w-11 h-11 rounded-full bg-slate-800 hover:bg-black flex items-center justify-center transition-all duration-300 hover:scale-110"
+              >
+                <FaXTwitter className="text-white text-lg" />
+              </a>
+
+              <a
+                href="https://www.youtube.com/@chikucabs"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="w-11 h-11 rounded-full bg-slate-800 hover:bg-red-600 flex items-center justify-center transition-all duration-300 hover:scale-110"
+              >
+                <FaYoutube className="text-white text-lg" />
+              </a>
+
+              <a
+                href="https://in.pinterest.com/chikucabs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Pinterest"
+                className="w-11 h-11 rounded-full bg-slate-800 hover:bg-red-500 flex items-center justify-center transition-all duration-300 hover:scale-110"
+              >
+                <FaPinterestP className="text-white text-lg" />
               </a>
             </div>
           </div>
