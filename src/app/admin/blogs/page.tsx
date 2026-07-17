@@ -25,11 +25,9 @@ interface Blog {
 
 export default function AdminBlogs() {
   const router = useRouter();
-
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [category, setCategory] = useState("");
@@ -37,9 +35,7 @@ export default function AdminBlogs() {
   const [keywords, setKeywords] = useState("");
   const [hashtags, setHashtags] = useState("");
   const [content, setContent] = useState("");
-
   const [editingId, setEditingId] = useState<string | null>(null);
-
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
 
@@ -426,6 +422,7 @@ export default function AdminBlogs() {
                 disablePlugins: ["clean-html"],
               }}
               onBlur={(newContent) => setContent(newContent)}
+              onChange={(newContent) => setContent(newContent)}
             />
           </div>
 

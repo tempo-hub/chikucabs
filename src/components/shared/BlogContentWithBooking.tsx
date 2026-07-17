@@ -12,7 +12,7 @@ export default function BlogContentWithBooking({ content }: BlogContentWithBooki
   const [processedContent, setProcessedContent] = useState("");
 
   useEffect(() => {
-    // Replace [BOOK_NOW] shortcode with a styled button HTML
+    // Replace [BOOK_NOW] shortcode or legacy saved button HTML with a styled button.
     const buttonHtml = `
       <div class="my-8 text-center">
         <button class="chiku-book-btn inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1 text-lg w-full sm:w-auto">
@@ -21,19 +21,31 @@ export default function BlogContentWithBooking({ content }: BlogContentWithBooki
         </button>
       </div>
     `;
-    
-    // Replace all occurrences of [BOOK_NOW]
-    const newContent = content.replace(/\[BOOK_NOW\]/g, buttonHtml);
-    
-    // If no shortcode is found, optionally we could append it to the end, 
-    // but it's better to let the author decide where to put it.
+
+    let newContent = content.replace(/\[BOOK_NOW\]/g, buttonHtml);
+
+    newContent = newContent.replace(
+      /<div[^>]*>\s*<a[^>]*class=["']book-now-btn["'][^>]*>[\s\S]*?<\/a>\s*<\/div>/gi,
+      buttonHtml,
+    );
+
+    newContent = newContent.replace(
+      /<div[^>]*>\s*<button[^>]*class=["']book-now-btn["'][^>]*>[\s\S]*?<\/button>\s*<\/div>/gi,
+      buttonHtml,
+    );
+
+    newContent = newContent.replace(
+      /<button[^>]*class=["']book-now-btn["'][^>]*>[\s\S]*?<\/button>/gi,
+      buttonHtml,
+    );
+
     setProcessedContent(newContent);
   }, [content]);
 
   const handleContentClick = (e: MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    // Check if the clicked element or any of its parents have the 'chiku-book-btn' class
-    if (target.closest('.chiku-book-btn')) {
+    // Handle both the internal replacement button and legacy saved anchor markup.
+    if (target.closest('.chiku-book-btn, .book-now-btn')) {
       e.preventDefault();
       setIsModalOpen(true);
     }

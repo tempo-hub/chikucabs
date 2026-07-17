@@ -12,7 +12,6 @@ const JoditEditor = dynamic(() => import("jodit-react"), {
 
 export default function CreateBlog() {
   const router = useRouter();
-
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [description, setDescription] = useState("");
@@ -20,12 +19,9 @@ export default function CreateBlog() {
   const [hashtags, setHashtags] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
-
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
-
   const [loading, setLoading] = useState(false);
-
 
   /* Generate Slug */
   const generateSlug = (text: string) => {
@@ -324,6 +320,7 @@ export default function CreateBlog() {
               disablePlugins: ["clean-html"],
             }}
             onBlur={(newContent) => setContent(newContent)}
+            onChange={(newContent) => setContent(newContent)}
           />
         </div>
 
