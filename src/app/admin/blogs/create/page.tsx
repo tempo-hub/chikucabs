@@ -82,7 +82,7 @@ export default function CreateBlog() {
     console.log(data);
 
     if (!res.ok) {
-      throw new Error(data.error || "Image upload failed");
+      throw new Error(data.error || "Image upload failed error");
     }
 
     return data.imageId;
