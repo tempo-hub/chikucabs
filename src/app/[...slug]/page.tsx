@@ -16,6 +16,7 @@ import InnovaServiceTemplate from "@/components/templates/InnovaServiceTemplate"
 import InnovaRouteTemplate from "@/components/templates/InnovaRouteTemplate";
 import DriverServiceTemplate from "@/components/templates/DriverServiceTemplate";
 import CityCabRoutesTemplate from "@/components/templates/CityCabRoutesTemplate";
+import ErtigaServiceTemplate from "@/components/templates/ErtigaServiceTemplate";
 
 import OneWayTemplate from "@/components/templates/OneWayTemplate";
 import OutstationTemplate from "@/components/templates/OutstationTemplate";
@@ -509,7 +510,8 @@ export default async function DynamicRoutePage({
       }
       return <ServiceTemplate parsedData={parsed} />;
     }
-    if (parsed.vehicleCategory === "innova") {
+    if (parsed.vehicle === "Toyota Innova Crysta" ||
+  parsed.vehicle === "Innova") {
       if (
         parsed.routeType === "Outstation Route" ||
         parsed.routeType === "Outstation Route Fare"
@@ -518,6 +520,12 @@ export default async function DynamicRoutePage({
       }
       return <InnovaServiceTemplate parsedData={parsed} />;
     }
+    if (parsed.vehicle === "Maruti Ertiga") {
+  return <ErtigaServiceTemplate parsedData={parsed} />;
+}
+if (parsed.vehicle === "Ertiga") {
+  return <ErtigaServiceTemplate parsedData={parsed} />;
+}
     if (parsed.routeType === "Driver Service") {
       return <DriverServiceTemplate parsedData={parsed} />;
     }

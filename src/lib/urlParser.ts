@@ -4,14 +4,15 @@ export interface ParsedRouteData {
   origin: string | null;
   destination: string | null;
   vehicle: string | null;
+  vehicleSlug: string;
   vehicleCategory: "tempo-traveller" | "innova" | "cab" | "driver";
   routeType:
-    | "Service"
-    | "Local Service"
-    | "Outstation Route"
-    | "Outstation Route Fare"
-    | "Driver Service"
-    | "Unknown";
+  | "Service"
+  | "Local Service"
+  | "Outstation Route"
+  | "Outstation Route Fare"
+  | "Driver Service"
+  | "Unknown";
   isLegacyPhp: boolean;
   slugs: string[];
 }
@@ -29,6 +30,7 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
       origin: null,
       destination: null,
       vehicle: null,
+      vehicleSlug: "",
       vehicleCategory: "cab" as const,
       routeType: "Unknown",
       isLegacyPhp: false,
@@ -51,8 +53,17 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
   const lowerSegment = lastSegment.toLowerCase();
   if (lowerSegment.includes("tempo") || lowerSegment.includes("traveller")) {
     vehicle = "Tempo Traveller";
+  } else if (lowerSegment.includes("innova-crysta")) {
+    vehicle = "Toyota Innova Crysta";
   } else if (lowerSegment.includes("innova")) {
-    vehicle = "Innova";
+    vehicle = "Toyota Innova";
+  } else if (lowerSegment.includes("ertiga")) {
+    vehicle = "Maruti Ertiga";
+  } else if (lowerSegment.includes("fortuner")) {
+    vehicle = "Toyota Fortuner";
+  } else if (lowerSegment.includes("swift-dzire")) {
+    vehicle = "Maruti Swift Dzire";
+
   } else if (lowerSegment.includes("bus")) {
     vehicle = "Bus";
   } else if (lowerSegment.includes("car")) {
@@ -248,15 +259,15 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
   const capitalize = (str: string | null) =>
     str
       ? str
-          .replace(/-/g, " ")
-          .split(" ")
-          .map((word) => {
-            const lower = word.toLowerCase();
-            if (lower === "ddu") return "DDU";
-            if (lower === "bhu") return "BHU";
-            return word.charAt(0).toUpperCase() + word.slice(1);
-          })
-          .join(" ")
+        .replace(/-/g, " ")
+        .split(" ")
+        .map((word) => {
+          const lower = word.toLowerCase();
+          if (lower === "ddu") return "DDU";
+          if (lower === "bhu") return "BHU";
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(" ")
       : str;
 
   // Determine vehicleCategory
@@ -264,9 +275,14 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
   let vehicleCategory: ParsedRouteData["vehicleCategory"] = "cab";
   if (lowerVehicle.includes("tempo") || lowerVehicle.includes("traveller")) {
     vehicleCategory = "tempo-traveller";
-  } else if (lowerVehicle.includes("innova")) {
-    vehicleCategory = "innova";
-  } else if (
+  }  else if (
+  lowerVehicle.includes("innova") ||
+  lowerVehicle.includes("ertiga") ||
+  lowerVehicle.includes("fortuner") ||
+  lowerVehicle.includes("dzire")
+) {
+  vehicleCategory = "innova";
+} else if (
     lowerVehicle.includes("driver") ||
     lowerVehicle.includes("chauffeur")
   ) {
@@ -281,5 +297,6 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
     routeType,
     isLegacyPhp,
     slugs,
+    vehicleSlug: lastSegment,
   };
 }
