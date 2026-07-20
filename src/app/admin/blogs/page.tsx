@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -38,6 +38,59 @@ export default function AdminBlogs() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
+
+  const editorConfig = useMemo(
+    () => ({
+      readonly: false,
+      height: 600,
+      toolbarAdaptive: false,
+
+      askBeforePasteHTML: false,
+      askBeforePasteFromWord: false,
+      defaultActionOnPaste: "insert_as_html",
+
+      sourceEditor: "area",
+      beautifyHTML: true,
+
+      cleanHTML: {
+        removeEmptyElements: false,
+        fillEmptyParagraph: false,
+      },
+
+      buttons:
+        "source,bold,italic,underline,|,ul,ol,|,image,link,|,align,|,undo,redo",
+
+      uploader: {
+        url: `/api/upload`,
+        method: "POST",
+
+        filesVariableName: () => "image",
+
+        isSuccess: (resp: { success: boolean }) => {
+          console.log("UPLOAD SUCCESS:", resp);
+          return resp.success === true;
+        },
+
+        process: (resp: { imageId: string }) => {
+          console.log("UPLOAD RESPONSE:", resp);
+
+          return {
+            files: [`/api/image/${resp.imageId}`],
+            isImages: [true],
+            path: "",
+            baseurl: "",
+          };
+        },
+
+        error: (e: Error) => {
+          console.log("UPLOAD ERROR:", e);
+        },
+      },
+
+      disablePlugins: ["clean-html"],
+    }),
+    [],
+  );
 
   /* Slug */
   const generateSlug = (text: string) => {
@@ -369,60 +422,9 @@ export default function AdminBlogs() {
           {/* Editor */}
           <div className="mb-6 border rounded-xl overflow-hidden">
             <JoditEditor
-              key={editingId ?? "new-blog-editor"}
               value={content}
-              config={{
-                readonly: false,
-                height: 600,
-                toolbarAdaptive: false,
-
-                askBeforePasteHTML: false,
-                askBeforePasteFromWord: false,
-                defaultActionOnPaste: "insert_as_html",
-
-                sourceEditor: "area",
-                beautifyHTML: true,
-
-                cleanHTML: {
-                  removeEmptyElements: false,
-                  fillEmptyParagraph: false,
-                },
-
-                /* Enable HTML mode */
-                buttons:
-                  "source,bold,italic,underline,|,ul,ol,|,image,link,|,align,|,undo,redo",
-
-                /* Image Upload */
-                uploader: {
-                  url: `/api/upload`,
-                  method: "POST",
-
-                  filesVariableName: () => "image",
-
-                  isSuccess: (resp: { success: boolean }) => {
-                    console.log("UPLOAD SUCCESS:", resp);
-                    return resp.success === true;
-                  },
-
-                  process: (resp: { imageId: string }) => {
-                    console.log("UPLOAD RESPONSE:", resp);
-
-                    return {
-                      files: [`/api/image/${resp.imageId}`],
-                      isImages: [true],
-                      path: "",
-                      baseurl: "",
-                    };
-                  },
-
-                  error: (e: Error) => {
-                    console.log("UPLOAD ERROR:", e);
-                  },
-                },
-
-                /* Prevent HTML cleaning issues */
-                disablePlugins: ["clean-html"],
-              }}
+              config={editorConfig}
+              tabIndex={1}
               onBlur={(newContent) => setContent(newContent)}
               onChange={(newContent) => setContent(newContent)}
             />

@@ -73,22 +73,25 @@ export default function WhatsAppFloat() {
             return;
           }
 
-          const hasWhatsAppText = /whatsapp/i.test(text);
+          // Let explicit WhatsApp buttons and links open natively.
+          if (target.closest(".chiku-whatsapp-btn") || target.closest("[data-whatsapp-link='true']")) {
+            return;
+          }
+
           const hasBookNowText = /book\s+now/i.test(text);
           const isWhatsAppHref = href.includes("wa.me") || href.includes("api.whatsapp");
           const isCallHref = href.startsWith("tel:");
-          
+
           let isCTA = false;
           if (isCallHref) {
-            // Only intercept tel: links if they explicitly say "Book Now" (case insensitive, ignoring icon emojis/spaces)
             const cleanText = text.toLowerCase().replace(/[^a-z0-9]/g, "");
             if (cleanText === "booknow") {
               isCTA = true;
-            } else {
-              isCTA = false; // Bypass completely for phone call links
             }
+          } else if (isWhatsAppHref) {
+            isCTA = false;
           } else {
-            if (isWhatsAppHref || hasWhatsAppText || className.includes("whatsapp-float") || className.includes("footer-whatsapp")) {
+            if (target.closest(".whatsapp-float") || target.closest(".footer-whatsapp")) {
               isCTA = true;
             } else if (hasBookNowText) {
               const isRealLink = href.startsWith("http") || (href.startsWith("/") && !href.startsWith("/#"));
@@ -102,7 +105,6 @@ export default function WhatsAppFloat() {
             e.preventDefault();
             e.stopPropagation();
 
-            // Try to find if this button is inside a package-card to extract the vehicle name
             let cardVehicle: string | null = null;
             const packageCard = target.closest(".package-card");
             if (packageCard) {
