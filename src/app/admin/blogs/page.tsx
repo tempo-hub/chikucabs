@@ -188,8 +188,6 @@ export default function AdminBlogs() {
           },
           body: JSON.stringify(payload),
         });
-
-        toast.success("Blog Updated Successfully");
       } else {
         if (!imageId) {
           toast.error("Please upload image");
@@ -203,8 +201,6 @@ export default function AdminBlogs() {
           },
           body: JSON.stringify(payload),
         });
-
-        toast.success("Blog Published Successfully");
       }
 
       const data = await res.json();
@@ -212,6 +208,8 @@ export default function AdminBlogs() {
       if (!res.ok) {
         throw new Error(data.message || "Failed");
       }
+
+      toast.success(editingId ? "Blog Updated Successfully" : "Blog Published Successfully");
 
       resetForm();
       fetchBlogs();
@@ -371,6 +369,7 @@ export default function AdminBlogs() {
           {/* Editor */}
           <div className="mb-6 border rounded-xl overflow-hidden">
             <JoditEditor
+              key={editingId ?? "new-blog-editor"}
               value={content}
               config={{
                 readonly: false,
@@ -380,6 +379,9 @@ export default function AdminBlogs() {
                 askBeforePasteHTML: false,
                 askBeforePasteFromWord: false,
                 defaultActionOnPaste: "insert_as_html",
+
+                sourceEditor: "area",
+                beautifyHTML: true,
 
                 cleanHTML: {
                   removeEmptyElements: false,
