@@ -279,9 +279,6 @@ export default function CreateBlog() {
               askBeforePasteFromWord: false,
               defaultActionOnPaste: "insert_as_html",
 
-              sourceEditor: "area",
-              beautifyHTML: true,
-
               cleanHTML: {
                 removeEmptyElements: false,
                 fillEmptyParagraph: false,
