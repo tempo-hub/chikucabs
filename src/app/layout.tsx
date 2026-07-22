@@ -6,6 +6,8 @@ import Footer from "@/components/shared/Footer";
 import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
+import Script from "next/script";
+
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -43,6 +45,21 @@ export default function RootLayout({
       </head>
 
       <body>
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EFDDLWZXCD"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-EFDDLWZXCD');
+          `}
+        </Script>
+
         <div className="site-wrapper">
           <Navbar />
 

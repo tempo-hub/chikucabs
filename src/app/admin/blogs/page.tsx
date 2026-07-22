@@ -52,6 +52,10 @@ export default function AdminBlogs() {
       sourceEditor: "area",
       beautifyHTML: true,
 
+      observer: {
+        timeout: 0,
+      },
+
       cleanHTML: {
         removeEmptyElements: false,
         fillEmptyParagraph: false,
@@ -67,12 +71,12 @@ export default function AdminBlogs() {
         filesVariableName: () => "image",
 
         isSuccess: (resp: { success: boolean }) => {
-          console.log("UPLOAD SUCCESS:", resp);
+          // console.log("UPLOAD SUCCESS:", resp);
           return resp.success === true;
         },
 
         process: (resp: { imageId: string }) => {
-          console.log("UPLOAD RESPONSE:", resp);
+          // console.log("UPLOAD RESPONSE:", resp);
 
           return {
             files: [`/api/image/${resp.imageId}`],
@@ -426,7 +430,7 @@ export default function AdminBlogs() {
               config={editorConfig}
               tabIndex={1}
               onBlur={(newContent) => setContent(newContent)}
-              onChange={(newContent) => setContent(newContent)}
+              // onChange={(newContent) => setContent(newContent)}
             />
           </div>
 

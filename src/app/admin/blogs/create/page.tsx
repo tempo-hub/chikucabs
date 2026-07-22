@@ -319,7 +319,7 @@ export default function CreateBlog() {
             config={editorConfig}
             tabIndex={1}
             onBlur={(newContent) => setContent(newContent)}
-            onChange={(newContent) => setContent(newContent)}
+            // onChange={(newContent) => setContent(newContent)}
           />
         </div>
 
