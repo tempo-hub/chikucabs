@@ -43,7 +43,7 @@ export default function LocalDominance({
   ];
 
  return (
-  <section className="py-20 bg-slate-50">
+  <section>
     <div className="container mx-auto px-4">
 
       {/* Header */}
@@ -103,11 +103,14 @@ export default function LocalDominance({
             </div>
 
             {/* CTA */}
-            <button
-              className="mt-8 w-full rounded-xl bg-primary py-3 font-semibold text-white transition hover:opacity-90"
-            >
-              Book Cab in {data.city}
-            </button>
+             <a
+                href="https://wa.me/918448445504"
+                target="_blank"
+                rel="noopener noreferrer"
+                className=" mt-8 inline-flex w-full px-3 py-3 rounded-xl bg-primary text-white font-semibold hover:opacity-90"
+              >
+                Book Cab in {data.city}
+              </a>
 
           </div>
         ))}

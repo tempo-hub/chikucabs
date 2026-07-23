@@ -3,8 +3,8 @@
 export interface ParsedRouteData {
   origin: string | null;
   destination: string | null;
-  vehicle: string | null;
   vehicleSlug: string;
+  vehicle: string | null;
   vehicleCategory: "tempo-traveller" | "innova" | "cab" | "driver";
   routeType:
   | "Service"
@@ -63,7 +63,6 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
     vehicle = "Toyota Fortuner";
   } else if (lowerSegment.includes("swift-dzire")) {
     vehicle = "Maruti Swift Dzire";
-
   } else if (lowerSegment.includes("bus")) {
     vehicle = "Bus";
   } else if (lowerSegment.includes("car")) {

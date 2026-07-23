@@ -123,7 +123,7 @@ export default function InnovaServiceTemplate({
                 📞 Book Innova — 8448445504
               </a>
               <a
-                href="https://wa.me/918448445504?text=Hi%20I%20want%20to%20book%20an%20Innova%20%20on%20rent"
+                href="https://wa.me/918448445504"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-lg px-8 py-4"
@@ -302,7 +302,9 @@ export default function InnovaServiceTemplate({
                   ))}
                 </ul>
                 <a
-                  href="tel:+918448445504"
+                  href="https://wa.me/918448445504"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-primary w-full py-3 text-sm"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -458,9 +460,14 @@ export default function InnovaServiceTemplate({
 
             </div>
 
-            <button className="px-8 py-4 rounded-xl bg-primary text-white font-semibold hover:opacity-90">
-              Book {activeService.title}
-            </button>
+              <a
+  href="https://wa.me/918448445504"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex px-8 py-4 rounded-xl bg-primary text-white font-semibold hover:opacity-90"
+>
+  Book {activeService.title}
+</a>
 
           </div>
 
@@ -611,10 +618,10 @@ export default function InnovaServiceTemplate({
 
 
       )}
-
-
       {/* Local Dominance Section */}
-      <LocalDominance city={city} />
+      <section className="py-20 px-4 bg-muted/10 border-t">
+        <LocalDominance city={city} />
+      </section>
 
       {/* Internal Links & EEAT Section */}
       <InternalLinks parsedData={parsedData} />
