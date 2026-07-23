@@ -7,7 +7,6 @@ import PopularCities from "../shared/PopularCities";
 import LocalDominance from "../shared/LocalDominance";
 import FAQ from "@/components/shared/Faq";
 import { useState } from "react";
-import Image from "next/image";
 
 const services = [
   {
@@ -84,7 +83,7 @@ export default function InnovaServiceTemplate({
   return (
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-28 px-4 text-slate-950 bg-white">
+      <section className="relative overflow-hidden pt-10 sm:pt-16 lg:pt-20 pb-28 px-4 text-slate-950 bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
         <div className="relative max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.4fr_1.2fr] items-center">
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
