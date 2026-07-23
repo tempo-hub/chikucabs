@@ -12,7 +12,7 @@ import Image from "next/image";
 const services = [
   {
     id: "airport",
-    image: "/innova/airport.png",
+    image: "/Innova/airport.png",
     title: "Airport Transfers",
     description:
       "Enjoy hassle-free airport pickup and drop services with professional chauffeurs. We monitor flight timings and ensure timely pickups with enough luggage space for families and groups.",
@@ -24,7 +24,7 @@ const services = [
   },
   {
     id: "wedding",
-    image: "/innova/wedding.png",
+    image: "/Innova/wedding.png",
     title: "Wedding Travel",
     description:
       "Book premium Innova rentals for weddings, guest transportation, baraat processions, and family functions. Travel comfortably while making every celebration memorable.",
@@ -36,7 +36,7 @@ const services = [
   },
   {
     id: "corporate",
-    image: "/innova/corporate.png",
+    image: "/Innova/corporate.png",
     title: "Corporate Travel",
     description:
       "Professional transportation for business meetings, airport transfers, conferences, client visits, and executive travel with punctual drivers.",
@@ -48,7 +48,7 @@ const services = [
   },
   {
     id: "vacation",
-    image: "/innova/pilgrimage.png",
+    image: "/Innova/pilgrimage.png",
     title: "Vacations",
     description:
       "Enjoy vacations, sightseeing, and weekend getaways with spacious seating, ample luggage space, and comfortable rides for the entire family.",
@@ -60,7 +60,7 @@ const services = [
   },
   {
     id: "hill",
-    image: "/innova/hill.png",
+    image: "/Innova/hill.png",
     title: "Hill Station",
     description:
       "Plan memorable road trips to Shimla, Manali, Mussoorie, Nainital, Ooty, and more with experienced drivers and comfortable seating for long journeys.",
@@ -84,7 +84,7 @@ export default function InnovaServiceTemplate({
   return (
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-28 px-4 text-slate-950 bg-white">
+      <section className="relative overflow-hidden pt-20 pb-28 px-4 text-slate-950 bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
         <div className="relative max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.4fr_1.2fr] items-center">
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
@@ -417,7 +417,7 @@ export default function InnovaServiceTemplate({
 
           {/* Image */}
 
-          <div className="relative h-[420px] rounded-3xl overflow-hidden shadow-xl">
+          <div className="relative w-full aspect-[16/9] overflow-hidden rounded-2xl">
 
             <img
               src={activeService.image}
