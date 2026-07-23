@@ -419,11 +419,10 @@ export default function InnovaServiceTemplate({
 
           <div className="relative h-[420px] rounded-3xl overflow-hidden shadow-xl">
 
-            <Image
+            <img
               src={activeService.image}
               alt={activeService.title}
-              fill
-              className="object-cover"
+              className="object-cover h-full w-full"
             />
 
           </div>
