@@ -39,30 +39,13 @@ export default function AdminBlogs() {
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
 
-  const editorConfig = useMemo(
+  const editorConfig= useMemo(
     () => ({
-      readonly: false,
-      height: 600,
+      // readonly: false,
+
+      height:600,
+      allowResizeY: false,
       toolbarAdaptive: false,
-
-      askBeforePasteHTML: false,
-      askBeforePasteFromWord: false,
-      defaultActionOnPaste: "insert_as_html",
-
-      sourceEditor: "area",
-      beautifyHTML: true,
-
-      observer: {
-        timeout: 0,
-      },
-
-      cleanHTML: {
-        removeEmptyElements: false,
-        fillEmptyParagraph: false,
-      },
-
-      buttons:
-        "source,bold,italic,underline,|,ul,ol,|,image,link,|,align,|,undo,redo",
 
       uploader: {
         url: `/api/upload`,
@@ -90,8 +73,6 @@ export default function AdminBlogs() {
           console.log("UPLOAD ERROR:", e);
         },
       },
-
-      disablePlugins: ["clean-html"],
     }),
     [],
   );
@@ -266,7 +247,9 @@ export default function AdminBlogs() {
         throw new Error(data.message || "Failed");
       }
 
-      toast.success(editingId ? "Blog Updated Successfully" : "Blog Published Successfully");
+      toast.success(
+        editingId ? "Blog Updated Successfully" : "Blog Published Successfully",
+      );
 
       resetForm();
       fetchBlogs();
@@ -424,14 +407,17 @@ export default function AdminBlogs() {
           </div>
 
           {/* Editor */}
-          <div className="mb-6 border rounded-xl overflow-hidden">
+          <div className="h-[400px] mb-6 border rounded-xl overflow-auto [&_ol]:list-decimal [&_ol]:pl-8 [&_ul]:list-disc [&_ul]:pl-8 [&_h1]:text-4xl [&_h1]:font-bold [&_h1]:mb-4
+  [&_h2]:text-3xl [&_h2]:font-semibold [&_h2]:mb-3
+  [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:mb-2
+  [&_p]:text-base [&_p]:mb-4 [&_p]:leading-relaxed">
             <JoditEditor
-              value={content}
-              config={editorConfig}
-              tabIndex={1}
-              onBlur={(newContent) => setContent(newContent)}
-              // onChange={(newContent) => setContent(newContent)}
-            />
+             value={content}
+            config={editorConfig}
+        onChange={(newContent) => {
+          setContent(newContent);
+        }} 
+          />
           </div>
 
           {/* Buttons */}
