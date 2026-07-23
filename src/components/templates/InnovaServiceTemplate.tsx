@@ -152,12 +152,12 @@ export default function InnovaServiceTemplate({
           <div className="relative mx-auto w-full max-w-xl">
             <div className="absolute -left-10 top-0 h-72 w-72 rounded-full bg-slate-200 blur-3xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_40px_120px_rgba(15,23,42,0.08)]">
-              <img
-                src="/innova.png"
-                alt={`Innova Crysta on Rent in ${city !== "India" ? city : "India"} by Chiku Cabs`}
-                className="w-full h-[520px] min-h-[320px] object-cover"
-              />
-            </div>
+  <img
+    src="/innova.png"
+    alt={`Innova Crysta on Rent in ${city !== "India" ? city : "India"} by Chiku Cabs`}
+    className="w-full h-64 sm:h-80 md:h-[420px] lg:h-[520px] object-cover"
+  />
+</div>
             <div className="grid grid-cols-3 gap-3 mt-6 text-center text-sm text-slate-700">
               {[
                 { label: "Comfort", value: "7+1 Seats" },
