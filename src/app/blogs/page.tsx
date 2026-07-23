@@ -16,7 +16,7 @@ type Blog = {
   imageId?: string;
   createdAt?: string;
 };
-
+// Loading and empty state messages//
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
@@ -48,6 +48,7 @@ export default function BlogsPage() {
           Explore routes, tips & travel guides
         </p>
       </div>
+      
 
       {loading && <p className="text-center text-gray-400">Loading blogs...</p>}
 

@@ -509,7 +509,8 @@ export default async function DynamicRoutePage({
       }
       return <ServiceTemplate parsedData={parsed} />;
     }
-    if (parsed.vehicleCategory === "innova") {
+    if (parsed.vehicle === "Toyota Innova Crysta" ||
+  parsed.vehicle === "Innova") {
       if (
         parsed.routeType === "Outstation Route" ||
         parsed.routeType === "Outstation Route Fare"

@@ -91,14 +91,14 @@ export default function EEATSection({
                 📊
               </div>
               <div>
-                <h3 className="text-xl font-bold">4.9★ Google Rating</h3>
+                <h3 className="text-xl font-bold">4.4★ Google Rating</h3>
                 <p className="text-sm font-medium text-muted-foreground mt-1">
                   3,250+ verified reviews
                 </p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Rated 4.9 out of 5 on Google with 3,250+ genuine customer reviews.
+              Rated 4.4 out of 5 on Google with 3,250+ genuine customer reviews.
               Our consistent rating across years proves our commitment to
               quality. We are a registered travel agency (GSTIN verified) and
               comply with all state transport regulations.

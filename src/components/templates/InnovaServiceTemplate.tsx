@@ -1,6 +1,78 @@
+"use client";
 import { ParsedRouteData } from "@/lib/urlParser";
 import EEATSection from "@/components/shared/EEATSection";
 import InternalLinks from "@/components/shared/InternalLinks";
+import StatsBar from "../shared/StatsBar";
+import PopularCities from "../shared/PopularCities";
+import LocalDominance from "../shared/LocalDominance";
+import FAQ from "@/components/shared/Faq";
+import { useState } from "react";
+import Image from "next/image";
+
+const services = [
+  {
+    id: "airport",
+    image: "/innova/airport.png",
+    title: "Airport Transfers",
+    description:
+      "Enjoy hassle-free airport pickup and drop services with professional chauffeurs. We monitor flight timings and ensure timely pickups with enough luggage space for families and groups.",
+    features: [
+      "24×7 Service",
+      "Flight Tracking",
+      "Extra Luggage Space",
+    ],
+  },
+  {
+    id: "wedding",
+    image: "/innova/wedding.png",
+    title: "Wedding Travel",
+    description:
+      "Book premium Innova rentals for weddings, guest transportation, baraat processions, and family functions. Travel comfortably while making every celebration memorable.",
+    features: [
+      "Guest Transfers",
+      "Luxury Experience",
+      "Decor Friendly",
+    ],
+  },
+  {
+    id: "corporate",
+    image: "/innova/corporate.png",
+    title: "Corporate Travel",
+    description:
+      "Professional transportation for business meetings, airport transfers, conferences, client visits, and executive travel with punctual drivers.",
+    features: [
+      "Executive Service",
+      "GST Invoice",
+      "Professional Drivers",
+    ],
+  },
+  {
+    id: "vacation",
+    image: "/innova/pilgrimage.png",
+    title: "Vacations",
+    description:
+      "Enjoy vacations, sightseeing, and weekend getaways with spacious seating, ample luggage space, and comfortable rides for the entire family.",
+    features: [
+      "Large Boot Space",
+      "Comfort Seats",
+      "Weekend Trips",
+    ],
+  },
+  {
+    id: "hill",
+    image: "/innova/hill.png",
+    title: "Hill Station",
+    description:
+      "Plan memorable road trips to Shimla, Manali, Mussoorie, Nainital, Ooty, and more with experienced drivers and comfortable seating for long journeys.",
+    features: [
+      "Experienced Drivers",
+      "Long Distance",
+      "Safe Journey",
+    ],
+  },
+];
+
+
 
 export default function InnovaServiceTemplate({
   parsedData,
@@ -8,26 +80,42 @@ export default function InnovaServiceTemplate({
   parsedData: ParsedRouteData;
 }) {
   const city = parsedData.origin || "India";
-
+  const [activeService, setActiveService] = useState(services[0]);
   return (
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-20 pb-32 px-4 overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
-          <div className="flex-1">
-            <div className="section-badge">✨ PREMIUM INNOVA RENTAL</div>
-            <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tighter">
-              <span className="gradient-text">Innova Crysta</span> on Rent
+      <section className="relative overflow-hidden pt-24 pb-28 px-4 text-slate-950 bg-white">
+        <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
+        <div className="relative max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.4fr_1.2fr] items-center">
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
+            <div className="section-badge inline-flex mb-6 text-slate-950">
+              ✨ PREMIUM INNOVA RENTAL
+            </div>
+            <div className="flex flex-wrap gap-3 mb-8 text-sm text-slate-600">
+              {[
+                "Music System",
+                "Recliner Seats",
+                "7 Seaters",
+                "Premium AC",
+              ].map((feature) => (
+                <span
+                  key={feature}
+                  className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2"
+                >
+                  {feature}
+                </span>
+              ))}
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-slate-950">
+              Hire <span className="gradient-text">Innova Crysta</span> on Rent
               {city !== "India" && <> in {city}</>}
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-xl">
-              The gold standard for family travel and premium{" "}
-              <strong>car rental</strong>. Enjoy seamless{" "}
-              <strong>cab booking</strong> for an{" "}
-              <strong>Innova Crysta on Rent</strong> with spacious 7+1 captain
-              seats and a top-rated <strong>taxi service</strong> experience.
+            <p className="mt-6 max-w-2xl text-lg sm:text-xl leading-relaxed text-slate-600">
+              Book premium airport transfers, family outings, and corporate travel
+              with spacious 7+1 captain seats, dual AC comfort, and verified
+              chauffeurs.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <a
                 href="tel:+918448445504"
                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
@@ -43,30 +131,52 @@ export default function InnovaServiceTemplate({
                 💬 WhatsApp Us
               </a>
             </div>
+            <div className="mt-8 grid grid-cols-2 gap-3 text-sm text-slate-700 sm:grid-cols-4">
+              {[
+                { label: "24/7 Support", icon: "🕒" },
+                { label: "Verified Drivers", icon: "🛡️" },
+                { label: "Instant Quotes", icon: "💬" },
+                { label: "Best Rates", icon: "💰" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3"
+                >
+                  <div className="font-semibold text-slate-950">{item.icon}</div>
+                  <div className="text-xs text-slate-600">{item.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="flex-1 w-full" style={{ maxWidth: "32rem" }}>
-            <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[16/9]">
+
+          <div className="relative mx-auto w-full max-w-xl">
+            <div className="absolute -left-10 top-0 h-72 w-72 rounded-full bg-slate-200 blur-3xl" />
+            <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_40px_120px_rgba(15,23,42,0.08)]">
               <img
                 src="/innova.png"
                 alt={`Innova Crysta on Rent in ${city !== "India" ? city : "India"} by Chiku Cabs`}
-                className="w-full h-full object-cover"
+                className="w-full h-[520px] min-h-[320px] object-cover"
               />
+            </div>
+            <div className="grid grid-cols-3 gap-3 mt-6 text-center text-sm text-slate-700">
+              {[
+                { label: "Comfort", value: "7+1 Seats" },
+                { label: "Power", value: "Auto AC" },
+                { label: "Space", value: "Luggage Friendly" },
+              ].map((card) => (
+                <div
+                  key={card.label}
+                  className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-4"
+                >
+                  <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
+                    {card.label}
+                  </div>
+                  <div className="mt-2 font-semibold text-slate-950">{card.value}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-        <div
-          className="absolute"
-          style={{
-            top: "30%",
-            right: "-10%",
-            width: "600px",
-            height: "600px",
-            background: "hsla(358,73%,43%,0.05)",
-            filter: "blur(120px)",
-            borderRadius: "50%",
-            zIndex: 0,
-          }}
-        ></div>
       </section>
 
       {/* Stats */}
@@ -78,7 +188,7 @@ export default function InnovaServiceTemplate({
         }}
       >
         <div className="max-w-5xl mx-auto px-4">
-          <div className="stats-grid">
+          {/* <div className="stats-grid">
             {[
               { num: "1 Lakh+", label: "Trips Completed" },
               { num: "1,000+", label: "Innovas in Fleet" },
@@ -100,7 +210,8 @@ export default function InnovaServiceTemplate({
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
+          <StatsBar />
         </div>
       </section>
 
@@ -119,9 +230,10 @@ export default function InnovaServiceTemplate({
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
             {[
               {
-                name: "Innova",
+                name: "Innova GX",
                 model: "Toyota Innova (7+1)",
-                price: "₹14/km",
+                image: "/Innova/toyota_innova.png",
+                price: "₹17/km",
                 features: [
                   "7+1 Seating",
                   "AC + Music",
@@ -131,9 +243,10 @@ export default function InnovaServiceTemplate({
                 best: false,
               },
               {
-                name: "Innova Crysta",
+                name: "Innova Crysta ZX",
                 model: "Toyota Innova Crysta",
-                price: "₹17/km",
+                image: "/Innova/toyota_innova.png",
+                price: "₹18/km",
                 features: [
                   "7+1 Captain Seats",
                   "Auto AC",
@@ -145,7 +258,8 @@ export default function InnovaServiceTemplate({
               {
                 name: "Innova HyCross",
                 model: "Toyota HyCross (Hybrid)",
-                price: "₹20/km",
+                image: "/Innova/innova-hybrid.png",
+                price: "₹19/km",
                 features: [
                   "7+1 Luxury Seats",
                   "Hybrid Engine",
@@ -162,8 +276,12 @@ export default function InnovaServiceTemplate({
                 {variant.best && (
                   <div className="package-badge">Most Popular</div>
                 )}
-                <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>
-                  ✨
+                <div className="mb-5">
+                  <img
+                    src={variant.image}
+                    alt={variant.name}
+                    className="mx-auto h-40 w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
                 </div>
                 <h3 className="text-xl font-black mb-1">{variant.name}</h3>
                 <p className="text-xs text-muted-foreground mb-4">
@@ -184,7 +302,9 @@ export default function InnovaServiceTemplate({
                   ))}
                 </ul>
                 <a
-                  href="tel:+918448445504"
+                  href="https://wa.me/918448445504"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-primary w-full py-3 text-sm"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -261,58 +381,96 @@ export default function InnovaServiceTemplate({
       </section>
 
       {/* Use Cases */}
-      <section className="py-24 px-4">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-20 px-4">
+
+        <div className="max-w-5xl mx-auto mb-4">
           <div className="text-center mb-16">
             <h2 className="section-title">
               Popular Innova Rental Use Cases{" "}
               {city !== "India" ? `in ${city}` : ""}
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {[
-              {
-                icon: "✈️",
-                title: "Airport Transfers",
-                desc: "Delhi, Mumbai, Bangalore & more",
-              },
-              {
-                icon: "💒",
-                title: "Wedding Car",
-                desc: "Baarat, guest transfers, decor-ready",
-              },
-              {
-                icon: "🏔️",
-                title: "Hill Station Trips",
-                desc: "Shimla, Manali, Ooty & more",
-              },
-              {
-                icon: "🛕",
-                title: "Pilgrimage Trips",
-                desc: "Vaishno Devi, Tirupati & temples",
-              },
-              {
-                icon: "🏢",
-                title: "Corporate Travel",
-                desc: "Client pickups & executive rides",
-              },
-              {
-                icon: "🎉",
-                title: "Family Vacations",
-                desc: "Weekend getaways & road trips",
-              },
-            ].map((useCase, i) => (
-              <div key={i} className="route-card">
-                <div className="route-card-icon">{useCase.icon}</div>
-                <div>
-                  <div className="font-bold text-sm">{useCase.title}</div>
-                  <div className="text-xs text-muted-foreground">
-                    {useCase.desc}
-                  </div>
-                </div>
-              </div>
+
+          <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+
+            {services.map((service) => (
+
+              <button
+                key={service.id}
+                onClick={() => setActiveService(service)}
+                className={`py-5 px-4 uppercase font-semibold text-sm transition-all border-r border-b
+        ${activeService.id === service.id
+                    ? "bg-primary text-white"
+                    : "bg-gray-100 hover:bg-gray-200 text-gray-800"
+                  }`}
+              >
+                {service.title}
+              </button>
+
             ))}
+
           </div>
+
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+          {/* Image */}
+
+          <div className="relative h-[420px] rounded-3xl overflow-hidden shadow-xl">
+
+            <Image
+              src={activeService.image}
+              alt={activeService.title}
+              fill
+              className="object-cover"
+            />
+
+          </div>
+
+          {/* Content */}
+
+          <div>
+
+            <h3 className="text-4xl font-bold mb-6">
+              {activeService.title}
+            </h3>
+
+            <p className="text-muted-foreground leading-8 mb-8">
+              {activeService.description}
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-4 mb-10">
+
+              {activeService.features.map((item) => (
+
+                <div
+                  key={item}
+                  className="flex items-center gap-3 bg-white border rounded-xl p-4 shadow-sm"
+                >
+                  <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">
+                    ✓
+                  </div>
+
+                  <span>{item}</span>
+
+                </div>
+
+              ))}
+
+            </div>
+
+              <a
+  href="https://wa.me/918448445504"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex px-8 py-4 rounded-xl bg-primary text-white font-semibold hover:opacity-90"
+>
+  Book {activeService.title}
+</a>
+
+          </div>
+
         </div>
       </section>
 
@@ -360,70 +518,11 @@ export default function InnovaServiceTemplate({
       </section>
 
       {/* FAQ */}
-      <section className="py-24 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <div
-              className="section-badge mx-auto"
-              style={{ display: "inline-flex" }}
-            >
-              FAQ
-            </div>
-            <h2 className="section-title">
-              Innova Rental Questions {city !== "India" ? `for ${city}` : ""}
-            </h2>
-          </div>
-          {[
-            {
-              q: `What is the difference between Innova and Innova Crysta on rent in ${city}?`,
-              a: `The standard Innova is perfect for budget family travel in ${city}. Choosing an Innova Crysta on rent provides luxury features like captain seats, dual AC, and a more premium ride for your taxi service needs.`,
-            },
-            {
-              q: `How much does an Innova cab booking cost per day in ${city}?`,
-              a: `Innova cab booking in ${city} starts from ₹14/km. For the premium Innova Crysta on rent, the rate is ₹17/km. We ensure our taxi service remains the most affordable in the market.`,
-            },
-            {
-              q: `Can I get an airport taxi with Innova for pickup in ${city}?`,
-              a: `Yes! We specialize in 24/7 airport transfer services. Your airport taxi (Innova or Crysta) will be ready for you at ${city} airport for a comfortable group drop.`,
-            },
-            {
-              q: `Is the Innova Crysta on rent suitable for hill station outstation cabs from ${city}?`,
-              a: `Absolutely. The Innova's powerful engine makes it the best choice for outstation cabs heading to hilly areas. Our drivers are experts in high-altitude mountain routes.`,
-            },
-            {
-              q: `Can I book an Innova for a wedding event in ${city}?`,
-              a: `Yes! Our luxury cab booking service in ${city} includes premium Innovas for weddings, perfect for guest transfers or as a comfortable car for the bride and groom.`,
-            },
-            {
-              q: `How do I handle cab booking for a full-day city tour in ${city}?`,
-              a: `You can opt for our local taxi service packages (8hr/80km or 12hr/120km) for your Innova cab booking in ${city}, allowing you to explore at your own pace.`,
-            },
-            {
-              q: `Are the drivers for Innova taxi service in ${city} experienced?`,
-              a: `Every driver in our Innova taxi service fleet is police-verified and has at least 5+ years of professional driving experience, ensuring your safety in ${city}.`,
-            },
-            {
-              q: `Does the Innova Crysta on rent have enough space for luggage?`,
-              a: `Yes, the Innova Crysta on rent is famous for its massive boot space. It can easily accommodate 4-5 large bags, making it ideal for airport transfer and outstation cabs.`,
-            },
-            {
-              q: `What amenities are included in my luxury cab booking?`,
-              a: `Your luxury cab booking includes a pristine AC cabin, premium seats, music system, and a 24/7 support line to assist you throughout your journey in ${city}.`,
-            },
-            {
-              q: `How early should I book my Innova cab booking for ${city}?`,
-              a: `To ensure the best rates and availability for your Innova Crysta on rent, we recommend completing your cab booking at least 24-48 hours in advance.`,
-            },
-          ].map((faq, i) => (
-            <details key={i} className="faq-item">
-              <summary>
-                {faq.q}
-                <span className="faq-chevron">▼</span>
-              </summary>
-              <div className="faq-answer">{faq.a}</div>
-            </details>
-          ))}
-        </div>
+      <section className="py-20 px-4">
+        <FAQ
+          vehicle={parsedData.vehicle || "Innova Crysta"}
+          city={parsedData.origin || "Delhi"}
+        />
       </section>
 
       {/* CTA */}
@@ -516,13 +615,29 @@ export default function InnovaServiceTemplate({
             </div>
           </div>
         </section>
-      )}
 
+
+      )}
+      {/* Local Dominance Section */}
+      <section className="py-20 px-4 bg-muted/10 border-t">
+        <LocalDominance city={city} />
+      </section>
+
+      {/* Internal Links & EEAT Section */}
       <InternalLinks parsedData={parsedData} />
       <EEATSection
         city={city !== "India" ? city : undefined}
         vehicle="Innova Crysta"
       />
+
+      {/* Popular Cities */}
+      <section className="py-20 px-4 bg-muted/10 border-t">
+        <PopularCities
+          vehicleName={parsedData.vehicle || "Innova Crysta"}
+          vehicleSlug={parsedData.vehicleSlug}
+          currentCity={parsedData.origin?.toLowerCase()}
+        />
+      </section>
     </div>
   );
 }

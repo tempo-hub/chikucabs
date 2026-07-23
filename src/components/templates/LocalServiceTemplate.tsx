@@ -78,7 +78,7 @@ export default function LocalServiceTemplate({
                 <img
                   src={vDetails.image}
                   alt={`Hire ${vehicle || "Cab"} in ${city !== "India" ? city : "India"} by Chiku Cabs`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-[300px] object-cover"
                 />
               </div>
               <div className="p-8">
