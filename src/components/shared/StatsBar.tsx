@@ -20,16 +20,24 @@ export default function StatsBar() {
 
   return (
     <section>
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="stats-grid">
-          {stats.map((stat) => (
-            <div key={stat.label} className="stat-item">
-              <div className="stat-number">{stat.num}</div>
-              <div className="stat-label">{stat.label}</div>
-            </div>
-          ))}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-16">
+    {stats.map((stat) => (
+      <div
+        key={stat.label}
+        className="bg-white rounded-xl p-4 md:p-6 text-center shadow-sm hover:shadow-md transition-shadow"
+      >
+        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
+          {stat.num}
+        </div>
+
+        <div className="mt-2 text-sm sm:text-base text-gray-600 leading-tight">
+          {stat.label}
         </div>
       </div>
+    ))}
+  </div>
+</div>
     </section>
   );
 }

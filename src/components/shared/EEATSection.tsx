@@ -11,7 +11,7 @@ export default function EEATSection({
 }) {
   return (
     <section
-      className="py-24 px-4 border-y"
+      className="py-12 px-4 border-y"
       style={{
         background:
           "linear-gradient(180deg, hsl(var(--background)), hsla(0,0%,96%,0.5))",
