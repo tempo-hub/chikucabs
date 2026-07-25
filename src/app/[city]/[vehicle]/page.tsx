@@ -1,5 +1,7 @@
 import InnovaServiceTemplate from "@/components/templates/InnovaServiceTemplate";
 import { ParsedRouteData } from "@/lib/urlParser";
+import { isValidRoute } from "@/lib/validateRoute";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: {
@@ -19,6 +21,12 @@ export default function VehiclePage({ params }: Props) {
     isLegacyPhp: false,
     slugs: [params.city, "car-rental", params.vehicle],
   };
+
+  const currentPath = `/${params.city}/${params.vehicle}`;
+
+if (!isValidRoute(currentPath)) {
+  notFound();
+}
 
   return <InnovaServiceTemplate parsedData={parsedData} />;
 }
