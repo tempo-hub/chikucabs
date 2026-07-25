@@ -12,7 +12,7 @@ export const popularCities = [
   {
     name: "Noida",
     slug: "noida",
-    image: "/cities/noida.png",
+    image: "/cities/noida2.png",
   },
   {
     name: "Jaipur",

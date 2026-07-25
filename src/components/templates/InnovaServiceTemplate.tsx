@@ -628,7 +628,7 @@ export default function InnovaServiceTemplate({
         vehicle="Innova Crysta"
       />
 
-      {/* Popular Citie */}
+      {/* Popular City */}
       <section className="py-12 px-4 bg-muted/10 border-t">
         <PopularCities
           vehicleName={parsedData.vehicle || "Innova Crysta"}
