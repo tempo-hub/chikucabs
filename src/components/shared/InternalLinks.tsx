@@ -122,7 +122,7 @@ export default function InternalLinks({ parsedData }: InternalLinksProps) {
   // const originCity = parsedData.origin || "Your City";
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-16">
+    <section className="max-w-7xl mx-auto px-4 py-12">
       <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
         Explore More Routes from {displayOrigin}
       </h2>

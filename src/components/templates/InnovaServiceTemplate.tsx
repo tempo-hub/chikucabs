@@ -83,9 +83,9 @@ export default function InnovaServiceTemplate({
   return (
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-10 sm:pt-16 lg:pt-20 pb-28 px-4 text-slate-950 bg-white">
+      <section className="relative overflow-hidden pt-8 sm:pt-16 lg:pt-16 pb-16 px-4 text-slate-950 bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
-        <div className="relative max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.4fr_1.2fr] items-center">
+        <div className="relative max-w-7xl mx-auto grid gap-12 lg:grid-cols-1 xl:grid-cols-[1.4fr_1.2fr] items-center">
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
             <div className="section-badge inline-flex mb-6 text-slate-950">
               ✨ PREMIUM INNOVA RENTAL
@@ -105,11 +105,11 @@ export default function InnovaServiceTemplate({
                 </span>
               ))}
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-slate-950">
+            <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-6xl font-black leading-tight tracking-tight text-slate-950">
               Hire <span className="gradient-text">Innova Crysta</span> on Rent
               {city !== "India" && <> in {city}</>}
             </h1>
-            <p className="mt-6 max-w-2xl text-lg sm:text-xl leading-relaxed text-slate-600">
+            <p className="mt-6 max-w-2xl lg:text-lg sm:text-xl leading-relaxed text-slate-600">
               Book premium airport transfers, family outings, and corporate travel
               with spacious 7+1 captain seats, dual AC comfort, and verified
               chauffeurs.
@@ -151,12 +151,12 @@ export default function InnovaServiceTemplate({
           <div className="relative mx-auto w-full max-w-xl">
             <div className="absolute -left-10 top-0 h-72 w-72 rounded-full bg-slate-200 blur-3xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_40px_120px_rgba(15,23,42,0.08)]">
-  <img
-    src="/innova.png"
-    alt={`Innova Crysta on Rent in ${city !== "India" ? city : "India"} by Chiku Cabs`}
-    className="w-full h-64 sm:h-80 md:h-[420px] lg:h-[520px] object-cover"
-  />
-</div>
+              <img
+                src="/innova.png"
+                alt={`Innova Crysta on Rent in ${city !== "India" ? city : "India"} by Chiku Cabs`}
+                className="w-full h-64 sm:h-80 md:h-[420px] lg:h-[520px] object-cover"
+              />
+            </div>
             <div className="grid grid-cols-3 gap-3 mt-6 text-center text-sm text-slate-700">
               {[
                 { label: "Comfort", value: "7+1 Seats" },
@@ -180,7 +180,7 @@ export default function InnovaServiceTemplate({
 
       {/* Stats */}
       <section
-        className="border-y py-12"
+        className="border-y py-8"
         style={{
           background: "hsl(var(--foreground))",
           color: "hsl(var(--background))",
@@ -215,7 +215,7 @@ export default function InnovaServiceTemplate({
       </section>
 
       {/* Innova Variants */}
-      <section className="py-24 px-4">
+      <section className="py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div
@@ -316,7 +316,7 @@ export default function InnovaServiceTemplate({
       </section>
 
       {/* Why Innova */}
-      <section className="bg-muted/30 py-24 border-y px-4">
+      <section className="bg-muted/30 py-12 border-y px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div
@@ -380,7 +380,7 @@ export default function InnovaServiceTemplate({
       </section>
 
       {/* Use Cases */}
-      <section className="py-20 px-4">
+      <section className="py-12 px-4">
 
         <div className="max-w-5xl mx-auto mb-4">
           <div className="text-center mb-16">
@@ -458,14 +458,14 @@ export default function InnovaServiceTemplate({
 
             </div>
 
-              <a
-  href="https://wa.me/918448445504"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex px-8 py-4 rounded-xl bg-primary text-white font-semibold hover:opacity-90"
->
-  Book {activeService.title}
-</a>
+            <a
+              href="https://wa.me/918448445504"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex px-8 py-4 rounded-xl bg-primary text-white font-semibold hover:opacity-90"
+            >
+              Book {activeService.title}
+            </a>
 
           </div>
 
@@ -473,7 +473,7 @@ export default function InnovaServiceTemplate({
       </section>
 
       {/* Testimonials */}
-      <section className="bg-muted/30 py-24 border-y px-4">
+      <section className="bg-muted/30 py-12 border-y px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div
@@ -516,7 +516,7 @@ export default function InnovaServiceTemplate({
       </section>
 
       {/* FAQ */}
-      <section className="py-20 px-4">
+      <section className="py-12 px-4">
         <FAQ
           vehicle={parsedData.vehicle || "Innova Crysta"}
           city={parsedData.origin || "Delhi"}
@@ -524,7 +524,7 @@ export default function InnovaServiceTemplate({
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4">
+      <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto cta-banner">
           <h2 className="text-4xl font-extrabold mb-4">
             Book Your Innova Crysta Now
@@ -554,7 +554,7 @@ export default function InnovaServiceTemplate({
 
       {/* SEO Content Section */}
       {city !== "India" && (
-        <section className="py-24 px-4 bg-muted/10 border-t">
+        <section className="py-12 px-4 bg-muted/10 border-t">
           <div className="max-w-4xl mx-auto text-muted-foreground text-lg leading-relaxed">
             <h2 className="text-3xl md:text-4xl font-black mb-8 text-foreground tracking-tight">
               Premium Innova Crysta Rentals in {city}
@@ -617,7 +617,7 @@ export default function InnovaServiceTemplate({
 
       )}
       {/* Local Dominance Section */}
-      <section className="py-20 px-4 bg-muted/10 border-t">
+      <section className="py-12 px-4 bg-muted/10 border-t">
         <LocalDominance city={city} />
       </section>
 
@@ -629,7 +629,7 @@ export default function InnovaServiceTemplate({
       />
 
       {/* Popular Cities */}
-      <section className="py-20 px-4 bg-muted/10 border-t">
+      <section className="py-12 px-4 bg-muted/10 border-t">
         <PopularCities
           vehicleName={parsedData.vehicle || "Innova Crysta"}
           vehicleSlug={parsedData.vehicleSlug}

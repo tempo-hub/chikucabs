@@ -21,11 +21,11 @@ export default function StatsBar() {
   return (
     <section>
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-16">
     {stats.map((stat) => (
       <div
         key={stat.label}
-        className="bg-white rounded-xl p-4 md:p-6 text-center shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+        className="bg-white rounded-xl p-4 md:p-6 text-center shadow-sm hover:shadow-md transition-shadow"
       >
         <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">
           {stat.num}
