@@ -5,6 +5,7 @@ import InternalLinks from "@/components/shared/InternalLinks";
 import PopularCities from "@/components/shared/PopularCities";
 import StatsBar from "../shared/StatsBar";
 import { useState } from "react";
+import LocalDominance from "../shared/LocalDominance";
 
 const services = [
     {
@@ -80,38 +81,28 @@ export default function ErtigaServiceTemplate({
     return (
         <div className="bg-background min-h-screen">
             {/* Hero Section */}
-            <section className="relative overflow-hidden pt-24 pb-28 px-4 text-slate-950 bg-white">
+            <section className="relative overflow-hidden  pt-4 sm:pt-6 lg:pt-16 pb-16 px-4 text-slate-950 bg-white">
                 <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
-                <div className="relative max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.2fr_0.8fr] items-center">
-                    <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
-                        <div className="section-badge inline-flex mb-6 text-slate-950">
-                            Starting@ ₹17/km*
+                <div className="relative max-w-7xl mx-auto grid gap-8 lg:grid-cols-[1.2fr_1.2fr] items-center">
+                    <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
+                        <div className="flex gap-2" >
+                            <div className="section-badge inline-flex mb-6 text-slate-950">
+                                Starting @ ₹17/km*
+                            </div>
+                            <div className="section-badge inline-flex mb-6 text-slate-950">
+                                4.4 ★
+                            </div>
                         </div>
-                        <div className="flex flex-wrap gap-3 mb-8 text-sm text-slate-600">
-                            {[
-                                "Music System",
-                                "Recliner Seats",
-                                "6/7 Seaters",
-                                "Premium AC",
-                            ].map((feature) => (
-                                <span
-                                    key={feature}
-                                    className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2"
-                                >
-                                    {feature}
-                                </span>
-                            ))}
-                        </div>
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-slate-950">
+                        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight tracking-tight text-slate-950">
                             Hire <span className="gradient-text">Ertiga</span> on Rent
                             {city !== "India" && <> in {city}</>}
                         </h1>
-                        <p className="mt-6 max-w-2xl text-lg sm:text-xl leading-relaxed text-slate-600">
+                        <p className="mt-4 max-w-2xl lg:text-lg sm:text-xl leading-relaxed text-slate-600">
                             Book premium airport transfers, family outings, and corporate travel
                             with spacious 7+1 captain seats, dual AC comfort, and verified
                             chauffeurs.
                         </p>
-                        <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                        <div className="mt-8 flex flex-col sm:flex-row gap-4">
                             <a
                                 href="tel:+918448445504"
                                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
@@ -127,7 +118,7 @@ export default function ErtigaServiceTemplate({
                                 💬 WhatsApp Us
                             </a>
                         </div>
-                        <div className="mt-8 grid grid-cols-2 gap-3 text-sm text-slate-700 sm:grid-cols-4">
+                        <div className="mt-6 grid grid-cols-2 gap-3 text-sm text-slate-700 sm:grid-cols-4">
                             {[
                                 { label: "24/7 Support", icon: "🕒" },
                                 { label: "Verified Drivers", icon: "🛡️" },
@@ -151,25 +142,8 @@ export default function ErtigaServiceTemplate({
                             <img
                                 src="/ertiga.png"
                                 alt={`Ertiga Crysta on Rent in ${city !== "India" ? city : "India"} by Chiku Cabs`}
-                                className="w-full h-[520px] min-h-[320px] object-cover"
+                                className="w-full h-64 sm:h-80 md:h-[420px] lg:h-[520px] object-cover"
                             />
-                        </div>
-                        <div className="grid grid-cols-3 gap-3 mt-6 text-center text-sm text-slate-700">
-                            {[
-                                { label: "Comfort", value: "7+1 Seats" },
-                                { label: "Power", value: "Auto AC" },
-                                { label: "Space", value: "Luggage Friendly" },
-                            ].map((card) => (
-                                <div
-                                    key={card.label}
-                                    className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-4"
-                                >
-                                    <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                                        {card.label}
-                                    </div>
-                                    <div className="mt-2 font-semibold text-slate-950">{card.value}</div>
-                                </div>
-                            ))}
                         </div>
                     </div>
                 </div>
@@ -177,7 +151,7 @@ export default function ErtigaServiceTemplate({
 
             {/* Stats */}
             <section
-                className="border-y py-12"
+                className="border-y py-8"
                 style={{
                     background: "hsl(var(--foreground))",
                     color: "hsl(var(--background))",
@@ -212,7 +186,7 @@ export default function ErtigaServiceTemplate({
             </section>
 
             {/* Ertiga Variants */}
-            <section className="py-24 px-4">
+            <section className="py-12 px-4">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <div
@@ -311,7 +285,7 @@ export default function ErtigaServiceTemplate({
             </section>
 
             {/* Why Ertiga */}
-            <section className="bg-muted/30 py-24 border-y px-4">
+            <section className="bg-muted/30 py-12 border-y px-4">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <div
@@ -375,7 +349,7 @@ export default function ErtigaServiceTemplate({
             </section>
 
             {/* Use Cases */}
-            <section className="py-24 px-4">
+            <section className="py-12 px-4">
                 <div className="max-w-5xl mx-auto mb-4">
                     <div className="text-center mb-16">
                         <h2 className="section-title">
@@ -465,7 +439,7 @@ export default function ErtigaServiceTemplate({
             </section>
 
             {/* Testimonials */}
-            <section className="bg-muted/30 py-24 border-y px-4">
+            <section className="bg-muted/30 py-12 border-y px-4">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <div
@@ -508,7 +482,7 @@ export default function ErtigaServiceTemplate({
             </section>
 
             {/* FAQ */}
-            <section className="py-24 px-4">
+            <section className="py-12 px-4">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
                         <div
@@ -573,9 +547,9 @@ export default function ErtigaServiceTemplate({
                     ))}
                 </div>
             </section>
-            
+
             {/* CTA */}
-            <section className="py-20 px-4">
+            <section className="py-12 px-4">
                 <div className="max-w-4xl mx-auto cta-banner">
                     <h2 className="text-4xl font-extrabold mb-4">
                         Book Your Ertiga Crysta Now
@@ -605,7 +579,7 @@ export default function ErtigaServiceTemplate({
 
             {/* SEO Content Section */}
             {city !== "India" && (
-                <section className="py-24 px-4 bg-muted/10 border-t">
+                <section className="py-12 px-4 bg-muted/10 border-t">
                     <div className="max-w-4xl mx-auto text-muted-foreground text-lg leading-relaxed">
                         <h2 className="text-3xl md:text-4xl font-black mb-8 text-foreground tracking-tight">
                             Premium Ertiga Crysta Rentals in {city}
@@ -666,13 +640,18 @@ export default function ErtigaServiceTemplate({
                 </section>
             )}
 
+            {/* Local Dominance Section */}
+                  <section className="py-8 px-4 bg-muted/10 border-t">
+                    <LocalDominance city={city} />
+                  </section>
+
             <InternalLinks parsedData={parsedData} />
             <EEATSection
                 city={city !== "India" ? city : undefined}
                 vehicle="Ertiga Crysta"
             />
 
-            <section className="py-24 px-4 bg-muted/20">
+            <section className="py-12 px-4 bg-muted/20">
                 <div className="max-w-7xl mx-auto">
                     <PopularCities
                         vehicleName={parsedData.vehicle || "Ertiga" || "Innova"}

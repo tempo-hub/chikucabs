@@ -85,15 +85,15 @@ export default function InnovaServiceTemplate({
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-4 sm:pt-6 lg:pt-16 pb-16 px-4 text-slate-950 bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
-        <div className="relative max-w-7xl mx-auto grid gap-8 lg:grid-cols-1 xl:grid-cols-[1.0fr_1.2fr] items-center">
+        <div className="relative max-w-7xl mx-auto grid gap-8 lg:grid-cols-1 xl:grid-cols-[1.2fr_1.2fr] items-center">
           <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
             <div className="flex gap-2" >
               <div className="section-badge inline-flex mb-6 text-slate-950">
-              Starting @ ₹17/km*
-            </div>
-            <div className="section-badge inline-flex mb-6 text-slate-950">
-              4.4 ★
-            </div>
+                Starting @ ₹17/km*
+              </div>
+              <div className="section-badge inline-flex mb-6 text-slate-950">
+                4.4 ★
+              </div>
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-6xl font-black leading-tight tracking-tight text-slate-950">
@@ -137,7 +137,7 @@ export default function InnovaServiceTemplate({
                 </div>
               ))}
             </div>
-            
+
           </div>
 
           <div className="relative mx-auto w-full max-w-xl">
@@ -149,7 +149,7 @@ export default function InnovaServiceTemplate({
                 className="w-full h-64 sm:h-80 md:h-[420px] lg:h-[520px] object-cover"
               />
             </div>
-            
+
           </div>
         </div>
       </section>
@@ -593,7 +593,7 @@ export default function InnovaServiceTemplate({
 
       )}
       {/* Local Dominance Section */}
-      <section className="py-12 px-4 bg-muted/10 border-t">
+      <section className="py-8 px-4 bg-muted/10 border-t">
         <LocalDominance city={city} />
       </section>
 
