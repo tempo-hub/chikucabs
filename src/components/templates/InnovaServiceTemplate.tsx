@@ -83,38 +83,29 @@ export default function InnovaServiceTemplate({
   return (
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 sm:pt-16 lg:pt-16 pb-16 px-4 text-slate-950 bg-white">
+      <section className="relative overflow-hidden pt-4 sm:pt-6 lg:pt-16 pb-16 px-4 text-slate-950 bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
-        <div className="relative max-w-7xl mx-auto grid gap-12 lg:grid-cols-1 xl:grid-cols-[1.4fr_1.2fr] items-center">
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
+        <div className="relative max-w-7xl mx-auto grid gap-8 lg:grid-cols-1 xl:grid-cols-[1.0fr_1.2fr] items-center">
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
+            <div className="flex gap-2" >
+              <div className="section-badge inline-flex mb-6 text-slate-950">
+              Starting @ ₹17/km*
+            </div>
             <div className="section-badge inline-flex mb-6 text-slate-950">
-              ✨ PREMIUM INNOVA RENTAL
+              4.4 ★
             </div>
-            <div className="flex flex-wrap gap-3 mb-8 text-sm text-slate-600">
-              {[
-                "Music System",
-                "Recliner Seats",
-                "7 Seaters",
-                "Premium AC",
-              ].map((feature) => (
-                <span
-                  key={feature}
-                  className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2"
-                >
-                  {feature}
-                </span>
-              ))}
             </div>
+
             <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-6xl font-black leading-tight tracking-tight text-slate-950">
               Hire <span className="gradient-text">Innova Crysta</span> on Rent
               {city !== "India" && <> in {city}</>}
             </h1>
-            <p className="mt-6 max-w-2xl lg:text-lg sm:text-xl leading-relaxed text-slate-600">
+            <p className="mt-4 max-w-2xl lg:text-lg sm:text-xl leading-relaxed text-slate-600">
               Book premium airport transfers, family outings, and corporate travel
               with spacious 7+1 captain seats, dual AC comfort, and verified
               chauffeurs.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
                 href="tel:+918448445504"
                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
@@ -130,7 +121,7 @@ export default function InnovaServiceTemplate({
                 💬 WhatsApp Us
               </a>
             </div>
-            <div className="mt-8 grid grid-cols-2 gap-3 text-sm text-slate-700 sm:grid-cols-4">
+            <div className="mt-6 grid grid-cols-2 gap-3 text-sm text-slate-700 sm:grid-cols-4">
               {[
                 { label: "24/7 Support", icon: "🕒" },
                 { label: "Verified Drivers", icon: "🛡️" },
@@ -146,6 +137,7 @@ export default function InnovaServiceTemplate({
                 </div>
               ))}
             </div>
+            
           </div>
 
           <div className="relative mx-auto w-full max-w-xl">
@@ -157,23 +149,7 @@ export default function InnovaServiceTemplate({
                 className="w-full h-64 sm:h-80 md:h-[420px] lg:h-[520px] object-cover"
               />
             </div>
-            <div className="grid grid-cols-3 gap-3 mt-6 text-center text-sm text-slate-700">
-              {[
-                { label: "Comfort", value: "7+1 Seats" },
-                { label: "Power", value: "Auto AC" },
-                { label: "Space", value: "Luggage Friendly" },
-              ].map((card) => (
-                <div
-                  key={card.label}
-                  className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-4"
-                >
-                  <div className="text-xs uppercase tracking-[0.16em] text-slate-500">
-                    {card.label}
-                  </div>
-                  <div className="mt-2 font-semibold text-slate-950">{card.value}</div>
-                </div>
-              ))}
-            </div>
+            
           </div>
         </div>
       </section>
@@ -383,7 +359,7 @@ export default function InnovaServiceTemplate({
       <section className="py-12 px-4">
 
         <div className="max-w-5xl mx-auto mb-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h2 className="section-title">
               Popular Innova Rental Use Cases{" "}
               {city !== "India" ? `in ${city}` : ""}
@@ -475,7 +451,7 @@ export default function InnovaServiceTemplate({
       {/* Testimonials */}
       <section className="bg-muted/30 py-12 border-y px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <div
               className="section-badge mx-auto"
               style={{ display: "inline-flex" }}
@@ -632,7 +608,6 @@ export default function InnovaServiceTemplate({
       <section className="py-12 px-4 bg-muted/10 border-t">
         <PopularCities
           vehicleName={parsedData.vehicle || "Innova Crysta"}
-          vehicleSlug={parsedData.vehicleSlug}
           currentCity={parsedData.origin?.toLowerCase()}
         />
       </section>
