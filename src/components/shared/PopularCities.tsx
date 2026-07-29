@@ -1,31 +1,39 @@
-import Image from "next/image";
 import Link from "next/link";
 import { popularCities } from "@/lib/popularCities";
+import { Building2, Castle, Landmark, MapPinned } from "lucide-react";
 
 type PopularCitiesProps = {
   vehicleName: string;
-  vehicleSlug: string;
   currentCity?: string;
 };
 
+type City = {
+  name: string;
+  slug: string;
+};
+
+const cityIcons = [
+  Building2,
+  Landmark,
+  MapPinned,
+  Castle,
+];
+
 export default function PopularCities({
   vehicleName,
-  vehicleSlug,
-   currentCity,
+  currentCity,
 }: PopularCitiesProps) {
-  // console.log("Vehicle Name:", vehicleName);
-  // console.log("Vehicle Slug:", vehicleSlug);
-  const filteredCities = popularCities.filter(
-  (city) => city.slug.toLowerCase() !== currentCity?.toLowerCase()
-);
+  const filteredCities: City[] = (
+    popularCities[
+      currentCity?.toLowerCase() as keyof typeof popularCities
+    ] ?? []
+  ).filter((city: City) => city.slug !== currentCity?.toLowerCase());
+
   return (
     <section>
       <div className="max-w-7xl mx-auto">
-
         {/* Heading */}
-
         <div className="text-center mb-16">
-
           <div
             className="section-badge mx-auto"
             style={{ display: "inline-flex" }}
@@ -41,41 +49,30 @@ export default function PopularCities({
             Book premium {vehicleName} rental services across India's major
             cities with verified drivers and affordable pricing.
           </p>
-
         </div>
 
         {/* Cards */}
-
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {filteredCities.map((city, index) => {
+            const Icon = cityIcons[index % cityIcons.length];
 
-          {filteredCities.map((city) => (
+            return (
+              <Link
+                key={city.slug}
+                href={`/${city.slug}`}
+                className="group rounded-3xl border bg-white p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+              >
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-4 border-orange-200 bg-orange-50 transition-all duration-300 group-hover:border-orange-500 group-hover:bg-orange-500">
+                  <Icon className="h-10 w-10 text-orange-500 transition-colors duration-300 group-hover:text-white" />
+                </div>
 
-            <Link
-              key={city.slug}
-              href={`/${city.slug}/${vehicleSlug}`}
-              className="group rounded-3xl border bg-white p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-            >
-
-              <div className="mx-auto h-28 w-28 overflow-hidden rounded-full border-4 border-primary/10 bg-white shadow-md">
-                <Image
-                  src={city.image}
-                  alt={city.name}
-                  width={112}
-                  height={112}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-              </div>
-
-              <h3 className="mt-5 text-center font-bold text-lg">
-                {city.name}
-              </h3>
-
-            </Link>
-
-          ))}
-
+                <h3 className="mt-5 text-center font-bold text-lg">
+                  {city.name}
+                </h3>
+              </Link>
+            );
+          })}
         </div>
-
       </div>
     </section>
   );

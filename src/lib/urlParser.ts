@@ -4,7 +4,7 @@ export interface ParsedRouteData {
   origin: string | null;
   destination: string | null;
   vehicle: string | null;
-  vehicleCategory: "tempo-traveller" | "innova" | "cab" | "driver";
+  vehicleCategory: "tempo-traveller" | "innova" | "cab" | "driver" | "ertiga";
   routeType:
     | "Service"
     | "Local Service"
@@ -53,6 +53,8 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
     vehicle = "Tempo Traveller";
   } else if (lowerSegment.includes("innova")) {
     vehicle = "Innova";
+    } else if (lowerSegment.includes("ertiga")) {
+    vehicle = "Ertiga";
   } else if (lowerSegment.includes("bus")) {
     vehicle = "Bus";
   } else if (lowerSegment.includes("car")) {
@@ -266,6 +268,8 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
     vehicleCategory = "tempo-traveller";
   } else if (lowerVehicle.includes("innova")) {
     vehicleCategory = "innova";
+    } else if (lowerVehicle.includes("ertiga")) {
+    vehicleCategory = "ertiga";
   } else if (
     lowerVehicle.includes("driver") ||
     lowerVehicle.includes("chauffeur")
