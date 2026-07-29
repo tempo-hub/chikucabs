@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,10 +12,13 @@ export default function Navbar() {
       <div className="navbar-inner">
         {/* Logo */}
         <Link href="/" className="navbar-logo">
-          <img
-            src="/chikucabnewlogo.webp"
+          <Image
+            src="/logo.png"
             alt="Chiku Cabs"
+            width={211}
+            height={45}
             style={{ height: "45px", width: "auto" }}
+            priority
           />
         </Link>
 
