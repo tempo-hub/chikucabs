@@ -34,6 +34,9 @@ import { cityCabRoutes, CITY_DISPLAY_NAMES } from "@/data/cityCabRoutes";
 import Link from "next/link";
 import { IoLocationSharp } from "react-icons/io5";
 import { CiClock1 } from "react-icons/ci";
+import { FaLocationDot, FaRegClock } from "react-icons/fa6";
+import { TbTargetArrow } from "react-icons/tb";
+import { SlCalender } from "react-icons/sl";
 
 // --- Type Definitions ---
 interface FormData {
@@ -206,46 +209,6 @@ const FEATURES = [
   },
 ];
 
-const CITIES: CityService[] = [
-  { name: "Delhi", services: ["Local", "Airport", "Outstation"] },
-  { name: "Noida", services: ["Local", "Airport", "Outstation"] },
-  { name: "Gurgaon", services: ["Local", "Airport", "Outstation"] },
-  { name: "Agra", services: ["Local", "Airport", "Outstation"] },
-  { name: "Jaipur", services: ["Local", "Airport", "Outstation"] },
-  { name: "Lucknow", services: ["Local", "Airport", "Outstation"] },
-  { name: "Chandigarh", services: ["Local", "Airport", "Outstation"] },
-  { name: "Varanasi", services: ["Local", "Airport", "Outstation"] },
-];
-
-const COMPARISON_FEATURES = [
-  {
-    feature: "Professional Drivers",
-    chiku: "✓ Verified & Trained",
-    other: "❌ Not always",
-  },
-  {
-    feature: "Transparent Pricing",
-    chiku: "✓ No hidden charges",
-    other: "⚠️ Hidden costs",
-  },
-  {
-    feature: "24/7 Customer Support",
-    chiku: "✓ Live human support",
-    other: "❌ Chat bot only",
-  },
-  {
-    feature: "Easy Cancellation",
-    chiku: "✓ Up to 24 hours",
-    other: "❌ Cancellation fee",
-  },
-  { feature: "GPS Tracking", chiku: "✓ Real-time", other: "⚠️ Sometimes" },
-  {
-    feature: "Clean & Sanitized",
-    chiku: "✓ After every trip",
-    other: "❌ Not guaranteed",
-  },
-];
-
 // --- Helper Functions ---
 const getVehicleDetails = (vehicle: string): VehicleDetails => {
   const lowerV = vehicle.toLowerCase();
@@ -269,42 +232,86 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
   };
 };
 
-const generateFAQs = (vehicle: string): FAQItem[] => [
+const generateFAQs = (): FAQItem[] => [
   {
-    q: `How do I book an outstation cab?`,
-    a: `You can book online through our website by filling the booking form or call our customer support. Instant confirmation will be sent via SMS and email.`,
+    q: "What is a One Way Taxi Service?",
+    a: "A One Way Taxi Service allows you to travel to your destination by paying only for a single journey. It is more economical than round-trip bookings because there are no return fare charges.",
   },
   {
-    q: `What is included in the price?`,
-    a: `Price includes fuel, driver allowance, tolls, parking, and state taxes (unless specified otherwise). No hidden charges.`,
+    q: "Why should I choose a one way taxi instead of a round trip?",
+    a: "One way taxis are more affordable since you pay only for the distance travelled. They are ideal for airport transfers, city-to-city travel, business trips, and pilgrimages.",
   },
   {
-    q: `Can I cancel my booking?`,
-    a: `Yes, free cancellation is available up to 6 hours before pickup time. Cancellation charges may apply for last-minute cancellations.`,
+    q: "How do I book a One Way Taxi with Chiku Cabs?",
+    a: "You can easily book online through our website, call our customer support, or contact us on WhatsApp. We provide instant booking confirmation and driver details before pickup.",
   },
   {
-    q: `Are your cars sanitized?`,
-    a: `Yes, all vehicles are thoroughly sanitized before each trip. We follow strict hygiene protocols for your safety.`,
+    q: "What types of vehicles are available?",
+    a: "We offer Sedan, SUV, MUV, Luxury Cars, and Tempo Travellers to suit solo travellers, families, and large groups.",
   },
   {
-    q: `Do you provide one-way cabs?`,
-    a: `Yes, we offer both one-way and round trip outstation cabs at competitive prices.`,
+    q: "Are toll taxes and parking charges included in the fare?",
+    a: "Fare inclusions depend on the selected package. Any applicable tolls, parking charges, or state taxes will be clearly communicated before booking confirmation.",
   },
   {
-    q: `How can I pay?`,
-    a: `We accept multiple payment options including cash, credit/debit cards, UPI, and online bank transfers.`,
+    q: "Can I book a one way taxi from the airport?",
+    a: "Yes. We provide one way airport taxi services with doorstep pickup and drop from all major airports, railway stations, hotels, and residential locations.",
+  },
+  {
+    q: "Do you provide taxis for long-distance travel?",
+    a: "Yes. Chiku Cabs offers one way taxi services for intercity travel across major cities with experienced drivers and well-maintained vehicles.",
+  },
+  {
+    q: "Are your drivers verified and experienced?",
+    a: "Yes. All our drivers are professionally trained, police verified, and experienced in long-distance driving to ensure a safe and comfortable journey.",
+  },
+  {
+    q: "Can I cancel or reschedule my booking?",
+    a: "Yes. You can cancel or reschedule your booking according to our cancellation policy. Please contact our support team as early as possible.",
+  },
+  {
+    q: "What payment methods do you accept?",
+    a: "We accept UPI, debit cards, credit cards, net banking, cash, and other secure online payment options for your convenience.",
+  },
+  {
+    q: "Is advance booking required?",
+    a: "Advance booking is recommended to get the best fares and ensure vehicle availability, especially during weekends, holidays, and festival seasons.",
+  },
+  {
+    q: "Are your vehicles sanitized before every trip?",
+    a: "Yes. Every vehicle is cleaned and sanitized before pickup to provide a safe, hygienic, and comfortable travel experience.",
   },
 ];
 
-// --- Main Component ---
-export default function OutstationTemplate({
+// Generate time options for select dropdown
+const generateTimes = () => {
+  const times = [];
+  for (let hour = 0; hour < 24; hour++) {
+    for (let min = 0; min < 60; min += 30) {
+      const period = hour >= 12 ? "PM" : "AM";
+      const displayHour = hour % 12 || 12;
+      times.push(`${displayHour}:${String(min).padStart(2, "0")} ${period}`);
+    }
+  }
+  return times;
+};
+
+export default function OneWayTaxiServiceTemplate({
   parsedData,
 }: {
   parsedData: ParsedRouteData;
 }) {
   const vehicle = parsedData?.vehicle || DEFAULT_VEHICLE;
-
   const vehicleDetails = useMemo(() => getVehicleDetails(vehicle), [vehicle]);
+
+  // State variables
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [pickupLocation, setPickupLocation] = useState("");
+  const [dropLocation, setDropLocation] = useState("");
+  const [travelDate, setTravelDate] = useState("");
+  const [travelTime, setTravelTime] = useState("");
+  const [selectedVehicle, setSelectedVehicle] = useState("");
+  const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
@@ -313,18 +320,9 @@ export default function OutstationTemplate({
     date: "",
     distance: "50",
   });
-  const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
   const faqs = useMemo(() => generateFAQs(vehicle), [vehicle]);
-  const [pickupLocation, setPickupLocation] = useState("");
-  const [dropLocation, setDropLocation] = useState("");
-  const [travelDate, setTravelDate] = useState("");
-  const [travelTime, setTravelTime] = useState("");
-  const [returnDate, setReturnDate] = useState("");
-  const [tripType, setTripType] = useState("one-way");
-  const [selectedVehicle, setSelectedVehicle] = useState("");
-  const [selectedRegion, setSelectedRegion] = useState("All");
-  const [showAllRoutes, setShowAllRoutes] = useState(false);
+
+  const timeOptions = useMemo(() => generateTimes(), []);
 
   // Scroll handler for sticky CTA
   useEffect(() => {
@@ -347,53 +345,7 @@ export default function OutstationTemplate({
     calculateFare();
   }, [calculateFare]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // Structured Data for SEO
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: `${vehicle} Rental Service`,
-    description: `Book ${vehicle} for local, outstation, and airport transfers. Best price guaranteed. Professional drivers, 24/7 support.`,
-    brand: { "@type": "Brand", name: SITE_NAME },
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "INR",
-      lowPrice: vehicleDetails.pricePerKm,
-      highPrice: vehicleDetails.pricePerKm * 2,
-      offerCount: 3,
-      availability: "https://schema.org/InStock",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-    },
-  };
-
-  const organizationData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: SITE_NAME,
-    image: "https://chikucabs.com/yt.png",
-    telephone: PHONE_NUMBER,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Delhi",
-      addressCountry: "IN",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-    },
-    priceRange:
-      "₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}",
-  };
-
+  // Handle form submission for fare estimate
   const handleGetEstimate = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -402,21 +354,15 @@ export default function OutstationTemplate({
       return;
     }
 
-    if (tripType === "round-trip" && !returnDate) {
-      toast.error("Please select return date");
-      return;
-    }
+    const message = `🚖 *One-Way Taxi Service Fare Estimate Request*
 
-    const message = `🚖 *Fare Estimate Request*
+📍 Pickup: ${pickupLocation}
+🎯 Drop: ${dropLocation}
+📅 Travel Date: ${travelDate}
+⏰ Travel Time: ${travelTime}
+🚗 Vehicle: ${selectedVehicle || "Not Selected"}
 
-🚕 *Trip Type:* ${tripType}
-🛣️ Route: ${pickupLocation} → ${dropLocation}
-📅 *Travel Date:* ${travelDate}
-⏰ *Travel Time:* ${travelTime}
-${tripType === "round-trip" ? `🔄 *Return Date:* ${returnDate}\n` : ""}
-🚘 *Vehicle Type:* ${selectedVehicle || "Not Selected"}
-
-Please share the fare estimate.`;
+Please share the best fare estimate.`;
 
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
       message,
@@ -424,62 +370,36 @@ Please share the fare estimate.`;
 
     window.open(whatsappUrl, "_blank");
 
-    // Clear form fields
-    setPickupLocation("");
-    setDropLocation("");
-    setTravelDate("");
-    setTravelTime("");
-    setReturnDate("");
-    setSelectedVehicle("");
-    setTripType("one-way");
+    // Show success message
+    toast.success("Fare estimate request sent successfully!");
   };
 
-  const generateTimes = () => {
-    const times = [];
-
-    for (let hour = 0; hour < 24; hour++) {
-      for (let min = 0; min < 60; min += 30) {
-        const period = hour >= 12 ? "PM" : "AM";
-        const displayHour = hour % 12 || 12;
-
-        times.push(`${displayHour}:${String(min).padStart(2, "0")} ${period}`);
-      }
-    }
-
-    return times;
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
-  const timeOptions = generateTimes();
-
-  // Calculate initial fare for default 50 km with driver charge
-  useEffect(() => {
-    if (formData.distance === "50") {
-      calculateFare(); // This already includes ₹500 driver charge
-    }
-  }, []); // Empty dependency array - runs once on mount
 
   return (
     <>
       <Head>
         <title>
-          Book {vehicle} Rental | Best {vehicle} Hire Service in India | Chiku
-          Cabs
+          One-Way Taxi Service - Book Best Outstation Cabs | Chiku Cabs
         </title>
         <meta
           name="description"
-          content={`Book ${vehicle} for local, outstation, and airport transfers. Best price guaranteed. Professional drivers, sanitized cars, 24/7 support. Call ${PHONE_NUMBER}.`}
+          content={`Book one-way taxi service at ₹${vehicleDetails?.pricePerKm || "10"}/km. Best price guaranteed for one-way outstation trips. Professional drivers, sanitized cars, 24/7 support.`}
         />
         <meta
           name="keywords"
-          content={`${vehicle} rental, ${vehicle} hire, ${vehicle} on rent, cab booking, taxi service, outstation cabs, ${vehicle} cab, ${vehicle} taxi`}
+          content="one-way taxi, one-way cab, outstation taxi, one-way outstation cab, taxi service, cab booking, one-way trip, Chiku Cabs"
         />
         <meta
           property="og:title"
-          content={`Book ${vehicle} Rental | Best ${vehicle} Hire Service`}
+          content="One-Way Taxi Service - Book Best Outstation Cabs"
         />
         <meta
           property="og:description"
-          content={`Affordable ${vehicle} rental with professional drivers. Best price guarantee. Book now for local, outstation, and airport transfers.`}
+          content={`Affordable one-way taxi service at ₹${vehicleDetails?.pricePerKm || "10"}/km. Book now for safe and reliable outstation trips.`}
         />
         <meta
           property="og:image"
@@ -489,27 +409,63 @@ Please share the fare estimate.`;
         <meta name="twitter:card" content="summary_large_image" />
         <link
           rel="canonical"
-          href={`https://chikucabs.com/${vehicle.toLowerCase().replace(/\s+/g, "-")}-rental`}
+          href="https://chikucabs.com/one-way-taxi-service"
         />
       </Head>
 
       <Script
-        id="structured-data"
+        id="hero-structured-data"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-
-      <Script
-        id="organization-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "One-Way Taxi Service - Book Best Outstation Cabs",
+            description: `Book one-way taxi service at ₹${
+              vehicleDetails?.pricePerKm || "10"
+            }/km. Best price guaranteed for one-way outstation trips. Professional drivers, sanitized cars, 24/7 support.`,
+            url: "https://chikucabs.com/one-way-taxi-service",
+            mainEntity: {
+              "@type": "Service",
+              name: "One-Way Taxi Service",
+              provider: {
+                "@type": "LocalBusiness",
+                name: SITE_NAME,
+                telephone: PHONE_NUMBER,
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: "Delhi",
+                  addressCountry: "IN",
+                },
+              },
+              areaServed: {
+                "@type": "Place",
+                name: "Pan India",
+              },
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "One-Way Cab Services",
+                itemListElement: [
+                  {
+                    "@type": "Offer",
+                    name: "One-Way Outstation Cab",
+                    price: vehicleDetails?.pricePerKm || "10",
+                    priceCurrency: "INR",
+                    availability: "https://schema.org/InStock",
+                  },
+                ],
+              },
+            },
+          }),
+        }}
       />
 
       <div className="bg-background min-h-screen">
         {/* Sticky CTA Bar with Promo Code */}
         <div
-          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${isScrolled ? "translate-y-0" : "translate-y-full"
-            }`}
+          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${
+            isScrolled ? "translate-y-0" : "translate-y-full"
+          }`}
         >
           <div className="bg-gray-900 text-white shadow-2xl">
             <div className="max-w-7xl mx-auto px-4 py-3">
@@ -574,16 +530,18 @@ Please share the fare estimate.`;
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                  Outstation Cab Service
+                  One Way Taxi Service
                   <br />
                   <span className="text-primary">
-                    Starting at ₹{vehicleDetails?.pricePerKm || "10"}/km
+                    Starting at ₹{vehicleDetails?.pricePerKm || "9"}/km
                   </span>
                 </h1>
 
                 <p className="text-lg mb-8 opacity-90 max-w-lg">
-                  {vehicleDetails?.description ||
-                    "Safe, reliable, and affordable outstation taxi service for one-way & round trips. Professional drivers, sanitized cars, and 24/7 support."}
+                  Book affordable One Way Taxi Service with Chiku Cabs. Enjoy
+                  transparent pricing, verified drivers, sanitized AC cars,
+                  doorstep pickup, and instant booking confirmation. Pay only
+                  for the one-way distance with no return charges.
                 </p>
 
                 {/* Quick Action Buttons */}
@@ -625,34 +583,32 @@ Please share the fare estimate.`;
                 </div>
               </div>
 
-              {/* Right Content - Booking Widget */}
+              {/* Right Content - Booking Widget (Like Uber) */}
               <div className="bg-white rounded-2xl shadow-2xl p-6 lg:p-8">
-                <h3 className="text-2xl font-bold mb-4">
-                  Book Your {vehicle || "Outstation Cab"}
-                </h3>
+                <h3 className="text-2xl font-bold mb-4">Book Your {vehicle}</h3>
                 <p className="text-gray-600 mb-6">
                   Get instant confirmation & best price
                 </p>
 
-                <form className="space-y-5" onSubmit={handleGetEstimate}>
+                <form className="space-y-5">
                   {/* Pickup Location */}
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
                       📍
                     </span>
+
                     <input
                       type="text"
                       value={pickupLocation}
                       onChange={(e) => setPickupLocation(e.target.value)}
                       placeholder="Enter Pickup Location"
                       className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-                focus:bg-white
-                focus:border-primary
-                focus:ring-4
-                focus:ring-primary/10
-                outline-none
-                transition-all duration-300"
-                      required
+                    focus:bg-white
+                    focus:border-primary
+                    focus:ring-4
+                    focus:ring-primary/10
+                    outline-none
+                    transition-all duration-300"
                     />
                   </div>
 
@@ -661,86 +617,57 @@ Please share the fare estimate.`;
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
                       🎯
                     </span>
+
                     <input
                       type="text"
                       value={dropLocation}
                       onChange={(e) => setDropLocation(e.target.value)}
                       placeholder="Enter Drop Location"
                       className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-                focus:bg-white
-                focus:border-primary
-                focus:ring-4
-                focus:ring-primary/10
-                outline-none
-                transition-all duration-300"
-                      required
+                    focus:bg-white
+                    focus:border-primary
+                    focus:ring-4
+                    focus:ring-primary/10
+                    outline-none
+                    transition-all duration-300"
                     />
-                  </div>
-
-                  {/* Trip Type Selection (Outstation Specific) */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <button
-                      type="button"
-                      onClick={() => setTripType("one-way")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "one-way"
-                          ? "bg-primary text-white shadow-lg shadow-primary/20"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
-                    >
-                      One Way
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setTripType("round-trip")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "round-trip"
-                          ? "bg-primary text-white shadow-lg shadow-primary/20"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
-                    >
-                      Round Trip
-                    </button>
                   </div>
 
                   {/* Date & Time */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Pickup Date */}
+                    {/* Date */}
                     <div className="relative">
                       <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
                         📅
                       </span>
+
                       <input
                         type="date"
                         value={travelDate}
                         onChange={(e) => setTravelDate(e.target.value)}
                         className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-                  focus:bg-white
-                  focus:border-primary
-                  focus:ring-4
-                  focus:ring-primary/10
-                  outline-none
-                  transition-all duration-300"
-                        required
+                      focus:bg-white
+                      focus:border-primary
+                      focus:ring-4
+                      focus:ring-primary/10
+                      outline-none
+                      transition-all duration-300"
                       />
                     </div>
 
-                    {/* Pickup Time */}
+                    {/* Time */}
                     <div className="relative">
                       <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
                         ⏰
                       </span>
+
                       <select
                         value={travelTime}
                         onChange={(e) => setTravelTime(e.target.value)}
-                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-                  focus:bg-white
-                  focus:border-primary
-                  focus:ring-4
-                  focus:ring-primary/10
-                  outline-none
-                  transition-all duration-300"
-                        required
+                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl"
                       >
                         <option value="">Select Time</option>
+
                         {timeOptions.map((time) => (
                           <option key={time} value={time}>
                             {time}
@@ -749,28 +676,6 @@ Please share the fare estimate.`;
                       </select>
                     </div>
                   </div>
-
-                  {/* Return Date (Only for Round Trip) */}
-                  {tripType === "round-trip" && (
-                    <div className="relative">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base">
-                        🔄
-                      </span>
-                      <input
-                        type="date"
-                        value={returnDate}
-                        onChange={(e) => setReturnDate(e.target.value)}
-                        placeholder="Return Date"
-                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-                  focus:bg-white
-                  focus:border-primary
-                  focus:ring-4
-                  focus:ring-primary/10
-                  outline-none
-                  transition-all duration-300"
-                      />
-                    </div>
-                  )}
 
                   {/* Vehicle Selection (Outstation Specific) */}
                   <div className="relative">
@@ -822,13 +727,14 @@ Please share the fare estimate.`;
 
                   {/* CTA Button */}
                   <button
-                    type="submit"
+                    type="button"
+                    onClick={handleGetEstimate}
                     className="group w-full h-14 rounded-2xl bg-primary text-white font-semibold text-lg
-              shadow-lg shadow-primary/20
-              hover:shadow-xl hover:shadow-primary/30
-              hover:-translate-y-0.5
-              active:translate-y-0
-              transition-all duration-300"
+                  shadow-lg shadow-primary/20
+                  hover:shadow-xl hover:shadow-primary/30
+                  hover:-translate-y-0.5
+                  active:translate-y-0
+                  transition-all duration-300"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Get Fare Estimate
@@ -842,11 +748,9 @@ Please share the fare estimate.`;
                   <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-gray-500 pt-1">
                     <span>✓ No Booking Fee</span>
                     <span>•</span>
-                    <span>✓ Free Cancellation</span>
+                    <span>✓ Easy Cancellation</span>
                     <span>•</span>
                     <span>✓ 24×7 Support</span>
-                    <span>•</span>
-                    <span>✓ Driver Details</span>
                   </div>
                 </form>
               </div>
@@ -892,8 +796,8 @@ Please share the fare estimate.`;
                 Available Vehicles
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Choose from our fleet of well-maintained vehicles for your
-                outstation trip
+                Choose from our fleet of well-maintained vehicles for your one
+                way trip
               </p>
             </div>
 
@@ -1187,10 +1091,11 @@ Please share the fare estimate.`;
                           }));
                           setEstimatedPrice(calculateFareByDistance(dist));
                         }}
-                        className={`py-2 rounded-lg text-sm font-medium transition-all ${Number(formData.distance) === dist
+                        className={`py-2 rounded-lg text-sm font-medium transition-all ${
+                          Number(formData.distance) === dist
                             ? "bg-primary text-white"
                             : "bg-muted hover:bg-primary/20"
-                          }`}
+                        }`}
                       >
                         {dist} km
                       </button>
@@ -1267,379 +1172,6 @@ Please share the fare estimate.`;
                     *Includes all taxes & driver allowance | No hidden charges
                   </p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Popular Travel Destinations - Enhanced UI */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-gray-800 mb-2">
-                Popular Travel Destinations
-              </h2>
-              <p className="text-gray-600">
-                Explore India's most beautiful destinations with Chiku Cabs
-              </p>
-            </div>
-
-            {/* City Filter Tabs */}
-            <div className="mb-12">
-              <div className="flex flex-wrap justify-center gap-3">
-                {Object.keys(cityCabRoutes).map((cityKey) => (
-                  <a
-                    key={cityKey}
-                    href={`#dest-${cityKey}`}
-                    className="
-          px-5
-          py-2.5
-          rounded-full
-          bg-white
-          border
-          border-gray-200
-          text-gray-700
-          text-sm
-          font-semibold
-          shadow-sm
-          hover:bg-[#BE1E23]
-          hover:text-white
-          hover:border-[#BE1E23]
-          hover:shadow-xl
-          hover:scale-105
-          transition-all
-          duration-300
-        "
-                  >
-                    <span className="capitalize">
-                      {CITY_DISPLAY_NAMES[cityKey] ??
-                        cityKey
-                          .split("-")
-                          .map(
-                            (word) => word.charAt(0).toUpperCase() + word.slice(1)
-                          )
-                          .join(" ")}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Destination Cards by City */}
-            {Object.entries(cityCabRoutes).map(([cityKey, routes]) => {
-              const cityRoutes = routes as {
-                url: string;
-                from: string;
-                to: string;
-                distance: number;
-              }[];
-              // Show first 12 destinations per city
-              const displayRoutes = cityRoutes.slice(0, 12);
-              // const cityName =
-              //   cityKey.charAt(0).toUpperCase() + cityKey.slice(1);
-              const cityName =
-                CITY_DISPLAY_NAMES[cityKey] ??
-                cityKey
-                  .split("-")
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(" ");
-
-              return (
-                <div
-                  key={cityKey}
-                  id={`dest-${cityKey}`}
-                  className="mb-14 scroll-mt-24"
-                >
-                  {/* City Header */}
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white text-lg">
-                      <IoLocationSharp />
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-800">
-                      Top Destinations from {cityName}
-                    </h3>
-                  </div>
-
-                  {/* Cards Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    {displayRoutes.map((route, idx) => (
-                      <Link
-                        key={idx}
-                        href={route.url}
-                        className="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300"
-                      >
-                        {/* Icon */}
-                        <div className="w-10 h-10 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl flex items-center justify-center mb-3 group-hover:from-primary/20 group-hover:to-primary/10 transition-colors">
-                          <span className="text-lg">🚕</span>
-                        </div>
-
-                        {/* Destination Name */}
-                        <h4 className="font-bold text-gray-800 text-sm mb-1 group-hover:text-primary transition-colors leading-tight">
-                          {route.to}
-                        </h4>
-
-                        {/* Distance */}
-                        <p className="text-xs text-gray-400 mb-2">
-                          {route.distance} km
-                        </p>
-
-                        {/* Price Indicator */}
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-semibold text-primary">
-                            ₹{Math.round(calculateFareByDistance(route.distance)).toLocaleString()}
-                          </span>
-                          <span className="text-xs text-gray-400 group-hover:text-primary transition-colors">
-                            →
-                          </span>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-
-                  {/* View All Link */}
-                  {cityRoutes.length > 12 && (
-                    <div className="text-center mt-6">
-                      <Link
-                        href={`/${cityKey}`}
-                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary/10 text-primary font-semibold text-sm hover:bg-[#BE1E23] hover:text-white transition-all duration-300"
-                      >
-                        View all {cityRoutes.length} routes from {cityName}
-                        <span>→</span>
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Popular Routes Table - Dynamic Pricing */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Popular Routes
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Most frequently traveled routes by our customers.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
-                        From
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
-                        To
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
-                        Distance
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
-                        Price (One Way)
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
-                        Price (Round Trip)
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {[
-                      { from: "Delhi", to: "Jaipur", distance: 280 },
-                      { from: "Mumbai", to: "Pune", distance: 150 },
-                      { from: "Bangalore", to: "Mysore", distance: 145 },
-                      { from: "Chennai", to: "Pondicherry", distance: 160 },
-                      { from: "Hyderabad", to: "Tirupati", distance: 550 },
-                    ].map((route, index) => {
-                      // Calculate One Way Price using shared route fare formula
-                      const oneWayPrice = calculateFareByDistance(route.distance);
-
-                      // Calculate Round Trip Price (2x distance + 2x driver charge with 10% discount)
-                      const roundTripBase = calculateFareByDistance(route.distance) * 2;
-                      const roundTripDiscount = roundTripBase * 0.1; // 10% discount
-                      const roundTripPrice = roundTripBase - roundTripDiscount;
-
-                      return (
-                        <tr
-                          key={index}
-                          className="hover:bg-gray-50 transition-colors"
-                        >
-                          <td className="px-6 py-4 font-medium text-gray-800">
-                            {route.from}
-                          </td>
-                          <td className="px-6 py-4 text-gray-600">
-                            {route.to}
-                          </td>
-                          <td className="px-6 py-4 text-gray-600">
-                            {route.distance} km
-                          </td>
-                          <td className="px-6 py-4 font-semibold text-primary">
-                            ₹{Math.round(oneWayPrice).toLocaleString()}
-                          </td>
-                          <td className="px-6 py-4 font-semibold text-green-600">
-                            ₹{Math.round(roundTripPrice).toLocaleString()}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Outstation Travel Benefits */}
-        <section className="py-16 bg-gradient-to-b from-white to-gray-50">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="text-center mb-12">
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-4">
-                Travel Smarter
-              </span>
-
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Benefits of Booking Outstation Cabs
-              </h2>
-
-              <p className="max-w-3xl mx-auto text-gray-600">
-                Enjoy comfortable, affordable, and hassle-free travel with our
-                professional outstation taxi services. Travel at your own pace
-                and experience a smoother journey.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Benefit 1 */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center mb-5">
-                  <FaRoad className="text-2xl text-blue-600" />
-                </div>
-
-                <h3 className="font-bold text-lg text-gray-900 mb-3">
-                  Door-to-Door Pickup
-                </h3>
-
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Get picked up directly from your location and dropped at your
-                  exact destination without changing vehicles.
-                </p>
-              </div>
-
-              {/* Benefit 2 */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-green-50 flex items-center justify-center mb-5">
-                  <FaWallet className="text-2xl text-green-600" />
-                </div>
-
-                <h3 className="font-bold text-lg text-gray-900 mb-3">
-                  Cost Effective Travel
-                </h3>
-
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Affordable fares with transparent pricing, no hidden charges,
-                  and attractive one-way outstation discounts.
-                </p>
-              </div>
-
-              {/* Benefit 3 */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-purple-50 flex items-center justify-center mb-5">
-                  <FaClock className="text-2xl text-purple-600" />
-                </div>
-
-                <h3 className="font-bold text-lg text-gray-900 mb-3">
-                  Flexible Travel Schedule
-                </h3>
-
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Travel whenever you want without depending on train or bus
-                  timings. Make stops along the route as needed.
-                </p>
-              </div>
-
-              {/* Benefit 4 */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-orange-50 flex items-center justify-center mb-5">
-                  <FaUserShield className="text-2xl text-orange-600" />
-                </div>
-
-                <h3 className="font-bold text-lg text-gray-900 mb-3">
-                  Safe & Reliable Rides
-                </h3>
-
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Experienced chauffeurs, GPS-enabled vehicles, and 24×7
-                  customer support ensure a safe travel experience.
-                </p>
-              </div>
-
-              {/* Benefit 5 */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-pink-50 flex items-center justify-center mb-5">
-                  <FaSuitcaseRolling className="text-2xl text-pink-600" />
-                </div>
-
-                <h3 className="font-bold text-lg text-gray-900 mb-3">
-                  Extra Luggage Space
-                </h3>
-
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Carry your bags comfortably without worrying about luggage
-                  limits commonly found in public transport.
-                </p>
-              </div>
-
-              {/* Benefit 6 */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-yellow-50 flex items-center justify-center mb-5">
-                  <FaMountain className="text-2xl text-yellow-600" />
-                </div>
-
-                <h3 className="font-bold text-lg text-gray-900 mb-3">
-                  Scenic Road Trips
-                </h3>
-
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Explore scenic routes, sightseeing spots, restaurants, and
-                  local attractions during your journey.
-                </p>
-              </div>
-
-              {/* Benefit 7 */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-indigo-50 flex items-center justify-center mb-5">
-                  <FaCarSide className="text-2xl text-indigo-600" />
-                </div>
-
-                <h3 className="font-bold text-lg text-gray-900 mb-3">
-                  Wide Vehicle Options
-                </h3>
-
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Choose from Hatchbacks, Sedans, SUVs, Tempo Travellers, and
-                  Luxury Cars according to your travel needs.
-                </p>
-              </div>
-
-              {/* Benefit 8 */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center mb-5">
-                  <FaHeadset className="text-2xl text-red-600" />
-                </div>
-
-                <h3 className="font-bold text-lg text-gray-900 mb-3">
-                  24×7 Assistance
-                </h3>
-
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Dedicated support team available round the clock for booking,
-                  trip updates, and travel assistance.
-                </p>
               </div>
             </div>
           </div>
@@ -1831,202 +1363,69 @@ Please share the fare estimate.`;
           </div>
         </section>
 
-        {/* About Outstation Cab Service */}
+        {/* About One Way Taxi Service */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-800 mb-6">
-                About Chiku Cabs Outstation Service
+                About Chiku Cabs One Way Taxi Service
               </h2>
+
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Chiku Cabs offers reliable outstation taxi services for
-                  one-way and round trips across India. With a fleet of
-                  well-maintained vehicles and professional drivers, we ensure
-                  safe and comfortable journeys for our customers. Whether
-                  you're planning a weekend getaway, business trip, or family
-                  vacation, our outstation cabs provide the perfect
-                  transportation solution.
+                  Chiku Cabs offers affordable and reliable One Way Taxi
+                  Services across India, making intercity travel convenient,
+                  comfortable, and budget-friendly. Whether you're traveling for
+                  business, family visits, airport transfers, pilgrimages, or
+                  vacations, our one way cab service ensures you pay only for
+                  the distance you travel without unnecessary return charges.
                 </p>
+
                 <p>
-                  Our outstation service covers major routes including Delhi to
-                  Jaipur, Mumbai to Pune, Bangalore to Mysore, Chennai to
-                  Pondicherry, and many more. We offer competitive pricing with
-                  no hidden charges, 24/7 customer support, and GPS-enabled
-                  vehicles for your safety.
+                  Our one way taxi service connects major cities, airports,
+                  railway stations, and tourist destinations with verified
+                  professional drivers and well-maintained AC vehicles. We
+                  provide Sedan, SUV, Innova Crysta, Ertiga, and Tempo Traveller
+                  options suitable for solo travelers, families, and large
+                  groups at competitive prices with complete fare transparency.
                 </p>
+
                 <p>
-                  All our vehicles are regularly sanitized and maintained to the
-                  highest standards. Our drivers are experienced, verified, and
-                  trained to provide the best service. Book your outstation cab
-                  with Chiku Cabs for a hassle-free travel experience.
+                  With instant booking confirmation, doorstep pickup, 24×7
+                  customer support, GPS-enabled vehicles, and sanitized cars,
+                  Chiku Cabs delivers a safe and hassle-free travel experience.
+                  Book your One Way Taxi online or by phone and enjoy
+                  comfortable rides at the best fares without hidden charges.
                 </p>
+
                 <div className="grid md:grid-cols-3 gap-4 mt-6">
-                  <div className="bg-white p-4 rounded-xl">
+                  <div className="bg-white p-4 rounded-xl shadow-sm">
+                    <div className="text-2xl font-bold text-primary">
+                      10,000+
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      Successful One Way Trips
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-4 rounded-xl shadow-sm">
                     <div className="text-2xl font-bold text-primary">500+</div>
-                    <div className="text-sm text-gray-500">Happy Customers</div>
-                  </div>
-                  <div className="bg-white p-4 rounded-xl">
-                    <div className="text-2xl font-bold text-primary">50+</div>
-                    <div className="text-sm text-gray-500">Fleet of Cars</div>
-                  </div>
-                  <div className="bg-white p-4 rounded-xl">
-                    <div className="text-2xl font-bold text-primary">100+</div>
-                    <div className="text-sm text-gray-500">Routes Covered</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Travel Information */}
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Documents Required */}
-              <div className="bg-blue-50 rounded-2xl p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl">📋</span>
-                  <h3 className="text-xl font-bold text-gray-800">
-                    Documents Required
-                  </h3>
-                </div>
-                <ul className="space-y-3">
-                  {[
-                    "Valid Driving License",
-                    "ID Proof (Aadhar/PAN/Passport)",
-                    "Booking Confirmation",
-                    "Address Proof (for outstation)",
-                  ].map((doc, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <span className="text-green-500">✓</span>
-                      <span className="text-gray-600">{doc}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Safety Measures */}
-              <div className="bg-green-50 rounded-2xl p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl">⚠️</span>
-                  <h3 className="text-xl font-bold text-gray-800">
-                    Safety Measures
-                  </h3>
-                </div>
-                <ul className="space-y-3">
-                  {[
-                    "Regular Vehicle Sanitization",
-                    "Driver Temperature Check",
-                    "GPS Tracking",
-                    "Emergency Contact Available",
-                  ].map((safety, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <span className="text-green-500">✓</span>
-                      <span className="text-gray-600">{safety}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-gradient-to-b from-white to-gray-50">
-          <div className="container mx-auto px-4 max-w-7xl">
-            {/* Section Header */}
-            <div className="text-center mb-12">
-              <span className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
-                Explore More Services
-              </span>
-
-              <h2 className="mt-4 text-3xl md:text-4xl font-bold text-gray-900">
-                Other Taxi Services
-              </h2>
-
-              <p className="mt-4 max-w-3xl mx-auto text-gray-600">
-                Looking for more than outstation travel? Explore our airport
-                transfers, one-way cabs, local sightseeing tours, and tempo
-                traveller rentals for a comfortable and hassle-free journey.
-              </p>
-            </div>
-
-            {/* Service Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  title: "One Way Cabs",
-                  href: "/one-way-cabs",
-                  icon: <FaRoute size={22} />,
-                  description:
-                    "Affordable one-way taxi services with no return fare charges.",
-                },
-                {
-                  title: "Airport Taxi",
-                  href: "/airport-taxi",
-                  icon: <FaPlaneArrival size={22} />,
-                  description:
-                    "Reliable airport pickup and drop services available 24/7.",
-                },
-                {
-                  title: "Local Sightseeing",
-                  href: "/local-sightseeing-taxi",
-                  icon: <FaMapMarkedAlt size={22} />,
-                  description:
-                    "Explore popular tourist attractions with comfortable local taxis.",
-                },
-                {
-                  title: "Tempo Traveller",
-                  href: "/tempo-traveller-on-rent",
-                  icon: <FaBusAlt size={22} />,
-                  description:
-                    "Perfect for family trips, group tours, and corporate outings.",
-                },
-              ].map((service) => (
-                <Link key={service.title} href={service.href}>
-                  <div className="group h-full rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl">
-                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
-                      {service.icon}
-                    </div>
-
-                    <h3 className="mb-3 text-lg font-semibold text-gray-900">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-sm leading-6 text-gray-600">
-                      {service.description}
-                    </p>
-
-                    <div className="mt-5 flex items-center font-medium text-primary">
-                      Explore Service
-                      <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
-                        →
-                      </span>
+                    <div className="text-sm text-gray-500">
+                      Cities & Routes Covered
                     </div>
                   </div>
-                </Link>
-              ))}
+
+                  <div className="bg-white p-4 rounded-xl shadow-sm">
+                    <div className="text-2xl font-bold text-primary">24×7</div>
+                    <div className="text-sm text-gray-500">
+                      Booking & Customer Support
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-
-        {/* Sticky Mobile CTA */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-2xl border-t border-gray-200 p-4 z-50 md:hidden">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex-1">
-              <div className="text-xs text-gray-500">Starting from</div>
-              <div className="text-xl font-bold text-primary">₹12/km</div>
-              <div className="text-xs text-gray-500">+ No Hidden Charges</div>
-            </div>
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="bg-primary text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg shadow-primary/30"
-            >
-              Book Now 📞
-            </button>
-          </div>
-        </div>
 
         {/* Feature Grid - Modern UI with React Icons */}
         <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-primary/5">
@@ -2041,7 +1440,7 @@ Please share the fare estimate.`;
               </div>
               <h2 className="text-4xl md:text-5xl font-black mb-4">
                 Why We're India's{" "}
-                <span className="gradient-text">Most Trusted</span> Cab Service
+                <span className="gradient-text">Most Trusted</span> Taxi Service
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Experience the difference with our premium features and

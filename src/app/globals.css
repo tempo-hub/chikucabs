@@ -2091,3 +2091,91 @@ tbody tr:hover {
     font-family: sans-serif;
   }
 }
+
+.blog-content {
+  color: #1e293b;
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+/* Headings */
+.blog-content h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+}
+
+.blog-content h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin: 1.75rem 0 1rem;
+}
+
+.blog-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.blog-content p {
+  margin: 1rem 0;
+}
+
+/* Lists */
+.blog-content ul {
+  list-style: disc;
+  list-style-position: outside;
+  padding-left: 1.75rem;
+  margin: 1rem 0;
+}
+
+.blog-content ol {
+  list-style: decimal;
+  list-style-position: outside;
+  padding-left: 1.75rem;
+  margin: 1rem 0;
+}
+
+.blog-content li {
+  display: list-item;
+  margin: 0.4rem 0;
+}
+
+/* Links */
+.blog-content a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Images */
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+}
+
+/* Tables */
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.blog-content th,
+.blog-content td {
+  border: 1px solid #d1d5db;
+  padding: 12px;
+}
+
+.blog-content th {
+  background: #f8fafc;
+}
+
+/* Blockquotes */
+.blog-content blockquote {
+  border-left: 4px solid #ef4444;
+  padding: 1rem;
+  background: #fef2f2;
+  margin: 1.5rem 0;
+}

@@ -43,6 +43,13 @@ export async function PUT(
 
     const body = await req.json();
 
+    if (!body.title || !body.slug || !body.content) {
+      return NextResponse.json(
+        { success: false, message: "Missing required fields" },
+        { status: 400 },
+      );
+    }
+
     const blog = await Blog.findByIdAndUpdate(id, body, {
       new: true,
       runValidators: true,

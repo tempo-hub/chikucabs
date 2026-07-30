@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -12,7 +12,6 @@ const JoditEditor = dynamic(() => import("jodit-react"), {
 
 export default function CreateBlog() {
   const router = useRouter();
-
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [description, setDescription] = useState("");
@@ -20,12 +19,46 @@ export default function CreateBlog() {
   const [hashtags, setHashtags] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
-
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
-
   const [loading, setLoading] = useState(false);
 
+  const editorConfig = useMemo(
+    () => ({
+      // readonly: false,
+
+      height: 600,
+      allowResizeY: false,
+      toolbarAdaptive: false,
+      uploader: {
+        url: `/api/upload`,
+        method: "POST",
+
+        filesVariableName: () => "image",
+
+        isSuccess: (resp: { success: boolean }) => {
+          // console.log("UPLOAD SUCCESS:", resp);
+          return resp.success === true;
+        },
+
+        process: (resp: { imageId: string }) => {
+          // console.log("UPLOAD RESPONSE:", resp);
+
+          return {
+            files: [`/api/image/${resp.imageId}`],
+            isImages: [true],
+            path: "",
+            baseurl: "",
+          };
+        },
+
+        error: (e: Error) => {
+          console.log("UPLOAD ERROR:", e);
+        },
+      },
+    }),
+    [],
+  );
 
   /* Generate Slug */
   const generateSlug = (text: string) => {
@@ -86,7 +119,7 @@ export default function CreateBlog() {
     console.log(data);
 
     if (!res.ok) {
-      throw new Error(data.error || "Image upload failed");
+      throw new Error(data.error || "Image upload failed error");
     }
 
     return data.imageId;
@@ -271,59 +304,18 @@ export default function CreateBlog() {
         </div>
 
         {/* Editor */}
-        <div className="mb-6 border rounded-xl overflow-hidden">
+        <div
+          className="h-[400px] mb-6 border rounded-xl overflow-auto [&_ol]:list-decimal [&_ol]:pl-8 [&_ul]:list-disc [&_ul]:pl-8 [&_h1]:text-4xl [&_h1]:font-bold [&_h1]:mb-4
+  [&_h2]:text-3xl [&_h2]:font-semibold [&_h2]:mb-3
+  [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:mb-2
+  [&_p]:text-base [&_p]:mb-4 [&_p]:leading-relaxed"
+        >
           <JoditEditor
             value={content}
-            config={{
-              readonly: false,
-              height: 600,
-              toolbarAdaptive: false,
-
-              askBeforePasteHTML: false,
-              askBeforePasteFromWord: false,
-              defaultActionOnPaste: "insert_as_html",
-
-              cleanHTML: {
-                removeEmptyElements: false,
-                fillEmptyParagraph: false,
-              },
-
-              /* Enable HTML mode */
-              buttons:
-                "source,bold,italic,underline,|,ul,ol,|,image,link,|,align,|,undo,redo",
-
-              /* Image Upload */
-              uploader: {
-                url: `/api/upload`,
-                method: "POST",
-                
-                filesVariableName: () => "image",
-
-                isSuccess: (resp: { success: boolean }) => {
-                  console.log("UPLOAD SUCCESS:", resp);
-                  return resp.success === true;
-                },
-
-                process: (resp: { imageId: string }) => {
-                  console.log("UPLOAD RESPONSE:", resp);
-
-                  return {
-                    files: [`/api/image/${resp.imageId}`],
-                    isImages: [true],
-                    path: "",
-                    baseurl: "",
-                  };
-                },
-
-                error: (e: Error) => {
-                  console.log("UPLOAD ERROR:", e);
-                },
-              },
-
-              /* Prevent HTML cleaning issues */
-              disablePlugins: ["clean-html"],
+            config={editorConfig}
+            onChange={(newContent) => {
+              setContent(newContent);
             }}
-            onBlur={(newContent) => setContent(newContent)}
           />
         </div>
 
