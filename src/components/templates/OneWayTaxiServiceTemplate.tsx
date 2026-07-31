@@ -320,7 +320,7 @@ export default function OneWayTaxiServiceTemplate({
     date: "",
     distance: "50",
   });
-  const faqs = useMemo(() => generateFAQs(vehicle), [vehicle]);
+  const faqs = useMemo(() => generateFAQs(), []);
 
   const timeOptions = useMemo(() => generateTimes(), []);
 

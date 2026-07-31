@@ -1,5 +1,5 @@
 export const localDominanceData = {
-    delhi: {
+  delhi: {
     city: "Delhi",
 
     localAreas: [
@@ -4886,6 +4886,251 @@ export const localDominanceData = {
       "Mathura",
       "Alwar",
       "Agra (UP)"
+    ]
+  },
+  "mumbai": {
+    "city": "Mumbai",
+    "localAreas": [
+      "Andheri",
+      "Bandra",
+      "Borivali",
+      "Dadar",
+      "Colaba",
+      "Juhu",
+      "Powai",
+      "Kurla"
+    ],
+    "touristPlaces": [
+      "Gateway of India",
+      "Marine Drive",
+      "Elephanta Caves",
+      "Juhu Beach",
+      "Siddhivinayak Temple"
+    ],
+    "airports": [
+      "Chhatrapati Shivaji Maharaj International Airport"
+    ],
+    "railwayStations": [
+      "Chhatrapati Shivaji Maharaj Terminus",
+      "Mumbai Central",
+      "Lokmanya Tilak Terminus",
+      "Dadar"
+    ],
+    "nearbyCities": [
+      "Thane",
+      "Navi Mumbai",
+      "Pune",
+      "Nashik",
+      "Lonavala"
+    ]
+  },
+
+  "jaipur": {
+    "city": "Jaipur",
+    "localAreas": [
+      "Pink City",
+      "Malviya Nagar",
+      "C-Scheme",
+      "Vaishali Nagar",
+      "Bani Park",
+      "Mansarovar",
+      "Tonk ROad",
+      "Raja Park"
+    ],
+    "touristPlaces": [
+      "Hawa Mahal",
+      "Amber Fort",
+      "City Palace",
+      "Jantar Mantar",
+      "Nahargarh Fort"
+    ],
+    "airports": [
+      "Jaipur International Airport"
+    ],
+    "railwayStations": [
+      "Jaipur Junction",
+      "Gandhinagar Jaipur"
+    ],
+    "nearbyCities": [
+      "Ajmer",
+      "Alwar",
+      "Sikar",
+      "Kota",
+      "Bharatpur"
+    ]
+  },
+
+  "chennai": {
+    "city": "Chennai",
+    "localAreas": [
+      "T Nagar",
+      "Adyar",
+      "Anna Nagar",
+      "Velachery",
+      "Mylapore",
+      "Besant Nagar",
+      "Guindy",
+      "Old Mahabalipuram Road"
+    ],
+    "touristPlaces": [
+      "Marina Beach",
+      "Kapaleeshwarar Temple",
+      "Fort St. George",
+      "Government Museum",
+      "San Thome Basilica"
+    ],
+    "airports": [
+      "Chennai International Airport"
+    ],
+    "railwayStations": [
+      "Chennai Central",
+      "Chennai Egmore",
+      "Tambaram"
+    ],
+    "nearbyCities": [
+      "Kanchipuram",
+      "Mahabalipuram",
+      "Vellore",
+      "Puducherry",
+      "Tiruvallur"
+    ]
+  },
+
+  "hyderabad": {
+    "city": "Hyderabad",
+    "localAreas": [
+      "Banjara Hills",
+      "Jubliee Hills",
+      "Hitech City",
+      "Gachibowli",
+    ],
+    "touristPlaces": [
+      "Charminar",
+      "Golconda Fort",
+      "Salar Jung Museum",
+      "Hussain Sagar Lake",
+      "Ramoji Film City"
+    ],
+    "airports": [
+      "Rajiv Gandhi International Airport"
+    ],
+    "railwayStations": [
+      "Hyderabad Deccan",
+      "Secunderabad Junction",
+      "Kacheguda"
+    ],
+    "nearbyCities": [
+      "Warangal",
+      "Nizamabad",
+      "Karimnagar",
+      "Suryapet",
+      "Mahabubnagar"
+    ]
+  },
+
+  "pune": {
+    "city": "Pune",
+    "localAreas": [
+      "Koregaon Park",
+      "Kothrud",
+      "Viman Nagar",
+      "Hinjewadi",
+      "Baner",
+      "Aundh",
+      "Camp",
+      "Shivaji Nagar"
+    ],
+    "touristPlaces": [
+      "Shaniwar Wada",
+      "Aga Khan Palace",
+      "Sinhagad Fort",
+      "Dagdusheth Halwai Ganpati Temple",
+      "Pataleshwar Cave Temple"
+    ],
+    "airports": [
+      "Pune International Airport"
+    ],
+    "railwayStations": [
+      "Pune Junction",
+      "Shivajinagar"
+    ],
+    "nearbyCities": [
+      "Mumbai",
+      "Lonavala",
+      "Satara",
+      "Kolhapur",
+      "Nashik"
+    ]
+  },
+
+  "ahmedabad": {
+    "city": "Ahmedabad",
+    "localAreas": [
+      "Navrangpura",
+      "Satellite",
+      "Vastrapur",
+      "Maninagar",
+      "Bopal",
+      "Prahlad Nagar",
+      "CG Road",
+      "Bodakdev"
+    ],
+    "touristPlaces": [
+      "Sabarmati Ashram",
+      "Kankaria Lake",
+      "Adalaj Stepwell",
+      "Sidi Saiyyed Mosque",
+      "Science City"
+    ],
+    "airports": [
+      "Sardar Vallabhbhai Patel International Airport"
+    ],
+    "railwayStations": [
+      "Ahmedabad Junction",
+      "Sabarmati Junction"
+    ],
+    "nearbyCities": [
+      "Gandhinagar",
+      "Vadodara",
+      "Anand",
+      "Nadiad",
+      "Mehsana"
+    ]
+  },
+  "kolkata": {
+    "city": "Kolkata",
+    "localAreas": [
+      "Salt Lake",
+      "New Town",
+      "Park Street",
+      "Howrah",
+      "Dum Dum",
+      "Garia",
+      "Behala",
+      "Ballygunge"
+    ],
+    "touristPlaces": [
+      "Victoria Memorial",
+      "Howrah Bridge",
+      "Dakshineswar Kali Temple",
+      "Indian Museum",
+      "Science City"
+    ],
+    "airports": [
+      "Netaji Subhas Chandra Bose International Airport"
+    ],
+    "railwayStations": [
+      "Howrah Junction",
+      "Sealdah Railway Station",
+      "Kolkata Railway Station",
+      "Shalimar Railway Station"
+    ],
+    "nearbyCities": [
+      "Howrah",
+      "Kalyani",
+      "Barrackpore",
+      "Haldia",
+      "Durgapur"
     ]
   }
 };
