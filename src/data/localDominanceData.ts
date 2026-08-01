@@ -3612,7 +3612,7 @@ export const localDominanceData = {
       "Kolar"
     ]
   },
-  "bengaluru_urban": {
+  "bangalore": {
     "city": "Bengaluru Urban",
     "localAreas": [
       "MG Road",

@@ -70,38 +70,36 @@ const services = [
     },
 ];
 
-export default function ErtigaServiceTemplate({
+export default function DzireServiceTemplate({
     parsedData,
 }: {
     parsedData: ParsedRouteData;
 }) {
-
-
-    const city = parsedData.displayCity || "India";
+    const city = parsedData.origin || "India";
     const [activeService, setActiveService] = useState(services[0]);
 
     return (
         <div className="bg-background min-h-screen">
             {/* Hero Section */}
-            <section className="relative overflow-hidden  pt-4 sm:pt-6 lg:pt-12 pb-12 px-4 text-slate-950 bg-white">
+            <section className="relative overflow-hidden  pt-4 sm:pt-6 lg:pt-16 pb-16 px-4 text-slate-950 bg-white">
                 <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
                 <div className="relative max-w-7xl mx-auto grid gap-8 lg:grid-cols-[1.2fr_1.2fr] items-center">
                     <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
                         <div className="flex gap-2" >
                             <div className="section-badge inline-flex mb-6 text-slate-950">
-                                Starting @ ₹13/km*
+                                Starting @ ₹17/km*
                             </div>
                             <div className="section-badge inline-flex mb-6 text-slate-950">
                                 4.4 ★
                             </div>
                         </div>
                         <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight tracking-tight text-slate-950">
-                            Hire <span className="gradient-text">Ertiga</span> on Rent
+                            Hire <span className="gradient-text">Dzire</span> on Rent
                             {city !== "India" && <> in {city}</>}
                         </h1>
                         <p className="mt-4 max-w-2xl lg:text-lg sm:text-xl leading-relaxed text-slate-600">
                             Book premium airport transfers, family outings, and corporate travel
-                            with spacious 6+1 captain seats, dual AC comfort, and verified
+                            with spacious 4+1 captain seats, dual AC comfort, and verified
                             chauffeurs.
                         </p>
                         <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -109,10 +107,10 @@ export default function ErtigaServiceTemplate({
                                 href="tel:+918448445504"
                                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
                             >
-                                📞 Book Ertiga — 8448445504
+                                📞 Book Dzire — 8448445504
                             </a>
                             <a
-                                href="https://wa.me/918448445504?text=Hi%20I%20want%20to%20book%20an%20Ertiga%20%20on%20rent"
+                                href="https://wa.me/918448445504?text=Hi%20I%20want%20to%20book%20an%20Dzire%20%20on%20rent"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn-outline text-lg px-8 py-4"
@@ -142,8 +140,8 @@ export default function ErtigaServiceTemplate({
                         <div className="absolute -left-10 top-0 h-72 w-72 rounded-full bg-slate-200 blur-3xl" />
                         <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_40px_120px_rgba(15,23,42,0.08)]">
                             <img
-                                src="/ertiga.png"
-                                alt={`Ertiga on Rent in ${city !== "India" ? city : "India"} by Chiku Cabs`}
+                                src="/cab.png"
+                                alt={`Dzire on Rent in ${city !== "India" ? city : "India"} by Chiku Cabs`}
                                 className="w-full h-64 sm:h-80 md:h-[420px] lg:h-[520px] object-cover"
                             />
                         </div>
@@ -163,7 +161,7 @@ export default function ErtigaServiceTemplate({
                     {/* <div className="stats-grid">
             {[
               { num: "1 Lakh+", label: "Trips Completed" },
-              { num: "1,000+", label: "Ertigas in Fleet" },
+              { num: "1,000+", label: "Dzire in Fleet" },
               { num: "100+", label: "Cities Covered" },
               { num: "4.9 ★", label: "Customer Rating" },
             ].map((stat, i) => (
@@ -187,7 +185,7 @@ export default function ErtigaServiceTemplate({
                 </div>
             </section>
 
-            {/* Ertiga Variants */}
+            {/* Dzire Variants */}
             <section className="py-12 px-4">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
@@ -195,19 +193,19 @@ export default function ErtigaServiceTemplate({
                             className="section-badge mx-auto"
                             style={{ display: "inline-flex" }}
                         >
-                            CHOOSE YOUR Ertiga
+                            CHOOSE YOUR Dzire
                         </div>
-                        <h2 className="section-title">Ertiga Models Available</h2>
+                        <h2 className="section-title">Dzire Models Available</h2>
                     </div>
                     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
                         {[
                             {
-                                name: "Ertiga",
-                                model: "Maruti Ertiga (6+1)",
+                                name: "Dzire",
+                                model: "Maruti Dzire (4+1)",
                                 image: "/ertiga-base.png",
-                                price: "₹13/km",
+                                price: "₹14/km",
                                 features: [
-                                    "6+1 Seating",
+                                    "4+1 Seating",
                                     "AC + Music",
                                     "Good Legroom",
                                     "Budget Friendly",
@@ -215,12 +213,12 @@ export default function ErtigaServiceTemplate({
                                 best: false,
                             },
                             {
-                                name: "Ertiga VXi AT",
-                                model: "Maruti Ertiga",
+                                name: "Dzire VXi AT",
+                                model: "Maruti Dzire",
                                 image: "/ertiga-base.png",
-                                price: "₹15/km",
+                                price: "₹17/km",
                                 features: [
-                                    "6+1 Captain Seats",
+                                    "4+1 Captain Seats",
                                     "Auto AC",
                                     "Premium Interiors",
                                     "Extra Luggage Space",
@@ -228,12 +226,12 @@ export default function ErtigaServiceTemplate({
                                 best: true,
                             },
                             {
-                                name: "Ertiga ZXi Plus AT",
-                                model: "Maruti Ertiga (Hybrid)",
+                                name: "Dzire ZXi Plus AT",
+                                model: "Maruti Dzire (Hybrid)",
                                 image: "/ertiga-base.png",
-                                price: "₹16/km",
+                                price: "₹20/km",
                                 features: [
-                                    "6+1 Luxury Seats",
+                                    "4+1 Luxury Seats",
                                     "Hybrid Engine",
                                     "Panoramic Sunroof",
                                     "Ultra Premium",
@@ -286,7 +284,7 @@ export default function ErtigaServiceTemplate({
                 </div>
             </section>
 
-            {/* Why Ertiga */}
+            {/* Why Dzire */}
             <section className="bg-muted/30 py-12 border-y px-4">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
@@ -294,10 +292,10 @@ export default function ErtigaServiceTemplate({
                             className="section-badge mx-auto"
                             style={{ display: "inline-flex" }}
                         >
-                            WHY Ertiga
+                            WHY Dzire
                         </div>
                         <h2 className="section-title">
-                            Why Ertiga is India's Favorite Family Car
+                            Why Dzire is India's Favorite Family Car
                         </h2>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
@@ -305,7 +303,7 @@ export default function ErtigaServiceTemplate({
                             {
                                 icon: "👨‍👩‍👧‍👦",
                                 title: "Family Friendly",
-                                desc: "Spacious 6+1 seating with ample legroom. Captain seats in ertiga model for ultimate comfort.",
+                                desc: "Spacious 4+1 seating with ample legroom. Captain seats in Dzire model for ultimate comfort.",
                             },
                             {
                                 icon: "🛣️",
@@ -352,33 +350,25 @@ export default function ErtigaServiceTemplate({
 
             {/* Use Cases */}
             <section className="py-12 px-4">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-6">
-                        <div
-                            className="section-badge mx-auto mb-4"
-                            style={{ display: "inline-flex" }}
-                        >
-                            POPULAR USE CASES
-                        </div>
+                <div className="max-w-5xl mx-auto mb-4">
+                    <div className="text-center mb-16">
                         <h2 className="section-title">
-                            Popular Ertiga Rental Use Cases{" "}
+                            Popular Dzire Rental Use Cases{" "}
                             {city !== "India" ? `in ${city}` : ""}
                         </h2>
                     </div>
-                    {/* Tabs */}
-                    <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
+                    <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
 
                         {services.map((service) => (
 
                             <button
                                 key={service.id}
                                 onClick={() => setActiveService(service)}
-                                 className={`rounded-xl border px-4 py-5 text-center font-semibold transition-all duration-300
-            ${
-              activeService.id === service.id
-                ? "bg-primary text-white border-primary shadow-lg"
-                : "bg-white hover:bg-gray-100 border-gray-200"
-            }`}
+                                className={`py-5 px-4 uppercase font-semibold text-sm transition-all border-r border-b
+        ${activeService.id === service.id
+                                        ? "bg-primary text-white"
+                                        : "bg-gray-100 hover:bg-gray-200 text-gray-800"
+                                    }`}
                             >
                                 {service.title}
                             </button>
@@ -387,64 +377,63 @@ export default function ErtigaServiceTemplate({
 
                     </div>
 
+                </div>
 
-{/* Content */}
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-                        {/* Image */}
+                    {/* Image */}
 
-                        <div className="overflow-hidden rounded-3xl shadow-xl">
+                    <div className="relative w-full aspect-[16/9] overflow-hidden rounded-2xl">
 
-                            <img
-                                src={activeService.image}
-                                alt={activeService.title}
-                                className="w-full h-[260px] md:h-[420px] object-cover"
-                            />
+                        <img
+                            src={activeService.image}
+                            alt={activeService.title}
+                            className="object-cover h-full w-full"
+                        />
 
-                        </div>
+                    </div>
 
-                        {/* Content */}
+                    {/* Content */}
 
-                        <div className="flex flex-col justify-center">
+                    <div>
 
-                            <h3 className="text-3xl md:text-4xl font-bold mb-6">
-                                {activeService.title}
-                            </h3>
+                        <h3 className="text-4xl font-bold mb-6">
+                            {activeService.title}
+                        </h3>
 
-                            <p className="text-muted-foreground text-lg leading-8 mb-8">
-                                {activeService.description}
-                            </p>
+                        <p className="text-muted-foreground leading-8 mb-8">
+                            {activeService.description}
+                        </p>
 
-                            <div className="grid sm:grid-cols-2 gap-4 mb-10">
+                        <div className="grid sm:grid-cols-2 gap-4 mb-10">
 
-                                {activeService.features.map((item) => (
+                            {activeService.features.map((item) => (
 
-                                    <div
-                                        key={item}
-                                        className="flex items-center gap-3 bg-white border rounded-xl p-4 shadow-sm"
-                                    >
-                                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-green-100 text-green-600 font-bold">
-                                            ✓
-                                        </div>
-
-                                        <span className="font-medium">{item}</span>
-
+                                <div
+                                    key={item}
+                                    className="flex items-center gap-3 bg-white border rounded-xl p-4 shadow-sm"
+                                >
+                                    <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">
+                                        ✓
                                     </div>
 
-                                ))}
+                                    <span>{item}</span>
 
-                            </div>
+                                </div>
 
-                            <a
-                                href="https://wa.me/918448445504"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn-primary w-fit px-8 py-4"
-                            >
-                                Book {activeService.title}
-                            </a>
+                            ))}
 
                         </div>
+
+                        <a
+                            href="https://wa.me/918448445504"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex px-8 py-4 rounded-xl bg-primary text-white font-semibold hover:opacity-90"
+                        >
+                            Book {activeService.title}
+                        </a>
+
                     </div>
                 </div>
             </section>
@@ -460,24 +449,24 @@ export default function ErtigaServiceTemplate({
                             REVIEWS
                         </div>
                         <h2 className="section-title">
-                            What Ertiga Customers in {city !== "India" ? city : "India"} Say
+                            What Dzire Customers in {city !== "India" ? city : "India"} Say
                         </h2>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
                         {[
                             {
                                 name: "Sharma Family",
-                                text: "Booked an Ertiga for our family trip to Shimla. The captain seats were incredibly comfortable and the kids loved the space. Best road trip ever!",
+                                text: "Booked an Dzire for our family trip to Shimla. The captain seats were incredibly comfortable and the kids loved the space. Best road trip ever!",
                                 rating: "★★★★★",
                             },
                             {
                                 name: "Raj (CEO)",
-                                text: "We use Chiku Cabs Ertiga service for all our corporate client pickups. Always on time, impeccably clean cars, and professional drivers.",
+                                text: "We use Chiku Cabs Dzire service for all our corporate client pickups. Always on time, impeccably clean cars, and professional drivers.",
                                 rating: "★★★★★",
                             },
                             {
                                 name: "Neha & Friends",
-                                text: "Hired an Ertiga for a weekend Jaipur trip from Delhi. The car was practically new, AC was amazing, and we had ample space for all our luggage.",
+                                text: "Hired an Dzire for a weekend Jaipur trip from Delhi. The car was practically new, AC was amazing, and we had ample space for all our luggage.",
                                 rating: "★★★★★",
                             },
                         ].map((review, i) => (
@@ -485,7 +474,7 @@ export default function ErtigaServiceTemplate({
                                 <div className="testimonial-stars">{review.rating}</div>
                                 <p className="testimonial-text">"{review.text}"</p>
                                 <div className="testimonial-author">{review.name}</div>
-                                <div className="testimonial-route">Ertiga Service</div>
+                                <div className="testimonial-route">Dzire Service</div>
                             </div>
                         ))}
                     </div>
@@ -503,49 +492,49 @@ export default function ErtigaServiceTemplate({
                             FAQ
                         </div>
                         <h2 className="section-title">
-                            Ertiga Rental Questions {city !== "India" ? `for ${city}` : ""}
+                            Dzire Rental Questions {city !== "India" ? `for ${city}` : ""}
                         </h2>
                     </div>
                     {[
                         {
-                            q: `What is the difference between Ertiga and Ertiga on rent in ${city}?`,
-                            a: `The standard Ertiga is perfect for budget family travel in ${city}. Choosing an Ertiga on rent provides luxury features like captain seats, dual AC, and a more premium ride for your taxi service needs.`,
+                            q: `What is the difference between Dzire and Dzire on rent in ${city}?`,
+                            a: `The standard Dzire is perfect for budget family travel in ${city}. Choosing an Dzire on rent provides luxury features like captain seats, dual AC, and a more premium ride for your taxi service needs.`,
                         },
                         {
-                            q: `How much does an Ertiga cab booking cost per day in ${city}?`,
-                            a: `Ertiga cab booking in ${city} starts from ₹14/km. For the premium Ertiga on rent, the rate is ₹17/km. We ensure our taxi service remains the most affordable in the market.`,
+                            q: `How much does an Dzire cab booking cost per day in ${city}?`,
+                            a: `Dzire cab booking in ${city} starts from ₹14/km. For the premium Dzire on rent, the rate is ₹17/km. We ensure our taxi service remains the most affordable in the market.`,
                         },
                         {
-                            q: `Can I get an airport taxi with Ertiga for pickup in ${city}?`,
-                            a: `Yes! We specialize in 24/7 airport transfer services. Your airport taxi (Ertiga) will be ready for you at ${city} airport for a comfortable group drop.`,
+                            q: `Can I get an airport taxi with Dzire for pickup in ${city}?`,
+                            a: `Yes! We specialize in 24/7 airport transfer services. Your airport taxi (Dzire) will be ready for you at ${city} airport for a comfortable group drop.`,
                         },
                         {
-                            q: `Is the Ertiga on rent suitable for hill station outstation cabs from ${city}?`,
-                            a: `Absolutely. The Ertiga's powerful engine makes it the best choice for outstation cabs heading to hilly areas. Our drivers are experts in high-altitude mountain routes.`,
+                            q: `Is the Dzire on rent suitable for hill station outstation cabs from ${city}?`,
+                            a: `Absolutely. The Dzire's powerful engine makes it the best choice for outstation cabs heading to hilly areas. Our drivers are experts in high-altitude mountain routes.`,
                         },
                         {
-                            q: `Can I book an Ertiga for a wedding event in ${city}?`,
-                            a: `Yes! Our luxury cab booking service in ${city} includes premium Ertigas for weddings, perfect for guest transfers or as a comfortable car for the bride and groom.`,
+                            q: `Can I book an Dzire for a wedding event in ${city}?`,
+                            a: `Yes! Our luxury cab booking service in ${city} includes premium Dzire for weddings, perfect for guest transfers or as a comfortable car for the bride and groom.`,
                         },
                         {
                             q: `How do I handle cab booking for a full-day city tour in ${city}?`,
-                            a: `You can opt for our local taxi service packages (8hr/80km or 12hr/120km) for your Ertiga cab booking in ${city}, allowing you to explore at your own pace.`,
+                            a: `You can opt for our local taxi service packages (8hr/80km or 12hr/120km) for your Dzire cab booking in ${city}, allowing you to explore at your own pace.`,
                         },
                         {
-                            q: `Are the drivers for Ertiga taxi service in ${city} experienced?`,
-                            a: `Every driver in our Ertiga taxi service fleet is police-verified and has at least 5+ years of professional driving experience, ensuring your safety in ${city}.`,
+                            q: `Are the drivers for Dzire taxi service in ${city} experienced?`,
+                            a: `Every driver in our Dzire taxi service fleet is police-verified and has at least 5+ years of professional driving experience, ensuring your safety in ${city}.`,
                         },
                         {
-                            q: `Does the Ertiga on rent have enough space for luggage?`,
-                            a: `Yes, the Ertiga on rent is famous for its massive boot space. It can easily accommodate 4-5 large bags, making it ideal for airport transfer and outstation cabs.`,
+                            q: `Does the Dzire on rent have enough space for luggage?`,
+                            a: `Yes, the Dzire on rent is famous for its massive boot space. It can easily accommodate 4-5 large bags, making it ideal for airport transfer and outstation cabs.`,
                         },
                         {
                             q: `What amenities are included in my luxury cab booking?`,
                             a: `Your luxury cab booking includes a pristine AC cabin, premium seats, music system, and a 24/7 support line to assist you throughout your journey in ${city}.`,
                         },
                         {
-                            q: `How early should I book my Ertiga cab booking for ${city}?`,
-                            a: `To ensure the best rates and availability for your Ertiga on rent, we recommend completing your cab booking at least 24-48 hours in advance.`,
+                            q: `How early should I book my Dzire cab booking for ${city}?`,
+                            a: `To ensure the best rates and availability for your Dzire on rent, we recommend completing your cab booking at least 24-48 hours in advance.`,
                         },
                     ].map((faq, i) => (
                         <details key={i} className="faq-item">
@@ -563,7 +552,7 @@ export default function ErtigaServiceTemplate({
             <section className="py-12 px-4">
                 <div className="max-w-4xl mx-auto cta-banner">
                     <h2 className="text-4xl font-extrabold mb-4">
-                        Book Your Ertiga Now
+                        Book Your Dzire Now
                     </h2>
                     <p className="text-xl opacity-70 mb-8">
                         India's most loved family car, at the best rental rates.
@@ -593,21 +582,21 @@ export default function ErtigaServiceTemplate({
                 <section className="py-12 px-4 bg-muted/10 border-t">
                     <div className="max-w-4xl mx-auto text-muted-foreground text-lg leading-relaxed">
                         <h2 className="text-3xl md:text-4xl font-black mb-8 text-foreground tracking-tight">
-                            Premium Ertiga Rentals in {city}
+                            Premium Dzire Rentals in {city}
                         </h2>
                         <div className="space-y-6">
                             <p>
                                 When it comes to luxurious and spacious family travel in{" "}
-                                <strong>{city}</strong>, Ertiga is the
+                                <strong>{city}</strong>, the Maruti Suzuki Dzire is the
                                 undisputed king. Whether you are navigating the busy streets or
                                 heading out on a scenic highway trip, choosing an{" "}
-                                <strong>Ertiga on Rent</strong> in {city} via our{" "}
+                                <strong>Dzire on Rent</strong> in {city} via our{" "}
                                 <strong>cab booking</strong> app guarantees a smooth ride. As a
                                 premier <strong>taxi service</strong>, we ensure your{" "}
                                 <strong>outstation cabs</strong> experience is unparalleled.
                             </p>
                             <h3 className="text-2xl font-bold mb-6 mt-12 text-foreground border-b pb-4">
-                                Why Book an Ertiga Cab in {city}?
+                                Why Book an Dzire Cab in {city}?
                             </h3>
                             <ul className="space-y-4 mb-10">
                                 <li className="flex items-start gap-3">
@@ -632,15 +621,15 @@ export default function ErtigaServiceTemplate({
                                     <span>
                                         <strong>Corporate & Wedding Car Rental:</strong> Arrive in
                                         style. The premium feel of our{" "}
-                                        <strong>Ertiga on Rent</strong> makes it ideal for
+                                        <strong>Dzire on Rent</strong> makes it ideal for
                                         executive transit or as an elegant wedding car in {city}.
                                     </span>
                                 </li>
                             </ul>
                             <div className="bg-card p-8 rounded-2xl border shadow-sm mt-8">
                                 <p className="mb-0 text-card-foreground">
-                                    At Chiku Cabs, we offer both the standard 7-seater Ertiga and
-                                    the premium 8-seater Ertiga for{" "}
+                                    At Chiku Cabs, we offer both the standard 7-seater Dzire and
+                                    the premium 5-seater Dzire for{" "}
                                     <strong>cab booking</strong> in {city} at highly competitive
                                     rates. With our transparent per-km billing and pristine fleet,
                                     we ensure your journey is absolutely perfect.
@@ -652,20 +641,20 @@ export default function ErtigaServiceTemplate({
             )}
 
             {/* Local Dominance Section */}
-            <section className="py-8 px-4 bg-muted/10 border-t">
-                <LocalDominance city={city} />
-            </section>
+                  <section className="py-8 px-4 bg-muted/10 border-t">
+                    <LocalDominance city={city} />
+                  </section>
 
             <InternalLinks parsedData={parsedData} />
             <EEATSection
                 city={city !== "India" ? city : undefined}
-                vehicle="Ertiga"
+                vehicle="Dzire"
             />
 
             <section className="py-12 px-4 bg-muted/20">
                 <div className="max-w-7xl mx-auto">
                     <PopularCities
-                        vehicleName={parsedData.vehicle || "Ertiga" || "Innova"}
+                        vehicleName={parsedData.vehicle || "Dzire"}
                         currentCity={parsedData.origin?.toLowerCase()}
                     />
                 </div>

@@ -78,12 +78,12 @@ export default function InnovaServiceTemplate({
 }: {
   parsedData: ParsedRouteData;
 }) {
-  const city = parsedData.origin || "India";
+  const city = parsedData.displayCity || "India";
   const [activeService, setActiveService] = useState(services[0]);
   return (
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-4 sm:pt-6 lg:pt-16 pb-16 px-4 text-slate-950 bg-white">
+      <section className="relative overflow-hidden pt-4 sm:pt-6 lg:pt-12 pb-12 px-4 text-slate-950 bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
         <div className="relative max-w-7xl mx-auto grid gap-8 lg:grid-cols-1 xl:grid-cols-[1.2fr_1.2fr] items-center">
           <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
@@ -356,95 +356,86 @@ export default function InnovaServiceTemplate({
       </section>
 
       {/* Use Cases */}
-      <section className="py-12 px-4">
+      <section className="py-8 lg:py-12 px-4">
+        <div className="max-w-7xl mx-auto">
+          {/* Heading */}
+          <div className="text-center mb-6">
+            <div
+              className="section-badge mx-auto mb-4"
+              style={{ display: "inline-flex" }}
+            >
+              POPULAR USE CASES
+            </div>
 
-        <div className="max-w-5xl mx-auto mb-4">
-          <div className="text-center mb-8">
             <h2 className="section-title">
               Popular Innova Rental Use Cases{" "}
               {city !== "India" ? `in ${city}` : ""}
             </h2>
           </div>
 
-          <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-
+          {/* Tabs */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
             {services.map((service) => (
-
               <button
                 key={service.id}
                 onClick={() => setActiveService(service)}
-                className={`py-5 px-4 uppercase font-semibold text-sm transition-all border-r border-b
-        ${activeService.id === service.id
-                    ? "bg-primary text-white"
-                    : "bg-gray-100 hover:bg-gray-200 text-gray-800"
+                className={`rounded-xl border px-4 py-5 text-center font-semibold transition-all duration-300
+            ${activeService.id === service.id
+                    ? "bg-primary text-white border-primary shadow-lg"
+                    : "bg-white hover:bg-gray-100 border-gray-200"
                   }`}
               >
                 {service.title}
               </button>
-
             ))}
-
-          </div>
-
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-          {/* Image */}
-
-          <div className="relative w-full aspect-[16/9] overflow-hidden rounded-2xl">
-
-            <img
-              src={activeService.image}
-              alt={activeService.title}
-              className="object-cover h-full w-full"
-            />
-
           </div>
 
           {/* Content */}
-
-          <div>
-
-            <h3 className="text-4xl font-bold mb-6">
-              {activeService.title}
-            </h3>
-
-            <p className="text-muted-foreground leading-8 mb-8">
-              {activeService.description}
-            </p>
-
-            <div className="grid sm:grid-cols-2 gap-4 mb-10">
-
-              {activeService.features.map((item) => (
-
-                <div
-                  key={item}
-                  className="flex items-center gap-3 bg-white border rounded-xl p-4 shadow-sm"
-                >
-                  <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">
-                    ✓
-                  </div>
-
-                  <span>{item}</span>
-
-                </div>
-
-              ))}
-
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Image */}
+            <div className="overflow-hidden rounded-3xl shadow-xl">
+              <img
+                src={activeService.image}
+                alt={activeService.title}
+                className="w-full h-[260px] md:h-[420px] object-cover"
+              />
             </div>
 
-            <a
-              href="https://wa.me/918448445504"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex px-8 py-4 rounded-xl bg-primary text-white font-semibold hover:opacity-90"
-            >
-              Book {activeService.title}
-            </a>
+            {/* Content */}
+            <div className="flex flex-col justify-center">
+              <h3 className="text-3xl md:text-4xl font-bold mb-6">
+                {activeService.title}
+              </h3>
 
+              <p className="text-muted-foreground text-lg leading-8 mb-8">
+                {activeService.description}
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4 mb-10">
+                {activeService.features.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 rounded-xl border bg-white p-4 shadow-sm"
+                  >
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-green-100 text-green-600 font-bold">
+                      ✓
+                    </div>
+
+                    <span className="font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="https://wa.me/918448445504"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary w-fit px-8 py-4"
+              >
+                Book {activeService.title}
+              </a>
+            </div>
           </div>
-
         </div>
       </section>
 

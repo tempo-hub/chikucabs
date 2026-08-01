@@ -23,6 +23,7 @@ import AirportTaxiTemplate from "@/components/templates/AirportTaxiTemplate";
 import TempoTravellerTemplate from "@/components/templates/TempoTravellerTemplate";
 import LocalSightseeingTemplate from "@/components/templates/LocalSightseeingTemplate";
 import ErtigaServiceTemplate from "@/components/templates/ErtigaServiceTemplate";
+import DzireServiceTemplate from "@/components/templates/DzireServiceTemplate";
 
 // We do NOT pre-render all 4476 routes at build time (causes timeout on Vercel).
 // Pages are generated on first request and cached via ISR (revalidate below).
@@ -521,6 +522,9 @@ export default async function DynamicRoutePage({
     }
     if(parsed.vehicleCategory === "ertiga"){
       return <ErtigaServiceTemplate parsedData={parsed} />;
+    }
+    if (parsed.vehicleCategory === "dzire"){
+      return <DzireServiceTemplate parsedData={parsed} />
     }
     if (parsed.routeType === "Driver Service") {
       return <DriverServiceTemplate parsedData={parsed} />;

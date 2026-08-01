@@ -34,6 +34,16 @@ export const popularCities = {
     { name: "Tumakuru", slug: "tumakuru" },
   ],
 
+  bangalore: [
+    { name: "Bengaluru", slug: "bengaluru-urban" },
+    { name: "Mysuru", slug: "mysuru" },
+    { name: "Belagavi", slug: "belagavi" },
+    { name: "Hubballi", slug: "dharwad" },
+    { name: "Mangaluru", slug: "dakshina-kannada" },
+    { name: "Shivamogga", slug: "shivamogga" },
+    { name: "Tumakuru", slug: "tumakuru" },
+  ],
+
   // Haryana
   gurugram: [
     { name: "Gurugram", slug: "gurugram" },

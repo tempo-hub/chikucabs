@@ -167,7 +167,7 @@ export default function EEATSection({
                   <p className="text-base leading-relaxed">
                     Chiku Cabs is a premium cab rental company founded in 2015.
                     We specialize in outstation cab services, Tempo Traveller
-                    rentals, Innova Crysta bookings, local city tours, and
+                    rentals, {vehicle} bookings, local city tours, and
                     airport transfers across 100+ cities in India.
                   </p>
                   <p className="text-base leading-relaxed">
