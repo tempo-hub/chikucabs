@@ -10,14 +10,13 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-        {/* Logo */}
         <Link href="/" className="navbar-logo">
           <Image
-            src="/logo.png"
+            src="/cabss.png"
             alt="Chiku Cabs"
             width={211}
             height={45}
-            style={{ height: "45px", width: "auto" }}
+            className="logo-img"
             priority
           />
         </Link>

@@ -3,6 +3,42 @@ import { connectDB } from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import Image from "next/image";
 import BlogContentWithBooking from "@/components/shared/BlogContentWithBooking";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  await connectDB();
+
+  const blog = await Blog.findOne({ slug }).lean();
+
+  if (!blog) {
+    return {
+      title: "Blog Not Found | Chiku Cabs",
+    };
+  }
+
+  const description =
+    blog.metaDescription ||
+    blog.content.replace(/<[^>]+>/g, "").slice(0, 160);
+
+  return {
+    title: `${blog.title} | Chiku Cabs`,
+    description,
+    openGraph: {
+      title: blog.title,
+      description,
+    },
+    twitter: {
+      title: blog.title,
+      description,
+      card: "summary_large_image",
+    },
+  };
+}
 
 // Prevent build-time pre-rendering — this page needs a live MongoDB connection
 export const dynamic = "force-dynamic";

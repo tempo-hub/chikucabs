@@ -95,6 +95,22 @@ a {
   font-weight: 900;
   letter-spacing: -0.02em;
 }
+
+.logo-img {
+  width: 211px;
+  height: auto;
+}
+@media (max-width: 768px) {
+  .logo-img {
+    width: 160px;
+  }
+}
+@media (max-width: 480px) {
+  .logo-img {
+    width: 130px;
+  }
+}
+
 .navbar-links {
   display: none;
   gap: 2rem;

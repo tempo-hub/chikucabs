@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import {
   FaFacebookF,
@@ -15,14 +16,17 @@ export default function Footer() {
         <div className="footer-grid">
           {/* Brand Column */}
           <div className="footer-col">
-            <div className="footer-logo inline-block bg-white p-2 rounded-lg mb-4">
-              <img
-                src="/chikucabnewlogo.webp"
+            <div className="footer-logo inline-block bg-white rounded-lg mb-4">
+              <Image
+                src="/cabss.png"
                 alt="Chiku Cabs"
-                style={{ height: "45px", width: "auto" }}
+                width={211}
+                height={45}
+                className="logo-img"
+                priority
               />
             </div>
-            
+
             <p className="footer-desc">
               India's most trusted cab service with 1 Lakh+ completed trips.
               Premium vehicles, verified drivers, and transparent pricing across
