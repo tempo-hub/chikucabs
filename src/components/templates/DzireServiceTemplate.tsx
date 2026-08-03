@@ -10,7 +10,7 @@ import LocalDominance from "../shared/LocalDominance";
 const services = [
     {
         id: "airport",
-        image: "/ertiga/ertiga_airport.png",
+        image: "/dzire/dzire_airport.png",
         title: "Airport Transfers",
         description:
             "Enjoy hassle-free airport pickup and drop services with professional chauffeurs. We monitor flight timings and ensure timely pickups with enough luggage space for families and groups.",
@@ -22,7 +22,7 @@ const services = [
     },
     {
         id: "wedding",
-        image: "/ertiga/ertiga_wedding.png",
+        image: "/dzire/dzire_wedding.png",
         title: "Wedding Travel",
         description:
             "Book premium Innova rentals for weddings, guest transportation, baraat processions, and family functions. Travel comfortably while making every celebration memorable.",
@@ -34,7 +34,7 @@ const services = [
     },
     {
         id: "corporate",
-        image: "/ertiga/ertiga_corporate.png",
+        image: "/dzire/dzire_corporate.png",
         title: "Corporate Travel",
         description:
             "Professional transportation for business meetings, airport transfers, conferences, client visits, and executive travel with punctual drivers.",
@@ -46,7 +46,7 @@ const services = [
     },
     {
         id: "vacation",
-        image: "/ertiga/ertiga_pligrimage.png",
+        image: "/dzire/dzire_pligrimage.png",
         title: "Vacations",
         description:
             "Enjoy vacations, sightseeing, and weekend getaways with spacious seating, ample luggage space, and comfortable rides for the entire family.",
@@ -58,7 +58,7 @@ const services = [
     },
     {
         id: "hill",
-        image: "/ertiga/ertiga_hill.png",
+        image: "/dzire/dzire_hills.png",
         title: "Hill Station",
         description:
             "Plan memorable road trips to Shimla, Manali, Mussoorie, Nainital, Ooty, and more with experienced drivers and comfortable seating for long journeys.",
@@ -87,7 +87,7 @@ export default function DzireServiceTemplate({
                     <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
                         <div className="flex gap-2" >
                             <div className="section-badge inline-flex mb-6 text-slate-950">
-                                Starting @ ₹17/km*
+                                Starting @ ₹10/km*
                             </div>
                             <div className="section-badge inline-flex mb-6 text-slate-950">
                                 4.4 ★
@@ -201,9 +201,9 @@ export default function DzireServiceTemplate({
                         {[
                             {
                                 name: "Dzire",
-                                model: "Maruti Dzire (4+1)",
-                                image: "/ertiga-base.png",
-                                price: "₹14/km",
+                                model: "Dzire Tour S",
+                                image: "/dzire/dzire_model.webp",
+                                price: "₹10/km",
                                 features: [
                                     "4+1 Seating",
                                     "AC + Music",
@@ -213,10 +213,10 @@ export default function DzireServiceTemplate({
                                 best: false,
                             },
                             {
-                                name: "Dzire VXi AT",
+                                name: "Dzire LXi",
                                 model: "Maruti Dzire",
-                                image: "/ertiga-base.png",
-                                price: "₹17/km",
+                                image: "/dzire/dzire_model.webp",
+                                price: "₹10/km",
                                 features: [
                                     "4+1 Captain Seats",
                                     "Auto AC",
@@ -226,10 +226,10 @@ export default function DzireServiceTemplate({
                                 best: true,
                             },
                             {
-                                name: "Dzire ZXi Plus AT",
+                                name: "Dzire VXi",
                                 model: "Maruti Dzire (Hybrid)",
-                                image: "/ertiga-base.png",
-                                price: "₹20/km",
+                                image: "/dzire/dzire_model.webp",
+                                price: "₹12/km",
                                 features: [
                                     "4+1 Luxury Seats",
                                     "Hybrid Engine",
