@@ -54,6 +54,15 @@ export const popularCities = {
     { name: "Karnal", slug: "karnal" },
     { name: "Ambala", slug: "ambala" },
   ],
+  palwal: [
+    { name: "Gurugram", slug: "gurugram" },
+    { name: "Faridabad", slug: "faridabad" },
+    { name: "Panipat", slug: "panipat" },
+    { name: "Sonipat", slug: "sonipat" },
+    { name: "Rohtak", slug: "rohtak" },
+    { name: "Karnal", slug: "karnal" },
+    { name: "Ambala", slug: "ambala" },
+  ],
 
   // Delhi NCR
   delhi: [

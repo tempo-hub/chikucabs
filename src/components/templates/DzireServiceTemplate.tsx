@@ -6,6 +6,21 @@ import PopularCities from "@/components/shared/PopularCities";
 import StatsBar from "../shared/StatsBar";
 import { useState } from "react";
 import LocalDominance from "../shared/LocalDominance";
+import { localDominanceData } from "@/data/localDominanceData";
+
+
+const relatedVehicles = [
+    {
+        name: "Ertiga",
+        slug: "hire-ertiga-on-rent",
+        
+    },
+    {
+        name: "Innova Crysta",
+        slug: "hire-innova-crysta-on-rent",
+        
+    },
+];
 
 const services = [
     {
@@ -58,7 +73,7 @@ const services = [
     },
     {
         id: "hill",
-        image: "/dzire/dzire_hills.png",
+        image: "/dzire/dzire_hill.png",
         title: "Hill Station",
         description:
             "Plan memorable road trips to Shimla, Manali, Mussoorie, Nainital, Ooty, and more with experienced drivers and comfortable seating for long journeys.",
@@ -75,13 +90,20 @@ export default function DzireServiceTemplate({
 }: {
     parsedData: ParsedRouteData;
 }) {
-    const city = parsedData.origin || "India";
+    const displayCity = parsedData.origin || "india";
+    const city = parsedData.displayCity || "India";
+    const localDominanceCity =
+        localDominanceData[
+            city.toLowerCase() as keyof typeof localDominanceData
+        ]
+            ? city
+            : displayCity;
     const [activeService, setActiveService] = useState(services[0]);
 
     return (
         <div className="bg-background min-h-screen">
             {/* Hero Section */}
-            <section className="relative overflow-hidden  pt-4 sm:pt-6 lg:pt-16 pb-16 px-4 text-slate-950 bg-white">
+            <section className="relative overflow-hidden  pt-4 sm:pt-6 lg:pt-12 pb-12 px-4 text-slate-950 bg-white">
                 <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
                 <div className="relative max-w-7xl mx-auto grid gap-8 lg:grid-cols-[1.2fr_1.2fr] items-center">
                     <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
@@ -206,9 +228,9 @@ export default function DzireServiceTemplate({
                                 price: "₹10/km",
                                 features: [
                                     "4+1 Seating",
-                                    "AC + Music",
-                                    "Good Legroom",
-                                    "Budget Friendly",
+                                    "Air Conditioning",
+                                    "Fuel Efficient",
+                                    "Ideal for City Travel",
                                 ],
                                 best: false,
                             },
@@ -216,25 +238,25 @@ export default function DzireServiceTemplate({
                                 name: "Dzire LXi",
                                 model: "Maruti Dzire",
                                 image: "/dzire/dzire_model.webp",
-                                price: "₹10/km",
+                                price: "₹11/km",
                                 features: [
-                                    "4+1 Captain Seats",
-                                    "Auto AC",
-                                    "Premium Interiors",
-                                    "Extra Luggage Space",
+                                    "4+1 Comfortable Seating",
+                                    "Touchscreen Infotainment",
+                                    "Rear AC Vents",
+                                    "Spacious Boot",
                                 ],
                                 best: true,
                             },
                             {
                                 name: "Dzire VXi",
-                                model: "Maruti Dzire (Hybrid)",
+                                model: "Maruti Dzire",
                                 image: "/dzire/dzire_model.webp",
                                 price: "₹12/km",
                                 features: [
-                                    "4+1 Luxury Seats",
-                                    "Hybrid Engine",
-                                    "Panoramic Sunroof",
-                                    "Ultra Premium",
+                                    "Automatic Climate Control",
+                                    "Cruise Control",
+                                    "Push Button Start",
+                                    "Premium Interior",
                                 ],
                                 best: false,
                             },
@@ -350,14 +372,20 @@ export default function DzireServiceTemplate({
 
             {/* Use Cases */}
             <section className="py-12 px-4">
-                <div className="max-w-5xl mx-auto mb-4">
-                    <div className="text-center mb-16">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-6">
+                        <div
+                            className="section-badge mx-auto mb-4"
+                            style={{ display: "inline-flex" }}
+                        >
+                            POPULAR USE CASES
+                        </div>
                         <h2 className="section-title">
                             Popular Dzire Rental Use Cases{" "}
                             {city !== "India" ? `in ${city}` : ""}
                         </h2>
                     </div>
-                    <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
 
                         {services.map((service) => (
 
@@ -377,66 +405,71 @@ export default function DzireServiceTemplate({
 
                     </div>
 
-                </div>
 
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-                    {/* Image */}
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-                    <div className="relative w-full aspect-[16/9] overflow-hidden rounded-2xl">
+                        {/* Image */}
 
-                        <img
-                            src={activeService.image}
-                            alt={activeService.title}
-                            className="object-cover h-full w-full"
-                        />
+                        <div className="overflow-hidden rounded-3xl shadow-xl">
 
-                    </div>
-
-                    {/* Content */}
-
-                    <div>
-
-                        <h3 className="text-4xl font-bold mb-6">
-                            {activeService.title}
-                        </h3>
-
-                        <p className="text-muted-foreground leading-8 mb-8">
-                            {activeService.description}
-                        </p>
-
-                        <div className="grid sm:grid-cols-2 gap-4 mb-10">
-
-                            {activeService.features.map((item) => (
-
-                                <div
-                                    key={item}
-                                    className="flex items-center gap-3 bg-white border rounded-xl p-4 shadow-sm"
-                                >
-                                    <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">
-                                        ✓
-                                    </div>
-
-                                    <span>{item}</span>
-
-                                </div>
-
-                            ))}
+                            <img
+                                src={activeService.image}
+                                alt={activeService.title}
+                                className="w-full h-[260px] md:h-[420px] object-cover"
+                            />
 
                         </div>
 
-                        <a
-                            href="https://wa.me/918448445504"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex px-8 py-4 rounded-xl bg-primary text-white font-semibold hover:opacity-90"
-                        >
-                            Book {activeService.title}
-                        </a>
+                        {/* Content */}
 
+                        <div className="flex flex-col justify-center">
+
+                            <h3 className="text-3xl md:text-4xl font-bold mb-6">
+                                {activeService.title}
+                            </h3>
+
+                            <p className="text-muted-foreground leading-8 mb-8">
+                                {activeService.description}
+                            </p>
+
+                            <div className="grid sm:grid-cols-2 gap-4 mb-10">
+
+                                {activeService.features.map((item) => (
+
+                                    <div
+                                        key={item}
+                                        className="flex items-center gap-3 bg-white border rounded-xl p-4 shadow-sm"
+                                    >
+                                        <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">
+                                            ✓
+                                        </div>
+
+                                        <span>{item}</span>
+
+                                    </div>
+
+                                ))}
+
+                            </div>
+
+                            <a
+                                href="https://wa.me/918448445504"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-primary w-fit px-8 py-4"
+                            >
+                                Book {activeService.title}
+                            </a>
+
+                        </div>
                     </div>
                 </div>
             </section>
+
+
+
+
 
             {/* Testimonials */}
             <section className="bg-muted/30 py-12 border-y px-4">
@@ -497,44 +530,64 @@ export default function DzireServiceTemplate({
                     </div>
                     {[
                         {
-                            q: `What is the difference between Dzire and Dzire on rent in ${city}?`,
-                            a: `The standard Dzire is perfect for budget family travel in ${city}. Choosing an Dzire on rent provides luxury features like captain seats, dual AC, and a more premium ride for your taxi service needs.`,
+                            q: `Where can I hire a Dzire on rent in ${city}?`,
+                            a: `You can hire a Maruti Dzire on rent in ${city} for local sightseeing, airport transfers, business meetings, outstation trips, and daily travel. Booking in advance helps ensure better availability and competitive pricing.`,
                         },
                         {
-                            q: `How much does an Dzire cab booking cost per day in ${city}?`,
-                            a: `Dzire cab booking in ${city} starts from ₹14/km. For the premium Dzire on rent, the rate is ₹17/km. We ensure our taxi service remains the most affordable in the market.`,
+                            q: `What is the cost of hiring a Dzire in ${city}?`,
+                            a: `The cost of hiring a Dzire in ${city} depends on factors like travel distance, trip duration, local or outstation travel, and your itinerary. Contact us for the latest fare and a customized quote.`,
                         },
                         {
-                            q: `Can I get an airport taxi with Dzire for pickup in ${city}?`,
-                            a: `Yes! We specialize in 24/7 airport transfer services. Your airport taxi (Dzire) will be ready for you at ${city} airport for a comfortable group drop.`,
+                            q: `Is the Dzire a good car for local travel in ${city}?`,
+                            a: `Yes. The Maruti Dzire is one of the best sedan cars for local travel in ${city}. It offers comfortable seating, excellent fuel efficiency, air-conditioned interiors, and a smooth ride for city journeys.`,
                         },
                         {
-                            q: `Is the Dzire on rent suitable for hill station outstation cabs from ${city}?`,
-                            a: `Absolutely. The Dzire's powerful engine makes it the best choice for outstation cabs heading to hilly areas. Our drivers are experts in high-altitude mountain routes.`,
+                            q: `Can I book a Dzire for airport pickup and drop from ${city}?`,
+                            a: `Yes. You can book a Dzire for airport pickup and drop from ${city}. The service is available 24/7 with professional chauffeurs and timely pickups.`,
                         },
                         {
-                            q: `Can I book an Dzire for a wedding event in ${city}?`,
-                            a: `Yes! Our luxury cab booking service in ${city} includes premium Dzire for weddings, perfect for guest transfers or as a comfortable car for the bride and groom.`,
+                            q: `Can I hire a Dzire for an outstation trip from ${city}?`,
+                            a: `Absolutely. You can rent a Dzire for outstation travel from ${city} to destinations like Agra, Jaipur, Chandigarh, Haridwar, Rishikesh, Mathura, Vrindavan, Shimla, and many other cities across India.`,
                         },
                         {
-                            q: `How do I handle cab booking for a full-day city tour in ${city}?`,
-                            a: `You can opt for our local taxi service packages (8hr/80km or 12hr/120km) for your Dzire cab booking in ${city}, allowing you to explore at your own pace.`,
+                            q: `How many passengers can travel comfortably in a Dzire?`,
+                            a: `A Maruti Dzire comfortably accommodates up to 4 passengers along with luggage, making it an excellent choice for couples, small families, business travelers, and airport transfers.`,
                         },
                         {
-                            q: `Are the drivers for Dzire taxi service in ${city} experienced?`,
-                            a: `Every driver in our Dzire taxi service fleet is police-verified and has at least 5+ years of professional driving experience, ensuring your safety in ${city}.`,
+                            q: `Is the driver included with the Dzire rental?`,
+                            a: `Yes. Our Dzire rental service comes with a professional driver. Toll tax, parking fees, and state taxes (if applicable) may be charged separately based on your travel route.`,
                         },
                         {
-                            q: `Does the Dzire on rent have enough space for luggage?`,
-                            a: `Yes, the Dzire on rent is famous for its massive boot space. It can easily accommodate 4-5 large bags, making it ideal for airport transfer and outstation cabs.`,
+                            q: `Can I book a Dzire online in ${city}?`,
+                            a: `Yes. You can easily book a Dzire online by filling out the booking form, calling our customer support team, or sending your travel details on WhatsApp for quick confirmation.`,
                         },
                         {
-                            q: `What amenities are included in my luxury cab booking?`,
-                            a: `Your luxury cab booking includes a pristine AC cabin, premium seats, music system, and a 24/7 support line to assist you throughout your journey in ${city}.`,
+                            q: `Is the Dzire suitable for business travel in ${city}?`,
+                            a: `Yes. The Dzire is a popular choice for corporate travel because of its comfortable interiors, professional appearance, fuel efficiency, and smooth driving experience for meetings, office transfers, and executive travel in ${city}.`,
                         },
                         {
-                            q: `How early should I book my Dzire cab booking for ${city}?`,
-                            a: `To ensure the best rates and availability for your Dzire on rent, we recommend completing your cab booking at least 24-48 hours in advance.`,
+                            q: `Which places can I visit by Dzire from ${city}?`,
+                            a: `You can hire a Dzire from ${city} to visit popular tourist attractions, nearby cities, business hubs, shopping destinations, hill stations, and other places based on your travel requirements.`,
+                        },
+                        {
+                            q: `Can I hire a Dzire for a full-day local sightseeing tour in ${city}?`,
+                            a: `Yes. You can book a Dzire for a full-day sightseeing tour, shopping trips, multiple business meetings, family outings, or customized local travel plans in ${city}.`,
+                        },
+                        {
+                            q: `Why should I choose a Dzire instead of a hatchback?`,
+                            a: `A Dzire offers more cabin space, a larger boot for luggage, better ride comfort, and premium seating compared to most hatchbacks, making it ideal for both business and leisure travel.`,
+                        },
+                        {
+                            q: `Is advance booking recommended for Dzire rental in ${city}?`,
+                            a: `Yes. Advance booking is highly recommended during weekends, festive seasons, holidays, and peak travel periods to secure your preferred vehicle and the best rental rates in ${city}.`,
+                        },
+                        {
+                            q: `Can I hire a Dzire for weddings and special events in ${city}?`,
+                            a: `Yes. Our Dzire rental service is available for weddings, family functions, corporate events, hotel transfers, guest transportation, and other special occasions in ${city}.`,
+                        },
+                        {
+                            q: `Why should I choose your Dzire rental service in ${city}?`,
+                            a: `We provide clean and sanitized vehicles, experienced chauffeurs, transparent pricing, timely pickups, 24/7 customer support, and reliable taxi services for both local and outstation travel from ${city}.`,
                         },
                     ].map((faq, i) => (
                         <details key={i} className="faq-item">
@@ -641,9 +694,9 @@ export default function DzireServiceTemplate({
             )}
 
             {/* Local Dominance Section */}
-                  <section className="py-8 px-4 bg-muted/10 border-t">
-                    <LocalDominance city={city} />
-                  </section>
+            <section className="py-8 px-4 bg-muted/10 border-t">
+                <LocalDominance city={localDominanceCity} />
+            </section>
 
             <InternalLinks parsedData={parsedData} />
             <EEATSection
@@ -657,6 +710,36 @@ export default function DzireServiceTemplate({
                         vehicleName={parsedData.vehicle || "Dzire"}
                         currentCity={parsedData.origin?.toLowerCase()}
                     />
+                </div>
+            </section>
+
+            {/* related vehicles */}
+            <section className="py-8 px-4 border-t bg-muted/10">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                        Other Vehicles Available in {city}
+                    </h2>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        {relatedVehicles.map((vehicle) => {
+                            const url =
+                                parsedData.slugs.length >= 3
+                                    ? `/${parsedData.slugs[0]}/${parsedData.slugs[1]}/${vehicle.slug}`
+                                    : `/${parsedData.slugs[0]}/${vehicle.slug}`;
+
+                            return (
+                                <a
+                                    key={vehicle.slug}
+                                    href={url}
+                                    className="border bg-white rounded-lg px-6 py-5 hover:border-primary hover:shadow-md transition-all"
+                                >
+                                    <h3 className="text-lg font-semibold leading-7">
+                                        Hire {vehicle.name} on Rent in {city}
+                                    </h3>
+                                </a>
+                            );
+                        })}
+                    </div>
                 </div>
             </section>
 

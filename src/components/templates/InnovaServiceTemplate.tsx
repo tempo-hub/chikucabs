@@ -7,7 +7,18 @@ import PopularCities from "../shared/PopularCities";
 import LocalDominance from "../shared/LocalDominance";
 import FAQ from "@/components/shared/Faq";
 import { useState } from "react";
+import { localDominanceData } from "@/data/localDominanceData";
 
+const relatedVehicles = [
+  {
+    name: "Ertiga",
+    slug: "hire-ertiga-on-rent",
+  },
+  {
+    name: "Dzire",
+    slug: "hire-dzire-on-rent",
+  },
+];
 const services = [
   {
     id: "airport",
@@ -78,7 +89,14 @@ export default function InnovaServiceTemplate({
 }: {
   parsedData: ParsedRouteData;
 }) {
+  const displayCity = parsedData.origin || "india";
   const city = parsedData.displayCity || "India";
+  const localDominanceCity =
+    localDominanceData[
+      city.toLowerCase() as keyof typeof localDominanceData
+    ]
+      ? city
+      : displayCity;
   const [activeService, setActiveService] = useState(services[0]);
   return (
     <div className="bg-background min-h-screen">
@@ -585,7 +603,7 @@ export default function InnovaServiceTemplate({
       )}
       {/* Local Dominance Section */}
       <section className="py-8 px-4 bg-muted/10 border-t">
-        <LocalDominance city={city} />
+        <LocalDominance city={localDominanceCity} />
       </section>
 
       {/* Internal Links & EEAT Section */}
@@ -601,6 +619,36 @@ export default function InnovaServiceTemplate({
           vehicleName={parsedData.vehicle || "Innova Crysta"}
           currentCity={parsedData.origin?.toLowerCase()}
         />
+      </section>
+
+      {/* related vehicles */}
+      <section className="py-8 px-4 border-t bg-muted/10">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            Other Vehicles Available in {city}
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {relatedVehicles.map((vehicle) => {
+              const url =
+                parsedData.slugs.length >= 3
+                  ? `/${parsedData.slugs[0]}/${parsedData.slugs[1]}/${vehicle.slug}`
+                  : `/${parsedData.slugs[0]}/${vehicle.slug}`;
+
+              return (
+                <a
+                  key={vehicle.slug}
+                  href={url}
+                  className="border bg-white rounded-lg px-6 py-5 hover:border-primary hover:shadow-md transition-all"
+                >
+                  <h3 className="text-lg font-semibold leading-7">
+                    Hire {vehicle.name} on Rent in {city}
+                  </h3>
+                </a>
+              );
+            })}
+          </div>
+        </div>
       </section>
     </div>
   );

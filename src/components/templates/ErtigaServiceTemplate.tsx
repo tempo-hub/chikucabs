@@ -6,6 +6,19 @@ import PopularCities from "@/components/shared/PopularCities";
 import StatsBar from "../shared/StatsBar";
 import { useState } from "react";
 import LocalDominance from "../shared/LocalDominance";
+import { localDominanceData } from "@/data/localDominanceData";
+
+
+const relatedVehicles = [
+    {
+        name: "Dzire",
+        slug: "hire-dzire-on-rent",
+    },
+    {
+        name: "Innova Crysta",
+        slug: "hire-innova-crysta-on-rent",
+    },
+];
 
 const services = [
     {
@@ -77,7 +90,14 @@ export default function ErtigaServiceTemplate({
 }) {
 
 
+    const displayCity = parsedData.origin || "india";
     const city = parsedData.displayCity || "India";
+    const localDominanceCity =
+        localDominanceData[
+            city.toLowerCase() as keyof typeof localDominanceData
+        ]
+            ? city
+            : displayCity;
     const [activeService, setActiveService] = useState(services[0]);
 
     return (
@@ -373,12 +393,11 @@ export default function ErtigaServiceTemplate({
                             <button
                                 key={service.id}
                                 onClick={() => setActiveService(service)}
-                                 className={`rounded-xl border px-4 py-5 text-center font-semibold transition-all duration-300
-            ${
-              activeService.id === service.id
-                ? "bg-primary text-white border-primary shadow-lg"
-                : "bg-white hover:bg-gray-100 border-gray-200"
-            }`}
+                                className={`rounded-xl border px-4 py-5 text-center font-semibold transition-all duration-300
+            ${activeService.id === service.id
+                                        ? "bg-primary text-white border-primary shadow-lg"
+                                        : "bg-white hover:bg-gray-100 border-gray-200"
+                                    }`}
                             >
                                 {service.title}
                             </button>
@@ -388,7 +407,7 @@ export default function ErtigaServiceTemplate({
                     </div>
 
 
-{/* Content */}
+                    {/* Content */}
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
 
                         {/* Image */}
@@ -508,44 +527,64 @@ export default function ErtigaServiceTemplate({
                     </div>
                     {[
                         {
-                            q: `What is the difference between Ertiga and Ertiga on rent in ${city}?`,
-                            a: `The standard Ertiga is perfect for budget family travel in ${city}. Choosing an Ertiga on rent provides luxury features like captain seats, dual AC, and a more premium ride for your taxi service needs.`,
+                            q: `Where can I hire an Ertiga on rent in ${city}?`,
+                            a: `You can hire a Maruti Ertiga on rent in ${city} for local travel, airport transfers, outstation trips, corporate travel, and family vacations. Advance booking helps you get better availability and competitive pricing.`,
                         },
                         {
-                            q: `How much does an Ertiga cab booking cost per day in ${city}?`,
-                            a: `Ertiga cab booking in ${city} starts from ₹14/km. For the premium Ertiga on rent, the rate is ₹17/km. We ensure our taxi service remains the most affordable in the market.`,
+                            q: `What is the price of Ertiga rental in ${city}?`,
+                            a: `The Ertiga rental price in ${city} depends on your trip type, travel distance, duration, and whether you need a local or outstation cab. Contact us for the latest fare and customized quotation.`,
                         },
                         {
-                            q: `Can I get an airport taxi with Ertiga for pickup in ${city}?`,
-                            a: `Yes! We specialize in 24/7 airport transfer services. Your airport taxi (Ertiga) will be ready for you at ${city} airport for a comfortable group drop.`,
+                            q: `Can I book an Ertiga for airport pickup from ${city}?`,
+                            a: `Yes. You can easily book an Ertiga for airport pickup or drop from ${city}. The service is available 24/7 with professional drivers and timely pickups.`,
                         },
                         {
-                            q: `Is the Ertiga on rent suitable for hill station outstation cabs from ${city}?`,
-                            a: `Absolutely. The Ertiga's powerful engine makes it the best choice for outstation cabs heading to hilly areas. Our drivers are experts in high-altitude mountain routes.`,
+                            q: `Is Ertiga suitable for a family trip from ${city}?`,
+                            a: `Yes. The Maruti Ertiga is one of the best family cars for comfortable travel. It offers spacious seating for up to 6–7 passengers along with ample luggage space, making it ideal for family vacations and weekend getaways from ${city}.`,
                         },
                         {
-                            q: `Can I book an Ertiga for a wedding event in ${city}?`,
-                            a: `Yes! Our luxury cab booking service in ${city} includes premium Ertigas for weddings, perfect for guest transfers or as a comfortable car for the bride and groom.`,
+                            q: `Can I book an Ertiga for an outstation trip from ${city}?`,
+                            a: `Absolutely. You can hire an Ertiga from ${city} for outstation destinations like Agra, Jaipur, Haridwar, Rishikesh, Chandigarh, Shimla, Manali, and many other cities across India.`,
                         },
                         {
-                            q: `How do I handle cab booking for a full-day city tour in ${city}?`,
-                            a: `You can opt for our local taxi service packages (8hr/80km or 12hr/120km) for your Ertiga cab booking in ${city}, allowing you to explore at your own pace.`,
+                            q: `How many passengers can travel in an Ertiga?`,
+                            a: `A Maruti Ertiga can comfortably accommodate up to 6–7 passengers along with luggage, making it a popular choice for group travel and family tours.`,
                         },
                         {
-                            q: `Are the drivers for Ertiga taxi service in ${city} experienced?`,
-                            a: `Every driver in our Ertiga taxi service fleet is police-verified and has at least 5+ years of professional driving experience, ensuring your safety in ${city}.`,
+                            q: `Is driver charge included in the Ertiga rental price?`,
+                            a: `Yes. Driver charges are generally included in the rental package. However, toll tax, parking charges, and state taxes (if applicable) may be charged separately depending on your itinerary.`,
                         },
                         {
-                            q: `Does the Ertiga on rent have enough space for luggage?`,
-                            a: `Yes, the Ertiga on rent is famous for its massive boot space. It can easily accommodate 4-5 large bags, making it ideal for airport transfer and outstation cabs.`,
+                            q: `Can I book an Ertiga online in ${city}?`,
+                            a: `Yes. You can book an Ertiga online by submitting your travel details, calling our booking team, or sending your trip requirements through WhatsApp for instant confirmation.`,
                         },
                         {
-                            q: `What amenities are included in my luxury cab booking?`,
-                            a: `Your luxury cab booking includes a pristine AC cabin, premium seats, music system, and a 24/7 support line to assist you throughout your journey in ${city}.`,
+                            q: `Which places can I visit by Ertiga from ${city}?`,
+                            a: `You can hire an Ertiga from ${city} to visit popular tourist attractions, nearby cities, hill stations, pilgrimage destinations, business hubs, and other places based on your travel requirements.`,
                         },
                         {
-                            q: `How early should I book my Ertiga cab booking for ${city}?`,
-                            a: `To ensure the best rates and availability for your Ertiga on rent, we recommend completing your cab booking at least 24-48 hours in advance.`,
+                            q: `Is Ertiga available for corporate travel in ${city}?`,
+                            a: `Yes. We provide Ertiga rental services for corporate meetings, office transfers, business events, hotel pickups, conferences, and employee transportation in ${city}.`,
+                        },
+                        {
+                            q: `Can I hire an Ertiga for a one-day trip in ${city}?`,
+                            a: `Yes. You can rent an Ertiga for a full-day local sightseeing tour, business meetings, shopping, family outings, or multiple stops within ${city} according to your travel plan.`,
+                        },
+                        {
+                            q: `Why should I choose an Ertiga instead of a sedan?`,
+                            a: `If you're traveling with family or a group, the Ertiga offers more seating capacity, better luggage space, and greater comfort than a standard sedan while remaining budget-friendly.`,
+                        },
+                        {
+                            q: `Is advance booking required for Ertiga rental in ${city}?`,
+                            a: `Advance booking is recommended, especially during weekends, holidays, wedding season, and festive periods, to ensure vehicle availability and the best rental rates in ${city}.`,
+                        },
+                        {
+                            q: `Is Ertiga available for wedding and event transportation in ${city}?`,
+                            a: `Yes. You can hire an Ertiga for weddings, family functions, corporate events, guest transportation, and special occasions in ${city}.`,
+                        },
+                        {
+                            q: `Why book an Ertiga on rent in ${city} with us?`,
+                            a: `We offer clean and well-maintained vehicles, experienced chauffeurs, transparent pricing, on-time pickups, 24/7 customer support, and reliable taxi services for local as well as outstation travel from ${city}.`,
                         },
                     ].map((faq, i) => (
                         <details key={i} className="faq-item">
@@ -653,7 +692,7 @@ export default function ErtigaServiceTemplate({
 
             {/* Local Dominance Section */}
             <section className="py-8 px-4 bg-muted/10 border-t">
-                <LocalDominance city={city} />
+                <LocalDominance city={localDominanceCity} />
             </section>
 
             <InternalLinks parsedData={parsedData} />
@@ -668,6 +707,36 @@ export default function ErtigaServiceTemplate({
                         vehicleName={parsedData.vehicle || "Ertiga" || "Innova"}
                         currentCity={parsedData.origin?.toLowerCase()}
                     />
+                </div>
+            </section>
+
+            {/* related vehicles */}
+            <section className="py-8 px-4 border-t bg-muted/10">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                        Other Vehicles Available in {city}
+                    </h2>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        {relatedVehicles.map((vehicle) => {
+                            const url =
+                                parsedData.slugs.length >= 3
+                                    ? `/${parsedData.slugs[0]}/${parsedData.slugs[1]}/${vehicle.slug}`
+                                    : `/${parsedData.slugs[0]}/${vehicle.slug}`;
+
+                            return (
+                                <a
+                                    key={vehicle.slug}
+                                    href={url}
+                                    className="border bg-white rounded-lg px-6 py-5 hover:border-primary hover:shadow-md transition-all"
+                                >
+                                    <h3 className="text-lg font-semibold leading-7">
+                                        Hire {vehicle.name} on Rent in {city}
+                                    </h3>
+                                </a>
+                            );
+                        })}
+                    </div>
                 </div>
             </section>
 

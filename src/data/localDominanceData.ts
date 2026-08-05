@@ -4456,7 +4456,7 @@ export const localDominanceData = {
       "Faridabad (Haryana)"
     ]
   },
-  "gurugram_haryana": {
+  "gurugram": {
     "city": "Gurugram (Gurgaon), Haryana",
     "localAreas": [
       "Cyber City",
@@ -4480,7 +4480,7 @@ export const localDominanceData = {
       "Rewari"
     ]
   },
-  "faridabad_haryana": {
+  "faridabad": {
     "city": "Faridabad, Haryana",
     "localAreas": [
       "Sector 15-21",
@@ -4698,7 +4698,7 @@ export const localDominanceData = {
       "Panipat"
     ]
   },
-  "sonipat_haryana": {
+  "sonipat": {
     "city": "Sonipat, Haryana",
     "localAreas": [
       "Model Town",
@@ -4719,7 +4719,7 @@ export const localDominanceData = {
       "Rohtak"
     ]
   },
-  "panipat_haryana": {
+  "panipat": {
     "city": "Panipat, Haryana",
     "localAreas": [
       "Model Town",
@@ -4741,7 +4741,7 @@ export const localDominanceData = {
       "Rohtak"
     ]
   },
-  "rohtak_haryana": {
+  "rohtak": {
     "city": "Rohtak, Haryana",
     "localAreas": [
       "Model Town",
@@ -4762,7 +4762,7 @@ export const localDominanceData = {
       "Bhiwani"
     ]
   },
-  "jhajjar_haryana": {
+  "jhajjar": {
     "city": "Jhajjar, Haryana",
     "localAreas": [
       "Jhajjar Town",
@@ -4783,7 +4783,7 @@ export const localDominanceData = {
       "Rewari"
     ]
   },
-  "rewari_haryana": {
+  "rewari": {
     "city": "Rewari, Haryana",
     "localAreas": [
       "Rewari Town",
@@ -4804,7 +4804,7 @@ export const localDominanceData = {
       "Alwar"
     ]
   },
-  "palwal_haryana": {
+  "palwal": {
     "city": "Palwal, Haryana",
     "localAreas": [
       "Palwal Town"
@@ -4824,7 +4824,7 @@ export const localDominanceData = {
       "Mathura (UP)"
     ]
   },
-  "nuh_haryana": {
+  "nuh": {
     "city": "Nuh (Mewat), Haryana",
     "localAreas": [
       "Nuh Town",
@@ -4959,6 +4959,7 @@ export const localDominanceData = {
       "Bharatpur"
     ]
   },
+  
 
   "chennai": {
     "city": "Chennai",

@@ -49,18 +49,18 @@ export default function LocalDominance({
       {/* Header */}
       <div className="max-w-3xl mx-auto text-center mb-14">
         <span className="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
-          📍 Serving Across {data.city}
+          📍 Serving Across the city
         </span>
 
         <h2 className="mt-5 text-4xl font-bold">
-          Explore {data.city} With Chiku Cabs
+          Explore Popular Areas, Tourist Places & Nearby Cities
         </h2>
 
-        <p className="mt-4 text-muted-foreground leading-7">
+        {/* <p className="mt-4 text-muted-foreground leading-7">
           Book reliable taxi services across popular localities,
           tourist attractions, airports, railway stations and nearby
           cities with professional drivers.
-        </p>
+        </p> */}
       </div>
 
       {/* Cards */}
