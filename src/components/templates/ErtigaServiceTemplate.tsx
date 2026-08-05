@@ -23,7 +23,7 @@ const relatedVehicles = [
 const services = [
     {
         id: "airport",
-        image: "/ertiga/ertiga_airport.png",
+        image: "/ertiga/ertiga_airport.webp",
         title: "Airport Transfers",
         description:
             "Enjoy hassle-free airport pickup and drop services with professional chauffeurs. We monitor flight timings and ensure timely pickups with enough luggage space for families and groups.",
@@ -35,7 +35,7 @@ const services = [
     },
     {
         id: "wedding",
-        image: "/ertiga/ertiga_wedding.png",
+        image: "/ertiga/ertiga_wedding.webp",
         title: "Wedding Travel",
         description:
             "Book premium Innova rentals for weddings, guest transportation, baraat processions, and family functions. Travel comfortably while making every celebration memorable.",
@@ -47,7 +47,7 @@ const services = [
     },
     {
         id: "corporate",
-        image: "/ertiga/ertiga_corporate.png",
+        image: "/ertiga/ertiga_corporate.webp",
         title: "Corporate Travel",
         description:
             "Professional transportation for business meetings, airport transfers, conferences, client visits, and executive travel with punctual drivers.",
@@ -59,7 +59,7 @@ const services = [
     },
     {
         id: "vacation",
-        image: "/ertiga/ertiga_pligrimage.png",
+        image: "/ertiga/ertiga_pligrimage.webp",
         title: "Vacations",
         description:
             "Enjoy vacations, sightseeing, and weekend getaways with spacious seating, ample luggage space, and comfortable rides for the entire family.",
@@ -71,7 +71,7 @@ const services = [
     },
     {
         id: "hill",
-        image: "/ertiga/ertiga_hill.png",
+        image: "/ertiga/ertiga_hill.webp",
         title: "Hill Station",
         description:
             "Plan memorable road trips to Shimla, Manali, Mussoorie, Nainital, Ooty, and more with experienced drivers and comfortable seating for long journeys.",
