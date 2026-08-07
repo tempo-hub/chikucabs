@@ -7,11 +7,22 @@ import PopularCities from "../shared/PopularCities";
 import LocalDominance from "../shared/LocalDominance";
 import FAQ from "@/components/shared/Faq";
 import { useState } from "react";
+import { localDominanceData } from "@/data/localDominanceData";
 
+const relatedVehicles = [
+  {
+    name: "Ertiga",
+    slug: "hire-ertiga-on-rent",
+  },
+  {
+    name: "Dzire",
+    slug: "hire-dzire-on-rent",
+  },
+];
 const services = [
   {
     id: "airport",
-    image: "/Innova/airport.png",
+    image: "/Innova/airport.webp",
     title: "Airport Transfers",
     description:
       "Enjoy hassle-free airport pickup and drop services with professional chauffeurs. We monitor flight timings and ensure timely pickups with enough luggage space for families and groups.",
@@ -23,7 +34,7 @@ const services = [
   },
   {
     id: "wedding",
-    image: "/Innova/wedding.png",
+    image: "/Innova/wedding.webp",
     title: "Wedding Travel",
     description:
       "Book premium Innova rentals for weddings, guest transportation, baraat processions, and family functions. Travel comfortably while making every celebration memorable.",
@@ -35,7 +46,7 @@ const services = [
   },
   {
     id: "corporate",
-    image: "/Innova/corporate.png",
+    image: "/Innova/corporate.webp",
     title: "Corporate Travel",
     description:
       "Professional transportation for business meetings, airport transfers, conferences, client visits, and executive travel with punctual drivers.",
@@ -47,7 +58,7 @@ const services = [
   },
   {
     id: "vacation",
-    image: "/Innova/pilgrimage.png",
+    image: "/Innova/pilgrimage.webp",
     title: "Vacations",
     description:
       "Enjoy vacations, sightseeing, and weekend getaways with spacious seating, ample luggage space, and comfortable rides for the entire family.",
@@ -59,7 +70,7 @@ const services = [
   },
   {
     id: "hill",
-    image: "/Innova/hill.png",
+    image: "/Innova/hill.webp",
     title: "Hill Station",
     description:
       "Plan memorable road trips to Shimla, Manali, Mussoorie, Nainital, Ooty, and more with experienced drivers and comfortable seating for long journeys.",
@@ -78,12 +89,19 @@ export default function InnovaServiceTemplate({
 }: {
   parsedData: ParsedRouteData;
 }) {
-  const city = parsedData.origin || "India";
+  const displayCity = parsedData.origin || "india";
+  const city = parsedData.displayCity || "India";
+  const localDominanceCity =
+    localDominanceData[
+      city.toLowerCase() as keyof typeof localDominanceData
+    ]
+      ? city
+      : displayCity;
   const [activeService, setActiveService] = useState(services[0]);
   return (
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-4 sm:pt-6 lg:pt-16 pb-16 px-4 text-slate-950 bg-white">
+      <section className="relative overflow-hidden pt-4 sm:pt-6 lg:pt-12 pb-12 px-4 text-slate-950 bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
         <div className="relative max-w-7xl mx-auto grid gap-8 lg:grid-cols-1 xl:grid-cols-[1.2fr_1.2fr] items-center">
           <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
@@ -356,95 +374,86 @@ export default function InnovaServiceTemplate({
       </section>
 
       {/* Use Cases */}
-      <section className="py-12 px-4">
+      <section className="py-8 lg:py-12 px-4">
+        <div className="max-w-7xl mx-auto">
+          {/* Heading */}
+          <div className="text-center mb-6">
+            <div
+              className="section-badge mx-auto mb-4"
+              style={{ display: "inline-flex" }}
+            >
+              POPULAR USE CASES
+            </div>
 
-        <div className="max-w-5xl mx-auto mb-4">
-          <div className="text-center mb-8">
             <h2 className="section-title">
               Popular Innova Rental Use Cases{" "}
               {city !== "India" ? `in ${city}` : ""}
             </h2>
           </div>
 
-          <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-
+          {/* Tabs */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
             {services.map((service) => (
-
               <button
                 key={service.id}
                 onClick={() => setActiveService(service)}
-                className={`py-5 px-4 uppercase font-semibold text-sm transition-all border-r border-b
-        ${activeService.id === service.id
-                    ? "bg-primary text-white"
-                    : "bg-gray-100 hover:bg-gray-200 text-gray-800"
+                className={`rounded-xl border px-4 py-5 text-center font-semibold transition-all duration-300
+            ${activeService.id === service.id
+                    ? "bg-primary text-white border-primary shadow-lg"
+                    : "bg-white hover:bg-gray-100 border-gray-200"
                   }`}
               >
                 {service.title}
               </button>
-
             ))}
-
-          </div>
-
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-          {/* Image */}
-
-          <div className="relative w-full aspect-[16/9] overflow-hidden rounded-2xl">
-
-            <img
-              src={activeService.image}
-              alt={activeService.title}
-              className="object-cover h-full w-full"
-            />
-
           </div>
 
           {/* Content */}
-
-          <div>
-
-            <h3 className="text-4xl font-bold mb-6">
-              {activeService.title}
-            </h3>
-
-            <p className="text-muted-foreground leading-8 mb-8">
-              {activeService.description}
-            </p>
-
-            <div className="grid sm:grid-cols-2 gap-4 mb-10">
-
-              {activeService.features.map((item) => (
-
-                <div
-                  key={item}
-                  className="flex items-center gap-3 bg-white border rounded-xl p-4 shadow-sm"
-                >
-                  <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">
-                    ✓
-                  </div>
-
-                  <span>{item}</span>
-
-                </div>
-
-              ))}
-
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Image */}
+            <div className="overflow-hidden rounded-3xl shadow-xl">
+              <img
+                src={activeService.image}
+                alt={activeService.title}
+                className="w-full h-[260px] md:h-[420px] object-cover"
+              />
             </div>
 
-            <a
-              href="https://wa.me/918448445504"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex px-8 py-4 rounded-xl bg-primary text-white font-semibold hover:opacity-90"
-            >
-              Book {activeService.title}
-            </a>
+            {/* Content */}
+            <div className="flex flex-col justify-center">
+              <h3 className="text-3xl md:text-4xl font-bold mb-6">
+                {activeService.title}
+              </h3>
 
+              <p className="text-muted-foreground text-lg leading-8 mb-8">
+                {activeService.description}
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4 mb-10">
+                {activeService.features.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 rounded-xl border bg-white p-4 shadow-sm"
+                  >
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-green-100 text-green-600 font-bold">
+                      ✓
+                    </div>
+
+                    <span className="font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="https://wa.me/918448445504"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary w-fit px-8 py-4"
+              >
+                Book {activeService.title}
+              </a>
+            </div>
           </div>
-
         </div>
       </section>
 
@@ -594,7 +603,7 @@ export default function InnovaServiceTemplate({
       )}
       {/* Local Dominance Section */}
       <section className="py-8 px-4 bg-muted/10 border-t">
-        <LocalDominance city={city} />
+        <LocalDominance city={localDominanceCity} />
       </section>
 
       {/* Internal Links & EEAT Section */}
@@ -610,6 +619,36 @@ export default function InnovaServiceTemplate({
           vehicleName={parsedData.vehicle || "Innova Crysta"}
           currentCity={parsedData.origin?.toLowerCase()}
         />
+      </section>
+
+      {/* related vehicles */}
+      <section className="py-8 px-4 border-t bg-muted/10">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            Other Vehicles Available in {city}
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {relatedVehicles.map((vehicle) => {
+              const url =
+                parsedData.slugs.length >= 3
+                  ? `/${parsedData.slugs[0]}/${parsedData.slugs[1]}/${vehicle.slug}`
+                  : `/${parsedData.slugs[0]}/${vehicle.slug}`;
+
+              return (
+                <a
+                  key={vehicle.slug}
+                  href={url}
+                  className="border bg-white rounded-lg px-6 py-5 hover:border-primary hover:shadow-md transition-all"
+                >
+                  <h3 className="text-lg font-semibold leading-7">
+                    Hire {vehicle.name} on Rent in {city}
+                  </h3>
+                </a>
+              );
+            })}
+          </div>
+        </div>
       </section>
     </div>
   );

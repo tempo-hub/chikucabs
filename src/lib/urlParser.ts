@@ -2,9 +2,10 @@
 
 export interface ParsedRouteData {
   origin: string | null;
+  displayCity: string | null;
   destination: string | null;
   vehicle: string | null;
-  vehicleCategory: "tempo-traveller" | "innova" | "cab" | "driver" | "ertiga";
+  vehicleCategory: "tempo-traveller" | "innova" | "cab" | "driver" | "ertiga" | "dzire";
   routeType:
     | "Service"
     | "Local Service"
@@ -27,6 +28,7 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
   if (!slugs || slugs.length === 0) {
     return {
       origin: null,
+      displayCity: null,
       destination: null,
       vehicle: null,
       vehicleCategory: "cab" as const,
@@ -43,6 +45,7 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
   const lastSegment = slugs[slugs.length - 1].replace(/\.php$/, "");
 
   let origin: string | null = null;
+  let displayCity: string | null = null;
   let destination: string | null = null;
   let vehicle: string | null = null;
   let routeType: ParsedRouteData["routeType"] = "Unknown";
@@ -55,6 +58,8 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
     vehicle = "Innova";
     } else if (lowerSegment.includes("ertiga")) {
     vehicle = "Ertiga";
+    } else if (lowerSegment.includes("dzire")) {
+    vehicle = "Dzire";
   } else if (lowerSegment.includes("bus")) {
     vehicle = "Bus";
   } else if (lowerSegment.includes("car")) {
@@ -270,15 +275,28 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
     vehicleCategory = "innova";
     } else if (lowerVehicle.includes("ertiga")) {
     vehicleCategory = "ertiga";
+    } else if (lowerVehicle.includes("dzire")){
+      vehicleCategory = "dzire";
   } else if (
     lowerVehicle.includes("driver") ||
     lowerVehicle.includes("chauffeur")
   ) {
     vehicleCategory = "driver";
   }
+  
+  if (slugs.length >= 3) {
+  // /delhi/connaught-place/hire-innova-crysta-on-rent
+  origin = slugs[0];
+  displayCity = slugs[1];
+} else if (slugs.length === 2) {
+  // /delhi/hire-innova-crysta-on-rent
+  origin = slugs[0];
+  displayCity = slugs[0];
+}
 
   return {
     origin: capitalize(origin),
+    displayCity: capitalize(displayCity),
     destination: capitalize(destination),
     vehicle: capitalize(vehicle),
     vehicleCategory,

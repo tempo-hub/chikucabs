@@ -11,19 +11,21 @@ import { localDominanceData } from "@/data/localDominanceData";
 
 const relatedVehicles = [
     {
-        name: "Dzire",
-        slug: "hire-dzire-on-rent",
+        name: "Ertiga",
+        slug: "hire-ertiga-on-rent",
+        
     },
     {
         name: "Innova Crysta",
         slug: "hire-innova-crysta-on-rent",
+        
     },
 ];
 
 const services = [
     {
         id: "airport",
-        image: "/ertiga/ertiga_airport.webp",
+        image: "/dzire/dzire_airport.webp",
         title: "Airport Transfers",
         description:
             "Enjoy hassle-free airport pickup and drop services with professional chauffeurs. We monitor flight timings and ensure timely pickups with enough luggage space for families and groups.",
@@ -35,7 +37,7 @@ const services = [
     },
     {
         id: "wedding",
-        image: "/ertiga/ertiga_wedding.webp",
+        image: "/dzire/dzire_wedding.webp",
         title: "Wedding Travel",
         description:
             "Book premium Innova rentals for weddings, guest transportation, baraat processions, and family functions. Travel comfortably while making every celebration memorable.",
@@ -47,7 +49,7 @@ const services = [
     },
     {
         id: "corporate",
-        image: "/ertiga/ertiga_corporate.webp",
+        image: "/dzire/dzire_corporate.webp",
         title: "Corporate Travel",
         description:
             "Professional transportation for business meetings, airport transfers, conferences, client visits, and executive travel with punctual drivers.",
@@ -59,7 +61,7 @@ const services = [
     },
     {
         id: "vacation",
-        image: "/ertiga/ertiga_pligrimage.webp",
+        image: "/dzire/dzire_pligrimage.webp",
         title: "Vacations",
         description:
             "Enjoy vacations, sightseeing, and weekend getaways with spacious seating, ample luggage space, and comfortable rides for the entire family.",
@@ -71,7 +73,7 @@ const services = [
     },
     {
         id: "hill",
-        image: "/ertiga/ertiga_hill.webp",
+        image: "/dzire/dzire_hill.webp",
         title: "Hill Station",
         description:
             "Plan memorable road trips to Shimla, Manali, Mussoorie, Nainital, Ooty, and more with experienced drivers and comfortable seating for long journeys.",
@@ -83,13 +85,11 @@ const services = [
     },
 ];
 
-export default function ErtigaServiceTemplate({
+export default function DzireServiceTemplate({
     parsedData,
 }: {
     parsedData: ParsedRouteData;
 }) {
-
-
     const displayCity = parsedData.origin || "india";
     const city = parsedData.displayCity || "India";
     const localDominanceCity =
@@ -109,19 +109,19 @@ export default function ErtigaServiceTemplate({
                     <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
                         <div className="flex gap-2" >
                             <div className="section-badge inline-flex mb-6 text-slate-950">
-                                Starting @ ₹13/km*
+                                Starting @ ₹10/km*
                             </div>
                             <div className="section-badge inline-flex mb-6 text-slate-950">
                                 4.4 ★
                             </div>
                         </div>
                         <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight tracking-tight text-slate-950">
-                            Hire <span className="gradient-text">Ertiga</span> on Rent
+                            Hire <span className="gradient-text">Dzire</span> on Rent
                             {city !== "India" && <> in {city}</>}
                         </h1>
                         <p className="mt-4 max-w-2xl lg:text-lg sm:text-xl leading-relaxed text-slate-600">
                             Book premium airport transfers, family outings, and corporate travel
-                            with spacious 6+1 captain seats, dual AC comfort, and verified
+                            with spacious 4+1 captain seats, dual AC comfort, and verified
                             chauffeurs.
                         </p>
                         <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -129,10 +129,10 @@ export default function ErtigaServiceTemplate({
                                 href="tel:+918448445504"
                                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
                             >
-                                📞 Book Ertiga — 8448445504
+                                📞 Book Dzire — 8448445504
                             </a>
                             <a
-                                href="https://wa.me/918448445504?text=Hi%20I%20want%20to%20book%20an%20Ertiga%20%20on%20rent"
+                                href="https://wa.me/918448445504?text=Hi%20I%20want%20to%20book%20an%20Dzire%20%20on%20rent"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn-outline text-lg px-8 py-4"
@@ -162,8 +162,8 @@ export default function ErtigaServiceTemplate({
                         <div className="absolute -left-10 top-0 h-72 w-72 rounded-full bg-slate-200 blur-3xl" />
                         <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_40px_120px_rgba(15,23,42,0.08)]">
                             <img
-                                src="/ertiga.png"
-                                alt={`Ertiga on Rent in ${city !== "India" ? city : "India"} by Chiku Cabs`}
+                                src="/cab.png"
+                                alt={`Dzire on Rent in ${city !== "India" ? city : "India"} by Chiku Cabs`}
                                 className="w-full h-64 sm:h-80 md:h-[420px] lg:h-[520px] object-cover"
                             />
                         </div>
@@ -183,7 +183,7 @@ export default function ErtigaServiceTemplate({
                     {/* <div className="stats-grid">
             {[
               { num: "1 Lakh+", label: "Trips Completed" },
-              { num: "1,000+", label: "Ertigas in Fleet" },
+              { num: "1,000+", label: "Dzire in Fleet" },
               { num: "100+", label: "Cities Covered" },
               { num: "4.9 ★", label: "Customer Rating" },
             ].map((stat, i) => (
@@ -207,7 +207,7 @@ export default function ErtigaServiceTemplate({
                 </div>
             </section>
 
-            {/* Ertiga Variants */}
+            {/* Dzire Variants */}
             <section className="py-12 px-4">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
@@ -215,48 +215,48 @@ export default function ErtigaServiceTemplate({
                             className="section-badge mx-auto"
                             style={{ display: "inline-flex" }}
                         >
-                            CHOOSE YOUR Ertiga
+                            CHOOSE YOUR Dzire
                         </div>
-                        <h2 className="section-title">Ertiga Models Available</h2>
+                        <h2 className="section-title">Dzire Models Available</h2>
                     </div>
                     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
                         {[
                             {
-                                name: "Ertiga",
-                                model: "Maruti Ertiga (6+1)",
-                                image: "/ertiga-base.png",
-                                price: "₹13/km",
+                                name: "Dzire",
+                                model: "Dzire Tour S",
+                                image: "/dzire/dzire_model.webp",
+                                price: "₹10/km",
                                 features: [
-                                    "6+1 Seating",
-                                    "AC + Music",
-                                    "Good Legroom",
-                                    "Budget Friendly",
+                                    "4+1 Seating",
+                                    "Air Conditioning",
+                                    "Fuel Efficient",
+                                    "Ideal for City Travel",
                                 ],
                                 best: false,
                             },
                             {
-                                name: "Ertiga VXi AT",
-                                model: "Maruti Ertiga",
-                                image: "/ertiga-base.png",
-                                price: "₹15/km",
+                                name: "Dzire LXi",
+                                model: "Maruti Dzire",
+                                image: "/dzire/dzire_model.webp",
+                                price: "₹11/km",
                                 features: [
-                                    "6+1 Captain Seats",
-                                    "Auto AC",
-                                    "Premium Interiors",
-                                    "Extra Luggage Space",
+                                    "4+1 Comfortable Seating",
+                                    "Touchscreen Infotainment",
+                                    "Rear AC Vents",
+                                    "Spacious Boot",
                                 ],
                                 best: true,
                             },
                             {
-                                name: "Ertiga ZXi Plus AT",
-                                model: "Maruti Ertiga (Hybrid)",
-                                image: "/ertiga-base.png",
-                                price: "₹16/km",
+                                name: "Dzire VXi",
+                                model: "Maruti Dzire",
+                                image: "/dzire/dzire_model.webp",
+                                price: "₹12/km",
                                 features: [
-                                    "6+1 Luxury Seats",
-                                    "Hybrid Engine",
-                                    "Panoramic Sunroof",
-                                    "Ultra Premium",
+                                    "Automatic Climate Control",
+                                    "Cruise Control",
+                                    "Push Button Start",
+                                    "Premium Interior",
                                 ],
                                 best: false,
                             },
@@ -306,7 +306,7 @@ export default function ErtigaServiceTemplate({
                 </div>
             </section>
 
-            {/* Why Ertiga */}
+            {/* Why Dzire */}
             <section className="bg-muted/30 py-12 border-y px-4">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
@@ -314,10 +314,10 @@ export default function ErtigaServiceTemplate({
                             className="section-badge mx-auto"
                             style={{ display: "inline-flex" }}
                         >
-                            WHY Ertiga
+                            WHY Dzire
                         </div>
                         <h2 className="section-title">
-                            Why Ertiga is India's Favorite Family Car
+                            Why Dzire is India's Favorite Family Car
                         </h2>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
@@ -325,7 +325,7 @@ export default function ErtigaServiceTemplate({
                             {
                                 icon: "👨‍👩‍👧‍👦",
                                 title: "Family Friendly",
-                                desc: "Spacious 6+1 seating with ample legroom. Captain seats in ertiga model for ultimate comfort.",
+                                desc: "Spacious 4+1 seating with ample legroom. Captain seats in Dzire model for ultimate comfort.",
                             },
                             {
                                 icon: "🛣️",
@@ -381,11 +381,10 @@ export default function ErtigaServiceTemplate({
                             POPULAR USE CASES
                         </div>
                         <h2 className="section-title">
-                            Popular Ertiga Rental Use Cases{" "}
+                            Popular Dzire Rental Use Cases{" "}
                             {city !== "India" ? `in ${city}` : ""}
                         </h2>
                     </div>
-                    {/* Tabs */}
                     <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
 
                         {services.map((service) => (
@@ -393,10 +392,10 @@ export default function ErtigaServiceTemplate({
                             <button
                                 key={service.id}
                                 onClick={() => setActiveService(service)}
-                                className={`rounded-xl border px-4 py-5 text-center font-semibold transition-all duration-300
-            ${activeService.id === service.id
-                                        ? "bg-primary text-white border-primary shadow-lg"
-                                        : "bg-white hover:bg-gray-100 border-gray-200"
+                                className={`py-5 px-4 uppercase font-semibold text-sm transition-all border-r border-b
+        ${activeService.id === service.id
+                                        ? "bg-primary text-white"
+                                        : "bg-gray-100 hover:bg-gray-200 text-gray-800"
                                     }`}
                             >
                                 {service.title}
@@ -407,7 +406,7 @@ export default function ErtigaServiceTemplate({
                     </div>
 
 
-                    {/* Content */}
+
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
 
                         {/* Image */}
@@ -430,7 +429,7 @@ export default function ErtigaServiceTemplate({
                                 {activeService.title}
                             </h3>
 
-                            <p className="text-muted-foreground text-lg leading-8 mb-8">
+                            <p className="text-muted-foreground leading-8 mb-8">
                                 {activeService.description}
                             </p>
 
@@ -442,11 +441,11 @@ export default function ErtigaServiceTemplate({
                                         key={item}
                                         className="flex items-center gap-3 bg-white border rounded-xl p-4 shadow-sm"
                                     >
-                                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-green-100 text-green-600 font-bold">
+                                        <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">
                                             ✓
                                         </div>
 
-                                        <span className="font-medium">{item}</span>
+                                        <span>{item}</span>
 
                                     </div>
 
@@ -468,6 +467,10 @@ export default function ErtigaServiceTemplate({
                 </div>
             </section>
 
+
+
+
+
             {/* Testimonials */}
             <section className="bg-muted/30 py-12 border-y px-4">
                 <div className="max-w-7xl mx-auto">
@@ -479,24 +482,24 @@ export default function ErtigaServiceTemplate({
                             REVIEWS
                         </div>
                         <h2 className="section-title">
-                            What Ertiga Customers in {city !== "India" ? city : "India"} Say
+                            What Dzire Customers in {city !== "India" ? city : "India"} Say
                         </h2>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
                         {[
                             {
                                 name: "Sharma Family",
-                                text: "Booked an Ertiga for our family trip to Shimla. The captain seats were incredibly comfortable and the kids loved the space. Best road trip ever!",
+                                text: "Booked an Dzire for our family trip to Shimla. The captain seats were incredibly comfortable and the kids loved the space. Best road trip ever!",
                                 rating: "★★★★★",
                             },
                             {
                                 name: "Raj (CEO)",
-                                text: "We use Chiku Cabs Ertiga service for all our corporate client pickups. Always on time, impeccably clean cars, and professional drivers.",
+                                text: "We use Chiku Cabs Dzire service for all our corporate client pickups. Always on time, impeccably clean cars, and professional drivers.",
                                 rating: "★★★★★",
                             },
                             {
                                 name: "Neha & Friends",
-                                text: "Hired an Ertiga for a weekend Jaipur trip from Delhi. The car was practically new, AC was amazing, and we had ample space for all our luggage.",
+                                text: "Hired an Dzire for a weekend Jaipur trip from Delhi. The car was practically new, AC was amazing, and we had ample space for all our luggage.",
                                 rating: "★★★★★",
                             },
                         ].map((review, i) => (
@@ -504,7 +507,7 @@ export default function ErtigaServiceTemplate({
                                 <div className="testimonial-stars">{review.rating}</div>
                                 <p className="testimonial-text">"{review.text}"</p>
                                 <div className="testimonial-author">{review.name}</div>
-                                <div className="testimonial-route">Ertiga Service</div>
+                                <div className="testimonial-route">Dzire Service</div>
                             </div>
                         ))}
                     </div>
@@ -522,69 +525,69 @@ export default function ErtigaServiceTemplate({
                             FAQ
                         </div>
                         <h2 className="section-title">
-                            Ertiga Rental Questions {city !== "India" ? `for ${city}` : ""}
+                            Dzire Rental Questions {city !== "India" ? `for ${city}` : ""}
                         </h2>
                     </div>
                     {[
                         {
-                            q: `Where can I hire an Ertiga on rent in ${city}?`,
-                            a: `You can hire a Maruti Ertiga on rent in ${city} for local travel, airport transfers, outstation trips, corporate travel, and family vacations. Advance booking helps you get better availability and competitive pricing.`,
+                            q: `Where can I hire a Dzire on rent in ${city}?`,
+                            a: `You can hire a Maruti Dzire on rent in ${city} for local sightseeing, airport transfers, business meetings, outstation trips, and daily travel. Booking in advance helps ensure better availability and competitive pricing.`,
                         },
                         {
-                            q: `What is the price of Ertiga rental in ${city}?`,
-                            a: `The Ertiga rental price in ${city} depends on your trip type, travel distance, duration, and whether you need a local or outstation cab. Contact us for the latest fare and customized quotation.`,
+                            q: `What is the cost of hiring a Dzire in ${city}?`,
+                            a: `The cost of hiring a Dzire in ${city} depends on factors like travel distance, trip duration, local or outstation travel, and your itinerary. Contact us for the latest fare and a customized quote.`,
                         },
                         {
-                            q: `Can I book an Ertiga for airport pickup from ${city}?`,
-                            a: `Yes. You can easily book an Ertiga for airport pickup or drop from ${city}. The service is available 24/7 with professional drivers and timely pickups.`,
+                            q: `Is the Dzire a good car for local travel in ${city}?`,
+                            a: `Yes. The Maruti Dzire is one of the best sedan cars for local travel in ${city}. It offers comfortable seating, excellent fuel efficiency, air-conditioned interiors, and a smooth ride for city journeys.`,
                         },
                         {
-                            q: `Is Ertiga suitable for a family trip from ${city}?`,
-                            a: `Yes. The Maruti Ertiga is one of the best family cars for comfortable travel. It offers spacious seating for up to 6–7 passengers along with ample luggage space, making it ideal for family vacations and weekend getaways from ${city}.`,
+                            q: `Can I book a Dzire for airport pickup and drop from ${city}?`,
+                            a: `Yes. You can book a Dzire for airport pickup and drop from ${city}. The service is available 24/7 with professional chauffeurs and timely pickups.`,
                         },
                         {
-                            q: `Can I book an Ertiga for an outstation trip from ${city}?`,
-                            a: `Absolutely. You can hire an Ertiga from ${city} for outstation destinations like Agra, Jaipur, Haridwar, Rishikesh, Chandigarh, Shimla, Manali, and many other cities across India.`,
+                            q: `Can I hire a Dzire for an outstation trip from ${city}?`,
+                            a: `Absolutely. You can rent a Dzire for outstation travel from ${city} to destinations like Agra, Jaipur, Chandigarh, Haridwar, Rishikesh, Mathura, Vrindavan, Shimla, and many other cities across India.`,
                         },
                         {
-                            q: `How many passengers can travel in an Ertiga?`,
-                            a: `A Maruti Ertiga can comfortably accommodate up to 6–7 passengers along with luggage, making it a popular choice for group travel and family tours.`,
+                            q: `How many passengers can travel comfortably in a Dzire?`,
+                            a: `A Maruti Dzire comfortably accommodates up to 4 passengers along with luggage, making it an excellent choice for couples, small families, business travelers, and airport transfers.`,
                         },
                         {
-                            q: `Is driver charge included in the Ertiga rental price?`,
-                            a: `Yes. Driver charges are generally included in the rental package. However, toll tax, parking charges, and state taxes (if applicable) may be charged separately depending on your itinerary.`,
+                            q: `Is the driver included with the Dzire rental?`,
+                            a: `Yes. Our Dzire rental service comes with a professional driver. Toll tax, parking fees, and state taxes (if applicable) may be charged separately based on your travel route.`,
                         },
                         {
-                            q: `Can I book an Ertiga online in ${city}?`,
-                            a: `Yes. You can book an Ertiga online by submitting your travel details, calling our booking team, or sending your trip requirements through WhatsApp for instant confirmation.`,
+                            q: `Can I book a Dzire online in ${city}?`,
+                            a: `Yes. You can easily book a Dzire online by filling out the booking form, calling our customer support team, or sending your travel details on WhatsApp for quick confirmation.`,
                         },
                         {
-                            q: `Which places can I visit by Ertiga from ${city}?`,
-                            a: `You can hire an Ertiga from ${city} to visit popular tourist attractions, nearby cities, hill stations, pilgrimage destinations, business hubs, and other places based on your travel requirements.`,
+                            q: `Is the Dzire suitable for business travel in ${city}?`,
+                            a: `Yes. The Dzire is a popular choice for corporate travel because of its comfortable interiors, professional appearance, fuel efficiency, and smooth driving experience for meetings, office transfers, and executive travel in ${city}.`,
                         },
                         {
-                            q: `Is Ertiga available for corporate travel in ${city}?`,
-                            a: `Yes. We provide Ertiga rental services for corporate meetings, office transfers, business events, hotel pickups, conferences, and employee transportation in ${city}.`,
+                            q: `Which places can I visit by Dzire from ${city}?`,
+                            a: `You can hire a Dzire from ${city} to visit popular tourist attractions, nearby cities, business hubs, shopping destinations, hill stations, and other places based on your travel requirements.`,
                         },
                         {
-                            q: `Can I hire an Ertiga for a one-day trip in ${city}?`,
-                            a: `Yes. You can rent an Ertiga for a full-day local sightseeing tour, business meetings, shopping, family outings, or multiple stops within ${city} according to your travel plan.`,
+                            q: `Can I hire a Dzire for a full-day local sightseeing tour in ${city}?`,
+                            a: `Yes. You can book a Dzire for a full-day sightseeing tour, shopping trips, multiple business meetings, family outings, or customized local travel plans in ${city}.`,
                         },
                         {
-                            q: `Why should I choose an Ertiga instead of a sedan?`,
-                            a: `If you're traveling with family or a group, the Ertiga offers more seating capacity, better luggage space, and greater comfort than a standard sedan while remaining budget-friendly.`,
+                            q: `Why should I choose a Dzire instead of a hatchback?`,
+                            a: `A Dzire offers more cabin space, a larger boot for luggage, better ride comfort, and premium seating compared to most hatchbacks, making it ideal for both business and leisure travel.`,
                         },
                         {
-                            q: `Is advance booking required for Ertiga rental in ${city}?`,
-                            a: `Advance booking is recommended, especially during weekends, holidays, wedding season, and festive periods, to ensure vehicle availability and the best rental rates in ${city}.`,
+                            q: `Is advance booking recommended for Dzire rental in ${city}?`,
+                            a: `Yes. Advance booking is highly recommended during weekends, festive seasons, holidays, and peak travel periods to secure your preferred vehicle and the best rental rates in ${city}.`,
                         },
                         {
-                            q: `Is Ertiga available for wedding and event transportation in ${city}?`,
-                            a: `Yes. You can hire an Ertiga for weddings, family functions, corporate events, guest transportation, and special occasions in ${city}.`,
+                            q: `Can I hire a Dzire for weddings and special events in ${city}?`,
+                            a: `Yes. Our Dzire rental service is available for weddings, family functions, corporate events, hotel transfers, guest transportation, and other special occasions in ${city}.`,
                         },
                         {
-                            q: `Why book an Ertiga on rent in ${city} with us?`,
-                            a: `We offer clean and well-maintained vehicles, experienced chauffeurs, transparent pricing, on-time pickups, 24/7 customer support, and reliable taxi services for local as well as outstation travel from ${city}.`,
+                            q: `Why should I choose your Dzire rental service in ${city}?`,
+                            a: `We provide clean and sanitized vehicles, experienced chauffeurs, transparent pricing, timely pickups, 24/7 customer support, and reliable taxi services for both local and outstation travel from ${city}.`,
                         },
                     ].map((faq, i) => (
                         <details key={i} className="faq-item">
@@ -602,7 +605,7 @@ export default function ErtigaServiceTemplate({
             <section className="py-12 px-4">
                 <div className="max-w-4xl mx-auto cta-banner">
                     <h2 className="text-4xl font-extrabold mb-4">
-                        Book Your Ertiga Now
+                        Book Your Dzire Now
                     </h2>
                     <p className="text-xl opacity-70 mb-8">
                         India's most loved family car, at the best rental rates.
@@ -632,21 +635,21 @@ export default function ErtigaServiceTemplate({
                 <section className="py-12 px-4 bg-muted/10 border-t">
                     <div className="max-w-4xl mx-auto text-muted-foreground text-lg leading-relaxed">
                         <h2 className="text-3xl md:text-4xl font-black mb-8 text-foreground tracking-tight">
-                            Premium Ertiga Rentals in {city}
+                            Premium Dzire Rentals in {city}
                         </h2>
                         <div className="space-y-6">
                             <p>
                                 When it comes to luxurious and spacious family travel in{" "}
-                                <strong>{city}</strong>, Ertiga is the
+                                <strong>{city}</strong>, the Maruti Suzuki Dzire is the
                                 undisputed king. Whether you are navigating the busy streets or
                                 heading out on a scenic highway trip, choosing an{" "}
-                                <strong>Ertiga on Rent</strong> in {city} via our{" "}
+                                <strong>Dzire on Rent</strong> in {city} via our{" "}
                                 <strong>cab booking</strong> app guarantees a smooth ride. As a
                                 premier <strong>taxi service</strong>, we ensure your{" "}
                                 <strong>outstation cabs</strong> experience is unparalleled.
                             </p>
                             <h3 className="text-2xl font-bold mb-6 mt-12 text-foreground border-b pb-4">
-                                Why Book an Ertiga Cab in {city}?
+                                Why Book an Dzire Cab in {city}?
                             </h3>
                             <ul className="space-y-4 mb-10">
                                 <li className="flex items-start gap-3">
@@ -671,15 +674,15 @@ export default function ErtigaServiceTemplate({
                                     <span>
                                         <strong>Corporate & Wedding Car Rental:</strong> Arrive in
                                         style. The premium feel of our{" "}
-                                        <strong>Ertiga on Rent</strong> makes it ideal for
+                                        <strong>Dzire on Rent</strong> makes it ideal for
                                         executive transit or as an elegant wedding car in {city}.
                                     </span>
                                 </li>
                             </ul>
                             <div className="bg-card p-8 rounded-2xl border shadow-sm mt-8">
                                 <p className="mb-0 text-card-foreground">
-                                    At Chiku Cabs, we offer both the standard 7-seater Ertiga and
-                                    the premium 8-seater Ertiga for{" "}
+                                    At Chiku Cabs, we offer both the standard 7-seater Dzire and
+                                    the premium 5-seater Dzire for{" "}
                                     <strong>cab booking</strong> in {city} at highly competitive
                                     rates. With our transparent per-km billing and pristine fleet,
                                     we ensure your journey is absolutely perfect.
@@ -698,13 +701,13 @@ export default function ErtigaServiceTemplate({
             <InternalLinks parsedData={parsedData} />
             <EEATSection
                 city={city !== "India" ? city : undefined}
-                vehicle="Ertiga"
+                vehicle="Dzire"
             />
 
             <section className="py-12 px-4 bg-muted/20">
                 <div className="max-w-7xl mx-auto">
                     <PopularCities
-                        vehicleName={parsedData.vehicle || "Ertiga" || "Innova"}
+                        vehicleName={parsedData.vehicle || "Dzire"}
                         currentCity={parsedData.origin?.toLowerCase()}
                     />
                 </div>
