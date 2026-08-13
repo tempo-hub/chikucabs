@@ -150,6 +150,12 @@ export default function Footer() {
               <li>
                 <a href="/innova-car-rental">Innova Car Rental</a>
               </li>
+              <li>
+                <a href="/ertiga-car-rental">Ertiga Car Rental</a>
+              </li>
+              <li>
+                <a href="/dzire-car-rental">Dzire Car Rental</a>
+              </li>
             </ul>
           </div>
 
