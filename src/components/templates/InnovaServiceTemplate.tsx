@@ -8,8 +8,8 @@ import LocalDominance from "../shared/LocalDominance";
 import FAQ from "@/components/shared/Faq";
 import { useState } from "react";
 import { localDominanceData } from "@/data/localDominanceData";
-import VehicleLocationLinks from "../shared/VehicleLocationLinks";
 import routeData from "@/data/routeData.json";
+import VehicleAvailability from "../shared/VehicleAvailability";
 
 const relatedVehicles = [
   {
@@ -99,10 +99,13 @@ export default function InnovaServiceTemplate({
     ]
       ? city
       : displayCity;
-  const [activeService, setActiveService] = useState(services[0]);
+const [activeService, setActiveService] = useState(services[0]);
+
 
   const currentUrl = `/${parsedData.slugs.join("/")}`;
-  const baseCity = parsedData.slugs?.[0] || "india";
+  const baseCity =  parsedData.slugs?.length > 1
+    ? parsedData.slugs[0]
+    : "";;
 
  
   return (
@@ -620,15 +623,40 @@ export default function InnovaServiceTemplate({
         vehicle="Innova Crysta"
       />
 
+
+     {/* =========================================================
+    INNOVA CABS AVAILABLE
+========================================================= */}
+<VehicleAvailability
+  vehicleName="Innova Crysta"
+  vehicleSlug="hire-innova-crysta-on-rent"
+  city={city}
+  baseCity={baseCity}
+  currentUrl={currentUrl}
+  urls={routeData}
+/>
+
+{/* =========================================================
+    EXISTING VEHICLE LOCATION LINKS
+========================================================= */}
+{/* 
+<VehicleLocationLinks
+  vehicleName="Innova Crysta"
+  vehicleSlug="hire-innova-crysta-on-rent"
+  city={baseCity}
+  urls={routeData}
+  currentUrl={currentUrl}
+/> */}
+
       {/* Vehicle Location Links */}
 
-      <VehicleLocationLinks
+      {/* <VehicleLocationLinks
         vehicleName="Innova Crysta"
         vehicleSlug="hire-innova-crysta-on-rent"
         city={baseCity}
         urls={routeData}
         currentUrl={currentUrl}
-      />
+      /> */}
 
 
       {/* Popular City */}

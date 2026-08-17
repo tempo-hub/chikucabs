@@ -7,8 +7,8 @@ import StatsBar from "../shared/StatsBar";
 import { useState } from "react";
 import LocalDominance from "../shared/LocalDominance";
 import { localDominanceData } from "@/data/localDominanceData";
-import VehicleLocationLinks from "../shared/VehicleLocationLinks";
 import routeData from "@/data/routeData.json";
+import VehicleAvailability from "../shared/VehicleAvailability";
 
 const relatedVehicles = [
     {
@@ -102,7 +102,9 @@ export default function ErtigaServiceTemplate({
     const [activeService, setActiveService] = useState(services[0]);
 
       const currentUrl = `/${parsedData.slugs.join("/")}`;
-  const baseCity = parsedData.slugs?.[0] || "india";
+  const baseCity =  parsedData.slugs?.length > 1
+    ? parsedData.slugs[0]
+    : "";;
 
     return (
         <div className="bg-background min-h-screen">
@@ -704,14 +706,21 @@ export default function ErtigaServiceTemplate({
                 city={city !== "India" ? city : undefined}
                 vehicle="Ertiga"
             />
-
-            <VehicleLocationLinks
+            <VehicleAvailability
+  vehicleName="Ertiga"
+  vehicleSlug="hire-ertiga-on-rent"
+  city={city}
+  baseCity={baseCity}
+  currentUrl={currentUrl}
+  urls={routeData}
+/>
+            {/* <VehicleLocationLinks
         vehicleName="Innova Crysta"
         vehicleSlug="hire-innova-crysta-on-rent"
         city={baseCity}
         urls={routeData}
         currentUrl={currentUrl}
-      />
+      /> */}
 
             <section className="py-12 px-4 bg-muted/20">
                 <div className="max-w-7xl mx-auto">

@@ -148,13 +148,13 @@ export default function Footer() {
                 <a href="/cab-service-for-round-trip">Round Trip Cabs</a>
               </li>
               <li>
-                <a href="/innova-car-rental">Innova Car Rental</a>
+                <a href="/hire-innova-crysta-on-rent">Innova Car Rental</a>
               </li>
               <li>
-                <a href="/ertiga-car-rental">Ertiga Car Rental</a>
+                <a href="/hire-ertiga-on-rent">Ertiga Car Rental</a>
               </li>
               <li>
-                <a href="/dzire-car-rental">Dzire Car Rental</a>
+                <a href="/hire-dzire-on-rent">Dzire Car Rental</a>
               </li>
             </ul>
           </div>
