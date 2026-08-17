@@ -8,6 +8,8 @@ import LocalDominance from "../shared/LocalDominance";
 import FAQ from "@/components/shared/Faq";
 import { useState } from "react";
 import { localDominanceData } from "@/data/localDominanceData";
+import VehicleLocationLinks from "../shared/VehicleLocationLinks";
+import routeData from "@/data/routeData.json";
 
 const relatedVehicles = [
   {
@@ -98,6 +100,11 @@ export default function InnovaServiceTemplate({
       ? city
       : displayCity;
   const [activeService, setActiveService] = useState(services[0]);
+
+  const currentUrl = `/${parsedData.slugs.join("/")}`;
+  const baseCity = parsedData.slugs?.[0] || "india";
+
+ 
   return (
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
@@ -612,6 +619,17 @@ export default function InnovaServiceTemplate({
         city={city !== "India" ? city : undefined}
         vehicle="Innova Crysta"
       />
+
+      {/* Vehicle Location Links */}
+
+      <VehicleLocationLinks
+        vehicleName="Innova Crysta"
+        vehicleSlug="hire-innova-crysta-on-rent"
+        city={baseCity}
+        urls={routeData}
+        currentUrl={currentUrl}
+      />
+
 
       {/* Popular City */}
       <section className="py-12 px-4 bg-muted/10 border-t">
