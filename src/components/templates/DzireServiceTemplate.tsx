@@ -15,12 +15,12 @@ const relatedVehicles = [
     {
         name: "Ertiga",
         slug: "hire-ertiga-on-rent",
-        
+
     },
     {
         name: "Innova Crysta",
         slug: "hire-innova-crysta-on-rent",
-        
+
     },
 ];
 
@@ -102,10 +102,10 @@ export default function DzireServiceTemplate({
             : displayCity;
     const [activeService, setActiveService] = useState(services[0]);
 
-      const currentUrl = `/${parsedData.slugs.join("/")}`;
-  const baseCity =  parsedData.slugs?.length > 1
-    ? parsedData.slugs[0]
-    : "";;
+    const currentUrl = `/${parsedData.slugs.join("/")}`;
+    const baseCity = parsedData.slugs?.length > 1
+        ? parsedData.slugs[0]
+        : "";;
 
     return (
         <div className="bg-background min-h-screen">
@@ -711,13 +711,13 @@ export default function DzireServiceTemplate({
                 vehicle="Dzire"
             />
             <VehicleAvailability
-  vehicleName="Dzire"
-  vehicleSlug="hire-dzire-on-rent"
-  city={city}
-  baseCity={baseCity}
-  currentUrl={currentUrl}
-  urls={routeData}
-/>
+                vehicleName="Dzire"
+                vehicleSlug="hire-dzire-on-rent"
+                city={city}
+                baseCity={baseCity}
+                currentUrl={currentUrl}
+                urls={routeData}
+            />
             {/* <VehicleLocationLinks
         vehicleName="Innova Crysta"
         vehicleSlug="hire-innova-crysta-on-rent"
@@ -745,9 +745,10 @@ export default function DzireServiceTemplate({
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                         {relatedVehicles.map((vehicle) => {
                             const url =
-                                parsedData.slugs.length >= 3
-                                    ? `/${parsedData.slugs[0]}/${parsedData.slugs[1]}/${vehicle.slug}`
-                                    : `/${parsedData.slugs[0]}/${vehicle.slug}`;
+                                `/${[
+                                    ...parsedData.slugs.slice(0, -1),
+                                    vehicle.slug,
+                                ].join("/")}`;
 
                             return (
                                 <a

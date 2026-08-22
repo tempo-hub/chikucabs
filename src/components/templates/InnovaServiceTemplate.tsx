@@ -99,15 +99,15 @@ export default function InnovaServiceTemplate({
     ]
       ? city
       : displayCity;
-const [activeService, setActiveService] = useState(services[0]);
+  const [activeService, setActiveService] = useState(services[0]);
 
 
   const currentUrl = `/${parsedData.slugs.join("/")}`;
-  const baseCity =  parsedData.slugs?.length > 1
+  const baseCity = parsedData.slugs?.length > 1
     ? parsedData.slugs[0]
     : "";;
 
- 
+
   return (
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
@@ -624,22 +624,22 @@ const [activeService, setActiveService] = useState(services[0]);
       />
 
 
-     {/* =========================================================
+      {/* =========================================================
     INNOVA CABS AVAILABLE
 ========================================================= */}
-<VehicleAvailability
-  vehicleName="Innova Crysta"
-  vehicleSlug="hire-innova-crysta-on-rent"
-  city={city}
-  baseCity={baseCity}
-  currentUrl={currentUrl}
-  urls={routeData}
-/>
+      <VehicleAvailability
+        vehicleName="Innova Crysta"
+        vehicleSlug="hire-innova-crysta-on-rent"
+        city={city}
+        baseCity={baseCity}
+        currentUrl={currentUrl}
+        urls={routeData}
+      />
 
-{/* =========================================================
+      {/* =========================================================
     EXISTING VEHICLE LOCATION LINKS
 ========================================================= */}
-{/* 
+      {/* 
 <VehicleLocationLinks
   vehicleName="Innova Crysta"
   vehicleSlug="hire-innova-crysta-on-rent"
@@ -677,10 +677,10 @@ const [activeService, setActiveService] = useState(services[0]);
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {relatedVehicles.map((vehicle) => {
               const url =
-                parsedData.slugs.length >= 3
-                  ? `/${parsedData.slugs[0]}/${parsedData.slugs[1]}/${vehicle.slug}`
-                  : `/${parsedData.slugs[0]}/${vehicle.slug}`;
-
+                `/${[
+                  ...parsedData.slugs.slice(0, -1),
+                  vehicle.slug,
+                ].join("/")}`;
               return (
                 <a
                   key={vehicle.slug}

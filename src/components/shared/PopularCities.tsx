@@ -57,9 +57,9 @@ export default function PopularCities({
             const Icon = cityIcons[index % cityIcons.length];
 
             return (
-              <Link
+              <div
                 key={city.slug}
-                href={`/${city.slug}`}
+                // href={`/${city.slug}`}
                 className="group rounded-3xl border bg-white p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
               >
                 <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-4 border-orange-200 bg-orange-50 transition-all duration-300 group-hover:border-orange-500 group-hover:bg-orange-500">
@@ -69,7 +69,7 @@ export default function PopularCities({
                 <h3 className="mt-5 text-center font-bold text-lg">
                   {city.name}
                 </h3>
-              </Link>
+              </div>
             );
           })}
         </div>
