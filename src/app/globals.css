@@ -318,7 +318,7 @@ a {
 .whatsapp-float {
   position: fixed;
   bottom: 1.5rem;
-  right: 1.5rem;
+  left: 1.5rem;
   z-index: 999;
   background: #25d366;
   color: white;
@@ -338,7 +338,7 @@ a {
 }
 .whatsapp-float-label {
   position: absolute;
-  right: 72px;
+  left: 72px;
   background: #fff;
   color: #333;
   font-size: 0.75rem;
@@ -353,6 +353,68 @@ a {
 }
 .whatsapp-float:hover .whatsapp-float-label {
   opacity: 1;
+}
+.call-float {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 999;
+  background: hsl(var(--primary));
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px hsla(358, 73%, 43%, 0.4);
+  transition: all 0.3s;
+  animation: floatBounce 3s ease-in-out infinite 0.4s;
+}
+.call-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px hsla(358, 73%, 43%, 0.6);
+}
+.call-float-label {
+  position: absolute;
+  right: 72px;
+  background: #fff;
+  color: #333;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.call-float:hover .call-float-label {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .whatsapp-float,
+  .call-float {
+    bottom: 1rem;
+    width: 52px;
+    height: 52px;
+  }
+  .whatsapp-float {
+    left: 1rem;
+  }
+  .call-float {
+    right: 1rem;
+  }
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+  }
+  .call-float svg {
+    width: 26px;
+    height: 26px;
+  }
 }
 
 /* ============================================
