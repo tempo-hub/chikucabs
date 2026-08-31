@@ -15,6 +15,7 @@ export interface ParsedRouteData {
     | "Unknown";
   isLegacyPhp: boolean;
   slugs: string[];
+  isVehicleRental: boolean;
 }
 
 /**
@@ -34,6 +35,7 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
       vehicleCategory: "cab" as const,
       routeType: "Unknown",
       isLegacyPhp: false,
+      isVehicleRental: false,
       slugs: [],
     };
   }
@@ -52,6 +54,16 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
 
   // 1. Identify Vehicle Type
   const lowerSegment = lastSegment.toLowerCase();
+
+  const isVehicleRental =
+  lowerSegment.endsWith("-on-rent") &&
+  (
+    lowerSegment.includes("innova") ||
+    lowerSegment.includes("ertiga") ||
+    lowerSegment.includes("dzire") ||
+    lowerSegment.includes("tempo-traveller")
+  );
+
   if (lowerSegment.includes("tempo") || lowerSegment.includes("traveller")) {
     vehicle = "Tempo Traveller";
   } else if (lowerSegment.includes("innova")) {
@@ -178,6 +190,22 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
     }
   }
 
+  // Vehicle Rental Pages
+else if (isVehicleRental) {
+  routeType = "Local Service";
+
+  if (slugs.length >= 3) {
+    origin = slugs[0];
+    displayCity = slugs[1];
+  } else if (slugs.length === 2) {
+    origin = slugs[0];
+    displayCity = slugs[0];
+  } else {
+    origin = null;
+    displayCity = null;
+  }
+}
+
   // 3. Local City Service Parsing
   else if (
     lowerSegment.includes("-in-") ||
@@ -303,5 +331,6 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
     routeType,
     isLegacyPhp,
     slugs,
+    isVehicleRental,
   };
 }

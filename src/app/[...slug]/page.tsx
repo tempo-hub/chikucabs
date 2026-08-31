@@ -86,7 +86,57 @@ export async function generateMetadata({
       `cheapest cab ${parsed.origin} to ${parsed.destination}`,
       "Chiku Cabs fare",
     ];
-  } else if (parsed.routeType === "Local Service") {
+
+
+  }else if(parsed.isVehicleRental){
+   const vehicle = parsed.vehicle || "Car";
+
+  const price =
+    parsed.vehicleCategory === "dzire"
+      ? 10
+      : parsed.vehicleCategory === "ertiga"
+        ? 13
+        : parsed.vehicleCategory === "innova"
+          ? 16
+          : 24;
+
+  let location = "";
+
+  if (parsed.slugs.length >= 3) {
+    const city = parsed.slugs[0];
+    const locality = parsed.slugs[1];
+
+    const formatLocation = (value: string) =>
+      value
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+
+    location = `${formatLocation(locality)}, ${formatLocation(city)}`;
+  } else if (parsed.slugs.length === 2) {
+    location = parsed.slugs[0]
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (char) => char.toUpperCase());
+  }
+
+  title = location
+    ? `${vehicle} on Rent in ${location} @ ₹${price}/KM – Book Now`
+    : `${vehicle} on Rent @ ₹${price}/KM – Book Now`;
+
+  description = location
+    ? `Hire verified ${vehicle} in ${location} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 8448445504.`
+    : `Hire verified ${vehicle} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 8448445504.`;
+
+  keywords = [
+    `${vehicle.toLowerCase()} on rent`,
+    `hire ${vehicle.toLowerCase()}`,
+    `${vehicle.toLowerCase()} rental`,
+    `${vehicle.toLowerCase()} on rent in ${location.toLowerCase()}`,
+    `hire ${vehicle.toLowerCase()} in ${location.toLowerCase()}`,
+    "Chiku Cabs",
+  ];
+
+
+} else if (parsed.routeType === "Local Service") {
     const seaterInfo =
       parsed.vehicleCategory === "tempo-traveller"
         ? " | 9-26 Seater"
@@ -120,6 +170,7 @@ export async function generateMetadata({
       `outstation driver${cityStr}`,
       "Chiku Cabs",
     ];
+
   } else if (parsed.routeType === "Service") {
     const vehicleLower = parsed.vehicle?.toLowerCase() || "cab";
     const seaterInfo =
