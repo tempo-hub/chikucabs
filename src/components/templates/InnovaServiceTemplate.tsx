@@ -236,7 +236,7 @@ export default function InnovaServiceTemplate({
                 name: "Innova GX",
                 model: "Toyota Innova (7+1)",
                 image: "/Innova/toyota_innova.png",
-                price: "₹17/km",
+                price: "₹16/km",
                 features: [
                   "7+1 Seating",
                   "AC + Music",
@@ -249,7 +249,7 @@ export default function InnovaServiceTemplate({
                 name: "Innova Crysta ZX",
                 model: "Toyota Innova Crysta",
                 image: "/Innova/toyota_innova.png",
-                price: "₹18/km",
+                price: "₹17/km",
                 features: [
                   "7+1 Captain Seats",
                   "Auto AC",
@@ -262,7 +262,7 @@ export default function InnovaServiceTemplate({
                 name: "Innova HyCross",
                 model: "Toyota HyCross (Hybrid)",
                 image: "/Innova/innova-hybrid.png",
-                price: "₹19/km",
+                price: "₹18/km",
                 features: [
                   "7+1 Luxury Seats",
                   "Hybrid Engine",

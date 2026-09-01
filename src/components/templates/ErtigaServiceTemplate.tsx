@@ -244,7 +244,7 @@ export default function ErtigaServiceTemplate({
                                 name: "Ertiga VXi AT",
                                 model: "Maruti Ertiga",
                                 image: "/ertiga-base.png",
-                                price: "₹15/km",
+                                price: "₹14/km",
                                 features: [
                                     "6+1 Captain Seats",
                                     "Auto AC",
@@ -257,7 +257,7 @@ export default function ErtigaServiceTemplate({
                                 name: "Ertiga ZXi Plus AT",
                                 model: "Maruti Ertiga (Hybrid)",
                                 image: "/ertiga-base.png",
-                                price: "₹16/km",
+                                price: "₹15/km",
                                 features: [
                                     "6+1 Luxury Seats",
                                     "Hybrid Engine",
