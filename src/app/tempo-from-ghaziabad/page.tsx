@@ -52,14 +52,14 @@ export default function Page() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+918448445504"
+              href="tel:+919818022327"
               className="btn-primary text-lg px-10 py-5 shadow-2xl"
             >
-              📞 Call 8448445504
+              📞 Call 9818022327
             </a>
 
             <a
-              href="https://wa.me/918448445504"
+              href="https://wa.me/919818022327"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-5"
@@ -302,7 +302,7 @@ export default function Page() {
                   </div>
 
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="btn-primary mt-6 block text-center py-3"
                   >
                     Book Now
@@ -513,7 +513,7 @@ export default function Page() {
             </p>
 
             <a
-              href="tel:+918448445504"
+              href="tel:+919818022327"
               className="inline-flex items-center justify-center bg-primary px-8 py-4 rounded-xl text-lg font-semibold"
               style={{ color: "#ffffff" }}
             >
@@ -644,7 +644,7 @@ export default function Page() {
           {/* CTA */}
           <div className="text-center mt-8">
             <a
-              href="tel:+918448445504"
+              href="tel:+919818022327"
               className="inline-flex items-center justify-center bg-primary px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:scale-105 transition-all"
               style={{ color: "#fff" }}
             >

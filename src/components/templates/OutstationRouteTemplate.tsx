@@ -172,7 +172,7 @@ export default function OutstationRouteTemplate({
                     </div>
                   </div>
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="btn-primary w-full py-5 text-xl shadow-xl"
                     style={{ display: "flex" }}
                   >
@@ -350,7 +350,7 @@ export default function OutstationRouteTemplate({
                 </ul>
 
                 <a
-                  href="tel:+918448445504"
+                  href="tel:+919818022327"
                   className={`w-full py-4 rounded-xl font-black tracking-tight text-center ${
                     item.best ? "btn-primary" : ""
                   }`}
@@ -586,7 +586,7 @@ export default function OutstationRouteTemplate({
             },
             {
               q: `How do I book an airport taxi for ${startCity} to ${endCity}?`,
-              a: `You can easily book an airport taxi for outstation drops via our website or by calling 8448445504. We provide punctual pickups directly from the airport arrival.`,
+              a: `You can easily book an airport taxi for outstation drops via our website or by calling 9818022327. We provide punctual pickups directly from the airport arrival.`,
             },
             {
               q: `Are there any hidden charges in your outstation taxi service?`,
@@ -626,13 +626,13 @@ export default function OutstationRouteTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+918448445504"
+              href="tel:+919818022327"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
-              📞 Call 8448445504
+              📞 Call 9818022327
             </a>
             <a
-              href="https://wa.me/918448445504"
+              href="https://wa.me/919818022327"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-4"

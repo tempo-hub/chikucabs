@@ -60,13 +60,13 @@ export default function OneWayRouteTemplate({
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-lg px-8 py-4 shadow-xl"
               >
-                📞 Book Drop {vehicleType} — 8448445504
+                📞 Book Drop {vehicleType} — 9818022327
               </a>
               <a
-                href="https://wa.me/918448445504"
+                href="https://wa.me/919818022327"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-lg px-8 py-4 bg-background"
@@ -211,7 +211,7 @@ export default function OneWayRouteTemplate({
                   </li>
                 </ul>
                 <a
-                  href="tel:+918448445504"
+                  href="tel:+919818022327"
                   className="btn-primary w-full py-3 text-sm"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -347,7 +347,7 @@ export default function OneWayRouteTemplate({
               </h3>
               <ul className="list-disc pl-6 space-y-2 text-foreground">
                 <li>
-                  Simply <strong>Call 8448445504</strong> or use the WhatsApp
+                  Simply <strong>Call 9818022327</strong> or use the WhatsApp
                   button to request a quote.
                 </li>
                 <li>
@@ -501,7 +501,7 @@ export default function OneWayRouteTemplate({
             },
             {
               q: `How do I confirm my one way cab booking?`,
-              a: `You can confirm your cab booking by calling 8448445504 or via WhatsApp. You'll receive driver details immediately for your {startCity} to {endCity} journey.`,
+              a: `You can confirm your cab booking by calling 9818022327 or via WhatsApp. You'll receive driver details immediately for your {startCity} to {endCity} journey.`,
             },
             {
               q: `Do you provide a tempo traveller on rent for one-way group drops?`,
@@ -542,13 +542,13 @@ export default function OneWayRouteTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+918448445504"
+              href="tel:+919818022327"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
-              📞 Call 8448445504
+              📞 Call 9818022327
             </a>
             <a
-              href="https://wa.me/918448445504"
+              href="https://wa.me/919818022327"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-4"

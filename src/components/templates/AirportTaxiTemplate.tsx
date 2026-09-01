@@ -113,8 +113,8 @@ interface BookingFormData {
   distance: string;
 }
 
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "918448445504";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -408,7 +408,7 @@ export default function AirportTaxiTemplate({
     description:
       "24x7 airport taxi service for Delhi IGI Airport pickup and drop. Professional drivers, fixed pricing, flight tracking, and instant booking.",
     image: "https://chikucabs.com/cab.png",
-    telephone: "+918448445504",
+    telephone: "+919818022327",
     priceRange: "₹10 - ₹25 per km",
     areaServed: {
       "@type": "City",
@@ -545,7 +545,7 @@ Please share the best fare.`;
         </title>
         <meta
           name="description"
-          content="Book reliable airport taxi service for Delhi IGI Airport pickup & drop. Professional drivers, fixed pricing, flight tracking, 24x7 support. Call +91-8448445504 for instant booking."
+          content="Book reliable airport taxi service for Delhi IGI Airport pickup & drop. Professional drivers, fixed pricing, flight tracking, 24x7 support. Call +91-9818022327 for instant booking."
         />
         <meta
           name="keywords"
@@ -1786,7 +1786,7 @@ Please share the best fare.`;
               {[
                 {
                   q: "How do I book an airport taxi for pickup or drop?",
-                  a: "You can book instantly by calling us at +91-8448445504 or sending a WhatsApp message. Our team will confirm your booking within 5 minutes and share driver details, vehicle information, and live tracking link before your trip.",
+                  a: "You can book instantly by calling us at +91-9818022327 or sending a WhatsApp message. Our team will confirm your booking within 5 minutes and share driver details, vehicle information, and live tracking link before your trip.",
                 },
                 {
                   q: "What is the starting fare for airport taxi service?",

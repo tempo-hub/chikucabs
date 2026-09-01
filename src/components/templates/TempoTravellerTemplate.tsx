@@ -71,8 +71,8 @@ interface StatItem {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "918448445504";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -1597,7 +1597,7 @@ Please share the best fare.`;
               },
               {
                 q: `How can I calculate the per km rate for tempo traveller booking?`,
-                a: `The per km rate for tempo traveller booking starts at ₹24. Use our app or call 8448445504 for a transparent quote for your ${city} itinerary.`,
+                a: `The per km rate for tempo traveller booking starts at ₹24. Use our app or call 9818022327 for a transparent quote for your ${city} itinerary.`,
               },
               {
                 q: `Are there any night charges for outstation tempo traveller service?`,
@@ -1646,13 +1646,13 @@ Please share the best fare.`;
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-lg px-10 py-4 shadow-2xl"
               >
-                📞 Call 8448445504
+                📞 Call 9818022327
               </a>
               <a
-                href="https://wa.me/918448445504"
+                href="https://wa.me/919818022327"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#25D366] hover:bg-[#20bd5a] text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all duration-300 hover:scale-105 shadow-lg"

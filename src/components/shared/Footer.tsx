@@ -34,11 +34,11 @@ export default function Footer() {
             </p>
 
             <div className="footer-contact-row">
-              <a href="tel:+918448445504" className="footer-phone">
-                📞 +91-8448445504
+              <a href="tel:+919818022327" className="footer-phone">
+                📞 +91-9818022327
               </a>
               <a
-                href="https://wa.me/918448445504"
+                href="https://wa.me/919818022327"
                 className="footer-whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -164,7 +164,7 @@ export default function Footer() {
             <h4 className="footer-heading">Contact Us</h4>
             <div className="footer-contact-info">
               <p>📍 Noida Sector 2, Noida, UP - 201301</p>
-              <p>📞 +91-8448445504</p>
+              <p>📞 +91-9818022327</p>
               <p>📧 info@chikucabs.com</p>
               <p>🕐 24/7 Customer Support</p>
             </div>

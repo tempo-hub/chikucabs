@@ -1,7 +1,7 @@
 import { Phone } from "lucide-react";
 
 export default function WhatsAppFloat() {
-  const whatsappUrl = `https://wa.me/918448445504?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/919818022327?text=${encodeURIComponent(
     "Hi, I want to book a cab. Please share the available options and fare details.",
   )}`;
 
@@ -22,7 +22,7 @@ export default function WhatsAppFloat() {
         <span className="whatsapp-float-label">Book on WhatsApp</span>
       </a>
       <a
-        href="tel:+918448445504"
+        href="tel:+919818022327"
         className="call-float"
         aria-label="Call Chiku Cabs"
       >

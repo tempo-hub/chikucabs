@@ -44,7 +44,7 @@ export default function BlogContentWithBooking({
 
     /* ---- WhatsApp Chat button (real <a> — opens WhatsApp directly) ---- */
     const waMessage = encodeURIComponent("Hi ChikuCabs, I'd like to enquire about a cab booking.");
-    const waUrl = `https://wa.me/918448445504?text=${waMessage}`;
+    const waUrl = `https://wa.me/919818022327?text=${waMessage}`;
     const whatsappHtml = `
   <div class="my-8 text-left">
     <a

@@ -40,13 +40,13 @@ export default function InnovaRouteTemplate({
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
               >
-                📞 Get Quote — 8448445504
+                📞 Get Quote — 9818022327
               </a>
               <a
-                href="https://wa.me/918448445504"
+                href="https://wa.me/919818022327"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-lg px-8 py-4"
@@ -164,7 +164,7 @@ export default function InnovaRouteTemplate({
                   ))}
                 </ul>
                 <a
-                  href="tel:+918448445504"
+                  href="tel:+919818022327"
                   className="btn-primary w-full py-3 text-sm"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -334,7 +334,7 @@ export default function InnovaRouteTemplate({
           {[
             {
               q: `How much does an Innova Crysta on rent cost from ${startCity} to ${endCity}?`,
-              a: `Innova rentals normally start from ₹14/km, while the premium Innova Crysta on rent is ₹17/km. Total fare for your Innova taxi service depends on distance and trip type. Call 8448445504 for a transparent quote.`,
+              a: `Innova rentals normally start from ₹14/km, while the premium Innova Crysta on rent is ₹17/km. Total fare for your Innova taxi service depends on distance and trip type. Call 9818022327 for a transparent quote.`,
             },
             {
               q: "Which model should I choose for my luxury cab booking?",
@@ -366,7 +366,7 @@ export default function InnovaRouteTemplate({
             },
             {
               q: `How do I book an Innova for a wedding in ${startCity}?`,
-              a: `You can book an Innova Crysta on rent for weddings by calling 8448445504. We offer both guest transfers and premium decorated cars for the bridal party.`,
+              a: `You can book an Innova Crysta on rent for weddings by calling 9818022327. We offer both guest transfers and premium decorated cars for the bridal party.`,
             },
             {
               q: `What if I need to cancel my luxury cab booking?`,
@@ -395,13 +395,13 @@ export default function InnovaRouteTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+918448445504"
+              href="tel:+919818022327"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
-              📞 Call 8448445504
+              📞 Call 9818022327
             </a>
             <a
-              href="https://wa.me/918448445504"
+              href="https://wa.me/919818022327"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-4"

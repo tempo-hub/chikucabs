@@ -72,13 +72,13 @@ export default function TempoTravellerRouteTemplate({
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
               >
-                📞 Get Quote — 8448445504
+                📞 Get Quote — 9818022327
               </a>
               <a
-                href="https://wa.me/918448445504"
+                href="https://wa.me/919818022327"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-lg px-8 py-4"
@@ -249,7 +249,7 @@ export default function TempoTravellerRouteTemplate({
                   ))}
                 </ul>
                 <a
-                  href="tel:+918448445504"
+                  href="tel:+919818022327"
                   className="btn-primary w-full py-3 text-sm"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -380,13 +380,13 @@ export default function TempoTravellerRouteTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+918448445504"
+              href="tel:+919818022327"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
-              📞 Call 8448445504
+              📞 Call 9818022327
             </a>
             <a
-              href="https://wa.me/918448445504"
+              href="https://wa.me/919818022327"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 hover:bg-green-600 text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all duration-300 hover:scale-105 shadow-lg"

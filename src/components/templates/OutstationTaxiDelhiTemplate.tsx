@@ -51,14 +51,14 @@ export default function OutstationTaxiDelhiTemplate() {
 
             <div className="flex flex-wrap gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary px-8 py-4 text-lg"
               >
                 📞 Call Now
               </a>
 
               <a
-                href="https://wa.me/918448445504"
+                href="https://wa.me/919818022327"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline px-8 py-4 text-lg"
@@ -100,7 +100,7 @@ export default function OutstationTaxiDelhiTemplate() {
                 </div>
                 <p className="text-muted-foreground mb-6">Starting fare</p>
 
-                <a href="tel:+918448445504" className="btn-primary px-6 py-3">
+                <a href="tel:+919818022327" className="btn-primary px-6 py-3">
                   Book Now
                 </a>
               </div>
@@ -182,10 +182,10 @@ export default function OutstationTaxiDelhiTemplate() {
           </p>
 
           <a
-            href="tel:+918448445504"
+            href="tel:+919818022327"
             className="btn-primary px-10 py-4 text-lg"
           >
-            📞 8448445504
+            📞 9818022327
           </a>
         </div>
       </section>

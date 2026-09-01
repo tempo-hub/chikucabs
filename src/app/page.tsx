@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Chiku Cabs | India's #1 Premium Taxi & Cab Rental Service",
   description:
-    "Book premium outstation cabs, tempo travellers, and airport taxis across 100+ cities in India. Verified drivers, transparent pricing, 24/7 support. Call 8448445504.",
+    "Book premium outstation cabs, tempo travellers, and airport taxis across 100+ cities in India. Verified drivers, transparent pricing, 24/7 support. Call 9818022327.",
   keywords: [
     "cab booking India",
     "outstation cabs",
@@ -78,14 +78,14 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-lg px-10 py-4 shadow-xl"
                 id="hero-call-btn"
               >
-                📞 Book Now — 8448445504
+                📞 Book Now — 9818022327
               </a>
               <a
-                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20cab"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20cab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-lg px-10 py-4"
@@ -263,7 +263,7 @@ export default function HomePage() {
                 num: "1",
                 icon: "📱",
                 title: "Call or WhatsApp",
-                desc: "Reach us at 8448445504 with your pickup, destination, and date. That's it!",
+                desc: "Reach us at 9818022327 with your pickup, destination, and date. That's it!",
               },
               {
                 num: "2",
@@ -364,7 +364,7 @@ export default function HomePage() {
                   {car.capacity}
                 </div>
                 <a
-                  href="tel:+918448445504"
+                  href="tel:+919818022327"
                   className="btn-primary w-full py-3 text-sm"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -593,7 +593,7 @@ export default function HomePage() {
           {[
             {
               q: "How do I book a cab with Chiku Cabs?",
-              a: "Booking is simple! Call us at 8448445504 or send a WhatsApp message with your travel details (pickup, destination, date). You'll get an instant quote and confirmation. No app download needed.",
+              a: "Booking is simple! Call us at 9818022327 or send a WhatsApp message with your travel details (pickup, destination, date). You'll get an instant quote and confirmation. No app download needed.",
             },
             {
               q: "What cities do you operate in?",
@@ -658,14 +658,14 @@ export default function HomePage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+918448445504"
+              href="tel:+919818022327"
               className="btn-primary text-xl px-12 py-5 shadow-2xl"
               id="cta-call-btn"
             >
-              📞 Call 8448445504
+              📞 Call 9818022327
             </a>
             <a
-              href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20cab"
+              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20cab"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-4"

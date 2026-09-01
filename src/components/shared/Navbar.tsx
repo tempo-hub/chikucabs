@@ -45,8 +45,8 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="navbar-actions">
-          <a href="tel:+918448445504" className="btn-primary navbar-call-btn">
-            📞 8448445504
+          <a href="tel:+919818022327" className="btn-primary navbar-call-btn">
+            📞 9818022327
           </a>
 
           {/* Hamburger */}

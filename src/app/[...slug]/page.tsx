@@ -49,7 +49,7 @@ export async function generateMetadata({
   let title =
     "Chiku Cabs | India's Most Trusted Cab Booking Service Since 2015";
   let description =
-    "Book verified, GPS-tracked cabs, Tempo Travellers & Innova Crysta across 100+ cities. 1 Lakh+ trips completed. Safe & transparent. Call 8448445504 to book.";
+    "Book verified, GPS-tracked cabs, Tempo Travellers & Innova Crysta across 100+ cities. 1 Lakh+ trips completed. Safe & transparent. Call 9818022327 to book.";
   let keywords: string[] = [
     "cab booking India",
     "taxi service India",
@@ -61,7 +61,7 @@ export async function generateMetadata({
 
   if (parsed.routeType === "Outstation Route") {
     title = `${parsed.origin} to ${parsed.destination} One Way Cab | Chiku Cabs | Drop Taxi @ Best Price`;
-    description = `Book outstation one way cab from ${parsed.origin} to ${parsed.destination}. Save on drop taxi fare with verified drivers & GPS tracking. Call 8448445504 to book now!`;
+    description = `Book outstation one way cab from ${parsed.origin} to ${parsed.destination}. Save on drop taxi fare with verified drivers & GPS tracking. Call 9818022327 to book now!`;
     keywords = [
       `${parsed.origin} to ${parsed.destination} one way cab`,
       `${parsed.origin} to ${parsed.destination} drop taxi`,
@@ -77,7 +77,7 @@ export async function generateMetadata({
     ];
   } else if (parsed.routeType === "Outstation Route Fare") {
     title = `${parsed.origin} to ${parsed.destination} ${parsed.vehicle} Fare | Rate Card | Chiku Cabs`;
-    description = `Check ${parsed.origin} to ${parsed.destination} ${parsed.vehicle} fare. Complete rate card with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 8448445504.`;
+    description = `Check ${parsed.origin} to ${parsed.destination} ${parsed.vehicle} fare. Complete rate card with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 9818022327.`;
     keywords = [
       `${parsed.origin} to ${parsed.destination} cab fare`,
       `${parsed.origin} to ${parsed.destination} taxi rate`,
@@ -123,8 +123,8 @@ export async function generateMetadata({
     : `${vehicle} on Rent @ ₹${price}/KM – Book Now`;
 
   description = location
-    ? `Hire verified ${vehicle} in ${location} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 8448445504.`
-    : `Hire verified ${vehicle} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 8448445504.`;
+    ? `Hire verified ${vehicle} in ${location} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`
+    : `Hire verified ${vehicle} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`;
 
   keywords = [
     `${vehicle.toLowerCase()} on rent`,
@@ -144,7 +144,7 @@ export async function generateMetadata({
           ? " | 6-7 Seater"
           : "";
     title = `${parsed.vehicle} on Rent in ${parsed.origin} | Chiku Cabs${seaterInfo} @ Best Price`;
-    description = `Hire verified ${parsed.vehicle} in ${parsed.origin} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 8448445504.`;
+    description = `Hire verified ${parsed.vehicle} in ${parsed.origin} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`;
     keywords = [
       `${parsed.vehicle?.toLowerCase()} in ${parsed.origin}`,
       `cab in ${parsed.origin}`,
@@ -160,7 +160,7 @@ export async function generateMetadata({
   } else if (parsed.routeType === "Driver Service") {
     const cityStr = parsed.origin ? ` in ${parsed.origin}` : "";
     title = `Hire a Driver${cityStr} | Verified Chauffeurs on Rent | Chiku Cabs`;
-    description = `Book professional, police-verified drivers${cityStr}. Driver on rent for local trips, outstation, and corporate events. 24/7 service. Call 8448445504 to book.`;
+    description = `Book professional, police-verified drivers${cityStr}. Driver on rent for local trips, outstation, and corporate events. 24/7 service. Call 9818022327 to book.`;
     keywords = [
       `hire driver${cityStr}`,
       `driver on rent${cityStr}`,
@@ -180,7 +180,7 @@ export async function generateMetadata({
           ? " | 6-7 Seater"
           : "";
     title = `${parsed.vehicle} on Rent | Chiku Cabs${seaterInfo} | India's #1 Rental Service`;
-    description = `Rent a premium ${parsed.vehicle} with Chiku Cabs. Verified drivers, 100+ cities. Travel outstation, local or airport trips safely. Call 8448445504 to book now.`;
+    description = `Rent a premium ${parsed.vehicle} with Chiku Cabs. Verified drivers, 100+ cities. Travel outstation, local or airport trips safely. Call 9818022327 to book now.`;
     keywords = [
       `${vehicleLower} on rent`,
       `${vehicleLower} rental`,
@@ -337,7 +337,7 @@ export default async function DynamicRoutePage({
     image: "https://chikucabs.com/chikucabnewlogo.webp",
     "@id": "https://chikucabs.com",
     url: "https://chikucabs.com",
-    telephone: "+91-8448445504",
+    telephone: "+91-9818022327",
     email: "info@chikucabs.com",
     foundingDate: "2015",
     numberOfEmployees: {
@@ -382,7 +382,7 @@ export default async function DynamicRoutePage({
       opens: "00:00",
       closes: "23:59",
     },
-    sameAs: ["https://wa.me/918448445504"],
+    sameAs: ["https://wa.me/919818022327"],
   };
 
   // 3. BreadcrumbList for navigation
@@ -451,7 +451,7 @@ export default async function DynamicRoutePage({
         ? [
             {
               q: `How much does a Tempo Traveller cost${parsed.origin ? ` from ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""}?`,
-              a: `Tempo Traveller pricing starts from ₹18/km for a 12-seater and goes up to ₹28/km for a 26-seater. The total cost depends on distance, number of days, and seating capacity. Call 8448445504 for an instant quote.`,
+              a: `Tempo Traveller pricing starts from ₹18/km for a 12-seater and goes up to ₹28/km for a 26-seater. The total cost depends on distance, number of days, and seating capacity. Call 9818022327 for an instant quote.`,
             },
             {
               q: "What seating options are available in Tempo Travellers?",
@@ -466,7 +466,7 @@ export default async function DynamicRoutePage({
           ? [
               {
                 q: `What is the Innova Crysta rental price${parsed.origin ? ` in ${parsed.origin}` : ""}?`,
-                a: `Innova rental starts from ₹14/km, Crysta from ₹17/km, and HyCross from ₹20/km. Prices include fuel, driver allowance, and GST. Call 8448445504 for exact pricing.`,
+                a: `Innova rental starts from ₹14/km, Crysta from ₹17/km, and HyCross from ₹20/km. Prices include fuel, driver allowance, and GST. Call 9818022327 for exact pricing.`,
               },
               {
                 q: "What's the difference between Innova and Innova Crysta?",
@@ -480,7 +480,7 @@ export default async function DynamicRoutePage({
           : [
               {
                 q: `How do I book a cab${parsed.origin ? ` in ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""} with Chiku Cabs?`,
-                a: `Simply call 8448445504 or WhatsApp us with your travel details. You'll get an instant quote and confirmation. No app download required. We offer 24/7 booking across 100+ Indian cities.`,
+                a: `Simply call 9818022327 or WhatsApp us with your travel details. You'll get an instant quote and confirmation. No app download required. We offer 24/7 booking across 100+ Indian cities.`,
               },
               {
                 q: `What is the cab fare${parsed.origin ? ` from ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""}?`,

@@ -104,7 +104,7 @@ export default function LocalDominance({
 
             {/* CTA */}
              <a
-                href="https://wa.me/918448445504"
+                href="https://wa.me/919818022327"
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" mt-8 inline-flex w-full px-3 py-3 rounded-xl bg-primary text-white font-semibold hover:opacity-90"

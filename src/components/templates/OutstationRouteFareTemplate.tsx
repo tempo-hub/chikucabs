@@ -29,8 +29,8 @@ import Head from "next/head";
 import { CiClock1 } from "react-icons/ci";
 
 // --- Constants ---
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "918448445504";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -1136,7 +1136,7 @@ Please share the best fare.`;
                 <strong>
                   {startCity} to {endCity}
                 </strong>{" "}
-                route, call us at <strong>8448445504</strong>.
+                route, call us at <strong>9818022327</strong>.
               </p>
             </div>
           </div>
@@ -1343,10 +1343,10 @@ Please share the best fare.`;
 
             <div className="text-center mt-12">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-lg px-10 py-4"
               >
-                📞 Book One Way Cab - 8448445504
+                📞 Book One Way Cab - 9818022327
               </a>
             </div>
           </div>
@@ -1380,7 +1380,7 @@ Please share the best fare.`;
                   step: "01",
                   icon: "📞",
                   title: "Contact Us",
-                  desc: `Call 8448445504 or send a WhatsApp message to share your ${startCity} to ${endCity} travel requirements.`,
+                  desc: `Call 9818022327 or send a WhatsApp message to share your ${startCity} to ${endCity} travel requirements.`,
                 },
                 {
                   step: "02",
@@ -1442,10 +1442,10 @@ Please share the best fare.`;
 
               <div className="text-center mt-10">
                 <a
-                  href="tel:+918448445504"
+                  href="tel:+919818022327"
                   className="btn-primary text-lg px-10 py-4"
                 >
-                  📞 Book Now - 8448445504
+                  📞 Book Now - 9818022327
                 </a>
               </div>
             </div>
@@ -1512,7 +1512,7 @@ Please share the best fare.`;
             {[
               {
                 q: `What is the ${vehicle} fare from ${startCity} to ${endCity} cab fare details?`,
-                a: `The ${vehicle} fare from ${startCity} to ${endCity} starts from ₹10 per km for a maruti suzuki dzire. The total fare depends on the vehicle type, trip type (one-way or round-trip), and any applicable tolls. Call 8448445504 for an exact quote.`,
+                a: `The ${vehicle} fare from ${startCity} to ${endCity} starts from ₹10 per km for a maruti suzuki dzire. The total fare depends on the vehicle type, trip type (one-way or round-trip), and any applicable tolls. Call 9818022327 for an exact quote.`,
               },
               {
                 q: `Are toll charges included in the ${vehicle} fare?`,
@@ -1548,7 +1548,7 @@ Please share the best fare.`;
               },
               {
                 q: `How can I calculate the total outstation taxi service cost?`,
-                a: `Total cost = (Per km rate × Estimated distance) + Driver allowance. Use our cab booking app or call 8448445504 for an instant exact calculation.`,
+                a: `Total cost = (Per km rate × Estimated distance) + Driver allowance. Use our cab booking app or call 9818022327 for an instant exact calculation.`,
               },
             ].map((faq, i) => (
               <details key={i} className="faq-item">
@@ -1593,13 +1593,13 @@ Please share the best fare.`;
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-lg px-10 py-4 shadow-2xl"
               >
-                📞 Call 8448445504
+                📞 Call 9818022327
               </a>
               <a
-                href="https://wa.me/918448445504"
+                href="https://wa.me/919818022327"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all hover:scale-105"
