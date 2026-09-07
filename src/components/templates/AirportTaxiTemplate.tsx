@@ -630,7 +630,7 @@ Please share the best fare.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href={`tel:${PHONE_NUMBER}`}
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -679,13 +679,13 @@ Please share the best fare.`;
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href={`tel:${PHONE_NUMBER}`}
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
                     target="_blank"
                     className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
@@ -1667,7 +1667,7 @@ Please share the best fare.`;
               <p className="text-gray-500">
                 Need airport taxi from another city?{" "}
                 <a
-                  href={`tel:${PHONE_NUMBER}`}
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
                   className="text-primary font-bold hover:underline"
                 >
                   Call us now
@@ -1865,13 +1865,13 @@ Please share the best fare.`;
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href={`tel:${PHONE_NUMBER}`}
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
                 className="btn-primary text-xl px-12 py-5 shadow-2xl"
               >
                 📞 Call {PHONE_NUMBER}
               </a>
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all hover:scale-105 shadow-lg"

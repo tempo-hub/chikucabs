@@ -81,7 +81,7 @@ export default function RouteMapSection({
             </div>
 
             <a
-              href="tel:+918448445504"
+              href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               className="btn-primary inline-block mt-8"
             >
               📞 Book Now - 8448445504

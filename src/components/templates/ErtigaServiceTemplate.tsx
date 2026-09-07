@@ -132,7 +132,7 @@ export default function ErtigaServiceTemplate({
                         </p>
                         <div className="mt-8 flex flex-col sm:flex-row gap-4">
                             <a
-                                href="tel:+918448445504"
+                                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
                             >
                                 📞 Book Ertiga — 8448445504
@@ -300,7 +300,7 @@ export default function ErtigaServiceTemplate({
                                     ))}
                                 </ul>
                                 <a
-                                    href="tel:+918448445504"
+                                    href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                                     className="btn-primary w-full py-3 text-sm"
                                     style={{ display: "block", textAlign: "center" }}
                                 >
@@ -461,7 +461,7 @@ export default function ErtigaServiceTemplate({
                             </div>
 
                             <a
-                                href="https://wa.me/918448445504"
+                                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn-primary w-fit px-8 py-4"
@@ -615,13 +615,13 @@ export default function ErtigaServiceTemplate({
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
                         <a
-                            href="tel:+918448445504"
+                            href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                             className="btn-primary text-lg px-10 py-4 shadow-2xl"
                         >
                             📞 Call 8448445504
                         </a>
                         <a
-                            href="https://wa.me/918448445504"
+                            href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn-outline text-lg px-10 py-4"
