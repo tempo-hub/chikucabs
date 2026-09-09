@@ -7,6 +7,7 @@ import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Script from "next/script";
+import EventTracker from "@/components/analytics/EventTracker";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -64,6 +65,7 @@ export default function RootLayout({
       </head>
 
       <body>
+        <EventTracker />
         <div className="site-wrapper">
           <Navbar />
 
