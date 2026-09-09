@@ -630,7 +630,7 @@ Please share the best fare.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+916280820037"
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -679,7 +679,7 @@ Please share the best fare.`;
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+916280820037"
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
@@ -1671,7 +1671,7 @@ Please share the best fare.`;
               <p className="text-gray-500">
                 Need airport taxi from another city?{" "}
                 <a
-                  href="tel:+916280820037"
+                  href="tel:+918448445504"
                   className="text-primary font-bold hover:underline"
                 >
                   Call us now

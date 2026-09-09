@@ -108,10 +108,10 @@ export default function InnovaServiceTemplate({
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
-                href="tel:+916280820037"
+                href="tel:+918448445504"
                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
               >
-                📞 Book Innova — 9818022327
+                📞 Book Innova — 8448445504
               </a>
 
               <a
@@ -510,10 +510,10 @@ export default function InnovaServiceTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+916280820037"
+              href="tel:+918448445504"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
-              📞 Call 9818022327
+              📞 Call 8448445504
             </a>
 
             <a

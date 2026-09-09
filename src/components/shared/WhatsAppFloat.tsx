@@ -23,7 +23,7 @@ export default function WhatsAppFloat() {
       </a>
 
       <a
-        href="tel:+916280820037"
+        href="tel:+918448445504"
         className="call-float"
         aria-label="Call Chiku Cabs"
       >

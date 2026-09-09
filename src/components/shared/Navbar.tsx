@@ -46,7 +46,7 @@ export default function Navbar() {
         {/* Actions */}
         <div className="navbar-actions">
           <a
-            href="tel:+916280820037"
+            href="tel:+918448445504"
             className="btn-primary navbar-call-btn"
             aria-label="Call Chiku Cabs at 8448445504"
           >

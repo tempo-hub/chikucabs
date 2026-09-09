@@ -208,10 +208,10 @@ export default function EEATSection({
                         Phone Support
                       </span>
                       <a
-                        href="tel:+916280820037"
+                        href="tel:+918448445504"
                         className="text-primary hover:underline font-medium break-all"
                       >
-                        9818022327
+                        8448445504
                       </a>
                     </div>
                   </li>

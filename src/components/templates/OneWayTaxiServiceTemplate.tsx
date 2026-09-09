@@ -497,7 +497,7 @@ Please share the best fare estimate.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+916280820037"
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -547,7 +547,7 @@ Please share the best fare estimate.`;
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+916280820037"
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
@@ -1542,7 +1542,7 @@ Please share the best fare estimate.`;
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+916280820037"
+                href="tel:+918448445504"
                 className="btn-primary text-xl px-12 py-5 shadow-2xl"
               >
                 📞 Call {PHONE_NUMBER}

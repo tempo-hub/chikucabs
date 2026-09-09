@@ -78,11 +78,11 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+916280820037"
+                href="tel:+918448445504"
                 className="btn-primary text-lg px-10 py-4 shadow-xl"
                 id="hero-call-btn"
               >
-                📞 Book Now — 9818022327
+                📞 Book Now — 8448445504
               </a>
               <a
                 href={`https://wa.me/916280820037?text=${encodeURIComponent(
@@ -666,7 +666,7 @@ export default function HomePage() {
             <>
               {/* Call */}
               <a
-                href="tel:+916280820037"
+                href="tel:+918448445504"
                 className="btn-primary text-xl px-12 py-5 shadow-2xl"
                 id="cta-call-btn"
               >

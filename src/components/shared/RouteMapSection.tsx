@@ -81,10 +81,10 @@ export default function RouteMapSection({
             </div>
 
             <a
-              href="tel:+916280820037"
+              href="tel:+918448445504"
               className="btn-primary inline-block mt-8"
             >
-              📞 Book Now - 9818022327
+              📞 Book Now - 8448445504
             </a>
           </div>
 

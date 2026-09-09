@@ -51,7 +51,7 @@ export default function OutstationTaxiDelhiTemplate() {
 
             <div className="flex flex-wrap gap-4">
               <a
-                href="tel:+916280820037"
+                href="tel:+918448445504"
                 className="btn-primary px-8 py-4 text-lg"
               >
                 📞 Call Now
@@ -191,10 +191,10 @@ export default function OutstationTaxiDelhiTemplate() {
           </p>
 
           <a
-            href="tel:+916280820037"
+            href="tel:+918448445504"
             className="btn-primary px-10 py-4 text-lg"
           >
-            📞 9818022327
+            📞 8448445504
           </a>
         </div>
       </section>

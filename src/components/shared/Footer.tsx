@@ -34,7 +34,7 @@ export default function Footer() {
             </p>
 
             <div className="footer-contact-row">
-              <a href="tel:+916280820037" className="footer-phone">
+              <a href="tel:+918448445504" className="footer-phone">
                 📞 +91-8448445504
               </a>
 

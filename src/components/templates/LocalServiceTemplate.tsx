@@ -57,7 +57,7 @@ export default function LocalServiceTemplate({
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href="tel:+916280820037"
+                href="tel:+918448445504"
                 className="btn-primary text-lg px-8 py-4"
               >
                 📞 Book in {city}
@@ -201,7 +201,7 @@ export default function LocalServiceTemplate({
                   ))}
                 </ul>
                 <a
-                  href="tel:+916280820037"
+                  href="tel:+918448445504"
                   className="btn-primary w-full py-3"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -531,10 +531,10 @@ export default function LocalServiceTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+916280820037"
+              href="tel:+918448445504"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
-              📞 Call 9818022327
+              📞 Call 8448445504
             </a>
 
             <a
