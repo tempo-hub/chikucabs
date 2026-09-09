@@ -132,13 +132,13 @@ export default function ErtigaServiceTemplate({
                         </p>
                         <div className="mt-8 flex flex-col sm:flex-row gap-4">
                             <a
-                                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
                             >
-                                📞 Book Ertiga — 8448445504
+                                📞 Book Ertiga — 9818022327
                             </a>
                             <a
-                                href="https://wa.me/918448445504?text=Hi%20I%20want%20to%20book%20an%20Ertiga%20%20on%20rent"
+                                href="https://wa.me/919818022327?text=Hi%20I%20want%20to%20book%20an%20Ertiga%20%20on%20rent"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn-outline text-lg px-8 py-4"
@@ -244,7 +244,7 @@ export default function ErtigaServiceTemplate({
                                 name: "Ertiga VXi AT",
                                 model: "Maruti Ertiga",
                                 image: "/ertiga-base.png",
-                                price: "₹15/km",
+                                price: "₹14/km",
                                 features: [
                                     "6+1 Captain Seats",
                                     "Auto AC",
@@ -257,7 +257,7 @@ export default function ErtigaServiceTemplate({
                                 name: "Ertiga ZXi Plus AT",
                                 model: "Maruti Ertiga (Hybrid)",
                                 image: "/ertiga-base.png",
-                                price: "₹16/km",
+                                price: "₹15/km",
                                 features: [
                                     "6+1 Luxury Seats",
                                     "Hybrid Engine",
@@ -300,7 +300,7 @@ export default function ErtigaServiceTemplate({
                                     ))}
                                 </ul>
                                 <a
-                                    href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                                    href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                                     className="btn-primary w-full py-3 text-sm"
                                     style={{ display: "block", textAlign: "center" }}
                                 >
@@ -461,7 +461,7 @@ export default function ErtigaServiceTemplate({
                             </div>
 
                             <a
-                                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn-primary w-fit px-8 py-4"
@@ -615,13 +615,13 @@ export default function ErtigaServiceTemplate({
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
                         <a
-                            href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                            href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                             className="btn-primary text-lg px-10 py-4 shadow-2xl"
                         >
-                            📞 Call 8448445504
+                            📞 Call 9818022327
                         </a>
                         <a
-                            href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                            href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn-outline text-lg px-10 py-4"

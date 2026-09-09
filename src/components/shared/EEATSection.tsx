@@ -208,10 +208,10 @@ export default function EEATSection({
                         Phone Support
                       </span>
                       <a
-                        href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                        href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                         className="text-primary hover:underline font-medium break-all"
                       >
-                        8448445504
+                        9818022327
                       </a>
                     </div>
                   </li>

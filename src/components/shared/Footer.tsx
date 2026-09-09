@@ -35,13 +35,13 @@ export default function Footer() {
 
             <div className="footer-contact-row">
               <a
-                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 className="footer-phone"
               >
                 📞 +91-8448445504
               </a>
               <a
-                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 className="footer-whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -167,7 +167,7 @@ export default function Footer() {
             <h4 className="footer-heading">Contact Us</h4>
             <div className="footer-contact-info">
               <p>📍 Noida Sector 2, Noida, UP - 201301</p>
-              <p>📞 +91-8448445504</p>
+              <p>📞 +91-9818022327</p>
               <p>📧 info@chikucabs.com</p>
               <p>🕐 24/7 Customer Support</p>
             </div>

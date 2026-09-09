@@ -57,13 +57,13 @@ export default function LocalServiceTemplate({
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 className="btn-primary text-lg px-8 py-4"
               >
                 📞 Book in {city}
               </a>
               <a
-                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-lg px-8 py-4"
@@ -198,7 +198,7 @@ export default function LocalServiceTemplate({
                   ))}
                 </ul>
                 <a
-                  href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                  href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                   className="btn-primary w-full py-3"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -229,7 +229,7 @@ export default function LocalServiceTemplate({
                 num: "1",
                 icon: "📱",
                 title: "Call or WhatsApp",
-                desc: `Reach us at 8448445504 with your ${city} travel requirements.`,
+                desc: `Reach us at 9818022327 with your ${city} travel requirements.`,
               },
               {
                 num: "2",
@@ -528,13 +528,13 @@ export default function LocalServiceTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
-              📞 Call 8448445504
+              📞 Call 9818022327
             </a>
             <a
-              href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-4"

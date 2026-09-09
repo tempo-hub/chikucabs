@@ -63,14 +63,14 @@ export default function Page() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               className="btn-primary text-lg px-10 py-5 shadow-2xl"
             >
-              📞 Call 8448445504
+              📞 Call 9818022327
             </a>
 
             <a
-              href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-5"
@@ -313,7 +313,7 @@ export default function Page() {
                   </div>
 
                   <a
-                    href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                    href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                     className="btn-primary mt-6 block text-center py-3"
                   >
                     Book Now
@@ -533,7 +533,7 @@ export default function Page() {
             </p>
 
             <a
-              href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               className="inline-flex items-center justify-center bg-primary px-8 py-4 rounded-xl text-lg font-semibold"
               style={{ color: "#ffffff" }}
             >
@@ -660,7 +660,7 @@ export default function Page() {
           {/* CTA */}
           <div className="text-center mt-8">
             <a
-              href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               className="inline-flex items-center justify-center bg-primary px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:scale-105 transition-all"
               style={{ color: "#fff" }}
             >

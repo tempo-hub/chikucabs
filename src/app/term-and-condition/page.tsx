@@ -539,7 +539,7 @@ const Page = () => {
                   <p>
                     <strong className="text-gray-800">Customer Support:</strong>{" "}
                     <a
-                      href="tel:+918448445504"
+                      href="tel:+919818022327"
                       className="font-semibold text-gray-900 hover:underline"
                     >
                       +91 84484 45504

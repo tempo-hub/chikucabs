@@ -74,8 +74,8 @@ interface CityService {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "918448445504";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();

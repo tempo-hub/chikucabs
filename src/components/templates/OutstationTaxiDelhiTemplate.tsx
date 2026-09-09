@@ -51,14 +51,14 @@ export default function OutstationTaxiDelhiTemplate() {
 
             <div className="flex flex-wrap gap-4">
               <a
-                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 className="btn-primary px-8 py-4 text-lg"
               >
                 📞 Call Now
               </a>
 
               <a
-                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline px-8 py-4 text-lg"
@@ -100,7 +100,7 @@ export default function OutstationTaxiDelhiTemplate() {
                 </div>
                 <p className="text-muted-foreground mb-6">Starting fare</p>
 
-                <a href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab" className="btn-primary px-6 py-3">
+                <a href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab" className="btn-primary px-6 py-3">
                   Book Now
                 </a>
               </div>
@@ -182,10 +182,10 @@ export default function OutstationTaxiDelhiTemplate() {
           </p>
 
           <a
-            href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+            href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
             className="btn-primary px-10 py-4 text-lg"
           >
-            📞 8448445504
+            📞 9818022327
           </a>
         </div>
       </section>

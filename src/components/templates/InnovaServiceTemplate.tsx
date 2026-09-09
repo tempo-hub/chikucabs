@@ -135,13 +135,13 @@ export default function InnovaServiceTemplate({
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
-                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
               >
-                📞 Book Innova — 8448445504
+                📞 Book Innova — 9818022327
               </a>
               <a
-                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-lg px-8 py-4"
@@ -236,7 +236,7 @@ export default function InnovaServiceTemplate({
                 name: "Innova GX",
                 model: "Toyota Innova (7+1)",
                 image: "/Innova/toyota_innova.png",
-                price: "₹17/km",
+                price: "₹16/km",
                 features: [
                   "7+1 Seating",
                   "AC + Music",
@@ -249,7 +249,7 @@ export default function InnovaServiceTemplate({
                 name: "Innova Crysta ZX",
                 model: "Toyota Innova Crysta",
                 image: "/Innova/toyota_innova.png",
-                price: "₹18/km",
+                price: "₹17/km",
                 features: [
                   "7+1 Captain Seats",
                   "Auto AC",
@@ -262,7 +262,7 @@ export default function InnovaServiceTemplate({
                 name: "Innova HyCross",
                 model: "Toyota HyCross (Hybrid)",
                 image: "/Innova/innova-hybrid.png",
-                price: "₹19/km",
+                price: "₹18/km",
                 features: [
                   "7+1 Luxury Seats",
                   "Hybrid Engine",
@@ -305,7 +305,7 @@ export default function InnovaServiceTemplate({
                   ))}
                 </ul>
                 <a
-                  href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                  href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary w-full py-3 text-sm"
@@ -455,7 +455,7 @@ export default function InnovaServiceTemplate({
               </div>
 
               <a
-                href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary w-fit px-8 py-4"
@@ -529,13 +529,13 @@ export default function InnovaServiceTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
-              📞 Call 8448445504
+              📞 Call 9818022327
             </a>
             <a
-              href="https://wa.me/918448445504?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-4"
