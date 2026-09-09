@@ -28,13 +28,16 @@ export default function DriverServiceTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="tel:+916280820037"
               className="btn-primary text-lg px-10 py-5 shadow-2xl"
             >
               📞 Book Driver — 9818022327
             </a>
+
             <a
-              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                "Hi Chiku Cabs, I’m interested in booking a Tempo Traveller through your website. Please share the available options and booking details.",
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-5"
@@ -148,7 +151,11 @@ export default function DriverServiceTemplate({
                   ))}
                 </ul>
                 <a
-                  href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                  href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full py-4 rounded-xl font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-center block"
                 >
                   Book Now

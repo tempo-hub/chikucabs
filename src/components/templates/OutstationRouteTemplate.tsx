@@ -172,7 +172,7 @@ export default function OutstationRouteTemplate({
                     </div>
                   </div>
                   <a
-                    href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                    href="tel:+916280820037"
                     className="btn-primary w-full py-5 text-xl shadow-xl"
                     style={{ display: "flex" }}
                   >
@@ -350,7 +350,9 @@ export default function OutstationRouteTemplate({
                 </ul>
 
                 <a
-                  href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                  href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+                  )}`}
                   className={`w-full py-4 rounded-xl font-black tracking-tight text-center ${
                     item.best ? "btn-primary" : ""
                   }`}
@@ -626,13 +628,16 @@ export default function OutstationRouteTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="tel:+916280820037"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
               📞 Call 9818022327
             </a>
+
             <a
-              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                "Hi Chiku Cabs, I am interested in booking a cabs through your website. Please help me with the booking.",
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-4"

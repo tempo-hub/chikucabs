@@ -361,7 +361,8 @@ Please share the best fare.`;
         {/* Primary Meta Tags */}
         <title>
           {startCity} to {endCity} {vehicleDetails.name} Fare | Book One Way Cab
-          at ₹{vehicleDetails.pricePerKm}/km | Chiku Cabs | Get upto 500 off extra
+          at ₹{vehicleDetails.pricePerKm}/km | Chiku Cabs | Get upto 500 off
+          extra
         </title>
         <meta
           name="title"
@@ -439,8 +440,9 @@ Please share the best fare.`;
 
         {/* Sticky CTA Bar with Promo Code */}
         <div
-          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${isScrolled ? "translate-y-0" : "translate-y-full"
-            }`}
+          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${
+            isScrolled ? "translate-y-0" : "translate-y-full"
+          }`}
         >
           <div className="bg-gray-900 text-white shadow-2xl">
             <div className="max-w-7xl mx-auto px-4 py-3">
@@ -472,7 +474,7 @@ Please share the best fare.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href="tel:+916280820037"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -533,13 +535,16 @@ Please share the best fare.`;
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href="tel:+916280820037"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
+
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                      "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+                    )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
@@ -626,20 +631,22 @@ Please share the best fare.`;
                     <button
                       type="button"
                       onClick={() => setTripType("one-way")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "one-way"
-                        ? "bg-primary text-white shadow-lg shadow-primary/20"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
+                      className={`py-3 rounded-xl font-semibold transition-all ${
+                        tripType === "one-way"
+                          ? "bg-primary text-white shadow-lg shadow-primary/20"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
                     >
                       One Way
                     </button>
                     <button
                       type="button"
                       onClick={() => setTripType("round-trip")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "round-trip"
-                        ? "bg-primary text-white shadow-lg shadow-primary/20"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
+                      className={`py-3 rounded-xl font-semibold transition-all ${
+                        tripType === "round-trip"
+                          ? "bg-primary text-white shadow-lg shadow-primary/20"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
                     >
                       Round Trip
                     </button>
@@ -783,7 +790,9 @@ Please share the best fare.`;
                   </button>
 
                   <div className="rounded-2xl border border-primary/20 bg-primary/5 px-4 py-3 text-sm text-gray-700">
-                    <div className="font-semibold text-gray-800">Estimated Fare</div>
+                    <div className="font-semibold text-gray-800">
+                      Estimated Fare
+                    </div>
                     <div className="text-xl font-black text-primary">
                       {estimatedPrice !== null
                         ? `₹${estimatedPrice.toLocaleString("en-IN")}`
@@ -852,7 +861,8 @@ Please share the best fare.`;
                 <h3 className="text-xl font-bold mb-2">One Way Fare Starts</h3>
 
                 <p className="text-4xl font-black text-primary">
-                  ₹{calculateFareByDistance(distance || 250).toLocaleString(
+                  ₹
+                  {calculateFareByDistance(distance || 250).toLocaleString(
                     "en-IN",
                   )}
                 </p>
@@ -1343,7 +1353,7 @@ Please share the best fare.`;
 
             <div className="text-center mt-12">
               <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="tel:+916280820037"
                 className="btn-primary text-lg px-10 py-4"
               >
                 📞 Book One Way Cab - 9818022327
@@ -1442,7 +1452,7 @@ Please share the best fare.`;
 
               <div className="text-center mt-10">
                 <a
-                  href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                  href="tel:+916280820037"
                   className="btn-primary text-lg px-10 py-4"
                 >
                   📞 Book Now - 9818022327
@@ -1593,13 +1603,16 @@ Please share the best fare.`;
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="tel:+916280820037"
                 className="btn-primary text-lg px-10 py-4 shadow-2xl"
               >
                 📞 Call 9818022327
               </a>
+
               <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                  "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all hover:scale-105"

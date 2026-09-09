@@ -57,13 +57,16 @@ export default function LocalServiceTemplate({
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="tel:+916280820037"
                 className="btn-primary text-lg px-8 py-4"
               >
                 📞 Book in {city}
               </a>
+
               <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                  `Hi Chiku Cabs, I am interested in booking a cab in ${city} through your website. Please help me with the booking.`,
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-lg px-8 py-4"
@@ -132,7 +135,7 @@ export default function LocalServiceTemplate({
               Choose the perfect package for your local travel needs.
             </p>
           </div>
-          
+
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
             {[
               {
@@ -198,11 +201,11 @@ export default function LocalServiceTemplate({
                   ))}
                 </ul>
                 <a
-                  href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                  href="tel:+916280820037"
                   className="btn-primary w-full py-3"
                   style={{ display: "block", textAlign: "center" }}
                 >
-                  Book Now
+                  📞 Book Now
                 </a>
               </div>
             ))}
@@ -528,13 +531,16 @@ export default function LocalServiceTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="tel:+916280820037"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
               📞 Call 9818022327
             </a>
+
             <a
-              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-4"
