@@ -382,7 +382,7 @@ export default async function DynamicRoutePage({
       opens: "00:00",
       closes: "23:59",
     },
-    sameAs: ["https://wa.me/919818022327"],
+    sameAs: ["https://wa.me/916280820037"],
   };
 
   // 3. BreadcrumbList for navigation

@@ -35,13 +35,13 @@ export default function Footer() {
 
             <div className="footer-contact-row">
               <a
-                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 className="footer-phone"
               >
                 📞 +91-8448445504
               </a>
               <a
-                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 className="footer-whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -40,13 +40,13 @@ export default function InnovaRouteTemplate({
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
               >
                 📞 Get Quote — 9818022327
               </a>
               <a
-                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-lg px-8 py-4"
@@ -164,7 +164,7 @@ export default function InnovaRouteTemplate({
                   ))}
                 </ul>
                 <a
-                  href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                  href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                   className="btn-primary w-full py-3 text-sm"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -395,13 +395,13 @@ export default function InnovaRouteTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
               📞 Call 9818022327
             </a>
             <a
-              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-4"
