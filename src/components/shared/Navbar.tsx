@@ -45,8 +45,8 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="navbar-actions">
-          <a href="tel:+919818022327" className="btn-primary navbar-call-btn">
-            📞 9818022327
+          <a href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab" className="btn-primary navbar-call-btn">
+            📞 8448445504
           </a>
 
           {/* Hamburger */}

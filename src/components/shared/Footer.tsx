@@ -34,11 +34,14 @@ export default function Footer() {
             </p>
 
             <div className="footer-contact-row">
-              <a href="tel:+919818022327" className="footer-phone">
-                📞 +91-9818022327
+              <a
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                className="footer-phone"
+              >
+                📞 +91-8448445504
               </a>
               <a
-                href="https://wa.me/919818022327"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 className="footer-whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -177,8 +180,9 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <p>
-            © {new Date().getFullYear()} Chiku Cabs. All Rights Reserved. |{" "}
-            <a href="/term-and-condition">Terms & Conditions</a>
+            © {new Date().getFullYear()} Chiku Cabs. All Rights Reserved.
+            <span className="footer-separator"> | </span>
+            <a href="/term-and-condition">Terms &amp; Conditions</a>
           </p>
         </div>
       </div>

@@ -78,7 +78,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+919818022327"
+                href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                 className="btn-primary text-lg px-10 py-4 shadow-xl"
                 id="hero-call-btn"
               >
@@ -364,7 +364,7 @@ export default function HomePage() {
                   {car.capacity}
                 </div>
                 <a
-                  href="tel:+919818022327"
+                  href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
                   className="btn-primary w-full py-3 text-sm"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -658,7 +658,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+919818022327"
+              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               className="btn-primary text-xl px-12 py-5 shadow-2xl"
               id="cta-call-btn"
             >
