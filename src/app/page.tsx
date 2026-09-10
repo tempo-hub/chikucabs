@@ -658,7 +658,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               className="btn-primary text-xl px-12 py-5 shadow-2xl"
               id="cta-call-btn"
             >
