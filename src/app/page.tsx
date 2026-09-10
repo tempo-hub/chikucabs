@@ -78,14 +78,16 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="tel:+918448445504"
                 className="btn-primary text-lg px-10 py-4 shadow-xl"
                 id="hero-call-btn"
               >
-                📞 Book Now — 9818022327
+                📞 Book Now — 8448445504
               </a>
               <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20cab"
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                  "Hi Chiku Cabs, I’m interested in booking a cab through your website. Please share the available options and booking details.",
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-lg px-10 py-4"
@@ -364,7 +366,11 @@ export default function HomePage() {
                   {car.capacity}
                 </div>
                 <a
-                  href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                  href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    "Hi Chiku Cabs, I’m interested in booking a Tempo Traveller through your website. Please share the available options and booking details.",
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-primary w-full py-3 text-sm"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -657,6 +663,30 @@ export default function HomePage() {
             India.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
+            <>
+              {/* Call */}
+              <a
+                href="tel:+918448445504"
+                className="btn-primary text-xl px-12 py-5 shadow-2xl"
+                id="cta-call-btn"
+              >
+                📞 Call 8448445504
+              </a>
+
+              {/* WhatsApp */}
+              <a
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                  "Hi Chiku Cabs, I’m interested in booking a Tempo Traveller through your website. Please share the available options and booking details.",
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline text-lg px-10 py-4"
+                style={{ color: "white", borderColor: "rgba(255,255,255,0.3)" }}
+                id="cta-whatsapp-btn"
+              >
+                💬 WhatsApp Us
+              </a>
+            </>
             <a
               href="https://wa.me/919818022327?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
               className="btn-primary text-xl px-12 py-5 shadow-2xl"

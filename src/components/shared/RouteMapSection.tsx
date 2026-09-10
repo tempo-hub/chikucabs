@@ -17,7 +17,7 @@ export default function RouteMapSection({
   const [showMap, setShowMap] = useState(false);
 
   const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
-    `${startCity} to ${endCity}`
+    `${startCity} to ${endCity}`,
   )}&output=embed`;
 
   return (
@@ -55,8 +55,8 @@ export default function RouteMapSection({
 
             <p className="text-muted-foreground leading-relaxed mb-8">
               Enjoy a safe and comfortable ride with Chiku Cabs. We provide
-              affordable one-way cabs, round-trip taxis, airport transfers,
-              and premium vehicles on the {startCity} to {endCity} route.
+              affordable one-way cabs, round-trip taxis, airport transfers, and
+              premium vehicles on the {startCity} to {endCity} route.
             </p>
 
             <div className="space-y-4">
@@ -81,10 +81,10 @@ export default function RouteMapSection({
             </div>
 
             <a
-              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="tel:+918448445504"
               className="btn-primary inline-block mt-8"
             >
-              📞 Book Now - 9818022327
+              📞 Book Now - 8448445504
             </a>
           </div>
 
@@ -105,18 +105,14 @@ export default function RouteMapSection({
                 >
                   <div className="text-6xl mb-4">🗺️</div>
 
-                  <h3 className="text-2xl font-bold mb-2">
-                    View Route Map
-                  </h3>
+                  <h3 className="text-2xl font-bold mb-2">View Route Map</h3>
 
                   <p className="text-muted-foreground mb-6">
                     Click to load Google Maps route from {startCity} to{" "}
                     {endCity}
                   </p>
 
-                  <span className="btn-primary">
-                    Show Route Map
-                  </span>
+                  <span className="btn-primary">Show Route Map</span>
                 </button>
               )}
             </div>

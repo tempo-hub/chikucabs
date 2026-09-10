@@ -28,11 +28,7 @@ const services = [
     title: "Airport Transfers",
     description:
       "Enjoy hassle-free airport pickup and drop services with professional chauffeurs. We monitor flight timings and ensure timely pickups with enough luggage space for families and groups.",
-    features: [
-      "24×7 Service",
-      "Flight Tracking",
-      "Extra Luggage Space",
-    ],
+    features: ["24×7 Service", "Flight Tracking", "Extra Luggage Space"],
   },
   {
     id: "wedding",
@@ -40,11 +36,7 @@ const services = [
     title: "Wedding Travel",
     description:
       "Book premium Innova rentals for weddings, guest transportation, baraat processions, and family functions. Travel comfortably while making every celebration memorable.",
-    features: [
-      "Guest Transfers",
-      "Luxury Experience",
-      "Decor Friendly",
-    ],
+    features: ["Guest Transfers", "Luxury Experience", "Decor Friendly"],
   },
   {
     id: "corporate",
@@ -52,11 +44,7 @@ const services = [
     title: "Corporate Travel",
     description:
       "Professional transportation for business meetings, airport transfers, conferences, client visits, and executive travel with punctual drivers.",
-    features: [
-      "Executive Service",
-      "GST Invoice",
-      "Professional Drivers",
-    ],
+    features: ["Executive Service", "GST Invoice", "Professional Drivers"],
   },
   {
     id: "vacation",
@@ -64,11 +52,7 @@ const services = [
     title: "Vacations",
     description:
       "Enjoy vacations, sightseeing, and weekend getaways with spacious seating, ample luggage space, and comfortable rides for the entire family.",
-    features: [
-      "Large Boot Space",
-      "Comfort Seats",
-      "Weekend Trips",
-    ],
+    features: ["Large Boot Space", "Comfort Seats", "Weekend Trips"],
   },
   {
     id: "hill",
@@ -76,15 +60,9 @@ const services = [
     title: "Hill Station",
     description:
       "Plan memorable road trips to Shimla, Manali, Mussoorie, Nainital, Ooty, and more with experienced drivers and comfortable seating for long journeys.",
-    features: [
-      "Experienced Drivers",
-      "Long Distance",
-      "Safe Journey",
-    ],
+    features: ["Experienced Drivers", "Long Distance", "Safe Journey"],
   },
 ];
-
-
 
 export default function InnovaServiceTemplate({
   parsedData,
@@ -93,20 +71,15 @@ export default function InnovaServiceTemplate({
 }) {
   const displayCity = parsedData.origin || "india";
   const city = parsedData.displayCity || "India";
-  const localDominanceCity =
-    localDominanceData[
-      city.toLowerCase() as keyof typeof localDominanceData
-    ]
-      ? city
-      : displayCity;
+  const localDominanceCity = localDominanceData[
+    city.toLowerCase() as keyof typeof localDominanceData
+  ]
+    ? city
+    : displayCity;
   const [activeService, setActiveService] = useState(services[0]);
 
-
   const currentUrl = `/${parsedData.slugs.join("/")}`;
-  const baseCity = parsedData.slugs?.length > 1
-    ? parsedData.slugs[0]
-    : "";;
-
+  const baseCity = parsedData.slugs?.length > 1 ? parsedData.slugs[0] : "";
 
   return (
     <div className="bg-background min-h-screen">
@@ -115,7 +88,7 @@ export default function InnovaServiceTemplate({
         <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
         <div className="relative max-w-7xl mx-auto grid gap-8 lg:grid-cols-1 xl:grid-cols-[1.2fr_1.2fr] items-center">
           <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
-            <div className="flex gap-2" >
+            <div className="flex gap-2">
               <div className="section-badge inline-flex mb-6 text-slate-950">
                 Starting @ ₹17/km*
               </div>
@@ -129,19 +102,22 @@ export default function InnovaServiceTemplate({
               {city !== "India" && <> in {city}</>}
             </h1>
             <p className="mt-4 max-w-2xl lg:text-lg sm:text-xl leading-relaxed text-slate-600">
-              Book premium airport transfers, family outings, and corporate travel
-              with spacious 7+1 captain seats, dual AC comfort, and verified
-              chauffeurs.
+              Book premium airport transfers, family outings, and corporate
+              travel with spacious 7+1 captain seats, dual AC comfort, and
+              verified chauffeurs.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href="tel:+918448445504"
                 className="btn-primary text-lg px-8 py-4 shadow-2xl"
               >
-                📞 Book Innova — 9818022327
+                📞 Book Innova — 8448445504
               </a>
+
               <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                  "Hi Chiku Cabs, I am interested in booking an Innova through your website. Please help me with the booking.",
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline text-lg px-8 py-4"
@@ -160,12 +136,13 @@ export default function InnovaServiceTemplate({
                   key={item.label}
                   className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3"
                 >
-                  <div className="font-semibold text-slate-950">{item.icon}</div>
+                  <div className="font-semibold text-slate-950">
+                    {item.icon}
+                  </div>
                   <div className="text-xs text-slate-600">{item.label}</div>
                 </div>
               ))}
             </div>
-
           </div>
 
           <div className="relative mx-auto w-full max-w-xl">
@@ -177,7 +154,6 @@ export default function InnovaServiceTemplate({
                 className="w-full h-64 sm:h-80 md:h-[420px] lg:h-[520px] object-cover"
               />
             </div>
-
           </div>
         </div>
       </section>
@@ -305,7 +281,9 @@ export default function InnovaServiceTemplate({
                   ))}
                 </ul>
                 <a
-                  href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                  href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    `Hi Chiku Cabs, I am interested in booking a ${variant.name} through your website. Please help me with the booking.`,
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary w-full py-3 text-sm"
@@ -408,10 +386,11 @@ export default function InnovaServiceTemplate({
                 key={service.id}
                 onClick={() => setActiveService(service)}
                 className={`rounded-xl border px-4 py-5 text-center font-semibold transition-all duration-300
-            ${activeService.id === service.id
-                    ? "bg-primary text-white border-primary shadow-lg"
-                    : "bg-white hover:bg-gray-100 border-gray-200"
-                  }`}
+            ${
+              activeService.id === service.id
+                ? "bg-primary text-white border-primary shadow-lg"
+                : "bg-white hover:bg-gray-100 border-gray-200"
+            }`}
               >
                 {service.title}
               </button>
@@ -455,7 +434,9 @@ export default function InnovaServiceTemplate({
               </div>
 
               <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                  `Hi Chiku Cabs, I am interested in booking ${activeService.title} through your website. Please help me with the booking.`,
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary w-fit px-8 py-4"
@@ -529,13 +510,16 @@ export default function InnovaServiceTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href="tel:+918448445504"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
-              📞 Call 9818022327
+              📞 Call 8448445504
             </a>
+
             <a
-              href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+              href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline text-lg px-10 py-4"
@@ -608,8 +592,6 @@ export default function InnovaServiceTemplate({
             </div>
           </div>
         </section>
-
-
       )}
       {/* Local Dominance Section */}
       <section className="py-8 px-4 bg-muted/10 border-t">
@@ -622,7 +604,6 @@ export default function InnovaServiceTemplate({
         city={city !== "India" ? city : undefined}
         vehicle="Innova Crysta"
       />
-
 
       {/* =========================================================
     INNOVA CABS AVAILABLE
@@ -658,7 +639,6 @@ export default function InnovaServiceTemplate({
         currentUrl={currentUrl}
       /> */}
 
-
       {/* Popular City */}
       <section className="py-12 px-4 bg-muted/10 border-t">
         <PopularCities
@@ -676,11 +656,10 @@ export default function InnovaServiceTemplate({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {relatedVehicles.map((vehicle) => {
-              const url =
-                `/${[
-                  ...parsedData.slugs.slice(0, -1),
-                  vehicle.slug,
-                ].join("/")}`;
+              const url = `/${[
+                ...parsedData.slugs.slice(0, -1),
+                vehicle.slug,
+              ].join("/")}`;
               return (
                 <a
                   key={vehicle.slug}

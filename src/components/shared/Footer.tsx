@@ -34,14 +34,14 @@ export default function Footer() {
             </p>
 
             <div className="footer-contact-row">
-              <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
-                className="footer-phone"
-              >
+              <a href="tel:+918448445504" className="footer-phone">
                 📞 +91-8448445504
               </a>
+
               <a
-                href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                  "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+                )}`}
                 className="footer-whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"

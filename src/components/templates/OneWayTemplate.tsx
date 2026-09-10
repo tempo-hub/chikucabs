@@ -564,8 +564,9 @@ export default function OneWayTemplate({
       <div className="bg-background min-h-screen">
         {/* Sticky CTA Bar with Promo Code */}
         <div
-          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${isScrolled ? "translate-y-0" : "translate-y-full"
-            }`}
+          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${
+            isScrolled ? "translate-y-0" : "translate-y-full"
+          }`}
         >
           <div className="bg-gray-900 text-white shadow-2xl">
             <div className="max-w-7xl mx-auto px-4 py-3">
@@ -597,7 +598,7 @@ export default function OneWayTemplate({
 
                 <div className="flex items-center gap-3">
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -643,14 +644,18 @@ export default function OneWayTemplate({
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
+
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                      "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+                    )}`}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     💬 WhatsApp
@@ -1087,10 +1092,11 @@ export default function OneWayTemplate({
                             dist * vehicleDetails.pricePerKm + DRIVER_CHARGE;
                           setEstimatedPrice(newPrice);
                         }}
-                        className={`py-2 rounded-lg text-sm font-medium transition-all ${Number(formData.distance) === dist
-                          ? "bg-primary text-white"
-                          : "bg-muted hover:bg-primary/20"
-                          }`}
+                        className={`py-2 rounded-lg text-sm font-medium transition-all ${
+                          Number(formData.distance) === dist
+                            ? "bg-primary text-white"
+                            : "bg-muted hover:bg-primary/20"
+                        }`}
                       >
                         {dist} km
                       </button>
@@ -1216,7 +1222,8 @@ export default function OneWayTemplate({
                         cityKey
                           .split("-")
                           .map(
-                            (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                            (word) =>
+                              word.charAt(0).toUpperCase() + word.slice(1),
                           )
                           .join(" ")}
                     </span>
@@ -1722,13 +1729,16 @@ export default function OneWayTemplate({
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                href="tel:+918448445504"
                 className="btn-primary text-xl px-12 py-5 shadow-2xl"
               >
                 📞 Call {PHONE_NUMBER}
               </a>
+
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                  "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all hover:scale-105 shadow-lg"

@@ -167,8 +167,8 @@ export default function EEATSection({
                   <p className="text-base leading-relaxed">
                     Chiku Cabs is a premium cab rental company founded in 2015.
                     We specialize in outstation cab services, Tempo Traveller
-                    rentals, {vehicle} bookings, local city tours, and
-                    airport transfers across 100+ cities in India.
+                    rentals, {vehicle} bookings, local city tours, and airport
+                    transfers across 100+ cities in India.
                   </p>
                   <p className="text-base leading-relaxed">
                     Our mission is to make intercity and group travel
@@ -208,10 +208,10 @@ export default function EEATSection({
                         Phone Support
                       </span>
                       <a
-                        href="https://wa.me/916280820037?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab"
+                        href="tel:+918448445504"
                         className="text-primary hover:underline font-medium break-all"
                       >
-                        9818022327
+                        8448445504
                       </a>
                     </div>
                   </li>

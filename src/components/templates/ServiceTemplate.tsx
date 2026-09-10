@@ -593,7 +593,7 @@ export default function ServiceTemplate({
 
                 <div className="flex items-center gap-3">
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -639,14 +639,18 @@ export default function ServiceTemplate({
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
+
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                      "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+                    )}`}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     💬 WhatsApp
@@ -858,14 +862,14 @@ export default function ServiceTemplate({
                     ))}
                   </ul>
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href="tel:+918448445504"
                     className={`w-full py-4 rounded-xl font-black tracking-tight text-center transition-all ${
                       item.best
                         ? "btn-primary shadow-lg"
                         : "bg-muted hover:bg-muted/80"
                     }`}
                   >
-                    BOOK NOW
+                    📞 BOOK NOW
                   </a>
                 </div>
               ))}
@@ -1931,13 +1935,16 @@ export default function ServiceTemplate({
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                href="tel:+918448445504"
                 className="btn-primary text-xl px-12 py-5 shadow-2xl"
               >
                 📞 Call {PHONE_NUMBER}
               </a>
+
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                  "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all hover:scale-105 shadow-lg"
