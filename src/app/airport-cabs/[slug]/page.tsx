@@ -83,8 +83,8 @@ interface VehicleDetails {
   features: string[];
 }
 
-const PHONE_NUMBER = "+919818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -335,8 +335,8 @@ export default function AirportCityPage({
   const vehicle = parsedData?.vehicle || DEFAULT_VEHICLE;
   const vehicleDetails = useMemo(() => getVehicleDetails(vehicle), [vehicle]);
 
-  const PHONE_NUMBER = "+919818022327";
-  const WHATSAPP_NUMBER = "919818022327";
+  const PHONE_NUMBER = "+918448445504";
+  const WHATSAPP_NUMBER = "916280820037";
 
   // Filter routes based on active tab
   const filteredRoutes = activeTab === "pickup" ? pickupRoutes : dropRoutes;

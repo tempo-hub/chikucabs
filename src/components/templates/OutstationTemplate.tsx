@@ -71,8 +71,8 @@ interface CityService {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+919818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -508,8 +508,9 @@ Please share the fare estimate.`;
       <div className="bg-background min-h-screen">
         {/* Sticky CTA Bar with Promo Code */}
         <div
-          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${isScrolled ? "translate-y-0" : "translate-y-full"
-            }`}
+          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${
+            isScrolled ? "translate-y-0" : "translate-y-full"
+          }`}
         >
           <div className="bg-gray-900 text-white shadow-2xl">
             <div className="max-w-7xl mx-auto px-4 py-3">
@@ -541,7 +542,7 @@ Please share the fare estimate.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -589,13 +590,16 @@ Please share the fare estimate.`;
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
+
                   <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                      "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+                    )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
@@ -682,20 +686,22 @@ Please share the fare estimate.`;
                     <button
                       type="button"
                       onClick={() => setTripType("one-way")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "one-way"
+                      className={`py-3 rounded-xl font-semibold transition-all ${
+                        tripType === "one-way"
                           ? "bg-primary text-white shadow-lg shadow-primary/20"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
+                      }`}
                     >
                       One Way
                     </button>
                     <button
                       type="button"
                       onClick={() => setTripType("round-trip")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "round-trip"
+                      className={`py-3 rounded-xl font-semibold transition-all ${
+                        tripType === "round-trip"
                           ? "bg-primary text-white shadow-lg shadow-primary/20"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
+                      }`}
                     >
                       Round Trip
                     </button>
@@ -1187,10 +1193,11 @@ Please share the fare estimate.`;
                           }));
                           setEstimatedPrice(calculateFareByDistance(dist));
                         }}
-                        className={`py-2 rounded-lg text-sm font-medium transition-all ${Number(formData.distance) === dist
+                        className={`py-2 rounded-lg text-sm font-medium transition-all ${
+                          Number(formData.distance) === dist
                             ? "bg-primary text-white"
                             : "bg-muted hover:bg-primary/20"
-                          }`}
+                        }`}
                       >
                         {dist} km
                       </button>
@@ -1316,7 +1323,8 @@ Please share the fare estimate.`;
                         cityKey
                           .split("-")
                           .map(
-                            (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                            (word) =>
+                              word.charAt(0).toUpperCase() + word.slice(1),
                           )
                           .join(" ")}
                     </span>
@@ -1386,7 +1394,10 @@ Please share the fare estimate.`;
                         {/* Price Indicator */}
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-semibold text-primary">
-                            ₹{Math.round(calculateFareByDistance(route.distance)).toLocaleString()}
+                            ₹
+                            {Math.round(
+                              calculateFareByDistance(route.distance),
+                            ).toLocaleString()}
                           </span>
                           <span className="text-xs text-gray-400 group-hover:text-primary transition-colors">
                             →
@@ -1457,10 +1468,13 @@ Please share the fare estimate.`;
                       { from: "Hyderabad", to: "Tirupati", distance: 550 },
                     ].map((route, index) => {
                       // Calculate One Way Price using shared route fare formula
-                      const oneWayPrice = calculateFareByDistance(route.distance);
+                      const oneWayPrice = calculateFareByDistance(
+                        route.distance,
+                      );
 
                       // Calculate Round Trip Price (2x distance + 2x driver charge with 10% discount)
-                      const roundTripBase = calculateFareByDistance(route.distance) * 2;
+                      const roundTripBase =
+                        calculateFareByDistance(route.distance) * 2;
                       const roundTripDiscount = roundTripBase * 0.1; // 10% discount
                       const roundTripPrice = roundTripBase - roundTripDiscount;
 
@@ -2140,13 +2154,16 @@ Please share the fare estimate.`;
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                href="tel:+918448445504"
                 className="btn-primary text-xl px-12 py-5 shadow-2xl"
               >
                 📞 Call {PHONE_NUMBER}
               </a>
+
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                  "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all hover:scale-105 shadow-lg"

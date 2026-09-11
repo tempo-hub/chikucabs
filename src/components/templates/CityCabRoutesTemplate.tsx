@@ -9,8 +9,8 @@ interface StatItem {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+919818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -606,13 +606,16 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+              href={`tel:+${PHONE_NUMBER}`}
               className="btn-primary text-xl px-12 py-5 shadow-2xl"
             >
               📞 Call {PHONE_NUMBER}
             </a>
+
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20book%20a%20Tempo%20Traveller%20through%20Yatra%20Tempo%20Traveller%20powered%20by%20Chikucab`}
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 hover:bg-green-600 text-white text-lg px-10 py-4 rounded-xl font-bold inline-flex items-center justify-center transition-all hover:scale-105 shadow-lg"
