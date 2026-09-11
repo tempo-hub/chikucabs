@@ -10,6 +10,7 @@ import { useState } from "react";
 import { localDominanceData } from "@/data/localDominanceData";
 import routeData from "@/data/routeData.json";
 import VehicleAvailability from "../shared/VehicleAvailability";
+import LocationSchema from "../shared/LocationSchema";
 
 const relatedVehicles = [
   {
@@ -100,8 +101,7 @@ export default function InnovaServiceTemplate({
       ? city
       : displayCity;
   const [activeService, setActiveService] = useState(services[0]);
-
-
+  const locality = parsedData.origin || city;
   const currentUrl = `/${parsedData.slugs.join("/")}`;
   const baseCity = parsedData.slugs?.length > 1
     ? parsedData.slugs[0]
@@ -109,7 +109,14 @@ export default function InnovaServiceTemplate({
 
 
   return (
-    <div className="bg-background min-h-screen">
+    <>
+      <LocationSchema
+        city={city}
+        locality={locality}
+        vehicle="Innova Crysta"
+        url={currentUrl}
+      />
+      <div className="bg-background min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-4 sm:pt-6 lg:pt-12 pb-12 px-4 text-slate-950 bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-white" />
@@ -503,7 +510,7 @@ export default function InnovaServiceTemplate({
                 <div className="testimonial-stars">{review.rating}</div>
                 <p className="testimonial-text">"{review.text}"</p>
                 <div className="testimonial-author">{review.name}</div>
-                <div className="testimonial-route">Innova Crysta Service</div>
+                <div className="testimonial-route">{city}</div>
               </div>
             ))}
           </div>
@@ -598,7 +605,7 @@ export default function InnovaServiceTemplate({
               </ul>
               <div className="bg-card p-8 rounded-2xl border shadow-sm mt-8">
                 <p className="mb-0 text-card-foreground">
-                  At Chiku Cabs, we offer both the standard 7-seater Innova and
+                  At Chiku Cabs, we offer both the standard 7+1-seater Innova and
                   the premium 8-seater Innova Crysta for{" "}
                   <strong>cab booking</strong> in {city} at highly competitive
                   rates. With our transparent per-km billing and pristine fleet,
@@ -697,5 +704,6 @@ export default function InnovaServiceTemplate({
         </div>
       </section>
     </div>
+    </>
   );
 }
