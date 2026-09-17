@@ -2257,3 +2257,23 @@ tbody tr:hover {
   background: #fef2f2;
   margin: 1.5rem 0;
 }
+
+@keyframes marquee-ltr {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-ltr {
+  display: flex;
+  width: max-content;
+  animation: marquee-ltr 50s linear infinite;
+}
+
+.animate-scroll-ltr:hover {
+  animation-play-state: paused;
+}
+
