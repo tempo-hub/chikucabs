@@ -78,13 +78,16 @@ const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
 const DRIVER_ALLOWANCE = 500;
 
-const calculateFareByDistance = (travelDistance: number) => {
+
+const calculateFareByDistance = (
+  travelDistance: number,
+  pricePerKm: number = 10,
+) => {
   if (isNaN(travelDistance) || travelDistance <= 0) {
     return 0;
   }
 
-  const perKmRate = travelDistance < 200 ? 16 : 13;
-  return travelDistance * perKmRate + DRIVER_ALLOWANCE;
+  return travelDistance * pricePerKm + DRIVER_ALLOWANCE;
 };
 
 const VEHICLE_DETAILS_MAP: Record<
@@ -334,18 +337,32 @@ export default function OutstationTemplate({
   }, []);
 
   const calculateFare = useCallback(() => {
-    const distance = parseFloat(formData.distance);
+  const distance = parseFloat(formData.distance);
 
-    if (!isNaN(distance) && distance > 0) {
-      setEstimatedPrice(calculateFareByDistance(distance));
-    } else {
-      setEstimatedPrice(null);
-    }
-  }, [formData.distance]);
+  if (!isNaN(distance) && distance > 0) {
+    const oneWayFare = calculateFareByDistance(
+      distance,
+      vehicleDetails.pricePerKm,
+    );
 
-  useEffect(() => {
-    calculateFare();
-  }, [calculateFare]);
+    const finalFare =
+      tripType === "round-trip"
+        ? oneWayFare * 2
+        : oneWayFare;
+
+    setEstimatedPrice(finalFare);
+  } else {
+    setEstimatedPrice(null);
+  }
+}, [
+  formData.distance,
+  vehicleDetails.pricePerKm,
+  tripType,
+]);
+
+useEffect(() => {
+  calculateFare();
+}, [calculateFare]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -635,7 +652,7 @@ Please share the fare estimate.`;
                   Book Your {vehicle || "Outstation Cab"}
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  Get instant confirmation & best price
+                  Get a quick fare estimate for your outstation journey
                 </p>
 
                 <form className="space-y-5" onSubmit={handleGetEstimate}>

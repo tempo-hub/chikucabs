@@ -76,7 +76,7 @@ export async function generateMetadata({
       "Chiku Cabs",
     ];
   } else if (parsed.routeType === "Outstation Route Fare") {
-    title = `${parsed.origin} to ${parsed.destination} ${parsed.vehicle} Fare | Chiku Cabs`;
+    title = `${parsed.origin} to ${parsed.destination} ${parsed.vehicle} Fare @ Best Price| Chiku Cabs`;
     description = `Check ${parsed.origin} to ${parsed.destination} ${parsed.vehicle} fare. Complete rate card with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 9818022327.`;
     keywords = [
       `${parsed.origin} to ${parsed.destination} cab fare`,
@@ -560,7 +560,7 @@ export default async function DynamicRoutePage({
       ) {
         return <TempoTravellerRouteTemplate parsedData={parsed} />;
       }
-      return <ServiceTemplate parsedData={parsed} />;
+      return <TempoTravellerTemplate parsedData={parsed} />;
     }
     if (parsed.vehicleCategory === "innova") {
       if (
