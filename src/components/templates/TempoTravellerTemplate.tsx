@@ -623,11 +623,11 @@ Please share the best fare.`;
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <img
-              src="/cab.png"
+              src="/tempotraveller.webp"
               alt="Chiku Cabs Premium Fleet"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/50" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
@@ -922,7 +922,7 @@ Please share the best fare.`;
         </section>
 
         {/* Stats Bar - Professional Version */}
-        <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-primary/10">
+        <section className="pt-12 pb-12 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto">OUR REVIEWS</div>
@@ -952,7 +952,7 @@ Please share the best fare.`;
         </section>
 
         {/* Tempo Traveller Fleet Gallery */}
-        <section className="py-24 px-4 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-12 px-4 bg-gradient-to-b from-white to-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto">TEMPO TRAVELLER FLEET</div>
@@ -1114,7 +1114,7 @@ Please share the best fare.`;
         </section>
 
         {/* Route Calculator with Slider */}
-        <section className="py-24 bg-gradient-to-r from-primary/5 to-secondary/5">
+        <section className="py-12 bg-gradient-to-r from-primary/5 to-secondary/5 border-b border-slate-300">
           <div className="max-w-4xl mx-auto px-4">
             <div className="text-center mb-12">
               <div className="section-badge mx-auto">CALCULATE FARE</div>
@@ -1266,7 +1266,7 @@ Please share the best fare.`;
         </section>
 
         {/* Popular Travel Destinations - All Cities */}
-        <section className="py-16 bg-gray-50 border-y">
+        <section className="py-12 bg-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-gray-800 mb-2">
@@ -1385,68 +1385,104 @@ Please share the best fare.`;
         </section>
 
         {/* How It Works */}
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <div className="section-badge mx-auto animate-pulse">
-                ⚡ SIMPLE & FAST
+        <section className="py-12 md:py-20 bg-white border-b border-slate-200">
+  <div className="max-w-7xl mx-auto px-4">
+
+    {/* Section Header */}
+    <div className="text-center max-w-3xl mx-auto mb-12">
+      <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full">
+        <span className="text-sm font-bold uppercase tracking-wider">
+          Simple & Fast Booking
+        </span>
+      </div>
+
+      <h2 className="mt-4 text-3xl md:text-4xl font-bold text-slate-900">
+        Book Your Cab in{" "}
+        <span className="text-primary">3 Easy Steps</span>
+      </h2>
+
+      <p className="mt-4 text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        Book your airport taxi quickly with a simple and transparent
+        booking process. Choose your trip, enter your details and
+        confirm your ride.
+      </p>
+    </div>
+
+    {/* Steps */}
+    <div className="relative grid md:grid-cols-3 gap-6 lg:gap-8">
+
+      {/* Connecting Line */}
+      <div className="hidden md:block absolute top-14 left-[16%] right-[16%] h-px bg-gradient-to-r from-primary/20 via-primary/50 to-primary/20" />
+
+      {STEPS.map((item, i) => (
+        <div
+          key={item.step}
+          className="relative z-10 group"
+        >
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 text-center shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300">
+
+            {/* Step Icon / Number */}
+            <div className="relative mx-auto w-20 h-20 mb-6">
+              <div
+                className="w-20 h-20 rounded-2xl bg-primary
+                flex items-center justify-center shadow-lg
+                shadow-primary/20
+                group-hover:-translate-y-1
+                transition-transform duration-300"
+              >
+                <span className="text-3xl font-extrabold text-white">
+                  {item.step}
+                </span>
               </div>
-              <h2 className="section-title mt-4">
-                Book Your Ride in{" "}
-                <span className="gradient-text">3 Easy Steps</span>
-              </h2>
-              <p className="section-subtitle mx-auto mt-4">
-                Experience hassle-free cab booking with our streamlined process
-              </p>
+
+              {/* Step Label */}
+              {/* <span
+                className="absolute -top-2 -right-2 w-7 h-7
+                rounded-full bg-slate-900 text-white text-xs
+                font-bold flex items-center justify-center"
+              >
+                {i + 1}
+              </span> */}
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 relative">
-              {/* Connecting Line (Desktop) */}
-              <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2 z-0">
-                <div className="absolute left-1/3 right-1/3 h-full bg-primary"></div>
+            {/* Content */}
+            <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
+              {item.title}
+            </h3>
+
+            <p className="text-sm md:text-base text-slate-600 leading-relaxed">
+              {item.desc}
+            </p>
+
+            {/* Mobile Arrow */}
+            {i < STEPS.length - 1 && (
+              <div className="md:hidden mt-5 text-primary text-xl">
+                ↓
               </div>
-
-              {STEPS.map((item, i) => (
-                <div key={i} className="relative group">
-                  {/* Step Number Circle */}
-                  <div className="relative z-10">
-                    <div className="text-center">
-                      <div className="relative inline-block">
-                        <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-all duration-300">
-                          <div className="text-4xl font-black text-black">
-                            {item.step}
-                          </div>
-                        </div>
-                        {/* Pulse Effect */}
-                        <div className="absolute inset-0 bg-primary rounded-2xl opacity-0 group-hover:opacity-20 animate-ping"></div>
-                      </div>
-
-                      {/* Step Content */}
-                      <div className="mt-6 premium-card text-center group-hover:-translate-y-2 transition-all duration-300">
-                        <h3 className="font-bold text-xl mb-3 group-hover:text-primary transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-
-                      {/* Arrow Indicator (Desktop) */}
-                      {i < STEPS.length - 1 && (
-                        <div className="hidden md:block absolute top-12 -right-6 text-3xl text-primary/50 group-hover:text-primary transition-colors">
-                          →
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            )}
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+
+    {/* Bottom CTA */}
+    <div className="mt-10 text-center">
+      <p className="text-sm text-slate-500">
+        Need help with your booking?{" "}
+        <a
+          href="tel:+918448445504"
+          className="font-semibold text-primary hover:underline"
+        >
+          Call us for assistance
+        </a>
+      </p>
+    </div>
+
+  </div>
+</section>
 
         {/* Testimonials */}
-        <section className="py-24 px-4">
+        <section className="py-12 px-4 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <div

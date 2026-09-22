@@ -52,16 +52,16 @@ export const SERVICES = [
     iconName: "users", // Group seating
   },
   {
-    name: "Car Rental",
+    name: "Car hourly Rental",
     desc: "Self-drive & chauffeur options",
     href: "/car-rental",
     color: "#06b6d4",
     iconName: "car", // Standard car rental
   },
   {
-    name: "Bus on Rent",
+    name: "Cab on Rent",
     desc: "20–50 seater for large groups",
-    href: "/bus-on-rent",
+    href: "/cab-on-rent",
     color: "#ec4899",
     iconName: "bus", // Large passenger bus
   },

@@ -575,7 +575,7 @@ Please share the fare estimate.`;
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <img
-              src="/cab.png"
+              src="/outstation.webp"
               alt="Chiku Cabs Premium Fleet"
               className="w-full h-full object-cover"
             />

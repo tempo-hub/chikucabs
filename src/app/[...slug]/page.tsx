@@ -58,11 +58,11 @@ export async function generateMetadata({
     "online cab booking",
     "car rental India",
   ];
+  
 
   if (parsed.routeType === "Outstation Route") {
-    title = `${parsed.origin} to ${parsed.destination} One Way Cab | Chiku Cabs | Drop Taxi @ Best Price`;
-    description = `Book outstation one way cab from ${parsed.origin} to ${parsed.destination}. Save on drop taxi fare with verified drivers & GPS tracking. Call 9818022327 to book now!`;
-    keywords = [
+    title = `${parsed.origin} to ${parsed.destination} One Way Cab | Easy Booking | Chiku Cabs`;
+description = `Book a one way cab from ${parsed.origin} to ${parsed.destination} starting from ₹9/km. Choose Sedan, SUV, Innova or Tempo Traveller based on your needs. Get transparent fares, verified drivers and easy booking with Chiku Cabs. Call 9818022327 to book now!`;    keywords = [
       `${parsed.origin} to ${parsed.destination} one way cab`,
       `${parsed.origin} to ${parsed.destination} drop taxi`,
       `${parsed.origin} to ${parsed.destination} cab`,
@@ -119,8 +119,8 @@ export async function generateMetadata({
   }
 
   title = location
-    ? `${vehicle} on Rent in ${location} @ ₹${price}/KM – Book Now`
-    : `${vehicle} on Rent @ ₹${price}/KM – Book Now`;
+    ? `${vehicle} on Rent in ${location}, Noida Cabs @ ₹${price}/KM – Book Now`
+    : `${vehicle} on Rent, Noida Cabs Starting @ ₹${price}/KM – Book Now`;
 
   description = location
     ? `Hire verified ${vehicle} in ${location} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`
@@ -179,7 +179,7 @@ export async function generateMetadata({
         : parsed.vehicleCategory === "innova"
           ? " | 6-7 Seater"
           : "";
-    title = `${parsed.vehicle} on Rent | Chiku Cabs${seaterInfo} | India's #1 Rental Service`;
+    title = `${parsed.vehicle} on Rent Starting at ₹10/km, Chiku Cabs${seaterInfo} | India's #1 Rental Service`;
     description = `Rent a premium ${parsed.vehicle} with Chiku Cabs. Verified drivers, 100+ cities. Travel outstation, local or airport trips safely. Call 9818022327 to book now.`;
     keywords = [
       `${vehicleLower} on rent`,

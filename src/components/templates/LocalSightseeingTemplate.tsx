@@ -545,11 +545,11 @@ Please share the best fare.`;
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <img
-              src="/cab.png"
+              src="/localcabservice.webp"
               alt="Chiku Cabs Premium Fleet"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/50" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
@@ -848,7 +848,7 @@ Please share the best fare.`;
         </section>
 
         {/* Stats Bar - Professional Version */}
-        <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-primary/10">
+        <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto">OUR REVIEWS</div>
@@ -878,7 +878,7 @@ Please share the best fare.`;
         </section>
 
         {/* Local Taxi Packages */}
-        <section className="py-20 bg-muted/30">
+        <section className="py-12 bg-muted/30 border-b border-slate-300">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4">Local Taxi Packages</h2>
@@ -910,7 +910,7 @@ Please share the best fare.`;
         </section>
 
         {/* Available Vehicles */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-12 bg-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -1040,7 +1040,7 @@ Please share the best fare.`;
         </section>
 
         {/* Why Choose Chiku Cabs */}
-        <section className="py-16 bg-white">
+        <section className="py-12 bg-white/95 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -1117,7 +1117,7 @@ Please share the best fare.`;
         </section>
 
         {/* Services We Offer */}
-        <section className="py-16 bg-gradient-to-r from-primary to-primary/80">
+        <section className="py-12 bg-gradient-to-r from-primary to-primary/80 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
@@ -1152,7 +1152,7 @@ Please share the best fare.`;
         </section>
 
         {/* Route Calculator with Slider */}
-        <section className="py-24 bg-gradient-to-r from-primary/5 to-secondary/5">
+        <section className="py-24 bg-gradient-to-r from-primary/5 to-secondary/5 border-b border-slate-300">
           <div className="max-w-4xl mx-auto px-4">
             <div className="text-center mb-12">
               <div className="section-badge mx-auto">CALCULATE FARE</div>
@@ -1304,7 +1304,7 @@ Please share the best fare.`;
         </section>
 
         {/* Popular Travel Destinations - Enhanced UI */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-12 bg-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-gray-800 mb-2">
@@ -1448,7 +1448,7 @@ Please share the best fare.`;
         </section>
 
         {/* How It Works */}
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-12 bg-gradient-to-b from-white to-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto animate-pulse">
@@ -1509,7 +1509,7 @@ Please share the best fare.`;
         </section>
 
         {/* Feature Grid - Modern UI with React Icons */}
-        <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-primary/5">
+        <section className="py-12 bg-gradient-to-br from-gray-50 via-white to-primary/5 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             {/* Section Header */}
             <div className="text-center mb-16">
@@ -1591,7 +1591,7 @@ Please share the best fare.`;
         </section>
 
         {/* Customer Reviews Section */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-12 bg-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <span className="text-primary font-bold text-sm uppercase">
@@ -1684,7 +1684,7 @@ Please share the best fare.`;
         </section>
 
         {/* About Local Taxi Service (SEO Content) */}
-        <section className="py-20">
+        <section className="py-12 bg-white/95 border-b border-slate-300">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className="text-4xl font-bold mb-8">
               Local Sightseeing Taxi Service
@@ -1711,7 +1711,7 @@ Please share the best fare.`;
         </section>
 
         {/* FAQ */}
-        <section className="py-24 px-4 bg-muted/20">
+        <section className="py-12 px-4 bg-muted/20 border-b border-slate-300">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto inline-flex">FAQ</div>
@@ -1744,7 +1744,7 @@ Please share the best fare.`;
         </section>
 
         {/* Trust Badges */}
-        <div className="py-12 border-y">
+        <div className="py-12 border-b broder-slate-300 bg-white/95">
           <div className="flex flex-wrap justify-center gap-12 opacity-60">
             {[
               "🛡️ SafeTravels Certified",
@@ -1763,7 +1763,7 @@ Please share the best fare.`;
         </div>
 
         {/* Final CTA */}
-        <section className="py-20 px-4">
+        <section className="py-12 px-4">
           <div className="max-w-4xl mx-auto cta-banner">
             <h2 className="text-4xl font-extrabold mb-4">
               Ready to Book Your Ride?

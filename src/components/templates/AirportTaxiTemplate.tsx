@@ -71,6 +71,7 @@ import {
   getRouteWithPrice,
   calculateFare,
   getPricePerKm,
+  AirportRoute,
 } from "@/data/airportRoutes";
 
 interface FleetItem {
@@ -320,6 +321,12 @@ export default function AirportTaxiTemplate({
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [pickupLocation, setPickupLocation] = useState("");
+  const [airportSuggestions, setAirportSuggestions] = useState<AirportRoute[]>(
+  [],
+);
+
+const [showAirportSuggestions, setShowAirportSuggestions] =
+  useState(false);
   const [dropLocation, setDropLocation] = useState("");
   const [travelDate, setTravelDate] = useState("");
   const [travelTime, setTravelTime] = useState("");
@@ -327,6 +334,52 @@ export default function AirportTaxiTemplate({
   const [selectedVehicle, setSelectedVehicle] = useState("");
   const [activeCity, setActiveCity] = useState("Kolkata");
   const [activeTab, setActiveTab] = useState<"pickup" | "drop">("pickup");
+  const [activeField, setActiveField] = useState<"pickup" | "drop" | null>(
+  null
+);
+
+
+
+  //handlesolve
+
+  const handleAirportSearch = (value: string) => {
+  setPickupLocation(value);
+
+  if (tripType !== "pickup") {
+    return;
+  }
+
+  if (!value.trim()) {
+    setAirportSuggestions([]);
+    setShowAirportSuggestions(false);
+    return;
+  }
+
+  const search = value.toLowerCase().trim();
+
+  const results = POPULAR_ROUTES.filter((route) => {
+    if (route.type !== "pickup") return false;
+
+    return (
+      route.city.toLowerCase().includes(search) ||
+      route.to.toLowerCase().includes(search)
+    );
+  });
+
+  // Remove duplicate city + airport combinations
+  const uniqueResults = results.filter(
+    (route, index, self) =>
+      index ===
+      self.findIndex(
+        (item) =>
+          item.city === route.city &&
+          item.to === route.to,
+      ),
+  );
+
+  setAirportSuggestions(uniqueResults.slice(0, 8));
+  setShowAirportSuggestions(uniqueResults.length > 0);
+};
 
   // Scroll handler for sticky CTA
   useEffect(() => {
@@ -596,9 +649,8 @@ Please share the best fare.`;
       <div className="bg-background min-h-screen">
         {/* Sticky CTA Bar with Promo Code */}
         <div
-          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${
-            isScrolled ? "translate-y-0" : "translate-y-full"
-          }`}
+          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${isScrolled ? "translate-y-0" : "translate-y-full"
+            }`}
         >
           <div className="bg-gray-900 text-white shadow-2xl">
             <div className="max-w-7xl mx-auto px-4 py-3">
@@ -646,11 +698,11 @@ Please share the best fare.`;
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <img
-              src="/cab.png"
+              src="/airportshero.webp"
               alt="Chiku Cabs Premium Fleet"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/50" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
@@ -729,82 +781,209 @@ Please share the best fare.`;
 
                 <form className="space-y-5" onSubmit={handleGetEstimate}>
                   {/* Pickup Location */}
-                  <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
+                  
+                   
+
+                    <div className="relative">
+                       <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
                       📍
                     </span>
+  <input
+    type="text"
+    value={pickupLocation}
+    onChange={(e) => handleAirportSearch(e.target.value)}
+    placeholder={
+      tripType === "pickup"
+        ? "Airport Name"
+        : "Enter Pickup Address"
+    }
+    className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+      focus:bg-white
+      focus:border-primary
+      focus:ring-4
+      focus:ring-primary/10
+      outline-none
+      transition-all duration-300"
+    required
+  />
 
-                    <input
-                      type="text"
-                      value={pickupLocation}
-                      onChange={(e) => setPickupLocation(e.target.value)}
-                      placeholder={
-                        tripType === "pickup"
-                          ? "Airport Name"
-                          : "Enter Pickup Address"
-                      }
-                      className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-    focus:bg-white
-    focus:border-primary
-    focus:ring-4
-    focus:ring-primary/10
-    outline-none
-    transition-all duration-300"
-                      required
-                    />
-                  </div>
+  {/* Suggestions */}
+  {showAirportSuggestions &&
+    airportSuggestions.length > 0 && (
+      <div className="absolute left-0 right-0 top-full mt-2 z-50 bg-white border border-gray-200 rounded-2xl shadow-xl overflow-hidden">
+        {airportSuggestions.map((route) => (
+          <button
+            key={`${route.city}-${route.to}`}
+            type="button"
+            onClick={() => {
+              setPickupLocation(
+                `${route.city} - ${route.to}`,
+              );
+
+              setShowAirportSuggestions(false);
+            }}
+            className="w-full text-left px-5 py-4 hover:bg-gray-50 transition border-b last:border-b-0"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                ✈️
+              </div>
+
+              <div>
+                <p className="font-semibold text-gray-900">
+                  {route.city}
+                </p>
+
+                <p className="text-sm text-gray-500">
+                  {route.to}
+                </p>
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+    )}
+</div>
+                  
 
                   {/* Drop Location */}
-                  <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
-                      🎯
-                    </span>
+                 <div className="relative">
+  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg">
+    🎯
+  </span>
 
-                    <input
-                      type="text"
-                      value={dropLocation}
-                      onChange={(e) => setDropLocation(e.target.value)}
-                      placeholder={
-                        tripType === "pickup"
-                          ? "Enter Drop Address"
-                          : "Airport Name"
-                      }
-                      className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-    focus:bg-white
-    focus:border-primary
-    focus:ring-4
-    focus:ring-primary/10
-    outline-none
-    transition-all duration-300"
-                      required
-                    />
-                  </div>
+  <input
+    type="text"
+    value={dropLocation}
+    onFocus={() => setActiveField("drop")}
+    onChange={(e) => {
+      const value = e.target.value;
+      setDropLocation(value);
+
+      // Only show airport suggestions when selecting airport
+      if (tripType !== "pickup") {
+        const search = value.toLowerCase().trim();
+
+        if (!search) {
+          setAirportSuggestions([]);
+          setShowAirportSuggestions(false);
+          return;
+        }
+
+        const results = POPULAR_ROUTES.filter((route) => {
+          if (route.type !== "pickup") return false;
+
+          return (
+            route.city.toLowerCase().includes(search) ||
+            route.to.toLowerCase().includes(search)
+          );
+        });
+
+        const uniqueResults = results.filter(
+          (route, index, self) =>
+            index ===
+            self.findIndex(
+              (item) =>
+                item.city === route.city &&
+                item.to === route.to
+            )
+        );
+
+        setAirportSuggestions(uniqueResults.slice(0, 8));
+        setShowAirportSuggestions(uniqueResults.length > 0);
+      }
+    }}
+    placeholder={
+      tripType === "pickup"
+        ? "Enter Drop Address"
+        : "Airport Name"
+    }
+    className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
+      focus:bg-white
+      focus:border-primary
+      focus:ring-4
+      focus:ring-primary/10
+      outline-none
+      transition-all duration-300"
+    required
+  />
+
+  {/* Airport Suggestions */}
+  {tripType !== "pickup" &&
+    activeField === "drop" &&
+    showAirportSuggestions &&
+    airportSuggestions.length > 0 && (
+      <div className="absolute left-0 right-0 top-full mt-2 z-50 bg-white border border-gray-200 rounded-2xl shadow-xl overflow-hidden">
+        {airportSuggestions.map((route) => (
+          <button
+            key={`${route.city}-${route.to}`}
+            type="button"
+            onClick={() => {
+              setDropLocation(
+                `${route.city} - ${route.to}`
+              );
+
+              setShowAirportSuggestions(false);
+            }}
+            className="w-full text-left px-5 py-4 hover:bg-gray-50 transition border-b last:border-b-0"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                ✈️
+              </div>
+
+              <div>
+                <p className="font-semibold text-gray-900">
+                  {route.city}
+                </p>
+
+                <p className="text-sm text-gray-500">
+                  {route.to}
+                </p>
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+    )}
+</div>
 
                   {/* Trip Type Selection (Outstation Specific) */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <button
-                      type="button"
-                      onClick={() => setTripType("pickup")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${
-                        tripType === "pickup"
-                          ? "bg-primary text-white shadow-lg shadow-primary/20"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
-                    >
-                      Airport Pickup
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setTripType("drop")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${
-                        tripType === "drop"
-                          ? "bg-primary text-white shadow-lg shadow-primary/20"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
-                    >
-                      Airport Drop
-                    </button>
-                  </div>
+                 <div className="grid grid-cols-2 gap-4">
+  <button
+    type="button"
+    onClick={() => {
+      setTripType("pickup");
+      setPickupLocation("");
+      setDropLocation("");
+      setShowAirportSuggestions(false);
+    }}
+    className={`py-3 rounded-xl font-semibold transition-all ${
+      tripType === "pickup"
+        ? "bg-primary text-white shadow-lg shadow-primary/20"
+        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+    }`}
+  >
+    Airport Pickup
+  </button>
+
+  <button
+    type="button"
+    onClick={() => {
+      setTripType("drop");
+      setPickupLocation("");
+      setDropLocation("");
+      setShowAirportSuggestions(false);
+    }}
+    className={`py-3 rounded-xl font-semibold transition-all ${
+      tripType === "drop"
+        ? "bg-primary text-white shadow-lg shadow-primary/20"
+        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+    }`}
+  >
+    Airport Drop
+  </button>
+</div>
 
                   {/* Date & Time */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -938,7 +1117,7 @@ Please share the best fare.`;
         </section>
 
         {/* Stats Bar - Professional Version */}
-        <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-primary/10">
+        <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto">OUR REVIEWS</div>
@@ -968,7 +1147,7 @@ Please share the best fare.`;
         </section>
 
         {/* Fleet Gallery */}
-        <section className="py-24 px-4">
+        <section className="py-12 px-4 border-b border-slate-300">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
@@ -1103,7 +1282,7 @@ Please share the best fare.`;
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-20 px-4">
+        <section className="py-12 px-4 border-b border-slate-300">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
@@ -1178,7 +1357,7 @@ Please share the best fare.`;
         </section>
 
         {/* Airport Pickup Features */}
-        <section className="py-20 px-4">
+        <section className="py-12 px-4 border-b border-slate-300">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
@@ -1246,7 +1425,7 @@ Please share the best fare.`;
         </section>
 
         {/* Route Calculator with Slider */}
-        <section className="py-24 bg-gradient-to-r from-primary/5 to-secondary/5">
+        <section className="py-12 bg-gradient-to-r from-primary/5 to-secondary/5 border-b border-slate-300">
           <div className="max-w-4xl mx-auto px-4">
             <div className="text-center mb-12">
               <div className="section-badge mx-auto">CALCULATE FARE</div>
@@ -1311,11 +1490,10 @@ Please share the best fare.`;
                             dist * vehicleDetails.pricePerKm + DRIVER_CHARGE;
                           setEstimatedPrice(newPrice);
                         }}
-                        className={`py-2 rounded-lg text-sm font-medium transition-all ${
-                          Number(formData.distance) === dist
+                        className={`py-2 rounded-lg text-sm font-medium transition-all ${Number(formData.distance) === dist
                             ? "bg-primary text-white"
                             : "bg-muted hover:bg-primary/20"
-                        }`}
+                          }`}
                       >
                         {dist} km
                       </button>
@@ -1399,7 +1577,7 @@ Please share the best fare.`;
 
         {/* POPULAR AIRPORT CABS - All Cities Grid */}
         {/* ============================================================ */}
-        <section className="py-16 bg-white">
+        <section className="py-12 bg-white/95 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
@@ -1434,7 +1612,7 @@ Please share the best fare.`;
         {/* ============================================================ */}
         {/* POPULAR CAB ROUTES - Dynamic City Selection with Tabs */}
         {/* ============================================================ */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
@@ -1455,11 +1633,10 @@ Please share the best fare.`;
                     setActiveCity(city);
                     setActiveTab("pickup");
                   }}
-                  className={`px-5 py-2.5 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${
-                    activeCity === city
+                  className={`px-5 py-2.5 rounded-full font-semibold transition-all duration-300 whitespace-nowrap ${activeCity === city
                       ? "bg-[#BE1E23] text-white shadow-lg shadow-[#BE1E23]/20"
                       : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
-                  }`}
+                    }`}
                 >
                   {city} Airport
                 </button>
@@ -1471,21 +1648,19 @@ Please share the best fare.`;
               <div className="inline-flex bg-white rounded-xl shadow-md p-1.5 border border-gray-200">
                 <button
                   onClick={() => setActiveTab("pickup")}
-                  className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${
-                    activeTab === "pickup"
+                  className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${activeTab === "pickup"
                       ? "bg-[#BE1E23] text-white shadow-lg shadow-[#BE1E23]/20"
                       : "text-gray-600 hover:text-[#BE1E23] hover:bg-gray-50"
-                  }`}
+                    }`}
                 >
                   ✈️ Airport Pickup
                 </button>
                 <button
                   onClick={() => setActiveTab("drop")}
-                  className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${
-                    activeTab === "drop"
+                  className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${activeTab === "drop"
                       ? "bg-[#BE1E23] text-white shadow-lg shadow-[#BE1E23]/20"
                       : "text-gray-600 hover:text-[#BE1E23] hover:bg-gray-50"
-                  }`}
+                    }`}
                 >
                   🏠 Airport Drop
                 </button>
@@ -1528,11 +1703,10 @@ Please share the best fare.`;
                         Recommended: {route.recommended}
                       </span>
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                          route.type === "pickup"
+                        className={`px-3 py-1 rounded-full text-xs font-semibold ${route.type === "pickup"
                             ? "bg-green-50 text-green-700"
                             : "bg-orange-50 text-orange-700"
-                        }`}
+                          }`}
                       >
                         {route.type === "pickup"
                           ? "Airport Pickup"
@@ -1587,102 +1761,193 @@ Please share the best fare.`;
         </section>
 
         {/* How It Works */}
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <div className="section-badge mx-auto animate-pulse">
-                ⚡ SIMPLE & FAST
-              </div>
-              <h2 className="section-title mt-4">
-                Book Your Ride in{" "}
-                <span className="gradient-text">3 Easy Steps</span>
-              </h2>
-              <p className="section-subtitle mx-auto mt-4">
-                Experience hassle-free cab booking with our streamlined process
-              </p>
-            </div>
+        <section className="py-12 md:py-20 bg-white border-b border-slate-300">
+  <div className="max-w-7xl mx-auto px-4">
 
-            <div className="grid md:grid-cols-3 gap-8 relative">
-              {/* Connecting Line (Desktop) */}
-              <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2 z-0">
-                <div className="absolute left-1/3 right-1/3 h-full bg-primary"></div>
-              </div>
+    {/* Section Header */}
+    <div className="text-center max-w-3xl mx-auto mb-12">
+      <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full">
+        <span className="text-sm font-bold uppercase tracking-wider">
+          Simple & Fast Booking
+        </span>
+      </div>
 
-              {STEPS.map((item, i) => (
-                <div key={i} className="relative group">
-                  {/* Step Number Circle */}
-                  <div className="relative z-10">
-                    <div className="text-center">
-                      <div className="relative inline-block">
-                        <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-all duration-300">
-                          <div className="text-4xl font-black text-black">
-                            {item.step}
-                          </div>
-                        </div>
-                        {/* Pulse Effect */}
-                        <div className="absolute inset-0 bg-primary rounded-2xl opacity-0 group-hover:opacity-20 animate-ping"></div>
-                      </div>
+      <h2 className="mt-4 text-3xl md:text-4xl font-bold text-slate-900">
+        Book Your Cab in{" "}
+        <span className="text-primary">3 Easy Steps</span>
+      </h2>
 
-                      {/* Step Content */}
-                      <div className="mt-6 premium-card text-center group-hover:-translate-y-2 transition-all duration-300">
-                        <h3 className="font-bold text-xl mb-3 group-hover:text-primary transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
+      <p className="mt-4 text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        Book your airport taxi quickly with a simple and transparent
+        booking process. Choose your trip, enter your details and
+        confirm your ride.
+      </p>
+    </div>
 
-                      {/* Arrow Indicator (Desktop) */}
-                      {i < STEPS.length - 1 && (
-                        <div className="hidden md:block absolute top-12 -right-6 text-3xl text-primary/50 group-hover:text-primary transition-colors">
-                          →
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+    {/* Steps */}
+    <div className="relative grid md:grid-cols-3 gap-6 lg:gap-8">
 
-        {/* Service Areas Section - Clean Version */}
-        <section className="py-20 px-4 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            {/* Section Header */}
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-                <span className="text-primary font-bold text-sm uppercase tracking-wider">
-                  COVERAGE AREAS
+      {/* Connecting Line */}
+      <div className="hidden md:block absolute top-14 left-[16%] right-[16%] h-px bg-gradient-to-r from-primary/20 via-primary/50 to-primary/20" />
+
+      {STEPS.map((item, i) => (
+        <div
+          key={item.step}
+          className="relative z-10 group"
+        >
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 text-center shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300">
+
+            {/* Step Icon / Number */}
+            <div className="relative mx-auto w-20 h-20 mb-6">
+              <div
+                className="w-20 h-20 rounded-2xl bg-primary
+                flex items-center justify-center shadow-lg
+                shadow-primary/20
+                group-hover:-translate-y-1
+                transition-transform duration-300"
+              >
+                <span className="text-3xl font-extrabold text-white">
+                  {item.step}
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Airport Taxi Service Available In
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Pickup and drop service for Delhi IGI Airport from all these
-                locations
-              </p>
+
+              {/* Step Label */}
+              {/* <span
+                className="absolute -top-2 -right-2 w-7 h-7
+                rounded-full bg-slate-900 text-white text-xs
+                font-bold flex items-center justify-center"
+              >
+                {i + 1}
+              </span> */}
             </div>
 
-            {/* Contact CTA */}
-            <div className="text-center mt-10">
-              <p className="text-gray-500">
-                Need airport taxi from another city?{" "}
-                <a
-                  href="tel:+918448445504"
-                  className="text-primary font-bold hover:underline"
-                >
-                  Call us now
-                </a>
-              </p>
-            </div>
+            {/* Content */}
+            <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
+              {item.title}
+            </h3>
+
+            <p className="text-sm md:text-base text-slate-600 leading-relaxed">
+              {item.desc}
+            </p>
+
+            {/* Mobile Arrow */}
+            {i < STEPS.length - 1 && (
+              <div className="md:hidden mt-5 text-primary text-xl">
+                ↓
+              </div>
+            )}
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+
+    {/* Bottom CTA */}
+    <div className="mt-10 text-center">
+      <p className="text-sm text-slate-500">
+        Need help with your booking?{" "}
+        <a
+          href="tel:+918448445504"
+          className="font-semibold text-primary hover:underline"
+        >
+          Call us for assistance
+        </a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+        {/* Service Areas Section - Clean Version */}
+        <section className="py-12 md:py-20 px-4 bg-gray-50 border-b border-slate-300">
+  <div className="max-w-7xl mx-auto">
+
+    {/* Section Header */}
+    <div className="text-center max-w-3xl mx-auto mb-12">
+      <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-4">
+        <span className="text-sm font-bold uppercase tracking-wider">
+          Coverage Areas
+        </span>
+      </div>
+
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Airport Taxi Service Available Across Delhi NCR
+      </h2>
+
+      <p className="text-gray-600 leading-relaxed">
+        Book reliable airport pickup and drop services to and from
+        Delhi IGI Airport. Our airport cabs are available from major
+        cities, localities and residential areas across Delhi NCR.
+      </p>
+    </div>
+
+    {/* Location Cards */}
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
+      {[
+        "Noida",
+        "Greater Noida",
+        "Ghaziabad",
+        "Delhi",
+        "Gurugram",
+        "Faridabad",
+        "Indirapuram",
+        "Vaishali",
+        "Raj Nagar",
+        "Dwarka",
+        "Rohini",
+        "Greater Kailash",
+      ].map((location) => (
+        <div
+          key={location}
+          className="group bg-white border border-gray-200 rounded-xl p-4
+            text-center hover:border-primary/40 hover:shadow-md
+            transition-all duration-300"
+        >
+          <div className="w-9 h-9 mx-auto mb-2 rounded-full bg-primary/10
+            flex items-center justify-center text-primary
+            group-hover:bg-primary group-hover:text-white transition-colors"
+          >
+            📍
+          </div>
+
+          <p className="text-sm font-semibold text-gray-800">
+            {location}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    {/* Service Highlight */}
+    <div className="mt-10 bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+
+        <div>
+          <h3 className="text-xl md:text-2xl font-bold text-gray-900">
+            Need an Airport Cab from Another Location?
+          </h3>
+
+          <p className="mt-2 text-gray-600">
+            Get 24x7 airport pickup and drop service with verified
+            drivers and comfortable cabs.
+          </p>
+        </div>
+
+        <a
+          href="tel:+918448445504"
+          className="inline-flex items-center justify-center gap-2
+            bg-primary text-white font-semibold px-6 py-3 rounded-xl
+            hover:opacity-90 transition-all whitespace-nowrap"
+        >
+          📞 Call for Booking
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</section>
 
         {/* Customer Reviews Section */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <span className="text-primary font-bold text-sm uppercase">
@@ -1775,7 +2040,7 @@ Please share the best fare.`;
         </section>
 
         {/* FAQ */}
-        <section className="py-24 px-4 bg-muted/20">
+        <section className="py-24 px-4 bg-muted/20 border-b border-slate-300">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto inline-flex">FAQ</div>
@@ -1859,7 +2124,7 @@ Please share the best fare.`;
         </div>
 
         {/* Final CTA */}
-        <section className="py-20 px-4">
+        <section className="py-12 px-4 border-b border-slate-300">
           <div className="max-w-4xl mx-auto cta-banner">
             <h2 className="text-4xl font-extrabold mb-4">
               Ready to Book Your Ride?
