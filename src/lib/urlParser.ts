@@ -140,10 +140,14 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
 
   // 3. Outstation Route parsing (-to-)
   else if (lowerSegment.includes("-to-")) {
-    routeType = lowerSegment.endsWith("-fare")
-      ? "Outstation Route Fare"
-      : "Outstation Route";
+  const isOutstationFare =
+    lowerSegment.endsWith("-cab-fare") ||
+    lowerSegment.endsWith("-taxi-fare") ||
+    lowerSegment.endsWith("-outstation-route-fare");
 
+  routeType = isOutstationFare
+    ? "Outstation Route Fare"
+    : "Outstation Route";
     const parts = lowerSegment.split("-to-");
 
     if (parts.length === 2) {
@@ -152,6 +156,8 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
 
       // remove common suffix keywords
       afterTo = afterTo
+      .replace(/-outstation-route-fare$/, "")
+  .replace(/-outstation-route$/, "")
         .replace(/-cab-fare$/, "")
         .replace(/-taxi-fare$/, "")
         .replace(/-tempo-traveller-fare$/, "")
