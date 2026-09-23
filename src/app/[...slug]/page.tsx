@@ -34,6 +34,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string[] }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const slugValue = slug.join("/");
   const currentPath = `/${slug.join("/")}`;
   const isValidRoute = routeData.some(
     (r: { url: string }) =>
@@ -60,9 +61,30 @@ export async function generateMetadata({
   ];
   
 
-  if (parsed.routeType === "Outstation Route") {
+ if (
+  parsed.routeType === "Outstation Route" &&
+  slugValue.includes("tempo-traveller-hire")
+) {
+  title = `${parsed.origin} to ${parsed.destination} Tempo Traveller, Chiku Cabs @ ₹18/KM – Book Now `;
+
+  description = `Book a Tempo Traveller from ${parsed.origin} to ${parsed.destination} for comfortable group travel. Get spacious vehicles, professional drivers, transparent pricing and easy booking with Chiku Cabs. Call 9818022327 to book now.`;
+
+  keywords = [
+    `${parsed.origin} to ${parsed.destination} tempo traveller`,
+    `${parsed.origin} to ${parsed.destination} tempo traveller hire`,
+    `${parsed.origin} to ${parsed.destination} tempo traveller booking`,
+    `tempo traveller from ${parsed.origin} to ${parsed.destination}`,
+    `tempo traveller hire in ${parsed.origin}`,
+    `tempo traveller rental ${parsed.origin}`,
+    `${parsed.origin} tempo traveller`,
+    `${parsed.destination} tempo traveller`,
+    "Chiku Cabs",
+  ];
+
+} else if (parsed.routeType === "Outstation Route") {
     title = `${parsed.origin} to ${parsed.destination} One Way Cab | Easy Booking | Chiku Cabs`;
-description = `Book a one way cab from ${parsed.origin} to ${parsed.destination} starting from ₹9/km. Choose Sedan, SUV, Innova or Tempo Traveller based on your needs. Get transparent fares, verified drivers and easy booking with Chiku Cabs. Call 9818022327 to book now!`;    keywords = [
+description = `Book a one way cab from ${parsed.origin} to ${parsed.destination} starting With Fare Price. Choose Sedan, SUV, Innova or Tempo Traveller based on your needs. Get transparent fares, verified drivers and easy booking with Chiku Cabs. Call 9818022327 to book now!`;   
+ keywords = [
       `${parsed.origin} to ${parsed.destination} one way cab`,
       `${parsed.origin} to ${parsed.destination} drop taxi`,
       `${parsed.origin} to ${parsed.destination} cab`,
@@ -119,8 +141,8 @@ description = `Book a one way cab from ${parsed.origin} to ${parsed.destination}
   }
 
   title = location
-    ? `${vehicle} on Rent in ${location}, Noida Cabs @ ₹${price}/KM – Book Now`
-    : `${vehicle} on Rent, Noida Cabs Starting @ ₹${price}/KM – Book Now`;
+    ? `${vehicle} on Rent in ${location}, Chiku Cabs @ ₹${price}/KM – Book Now`
+    : `${vehicle} on Rent, Chiku Cabs Starting @ ₹${price}/KM – Book Now`;
 
   description = location
     ? `Hire verified ${vehicle} in ${location} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`
@@ -179,7 +201,7 @@ description = `Book a one way cab from ${parsed.origin} to ${parsed.destination}
         : parsed.vehicleCategory === "innova"
           ? " | 6-7 Seater"
           : "";
-    title = `${parsed.vehicle} on Rent Starting at ₹10/km, Chiku Cabs${seaterInfo} | India's #1 Rental Service`;
+    title = `${parsed.vehicle} on Rent Starting ₹10/km, Chiku Cabs${seaterInfo} | India's #1 Rental Service`;
     description = `Rent a premium ${parsed.vehicle} with Chiku Cabs. Verified drivers, 100+ cities. Travel outstation, local or airport trips safely. Call 9818022327 to book now.`;
     keywords = [
       `${vehicleLower} on rent`,

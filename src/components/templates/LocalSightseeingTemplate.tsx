@@ -241,9 +241,9 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
   }
 
   return {
-    ...baseDetails,
-    description: `Experience premium travel with our ${vehicle} rental service. Perfect for ${baseDetails.capacity} with ${baseDetails.luggage} capacity.`,
-  };
+  ...baseDetails,
+  description: `Book a ${vehicle} for local sightseeing and city tours. Travel comfortably with a professional driver for sightseeing, shopping, local attractions and multiple stops with transparent pricing and easy booking.`,
+};
 };
 
 const generateFAQs = (vehicle: string): FAQItem[] => [
@@ -570,8 +570,7 @@ Please share the best fare.`;
                 </h1>
 
                 <p className="text-lg mb-8 opacity-90 max-w-lg">
-                  {vehicleDetails.description} Professional drivers, sanitized
-                  cars, and 24/7 support.
+                  {vehicleDetails.description}
                 </p>
 
                 {/* Quick Action Buttons */}

@@ -332,9 +332,9 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
   }
 
   return {
-    ...baseDetails,
-    description: `Experience premium travel with our ${vehicle} rental service. Perfect for ${baseDetails.capacity} with ${baseDetails.luggage} capacity.`,
-  };
+  ...baseDetails,
+  description: `Book a ${vehicle} for a comfortable one way journey. Travel from your pickup city to your destination with a professional driver, reliable service and transparent pricing. Ideal for family trips, business travel and outstation journeys.`,
+};
 };
 
 const generateFAQs = (vehicle: string): FAQItem[] => [
@@ -637,8 +637,7 @@ export default function OneWayTemplate({
                 </h1>
 
                 <p className="text-lg mb-8 opacity-90 max-w-lg">
-                  {vehicleDetails.description} Professional drivers, sanitized
-                  cars, and 24/7 support.
+                  {vehicleDetails.description}
                 </p>
 
                 {/* Quick Action Buttons */}

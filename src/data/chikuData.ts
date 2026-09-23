@@ -52,7 +52,7 @@ export const SERVICES = [
     iconName: "users", // Group seating
   },
   {
-    name: "Car hourly Rental",
+    name: "Car Rental",
     desc: "Self-drive & chauffeur options",
     href: "/car-rental",
     color: "#06b6d4",

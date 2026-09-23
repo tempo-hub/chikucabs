@@ -267,9 +267,9 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
   }
 
   return {
-    ...baseDetails,
-    description: `Experience premium travel with our ${vehicle} rental service. Perfect for ${baseDetails.capacity} with ${baseDetails.luggage} capacity.`,
-  };
+  ...baseDetails,
+  description: `Book a ${vehicle} for comfortable outstation travel. Enjoy well-maintained vehicles, professional drivers, spacious seating and reliable service for family trips, group journeys and long-distance travel.`,
+};
 };
 
 const generateFAQs = (vehicle: string): FAQItem[] => [
