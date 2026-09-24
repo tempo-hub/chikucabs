@@ -44,6 +44,7 @@ import { TbTargetArrow } from "react-icons/tb";
 import { SlCalender } from "react-icons/sl";
 import Head from "next/head";
 import Script from "next/script";
+import { cities } from "@/data/cities";
 
 // --- Type Definitions ---
 interface FormData {
@@ -84,7 +85,7 @@ const VEHICLE_DETAILS_MAP: Record<
   tempo: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 24,
+    pricePerKm: 20,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -97,7 +98,7 @@ const VEHICLE_DETAILS_MAP: Record<
   traveller: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
+    pricePerKm: 20,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -110,7 +111,7 @@ const VEHICLE_DETAILS_MAP: Record<
   bus: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
+    pricePerKm: 20,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -123,7 +124,7 @@ const VEHICLE_DETAILS_MAP: Record<
   innova: {
     icon: "✨",
     image: "/innova.png",
-    pricePerKm: 17,
+    pricePerKm: 16,
     capacity: "6-7 Passengers",
     luggage: "4-5 Bags",
     features: ["Leather Seats", "AC", "WiFi", "Charging Ports"],
@@ -220,7 +221,7 @@ const TEMPO_DATA = [
     seater: 9,
     tier: "PREMIUM",
     desc: "Perfect for small family trips & executive travel",
-    price: 24,
+    price: 20,
     seating: "2+2+2+3 Pushback",
     luggage: "8-10 Bags",
     best: false,
@@ -230,7 +231,7 @@ const TEMPO_DATA = [
     seater: 12,
     tier: "STANDARD",
     desc: "Ideal for medium groups & corporate outings",
-    price: 25,
+    price: 22,
     seating: "3+3+3+3 Pushback",
     luggage: "12-15 Bags",
     best: true,
@@ -240,7 +241,7 @@ const TEMPO_DATA = [
     seater: 15,
     tier: "PREMIUM",
     desc: "Great for large families & group tours",
-    price: 26,
+    price: 23,
     seating: "3+3+3+3+3 Pushback",
     luggage: "15-18 Bags",
     best: false,
@@ -250,7 +251,7 @@ const TEMPO_DATA = [
     seater: 16,
     tier: "STANDARD",
     desc: "Spacious for long journeys & luggage",
-    price: 26,
+    price: 25,
     seating: "4+4+4+4 Pushback",
     luggage: "18-20 Bags",
     best: false,
@@ -260,7 +261,7 @@ const TEMPO_DATA = [
     seater: 18,
     tier: "PREMIUM",
     desc: "Perfect for big groups & destination weddings",
-    price: 28,
+    price: 27,
     seating: "3+3+3+3+3+3 Pushback",
     luggage: "20-25 Bags",
     best: false,
@@ -270,7 +271,7 @@ const TEMPO_DATA = [
     seater: 20,
     tier: "LUXURY",
     desc: "Max capacity for large events & tours",
-    price: 30,
+    price: 29,
     seating: "4+4+4+4+4 Pushback",
     luggage: "25-30 Bags",
     best: false,
@@ -326,6 +327,20 @@ export default function TempoTravellerTemplate({
   const [returnDate, setReturnDate] = useState("");
   const [tripType, setTripType] = useState("one-way");
   const [selectedVehicle, setSelectedVehicle] = useState("");
+const [selectedDestinationCity, setSelectedDestinationCity] = useState("");
+const [showAllDestinations, setShowAllDestinations] = useState(false);
+const [showAllFareCities, setShowAllFareCities] = useState(false);
+
+
+useEffect(() => {
+  const cityKeys = Object.keys(groupedTempoRoutes);
+
+  if (cityKeys.length > 0 && !cityKeys.includes(selectedDestinationCity)) {
+    setSelectedDestinationCity(cityKeys[0]);
+  }
+}, [groupedTempoRoutes, selectedDestinationCity]);
+
+
 
   // Scroll handler for sticky CTA
   useEffect(() => {
@@ -367,8 +382,8 @@ export default function TempoTravellerTemplate({
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "INR",
-      lowPrice: "24",
-      highPrice: "30",
+      lowPrice: "20",
+      highPrice: "29",
       offerCount: 6,
       availability: "https://schema.org/InStock",
       validFrom: "2024-01-01",
@@ -522,6 +537,48 @@ Please share the best fare.`;
       calculateFare(); // This already includes ₹500 driver charge
     }
   }, []); // Empty dependency array - runs once on mount
+
+  const farePickupCities = useMemo(() => {
+  const farePrefix = "/tempo-traveller-fare-in-";
+
+  // Get only fare URLs
+  const fareUrls = (routeData as { url: string }[])
+    .filter((item) => item.url.startsWith(farePrefix));
+
+  return fareUrls
+    .map((item) => {
+      const slug = item.url
+        .replace(farePrefix, "")
+        .replace(/\/$/, "");
+
+      const city = cities.find(
+        (city) =>
+          city.name.toLowerCase().replace(/\s+/g, "-") ===
+          slug.toLowerCase()
+      );
+
+      if (!city) return null;
+
+      return {
+        ...city,
+        url: item.url,
+      };
+    })
+    .filter(
+      (
+        city
+      ): city is {
+        name: string;
+        description: string;
+        url: string;
+      } => city !== null
+    );
+}, []);
+
+//fare list
+const visibleFarePickupCities = showAllFareCities
+  ? farePickupCities
+  : farePickupCities.slice(0, 40);
 
   return (
     <>
@@ -1280,109 +1337,287 @@ Please share the best fare.`;
 
             {/* City Filter Tabs */}
             <div className="mb-12">
-              <div className="flex flex-wrap justify-center gap-3">
-                {Object.keys(groupedTempoRoutes).map((cityKey) => (
-                  <a
-                    key={cityKey}
-                    href={`#dest-${cityKey}`}
-                    className="
-              px-5
-              py-2.5
+  <div className="flex flex-wrap justify-center gap-3">
+    {Object.keys(groupedTempoRoutes).map((cityKey) => {
+      const cityName =
+        CITY_DISPLAY_NAMES[cityKey] ??
+        cityKey
+          .split("-")
+          .map(
+            (word) =>
+              word.charAt(0).toUpperCase() + word.slice(1)
+          )
+          .join(" ");
+
+      const isSelected = selectedDestinationCity === cityKey;
+
+      return (
+        <button
+          key={cityKey}
+          type="button"
+          onClick={() => {
+            setSelectedDestinationCity(cityKey);
+            setShowAllDestinations(false);
+          }}
+          className={`
+            px-5
+            py-2.5
+            rounded-full
+            border
+            text-sm
+            font-semibold
+            shadow-sm
+            transition-all
+            duration-300
+            ${
+              isSelected
+                ? "bg-[#BE1E23] text-white border-[#BE1E23] shadow-xl scale-105"
+                : "bg-white text-gray-700 border-gray-200 hover:bg-[#BE1E23] hover:text-white hover:border-[#BE1E23] hover:shadow-xl hover:scale-105"
+            }
+          `}
+        >
+          {cityName}
+        </button>
+      );
+    })}
+  </div>
+</div>
+
+            {/* Destination Cards by City - ALL ROUTES SHOWN */}
+            {(() => {
+  const cityKey = selectedDestinationCity;
+
+  const routes = groupedTempoRoutes[cityKey] ?? [];
+
+  const cityName =
+    CITY_DISPLAY_NAMES[cityKey] ??
+    cityKey
+      .split("-")
+      .map(
+        (word) =>
+          word.charAt(0).toUpperCase() + word.slice(1)
+      )
+      .join(" ");
+
+  const visibleRoutes = showAllDestinations
+    ? routes
+    : routes.slice(0, 18);
+
+  return (
+    <div className="mb-14">
+      {/* City Header */}
+      <div className="flex flex-wrap items-center gap-3 mb-6">
+        <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white text-lg">
+          <IoLocationSharp />
+        </div>
+
+        <h3 className="text-2xl font-bold text-gray-800">
+          Top Destinations from {cityName}
+        </h3>
+
+        <span className="text-sm text-gray-400 bg-gray-100 px-3 py-1 rounded-full">
+          {routes.length} routes
+        </span>
+      </div>
+
+      {/* Destination Cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {visibleRoutes.map((route, idx) => (
+          <Link
+            key={`${route.url}-${idx}`}
+            href={route.url}
+            className="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300"
+          >
+            {/* Icon */}
+            <div className="w-10 h-10 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl flex items-center justify-center mb-3 group-hover:from-primary/20 group-hover:to-primary/10 transition-colors">
+              <span className="text-lg">🚐</span>
+            </div>
+
+            {/* Destination Name */}
+            <h4 className="font-bold text-gray-800 text-sm mb-1 group-hover:text-primary transition-colors leading-tight capitalize">
+              {route.to}
+            </h4>
+
+            {/* Price */}
+            <div className="flex items-center justify-between mt-2">
+              <span className="text-xs font-semibold text-primary">
+                Starting ₹20/km
+              </span>
+
+              <span className="text-xs text-gray-400 group-hover:text-primary transition-colors">
+                →
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* View More / View Less */}
+      {routes.length > 18 && (
+        <div className="flex justify-center mt-8">
+          <button
+            type="button"
+            onClick={() =>
+              setShowAllDestinations((prev) => !prev)
+            }
+            className="px-7 py-3 rounded-xl bg-primary text-white font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+          >
+            {showAllDestinations
+              ? "View Less ↑"
+              : `View More (${routes.length - 18} more) ↓`}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+})()}
+          </div>
+        </section>
+
+
+        {/* Choose Your Fare Pickup City */}
+{/* Choose Your Fare Pickup City */}
+<section className="py-10 bg-white border-b border-slate-200">
+  <div className="max-w-7xl mx-auto px-4">
+
+    {/* Section Header */}
+    <div className="text-center mb-8">
+      <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+        Choose Your Fare Pickup City
+      </h2>
+
+      <p className="mt-2 text-sm md:text-base text-slate-500">
+        Select your pickup city to check Tempo Traveller fare and booking
+        options.
+      </p>
+    </div>
+
+    {/* City Cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {visibleFarePickupCities.map((city) => (
+        <Link
+          key={city.url}
+          href={city.url}
+          className="
+            group
+            relative
+            flex
+            items-center
+            justify-between
+            min-h-[84px]
+            px-5
+            py-4
+            bg-white
+            border
+            border-slate-200
+            border-l-4
+            border-l-primary
+            rounded-xl
+            shadow-sm
+            hover:shadow-md
+            hover:-translate-y-0.5
+            hover:border-primary/40
+            transition-all
+            duration-300
+          "
+        >
+          {/* Left Content */}
+          <div className="flex items-center gap-4 min-w-0">
+
+            {/* Location Icon */}
+            <div
+              className="
+                flex
+                h-10
+                w-10
+                shrink-0
+                items-center
+                justify-center
+                rounded-xl
+                bg-primary/10
+                text-primary
+                group-hover:bg-primary
+                group-hover:text-white
+                transition-all
+                duration-300
+              "
+            >
+              <FaLocationDot size={16} />
+            </div>
+
+            {/* City */}
+            <div className="min-w-0">
+              <h3 className="text-base font-bold text-slate-900 truncate">
+                {city.name}
+              </h3>
+
+              <p className="mt-0.5 text-xs text-slate-500 line-clamp-2">
+                {city.description}
+              </p>
+            </div>
+          </div>
+
+          {/* Arrow */}
+          <div
+            className="
+              ml-3
+              flex
+              h-8
+              w-8
+              shrink-0
+              items-center
+              justify-center
               rounded-full
-              bg-white
-              border
-              border-gray-200
-              text-gray-700
-              text-sm
-              font-semibold
-              shadow-sm
-              hover:bg-[#BE1E23]
-              hover:text-white
-              hover:border-[#BE1E23]
-              hover:shadow-xl
-              hover:scale-105
+              bg-primary/10
+              text-primary
+              group-hover:bg-primary
+              group-hover:text-white
               transition-all
               duration-300
             "
-                  >
-                    <span className="capitalize">
-                      {CITY_DISPLAY_NAMES[cityKey] ??
-                        cityKey
-                          .split("-")
-                          .map(
-                            (word) =>
-                              word.charAt(0).toUpperCase() + word.slice(1),
-                          )
-                          .join(" ")}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Destination Cards by City - ALL ROUTES SHOWN */}
-            {Object.entries(groupedTempoRoutes).map(([cityKey, routes]) => {
-              const cityName =
-                CITY_DISPLAY_NAMES[cityKey] ??
-                cityKey
-                  .split("-")
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(" ");
-
-              return (
-                <div
-                  key={cityKey}
-                  id={`dest-${cityKey}`}
-                  className="mb-14 scroll-mt-24"
-                >
-                  {/* City Header */}
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white text-lg">
-                      <IoLocationSharp />
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-800">
-                      Top Destinations from {cityName}
-                    </h3>
-                    <span className="text-sm text-gray-400 bg-gray-100 px-3 py-1 rounded-full">
-                      {routes.length} routes
-                    </span>
-                  </div>
-
-                  {/* Cards Grid - ALL ROUTES DISPLAYED */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    {routes.map((route, idx) => (
-                      <Link
-                        key={idx}
-                        href={route.url}
-                        className="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300"
-                      >
-                        {/* Icon */}
-                        <div className="w-10 h-10 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl flex items-center justify-center mb-3 group-hover:from-primary/20 group-hover:to-primary/10 transition-colors">
-                          <span className="text-lg">🚐</span>
-                        </div>
-
-                        {/* Destination Name */}
-                        <h4 className="font-bold text-gray-800 text-sm mb-1 group-hover:text-primary transition-colors leading-tight capitalize">
-                          {route.to}
-                        </h4>
-
-                        {/* Price Indicator */}
-                        <div className="flex items-center justify-between mt-2">
-                          <span className="text-xs font-semibold text-primary">
-                            Starting ₹24/km
-                          </span>
-                          <span className="text-xs text-gray-400 group-hover:text-primary transition-colors">
-                            →
-                          </span>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
+          >
+            <span className="text-lg leading-none">
+              →
+            </span>
           </div>
-        </section>
+        </Link>
+      ))}
+    </div>
+
+    {/* View All Routes */}
+    {farePickupCities.length > 40 && (
+      <div className="flex justify-center mt-8">
+        <button
+          type="button"
+          onClick={() =>
+            setShowAllFareCities((prev) => !prev)
+          }
+          className="
+            inline-flex
+            items-center
+            gap-2
+            px-7
+            py-3
+            rounded-xl
+            bg-primary
+            text-white
+            font-semibold
+            shadow-md
+            hover:shadow-lg
+            hover:-translate-y-0.5
+            transition-all
+            duration-300
+          "
+        >
+          {showAllFareCities
+            ? "View Less ↑"
+            : `View All Routes (${farePickupCities.length - 40} more) ↓`}
+        </button>
+      </div>
+    )}
+
+  </div>
+</section>
 
         {/* How It Works */}
         <section className="py-12 md:py-20 bg-white border-b border-slate-200">

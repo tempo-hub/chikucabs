@@ -24,6 +24,7 @@ import TempoTravellerTemplate from "@/components/templates/TempoTravellerTemplat
 import LocalSightseeingTemplate from "@/components/templates/LocalSightseeingTemplate";
 import ErtigaServiceTemplate from "@/components/templates/ErtigaServiceTemplate";
 import DzireServiceTemplate from "@/components/templates/DzireServiceTemplate";
+import TempoTravellerFareTemplate from "@/components/templates/tempo-fare/TempoTravellerFareTemplate";
 
 // We do NOT pre-render all 4476 routes at build time (causes timeout on Vercel).
 // Pages are generated on first request and cached via ISR (revalidate below).
@@ -65,7 +66,7 @@ export async function generateMetadata({
   parsed.routeType === "Outstation Route" &&
   slugValue.includes("tempo-traveller-hire")
 ) {
-  title = `${parsed.origin} to ${parsed.destination} Tempo Traveller, Chiku Cabs @ ₹18/KM – Book Now `;
+  title = `${parsed.origin} to ${parsed.destination} Tempo Traveller, Chiku Cabs @ ₹20/KM – Book Now `;
 
   description = `Book a Tempo Traveller from ${parsed.origin} to ${parsed.destination} for comfortable group travel. Get spacious vehicles, professional drivers, transparent pricing and easy booking with Chiku Cabs. Call 9818022327 to book now.`;
 
@@ -78,6 +79,27 @@ export async function generateMetadata({
     `tempo traveller rental ${parsed.origin}`,
     `${parsed.origin} tempo traveller`,
     `${parsed.destination} tempo traveller`,
+    "Chiku Cabs",
+  ];
+
+  } else if (parsed.routeType === "Tempo Traveller Fare") {
+  const city = parsed.origin || "";
+
+  title = `Tempo Traveller Fare in ${city} | Chiku Cabs @ ₹20/KM – Book Now`;
+
+  description = `Check Tempo Traveller fare in ${city}. Compare 9, 12, 16, 20 and 26 seater Tempo Traveller options for family trips, group travel, sightseeing, weddings and outstation journeys with Chiku Cabs. Call 9818022327 to book now.`;
+
+  keywords = [
+    `tempo traveller fare in ${city}`,
+    `tempo traveller price in ${city}`,
+    `tempo traveller rental in ${city}`,
+    `tempo traveller booking in ${city}`,
+    `tempo traveller hire in ${city}`,
+    `${city} tempo traveller fare`,
+    `${city} tempo traveller price`,
+    `${city} tempo traveller booking`,
+    `tempo traveller on rent in ${city}`,
+    `tempo traveller in ${city}`,
     "Chiku Cabs",
   ];
 
@@ -120,7 +142,7 @@ description = `Book a one way cab from ${parsed.origin} to ${parsed.destination}
         ? 13
         : parsed.vehicleCategory === "innova"
           ? 16
-          : 24;
+          : 20;
 
   let location = "";
 
@@ -574,7 +596,13 @@ export default async function DynamicRoutePage({
     if (slugValue === "tempo-traveller-on-rent") {
       return <TempoTravellerTemplate parsedData={parsed} />;
     }
-
+    if (parsed.routeType === "Tempo Traveller Fare") {
+  return (
+    <TempoTravellerFareTemplate
+      city={parsed.origin || ""}
+    />
+  );
+}
     if (parsed.vehicleCategory === "tempo-traveller") {
       if (
         parsed.routeType === "Outstation Route" ||

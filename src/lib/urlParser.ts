@@ -11,6 +11,7 @@ export interface ParsedRouteData {
     | "Local Service"
     | "Outstation Route"
     | "Outstation Route Fare"
+    | "Tempo Traveller Fare"
     | "Driver Service"
     | "Unknown";
   isLegacyPhp: boolean;
@@ -137,6 +138,22 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
   //     destination = afterToWords[0]; // usually the word right after '-to-'
   //   }
   // }
+
+  // 3. Tempo Traveller Fare Pages
+else if (
+  lowerSegment.startsWith("tempo-traveller-fare-in-")
+) {
+  routeType = "Tempo Traveller Fare";
+
+  const citySlug = lowerSegment.replace(
+    "tempo-traveller-fare-in-",
+    ""
+  );
+
+  origin = citySlug;
+  displayCity = citySlug;
+  vehicle = "Tempo Traveller";
+}
 
   // 3. Outstation Route parsing (-to-)
   else if (lowerSegment.includes("-to-")) {

@@ -121,6 +121,95 @@ export default function TempoTravellerRouteTemplate({
         </div>
       </section>
 
+      {/* Pricing by Seating */}
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div
+              className="section-badge mx-auto"
+              style={{ display: "inline-flex" }}
+            >
+              PRICING
+            </div>
+            <h2 className="section-title">
+              {startCity} to {endCity} Tempo Traveller Rates
+            </h2>
+            <p className="section-subtitle mx-auto">
+              Choose the seating capacity that fits your group.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              {
+                seats: "9 Seater",
+                price: "₹20/km",
+                desc: "Ideal for small families",
+                best: false,
+              },
+              {
+                seats: "12 Seater",
+                price: "₹22/km",
+                desc: "Best for medium groups",
+                best: true,
+              },
+              {
+                seats: "16 Seater",
+                price: "₹25/km",
+                desc: "Perfect for large groups",
+                best: false,
+              },
+              {
+                seats: "20 Seater",
+                price: "₹29/km",
+                desc: "Maximum capacity",
+                best: false,
+              },
+            ].map((pkg, i) => (
+              <div
+                key={i}
+                className={`package-card ${pkg.best ? "popular" : ""}`}
+              >
+                {pkg.best && <div className="package-badge">Most Popular</div>}
+                <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>
+                  🚐
+                </div>
+                <h3 className="text-xl font-black mb-1">{pkg.seats}</h3>
+                <div
+                  className="package-price"
+                  style={{ color: "hsl(var(--primary))" }}
+                >
+                  {pkg.price}
+                </div>
+                <div className="package-unit">{pkg.desc}</div>
+                <ul className="package-features">
+                  {[
+                    "AC Pushback Seats",
+                    "Driver + Fuel Incl.",
+                    "Luggage Carrier",
+                    "Music System",
+                  ].map((f, j) => (
+                    <li key={j}>
+                      <span className="text-green-500">✔</span> {f}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    `Hi Chiku Cabs, I am interested in booking a Tempo Traveller (${pkg.seats}) through your website. Please help me with the booking.`,
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary w-full py-3 text-sm"
+                  style={{ display: "block", textAlign: "center" }}
+                >
+                  Book {pkg.seats}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Why Tempo Traveller */}
       <section className="py-24 px-4">
         <div className="max-w-7xl mx-auto">
@@ -179,92 +268,38 @@ export default function TempoTravellerRouteTemplate({
         </div>
       </section>
 
-      {/* Pricing by Seating */}
-      <section className="py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div
-              className="section-badge mx-auto"
-              style={{ display: "inline-flex" }}
+      
+
+      
+
+      <section className="max-w-7xl mx-auto px-4 py-16">
+        <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
+          Nearby Routes from {startCity}
+        </h2>
+
+        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
+          Explore similar destinations and plan your group trip with more
+          options.
+        </p>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {nearbyRoutes.map((route) => (
+            <a
+              key={route.slug}
+              href={route.slug}
+              className="homepage-service-card group"
             >
-              PRICING
-            </div>
-            <h2 className="section-title">
-              {startCity} to {endCity} Tempo Traveller Rates
-            </h2>
-            <p className="section-subtitle mx-auto">
-              Choose the seating capacity that fits your group.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              {
-                seats: "12 Seater",
-                price: "₹18/km",
-                desc: "Ideal for small families",
-                best: false,
-              },
-              {
-                seats: "16 Seater",
-                price: "₹22/km",
-                desc: "Best for medium groups",
-                best: true,
-              },
-              {
-                seats: "20 Seater",
-                price: "₹25/km",
-                desc: "Perfect for large groups",
-                best: false,
-              },
-              {
-                seats: "26 Seater",
-                price: "₹28/km",
-                desc: "Maximum capacity",
-                best: false,
-              },
-            ].map((pkg, i) => (
-              <div
-                key={i}
-                className={`package-card ${pkg.best ? "popular" : ""}`}
-              >
-                {pkg.best && <div className="package-badge">Most Popular</div>}
-                <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>
-                  🚐
-                </div>
-                <h3 className="text-xl font-black mb-1">{pkg.seats}</h3>
-                <div
-                  className="package-price"
-                  style={{ color: "hsl(var(--primary))" }}
-                >
-                  {pkg.price}
-                </div>
-                <div className="package-unit">{pkg.desc}</div>
-                <ul className="package-features">
-                  {[
-                    "AC Pushback Seats",
-                    "Driver + Fuel Incl.",
-                    "Luggage Carrier",
-                    "Music System",
-                  ].map((f, j) => (
-                    <li key={j}>
-                      <span className="text-green-500">✔</span> {f}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={`https://wa.me/916280820037?text=${encodeURIComponent(
-                    `Hi Chiku Cabs, I am interested in booking a Tempo Traveller (${pkg.seats}) through your website. Please help me with the booking.`,
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary w-full py-3 text-sm"
-                  style={{ display: "block", textAlign: "center" }}
-                >
-                  Book {pkg.seats}
-                </a>
-              </div>
-            ))}
-          </div>
+              <h3 className="text-xl font-semibold mb-2">
+                {getAnchorText(route.slug)}
+              </h3>
+
+              <p className="text-muted-foreground mb-4">
+                Tempo Traveller Booking
+              </p>
+
+              <span className="text-primary font-semibold">View Fare →</span>
+            </a>
+          ))}
         </div>
       </section>
 
@@ -404,37 +439,6 @@ export default function TempoTravellerRouteTemplate({
               💬 WhatsApp Us
             </a>
           </div>
-        </div>
-      </section>
-
-      <section className="max-w-7xl mx-auto px-4 py-16">
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
-          Nearby Routes from {startCity}
-        </h2>
-
-        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
-          Explore similar destinations and plan your group trip with more
-          options.
-        </p>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {nearbyRoutes.map((route) => (
-            <a
-              key={route.slug}
-              href={route.slug}
-              className="homepage-service-card group"
-            >
-              <h3 className="text-xl font-semibold mb-2">
-                {getAnchorText(route.slug)}
-              </h3>
-
-              <p className="text-muted-foreground mb-4">
-                Tempo Traveller Booking
-              </p>
-
-              <span className="text-primary font-semibold">View Fare →</span>
-            </a>
-          ))}
         </div>
       </section>
 
