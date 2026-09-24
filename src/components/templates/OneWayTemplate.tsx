@@ -332,9 +332,9 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
   }
 
   return {
-    ...baseDetails,
-    description: `Experience premium travel with our ${vehicle} rental service. Perfect for ${baseDetails.capacity} with ${baseDetails.luggage} capacity.`,
-  };
+  ...baseDetails,
+  description: `Book a ${vehicle} for a comfortable one way journey. Travel from your pickup city to your destination with a professional driver, reliable service and transparent pricing. Ideal for family trips, business travel and outstation journeys.`,
+};
 };
 
 const generateFAQs = (vehicle: string): FAQItem[] => [
@@ -614,11 +614,11 @@ export default function OneWayTemplate({
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <img
-              src="/cab.png"
+              src="/oneway.webp"
               alt="Chiku Cabs Premium Fleet"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/50" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
@@ -637,8 +637,7 @@ export default function OneWayTemplate({
                 </h1>
 
                 <p className="text-lg mb-8 opacity-90 max-w-lg">
-                  {vehicleDetails.description} Professional drivers, sanitized
-                  cars, and 24/7 support.
+                  {vehicleDetails.description}
                 </p>
 
                 {/* Quick Action Buttons */}
@@ -803,7 +802,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* Stats Bar - Professional Version */}
-        <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-primary/10">
+        <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto">OUR REVIEWS</div>
@@ -833,7 +832,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* Available Vehicles */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -963,7 +962,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* Why Chiku Cabs for One Way */}
-        <section className="bg-muted/30 py-24 border-y px-4">
+        <section className="bg-muted/30 py-24 border-b border-slate-300 px-4">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <div
@@ -1027,7 +1026,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* Route Calculator with Slider */}
-        <section className="py-24 bg-gradient-to-r from-primary/5 to-secondary/5">
+        <section className="py-24 bg-gradient-to-r from-primary/5 to-secondary/5 border-b border-slate-300">
           <div className="max-w-4xl mx-auto px-4">
             <div className="text-center mb-12">
               <div className="section-badge mx-auto">CALCULATE FARE</div>
@@ -1179,7 +1178,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* Popular Travel Destinations - Enhanced UI */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-gray-800 mb-2">
@@ -1325,7 +1324,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* Popular Routes Table - Dynamic Pricing */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -1410,7 +1409,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* How It Works */}
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-24 bg-gradient-to-b from-white to-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto animate-pulse">
@@ -1471,7 +1470,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* Service Coverage */}
-        <section className="py-24">
+        <section className="py-24 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto">SERVICE AREAS</div>
@@ -1493,7 +1492,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* Feature Grid - Modern UI with React Icons */}
-        <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-primary/5">
+        <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-primary/5 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             {/* Section Header */}
             <div className="text-center mb-16">
@@ -1575,7 +1574,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* Customer Reviews Section */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <span className="text-primary font-bold text-sm uppercase">
@@ -1668,7 +1667,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* FAQ */}
-        <section className="py-24 px-4 bg-muted/20">
+        <section className="py-24 px-4 bg-muted/20 border-b border-slate-300">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto inline-flex">FAQ</div>
@@ -1700,7 +1699,7 @@ export default function OneWayTemplate({
         </section>
 
         {/* Trust Badges */}
-        <div className="py-12 border-y">
+        <div className="py-12 border-b border-slate-300">
           <div className="flex flex-wrap justify-center gap-12 opacity-60">
             {[
               "🛡️ SafeTravels Certified",
@@ -1719,7 +1718,7 @@ export default function OneWayTemplate({
         </div>
 
         {/* Final CTA */}
-        <section className="py-20 px-4">
+        <section className="py-20 px-4 border-b border-slate-300">
           <div className="max-w-4xl mx-auto cta-banner">
             <h2 className="text-4xl font-extrabold mb-4">
               Ready to Book Your Ride?

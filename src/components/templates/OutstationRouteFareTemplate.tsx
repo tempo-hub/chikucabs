@@ -1659,15 +1659,15 @@ Please confirm the final fare and availability.`;
 
               <table className="w-full min-w-[720px] border-collapse">
 
-                <thead>
+                <thead className="">
 
                   <tr className="border-b bg-gray-50 text-left">
 
-                    <th className="px-5 py-4 font-bold">
+                    <th className="px-5 py-4 font-bold min-w-[180px]  ">
                       Vehicle
                     </th>
 
-                    <th className="px-5 py-4 font-bold">
+                    <th className="px-5 py-4 font-bold ">
                       Category
                     </th>
 

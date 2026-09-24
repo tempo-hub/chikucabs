@@ -182,7 +182,7 @@ const FLEET_DATA: FleetItem[] = [
   {
     tier: "POPULAR",
     car: "Sedan",
-    price: "11",
+    price: "10",
     image: "/sedan.png",
     desc: "Dzire, Ertiga or similar",
     best: true,
@@ -191,7 +191,7 @@ const FLEET_DATA: FleetItem[] = [
   {
     tier: "LUXURY",
     car: "Innova",
-    price: "17",
+    price: "16",
     image: "/innova.png",
     desc: "Innova Crysta, Force Urbania",
     best: false,
@@ -609,11 +609,11 @@ export default function ServiceTemplate({
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <img
-              src="/cab.png"
+              src="/cabonrent.webp"
               alt="Chiku Cabs Premium Fleet"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/50" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
@@ -626,15 +626,19 @@ export default function ServiceTemplate({
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                  Premium <span className="text-primary">{vehicle}</span> Rental
-                  <br />
-                  Starting @ ₹{vehicleDetails.pricePerKm}/km
-                </h1>
+  {vehicle} on Rent
+  <br />
+  <span className="text-primary">
+    Starting at ₹{vehicleDetails.pricePerKm}/km
+  </span>
+</h1>
 
-                <p className="text-lg mb-8 opacity-90 max-w-lg">
-                  {vehicleDetails.description} Professional drivers, sanitized
-                  cars, and 24/7 support.
-                </p>
+                <p className="text-lg mb-8 opacity-90 max-w-xl leading-relaxed">
+  Book a {vehicle} on rent in india at a competitive price with
+  professional drivers and well-maintained, sanitized cars. Perfect for
+  local travel, sightseeing, airport transfers, business trips and
+  comfortable city journeys. Book your cab with 24/7 support.
+</p>
 
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
@@ -797,8 +801,38 @@ export default function ServiceTemplate({
           </div>
         </section>
 
+        {/* Stats Bar - Professional Version */}
+        <section className="pt-12 pb-12 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-primary/10">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <div className="section-badge mx-auto">OUR REVIEWS</div>
+              <h2 className="section-title">What Our Customers Say About Us</h2>
+              <p className="section-subtitle mx-auto">
+                Trusted by thousands of travelers across India. Here's what they
+                have to say about their experience with Chiku Cabs.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {STATS.map((stat, i) => (
+                <div key={i} className="text-center group">
+                  <div className="relative inline-block">
+                    <div className="text-4xl md:text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
+                      {stat.num}
+                    </div>
+                    <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
+                  </div>
+                  <div className="text-sm md:text-base font-medium text-muted-foreground uppercase tracking-wide mt-3">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Fleet Gallery */}
-        <section className="py-24 px-4">
+        <section className="py-12 px-4 border-b border-slate-300">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto">OUR FLEET</div>
@@ -877,38 +911,10 @@ export default function ServiceTemplate({
           </div>
         </section>
 
-        {/* Stats Bar - Professional Version */}
-        <section className="pt-24 pb-24 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-primary/10">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <div className="section-badge mx-auto">OUR REVIEWS</div>
-              <h2 className="section-title">What Our Customers Say About Us</h2>
-              <p className="section-subtitle mx-auto">
-                Trusted by thousands of travelers across India. Here's what they
-                have to say about their experience with Chiku Cabs.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {STATS.map((stat, i) => (
-                <div key={i} className="text-center group">
-                  <div className="relative inline-block">
-                    <div className="text-4xl md:text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
-                      {stat.num}
-                    </div>
-                    <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></div>
-                  </div>
-                  <div className="text-sm md:text-base font-medium text-muted-foreground uppercase tracking-wide mt-3">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        
 
         {/* How It Works */}
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-12 bg-gradient-to-b from-white to-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto animate-pulse">
@@ -925,9 +931,9 @@ export default function ServiceTemplate({
 
             <div className="grid md:grid-cols-3 gap-8 relative">
               {/* Connecting Line (Desktop) */}
-              <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2 z-0">
+              {/* <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2 z-0">
                 <div className="absolute left-1/3 right-1/3 h-full bg-primary"></div>
-              </div>
+              </div> */}
 
               {STEPS.map((item, i) => (
                 <div key={i} className="relative group">
@@ -969,7 +975,7 @@ export default function ServiceTemplate({
         </section>
 
         {/* Route Calculator with Slider */}
-        <section className="py-24 bg-gradient-to-r from-primary/5 to-secondary/5">
+        <section className="py-12 bg-gradient-to-r from-primary/5 to-secondary/5 border-b border-slate-300">
           <div className="max-w-4xl mx-auto px-4">
             <div className="text-center mb-12">
               <div className="section-badge mx-auto">CALCULATE FARE</div>
@@ -1121,7 +1127,7 @@ export default function ServiceTemplate({
         </section>
 
         {/* Service Coverage */}
-        <section className="py-24">
+        <section className="py-12 bg-white/95 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto">SERVICE AREAS</div>
@@ -1143,7 +1149,7 @@ export default function ServiceTemplate({
         </section>
 
         {/* Vehicle Comparison - Modern UI with React Icons */}
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-12 bg-gradient-to-b from-white to-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             {/* Section Header */}
             <div className="text-center mb-16">
@@ -1331,7 +1337,7 @@ export default function ServiceTemplate({
                           Popular Choice
                         </span>
                       </div>
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-3 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-1 whitespace-nowrap shadow-md z-10">
+                      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-3 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-1 whitespace-nowrap shadow-md z-10">
                         <FaStar className="text-xs text-yellow-700" /> Most
                         Popular
                       </div>
@@ -1551,7 +1557,7 @@ export default function ServiceTemplate({
             </div>
 
             {/* Recommendation Note */}
-            <div className="mt-12 p-6 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl border border-primary/20">
+            <div className="mt-12 p-6 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl border border-slate-300">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
@@ -1576,7 +1582,7 @@ export default function ServiceTemplate({
         </section>
 
         {/* Why Choose Us vs Competitors - Modern UI with React Icons */}
-        <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <section className="py-12 bg-gradient-to-b from-gray-50 to-white border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             {/* Section Header */}
             <div className="text-center mb-16">
@@ -1743,7 +1749,7 @@ export default function ServiceTemplate({
         </section>
 
         {/* Feature Grid - Modern UI with React Icons */}
-        <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-primary/5">
+        <section className="py-12 bg-gradient-to-br from-gray-50 via-white to-primary/5 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
             {/* Section Header */}
             <div className="text-center mb-16">

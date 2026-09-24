@@ -21,7 +21,7 @@ export default function LocalServiceTemplate({
     } else if (lowerV.includes("innova")) {
       return { icon: "✨", image: "/innova.png" };
     } else {
-      return { icon: "🚘", image: "/cab.png" };
+      return { icon: "🚘", image: "/hourlyrental.webp" };
     }
   };
   const vDetails = getVehicleDetails(vehicle);
@@ -29,97 +29,318 @@ export default function LocalServiceTemplate({
   return (
     <div className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 px-4 overflow-hidden border-b">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
-          <div className="flex-1 text-left">
-            <div className="section-badge">EXPERT LOCAL KNOWLEDGE</div>
-            <h1 className="text-4xl md:text-7xl font-extrabold mb-8 tracking-tight">
-              Premium <span className="gradient-text">{vehicle}</span> Hire{" "}
-              <br />
-              in{" "}
-              <span
-                style={{
-                  textDecoration: "underline",
-                  textDecorationColor: "hsla(45,90%,50%,0.3)",
-                }}
-              >
-                {city}
-              </span>
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-10 max-w-xl">
-              Navigate {city} with ease. Experience the best{" "}
-              <strong>cab booking</strong> and{" "}
-              <strong>local taxi service</strong> with our expert chauffeurs who
-              know every corner of the city. Whether you need an{" "}
-              <strong>airport taxi</strong> or a full-day{" "}
-              <strong>car rental</strong>, we ensure you reach your destination
-              comfortably and on time.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="tel:+918448445504"
-                className="btn-primary text-lg px-8 py-4"
-              >
-                📞 Book in {city}
-              </a>
+     <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-white via-white to-slate-50">
+  {/* Background Glow */}
+  <div className="absolute -top-32 -right-32 w-[420px] h-[420px] rounded-full bg-primary/10 blur-3xl pointer-events-none" />
+  <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
 
-              <a
-                href={`https://wa.me/916280820037?text=${encodeURIComponent(
-                  `Hi Chiku Cabs, I am interested in booking a cab in ${city} through your website. Please help me with the booking.`,
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline text-lg px-8 py-4"
-              >
-                💬 WhatsApp Us
-              </a>
-            </div>
+  <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center py-12 sm:py-16 lg:py-16">
+
+      {/* LEFT CONTENT */}
+      <div className="text-center lg:text-left">
+
+        {/* Badge */}
+        <div
+          className="inline-flex items-center gap-2 px-4 py-2 mb-5
+          rounded-full bg-primary/10 border border-primary/20
+          text-primary text-xs sm:text-sm font-bold tracking-wide"
+        >
+          <span className="w-2 h-2 rounded-full bg-primary" />
+          PREMIUM CAR RENTAL
+        </div>
+
+        {/* H1 */}
+        <h1
+          className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl
+          font-extrabold tracking-tight text-slate-900
+          leading-[1.08]"
+        >
+         {vehicle} on Rent in <span className="block text-primary">{city} </span> at Best Price
+  {/* <span className="block text-primary">
+    Book Now
+  </span> */}
+        </h1>
+
+        {/* Description */}
+        <p
+          className="mt-5 text-lg sm:text-xl text-slate-600
+          leading-relaxed max-w-2xl mx-auto lg:mx-0"
+        >
+          Explore {city} with ease. Experience reliable{" "}
+  <strong>cab booking</strong> and{" "}
+  <strong>local car rental services</strong> with our professional
+  chauffeurs who know the city inside out. Whether you need a car for{" "}
+  <strong>local sightseeing</strong>,{" "}
+  <strong>business travel</strong>,{" "}
+  <strong>shopping</strong>,{" "}
+  <strong>airport transfers</strong>, or multiple stops, we ensure you
+  travel comfortably and on time.
+        </p>
+
+       
+
+        {/* CTA */}
+        <div
+          className="mt-8 flex flex-col sm:flex-row gap-3
+          justify-center lg:justify-start"
+        >
+          <a
+            href="tel:+918448445504"
+            className="inline-flex items-center justify-center gap-2
+              min-h-14 px-7 rounded-xl bg-primary text-white
+              font-bold text-base sm:text-lg
+              shadow-lg shadow-primary/20
+              hover:-translate-y-0.5 hover:shadow-xl
+              transition-all duration-300"
+          >
+            📞 Book {vehicle}
+          </a>
+
+          <a
+            href={`https://wa.me/916280820037?text=${encodeURIComponent(
+              `Hi Chiku Cabs, I want to book a ${vehicle} rental in ${city}. Please share the available cars and prices.`,
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2
+              min-h-14 px-7 rounded-xl bg-white
+              border border-slate-300 text-slate-800
+              font-bold text-base sm:text-lg
+              hover:border-primary hover:text-primary
+              transition-all duration-300"
+          >
+            💬 Get Price
+          </a>
+        </div>
+
+        {/* Trust Points */}
+        <div className="mt-8 grid grid-cols-3 gap-3 max-w-xl mx-auto lg:mx-0">
+
+          <div className="text-center lg:text-left">
+            <p className="font-bold text-slate-900 text-sm sm:text-base">
+              ✓ Verified
+            </p>
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+              Professional drivers
+            </p>
           </div>
-          <div className="flex-1 w-full" style={{ maxWidth: "28rem" }}>
-            <div className="premium-card p-0 overflow-hidden">
-              <div className="aspect-[16/9] bg-muted relative">
-                <img
-                  src={vDetails.image}
-                  alt={`Hire ${vehicle || "Cab"} in ${city !== "India" ? city : "India"} by Chiku Cabs`}
-                  className="w-full h-[300px] object-cover"
-                />
+
+          <div className="text-center lg:text-left">
+            <p className="font-bold text-slate-900 text-sm sm:text-base">
+              ✓ Comfortable
+            </p>
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+              Well-maintained cars
+            </p>
+          </div>
+
+          <div className="text-center lg:text-left">
+            <p className="font-bold text-slate-900 text-sm sm:text-base">
+              ✓ Transparent
+            </p>
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+              Clear prices
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* RIGHT VEHICLE CARD */}
+      <div className="w-full max-w-xl mx-auto lg:max-w-none">
+
+        <div className="relative">
+
+          {/* Floating Price */}
+          <div
+            className="absolute -top-3 right-4 sm:right-6 z-20
+            bg-slate-900 text-white rounded-xl px-4 py-3 shadow-xl"
+          >
+            <p className="text-[10px] uppercase tracking-wider opacity-70">
+              Starting Price
+            </p>
+
+            <p className="font-extrabold text-lg">
+              ₹1,500
+            </p>
+          </div>
+
+          {/* Main Card */}
+          <div
+            className="bg-white rounded-3xl overflow-hidden
+            border border-slate-200 shadow-2xl shadow-slate-900/10"
+          >
+
+            {/* Image */}
+            <div
+              className="relative aspect-[16/10] sm:aspect-[16/9]
+              overflow-hidden bg-slate-100"
+            >
+              <img
+                src={vDetails.image}
+                alt={`${vehicle} car rental in ${city} - Chiku Cabs`}
+                className="w-full h-full object-cover
+                  transition-transform duration-700 hover:scale-105"
+              />
+
+              {/* Overlay */}
+              <div
+                className="absolute inset-0 bg-gradient-to-t
+                from-black/60 via-black/5 to-transparent"
+              />
+
+              {/* Vehicle Info */}
+              <div className="absolute bottom-4 left-4 right-4">
+                <div className="flex items-end justify-between gap-3">
+
+                  <div>
+                    <p className="text-white/80 text-sm font-medium">
+                      Chauffeur Driven
+                    </p>
+
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                      {vehicle}
+                    </h2>
+                  </div>
+
+                  <span
+                    className="hidden sm:inline-flex px-3 py-2
+                    rounded-lg bg-white/95 text-slate-900
+                    text-sm font-bold"
+                  >
+                    {vDetails.icon} Premium
+                  </span>
+
+                </div>
               </div>
-              <div className="p-8">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-2xl font-bold">
-                    Local {vDetails.icon} Package
+            </div>
+
+            {/* Card Content */}
+            <div className="p-5 sm:p-7">
+
+              <div
+                className="flex flex-col sm:flex-row
+                sm:items-center sm:justify-between gap-4 mb-5"
+              >
+                <div>
+                  <p className="text-xs font-bold uppercase
+                    tracking-wider text-primary"
+                  >
+                    Car Rental
+                  </p>
+
+                  <h3 className="mt-1 text-xl sm:text-2xl font-bold text-slate-900">
+                    {vehicle} Rental Package
                   </h3>
-                  <span className="text-primary font-bold">From ₹1,500</span>
                 </div>
-                <p className="text-muted-foreground mb-6">
-                  8 Hours / 80 Kilometers inclusive of fuel and driver charges.
-                </p>
-                <div className="pt-6 border-t flex justify-between text-sm font-bold opacity-60">
-                  <span>CLEAN CAR</span>
-                  <span>GPS TRACKED</span>
-                  <span>24/7 SUPPORT</span>
+
+                <div className="text-left sm:text-right">
+                  <p className="text-xs text-slate-500">
+                    Starting Price
+                  </p>
+
+                  <p className="text-2xl font-extrabold text-primary">
+                    ₹1,499
+                  </p>
                 </div>
               </div>
+
+              {/* Package Details */}
+              <div className="grid grid-cols-2 gap-3">
+
+                <div className="rounded-xl bg-slate-50
+                  border border-slate-100 p-4"
+                >
+                  <p className="text-xs text-slate-500 mb-1">
+                    Distance
+                  </p>
+
+                  <p className="font-bold text-slate-900">
+                    80 KM
+                  </p>
+                </div>
+
+                <div className="rounded-xl bg-slate-50
+                  border border-slate-100 p-4"
+                >
+                  <p className="text-xs text-slate-500 mb-1">
+                    Duration
+                  </p>
+
+                  <p className="font-bold text-slate-900">
+                    8 Hours
+                  </p>
+                </div>
+
+              </div>
+
+              <p className="mt-5 text-sm sm:text-base text-slate-600 leading-relaxed">
+                Enjoy a comfortable chauffeur-driven car for local
+                sightseeing, meetings, shopping and everyday travel
+                across {city}, with pricing based on your selected
+                package.
+              </p>
+
+              {/* Features */}
+              <div
+                className="grid grid-cols-3 gap-2 mt-6 pt-5
+                border-t border-slate-200"
+              >
+
+                <div className="text-center">
+                  <div className="text-lg mb-1">🚗</div>
+                  <p className="text-xs font-semibold text-slate-700">
+                    Clean Car
+                  </p>
+                </div>
+
+                <div className="text-center">
+                  <div className="text-lg mb-1">👨‍✈️</div>
+                  <p className="text-xs font-semibold text-slate-700">
+                    Driver Included
+                  </p>
+                </div>
+
+                <div className="text-center">
+                  <div className="text-lg mb-1">₹</div>
+                  <p className="text-xs font-semibold text-slate-700">
+                    Clear Price
+                  </p>
+                </div>
+
+              </div>
+
             </div>
           </div>
         </div>
-        <div
-          className="absolute"
-          style={{
-            top: 0,
-            right: 0,
-            width: "600px",
-            height: "600px",
-            background: "hsla(45,90%,50%,0.05)",
-            filter: "blur(150px)",
-            borderRadius: "50%",
-            transform: "translate(50%, -50%)",
-          }}
-        ></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+      {/* Stats Bar */}
+      <section className="py-16 border-b">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="stats-grid">
+            {[
+              { num: "50,000+", label: "Happy Customers" },
+              { num: "200+", label: "Cars in Fleet" },
+              { num: "24/7", label: "Support Available" },
+              { num: "4.9 ★", label: "Average Rating" },
+            ].map((stat, i) => (
+              <div key={i} className="stat-item">
+                <div className="stat-number">{stat.num}</div>
+                <div className="stat-label">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Local Packages */}
-      <section className="py-24 px-4">
+      <section className="py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div
@@ -391,24 +612,79 @@ export default function LocalServiceTemplate({
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="py-16 border-b">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="stats-grid">
-            {[
-              { num: "50,000+", label: "Happy Customers" },
-              { num: "200+", label: "Cars in Fleet" },
-              { num: "24/7", label: "Support Available" },
-              { num: "4.9 ★", label: "Average Rating" },
-            ].map((stat, i) => (
-              <div key={i} className="stat-item">
-                <div className="stat-number">{stat.num}</div>
-                <div className="stat-label">{stat.label}</div>
+
+
+
+
+      {/* SEO Content Section */}
+      {city !== "your city" && (
+        <section className="py-12 px-4 bg-muted/10 border-b border-slate-300">
+          <div className="max-w-4xl mx-auto text-muted-foreground text-lg leading-relaxed">
+            <h2 className="text-3xl md:text-4xl font-black mb-8 text-foreground tracking-tight">
+              Top-Rated Local {vehicle} Booking in {city}
+            </h2>
+            <div className="space-y-6">
+              <p>
+                When looking for the best{" "}
+                <strong>
+                  local {vehicle} on rent in {city}
+                </strong>
+                , Chiku Cabs delivers unparalleled <strong>taxi service</strong>
+                . Navigating through {city} traffic can be stressful, which is
+                why hiring a reliable, chauffeur-driven cab via our easy{" "}
+                <strong>cab booking</strong> platform is the smartest choice for
+                tourists, business professionals, and local residents alike.
+              </p>
+              <h3 className="text-2xl font-bold mb-6 mt-12 text-foreground border-b pb-4">
+                Why Hire a {vehicle} for Full Day in {city}?
+              </h3>
+              <ul className="space-y-4 mb-10">
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">✔</span>
+                  <span>
+                    <strong>Flexible Packages:</strong> Choose from 4 Hours, 8
+                    Hours, or 12 Hours {city}{" "}
+                    <strong>local taxi service</strong> packages based on your
+                    itinerary.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">✔</span>
+                  <span>
+                    <strong>City Tours & Sightseeing:</strong> Book a local{" "}
+                    {vehicle} to explore landmarks and vibrant markets across{" "}
+                    {city}. Our <strong>outstation cabs</strong> drivers are
+                    also available for nearby getaways.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-primary mt-1 text-xl">✔</span>
+                  <span>
+                    <strong>{city} Airport Taxi:</strong> Ensure you reach the
+                    airport on time with our punctual, GPS-tracked{" "}
+                    <strong>airport transfer</strong> fleet.
+                  </span>
+                </li>
+              </ul>
+              <div className="bg-card p-8 rounded-2xl border shadow-sm mt-8">
+                <p className="mb-0 text-card-foreground">
+                  Skip the unreliability of app-based ride-hailing services.
+                  Pre-book your{" "}
+                  <strong>
+                    {vehicle} rental in {city}
+                  </strong>{" "}
+                  with Chiku Cabs for a guaranteed, immaculately clean car and a
+                  highly professional <strong>taxi service</strong> experience.
+                </p>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
+        </section>
+      )}
+      <section className="py-12 border-b border-slate-300">
+        <InternalLinks parsedData={parsedData} />
       </section>
+
 
       {/* Testimonials */}
       <section className="py-24 px-4">
@@ -551,74 +827,6 @@ export default function LocalServiceTemplate({
           </div>
         </div>
       </section>
-
-      {/* SEO Content Section */}
-      {city !== "your city" && (
-        <section className="py-24 px-4 bg-muted/10 border-t">
-          <div className="max-w-4xl mx-auto text-muted-foreground text-lg leading-relaxed">
-            <h2 className="text-3xl md:text-4xl font-black mb-8 text-foreground tracking-tight">
-              Top-Rated Local {vehicle} Booking in {city}
-            </h2>
-            <div className="space-y-6">
-              <p>
-                When looking for the best{" "}
-                <strong>
-                  local {vehicle} on rent in {city}
-                </strong>
-                , Chiku Cabs delivers unparalleled <strong>taxi service</strong>
-                . Navigating through {city} traffic can be stressful, which is
-                why hiring a reliable, chauffeur-driven cab via our easy{" "}
-                <strong>cab booking</strong> platform is the smartest choice for
-                tourists, business professionals, and local residents alike.
-              </p>
-              <h3 className="text-2xl font-bold mb-6 mt-12 text-foreground border-b pb-4">
-                Why Hire a {vehicle} for Full Day in {city}?
-              </h3>
-              <ul className="space-y-4 mb-10">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary mt-1 text-xl">✔</span>
-                  <span>
-                    <strong>Flexible Packages:</strong> Choose from 4 Hours, 8
-                    Hours, or 12 Hours {city}{" "}
-                    <strong>local taxi service</strong> packages based on your
-                    itinerary.
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary mt-1 text-xl">✔</span>
-                  <span>
-                    <strong>City Tours & Sightseeing:</strong> Book a local{" "}
-                    {vehicle} to explore landmarks and vibrant markets across{" "}
-                    {city}. Our <strong>outstation cabs</strong> drivers are
-                    also available for nearby getaways.
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary mt-1 text-xl">✔</span>
-                  <span>
-                    <strong>{city} Airport Taxi:</strong> Ensure you reach the
-                    airport on time with our punctual, GPS-tracked{" "}
-                    <strong>airport transfer</strong> fleet.
-                  </span>
-                </li>
-              </ul>
-              <div className="bg-card p-8 rounded-2xl border shadow-sm mt-8">
-                <p className="mb-0 text-card-foreground">
-                  Skip the unreliability of app-based ride-hailing services.
-                  Pre-book your{" "}
-                  <strong>
-                    {vehicle} rental in {city}
-                  </strong>{" "}
-                  with Chiku Cabs for a guaranteed, immaculately clean car and a
-                  highly professional <strong>taxi service</strong> experience.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      <InternalLinks parsedData={parsedData} />
       <EEATSection city={city} vehicle={vehicle} />
     </div>
   );
