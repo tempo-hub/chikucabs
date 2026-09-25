@@ -1464,9 +1464,9 @@ Please share the best fare.`;
 
             <div className="grid md:grid-cols-3 gap-8 relative">
               {/* Connecting Line (Desktop) */}
-              <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2 z-0">
+              {/* <div className="hidden md:block absolute top-1/3 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20 -translate-y-1/2 z-0">
                 <div className="absolute left-1/3 right-1/3 h-full bg-primary"></div>
-              </div>
+              </div> */}
 
               {STEPS.map((item, i) => (
                 <div key={i} className="relative group">

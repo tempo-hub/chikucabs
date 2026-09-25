@@ -1,0 +1,3286 @@
+[
+  {
+    "name": "Adilabad",
+    "description": "North Telangana Hub"
+  },
+  {
+    "name": "Adoni",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Agar Malwa",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Agartala",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Agra",
+    "description": "Tourism & Travel Hub"
+  },
+  {
+    "name": "Ahmedabad",
+    "description": "Business & Travel Hub"
+  },
+  {
+    "name": "Ahmednagar",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Aizawl",
+    "description": "Major Hill Travel Hub"
+  },
+  {
+    "name": "Ajmer",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Akola",
+    "description": "Vidarbha Travel Hub"
+  },
+  {
+    "name": "Alappuzha",
+    "description": "Backwater Travel Hub"
+  },
+  {
+    "name": "Aligarh",
+    "description": "Educational & Industrial Hub"
+  },
+  {
+    "name": "Alipurduar",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Alirajpur",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Almora",
+    "description": "Hill Tourism Hub"
+  },
+  {
+    "name": "Alwar",
+    "description": "Heritage & Nature Hub"
+  },
+  {
+    "name": "Amalapuram",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Amalner",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Ambajogai",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Ambala",
+    "description": "North Haryana Travel Hub"
+  },
+  {
+    "name": "Ambedkar Nagar",
+    "description": "Eastern UP Regional Hub"
+  },
+  {
+    "name": "Ambur",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Amethi",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Ampati",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Amravati",
+    "description": "Vidarbha Travel Hub"
+  },
+  {
+    "name": "Amritsar",
+    "description": "Pilgrimage & Heritage Hub"
+  },
+  {
+    "name": "Amritsar Cantt",
+    "description": "Pilgrimage & Transit Hub"
+  },
+  {
+    "name": "Anakapalle",
+    "description": "Visakhapatnam Region Travel Hub"
+  },
+  {
+    "name": "Anand",
+    "description": "Central Gujarat Travel Hub"
+  },
+  {
+    "name": "Anantapur",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Anantnag",
+    "description": "Tourism & Valley Travel Hub"
+  },
+  {
+    "name": "Angamaly",
+    "description": "Central Kerala Travel Hub"
+  },
+  {
+    "name": "Anuppur",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Arakkonam",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Ariyalur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Armoor",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Arrah",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Asansol",
+    "description": "Industrial & Travel Hub"
+  },
+  {
+    "name": "Ashoknagar",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Asifabad",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Attingal",
+    "description": "South Kerala Travel Hub"
+  },
+  {
+    "name": "Attur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Aurangabad",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Avadi",
+    "description": "Chennai Travel Hub"
+  },
+  {
+    "name": "Ayodhya",
+    "description": "Pilgrimage Hub"
+  },
+  {
+    "name": "Azamgarh",
+    "description": "Eastern UP Travel Hub"
+  },
+  {
+    "name": "Badshahpur",
+    "description": "Gurugram Hub"
+  },
+  {
+    "name": "Bagaha",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Bagalkot",
+    "description": "North Karnataka Travel Hub"
+  },
+  {
+    "name": "Bageshwar",
+    "description": "Religious & Hill Travel Hub"
+  },
+  {
+    "name": "Baghmara",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Bahadurgarh",
+    "description": "NCR Hub"
+  },
+  {
+    "name": "Baharampur",
+    "description": "Murshidabad Travel Hub"
+  },
+  {
+    "name": "Bahraich",
+    "description": "Regional & Religious Hub"
+  },
+  {
+    "name": "Balaghat",
+    "description": "Wildlife Travel Hub"
+  },
+  {
+    "name": "Balangir",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Balasore",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Ballari",
+    "description": "Heritage & Travel Hub"
+  },
+  {
+    "name": "Ballia",
+    "description": "Purvanchal Regional Hub"
+  },
+  {
+    "name": "Balod",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Baloda Bazar",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Balrampur",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Balurghat",
+    "description": "South Dinajpur Hub"
+  },
+  {
+    "name": "Banda",
+    "description": "Bundelkhand Travel Hub"
+  },
+  {
+    "name": "Bandipora",
+    "description": "Scenic Valley Travel Hub"
+  },
+  {
+    "name": "Bangalore",
+    "description": "Tech & Travel Hub"
+  },
+  {
+    "name": "Banka",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bankura",
+    "description": "Heritage & Travel Hub"
+  },
+  {
+    "name": "Bapatla",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Barabanki",
+    "description": "Lucknow Regional Hub"
+  },
+  {
+    "name": "Baramati",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Baramulla",
+    "description": "Kashmir Travel Hub"
+  },
+  {
+    "name": "Barasat",
+    "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Bardhaman",
+    "description": "Central Bengal Hub"
+  },
+  {
+    "name": "Bardoli",
+    "description": "Gujarat Travel Hub"
+  },
+  {
+    "name": "Bareilly",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Baripada",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Barnala",
+    "description": "Malwa Travel Hub"
+  },
+  {
+    "name": "Barpeta",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Barrackpore",
+    "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Basirhat",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bastar",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Basti",
+    "description": "Eastern UP Regional Hub"
+  },
+  {
+    "name": "Bathinda",
+    "description": "Major Regional Hub"
+  },
+  {
+    "name": "Batlagundu",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Beed",
+    "description": "Marathwada Travel Hub"
+  },
+  {
+    "name": "Begusarai",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Belagavi",
+    "description": "North Karnataka Travel Hub"
+  },
+  {
+    "name": "Bemetara",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Berhampur",
+    "description": "South Odisha Travel Hub"
+  },
+  {
+    "name": "Bettiah",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Betul",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bhadrak",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bhagalpur",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Bharatpur",
+    "description": "Rajasthan Travel Hub"
+  },
+  {
+    "name": "Bharuch",
+    "description": "Industrial Travel Hub"
+  },
+  {
+    "name": "Bhatpara",
+    "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Bhavani",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bhavnagar",
+    "description": "Saurashtra Travel Hub"
+  },
+  {
+    "name": "Bhawanipatna",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bhilwara",
+    "description": "Textile & Travel Hub"
+  },
+  {
+    "name": "Bhimavaram",
+    "description": "Andhra Pradesh Travel Hub"
+  },
+  {
+    "name": "Bhind",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bhiwandi",
+    "description": "Mumbai Metropolitan Hub"
+  },
+  {
+    "name": "Bhiwani",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Bhongir",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Bhopal",
+    "description": "Capital & Travel Hub"
+  },
+  {
+    "name": "Bhubaneswar",
+    "description": "Odisha Travel Hub"
+  },
+  {
+    "name": "Bhuj",
+    "description": "Kutch Travel Hub"
+  },
+  {
+    "name": "Bhusawal",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Bicholim",
+    "description": "North Goa Travel Hub"
+  },
+  {
+    "name": "Bidar",
+    "description": "Karnataka Travel Hub"
+  },
+  {
+    "name": "Bijapur",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Bikaner",
+    "description": "Desert & Heritage Hub"
+  },
+  {
+    "name": "Bilaspur",
+    "description": "Chhattisgarh Travel Hub"
+  },
+  {
+    "name": "Birbhum",
+    "description": "Cultural & Pilgrimage Hub"
+  },
+  {
+    "name": "Bishnupur",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Bodhan",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bokaro",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Bokaro Steel City",
+    "description": "Industrial Travel Hub"
+  },
+  {
+    "name": "Bolangir",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bolpur",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Bongaigaon",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Botad",
+    "description": "Saurashtra Travel Hub"
+  },
+  {
+    "name": "Boudh",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Bulandshahr",
+    "description": "NCR Regional Hub"
+  },
+  {
+    "name": "Buldhana",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Burhanpur",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Buxar",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Canacona",
+    "description": "South Goa Beach Hub"
+  },
+  {
+    "name": "Chaibasa",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Chalakudy",
+    "description": "Nature Tourism Hub"
+  },
+  {
+    "name": "Chalisgaon",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Chamoli",
+    "description": "Pilgrimage & Mountain Hub"
+  },
+  {
+    "name": "Champawat",
+    "description": "Historic & Hill Travel Hub"
+  },
+  {
+    "name": "Champhai",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Chandauli",
+    "description": "Purvanchal Gateway"
+  },
+  {
+    "name": "Chandel",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Chandigarh",
+    "description": "Tricity Travel Hub"
+  },
+  {
+    "name": "Chandrapur",
+    "description": "Vidarbha Travel Hub"
+  },
+  {
+    "name": "Changlang",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Charkhi Dadri",
+    "description": "Southwest Haryana Hub"
+  },
+  {
+    "name": "Chengannur",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Chennai",
+    "description": "South India Travel Hub"
+  },
+  {
+    "name": "Cherthala",
+    "description": "Coastal Kerala Travel Hub"
+  },
+  {
+    "name": "Cheyyar",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Chhapra",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Chhatarpur",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Chhatrapati Sambhajinagar",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Chidambaram",
+    "description": "Temple Tourism Hub"
+  },
+  {
+    "name": "Chikkamagaluru",
+    "description": "Hill Station Travel Hub"
+  },
+  {
+    "name": "Chiplun",
+    "description": "Konkan Travel Hub"
+  },
+  {
+    "name": "Chitradurga",
+    "description": "Central Karnataka Travel Hub"
+  },
+  {
+    "name": "Chitrakoot",
+    "description": "Religious & Tourism Hub"
+  },
+  {
+    "name": "Chittoor",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Chittorgarh",
+    "description": "Fort & Heritage Hub"
+  },
+  {
+    "name": "Chittur",
+    "description": "Palakkad Travel Hub"
+  },
+  {
+    "name": "Churachandpur",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Coimbatore",
+    "description": "Business & Travel Hub"
+  },
+  {
+    "name": "Cooch Behar",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Coonoor",
+    "description": "Hill Station Tourism Hub"
+  },
+  {
+    "name": "Cuddalore",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Cuddapah",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Curchorem",
+    "description": "South Goa Travel Hub"
+  },
+  {
+    "name": "Cuttack",
+    "description": "Odisha Travel Hub"
+  },
+  {
+    "name": "Dabhoi",
+    "description": "Central Gujarat Travel Hub"
+  },
+  {
+    "name": "Dahod",
+    "description": "Gujarat Travel Hub"
+  },
+  {
+    "name": "Daman",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Damoh",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Dantewada",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Darbhanga",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Darjeeling",
+    "description": "Hill Station Travel Hub"
+  },
+  {
+    "name": "Datia",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Daund",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Davangere",
+    "description": "Central Karnataka Travel Hub"
+  },
+  {
+    "name": "Dehradun",
+    "description": "Capital & Travel Hub"
+  },
+  {
+    "name": "Dehri",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Delhi",
+    "description": "NCR Travel Hub"
+  },
+  {
+    "name": "Deoghar",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Deoria",
+    "description": "Eastern UP Regional Hub"
+  },
+  {
+    "name": "Dewas",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Dhalai",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Dhamtari",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Dhanbad",
+    "description": "Industrial Travel Hub"
+  },
+  {
+    "name": "Dhar",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Dharbandora",
+    "description": "Central Goa Travel Hub"
+  },
+  {
+    "name": "Dharmapuri",
+    "description": "Tamil Nadu Travel Hub"
+  },
+  {
+    "name": "Dharmavaram",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Dhenkanal",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Dhubri",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Dhule",
+    "description": "North Maharashtra Travel Hub"
+  },
+  {
+    "name": "Diamond Harbour",
+    "description": "Weekend Travel Hub"
+  },
+  {
+    "name": "Dibang Valley",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Dibrugarh",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Dimapur",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Dindigul",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Dindori",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Dinhata",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Diu",
+    "description": "Coastal Tourism Hub"
+  },
+  {
+    "name": "Doda",
+    "description": "Mountain Travel Hub"
+  },
+  {
+    "name": "Dumka",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Dumraon",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Durg",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Durg-Bhilai",
+    "description": "Industrial Travel Hub"
+  },
+  {
+    "name": "Durgapur",
+    "description": "Industrial & Travel Hub"
+  },
+  {
+    "name": "Dwarka",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "East Kameng",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "East Siang",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Eluru",
+    "description": "Andhra Pradesh Travel Hub"
+  },
+  {
+    "name": "Ernakulam",
+    "description": "Central Kerala Travel Hub"
+  },
+  {
+    "name": "Erode",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Etah",
+    "description": "Central UP Regional Hub"
+  },
+  {
+    "name": "Etawah",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Falta",
+    "description": "Weekend Travel Hub"
+  },
+  {
+    "name": "Faridabad",
+    "description": "NCR Travel Hub"
+  },
+  {
+    "name": "Faridkot",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Farrukhabad",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Fatehabad",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Fazilka",
+    "description": "Border Travel Hub"
+  },
+  {
+    "name": "Ferozepur",
+    "description": "Border & Heritage Hub"
+  },
+  {
+    "name": "Firozabad",
+    "description": "Uttar Pradesh Travel Hub"
+  },
+  {
+    "name": "Gadag",
+    "description": "North Karnataka Travel Hub"
+  },
+  {
+    "name": "Gadhinglaj",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Gadwal",
+    "description": "Telangana Travel Hub"
+  },
+  {
+    "name": "Gandhidham",
+    "description": "Kutch Travel Hub"
+  },
+  {
+    "name": "Gandhinagar",
+    "description": "Capital & Business Hub"
+  },
+  {
+    "name": "Gangarampur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Gangtok",
+    "description": "Major Hill Travel Hub"
+  },
+  {
+    "name": "Ganjam",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Gariaband",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Gaya",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Ghaziabad",
+    "description": "NCR Hub"
+  },
+  {
+    "name": "Ghazipur",
+    "description": "Purvanchal Travel Hub"
+  },
+  {
+    "name": "Giridih",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Goalpara",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Godda",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Godhra",
+    "description": "Central Gujarat Travel Hub"
+  },
+  {
+    "name": "Golaghat",
+    "description": "Wildlife Travel Hub"
+  },
+  {
+    "name": "Gomati",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Gonda",
+    "description": "Awadh Travel Hub"
+  },
+  {
+    "name": "Gondia",
+    "description": "Vidarbha Travel Hub"
+  },
+  {
+    "name": "Gopalganj",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Gopalpur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Gorakhpur",
+    "description": "Eastern UP Travel Hub"
+  },
+  {
+    "name": "Gudiyatham",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Gumla",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Guna",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Guntakal",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Guntur",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Gurdaspur",
+    "description": "North Punjab Travel Hub"
+  },
+  {
+    "name": "Gurugram",
+    "description": "NCR Business Hub"
+  },
+  {
+    "name": "Guwahati",
+    "description": "Northeast Travel Hub"
+  },
+  {
+    "name": "Gwalior",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Gyalshing",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Habra",
+    "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Haflong",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Hailakandi",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Hajipur",
+    "description": "Bihar Travel Hub"
+  },
+  {
+    "name": "Haldwani",
+    "description": "Kumaon Travel Hub"
+  },
+  {
+    "name": "Halisahar",
+    "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Hamirpur",
+    "description": "Bundelkhand Travel Hub"
+  },
+  {
+    "name": "Hanumangarh",
+    "description": "Northern Rajasthan Hub"
+  },
+  {
+    "name": "Hapur",
+    "description": "NCR Regional Hub"
+  },
+  {
+    "name": "Harda",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Hardoi",
+    "description": "Central UP Hub"
+  },
+  {
+    "name": "Haridwar",
+    "description": "Religious & Pilgrimage Hub"
+  },
+  {
+    "name": "Hassan",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Haveri",
+    "description": "Central Karnataka Travel Hub"
+  },
+  {
+    "name": "Hazaribagh",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Himmatnagar",
+    "description": "North Gujarat Travel Hub"
+  },
+  {
+    "name": "Hindupur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Hingoli",
+    "description": "Marathwada Travel Hub"
+  },
+  {
+    "name": "Hisar",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Hooghly",
+    "description": "Kolkata Region Hub"
+  },
+  {
+    "name": "Hoshangabad",
+    "description": "Central India Travel Hub"
+  },
+  {
+    "name": "Hoshiarpur",
+    "description": "Doaba Travel Hub"
+  },
+  {
+    "name": "Hosur",
+    "description": "Tamil Nadu Travel Hub"
+  },
+  {
+    "name": "Howrah",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Hubli-Dharwad",
+    "description": "North Karnataka Travel Hub"
+  },
+  {
+    "name": "Hugli-Chinsurah",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Hyderabad",
+    "description": "South India Hub"
+  },
+  {
+    "name": "Ichalkaranji",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Idar",
+    "description": "Sabarkantha Travel Hub"
+  },
+  {
+    "name": "Idukki",
+    "description": "Hill Tourism Hub"
+  },
+  {
+    "name": "Imphal",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Indapur",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Indore",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Islampur",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Itanagar",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Jabalpur",
+    "description": "Nature & Travel Hub"
+  },
+  {
+    "name": "Jagatsinghpur",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Jagityal",
+    "description": "North Telangana Travel Hub"
+  },
+  {
+    "name": "Jaipur",
+    "description": "Heritage & Travel Hub"
+  },
+  {
+    "name": "Jajpur",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Jalandhar",
+    "description": "Punjab Travel Hub"
+  },
+  {
+    "name": "Jalandhar Cantt",
+    "description": "Jalandhar Transit Hub"
+  },
+  {
+    "name": "Jalgaon",
+    "description": "North Maharashtra Travel Hub"
+  },
+  {
+    "name": "Jalna",
+    "description": "Marathwada Travel Hub"
+  },
+  {
+    "name": "Jalpaiguri",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Jammu",
+    "description": "Pilgrimage & Travel Hub"
+  },
+  {
+    "name": "Jamnagar",
+    "description": "Saurashtra Travel Hub"
+  },
+  {
+    "name": "Jamshedpur",
+    "description": "Industrial Travel Hub"
+  },
+  {
+    "name": "Jamtara",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Jamui",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Jangipur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Janjgir-Champa",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Jashpur",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Jaunpur",
+    "description": "Heritage & Pilgrimage Hub"
+  },
+  {
+    "name": "Jayashankar Bhupalpally",
+    "description": "Nature & Travel Hub"
+  },
+  {
+    "name": "Jehanabad",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Jhabua",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Jhansi",
+    "description": "Bundelkhand Travel Hub"
+  },
+  {
+    "name": "Jharsuguda",
+    "description": "Odisha Travel Hub"
+  },
+  {
+    "name": "Jind",
+    "description": "Central Haryana Hub"
+  },
+  {
+    "name": "Jodhpur",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Jogulamba",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Jorhat",
+    "description": "Tea Travel Hub"
+  },
+  {
+    "name": "Jorthang",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Jowai",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Junagadh",
+    "description": "Gujarat Travel Hub"
+  },
+  {
+    "name": "Kabirdham",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Kachchh",
+    "description": "Kutch Travel Hub"
+  },
+  {
+    "name": "Kadapa",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Kadi",
+    "description": "Gujarat Travel Hub"
+  },
+  {
+    "name": "Kagal",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Kaithal",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Kakching",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Kakinada",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Kalaburagi",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Kalahandi",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Kalol",
+    "description": "Gujarat Travel Hub"
+  },
+  {
+    "name": "Kalyan-Dombivli",
+    "description": "Mumbai Metropolitan Hub"
+  },
+  {
+    "name": "Kamareddy",
+    "description": "Telangana Travel Hub"
+  },
+  {
+    "name": "Kandhamal",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Kangpokpi",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Kanker",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Kannur",
+    "description": "North Kerala Travel Hub"
+  },
+  {
+    "name": "Kanpur",
+    "description": "Industrial & Travel Hub"
+  },
+  {
+    "name": "Kapadvanj",
+    "description": "Kheda Travel Hub"
+  },
+  {
+    "name": "Kapurthala",
+    "description": "Heritage & Travel Hub"
+  },
+  {
+    "name": "Karad",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Karaikal",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Kargil",
+    "description": "Ladakh Travel Hub"
+  },
+  {
+    "name": "Karimganj",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Karimnagar",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Karjan",
+    "description": "Vadodara Travel Hub"
+  },
+  {
+    "name": "Karnal",
+    "description": "NCR & Travel Hub"
+  },
+  {
+    "name": "Karur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Karwar",
+    "description": "Coastal Karnataka Hub"
+  },
+  {
+    "name": "Kasaragod",
+    "description": "North Kerala Travel Hub"
+  },
+  {
+    "name": "Kashipur",
+    "description": "Industrial & Regional Hub"
+  },
+  {
+    "name": "Kathua",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Katihar",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Katni",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Katwa",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Kaushambi",
+    "description": "Buddhist & Historic Hub"
+  },
+  {
+    "name": "Kavali",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Kavaratti",
+    "description": "Island Travel Hub"
+  },
+  {
+    "name": "Kayamkulam",
+    "description": "Backwater Travel Hub"
+  },
+  {
+    "name": "Kendrapara",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Keonjhar",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Khambhat",
+    "description": "Anand Travel Hub"
+  },
+  {
+    "name": "Khamgaon",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Khammam",
+    "description": "Telangana Travel Hub"
+  },
+  {
+    "name": "Khandwa",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Kharagpur",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Kharar",
+    "description": "Tricity Travel Hub"
+  },
+  {
+    "name": "Kheda",
+    "description": "Central Gujarat Travel Hub"
+  },
+  {
+    "name": "Khliehriat",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Khowai",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Khunti",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Khurja",
+    "description": "Industrial & Regional Hub"
+  },
+  {
+    "name": "Kiphire",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Kishanganj",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Kishtwar",
+    "description": "Mountain & Adventure Hub"
+  },
+  {
+    "name": "Kochi",
+    "description": "Kerala Travel Hub"
+  },
+  {
+    "name": "Kodagu",
+    "description": "Coorg Tourism Hub"
+  },
+  {
+    "name": "Kodinar",
+    "description": "Saurashtra Coastal Hub"
+  },
+  {
+    "name": "Kohima",
+    "description": "Major Hill Travel Hub"
+  },
+  {
+    "name": "Kokrajhar",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Kolar",
+    "description": "Bengaluru Region Travel Hub"
+  },
+  {
+    "name": "Kolasib",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Kolhapur",
+    "description": "Pilgrimage & Travel Hub"
+  },
+  {
+    "name": "Kolkata",
+    "description": "East India Travel Hub"
+  },
+  {
+    "name": "Kolkata Municipal Corporation Area",
+    "description": "Kolkata Metro Core"
+  },
+  {
+    "name": "Kollam",
+    "description": "Backwater Travel Hub"
+  },
+  {
+    "name": "Kondagaon",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Kopargaon",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Koraput",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Korba",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Korea",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Kota",
+    "description": "Education & Travel Hub"
+  },
+  {
+    "name": "Kothagudem",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Kottayam",
+    "description": "Central Kerala Travel Hub"
+  },
+  {
+    "name": "Kozhikode",
+    "description": "North Kerala Travel Hub"
+  },
+  {
+    "name": "Kra Daadi",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Krishnanagar",
+    "description": "Nadia Travel Hub"
+  },
+  {
+    "name": "Kulgam",
+    "description": "Valley Travel Hub"
+  },
+  {
+    "name": "Kumbakonam",
+    "description": "Temple Tourism Hub"
+  },
+  {
+    "name": "Kumuram Bheem Asifabad",
+    "description": "North Telangana Travel Hub"
+  },
+  {
+    "name": "Kupwara",
+    "description": "North Kashmir Travel Hub"
+  },
+  {
+    "name": "Kurnool",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Kurukshetra",
+    "description": "Pilgrimage & Heritage Hub"
+  },
+  {
+    "name": "Kurung Kumey",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Kushinagar",
+    "description": "Buddhist Pilgrimage Hub"
+  },
+  {
+    "name": "Lakhimpur",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Lakhisarai",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Lalitpur",
+    "description": "Bundelkhand Travel Hub"
+  },
+  {
+    "name": "Latehar",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Lathi",
+    "description": "Saurashtra Travel Hub"
+  },
+  {
+    "name": "Latur",
+    "description": "Marathwada Travel Hub"
+  },
+  {
+    "name": "Lawngtlai",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Leh",
+    "description": "Ladakh Travel Hub"
+  },
+  {
+    "name": "Limbdi",
+    "description": "Surendranagar Travel Hub"
+  },
+  {
+    "name": "Lohardaga",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Lohit",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Longleng",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Loni",
+    "description": "Delhi NCR Hub"
+  },
+  {
+    "name": "Lower Dibang Valley",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Lower Subansiri",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Lucknow",
+    "description": "UP Travel Hub"
+  },
+  {
+    "name": "Ludhiana",
+    "description": "Punjab Travel Hub"
+  },
+  {
+    "name": "Lunawada",
+    "description": "Mahisagar Travel Hub"
+  },
+  {
+    "name": "Lunglei",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Machilipatnam",
+    "description": "Coastal Andhra Hub"
+  },
+  {
+    "name": "Madanapalle",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Madhubani",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Madurai",
+    "description": "Pilgrimage & Heritage Hub"
+  },
+  {
+    "name": "Mahabubnagar",
+    "description": "Telangana Travel Hub"
+  },
+  {
+    "name": "Mahad",
+    "description": "Konkan Travel Hub"
+  },
+  {
+    "name": "Mahasamund",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Mahe",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Mahendragarh",
+    "description": "South Haryana Hub"
+  },
+  {
+    "name": "Mahoba",
+    "description": "Bundelkhand Heritage Hub"
+  },
+  {
+    "name": "Mahuva",
+    "description": "Saurashtra Coastal Hub"
+  },
+  {
+    "name": "Mainpuri",
+    "description": "Central UP Travel Hub"
+  },
+  {
+    "name": "Mairang",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Malappuram",
+    "description": "Malabar Travel Hub"
+  },
+  {
+    "name": "Malda",
+    "description": "North Bengal Travel Hub"
+  },
+  {
+    "name": "Malegaon",
+    "description": "North Maharashtra Travel Hub"
+  },
+  {
+    "name": "Malkangiri",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Malvan",
+    "description": "Konkan Travel Hub"
+  },
+  {
+    "name": "Mamit",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Mancherial",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Mandla",
+    "description": "Wildlife Travel Hub"
+  },
+  {
+    "name": "Mandvi",
+    "description": "Kutch Coastal Travel Hub"
+  },
+  {
+    "name": "Mandya",
+    "description": "Mysuru Region Travel Hub"
+  },
+  {
+    "name": "Manesar",
+    "description": "NCR Travel Hub"
+  },
+  {
+    "name": "Mangaluru",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Mangrol",
+    "description": "Saurashtra Coastal Hub"
+  },
+  {
+    "name": "Mansa",
+    "description": "Malwa Regional Hub"
+  },
+  {
+    "name": "Mapusa",
+    "description": "North Goa Travel Hub"
+  },
+  {
+    "name": "Margao",
+    "description": "South Goa Travel Hub"
+  },
+  {
+    "name": "Marigaon",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Markapur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Mathabhanga",
+    "description": "North Bengal Travel Hub"
+  },
+  {
+    "name": "Mathura",
+    "description": "Pilgrimage Hub"
+  },
+  {
+    "name": "Mau",
+    "description": "Eastern UP Regional Hub"
+  },
+  {
+    "name": "Mawkyrwat",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Mayiladuthurai",
+    "description": "Temple Tourism Hub"
+  },
+  {
+    "name": "Mayurbhanj",
+    "description": "Wildlife Travel Hub"
+  },
+  {
+    "name": "Medak",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Medinipur",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Meerut",
+    "description": "NCR & Industrial Hub"
+  },
+  {
+    "name": "Meghraj",
+    "description": "Aravalli Travel Hub"
+  },
+  {
+    "name": "Mehsana",
+    "description": "Gujarat Travel Hub"
+  },
+  {
+    "name": "Melli",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Memari",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Midnapore",
+    "description": "Southwest Bengal Hub"
+  },
+  {
+    "name": "Mira-Bhayandar",
+    "description": "Mumbai Metropolitan Hub"
+  },
+  {
+    "name": "Mirzapur",
+    "description": "Spiritual & Heritage Hub"
+  },
+  {
+    "name": "Modasa",
+    "description": "Gujarat Travel Hub"
+  },
+  {
+    "name": "Modinagar",
+    "description": "NCR Travel Hub"
+  },
+  {
+    "name": "Moga",
+    "description": "Central Punjab Hub"
+  },
+  {
+    "name": "Mohali",
+    "description": "Tricity Travel Hub"
+  },
+  {
+    "name": "Mokokchung",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Mon",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Moradabad",
+    "description": "Industrial & Travel Hub"
+  },
+  {
+    "name": "Morbi",
+    "description": "Saurashtra Industrial Hub"
+  },
+  {
+    "name": "Morena",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Mormugao",
+    "description": "Port & Coastal Travel Hub"
+  },
+  {
+    "name": "Muktsar",
+    "description": "Pilgrimage & Regional Hub"
+  },
+  {
+    "name": "Mulugu",
+    "description": "Nature & Pilgrimage Hub"
+  },
+  {
+    "name": "Mumbai",
+    "description": "Business & Travel Hub"
+  },
+  {
+    "name": "Mundra",
+    "description": "Kutch Industrial Hub"
+  },
+  {
+    "name": "Mungeli",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Munger",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Murshidabad",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Muzaffarnagar",
+    "description": "Western UP Hub"
+  },
+  {
+    "name": "Muzaffarpur",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Mysuru",
+    "description": "Heritage & Travel Hub"
+  },
+  {
+    "name": "Nabadwip",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Nabarangpur",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Nadia",
+    "description": "Pilgrimage & Cultural Hub"
+  },
+  {
+    "name": "Nadiad",
+    "description": "Gujarat Travel Hub"
+  },
+  {
+    "name": "Nagaon",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Nagapattinam",
+    "description": "Coastal Tourism Hub"
+  },
+  {
+    "name": "Nagercoil",
+    "description": "Southern Travel Hub"
+  },
+  {
+    "name": "Nagpur",
+    "description": "Central India Travel Hub"
+  },
+  {
+    "name": "Naihati",
+    "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Nainital",
+    "description": "Hill Tourism Hub"
+  },
+  {
+    "name": "Nakashipara",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Nalbari",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Nalgonda",
+    "description": "Telangana Travel Hub"
+  },
+  {
+    "name": "Nalhati",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Namakkal",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Namchi",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Namsai",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Nanded",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Nandyal",
+    "description": "Andhra Pradesh Travel Hub"
+  },
+  {
+    "name": "Narayanpet",
+    "description": "South Telangana Travel Hub"
+  },
+  {
+    "name": "Narayanpur",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Narnaul",
+    "description": "Heritage & NCR Gateway"
+  },
+  {
+    "name": "Narsinghpur",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Narsipatnam",
+    "description": "Andhra Pradesh Travel Hub"
+  },
+  {
+    "name": "Nashik",
+    "description": "Pilgrimage & Wine Tourism Hub"
+  },
+  {
+    "name": "Navi Mumbai",
+    "description": "Mumbai Metropolitan Hub"
+  },
+  {
+    "name": "Navsari",
+    "description": "South Gujarat Travel Hub"
+  },
+  {
+    "name": "Nawada",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Nawanshahr",
+    "description": "Doaba Regional Hub"
+  },
+  {
+    "name": "Nayagarh",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Neemuch",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Nellore",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Nilanga",
+    "description": "Marathwada Travel Hub"
+  },
+  {
+    "name": "Nirmal",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Nizamabad",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Noida",
+    "description": "NCR Business Hub"
+  },
+  {
+    "name": "Nongpoh",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Nongstoin",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "North 24 Parganas",
+    "description": "Kolkata Metro Region"
+  },
+  {
+    "name": "North Tripura",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Nuapada",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Oddanchatram",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Omerga",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Ongole",
+    "description": "Andhra Pradesh Travel Hub"
+  },
+  {
+    "name": "Orai",
+    "description": "Bundelkhand Travel Hub"
+  },
+  {
+    "name": "Osmanabad",
+    "description": "Marathwada Travel Hub"
+  },
+  {
+    "name": "Ozar",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Pachora",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Padra",
+    "description": "Vadodara Travel Hub"
+  },
+  {
+    "name": "Pakur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Palakkad",
+    "description": "Gateway Kerala Travel Hub"
+  },
+  {
+    "name": "Palakollu",
+    "description": "Temple Tourism Hub"
+  },
+  {
+    "name": "Palamu",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Palani",
+    "description": "Pilgrimage Tourism Hub"
+  },
+  {
+    "name": "Palanpur",
+    "description": "North Gujarat Travel Hub"
+  },
+  {
+    "name": "Palghar",
+    "description": "Mumbai Metropolitan Hub"
+  },
+  {
+    "name": "Pali",
+    "description": "Marwar Travel Hub"
+  },
+  {
+    "name": "Pallavaram",
+    "description": "Chennai Metropolitan Hub"
+  },
+  {
+    "name": "Palwal",
+    "description": "NCR Gateway"
+  },
+  {
+    "name": "Panchkula",
+    "description": "Tricity Travel Hub"
+  },
+  {
+    "name": "Pandharpur",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Panihati",
+    "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Panipat",
+    "description": "NCR & Industrial Hub"
+  },
+  {
+    "name": "Panna",
+    "description": "Wildlife Travel Hub"
+  },
+  {
+    "name": "Papum Pare",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Paramakudi",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Parbhani",
+    "description": "Marathwada Travel Hub"
+  },
+  {
+    "name": "Paschim Medinipur",
+    "description": "Southwest Bengal Hub"
+  },
+  {
+    "name": "Patan",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Pathanamthitta",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Pathankot",
+    "description": "Gateway to Himachal & Jammu"
+  },
+  {
+    "name": "Patiala",
+    "description": "Royal & Cultural Hub"
+  },
+  {
+    "name": "Patna",
+    "description": "Bihar Travel Hub"
+  },
+  {
+    "name": "Pattukkottai",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Pauri Garhwal",
+    "description": "Garhwal Hill Travel Hub"
+  },
+  {
+    "name": "Peddapalle",
+    "description": "Industrial & Travel Hub"
+  },
+  {
+    "name": "Perambalur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Peren",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Pernem",
+    "description": "North Goa Travel Hub"
+  },
+  {
+    "name": "Phaltan",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Phek",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Pilibhit",
+    "description": "Terai & Wildlife Hub"
+  },
+  {
+    "name": "Pimpalgaon",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Pithoragarh",
+    "description": "Kumaon Hill Travel Hub"
+  },
+  {
+    "name": "Pollachi",
+    "description": "Nature Tourism Hub"
+  },
+  {
+    "name": "Ponda",
+    "description": "Central Goa Travel Hub"
+  },
+  {
+    "name": "Poonch",
+    "description": "Mountain & Heritage Hub"
+  },
+  {
+    "name": "Porbandar",
+    "description": "Coastal Saurashtra Hub"
+  },
+  {
+    "name": "Pratapgarh",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Prayagraj",
+    "description": "Pilgrimage Hub"
+  },
+  {
+    "name": "Proddatur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Puducherry",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Pudukkottai",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Pune",
+    "description": "Education & Travel Hub"
+  },
+  {
+    "name": "Purba Medinipur",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Puri",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Purnia",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Purulia",
+    "description": "Nature & Travel Hub"
+  },
+  {
+    "name": "Quepem",
+    "description": "South Goa Travel Hub"
+  },
+  {
+    "name": "Radhanpur",
+    "description": "North Gujarat Travel Hub"
+  },
+  {
+    "name": "Rae Bareli",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Raichur",
+    "description": "North Karnataka Travel Hub"
+  },
+  {
+    "name": "Raigad",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Raiganj",
+    "description": "North Bengal Hub"
+  },
+  {
+    "name": "Raigarh",
+    "description": "Chhattisgarh Travel Hub"
+  },
+  {
+    "name": "Raipur",
+    "description": "Central India Travel Hub"
+  },
+  {
+    "name": "Raisen",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Rajahmundry",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Rajampet",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Rajanna Sircilla",
+    "description": "Cultural & Travel Hub"
+  },
+  {
+    "name": "Rajgarh",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Rajkot",
+    "description": "Saurashtra Travel Hub"
+  },
+  {
+    "name": "Rajnandgaon",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Rajpipla",
+    "description": "Narmada Tourism Hub"
+  },
+  {
+    "name": "Ramachandrapuram",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Ramagundam",
+    "description": "Industrial Travel Hub"
+  },
+  {
+    "name": "Ramanathapuram",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Ramban",
+    "description": "Mountain Travel Hub"
+  },
+  {
+    "name": "Ramgarh",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Rampur",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Ranaghat",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Ranchi",
+    "description": "Jharkhand Travel Hub"
+  },
+  {
+    "name": "Rangpo",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Ranipet",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Ratlam",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Ratnagiri",
+    "description": "Konkan Travel Hub"
+  },
+  {
+    "name": "Ravangla",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Rayachoti",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Rayagada",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Reasi",
+    "description": "Pilgrimage & Travel Hub"
+  },
+  {
+    "name": "Resubelpara",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Rewa",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Rewari",
+    "description": "NCR & Transit Hub"
+  },
+  {
+    "name": "Rohtak",
+    "description": "Haryana Travel Hub"
+  },
+  {
+    "name": "Rongram",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Roorkee",
+    "description": "Uttarakhand Travel Hub"
+  },
+  {
+    "name": "Ropar",
+    "description": "Punjab Travel Hub"
+  },
+  {
+    "name": "Rourkela",
+    "description": "Industrial Travel Hub"
+  },
+  {
+    "name": "Rudraprayag",
+    "description": "Pilgrimage & Travel Hub"
+  },
+  {
+    "name": "Rudrapur",
+    "description": "Industrial & Travel Hub"
+  },
+  {
+    "name": "Rupnagar",
+    "description": "Heritage & Travel Hub"
+  },
+  {
+    "name": "Sabarkantha",
+    "description": "Gujarat Travel Hub"
+  },
+  {
+    "name": "Sagar",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Saharanpur",
+    "description": "Western UP Travel Hub"
+  },
+  {
+    "name": "Sahebganj",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Saiha",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Sakri",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Salaya",
+    "description": "Devbhoomi Dwarka Travel Hub"
+  },
+  {
+    "name": "Salem",
+    "description": "Major Regional Hub"
+  },
+  {
+    "name": "Samastipur",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Samba",
+    "description": "Regional & Industrial Hub"
+  },
+  {
+    "name": "Sambalpur",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Sambhal",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Sanand",
+    "description": "Ahmedabad Travel Hub"
+  },
+  {
+    "name": "Sangareddy",
+    "description": "Hyderabad Region Travel Hub"
+  },
+  {
+    "name": "Sangli",
+    "description": "Western Maharashtra Travel Hub"
+  },
+  {
+    "name": "Sangrur",
+    "description": "Punjab Travel Hub"
+  },
+  {
+    "name": "Sanquelim",
+    "description": "North Goa Travel Hub"
+  },
+  {
+    "name": "Sant Kabir Nagar",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Santipur",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Saraikela",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Sasaram",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Satna",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Sattari",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Savli",
+    "description": "Vadodara Industrial Hub"
+  },
+  {
+    "name": "Sawantwadi",
+    "description": "Konkan Travel Hub"
+  },
+  {
+    "name": "Sehore",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Selsella",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Senapati",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Seoni",
+    "description": "Wildlife Travel Hub"
+  },
+  {
+    "name": "Sepahijala",
+    "description": "Wildlife Travel Hub"
+  },
+  {
+    "name": "Serampore",
+    "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Serchhip",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Shahada",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Shahapur",
+    "description": "Mumbai Region Hub"
+  },
+  {
+    "name": "Shahdol",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Shahjahanpur",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Shajapur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Shangpung",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Sheopur",
+    "description": "Wildlife Travel Hub"
+  },
+  {
+    "name": "Shillong",
+    "description": "Major Hill Travel Hub"
+  },
+  {
+    "name": "Shimoga",
+    "description": "Nature & Travel Hub"
+  },
+  {
+    "name": "Shirpur",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Shivamogga",
+    "description": "Malnad Travel Hub"
+  },
+  {
+    "name": "Shivpuri",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Shopian",
+    "description": "Apple & Valley Travel Hub"
+  },
+  {
+    "name": "Shravasti",
+    "description": "Buddhist & Religious Hub"
+  },
+  {
+    "name": "Shyamnagar",
+    "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Siaha",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Siang",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Sibsagar",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Siddipet",
+    "description": "Telangana Travel Hub"
+  },
+  {
+    "name": "Sidhi",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Sidhpur",
+    "description": "North Gujarat Heritage Hub"
+  },
+  {
+    "name": "Sikar",
+    "description": "Shekhawati Travel Hub"
+  },
+  {
+    "name": "Siliguri",
+    "description": "North Bengal Gateway"
+  },
+  {
+    "name": "Silvassa",
+    "description": "Union Territory Travel Hub"
+  },
+  {
+    "name": "Simdega",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Sindhudurg",
+    "description": "Konkan Travel Hub"
+  },
+  {
+    "name": "Singrauli",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Singtam",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Sinnar",
+    "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Sirsa",
+    "description": "Western Haryana Hub"
+  },
+  {
+    "name": "Sitamarhi",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Sitapur",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Siuri",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Sivaganga",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Sivakasi",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Siwan",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Sohna",
+    "description": "NCR Travel Hub"
+  },
+  {
+    "name": "Solapur",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Somnath",
+    "description": "Pilgrimage Tourism Hub"
+  },
+  {
+    "name": "Sonbhadra",
+    "description": "Nature & Industrial Hub"
+  },
+  {
+    "name": "Sonipat",
+    "description": "NCR Hub"
+  },
+  {
+    "name": "Sonitpur",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Soreng",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "South 24 Parganas",
+    "description": "Kolkata & Coastal Hub"
+  },
+  {
+    "name": "South Tripura",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Sri Ganganagar",
+    "description": "Northern Rajasthan Hub"
+  },
+  {
+    "name": "Srikakulam",
+    "description": "Coastal Andhra Hub"
+  },
+  {
+    "name": "Srinagar",
+    "description": "Kashmir Travel Hub"
+  },
+  {
+    "name": "Srirangam",
+    "description": "Temple Tourism Hub"
+  },
+  {
+    "name": "Subarnapur",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Sukma",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Sultanpur",
+    "description": "Central-Eastern UP Hub"
+  },
+  {
+    "name": "Sundargarh",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Surajpur",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Surat",
+    "description": "Business & Travel Hub"
+  },
+  {
+    "name": "Surguja",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Suryapet",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Tadepalligudem",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Tamenglong",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Tamluk",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Tanuku",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Tarakeswar",
+    "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Tarn Taran",
+    "description": "Pilgrimage Hub"
+  },
+  {
+    "name": "Tawang",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Tehri Garhwal",
+    "description": "Hill & Adventure Hub"
+  },
+  {
+    "name": "Tenkasi",
+    "description": "Nature Tourism Hub"
+  },
+  {
+    "name": "Thadlaskein",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Thane",
+    "description": "Mumbai Metropolitan Hub"
+  },
+  {
+    "name": "Thangadh",
+    "description": "Surendranagar Travel Hub"
+  },
+  {
+    "name": "Thanjavur",
+    "description": "Heritage & Pilgrimage Hub"
+  },
+  {
+    "name": "Theni",
+    "description": "Nature Tourism Hub"
+  },
+  {
+    "name": "Thiruvalla",
+    "description": "Central Kerala Travel Hub"
+  },
+  {
+    "name": "Thiruvananthapuram",
+    "description": "Capital & Travel Hub"
+  },
+  {
+    "name": "Thodupuzha",
+    "description": "Idukki Travel Hub"
+  },
+  {
+    "name": "Thoothukudi",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Thoubal",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Thrissur",
+    "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Tikamgarh",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Tinsukia",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Tirap",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Tiruchengodu",
+    "description": "Temple Tourism Hub"
+  },
+  {
+    "name": "Tiruchirappalli",
+    "description": "Central Tamil Nadu Hub"
+  },
+  {
+    "name": "Tirunelveli",
+    "description": "Tamil Nadu Travel Hub"
+  },
+  {
+    "name": "Tirupati",
+    "description": "Pilgrimage Tourism Hub"
+  },
+  {
+    "name": "Tirupattur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Tiruppur",
+    "description": "Industrial Travel Hub"
+  },
+  {
+    "name": "Tiruvallur",
+    "description": "Chennai Region Travel Hub"
+  },
+  {
+    "name": "Tiruvannamalai",
+    "description": "Pilgrimage Tourism Hub"
+  },
+  {
+    "name": "Tiswadi",
+    "description": "Panaji Travel Hub"
+  },
+  {
+    "name": "Tonk",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Tuensang",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Tumkur",
+    "description": "Bengaluru Regional Hub"
+  },
+  {
+    "name": "Tuni",
+    "description": "Coastal Andhra Hub"
+  },
+  {
+    "name": "Tura",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Udaipur",
+    "description": "Tourism & Heritage Hub"
+  },
+  {
+    "name": "Udalguri",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Udgir",
+    "description": "Marathwada Travel Hub"
+  },
+  {
+    "name": "Udhampur",
+    "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Udumalpet",
+    "description": "Nature Tourism Hub"
+  },
+  {
+    "name": "Udupi",
+    "description": "Coastal Karnataka Travel Hub"
+  },
+  {
+    "name": "Ujjain",
+    "description": "Major Pilgrimage Hub"
+  },
+  {
+    "name": "Ukhrul",
+    "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Uluberia",
+    "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Umaria",
+    "description": "Wildlife Travel Hub"
+  },
+  {
+    "name": "Umbergaon",
+    "description": "South Gujarat Coastal Hub"
+  },
+  {
+    "name": "Unakoti",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Unjha",
+    "description": "North Gujarat Hub"
+  },
+  {
+    "name": "Unnao",
+    "description": "Industrial & Regional Hub"
+  },
+  {
+    "name": "Upper Dibang Valley",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Upper Siang",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Upper Subansiri",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Uran",
+    "description": "Mumbai Region Hub"
+  },
+  {
+    "name": "Uttara Kannada",
+    "description": "Coastal Karnataka Tourism Hub"
+  },
+  {
+    "name": "Uttarkashi",
+    "description": "Pilgrimage & Hill Hub"
+  },
+  {
+    "name": "Uttarpara",
+    "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Vadnagar",
+    "description": "Heritage Tourism Hub"
+  },
+  {
+    "name": "Vadodara",
+    "description": "Cultural & Business Hub"
+  },
+  {
+    "name": "Valod",
+    "description": "Tapi Travel Hub"
+  },
+  {
+    "name": "Valpoi",
+    "description": "Sattari Travel Hub"
+  },
+  {
+    "name": "Valsad",
+    "description": "South Gujarat Hub"
+  },
+  {
+    "name": "Vapi",
+    "description": "South Gujarat Industrial Hub"
+  },
+  {
+    "name": "Varanasi",
+    "description": "Pilgrimage & Travel Hub"
+  },
+  {
+    "name": "Vasai-Virar",
+    "description": "Mumbai Metropolitan Hub"
+  },
+  {
+    "name": "Vasco da Gama",
+    "description": "Airport Travel Hub"
+  },
+  {
+    "name": "Vellore",
+    "description": "Major Travel Hub"
+  },
+  {
+    "name": "Veraval",
+    "description": "Somnath Coastal Hub"
+  },
+  {
+    "name": "Vidisha",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Vijapur",
+    "description": "North Gujarat Travel Hub"
+  },
+  {
+    "name": "Vijayapura",
+    "description": "Karnataka Travel Hub"
+  },
+  {
+    "name": "Vijayawada",
+    "description": "Business & Travel Hub"
+  },
+  {
+    "name": "Vikarabad",
+    "description": "Weekend Travel Hub"
+  },
+  {
+    "name": "Viluppuram",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Vinukonda",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Virudhunagar",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Visakhapatnam",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Visnagar",
+    "description": "North Gujarat Hub"
+  },
+  {
+    "name": "Vizianagaram",
+    "description": "Coastal Andhra Hub"
+  },
+  {
+    "name": "Vyara",
+    "description": "South Gujarat Hub"
+  },
+  {
+    "name": "Wanaparthy",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Wani",
+    "description": "Vidarbha Travel Hub"
+  },
+  {
+    "name": "Warangal",
+    "description": "Tier 2 Heritage Hub"
+  },
+  {
+    "name": "Wardha",
+    "description": "Central Maharashtra Travel Hub"
+  },
+  {
+    "name": "Washim",
+    "description": "Vidarbha Travel Hub"
+  },
+  {
+    "name": "Wayanad",
+    "description": "Hill Station Tourism Hub"
+  },
+  {
+    "name": "West Kameng",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "West Siang",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "West Singhbhum",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "West Tripura",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Williamnagar",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Wokha",
+    "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Yadgir",
+    "description": "North Karnataka Travel Hub"
+  },
+  {
+    "name": "Yamuna Nagar",
+    "description": "North Haryana Travel Hub"
+  },
+  {
+    "name": "Yanam",
+    "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Yavatmal",
+    "description": "Vidarbha Travel Hub"
+  },
+  {
+    "name": "Yuksom",
+    "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Zirakpur",
+    "description": "Tricity Travel Hub"
+  },
+  {
+    "name": "Zunheboto",
+    "description": "Hill Travel Hub"
+  }
+]
