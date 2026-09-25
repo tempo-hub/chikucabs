@@ -2785,7 +2785,7 @@ Please confirm the final fare and availability.`;
 
 
               <a
-                href="/tempo-traveller"
+                href="/tempo-traveller-on-rent"
                 className="rounded-xl border bg-white p-5 font-bold transition hover:border-primary hover:text-primary"
               >
                 Tempo Traveller
@@ -2793,7 +2793,7 @@ Please confirm the final fare and availability.`;
 
 
               <a
-                href="/innova-crysta"
+                href="/hire-innova-crysta-on-rent"
                 className="rounded-xl border bg-white p-5 font-bold transition hover:border-primary hover:text-primary"
               >
                 Innova Crysta
@@ -2801,10 +2801,10 @@ Please confirm the final fare and availability.`;
 
 
               <a
-                href="/contact"
+                href="/airport-taxi"
                 className="rounded-xl border bg-white p-5 font-bold transition hover:border-primary hover:text-primary"
               >
-                Contact Chiku Cabs
+                Airport Taxi
               </a>
 
             </div>
