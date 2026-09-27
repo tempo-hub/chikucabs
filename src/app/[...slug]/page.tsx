@@ -25,6 +25,9 @@ import LocalSightseeingTemplate from "@/components/templates/LocalSightseeingTem
 import ErtigaServiceTemplate from "@/components/templates/ErtigaServiceTemplate";
 import DzireServiceTemplate from "@/components/templates/DzireServiceTemplate";
 import TempoTravellerFareTemplate from "@/components/templates/tempo-fare/TempoTravellerFareTemplate";
+import UrbaniaTemplate from "@/components/templates/urbaniatraveller/UrbaniaTemplate";
+import UrbaniaRouteTemplate from "@/components/templates/urbaniatravellerfare/UrbaniaRouteTemplate";
+import { URBANIA_ROUTES } from "@/data/urbaniaRouteData";
 
 // We do NOT pre-render all 4476 routes at build time (causes timeout on Vercel).
 // Pages are generated on first request and cached via ISR (revalidate below).
@@ -103,6 +106,31 @@ export async function generateMetadata({
     "Chiku Cabs",
   ];
 
+  } else if (parsed.routeType === "Urbania Fare") {
+  const city = parsed.origin || "";
+
+  const formattedCity = city
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+
+  title = `Urbania Fare in ${formattedCity} | 12 & 17 Seater Urbania | Chiku Cabs`;
+
+  description = `Check Urbania fare in ${formattedCity}. Book 12 Seater or 17 Seater Urbania Traveller for family trips, group travel, weddings, corporate travel and outstation journeys with Chiku Cabs.`;
+
+  keywords = [
+    `urbania fare in ${formattedCity}`,
+    `urbania price in ${formattedCity}`,
+    `urbania rental in ${formattedCity}`,
+    `urbania booking in ${formattedCity}`,
+    `urbania hire in ${formattedCity}`,
+    `12 seater urbania in ${formattedCity}`,
+    `17 seater urbania in ${formattedCity}`,
+    `${formattedCity} urbania fare`,
+    `${formattedCity} urbania booking`,
+    "Urbania Traveller",
+    "Chiku Cabs",
+  ];
+
 } else if (parsed.routeType === "Outstation Route") {
     title = `${parsed.origin} to ${parsed.destination} One Way Cab | Easy Booking | Chiku Cabs`;
 description = `Book a one way cab from ${parsed.origin} to ${parsed.destination} starting With Fare Price. Choose Sedan, SUV, Innova or Tempo Traveller based on your needs. Get transparent fares, verified drivers and easy booking with Chiku Cabs. Call 9818022327 to book now!`;   
@@ -120,7 +148,7 @@ description = `Book a one way cab from ${parsed.origin} to ${parsed.destination}
       "Chiku Cabs",
     ];
   } else if (parsed.routeType === "Outstation Route Fare") {
-    title = `${parsed.origin} to ${parsed.destination} ${parsed.vehicle} Fare @ Best Price| Chiku Cabs`;
+    title = `${parsed.origin} to ${parsed.destination} ${parsed.vehicle} Fare @ ₹10/km | Get 500 OFF Extra`;
     description = `Check ${parsed.origin} to ${parsed.destination} ${parsed.vehicle} fare. Complete rate card with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 9818022327.`;
     keywords = [
       `${parsed.origin} to ${parsed.destination} cab fare`,
@@ -596,6 +624,67 @@ export default async function DynamicRoutePage({
     if (slugValue === "tempo-traveller-on-rent") {
       return <TempoTravellerTemplate parsedData={parsed} />;
     }
+    // ========================================
+// URBANIA ROUTE
+// /urbania/ayodhya-to-haridwar-urbania-fare
+// ========================================
+
+const isUrbaniaRouteSlug =
+  slugValue.startsWith("urbania/") &&
+  slugValue.endsWith("-urbania-fare");
+
+if (isUrbaniaRouteSlug) {
+  const routeSlug = slugValue
+    .replace(/^urbania\//, "")
+    .replace(/-urbania-fare$/, "");
+
+  const [fromSlug, toSlug] = routeSlug.split("-to-");
+
+  if (!fromSlug || !toSlug) {
+    notFound();
+  }
+
+  const fromCity = fromSlug
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+
+  const toCity = toSlug
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+
+  const routeData = URBANIA_ROUTES.find(
+    (route) =>
+      route.fromCity.toLowerCase() === fromCity.toLowerCase() &&
+      route.toCity.toLowerCase() === toCity.toLowerCase()
+  );
+
+  if (!routeData) {
+    notFound();
+  }
+
+  return (
+    <UrbaniaRouteTemplate
+      fromCity={routeData.fromCity}
+      toCity={routeData.toCity}
+      distance={routeData.distance}
+    />
+  );
+}
+
+
+// ========================================
+// NORMAL URBANIA CITY PAGE
+// /urbania-fare-in-ayodhya
+// ========================================
+
+if (parsed.routeType === "Urbania Fare") {
+  return (
+    <UrbaniaTemplate
+      city={parsed.origin || ""}
+    />
+  );
+
+}
     if (parsed.routeType === "Tempo Traveller Fare") {
   return (
     <TempoTravellerFareTemplate

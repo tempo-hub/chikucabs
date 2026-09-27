@@ -5,7 +5,7 @@ export interface ParsedRouteData {
   displayCity: string | null;
   destination: string | null;
   vehicle: string | null;
-  vehicleCategory: "tempo-traveller" | "innova" | "cab" | "driver" | "ertiga" | "dzire";
+  vehicleCategory: "tempo-traveller" | "innova" | "urbania" | "cab" | "driver" | "ertiga" | "dzire";
   routeType:
     | "Service"
     | "Local Service"
@@ -13,6 +13,7 @@ export interface ParsedRouteData {
     | "Outstation Route Fare"
     | "Tempo Traveller Fare"
     | "Driver Service"
+    | "Urbania Fare"
     | "Unknown";
   isLegacyPhp: boolean;
   slugs: string[];
@@ -64,8 +65,9 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
     lowerSegment.includes("dzire") ||
     lowerSegment.includes("tempo-traveller")
   );
-
-  if (lowerSegment.includes("tempo") || lowerSegment.includes("traveller")) {
+  if (lowerSegment.includes("urbania")) {
+  vehicle = "Urbania";
+} else if (lowerSegment.includes("tempo") || lowerSegment.includes("traveller")) {
     vehicle = "Tempo Traveller";
   } else if (lowerSegment.includes("innova")) {
     vehicle = "Innova";
@@ -155,6 +157,42 @@ else if (
   vehicle = "Tempo Traveller";
 }
 
+else if (lowerSegment.startsWith("urbania-fare-in-")) {
+  routeType = "Urbania Fare";
+
+  const citySlug = lowerSegment.replace(
+    "urbania-fare-in-",
+    ""
+  );
+
+  origin = citySlug;
+  displayCity = citySlug;
+  vehicle = "Urbania";
+}
+  // Urbania Route Fare Pages
+  // Example:
+  // /urbania/ayodhya-to-haridwar-urbania-fare
+  // Urbania route fare
+else if (
+  slugs[0]?.toLowerCase() === "urbania" &&
+  lowerSegment.includes("-to-") &&
+  lowerSegment.endsWith("-urbania-fare")
+) {
+  routeType = "Urbania Fare";
+  vehicle = "Urbania";
+
+  const routeSlug = lowerSegment.replace(
+    /-urbania-fare$/,
+    ""
+  );
+
+  const parts = routeSlug.split("-to-");
+
+  if (parts.length === 2) {
+    origin = parts[0];
+    destination = parts[1];
+  }
+}
   // 3. Outstation Route parsing (-to-)
   else if (lowerSegment.includes("-to-")) {
   const isOutstationFare =
@@ -320,6 +358,11 @@ else if (isVehicleRental) {
   // Determine vehicleCategory
   const lowerVehicle = (vehicle || "cab").toLowerCase();
   let vehicleCategory: ParsedRouteData["vehicleCategory"] = "cab";
+   if (
+    lowerVehicle.includes("urbania")
+  ) {
+    vehicleCategory = "urbania";
+  } else
   if (lowerVehicle.includes("tempo") || lowerVehicle.includes("traveller")) {
     vehicleCategory = "tempo-traveller";
   } else if (lowerVehicle.includes("innova")) {
