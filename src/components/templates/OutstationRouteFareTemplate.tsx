@@ -135,7 +135,7 @@ const VEHICLES: VehicleDetails[] = [
     name: "Tempo Traveller",
     shortName: "Tempo Traveller",
     image: "/tempo_traveller.png",
-    pricePerKm: 18,
+    pricePerKm: 20,
     seats: 12,
     luggage: 8,
     description:
@@ -939,7 +939,7 @@ Please confirm the final fare and availability.`;
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/85 via-black/65 to-black/40" />
 
 
-          <div className="relative max-w-7xl mx-auto w-full px-4 py-20">
+          <div className="relative max-w-7xl mx-auto w-full px-4 py-16">
 
             <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center">
 
@@ -996,36 +996,16 @@ Please confirm the final fare and availability.`;
   <span className="text-sm">4.9 Rating • 1250+ Reviews</span>
 </div>
 
+<h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+    {startCity} to {endCity}{" "}
+    <span className="block text-primary mt-1">Cab Fare & Booking</span>
+  </h1>
 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight mb-6">
-
-                  {startCity} to {endCity}
-
-                  <span className="block text-primary mt-2">
-
-                    Cab Fare
-
-                  </span>
-
-                </h1>
-
-
-                <p className="text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed mb-8">
-
-                  Check the approximate distance, travel time, vehicle
-                  options and one-way cab fare for your journey from{" "}
-
-                  <strong>
-                    {startCity}
-                  </strong>{" "}
-
-                  to{" "}
-
-                  <strong>
-                    {endCity}
-                  </strong>.
-
-                </p>
+  <p className="text-sm sm:text-base text-white/80 max-w-xl leading-relaxed mt-4 mb-4">
+    Book your outstation taxi from <strong>{startCity}</strong> to{" "}
+    <strong>{endCity}</strong> starting at just ₹10/km. Use the online booking form to claim 
+    an extra ₹500 off on one-way and round-trip rides.
+  </p>
 
 
                 {/* QUICK FACTS */}

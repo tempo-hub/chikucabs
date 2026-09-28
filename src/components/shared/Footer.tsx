@@ -128,6 +128,9 @@ export default function Footer() {
               <li>
                 <a href="/bus-on-rent">Bus on Rent</a>
               </li>
+              <li>
+                <a href="/urbania">Urbania</a>
+              </li>
             </ul>
           </div>
 
