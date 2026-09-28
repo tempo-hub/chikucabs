@@ -29,11 +29,7 @@ export default function UrbaniaRouteTemplate({
 }: UrbaniaRouteTemplateProps) {
   return (
     <>
-      {/* <UrbaniaRouteSchema
-        fromCity={fromCity}
-        toCity={toCity}
-        distance={distance}
-      /> */}
+
 
       <main className="min-h-screen bg-white">
         

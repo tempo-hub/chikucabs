@@ -13,6 +13,7 @@ export interface ParsedRouteData {
     | "Outstation Route Fare"
     | "Tempo Traveller Fare"
     | "Driver Service"
+    | "Urbania Route Fare"
     | "Urbania Fare"
     | "Unknown";
   isLegacyPhp: boolean;
@@ -174,23 +175,27 @@ else if (lowerSegment.startsWith("urbania-fare-in-")) {
   // /urbania/ayodhya-to-haridwar-urbania-fare
   // Urbania route fare
 else if (
-  slugs[0]?.toLowerCase() === "urbania" &&
-  lowerSegment.includes("-to-") &&
-  lowerSegment.endsWith("-urbania-fare")
+  (slugs[0]?.toLowerCase() === "urbania" || slugs.join("/").includes("urbania/")) &&
+  slugs.some((s) => s.includes("-to-") && s.endsWith("-urbania-fare"))
 ) {
-  routeType = "Urbania Fare";
-  vehicle = "Urbania";
+  routeType = "Urbania Route Fare";
+  vehicle = "Force Urbania";
 
-  const routeSlug = lowerSegment.replace(
-    /-urbania-fare$/,
-    ""
-  );
+  // Find the exact segment that contains the route: "ayodhya-to-haridwar-urbania-fare"
+  const routeSegment = slugs.find((s) => s.includes("-to-") && s.endsWith("-urbania-fare")) || "";
 
-  const parts = routeSlug.split("-to-");
+  // 1. Remove the "-urbania-fare" suffix
+  // 2. Remove any accidental "urbania/" prefix
+  const cleanRoute = routeSegment
+    .replace(/-urbania-fare$/i, "")
+    .replace(/^urbania[\/-]/i, "");
+
+  const parts = cleanRoute.split("-to-");
 
   if (parts.length === 2) {
-    origin = parts[0];
-    destination = parts[1];
+    origin = parts[0].trim();       // "ayodhya"
+    destination = parts[1].trim();  // "haridwar"
+    displayCity = origin;
   }
 }
   // 3. Outstation Route parsing (-to-)

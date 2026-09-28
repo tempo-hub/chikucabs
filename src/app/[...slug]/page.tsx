@@ -106,16 +106,61 @@ export async function generateMetadata({
     "Chiku Cabs",
   ];
 
-  } else if (parsed.routeType === "Urbania Fare") {
+
+
+  } else if (
+  parsed.routeType === "Urbania Route Fare" ||
+  (parsed.routeType === "Urbania Fare" && parsed.destination)
+) {
+
+  let rawOrigin = parsed.origin || "";
+  let rawDestination = parsed.destination || "";
+
+  if (rawOrigin.toLowerCase() === "urbania" && parsed.slugs?.length > 1) {
+    const routeSegment = parsed.slugs.find((s: string) => s.includes("-to-")) || "";
+    const clean = routeSegment.replace(/-urbania-fare$/i, "").replace(/^urbania[\/-]/i, "");
+    const parts = clean.split("-to-");
+    if (parts.length === 2) {
+      rawOrigin = parts[0];
+      rawDestination = parts[1];
+    }
+  }
+
+  const fromCity = rawOrigin
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+
+  const toCity = rawDestination
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+
+  title = `${fromCity} to ${toCity} Urbania Fare  @ ₹28/km | Get 500 OFF Extra`;
+
+  description = `Check Force Urbania fare from ${fromCity} to ${toCity}. Book 12 Seater or 17 Seater luxury Urbania Traveller for outstation tours, family trips, weddings, and group journeys with Chiku Cabs. Call 9818022327 to book now.`;
+
+  keywords = [
+    `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania fare`,
+    `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania price`,
+    `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania rental`,
+    `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania booking`,
+    `12 seater urbania ${fromCity.toLowerCase()} to ${toCity.toLowerCase()}`,
+    `17 seater urbania ${fromCity.toLowerCase()} to ${toCity.toLowerCase()}`,
+    "Force Urbania on Rent",
+    "Urbania Traveller",
+    "Chiku Cabs",
+  ];
+
+} else if (parsed.routeType === "Urbania Fare") {
+  // Handles single-city pages like: /urbania-fare-in-delhi
   const city = parsed.origin || "";
 
   const formattedCity = city
     .replace(/-/g, " ")
     .replace(/\b\w/g, (char) => char.toUpperCase());
 
-  title = `Urbania Fare in ${formattedCity} | 12 & 17 Seater Urbania | Chiku Cabs`;
+  title = `Urbania Fare in ${formattedCity} 12 & 17 Seater  @ ₹28/km | Get 500 OFF Extra`;
 
-  description = `Check Urbania fare in ${formattedCity}. Book 12 Seater or 17 Seater Urbania Traveller for family trips, group travel, weddings, corporate travel and outstation journeys with Chiku Cabs.`;
+  description = `Check Urbania fare in ${formattedCity}. Book 12 Seater or 17 Seater Urbania Traveller for family trips, group travel, weddings, corporate travel and outstation journeys with Chiku Cabs. Call 9818022327 to book now.`;
 
   keywords = [
     `urbania fare in ${formattedCity}`,
