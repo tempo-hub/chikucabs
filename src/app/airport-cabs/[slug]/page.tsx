@@ -20,7 +20,7 @@ import {
   FaUserCheck,
   FaSuitcase,
   FaShieldAlt,
-  FaHeadset,
+  FaHeadset,  
   FaMapMarkerAlt,
   FaCarSide,
   FaUsers,
@@ -51,6 +51,7 @@ import {
 import { CiClock1 } from "react-icons/ci";
 import React, { useMemo } from "react";
 import { ParsedRouteData } from "@/lib/urlParser";
+
 
 // --- Constants ---
 interface BookingFormData {
@@ -96,7 +97,7 @@ const VEHICLE_DETAILS_MAP: Record<
   tempo: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
+    pricePerKm: 20,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -109,7 +110,7 @@ const VEHICLE_DETAILS_MAP: Record<
   traveller: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
+    pricePerKm: 20,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -122,7 +123,7 @@ const VEHICLE_DETAILS_MAP: Record<
   bus: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
+    pricePerKm: 10,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -195,43 +196,48 @@ const ABOUT_FEATURES = [
 const generateFAQs = (cityName: string, airportName: string): FAQ[] => [
   {
     id: 1,
-    question: `How do I book a ${cityName} airport taxi?`,
-    answer: `You can book your ${cityName} airport taxi by calling us at ${PHONE_NUMBER}, sending a WhatsApp message, or filling the booking form on this page. We provide instant confirmation and driver details.`,
+    question: `How do I book an airport taxi in ${cityName}?`,
+    answer: `You can book an airport taxi in ${cityName} by calling ${PHONE_NUMBER}, sending us a WhatsApp message, or using the booking form on this page. Share your pickup or drop location, travel date, time, and vehicle requirement to request a booking.`,
   },
   {
     id: 2,
-    question: `Do you provide flight tracking service?`,
-    answer: `Yes! Our professional drivers track your flight in real-time and adjust pickup time accordingly. If your flight is delayed, we'll be there when you arrive. Free 60-minute waiting period included.`,
+    question: `Do you provide pickup and drop services to ${airportName}?`,
+    answer: `Yes. We provide both airport pickup and airport drop services to and from ${airportName}. You can book a cab from your home, hotel, railway station, business location, or other pickup point.`,
   },
   {
     id: 3,
-    question: `What types of vehicles are available for airport transfers?`,
-    answer: `We offer a range of vehicles including Swift Dzire (4 seater), Honda Amaze (4 seater), Maruti Ertiga (7 seater), Toyota Innova Crysta (7 seater), and Tempo Traveller (9-12 seater) for group transfers. Choose based on your group size and luggage.`,
+    question: `Do you provide flight tracking for airport pickups?`,
+    answer: `Flight tracking may be available for eligible airport pickup bookings. If your flight is delayed, pickup arrangements can be adjusted according to the booking details and applicable waiting-time policy.`,
   },
   {
     id: 4,
-    question: `How much does a ${cityName} airport cab cost?`,
-    answer: `Our ${cityName} airport taxi fares start from ₹10/km. The final fare depends on vehicle type, distance, and time of travel. We offer transparent pricing with no hidden charges. Check our popular routes above for estimated fares.`,
+    question: `What types of vehicles are available for airport transfers?`,
+    answer: `Vehicle options include Swift Dzire, Honda Amaze, Maruti Ertiga, Toyota Innova Crysta, and Tempo Traveller options for larger groups, subject to availability. You can select a vehicle based on your passenger count and luggage requirements.`,
   },
   {
     id: 5,
-    question: `Is it safe to book airport cabs online?`,
-    answer: `Absolutely! We prioritize your safety. All our drivers are verified with proper background checks. Our vehicles are regularly sanitized and maintained. We also share driver details and GPS tracking with you before your trip.`,
+    question: `How much does an airport cab in ${cityName} cost?`,
+    answer: `Airport cab fares in ${cityName} depend on the vehicle, pickup or drop location, distance, and travel requirements. Fares may start from ₹10/km for eligible vehicles and routes. The applicable fare is confirmed at the time of booking.`,
   },
   {
     id: 6,
-    question: `Can I cancel my airport cab booking?`,
-    answer: `Yes, you can cancel your booking up to 4 hours before pickup without any charges. Cancellations within 4 hours may attract minimal cancellation fees. Contact our support team for assistance.`,
+    question: `Is it safe to book an airport cab online?`,
+    answer: `You can book an airport cab through our website or contact our booking team directly. Driver and vehicle details can be shared with you for the confirmed booking, subject to the service and booking requirements.`,
   },
   {
     id: 7,
-    question: `Do you provide cabs for early morning or late night flights?`,
-    answer: `Yes! We offer 24x7 service. Whether you have an early morning flight or a red-eye flight, we'll be there to pick you up. Our drivers are available round the clock.`,
+    question: `Can I book an airport taxi for an early morning or late-night flight?`,
+    answer: `Yes. Airport taxi bookings can be requested for early morning and late-night flights, subject to vehicle and driver availability. Advance booking is recommended for late-night and early-morning airport transfers.`,
   },
   {
     id: 8,
-    question: `How can I pay for the airport taxi?`,
-    answer: `You can pay online via UPI, credit/debit cards, or pay directly to the driver. We accept cash and all digital payment methods. Advance payment is not required unless you need a special booking.`,
+    question: `Can I cancel my airport cab booking?`,
+    answer: `Cancellation is available according to the applicable booking policy. Any cancellation charges depend on the cancellation time and booking terms. Contact our support team if you need help changing or cancelling your booking.`,
+  },
+  {
+    id: 9,
+    question: `How can I pay for my airport taxi?`,
+    answer: `Available payment options may include UPI, online payment, cash, and other payment methods supported at the time of booking. The payment process and any advance-payment requirement can be confirmed with the booking team.`,
   },
 ];
 

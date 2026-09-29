@@ -1208,7 +1208,7 @@ export default function ServiceTemplate({
                 },
                 {
                   name: "Tempo Traveller",
-                  price: "19",
+                  price: "20",
                   capacity: "9-12",
                   luggage: "10-12",
                   ac: true,
@@ -1385,7 +1385,7 @@ export default function ServiceTemplate({
                       ₹17
                     </td>
                     <td className="p-5 text-center font-semibold text-gray-700">
-                      ₹19
+                      ₹20
                     </td>
                   </tr>
 

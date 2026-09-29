@@ -359,46 +359,48 @@ export default function TempoTravellerRouteTemplate({
             <h2 className="section-title">Tempo Traveller Booking Questions</h2>
           </div>
           {[
-            {
-              q: `How much does a tempo traveller on rent cost from ${startCity} to ${endCity}?`,
-              a: `The tempo traveller on rent fare starts from ₹18/km for a 12-seater and goes up to ₹28/km for a 26-seater. Total tempo traveller booking cost depends on the route distance and number of days.`,
-            },
-            {
-              q: `Which model is best for tempo traveller booking from ${startCity} to ${endCity}?`,
-              a: `For most groups, we recommend the 16-seater for your tempo traveller booking as it offers the best balance of space and pricing. For larger group travel service, the 20 or 26-seater is ideal.`,
-            },
-            {
-              q: "Is the tempo traveller on rent equipped with comfortable seats?",
-              a: "Yes, all our tempo traveller on rent options have luxury pushback reclining seats with individual armrests, specifically designed for long-distance comfort.",
-            },
-            {
-              q: "Can I stop at multiple places during my outstation tempo traveller journey?",
-              a: "Absolutely! Our outstation tempo traveller service is flexible. You can plan your itinerary with multiple stops at tourist spots and restaurants along the way.",
-            },
-            {
-              q: `What are the benefits of choosing a tempo traveller on rent in ${startCity}?`,
-              a: `Choosing a tempo traveller on rent allows your entire group to travel together, making it more cost-effective and fun than booking multiple smaller vehicles.`,
-            },
-            {
-              q: `How do I handle tempo traveller booking for a wedding group?`,
-              a: `For weddings, we offer specialized tempo traveller booking services including guest transfers and multi-day rentals to ensure smooth group travel service.`,
-            },
-            {
-              q: `Is a professional driver included in the tempo traveller on rent package?`,
-              a: `Yes, every tempo traveller on rent comes with a highly experienced, police-verified driver who is an expert in outstation tempo traveller routes.`,
-            },
-            {
-              q: `What is the seating capacity for tempo traveller booking?`,
-              a: `We offer various seating options for tempo traveller booking, ranging from 9-seater, 12-seater, 16-seater, 20-seater, up to 26-seater Force Travellers.`,
-            },
-            {
-              q: `Are there any hidden charges in the outstation tempo traveller fare?`,
-              a: `No. Chiku Cabs provides 100% transparent tempo traveller booking. The quote includes base fare, driver allowance, and GST. Only tolls are extra.`,
-            },
-            {
-              q: `How early should I complete my tempo traveller booking for ${startCity}?`,
-              a: `We recommend completing your tempo traveller booking at least 1-2 weeks in advance, especially during peak travel or wedding seasons, to ensure availability.`,
-            },
+            
+  {
+    q: `How much does a Tempo Traveller on rent cost from ${startCity} to ${endCity}?`,
+    a: `The Tempo Traveller fare from ${startCity} to ${endCity} depends on the seating capacity, route distance, trip duration and vehicle type. Fares may vary for 12-seater, 16-seater, 20-seater and larger vehicles. Contact Chiku Cabs for the applicable fare for your travel dates.`,
+  },
+  {
+    q: `Which Tempo Traveller should I book from ${startCity} to ${endCity}?`,
+    a: `The suitable Tempo Traveller depends mainly on your group size and luggage. Smaller groups can choose a lower-capacity vehicle, while larger groups may prefer 20-seater or 26-seater options for additional passenger capacity and luggage space.`,
+  },
+  {
+    q: `Are Tempo Traveller seats comfortable for the journey from ${startCity} to ${endCity}?`,
+    a: `Tempo Travellers are designed for group and long-distance travel and can include pushback or reclining seats, air conditioning and comfortable passenger space. Specific features may vary depending on the vehicle model.`,
+  },
+  {
+    q: `Can I make multiple stops during my Tempo Traveller trip from ${startCity} to ${endCity}?`,
+    a: `Yes. Multiple stops can generally be included in your itinerary, subject to the agreed route, trip duration and booking terms. You can discuss sightseeing stops, restaurants and other planned locations with the booking team.`,
+  },
+  {
+    q: `Why should I book a Tempo Traveller from ${startCity} to ${endCity}?`,
+    a: `A Tempo Traveller allows your group to travel together in a single vehicle instead of arranging multiple cars. It can be convenient for families, friends, corporate groups, weddings and other group journeys.`,
+  },
+  {
+    q: `Can I book a Tempo Traveller for a wedding group from ${startCity}?`,
+    a: `Yes. Tempo Travellers can be booked for wedding guest transfers, family transportation and other group travel requirements. Multi-day bookings may also be available depending on the itinerary and vehicle availability.`,
+  },
+  {
+    q: `Is a driver included with the Tempo Traveller booking?`,
+    a: `Yes. Tempo Traveller bookings are provided with a professional driver. Driver availability and applicable driver-related charges depend on the selected package, route and trip duration.`,
+  },
+  {
+    q: `What seating capacities are available for Tempo Traveller booking?`,
+    a: `Depending on availability, Tempo Traveller options can include 9-seater, 12-seater, 16-seater, 20-seater and larger-capacity vehicles such as 26-seater Force Travellers. The available options may vary by route and travel date.`,
+  },
+  {
+    q: `Are there any additional charges for an outstation Tempo Traveller?`,
+    a: `The final fare depends on the selected vehicle, route, distance, trip duration and applicable booking terms. Any tolls, parking, permits, taxes, driver allowances or other applicable charges should be confirmed with the booking team before the trip.`,
+  },
+  {
+    q: `How early should I book a Tempo Traveller from ${startCity}?`,
+    a: `Advance booking is recommended, especially for weekends, holidays, peak travel periods and wedding seasons. Booking early gives you a better chance of getting your preferred seating capacity and travel dates.`,
+  },
+
           ].map((faq, i) => (
             <details key={i} className="faq-item">
               <summary>

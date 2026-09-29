@@ -124,7 +124,7 @@ const VEHICLE_DETAILS_MAP: Record<
   traveller: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
+    pricePerKm: 20,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -339,36 +339,44 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
 
 const generateFAQs = (vehicle: string): FAQItem[] => [
   {
-    q: `What is the minimum booking duration for ${vehicle} rental?`,
-    a: `The minimum booking duration for ${vehicle} rental is 4 hours for local trips and 8 hours for outstation trips. For one-way trips, there is no minimum duration, you pay only for the distance traveled. Weekend packages start from 12 hours.`,
+    q: `Can I book a ${vehicle} for a one-way trip?`,
+    a: `Yes. You can book a ${vehicle} for one-way travel from your pickup location to your destination. One-way bookings are suitable for inter-city travel, airport transfers, relocation, and outstation trips.`,
   },
   {
-    q: `Does the ${vehicle} rental price include driver allowance and fuel?`,
-    a: `Yes! Our ${vehicle} rental price is all-inclusive. It covers driver allowance, fuel cost, state permits (for outstation), toll taxes, and GST. Extra charges only apply for night travel (11 PM - 5 AM: 25% extra), parking fees, and waiting time beyond 15 minutes.`,
+    q: `How is the one-way ${vehicle} fare calculated?`,
+    a: `The one-way ${vehicle} fare depends on the pickup location, destination, travel distance, vehicle type, route and applicable booking charges. Share your travel details with Chiku Cabs to get the applicable one-way fare.`,
   },
   {
-    q: `Can I book ${vehicle} for a one-way trip?`,
-    a: `Absolutely! We offer one-way ${vehicle} rental at special discounted rates. You only pay for the distance traveled from pickup to drop location. No charges for the return journey. Perfect for airport transfers, one-way outstation trips, or inter-city travel.`,
+    q: `Do I have to pay for the return journey on a one-way cab?`,
+    a: `A one-way booking is priced according to the applicable one-way route and booking terms. Return-trip charges are not automatically added simply because the journey is one-way. The final fare is confirmed before booking.`,
   },
   {
-    q: `What safety measures are followed for ${vehicle} rental?`,
-    a: `Your safety is our priority! All our ${vehicle}s are sanitized before every trip. Drivers are police-verified, wear masks, and carry sanitizers. GPS tracking is active 24/7. Emergency buttons are installed in every vehicle for immediate assistance.`,
+    q: `What is included in the one-way ${vehicle} fare?`,
+    a: `The fare depends on the selected route and booking package. Vehicle and driver charges are included according to the applicable fare structure, while tolls, parking, permits, taxes or other route-specific charges may apply depending on the trip.`,
   },
   {
-    q: `How much advance booking is required for ${vehicle}?`,
-    a: `We recommend booking at least 24 hours in advance for guaranteed availability, especially during weekends and festival seasons. However, we also accept last-minute bookings subject to vehicle availability. Call us for immediate booking confirmation.`,
+    q: `Can I book a ${vehicle} for an airport one-way transfer?`,
+    a: `Yes. You can book a ${vehicle} for one-way airport pickup or drop service. Share your airport, pickup or drop location, travel date and passenger requirements to get the applicable fare.`,
   },
   {
-    q: `Do you provide child seats in ${vehicle}?`,
-    a: `Yes, we provide child seats absolutely free on request. Please mention your requirement at the time of booking so we can arrange it. We have seats suitable for children aged 0-12 years.`,
+    q: `Can I make stops during my one-way ${vehicle} journey?`,
+    a: `Planned stops can generally be included in a one-way journey, subject to the agreed route, travel duration and booking terms. Inform the booking team about additional stops when making your reservation.`,
   },
   {
-    q: `What is the cancellation policy for ${vehicle} booking?`,
-    a: `Easy cancellation up to 24 hours before the trip. 50% cancellation charges apply between 12-24 hours. No refund for cancellation within 12 hours or no-show. You can also reschedule your booking at no extra cost up to 12 hours before the trip.`,
+    q: `How early should I book a one-way ${vehicle}?`,
+    a: `Advance booking is recommended for weekends, holidays, peak travel periods and long-distance journeys. Last-minute bookings may also be available depending on vehicle and driver availability.`,
+  },
+  {
+    q: `What safety measures are followed for ${vehicle} bookings?`,
+    a: `We aim to provide a comfortable and reliable travel experience with maintained vehicles and professional drivers. Driver and vehicle details can be shared for confirmed bookings according to the service and booking requirements.`,
+  },
+  {
+    q: `Can I cancel my one-way ${vehicle} booking?`,
+    a: `Cancellation terms depend on the booking type and the time of cancellation. Contact our booking team before cancelling if you need help with cancellation, refund or rescheduling.`,
   },
   {
     q: `Can I modify my ${vehicle} booking after confirmation?`,
-    a: `Yes! Free modifications are allowed up to 12 hours before your scheduled trip. You can change pickup time, drop location, or date. Call our customer support at ${PHONE_NUMBER} for any modifications. Last-minute changes depend on vehicle availability.`,
+    a: `Booking changes may be possible depending on vehicle and driver availability. You can contact ${PHONE_NUMBER} to request changes to the travel date, pickup time, destination or other booking details.`,
   },
 ];
 

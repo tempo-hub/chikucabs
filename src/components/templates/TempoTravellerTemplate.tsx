@@ -1843,46 +1843,46 @@ const visibleFarePickupCities = showAllFareCities
               </h2>
             </div>
             {[
-              {
-                q: `What seating options are available for tempo traveller on rent in ${city}?`,
-                a: `We offer 9 seater, 12 seater, 15 seater, 16 seater, 18 seater, and 20 seater tempo traveller on rent in ${city}. All options come with AC, pushback reclining seats, and ample luggage space.`,
-              },
-              {
-                q: `How much does a tempo traveller booking cost per day in ${city}?`,
-                a: `Pricing for tempo traveller booking in ${city} starts from ₹24/km. Total cost depends on distance, duration, and the seating capacity you choose.`,
-              },
-              {
-                q: `Are the vehicles well-maintained for outstation tempo traveller trips?`,
-                a: `Yes! Our entire outstation tempo traveller fleet in ${city} is regularly serviced and deeply sanitized to provide a premium group travel service.`,
-              },
-              {
-                q: `Can I book a tempo traveller on rent for a one-way trip from ${city}?`,
-                a: `Yes, we offer specialized one-way tempo traveller booking from ${city} to various destinations at special reduced rates for group travel service.`,
-              },
-              {
-                q: `Is the driver experienced with outstation tempo traveller routes?`,
-                a: `Absolutely. Every driver for our outstation tempo traveller service in ${city} is specifically trained for long-distance and mountain road driving.`,
-              },
-              {
-                q: `Do you provide tempo traveller on rent for local sightseeing in ${city}?`,
-                a: `Yes, our local tempo traveller on rent packages in ${city} are perfect for family outings, corporate groups, and local city tours.`,
-              },
-              {
-                q: `What are the amenities included in your tempo traveller booking?`,
-                a: `Every tempo traveller booking includes high-quality AC, a music system, LED TV (in most models), pushback seats, and a dedicated luggage carrier.`,
-              },
-              {
-                q: `Is it possible to hire a tempo traveller on rent for a wedding in ${city}?`,
-                a: `Yes, we specialize in tempo traveller booking for weddings in ${city}, providing guest transfers and luxury travel for the bridal party.`,
-              },
-              {
-                q: `How can I calculate the per km rate for tempo traveller booking?`,
-                a: `The per km rate for tempo traveller booking starts at ₹24. Use our app or call 9818022327 for a transparent quote for your ${city} itinerary.`,
-              },
-              {
-                q: `Are there any night charges for outstation tempo traveller service?`,
-                a: `Our outstation tempo traveller service includes night charges in the package, ensuring a stress-free and transparent tempo traveller booking experience.`,
-              },
+               {
+    q: `What seating options are available for Tempo Traveller on rent in ${city}?`,
+    a: `We offer multiple seating options for Tempo Traveller rental in ${city}, including 9, 12, 15, 16, 18 and 20-seater variants, subject to availability. You can choose the vehicle based on your group size, luggage and travel requirements.`,
+  },
+  {
+    q: `How much does a Tempo Traveller on rent cost in ${city}?`,
+    a: `The fare for a Tempo Traveller in ${city} depends on the seating capacity, travel distance, trip duration, route and vehicle type. Contact Chiku Cabs with your itinerary to get the applicable fare for your trip.`,
+  },
+  {
+    q: `Are Tempo Travellers well-maintained for outstation trips?`,
+    a: `Yes. Our Tempo Traveller vehicles are regularly serviced and maintained for comfortable group travel. Vehicle availability and specific amenities may vary depending on the selected model.`,
+  },
+  {
+    q: `Can I book a Tempo Traveller for a one-way trip from ${city}?`,
+    a: `Yes. You can book a Tempo Traveller from ${city} for one-way outstation travel. The applicable fare depends on the destination, distance, vehicle type and travel requirements.`,
+  },
+  {
+    q: `Are experienced drivers available with Tempo Traveller bookings in ${city}?`,
+    a: `Yes. Tempo Traveller bookings include an experienced driver familiar with long-distance and outstation routes. Driver availability and route requirements are confirmed at the time of booking.`,
+  },
+  {
+    q: `Can I hire a Tempo Traveller for local sightseeing in ${city}?`,
+    a: `Yes. Tempo Travellers are available for local sightseeing in ${city} and are suitable for family outings, group tours, corporate trips, events and city sightseeing.`,
+  },
+  {
+    q: `What amenities are available in a Tempo Traveller?`,
+    a: `Tempo Traveller amenities can include air conditioning, pushback or reclining seats, luggage space, music systems and other comfort features depending on the vehicle model. Specific amenities can be confirmed before booking.`,
+  },
+  {
+    q: `Can I hire a Tempo Traveller for a wedding in ${city}?`,
+    a: `Yes. Tempo Travellers can be booked for weddings and events in ${city} for guest transfers, family travel and group transportation. Vehicle size can be selected according to the number of passengers.`,
+  },
+  {
+    q: `How is the Tempo Traveller fare calculated?`,
+    a: `Tempo Traveller fares are generally based on factors such as vehicle type, seating capacity, travel distance, trip duration, route and applicable charges. Share your ${city} itinerary with our booking team to get a detailed quote.`,
+  },
+  {
+    q: `Are night charges applicable for an outstation Tempo Traveller?`,
+    a: `Night charges, driver allowances and other applicable charges depend on the route, trip duration and booking terms. The applicable charges will be communicated when your Tempo Traveller booking is confirmed.`,
+  },
             ].map((faq, i) => (
               <details key={i} className="faq-item">
                 <summary>

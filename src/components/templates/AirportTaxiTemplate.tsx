@@ -127,7 +127,7 @@ const VEHICLE_DETAILS_MAP: Record<
   tempo: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
+    pricePerKm: 20,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -140,7 +140,7 @@ const VEHICLE_DETAILS_MAP: Record<
   traveller: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
+    pricePerKm: 20,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -153,9 +153,9 @@ const VEHICLE_DETAILS_MAP: Record<
   bus: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
-    capacity: "9-12 Passengers",
-    luggage: "8-10 Bags",
+    pricePerKm: 10,
+    capacity: "7-8 Passengers",
+    luggage: "3-4 Bags",
     features: [
       "Spacious Seating",
       "AC",
@@ -2054,37 +2054,37 @@ Please share the best fare.`;
             <div className="space-y-4">
               {[
                 {
-                  q: "How do I book an airport taxi for pickup or drop?",
-                  a: "You can book instantly by calling us at +91-9818022327 or sending a WhatsApp message. Our team will confirm your booking within 5 minutes and share driver details, vehicle information, and live tracking link before your trip.",
-                },
-                {
-                  q: "What is the starting fare for airport taxi service?",
-                  a: "Airport taxi fare starts from ₹10/km for Maruti Suzuki Dzire, ₹10/km for Honda Amaze, ₹13/km for Maruti Ertiga, ₹16/km for Toyota Innova Crysta, ₹24/km for Tempo Traveller. Final fare depends on pickup location, drop point, vehicle type, waiting time, tolls, and travel timing. No surge pricing ever!",
-                },
-                {
-                  q: "Do you provide 24x7 airport pickup and drop service?",
-                  a: "Yes, we offer 24x7 airport taxi service for pickups, drops, late-night transfers, and early morning flights with professional drivers. Our team works round the clock, including public holidays and weekends. We never say 'no' to any time slot.",
-                },
-                {
-                  q: "Is flight tracking included for airport pickups?",
-                  a: "Absolutely! We offer free flight tracking for all airport pickups. Our drivers monitor your flight status in real-time and adjust pickup timing automatically in case of delays or early arrivals. You pay no extra waiting charges for flight delays.",
-                },
-                {
-                  q: "Which airports do you serve?",
-                  a: "We primarily serve Delhi IGI Airport (Terminals 1, 2, 3) and nearby NCR airport transfer routes including Noida, Gurgaon, Ghaziabad, Faridabad. We also provide outstation transfers to Agra, Jaipur, Haridwar, Chandigarh, and more. Contact us for other airport services.",
-                },
-                {
-                  q: "What vehicles are available for airport transfers?",
-                  a: "We offer a wide range of vehicles including Hatchback (Swift, WagonR), Sedan (Dzire, Amaze), SUV (Creta, Seltos), Innova Crysta, Tempo Traveller (9-12 seater), and luxury cars (Mercedes, BMW, Audi). Choose based on your travel needs and group size.",
-                },
-                {
-                  q: "Are your drivers professionally trained and verified?",
-                  a: "Yes, all our drivers are licensed, background-verified, and undergo professional training in customer service, safety protocols, route navigation, and airport procedures. Many have over 5 years of experience in airport transfers. Your safety is our priority.",
-                },
-                {
-                  q: "What is your cancellation and refund policy?",
-                  a: "You can cancel your booking free of charge up to 2 hours before the scheduled pickup time. Cancellations within 2 hours may incur a nominal fee (up to 50% of fare). For airport pickups, we understand flight changes and are flexible. Refunds are processed within 3-5 business days.",
-                },
+    q: "How do I book an airport taxi for pickup or drop?",
+    a: "You can book an airport taxi by calling us at +91-9818022327, sending a WhatsApp message, or using the booking form. Share your pickup or drop location, travel date, time, and vehicle requirement to confirm your booking.",
+  },
+  {
+    q: "What is the starting fare for airport taxi service?",
+    a: "Airport taxi fares start from ₹10/km for Maruti Suzuki Dzire and Honda Amaze, ₹13/km for Maruti Ertiga, ₹16/km for Toyota Innova Crysta, and ₹24/km for Tempo Traveller. The final fare depends on the pickup location, drop point, vehicle type, waiting time, tolls, and travel requirements.",
+  },
+  {
+    q: "Do you provide 24x7 airport pickup and drop service?",
+    a: "Yes, we provide airport taxi services for pickups and drops throughout the day, including early-morning flights and late-night arrivals. Bookings are subject to vehicle and driver availability.",
+  },
+  {
+    q: "Is flight tracking available for airport pickups?",
+    a: "Flight tracking is available for eligible airport pickup bookings. When flight details are provided during booking, the pickup can be coordinated according to the flight schedule and applicable waiting-time policy.",
+  },
+  {
+    q: "Which airports do you serve?",
+    a: "Chiku Cabs provides airport pickup and drop services for major airports across India. Service availability depends on the airport, pickup or drop location, vehicle type, and travel requirements. Contact our booking team to check availability for your airport.",
+  },
+  {
+    q: "What vehicles are available for airport transfers?",
+    a: "We offer multiple vehicle options including Hatchbacks, Sedans such as Dzire and Amaze, SUVs such as Ertiga and Innova Crysta, and Tempo Travellers for larger groups. Vehicle availability depends on the location, passenger count, luggage, and travel requirements.",
+  },
+  {
+    q: "Are your drivers professionally trained and verified?",
+    a: "Our airport taxi service is provided by professional drivers who are licensed and experienced in passenger transportation and airport transfers. Driver and vehicle details can be shared with customers for confirmed bookings.",
+  },
+  {
+    q: "What is your cancellation and refund policy?",
+    a: "Cancellation and refund terms depend on the booking type and cancellation time. Contact our booking team before cancelling if you need help with a refund, rescheduling, or changes to your airport taxi booking.",
+  },
               ].map((faq, i) => (
                 <details key={i} className="faq-item group">
                   <summary className="flex items-center justify-between p-6 font-bold cursor-pointer list-none hover:bg-muted/50 transition-colors rounded-lg">
