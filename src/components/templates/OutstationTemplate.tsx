@@ -274,28 +274,36 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
 
 const generateFAQs = (vehicle: string): FAQItem[] => [
   {
-    q: `How do I book an outstation cab?`,
-    a: `You can book online through our website by filling the booking form or call our customer support. Instant confirmation will be sent via SMS and email.`,
+    q: "How do I book an outstation cab with Chiku Cabs?",
+    a: "You can book an outstation cab through the Chiku Cabs website by entering your pickup city, destination, travel date and vehicle requirement. You can also contact our booking team for assistance.",
   },
   {
-    q: `What is included in the price?`,
-    a: `Price includes fuel, driver allowance, tolls, parking, and state taxes (unless specified otherwise). No hidden charges.`,
+    q: "How is the outstation cab fare calculated?",
+    a: "Outstation cab fares are generally calculated based on the selected vehicle, travel distance, trip type and applicable charges. The final fare is confirmed before booking so you know the expected cost.",
   },
   {
-    q: `Can I cancel my booking?`,
-    a: `Yes, free cancellation is available up to 6 hours before pickup time. Cancellation charges may apply for last-minute cancellations.`,
+    q: "Do you provide one-way and round-trip outstation cabs?",
+    a: "Yes. Chiku Cabs provides both one-way and round-trip outstation cab services. You can choose the trip type according to your travel requirement.",
   },
   {
-    q: `Are your cars sanitized?`,
-    a: `Yes, all vehicles are thoroughly sanitized before each trip. We follow strict hygiene protocols for your safety.`,
+    q: "What is included in the outstation cab fare?",
+    a: "The fare depends on the selected vehicle and booking type. Applicable charges such as driver allowance, tolls, parking or state taxes may vary by route and should be confirmed in your final quote.",
   },
   {
-    q: `Do you provide one-way cabs?`,
-    a: `Yes, we offer both one-way and round trip outstation cabs at competitive prices.`,
+    q: "Can I choose a specific car for my outstation trip?",
+    a: `Yes. You can select a suitable ${vehicle} or another available vehicle based on your group size, luggage and travel requirements.`,
   },
   {
-    q: `How can I pay?`,
-    a: `We accept multiple payment options including cash, credit/debit cards, UPI, and online bank transfers.`,
+    q: "Are the vehicles clean and sanitized?",
+    a: "Yes. Vehicles are cleaned and maintained before trips to provide a comfortable travel experience for passengers.",
+  },
+  {
+    q: "Can I cancel my outstation cab booking?",
+    a: "Yes, cancellation is available according to the applicable booking and cancellation policy. Cancellation charges may apply depending on how close the cancellation is to the scheduled pickup time.",
+  },
+  {
+    q: "What payment options are available for outstation cab bookings?",
+    a: "Payment options may include UPI, online payment and other available methods. The available payment option can be confirmed during the booking process.",
   },
 ];
 

@@ -72,7 +72,7 @@ export default function UrbaniaTemplate({
         <UrbaniaUseCases city={city} />
 
         {/* Popular Routes */}
-        <UrbaniaPopularRoutes city={city} />
+        {/* <UrbaniaPopularRoutes city={city} /> */}
 
         {/* Service Areas */}
         <UrbaniaServiceAreas city={city} />
