@@ -108,9 +108,9 @@ const VEHICLE_DETAILS_MAP: Record<
   tempo: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
-    capacity: "9-12 Passengers",
-    luggage: "8-10 Bags",
+    pricePerKm: 10,
+    capacity: "7-8 Passengers",
+    luggage: "2-4 Bags",
     features: [
       "Spacious Seating",
       "AC",
@@ -121,7 +121,7 @@ const VEHICLE_DETAILS_MAP: Record<
   traveller: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
+    pricePerKm: 20,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -134,7 +134,7 @@ const VEHICLE_DETAILS_MAP: Record<
   bus: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 19,
+    pricePerKm: 10,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [

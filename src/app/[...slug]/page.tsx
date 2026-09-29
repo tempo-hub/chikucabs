@@ -296,7 +296,7 @@ description = `Book a one way cab from ${parsed.origin} to ${parsed.destination}
         : parsed.vehicleCategory === "innova"
           ? " | 6-7 Seater"
           : "";
-    title = `${parsed.vehicle} on Rent Starting ₹10/km, Chiku Cabs${seaterInfo} | India's #1 Rental Service`;
+    title = `${parsed.vehicle} on Rent Starting @ ₹10/km, Chiku Cabs${seaterInfo} | India's #1 Rental Service`;
     description = `Rent a premium ${parsed.vehicle} with Chiku Cabs. Verified drivers, 100+ cities. Travel outstation, local or airport trips safely. Call 9818022327 to book now.`;
     keywords = [
       `${vehicleLower} on rent`,
