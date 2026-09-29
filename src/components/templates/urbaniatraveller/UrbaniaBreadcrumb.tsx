@@ -37,20 +37,6 @@ export default function UrbaniaBreadcrumb({
             <FaChevronRight className="text-[8px]" />
           </li>
 
-          {/* City */}
-          <li className="shrink-0">
-            <Link
-              href={`/${city.toLowerCase().replace(/\s+/g, "-")}`}
-              className="transition hover:text-primary"
-            >
-              {city}
-            </Link>
-          </li>
-
-          <li className="shrink-0 text-slate-300">
-            <FaChevronRight className="text-[8px]" />
-          </li>
-
           {/* Current Page */}
           <li
             aria-current="page"
