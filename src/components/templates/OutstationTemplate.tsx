@@ -144,7 +144,7 @@ const VEHICLE_DETAILS_MAP: Record<
   default: {
     icon: "🚘",
     image: "/suzuki-dzire.png",
-    pricePerKm: 10,
+    pricePerKm: 9,
     capacity: "4 Passengers",
     luggage: "2-3 Bags",
     features: ["AC", "Comfortable Seats", "Charging Ports", "Boot Space"],
@@ -949,7 +949,7 @@ Please share the fare estimate.`;
                     <span>❄️ AC</span>
                   </div>
                   <div className="mb-4">
-                    <span className="text-2xl font-bold text-primary">₹10</span>
+                    <span className="text-2xl font-bold text-primary">₹9</span>
                     <span className="text-gray-500">/km</span>
                   </div>
                   <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
@@ -977,7 +977,7 @@ Please share the fare estimate.`;
                     <span>❄️ AC</span>
                   </div>
                   <div className="mb-4">
-                    <span className="text-2xl font-bold text-primary">₹10</span>
+                    <span className="text-2xl font-bold text-primary">₹9</span>
                     <span className="text-gray-500">/km</span>
                   </div>
                   <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">

@@ -123,7 +123,7 @@ const VEHICLE_DETAILS_MAP: Record<
   bus: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 10,
+    pricePerKm: 9,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -144,7 +144,7 @@ const VEHICLE_DETAILS_MAP: Record<
   default: {
     icon: "🚘",
     image: "/suzuki-dzire.png",
-    pricePerKm: 10,
+    pricePerKm: 9,
     capacity: "4 Passengers",
     luggage: "2-3 Bags",
     features: ["AC", "Comfortable Seats", "Charging Ports", "Boot Space"],
@@ -217,7 +217,7 @@ const generateFAQs = (cityName: string, airportName: string): FAQ[] => [
   {
     id: 5,
     question: `How much does an airport cab in ${cityName} cost?`,
-    answer: `Airport cab fares in ${cityName} depend on the vehicle, pickup or drop location, distance, and travel requirements. Fares may start from ₹10/km for eligible vehicles and routes. The applicable fare is confirmed at the time of booking.`,
+    answer: `Airport cab fares in ${cityName} depend on the vehicle, pickup or drop location, distance, and travel requirements. Fares may start from ₹9/km for eligible vehicles and routes. The applicable fare is confirmed at the time of booking.`,
   },
   {
     id: 6,
@@ -853,7 +853,7 @@ export default function AirportCityPage({
                     <span>❄️ AC</span>
                   </div>
                   <div className="mb-4">
-                    <span className="text-2xl font-bold text-primary">₹10</span>
+                    <span className="text-2xl font-bold text-primary">₹9</span>
                     <span className="text-gray-500">/km</span>
                   </div>
                   <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
@@ -881,7 +881,7 @@ export default function AirportCityPage({
                     <span>❄️ AC</span>
                   </div>
                   <div className="mb-4">
-                    <span className="text-2xl font-bold text-primary">₹10</span>
+                    <span className="text-2xl font-bold text-primary">₹9</span>
                     <span className="text-gray-500">/km</span>
                   </div>
                   <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
@@ -1463,7 +1463,7 @@ export default function AirportCityPage({
               },
               {
                 q: `How much does a ${cityName} airport cab cost?`,
-                a: `Our ${cityName} airport taxi fares start from ₹10/km. The final fare depends on the vehicle type, distance to your destination, and time of travel. We offer transparent pricing with no hidden charges. Check our popular routes above for estimated fares.`,
+                a: `Our ${cityName} airport taxi fares start from ₹9/km. The final fare depends on the vehicle type, distance to your destination, and time of travel. We offer transparent pricing with no hidden charges. Check our popular routes above for estimated fares.`,
               },
               {
                 q: `Is it safe to book ${cityName} airport cabs with Chiku Cabs?`,

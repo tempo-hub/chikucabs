@@ -193,7 +193,7 @@ description = `Book a one way cab from ${parsed.origin} to ${parsed.destination}
       "Chiku Cabs",
     ];
   } else if (parsed.routeType === "Outstation Route Fare") {
-    title = `${parsed.origin} to ${parsed.destination} ${parsed.vehicle} Fare @ ₹10/km | Get 500 OFF Extra`;
+    title = `${parsed.origin} to ${parsed.destination} ${parsed.vehicle} Fare @ ₹9/km | Get 500 OFF Extra`;
     description = `Check ${parsed.origin} to ${parsed.destination} ${parsed.vehicle} fare. Complete rate card with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 9818022327.`;
     keywords = [
       `${parsed.origin} to ${parsed.destination} cab fare`,
@@ -296,7 +296,7 @@ description = `Book a one way cab from ${parsed.origin} to ${parsed.destination}
         : parsed.vehicleCategory === "innova"
           ? " | 6-7 Seater"
           : "";
-    title = `${parsed.vehicle} on Rent Starting @ ₹10/km, Chiku Cabs${seaterInfo} | India's #1 Rental Service`;
+    title = `${parsed.vehicle} on Rent Starting @ ₹9/km, Chiku Cabs${seaterInfo} | India's #1 Rental Service`;
     description = `Rent a premium ${parsed.vehicle} with Chiku Cabs. Verified drivers, 100+ cities. Travel outstation, local or airport trips safely. Call 9818022327 to book now.`;
     keywords = [
       `${vehicleLower} on rent`,

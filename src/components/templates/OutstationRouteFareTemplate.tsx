@@ -87,7 +87,7 @@ const VEHICLES: VehicleDetails[] = [
     name: "Maruti Suzuki Dzire",
     shortName: "Dzire",
     image: "/suzuki-dzire.png",
-    pricePerKm: 10,
+    pricePerKm: 9,
     seats: 4,
     luggage: 2,
     description:
@@ -99,7 +99,7 @@ const VEHICLES: VehicleDetails[] = [
     name: "Honda Amaze",
     shortName: "Amaze",
     image: "/honda-amaze.png",
-    pricePerKm: 10,
+    pricePerKm: 9,
     seats: 4,
     luggage: 3,
     description:
@@ -1003,7 +1003,7 @@ Please confirm the final fare and availability.`;
 
   <p className="text-sm sm:text-base text-white/80 max-w-xl leading-relaxed mt-4 mb-4">
     Book your outstation taxi from <strong>{startCity}</strong> to{" "}
-    <strong>{endCity}</strong> starting at just ₹10/km. Use the online booking form to claim 
+    <strong>{endCity}</strong> starting at just ₹9/km. Use the online booking form to claim 
     an extra ₹500 off on one-way and round-trip rides.
   </p>
 

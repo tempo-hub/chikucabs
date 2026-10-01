@@ -108,7 +108,7 @@ const VEHICLE_DETAILS_MAP: Record<
   tempo: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 10,
+    pricePerKm: 9,
     capacity: "7-8 Passengers",
     luggage: "2-4 Bags",
     features: [
@@ -134,7 +134,7 @@ const VEHICLE_DETAILS_MAP: Record<
   bus: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 10,
+    pricePerKm: 9,
     capacity: "9-12 Passengers",
     luggage: "8-10 Bags",
     features: [
@@ -155,7 +155,7 @@ const VEHICLE_DETAILS_MAP: Record<
   default: {
     icon: "🚘",
     image: "/suzuki-dzire.png",
-    pricePerKm: 10,
+    pricePerKm: 9,
     capacity: "4 Passengers",
     luggage: "2-3 Bags",
     features: ["AC", "Comfortable Seats", "Charging Ports", "Boot Space"],
@@ -173,7 +173,7 @@ const FLEET_DATA: FleetItem[] = [
   {
     tier: "STANDARD",
     car: "Hatchback",
-    price: "9",
+    price: "8.5",
     image: "/hatchback.png",
     desc: "Swift, WagonR or similar",
     best: false,
@@ -182,7 +182,7 @@ const FLEET_DATA: FleetItem[] = [
   {
     tier: "POPULAR",
     car: "Sedan",
-    price: "10",
+    price: "9",
     image: "/sedan.png",
     desc: "Dzire, Ertiga or similar",
     best: true,
@@ -1172,7 +1172,7 @@ export default function ServiceTemplate({
               {[
                 {
                   name: "Hatchback",
-                  price: "9",
+                  price: "8.5",
                   capacity: "4",
                   luggage: "2-3",
                   ac: true,
@@ -1184,7 +1184,7 @@ export default function ServiceTemplate({
                 },
                 {
                   name: "Sedan",
-                  price: "11",
+                  price: "9",
                   capacity: "4",
                   luggage: "3-4",
                   ac: true,
@@ -1196,7 +1196,7 @@ export default function ServiceTemplate({
                 },
                 {
                   name: "Innova",
-                  price: "17",
+                  price: "16",
                   capacity: "6-7",
                   luggage: "5-6",
                   ac: true,

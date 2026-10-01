@@ -153,7 +153,7 @@ const VEHICLE_DETAILS_MAP: Record<
   bus: {
     icon: "🚐",
     image: "/tempo_traveller.png",
-    pricePerKm: 10,
+    pricePerKm: 9,
     capacity: "7-8 Passengers",
     luggage: "3-4 Bags",
     features: [
@@ -174,7 +174,7 @@ const VEHICLE_DETAILS_MAP: Record<
   default: {
     icon: "🚘",
     image: "/suzuki-dzire.png",
-    pricePerKm: 10,
+    pricePerKm: 9,
     capacity: "4 Passengers",
     luggage: "2-3 Bags",
     features: ["AC", "Comfortable Seats", "Charging Ports", "Boot Space"],
@@ -462,7 +462,7 @@ const [showAirportSuggestions, setShowAirportSuggestions] =
       "24x7 airport taxi service for Delhi IGI Airport pickup and drop. Professional drivers, fixed pricing, flight tracking, and instant booking.",
     image: "https://chikucabs.com/cab.png",
     telephone: "+916280820037",
-    priceRange: "₹10 - ₹25 per km",
+    priceRange: "₹9 - ₹25 per km",
     areaServed: {
       "@type": "City",
       name: "Delhi NCR",
@@ -1185,7 +1185,7 @@ Please share the best fare.`;
                     <span>❄️ AC</span>
                   </div>
                   <div className="mb-4">
-                    <span className="text-2xl font-bold text-primary">₹10</span>
+                    <span className="text-2xl font-bold text-primary">₹9</span>
                     <span className="text-gray-500">/km</span>
                   </div>
                   <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
@@ -1213,7 +1213,7 @@ Please share the best fare.`;
                     <span>❄️ AC</span>
                   </div>
                   <div className="mb-4">
-                    <span className="text-2xl font-bold text-primary">₹10</span>
+                    <span className="text-2xl font-bold text-primary">₹9</span>
                     <span className="text-gray-500">/km</span>
                   </div>
                   <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
@@ -2059,7 +2059,7 @@ Please share the best fare.`;
   },
   {
     q: "What is the starting fare for airport taxi service?",
-    a: "Airport taxi fares start from ₹10/km for Maruti Suzuki Dzire and Honda Amaze, ₹13/km for Maruti Ertiga, ₹16/km for Toyota Innova Crysta, and ₹24/km for Tempo Traveller. The final fare depends on the pickup location, drop point, vehicle type, waiting time, tolls, and travel requirements.",
+    a: "Airport taxi fares start from ₹9/km for Maruti Suzuki Dzire and Honda Amaze, ₹13/km for Maruti Ertiga, ₹16/km for Toyota Innova Crysta, and ₹24/km for Tempo Traveller. The final fare depends on the pickup location, drop point, vehicle type, waiting time, tolls, and travel requirements.",
   },
   {
     q: "Do you provide 24x7 airport pickup and drop service?",

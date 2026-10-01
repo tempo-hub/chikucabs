@@ -123,11 +123,11 @@ const normalizeVehicleType = (v: string): string => {
 const getEstimatedFare = (vehicle: string) => {
   const v = vehicle.toLowerCase();
   if (v.includes("sedan") || v.includes("dzire") || v.includes("etios"))
-    return "₹10/km";
+    return "₹9/km";
   if (v.includes("suv") || v.includes("ertiga") || v.includes("marazzo"))
     return "₹13/km";
   if (v.includes("innova")) return "₹16/km";
-  return "₹10/km";
+  return "₹9/km";
 };
 
 export default function BookingModal({

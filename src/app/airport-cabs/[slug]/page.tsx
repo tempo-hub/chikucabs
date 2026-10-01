@@ -24,7 +24,7 @@ export async function generateMetadata({
   const cityKey = slug.replace(/-airport$/, "");
   const cityName = getCityName(slug);
 
-  const title = `${cityName} Airport Cab Service @ ₹10/km | Get 500 OFF Extra`;
+  const title = `${cityName} Airport Cab Service @ ₹9/km | Get 500 OFF Extra`;
 
   const description = `Book ${cityName} airport taxi and cab service with Chiku Cabs. Get reliable airport pickup and drop, professional drivers, transparent fares and 24x7 booking support. Call 9818022327 Book Now.`;
 
