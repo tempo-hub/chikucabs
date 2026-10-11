@@ -482,46 +482,46 @@ export default function OneWayRouteTemplate({
             <h2 className="section-title">One Way Cab Booking FAQs</h2>
           </div>
           {[
-            {
-              q: `Do I have to pay for the return trip if I book a ${startCity} to ${endCity} one way cab?`,
-              a: `No! With our specialized one way drop service, you only pay for the distance from ${startCity} to ${endCity}. We do not charge anything for the driver's empty return trip, making it the most affordable cab booking option.`,
-            },
-            {
-              q: `Are toll taxes included in the ${startCity} to ${endCity} taxi service fare?`,
-              a: `Toll taxes are typically not included in the base fare of our taxi service. They are to be paid directly at the toll booths as per the actual receipt during the outstation cabs journey.`,
-            },
-            {
-              q: `Will the airport taxi pick me up from my home in ${startCity}?`,
-              a: `Yes, we provide 100% door-to-door taxi service. Whether it's an airport taxi drop or a regular one way cab, we pick you up from your specific address.`,
-            },
-            {
-              q: `Can I carry heavy luggage in the one way cab?`,
-              a: `Yes, you can carry luggage based on the vehicle selected during cab booking. A sedan holds 2 large bags, while outstation cabs like SUVs easily accommodate 4-5 large suitcases.`,
-            },
-            {
-              q: `Is it safe to travel at night from ${startCity} to ${endCity} with your taxi service?`,
-              a: `Absolutely. All our outstation cabs are GPS-tracked, and our drivers are background-checked and experienced in highway night driving for a safe taxi service experience.`,
-            },
-            {
-              q: `How do I confirm my one way cab booking?`,
-              a: `You can confirm your cab booking by calling 9818022327 or via WhatsApp. You'll receive driver details immediately for your {startCity} to {endCity} journey.`,
-            },
-            {
-              q: `Do you provide a tempo traveller on rent for one-way group drops?`,
-              a: `Yes, we offer a tempo traveller on rent for large groups needing a one-way drop from ${startCity} to ${endCity} at very competitive rates.`,
-            },
-            {
-              q: `Is the one way cab fare fixed or per km?`,
-              a: `We offer both! You can opt for a fixed-price one way drop or a per km rate. Most travelers prefer our fixed cab booking rates for transparency.`,
-            },
-            {
-              q: `What if my flight is delayed and I need an airport taxi drop?`,
-              a: `We monitor flight timings for our airport taxi service. Your driver will wait for you, ensuring a stress-free transition from the airport to your destination.`,
-            },
-            {
-              q: `Can I stop for a break during my outstation cabs journey?`,
-              a: `Certainly! Our taxi service is flexible. You can request short breaks for refreshments during your {startCity} to {endCity} drive without any extra charge.`,
-            },
+           {
+    q: `Do I have to pay for the return trip if I book a ${startCity} to ${endCity} one way cab?`,
+    a: `A one way cab is booked for the journey from ${startCity} to ${endCity}. The applicable fare is based on the selected vehicle, route distance, and booking terms. Any applicable charges are communicated before booking confirmation.`,
+  },
+  {
+    q: `Are toll taxes included in the ${startCity} to ${endCity} one way cab fare?`,
+    a: `Toll charges depend on the selected route and fare structure. If tolls are not included in the quoted fare, they are charged separately based on the actual applicable amount.`,
+  },
+  {
+    q: `Is the ${startCity} to ${endCity} cab service door-to-door?`,
+    a: `Yes, pickup and drop locations can be specified according to your travel requirements. You can provide your preferred pickup point in ${startCity} and destination in ${endCity} while making the booking.`,
+  },
+  {
+    q: `How much luggage can I carry in the ${startCity} to ${endCity} cab?`,
+    a: `Luggage capacity depends on the vehicle you select. Sedans are suitable for smaller groups with standard luggage, while SUVs and larger vehicles provide additional luggage space for families and groups.`,
+  },
+  {
+    q: `Is the ${startCity} to ${endCity} one way cab available for night travel?`,
+    a: `One way cab bookings can be available for day and night travel, subject to vehicle and driver availability. Share your preferred pickup time when booking so the applicable availability can be confirmed.`,
+  },
+  {
+    q: `How do I book a ${startCity} to ${endCity} one way cab?`,
+    a: `You can book through the Chiku Cabs website, call 9818022327, or contact us on WhatsApp. Share your travel date, pickup location, destination, passenger count, and preferred vehicle to receive the applicable fare and booking details.`,
+  },
+  {
+    q: `Is the ${startCity} to ${endCity} one way cab fare fixed or calculated per kilometre?`,
+    a: `The fare can depend on the route, vehicle type, distance, and applicable booking terms. Chiku Cabs can provide the applicable fare for your ${startCity} to ${endCity} journey before you confirm the booking.`,
+  },
+  {
+    q: `Can I choose a specific vehicle for the ${startCity} to ${endCity} journey?`,
+    a: `Yes, vehicle selection can be based on availability and your travel requirements. Options may include Sedan, SUV, Innova Crysta, or other suitable vehicles for the route.`,
+  },
+  {
+    q: `Can I make stops during my ${startCity} to ${endCity} one way journey?`,
+    a: `Planned stops can be accommodated depending on the route, travel duration, and booking terms. It is best to mention additional stops while making the booking so they can be considered in the trip plan.`,
+  },
+  {
+    q: `How early should I book a ${startCity} to ${endCity} one way cab?`,
+    a: `Advance booking is recommended for weekends, holidays, peak travel periods, and long-distance routes. Last-minute bookings may also be available depending on vehicle and driver availability.`,
+  },
           ].map((faq, i) => (
             <details key={i} className="faq-item">
               <summary>

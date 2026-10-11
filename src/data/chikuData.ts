@@ -118,7 +118,7 @@ export const FLEET: FleetCar[] = [
   {
     name: "Ertiga",
     category: "SUV",
-    price: "₹12",
+    price: "₹13",
     unit: "/km",
     capacity: "6+1 Seater",
     tag: "FAMILY FAVORITE",
@@ -128,7 +128,7 @@ export const FLEET: FleetCar[] = [
   {
     name: "Innova Crysta",
     category: "SUV",
-    price: "₹15",
+    price: "₹16",
     unit: "/km",
     capacity: "7+1 Seater",
     tag: "MOST POPULAR",

@@ -100,7 +100,7 @@ export default function DzireServiceTemplate({
           <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_40px_80px_rgba(15,23,42,0.08)]">
             <div className="flex gap-2">
               <div className="section-badge inline-flex mb-6 text-slate-950">
-                Starting @ ₹10/km*
+                Starting @ ₹9/km*
               </div>
               <div className="section-badge inline-flex mb-6 text-slate-950">
                 4.4 ★
@@ -221,7 +221,7 @@ export default function DzireServiceTemplate({
                 name: "Dzire",
                 model: "Dzire Tour S",
                 image: "/dzire/dzire_model.webp",
-                price: "₹10/km",
+                price: "₹9/km",
                 features: [
                   "4+1 Seating",
                   "Air Conditioning",

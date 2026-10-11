@@ -159,7 +159,7 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
                   <span>❄️ AC</span>
                 </div>
                 <div className="mb-4">
-                  <span className="text-2xl font-bold text-primary">₹10</span>
+                  <span className="text-2xl font-bold text-primary">₹9</span>
                   <span className="text-gray-500">/km</span>
                 </div>
                 <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
@@ -187,7 +187,7 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
                   <span>❄️ AC</span>
                 </div>
                 <div className="mb-4">
-                  <span className="text-2xl font-bold text-primary">₹10</span>
+                  <span className="text-2xl font-bold text-primary">₹9</span>
                   <span className="text-gray-500">/km</span>
                 </div>
                 <button className="w-full bg-primary text-white py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
@@ -535,7 +535,7 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
 
             {
               q: `What are the cab charges in ${formattedCity}?`,
-              a: `Cab fares in ${formattedCity} start from ₹10/km for suzuki dzire cars. Pricing depends on vehicle type, route, tolls, and travel duration.`,
+              a: `Cab fares in ${formattedCity} start from ₹9/km for suzuki dzire cars. Pricing depends on vehicle type, route, tolls, and travel duration.`,
             },
 
             {
