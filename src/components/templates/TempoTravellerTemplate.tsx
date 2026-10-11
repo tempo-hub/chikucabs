@@ -1245,9 +1245,9 @@ Please share the best fare.`;
                 ₹{vehicle.pricePerKm}/km
               </td>
 
-              <td className="px-5 py-4">Confirm at booking</td>
-              <td className="px-5 py-4">Confirm at booking</td>
-              <td className="px-5 py-4">Confirm at booking</td>
+              <td className="px-5 py-4">250 km/day</td>
+              <td className="px-5 py-4">fixed company policy</td>
+              <td className="px-5 py-4">fixed company policy</td>
               <td className="px-5 py-4">Extra, as applicable</td>
               {/* Booking buttons in the last column */}
           <td className="px-5 py-4">
