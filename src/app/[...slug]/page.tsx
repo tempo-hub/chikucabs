@@ -236,7 +236,7 @@ description = `Book a one way cab from ${parsed.origin} to ${parsed.destination}
   }
 
   title = location
-    ? `${vehicle} on Rent in ${location}, Chiku Cabs @ ₹${price}/KM – Book Now`
+    ? `${vehicle} on Rent in ${location} @ ₹${price}/KM – UPTO 500 OFF`
     : `${vehicle} on Rent, Chiku Cabs Starting @ ₹${price}/KM – Book Now`;
 
   description = location
@@ -253,27 +253,105 @@ description = `Book a one way cab from ${parsed.origin} to ${parsed.destination}
   ];
 
 
+  }
+  else if (
+  parsed.routeType === "Local Service" &&
+  parsed.vehicleCategory === "tempo-traveller"
+) {
+  title = `Tempo Traveller on Rent in ${parsed.origin} | 9-26 Seater | Chiku Cabs`;
+
+  description = `Hire a Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9-26 seater options with AC comfort. Call 9818022327.`;
+
+  keywords = [
+  // Primary keywords
+  `tempo traveller on rent in ${parsed.origin}`,
+  `tempo traveller in ${parsed.origin}`,
+  `tempo traveller rental in ${parsed.origin}`,
+  `tempo traveller hire in ${parsed.origin}`,
+  `tempo traveller booking in ${parsed.origin}`,
+  `tempo traveller fare in ${parsed.origin}`,
+  `tempo traveller price in ${parsed.origin}`,
+  `tempo traveller per km rate in ${parsed.origin}`,
+
+  // Alternative spelling: Traveler
+  `tempo traveler in ${parsed.origin}`,
+  `tempo traveler on rent in ${parsed.origin}`,
+  `tempo traveler booking in ${parsed.origin}`,
+  `tempo traveler rental in ${parsed.origin}`,
+
+  // Seater-specific keywords
+  `9 seater tempo traveller in ${parsed.origin}`,
+  `10 seater tempo traveller in ${parsed.origin}`,
+  `12 seater tempo traveller in ${parsed.origin}`,
+  `15 seater tempo traveller in ${parsed.origin}`,
+  `16 seater tempo traveller in ${parsed.origin}`,
+  `17 seater tempo traveller in ${parsed.origin}`,
+  `18 seater tempo traveller in ${parsed.origin}`,
+  `20 seater tempo traveller in ${parsed.origin}`,
+  `26 seater tempo traveller in ${parsed.origin}`,
+
+  // Tourist van and group travel
+  `tourist van rental in ${parsed.origin}`,
+  `tourist van on rent in ${parsed.origin}`,
+  `group travel vehicle in ${parsed.origin}`,
+  `group tour vehicle rental in ${parsed.origin}`,
+  `family trip tempo traveller in ${parsed.origin}`,
+  `outstation tempo traveller from ${parsed.origin}`,
+  `local sightseeing tempo traveller in ${parsed.origin}`,
+
+  // Luxury and premium travel
+  `luxury tempo traveller in ${parsed.origin}`,
+  `premium tempo traveller on rent in ${parsed.origin}`,
+  `luxury traveller booking in ${parsed.origin}`,
+  `premium traveller rental in ${parsed.origin}`,
+  `AC tempo traveller in ${parsed.origin}`,
+  `comfortable group travel in ${parsed.origin}`,
+
+  // Booking-related keywords
+  `online tempo traveller booking in ${parsed.origin}`,
+  `book tempo traveller online in ${parsed.origin}`,
+  `tempo traveller hire charges in ${parsed.origin}`,
+  `tempo traveller rental packages in ${parsed.origin}`,
+  `tempo traveller for family trips in ${parsed.origin}`,
+  `tempo traveller for weddings in ${parsed.origin}`,
+  `tempo traveller for corporate trips in ${parsed.origin}`,
+
+  // Brand keyword
+  "Chiku Cabs",
+  `Chiku Cabs tempo traveller in ${parsed.origin}`,
+];
+} else if (
+  parsed.routeType === "Local Service" &&
+  parsed.vehicleCategory === "innova"
+) {
+  title = `Innova & Crysta on Rent in ${parsed.origin} @ ₹16/KM - UPTO 500 OFF`;
+
+  description = `Hire an Innova Crysta in ${parsed.origin} for family trips, sightseeing, airport transfers and outstation travel. Enjoy AC comfort and professional drivers. Call 9818022327.`;
+
+  keywords = [
+    `innova crysta on rent in ${parsed.origin}`,
+    `innova crysta in ${parsed.origin}`,
+    `innova taxi in ${parsed.origin}`,
+    `6 seater innova in ${parsed.origin}`,
+    `7 seater innova in ${parsed.origin}`,
+    `innova booking ${parsed.origin}`,
+    "Chiku Cabs",
+  ];
 } else if (parsed.routeType === "Local Service") {
-    const seaterInfo =
-      parsed.vehicleCategory === "tempo-traveller"
-        ? " | 9-26 Seater"
-        : parsed.vehicleCategory === "innova"
-          ? " | 6-7 Seater"
-          : "";
-    title = `${parsed.vehicle} on Rent in ${parsed.origin} | Chiku Cabs${seaterInfo} @ Best Price`;
-    description = `Hire verified ${parsed.vehicle} in ${parsed.origin} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`;
-    keywords = [
-      `${parsed.vehicle?.toLowerCase()} in ${parsed.origin}`,
-      `cab in ${parsed.origin}`,
-      `taxi ${parsed.origin}`,
-      `${parsed.origin} cab service`,
-      `${parsed.origin} taxi booking`,
-      `local cab ${parsed.origin}`,
-      `airport taxi ${parsed.origin}`,
-      `${parsed.origin} sightseeing cab`,
-      `cab near me ${parsed.origin}`,
-      "Chiku Cabs",
-    ];
+  title = `Cab Service in ${parsed.origin} | Local Taxi Booking | Chiku Cabs`;
+
+  description = `Book a reliable cab in ${parsed.origin} for local travel, sightseeing, airport transfers and outstation trips. Enjoy comfortable rides with professional drivers. Call 9818022327.`;
+
+  keywords = [
+    `cab service in ${parsed.origin}`,
+    `taxi service in ${parsed.origin}`,
+    `cab booking in ${parsed.origin}`,
+    `local cab ${parsed.origin}`,
+    `airport taxi ${parsed.origin}`,
+    `${parsed.origin} sightseeing cab`,
+    "Chiku Cabs",
+  ];
+
   } else if (parsed.routeType === "Driver Service") {
     const cityStr = parsed.origin ? ` in ${parsed.origin}` : "";
     title = `Hire a Driver${cityStr} | Verified Chauffeurs on Rent | Chiku Cabs`;
