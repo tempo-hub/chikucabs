@@ -7,7 +7,7 @@ export default function StatsSection() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-14">
           {/* <div className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full mb-3">
-            OUR REVIEWS
+            OUR REVIEWS as
           </div> */}
           <h2 className="text-3xl md:text-4xl font-black mb-3">What Our Customers Say About Us</h2>
           <p className="text-muted-foreground text-sm max-w-xl mx-auto">
