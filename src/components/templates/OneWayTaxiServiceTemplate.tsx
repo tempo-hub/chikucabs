@@ -81,13 +81,16 @@ const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
 const DRIVER_ALLOWANCE = 500;
 
-const calculateFareByDistance = (travelDistance: number) => {
+const calculateFareByDistance = (
+  travelDistance: number,
+  pricePerKm: number = 9,
+) => {
   if (isNaN(travelDistance) || travelDistance <= 0) {
     return 0;
   }
 
-  const perKmRate = travelDistance < 200 ? 16 : 13;
-  return travelDistance * perKmRate + DRIVER_ALLOWANCE;
+  const rate = Number.isFinite(pricePerKm) && pricePerKm > 0 ? pricePerKm : 9;
+  return Math.round(travelDistance * 1.5 * rate + DRIVER_ALLOWANCE);
 };
 
 const VEHICLE_DETAILS_MAP: Record<
@@ -335,11 +338,13 @@ export default function OneWayTaxiServiceTemplate({
     const distance = parseFloat(formData.distance);
 
     if (!isNaN(distance) && distance > 0) {
-      setEstimatedPrice(calculateFareByDistance(distance));
+      setEstimatedPrice(
+        calculateFareByDistance(distance, vehicleDetails?.pricePerKm || 9),
+      );
     } else {
       setEstimatedPrice(null);
     }
-  }, [formData.distance]);
+  }, [formData.distance, vehicleDetails?.pricePerKm]);
 
   useEffect(() => {
     calculateFare();
@@ -1092,7 +1097,12 @@ Please share the best fare estimate.`;
                             ...prev,
                             distance: dist.toString(),
                           }));
-                          setEstimatedPrice(calculateFareByDistance(dist));
+                          setEstimatedPrice(
+                            calculateFareByDistance(
+                              dist,
+                              vehicleDetails?.pricePerKm || 9,
+                            ),
+                          );
                         }}
                         className={`py-2 rounded-lg text-sm font-medium transition-all ${
                           Number(formData.distance) === dist

@@ -418,12 +418,13 @@ export default function OneWayTemplate({
     const DRIVER_CHARGE = 500;
 
     if (!isNaN(distance) && distance > 0) {
-      const fare = distance * vehicleDetails.pricePerKm + DRIVER_CHARGE;
+      const rate = vehicleDetails?.pricePerKm || 9;
+      const fare = Math.round(distance * 1.5 * rate + DRIVER_CHARGE);
       setEstimatedPrice(fare);
     } else {
       setEstimatedPrice(null);
     }
-  }, [formData.distance, vehicleDetails.pricePerKm]);
+  }, [formData.distance, vehicleDetails?.pricePerKm]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -1375,14 +1376,15 @@ export default function OneWayTemplate({
                     ].map((route, index) => {
                       // Calculate One Way Price using same logic as calculateFare
                       const DRIVER_CHARGE = 500;
-                      const oneWayPrice =
-                        route.distance * vehicleDetails.pricePerKm +
-                        DRIVER_CHARGE;
+                      const rate = vehicleDetails?.pricePerKm || 9;
+                      const oneWayPrice = Math.round(
+                        route.distance * 1.5 * rate + DRIVER_CHARGE,
+                      );
 
-                      // Calculate Round Trip Price (2x distance + 2x driver charge with 10% discount)
-                      const roundTripBase =
-                        route.distance * 2 * vehicleDetails.pricePerKm +
-                        DRIVER_CHARGE * 2;
+                      // Calculate Round Trip Price (2x distance with 10% discount)
+                      const roundTripBase = Math.round(
+                        route.distance * 2 * 1.5 * rate + DRIVER_CHARGE,
+                      );
                       const roundTripDiscount = roundTripBase * 0.1; // 10% discount
                       const roundTripPrice = roundTripBase - roundTripDiscount;
 

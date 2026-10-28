@@ -168,16 +168,14 @@ function formatCurrency(value: number) {
 }
 
 
-function calculateFare(distanceKm: number, pricePerKm: number) {
+function calculateFare(distanceKm: number, pricePerKm: number = 9) {
   if (!Number.isFinite(distanceKm) || distanceKm <= 0) {
     return 0;
   }
 
-  if (!Number.isFinite(pricePerKm) || pricePerKm <= 0) {
-    return 0;
-  }
+  const rate = Number.isFinite(pricePerKm) && pricePerKm > 0 ? pricePerKm : 9;
 
-  return distanceKm * pricePerKm + DRIVER_ALLOWANCE;
+  return Math.round(distanceKm * 1.5 * rate + DRIVER_ALLOWANCE);
 }
 
 
@@ -541,31 +539,29 @@ export default function OutstationRouteFareTemplate({
   // ESTIMATE
   // ----------------------------------------------------------
 
- const updateEstimate = useCallback(
-  (vehicleSlug = selectedVehicle) => {
-    const vehicle =
-      VEHICLES.find((item) => item.slug === vehicleSlug) ||
-      pageVehicle;
+  const updateEstimate = useCallback(
+    (vehicleSlug = selectedVehicle) => {
+      const vehicle =
+        VEHICLES.find((item) => item.slug === vehicleSlug) ||
+        pageVehicle;
 
-    const oneWayFare = calculateFare(
+      const totalDistance =
+        tripType === "round-trip" ? distance * 2 : distance;
+
+      const finalFare = calculateFare(
+        totalDistance,
+        vehicle.pricePerKm,
+      );
+
+      setEstimatedPrice(finalFare);
+    },
+    [
       distance,
-      vehicle.pricePerKm,
-    );
-
-    const finalFare =
-      tripType === "round-trip"
-        ? oneWayFare * 2
-        : oneWayFare;
-
-    setEstimatedPrice(finalFare);
-  },
-  [
-    distance,
-    pageVehicle,
-    selectedVehicle,
-    tripType,
-  ],
-);
+      pageVehicle,
+      selectedVehicle,
+      tripType,
+    ],
+  );
 
 
   useEffect(() => {
@@ -608,9 +604,8 @@ export default function OutstationRouteFareTemplate({
 🚘 *Vehicle:* ${selected.name}
 💰 *Rate:* ₹${selected.pricePerKm}/km
 📏 *Approx Distance:* ${distance} km
-🛣️ *Trip Type:* ${
-      tripType === "one-way" ? "One Way" : "Round Trip"
-    }
+🛣️ *Trip Type:* ${tripType === "one-way" ? "One Way" : "Round Trip"
+      }
 
 Please share the final fare and availability.`;
 
@@ -667,23 +662,20 @@ Please share the final fare and availability.`;
 📅 *Travel Date:* ${formData.date}
 ⏰ *Travel Time:* ${formData.time}
 
-🔄 *Trip Type:* ${
-      tripType === "one-way" ? "One Way" : "Round Trip"
-    }
+🔄 *Trip Type:* ${tripType === "one-way" ? "One Way" : "Round Trip"
+      }
 
-${
-  tripType === "round-trip"
-    ? `🔄 *Return Date:* ${formData.returnDate}\n`
-    : ""
-}
+${tripType === "round-trip"
+        ? `🔄 *Return Date:* ${formData.returnDate}\n`
+        : ""
+      }
 
 🚘 *Vehicle:* ${selectedVehicleDetails.name}
 
-💰 *Estimated Fare:* ${
-      estimatedPrice
+💰 *Estimated Fare:* ${estimatedPrice
         ? formatCurrency(estimatedPrice)
         : "Please quote"
-    }
+      }
 
 Please confirm the final fare and availability.`;
 
@@ -842,11 +834,10 @@ Please confirm the final fare and availability.`;
         ====================================================== */}
 
         <div
-          className={`fixed bottom-0 left-0 right-0 z-50 transition-all duration-300 ${
-            isScrolled
+          className={`fixed bottom-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
               ? "translate-y-0 opacity-100"
               : "translate-y-full opacity-0"
-          }`}
+            }`}
         >
           <div className="bg-gray-950 text-white border-t border-white/10 shadow-2xl">
 
@@ -991,21 +982,21 @@ Please confirm the final fare and availability.`;
                 </div>
 
                 {/* Rating */}
-<div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 mb-6 ml-2">
-  <span className="text-yellow-400">★★★★★</span>
-  <span className="text-sm">4.9 Rating • 1250+ Reviews</span>
-</div>
+                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 mb-6 ml-2">
+                  <span className="text-yellow-400">★★★★★</span>
+                  <span className="text-sm">4.9 Rating • 1250+ Reviews</span>
+                </div>
 
-<h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-    {startCity} to {endCity}{" "}
-    <span className="block text-primary mt-1">Cab Fare & Booking</span>
-  </h1>
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+                  {startCity} to {endCity}{" "}
+                  <span className="block text-primary mt-1">Cab Fare & Booking</span>
+                </h1>
 
-  <p className="text-sm sm:text-base text-white/80 max-w-xl leading-relaxed mt-4 mb-4">
-    Book your outstation taxi from <strong>{startCity}</strong> to{" "}
-    <strong>{endCity}</strong> starting at just ₹9/km. Use the online booking form to claim 
-    an extra ₹500 off on one-way and round-trip rides.
-  </p>
+                <p className="text-sm sm:text-base text-white/80 max-w-xl leading-relaxed mt-4 mb-4">
+                  Book your outstation taxi from <strong>{startCity}</strong> to{" "}
+                  <strong>{endCity}</strong> starting at just ₹9/km. Use the online booking form to claim
+                  an extra ₹500 off on one-way and round-trip rides.
+                </p>
 
 
                 {/* QUICK FACTS */}
@@ -1221,11 +1212,10 @@ Please confirm the final fare and availability.`;
                       <button
                         type="button"
                         onClick={() => setTripType("one-way")}
-                        className={`rounded-xl py-3 font-bold transition ${
-                          tripType === "one-way"
+                        className={`rounded-xl py-3 font-bold transition ${tripType === "one-way"
                             ? "bg-primary text-white shadow-md"
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
+                          }`}
                       >
                         One Way
                       </button>
@@ -1234,11 +1224,10 @@ Please confirm the final fare and availability.`;
                       <button
                         type="button"
                         onClick={() => setTripType("round-trip")}
-                        className={`rounded-xl py-3 font-bold transition ${
-                          tripType === "round-trip"
+                        className={`rounded-xl py-3 font-bold transition ${tripType === "round-trip"
                             ? "bg-primary text-white shadow-md"
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
+                          }`}
                       >
                         Round Trip
                       </button>
@@ -1380,12 +1369,12 @@ Please confirm the final fare and availability.`;
                       <div>
 
                         <p className="text-sm font-semibold text-gray-600">
-  Estimated{" "}
-  {tripType === "round-trip"
-    ? "Round-Trip"
-    : "One-Way"}{" "}
-  Fare
-</p>
+                          Estimated{" "}
+                          {tripType === "round-trip"
+                            ? "Round-Trip"
+                            : "One-Way"}{" "}
+                          Fare
+                        </p>
 
                         <p className="mt-1 text-3xl font-black text-primary">
 
@@ -2614,58 +2603,58 @@ Please confirm the final fare and availability.`;
         </section>
 
         {/* Customer Testimonials */}
-<section className="py-16 bg-muted/30 border-y">
-  <div className="max-w-7xl mx-auto px-4">
-    <div className="text-center mb-16">
-      <div
-        className="section-badge mx-auto"
-        style={{ display: "inline-flex" }}
-      >
-        REVIEWS
-      </div>
+        <section className="py-16 bg-muted/30 border-y">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <div
+                className="section-badge mx-auto"
+                style={{ display: "inline-flex" }}
+              >
+                REVIEWS
+              </div>
 
-      <h2 className="section-title">
-        Travelers Love Our Transparent Pricing
-      </h2>
-    </div>
+              <h2 className="section-title">
+                Travelers Love Our Transparent Pricing
+              </h2>
+            </div>
 
-    <div className="grid md:grid-cols-3 gap-8">
-      {[
-        {
-          name: "Sanjay Kumar",
-          text: "The fare was exactly what was quoted. No extra charges, no surprises at the end. Very transparent service. Highly recommended!",
-          rating: "★★★★★",
-        },
-        {
-          name: "Neha Singh",
-          text: "Compared rates with Ola, Uber, and local operators. Chiku Cabs was the most affordable for our one-way trip. Great value for money.",
-          rating: "★★★★★",
-        },
-        {
-          name: "Vikram Patel",
-          text: "I was skeptical about the low fare, but the service quality was top-notch. Clean car, professional driver, and no hidden costs.",
-          rating: "★★★★★",
-        },
-      ].map((review, i) => (
-        <div key={i} className="testimonial-card">
-          <div className="testimonial-stars">{review.rating}</div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  name: "Sanjay Kumar",
+                  text: "The fare was exactly what was quoted. No extra charges, no surprises at the end. Very transparent service. Highly recommended!",
+                  rating: "★★★★★",
+                },
+                {
+                  name: "Neha Singh",
+                  text: "Compared rates with Ola, Uber, and local operators. Chiku Cabs was the most affordable for our one-way trip. Great value for money.",
+                  rating: "★★★★★",
+                },
+                {
+                  name: "Vikram Patel",
+                  text: "I was skeptical about the low fare, but the service quality was top-notch. Clean car, professional driver, and no hidden costs.",
+                  rating: "★★★★★",
+                },
+              ].map((review, i) => (
+                <div key={i} className="testimonial-card">
+                  <div className="testimonial-stars">{review.rating}</div>
 
-          <p className="testimonial-text">
-            "{review.text}"
-          </p>
+                  <p className="testimonial-text">
+                    "{review.text}"
+                  </p>
 
-          <div className="testimonial-author">
-            {review.name}
+                  <div className="testimonial-author">
+                    {review.name}
+                  </div>
+
+                  <div className="testimonial-route">
+                    {startCity} → {endCity}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-
-          <div className="testimonial-route">
-            {startCity} → {endCity}
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+        </section>
 
 
         {/* =====================================================
