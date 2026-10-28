@@ -81,13 +81,14 @@ const DRIVER_ALLOWANCE = 500;
 
 const calculateFareByDistance = (
   travelDistance: number,
-  pricePerKm: number = 10,
+  pricePerKm: number = 9,
 ) => {
   if (isNaN(travelDistance) || travelDistance <= 0) {
     return 0;
   }
 
-  return travelDistance * pricePerKm + DRIVER_ALLOWANCE;
+  const rate = Number.isFinite(pricePerKm) && pricePerKm > 0 ? pricePerKm : 9;
+  return Math.round(travelDistance * 1.5 * rate + DRIVER_ALLOWANCE);
 };
 
 const VEHICLE_DETAILS_MAP: Record<
@@ -348,15 +349,13 @@ export default function OutstationTemplate({
   const distance = parseFloat(formData.distance);
 
   if (!isNaN(distance) && distance > 0) {
-    const oneWayFare = calculateFareByDistance(
-      distance,
+    const totalDistance =
+      tripType === "round-trip" ? distance * 2 : distance;
+
+    const finalFare = calculateFareByDistance(
+      totalDistance,
       vehicleDetails.pricePerKm,
     );
-
-    const finalFare =
-      tripType === "round-trip"
-        ? oneWayFare * 2
-        : oneWayFare;
 
     setEstimatedPrice(finalFare);
   } else {
@@ -1497,9 +1496,9 @@ Please share the fare estimate.`;
                         route.distance,
                       );
 
-                      // Calculate Round Trip Price (2x distance + 2x driver charge with 10% discount)
+                      // Calculate Round Trip Price (2x distance with 10% discount)
                       const roundTripBase =
-                        calculateFareByDistance(route.distance) * 2;
+                        calculateFareByDistance(route.distance * 2);
                       const roundTripDiscount = roundTripBase * 0.1; // 10% discount
                       const roundTripPrice = roundTripBase - roundTripDiscount;
 

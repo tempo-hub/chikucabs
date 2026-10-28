@@ -61,7 +61,7 @@ export const POPULAR_AIRPORT_CITIES: PopularAirportCity[] = [
 // Price calculation function
 export const calculateFare = (
   distanceKm: number,
-  pricePerKm: number = 10,
+  pricePerKm: number = 9,
 ): number => {
   const DRIVER_CHARGE = 500;
   const BASE_FARE = 500;
@@ -71,8 +71,9 @@ export const calculateFare = (
     return BASE_FARE;
   }
 
+  const rate = Number.isFinite(pricePerKm) && pricePerKm > 0 ? pricePerKm : 9;
   // For distances > 4km, calculate based on per km rate + driver charge
-  const fare = distanceKm * pricePerKm + DRIVER_CHARGE;
+  const fare = distanceKm * 1.5 * rate + DRIVER_CHARGE;
   return Math.round(fare);
 };
 
@@ -88,7 +89,7 @@ export const getPricePerKm = (vehicle: string): number => {
     suv: 14,
     tempo: 19,
     hatchback: 9,
-    default: 10,
+    default: 9,
   };
   return prices[vehicle.toLowerCase()] || prices.default;
 };

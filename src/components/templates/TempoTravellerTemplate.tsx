@@ -379,12 +379,13 @@ export default function TempoTravellerTemplate({
     const DRIVER_CHARGE = 500;
 
     if (!isNaN(distance) && distance > 0) {
-      const fare = distance * vehicleDetails.pricePerKm + DRIVER_CHARGE;
+      const rate = vehicleDetails?.pricePerKm || 9;
+      const fare = Math.round(distance * 1.5 * rate + DRIVER_CHARGE);
       setEstimatedPrice(fare);
     } else {
       setEstimatedPrice(null);
     }
-  }, [formData.distance, vehicleDetails.pricePerKm]);
+  }, [formData.distance, vehicleDetails?.pricePerKm]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
