@@ -203,22 +203,40 @@ export async function generateMetadata({
     const distance = Number(routeInfo?.distance || 250);
     const startingFare = Math.round(distance * 1.5 * 9 + 500);
 
-    title = `${startCity} to ${endCity} Cab @ ₹${startingFare} | One Way Taxi (${distance} km) – Chiku Cabs`;
-    description = `Book ${startCity} to ${endCity} one-way cab starting at ₹${startingFare} (~${distance} km). AC Sedan, SUV, Innova Crysta & Tempo Traveller with verified drivers, zero return fare & 24/7 support. Call 8448445504 to book now.`;
-    keywords = [
-      `${startCity} to ${endCity} one way cab`,
-      `${startCity} to ${endCity} drop taxi`,
-      `${startCity} to ${endCity} cab`,
-      `${startCity} to ${endCity} taxi`,
-      `${startCity} to ${endCity} cab fare`,
-      `${startCity} to ${endCity} taxi fare`,
-      `${startCity} to ${endCity} distance`,
-      `one way cab from ${startCity} to ${endCity}`,
-      `outstation cab ${startCity}`,
-      `Banaras to ${endCity} cab`,
-      `Kashi to ${endCity} taxi`,
-      "Chiku Cabs",
-    ];
+    if (parsed.vehicleCategory === "tempo-traveller") {
+      const tempoStartingFare = Math.round(distance * 1.5 * 20 + 500);
+      title = `${startCity} to ${endCity} Tempo Traveller on Rent @ ₹20/km | Chiku Cabs`;
+      description = `Hire 9 to 26 seater Tempo Traveller from ${startCity} to ${endCity} starting at ₹${tempoStartingFare} (~${distance} km). Luxury pushback seats, AC, verified drivers & roof luggage carrier. Call 8448445504 to book.`;
+      keywords = [
+        `${startCity.toLowerCase()} to ${endCity.toLowerCase()} tempo traveller`,
+        `tempo traveller hire ${startCity.toLowerCase()} to ${endCity.toLowerCase()}`,
+        `tempo traveller on rent from ${startCity.toLowerCase()} to ${endCity.toLowerCase()}`,
+        `tempo traveller fare ${startCity.toLowerCase()} to ${endCity.toLowerCase()}`,
+        `9 seater tempo traveller ${startCity.toLowerCase()} to ${endCity.toLowerCase()}`,
+        `12 seater tempo traveller ${startCity.toLowerCase()} to ${endCity.toLowerCase()}`,
+        `16 seater tempo traveller ${startCity.toLowerCase()} to ${endCity.toLowerCase()}`,
+        `20 seater tempo traveller ${startCity.toLowerCase()} to ${endCity.toLowerCase()}`,
+        `26 seater tempo traveller ${startCity.toLowerCase()} to ${endCity.toLowerCase()}`,
+        "Chiku Cabs",
+      ];
+    } else {
+      title = `${startCity} to ${endCity} Cab @ ₹${startingFare} | One Way Taxi (${distance} km) – Chiku Cabs`;
+      description = `Book ${startCity} to ${endCity} one-way cab starting at ₹${startingFare} (~${distance} km). AC Sedan, SUV, Innova Crysta & Tempo Traveller with verified drivers, zero return fare & 24/7 support. Call 8448445504 to book now.`;
+      keywords = [
+        `${startCity} to ${endCity} one way cab`,
+        `${startCity} to ${endCity} drop taxi`,
+        `${startCity} to ${endCity} cab`,
+        `${startCity} to ${endCity} taxi`,
+        `${startCity} to ${endCity} cab fare`,
+        `${startCity} to ${endCity} taxi fare`,
+        `${startCity} to ${endCity} distance`,
+        `one way cab from ${startCity} to ${endCity}`,
+        `outstation cab ${startCity}`,
+        `Banaras to ${endCity} cab`,
+        `Kashi to ${endCity} taxi`,
+        "Chiku Cabs",
+      ];
+    }
   } else if (parsed.routeType === "Outstation Route Fare") {
     const startCity = parsed.origin || "Origin";
     const endCity = parsed.destination || "Destination";
@@ -244,16 +262,29 @@ export async function generateMetadata({
     const distance = Number(routeInfo?.distance || 250);
     const startingFare = Math.round(distance * 1.5 * 9 + 500);
 
-    title = `${startCity} to ${endCity} ${parsed.vehicle || "Cab"} Fare from ₹${startingFare} | Chiku Cabs`;
-    description = `Check ${startCity} to ${endCity} ${parsed.vehicle || "cab"} fare (~${distance} km). Complete rate card starting from ₹${startingFare} with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 8448445504.`;
-    keywords = [
-      `${startCity} to ${endCity} cab fare`,
-      `${startCity} to ${endCity} taxi rate`,
-      `${startCity} to ${endCity} cab charges`,
-      `${startCity} to ${endCity} per km rate`,
-      `cheapest cab ${startCity} to ${endCity}`,
-      "Chiku Cabs fare",
-    ];
+    if (parsed.vehicleCategory === "tempo-traveller") {
+      const tempoStartingFare = Math.round(distance * 1.5 * 20 + 500);
+      title = `${startCity} to ${endCity} Tempo Traveller Fare from ₹${tempoStartingFare} | Chiku Cabs`;
+      description = `Check ${startCity} to ${endCity} Tempo Traveller fare (~${distance} km). Rates start at ₹20/km for 9, 12, 16, 20 & 26 seaters. Transparent group travel pricing. Call 8448445504.`;
+      keywords = [
+        `${startCity.toLowerCase()} to ${endCity.toLowerCase()} tempo traveller fare`,
+        `${startCity.toLowerCase()} to ${endCity.toLowerCase()} tempo traveller price`,
+        `${startCity.toLowerCase()} to ${endCity.toLowerCase()} tempo traveller rate`,
+        `tempo traveller per km rate ${startCity.toLowerCase()} to ${endCity.toLowerCase()}`,
+        "Chiku Cabs tempo traveller fare",
+      ];
+    } else {
+      title = `${startCity} to ${endCity} ${parsed.vehicle || "Cab"} Fare from ₹${startingFare} | Chiku Cabs`;
+      description = `Check ${startCity} to ${endCity} ${parsed.vehicle || "cab"} fare (~${distance} km). Complete rate card starting from ₹${startingFare} with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 8448445504.`;
+      keywords = [
+        `${startCity} to ${endCity} cab fare`,
+        `${startCity} to ${endCity} taxi rate`,
+        `${startCity} to ${endCity} cab charges`,
+        `${startCity} to ${endCity} per km rate`,
+        `cheapest cab ${startCity} to ${endCity}`,
+        "Chiku Cabs fare",
+      ];
+    }
 
 
   }else if(parsed.isVehicleRental){
