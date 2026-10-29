@@ -579,8 +579,8 @@ Please share the final fare and booking confirmation.`;
                 Home
               </Link>
               <span>/</span>
-              <Link href="/outstation-cabs" className="hover:text-primary transition-colors">
-                Outstation Cabs
+              <Link href="/one-way-cabs" className="hover:text-primary transition-colors">
+                One Way Cabs
               </Link>
               <span>/</span>
               <span className="font-semibold text-slate-900">
