@@ -28,6 +28,8 @@ import TempoTravellerFareTemplate from "@/components/templates/tempo-fare/TempoT
 import UrbaniaTemplate from "@/components/templates/urbaniatraveller/UrbaniaTemplate";
 import UrbaniaRouteTemplate from "@/components/templates/urbaniatravellerfare/UrbaniaRouteTemplate";
 import { URBANIA_ROUTES } from "@/data/urbaniaRouteData";
+import { cityCabRoutes } from "@/data/cityCabRoutes";
+import { POPULAR_ROUTES as airportCabRoutes } from "@/data/airportRoutes";
 
 // We do NOT pre-render all 4476 routes at build time (causes timeout on Vercel).
 // Pages are generated on first request and cached via ISR (revalidate below).
@@ -177,30 +179,79 @@ export async function generateMetadata({
   ];
 
 } else if (parsed.routeType === "Outstation Route") {
-    title = `${parsed.origin} to ${parsed.destination} One Way Cab | Easy Booking | Chiku Cabs`;
-description = `Book a one way cab from ${parsed.origin} to ${parsed.destination} starting With Fare Price. Choose Sedan, SUV, Innova or Tempo Traveller based on your needs. Get transparent fares, verified drivers and easy booking with Chiku Cabs. Call 9818022327 to book now!`;   
- keywords = [
-      `${parsed.origin} to ${parsed.destination} one way cab`,
-      `${parsed.origin} to ${parsed.destination} drop taxi`,
-      `${parsed.origin} to ${parsed.destination} cab`,
-      `${parsed.origin} to ${parsed.destination} taxi`,
-      `${parsed.origin} to ${parsed.destination} ${parsed.vehicle?.toLowerCase()}`,
-      `cab from ${parsed.origin}`,
-      `${parsed.origin} to ${parsed.destination} cab fare`,
-      `pay one side fare ${parsed.origin}`,
-      `best cab service ${parsed.origin}`,
-      `outstation cab ${parsed.origin}`,
+    const startCity = parsed.origin || "Origin";
+    const endCity = parsed.destination || "Destination";
+    const normalizedStart = startCity.toLowerCase().trim();
+    const normalizedEnd = endCity.toLowerCase().trim();
+
+    const routeInfo =
+      Object.values(cityCabRoutes)
+        .flat()
+        .find(
+          (route) =>
+            route.from.toLowerCase().trim() === normalizedStart &&
+            route.to.toLowerCase().trim() === normalizedEnd,
+        ) ||
+      Object.values(airportCabRoutes)
+        .flat()
+        .find(
+          (route) =>
+            route.from.toLowerCase().trim() === normalizedStart &&
+            route.to.toLowerCase().trim() === normalizedEnd,
+        );
+
+    const distance = Number(routeInfo?.distance || 250);
+    const startingFare = Math.round(distance * 1.5 * 9 + 500);
+
+    title = `${startCity} to ${endCity} Cab @ ₹${startingFare} | One Way Taxi (${distance} km) – Chiku Cabs`;
+    description = `Book ${startCity} to ${endCity} one-way cab starting at ₹${startingFare} (~${distance} km). AC Sedan, SUV, Innova Crysta & Tempo Traveller with verified drivers, zero return fare & 24/7 support. Call 8448445504 to book now.`;
+    keywords = [
+      `${startCity} to ${endCity} one way cab`,
+      `${startCity} to ${endCity} drop taxi`,
+      `${startCity} to ${endCity} cab`,
+      `${startCity} to ${endCity} taxi`,
+      `${startCity} to ${endCity} cab fare`,
+      `${startCity} to ${endCity} taxi fare`,
+      `${startCity} to ${endCity} distance`,
+      `one way cab from ${startCity} to ${endCity}`,
+      `outstation cab ${startCity}`,
+      `Banaras to ${endCity} cab`,
+      `Kashi to ${endCity} taxi`,
       "Chiku Cabs",
     ];
   } else if (parsed.routeType === "Outstation Route Fare") {
-    title = `${parsed.origin} to ${parsed.destination} ${parsed.vehicle} Fare @ ₹9/km | Get 500 OFF Extra`;
-    description = `Check ${parsed.origin} to ${parsed.destination} ${parsed.vehicle} fare. Complete rate card with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 9818022327.`;
+    const startCity = parsed.origin || "Origin";
+    const endCity = parsed.destination || "Destination";
+    const normalizedStart = startCity.toLowerCase().trim();
+    const normalizedEnd = endCity.toLowerCase().trim();
+
+    const routeInfo =
+      Object.values(cityCabRoutes)
+        .flat()
+        .find(
+          (route) =>
+            route.from.toLowerCase().trim() === normalizedStart &&
+            route.to.toLowerCase().trim() === normalizedEnd,
+        ) ||
+      Object.values(airportCabRoutes)
+        .flat()
+        .find(
+          (route) =>
+            route.from.toLowerCase().trim() === normalizedStart &&
+            route.to.toLowerCase().trim() === normalizedEnd,
+        );
+
+    const distance = Number(routeInfo?.distance || 250);
+    const startingFare = Math.round(distance * 1.5 * 9 + 500);
+
+    title = `${startCity} to ${endCity} ${parsed.vehicle || "Cab"} Fare from ₹${startingFare} | Chiku Cabs`;
+    description = `Check ${startCity} to ${endCity} ${parsed.vehicle || "cab"} fare (~${distance} km). Complete rate card starting from ₹${startingFare} with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 8448445504.`;
     keywords = [
-      `${parsed.origin} to ${parsed.destination} cab fare`,
-      `${parsed.origin} to ${parsed.destination} taxi rate`,
-      `${parsed.origin} to ${parsed.destination} cab charges`,
-      `${parsed.origin} to ${parsed.destination} per km rate`,
-      `cheapest cab ${parsed.origin} to ${parsed.destination}`,
+      `${startCity} to ${endCity} cab fare`,
+      `${startCity} to ${endCity} taxi rate`,
+      `${startCity} to ${endCity} cab charges`,
+      `${startCity} to ${endCity} per km rate`,
+      `cheapest cab ${startCity} to ${endCity}`,
       "Chiku Cabs fare",
     ];
 
