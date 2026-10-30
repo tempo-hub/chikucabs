@@ -24,9 +24,9 @@ export default function UrbaniaRouteSEOContent({
       id="urbania-route-content"
       className="bg-slate-50 px-4 py-12 sm:px-6 lg:px-8 lg:py-12 border-b border-slate-100"
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="max-w-3xl">
+        <div className="max-w-5xl">
           <span className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-primary">
             Route Guide
           </span>
