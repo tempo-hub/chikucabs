@@ -1,16 +1,18 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
+import React, { FormEvent, useMemo, useState } from "react";
 import Image from "next/image";
 import {
+  FaCheckCircle,
   FaWhatsapp,
   FaPhoneAlt,
-  FaUsers,
-  FaCheckCircle,
   FaStar,
-  FaArrowRight,
+  FaRoute,
+  FaClock,
+  FaCar,
+  FaShieldAlt,
 } from "react-icons/fa";
+import { IoLocationSharp } from "react-icons/io5";
 
 interface UrbaniaHeroProps {
   city?: string;
@@ -18,431 +20,424 @@ interface UrbaniaHeroProps {
 }
 
 const PHONE_NUMBER = "+918448445504";
+const DISPLAY_PHONE = "8448445504";
 const WHATSAPP_NUMBER = "916280820037";
+const DEFAULT_DISTANCE = 250;
+const DRIVER_ALLOWANCE = 500;
 
-const formatPhone = PHONE_NUMBER.replace("+91", "");
+interface UrbaniaFleetOption {
+  id: string;
+  name: string;
+  seats: string;
+  capacity: number;
+  ratePerKm: number;
+  luggage: string;
+  local8hr: number;
+  airport: number;
+}
 
-const getWhatsAppUrl = (city?: string) => {
-  const message = encodeURIComponent(
-    `Hi Chiku Cabs, I want to book an Urbania Traveller${
-      city ? ` in ${city}` : ""
-    }. Please share the best fare for 12 or 17 seater Urbania.`
-  );
+const URBANIA_FLEET: UrbaniaFleetOption[] = [
+  {
+    id: "12-seater",
+    name: "12 Seater Luxury Urbania",
+    seats: "12 Luxury Captain Recliners",
+    capacity: 12,
+    ratePerKm: 28,
+    luggage: "10-12 Bags + Dedicated Hold",
+    local8hr: 6500,
+    airport: 4000,
+  },
+  {
+    id: "17-seater",
+    name: "17 Seater Maharaja Urbania",
+    seats: "17 Executive Recliners",
+    capacity: 17,
+    ratePerKm: 32,
+    luggage: "15+ Bags + Massive Hold",
+    local8hr: 7500,
+    airport: 4800,
+  },
+];
 
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-};
+function calculateFare(distanceKm: number, ratePerKm: number): number {
+  if (!Number.isFinite(distanceKm) || distanceKm <= 0) return 0;
+  return Math.round(distanceKm * 1.5 * ratePerKm + DRIVER_ALLOWANCE);
+}
 
-const URBANIA_PRICE_PER_KM = 28;
+function formatCurrency(val: number): string {
+  return `₹${Math.round(val).toLocaleString("en-IN")}`;
+}
 
 export default function UrbaniaHero({
   city = "Noida",
 }: UrbaniaHeroProps) {
+  const formattedCity = city || "Noida";
 
+  const [formData, setFormData] = useState({
+    pickup: formattedCity,
+    drop: "",
+    date: "",
+    time: "06:00",
+    vehicleId: "12-seater",
+    tripType: "outstation", // 'outstation' | 'local' | 'airport'
+  });
+
+  const selectedVehicle =
+    URBANIA_FLEET.find((v) => v.id === formData.vehicleId) || URBANIA_FLEET[0];
+
+  const estimatedFare = useMemo(() => {
+    if (formData.tripType === "local") {
+      return selectedVehicle.local8hr;
+    }
+    if (formData.tripType === "airport") {
+      return selectedVehicle.airport;
+    }
+    return calculateFare(DEFAULT_DISTANCE, selectedVehicle.ratePerKm);
+  }, [formData.tripType, selectedVehicle]);
+
+  const perSeatCost = Math.round(estimatedFare / selectedVehicle.capacity);
+  const startingOutstationFare = calculateFare(DEFAULT_DISTANCE, URBANIA_FLEET[0].ratePerKm);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const tripLabel =
+      formData.tripType === "local"
+        ? "Local 8hr/80km Sightseeing"
+        : formData.tripType === "airport"
+        ? "Airport Transfer"
+        : `Outstation (~${DEFAULT_DISTANCE} km)`;
+
+    const message = `🚐 *Force Urbania Booking Request*
+
+📍 *City:* ${formattedCity}
+📍 *Pickup:* ${formData.pickup}
+📍 *Drop / Destination:* ${formData.drop || "Local / As per itinerary"}
+🛣️ *Trip Type:* ${tripLabel}
+👥 *Vehicle:* ${selectedVehicle.name} (${selectedVehicle.seats})
+💰 *Estimated Fare:* ${formatCurrency(estimatedFare)} (~${formatCurrency(perSeatCost)}/seat)
+🧳 *Luggage:* ${selectedVehicle.luggage}
+📅 *Travel Date:* ${formData.date || "Immediate / To Confirm"}
+⏰ *Pickup Time:* ${formData.time || "To Confirm"}
+
+Please share booking confirmation and vehicle pictures.`;
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
 
   return (
-    <section className="relative isolate overflow-hidden px-4 py-12 text-white sm:px-6 sm:py-12 lg:px-8 lg:py-12">
-      {/* Background */}
-      <div
-        className="absolute inset-0 -z-30 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/urbania/urbania.webp')",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Dark overlay */}
-      <div
-        className="absolute inset-0 -z-20 bg-slate-950/50"
-        aria-hidden="true"
-      />
-
-      {/* Gradient */}
-      <div
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950/40 via-slate-950/30 to-slate-950/30"
-        aria-hidden="true"
-      />
-
-      <div
-        className="absolute -right-24 -top-24 -z-10 h-64 w-64 rounded-full bg-primary/15 blur-3xl"
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto max-w-7xl px-4  sm:px-6  lg:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-          {/* LEFT CONTENT */}
-          <div className="max-w-3xl">
-            {/* Badge */}
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-2 text-xs font-semibold backdrop-blur-md sm:text-sm">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px]">
-                <FaCheckCircle />
-              </span>
-
-              Premium Urbania Traveller
-            </div>
-
-            {/* H1 */}
-            <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-  Urbania Traveller in {city}
-  <span className="mt-2 block text-primary">
-    Fare From ₹28/KM
-  </span>
-</h1>
-
-            {/* Description */}
-            <p className="mt-5 max-w-2xl text-base leading-7 text-white/80 sm:text-lg sm:leading-8 lg:text-xl">
-              Book a premium Urbania Traveller with Chiku Cabs for family
-              trips, corporate travel, weddings, group tours and comfortable
-              outstation journeys.
-            </p>
-
-            {/* Vehicle pills */}
-            <div className="mt-6 flex flex-wrap gap-2.5">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold backdrop-blur-md">
-                <FaUsers className="text-primary" />
-                12 Seater Urbania
-              </div>
-
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold backdrop-blur-md">
-                <FaUsers className="text-primary" />
-                17 Seater Urbania
-              </div>
-            </div>
-
-            {/* Trust */}
-            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-white/75">
-              <div className="flex items-center gap-2">
-                <FaStar className="text-yellow-400" />
-                <span className="font-semibold text-white">4.9/5</span>
-                <span>Customer Rating</span>
-              </div>
-
-              <div className="hidden h-4 w-px bg-white/20 sm:block" />
-
-              <div className="flex items-center gap-2">
-                <FaCheckCircle className="text-green-400" />
-                Verified Drivers
-              </div>
-            </div>
-
-            {/* CTAs */}
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                  href={getWhatsAppUrl(city)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                className="
-                  inline-flex
-                  min-h-12
-                  items-center
-                  justify-center
-                  gap-2
-                  rounded-xl
-                  bg-primary
-                  px-6
-                  text-sm
-                  font-extrabold
-                  text-white
-                  shadow-lg
-                  shadow-primary/20
-                  transition
-                  hover:-translate-y-0.5
-                  hover:bg-primary/90
-                  active:translate-y-0
-                  sm:min-h-14
-                  sm:px-8
-                "
-              >
-                Get Best Urbania Fare
-                <FaArrowRight className="text-xs" />
-              </a>
-
-              <a
-                href={`tel:${PHONE_NUMBER}`}
-                className="
-                  inline-flex
-                  min-h-12
-                  items-center
-                  justify-center
-                  gap-2
-                  rounded-xl
-                  border
-                  border-white/20
-                  bg-white/10
-                  px-6
-                  text-sm
-                  font-bold
-                  text-white
-                  backdrop-blur-md
-                  transition
-                  hover:bg-white/15
-                  sm:min-h-14
-                "
-              >
-                <FaPhoneAlt className="text-primary" />
-                Call {formatPhone}
-              </a>
-            </div>
-
-            {/* WhatsApp */}
-            <a
-              href={getWhatsAppUrl(city)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                mt-3
-                inline-flex
-                items-center
-                gap-2
-                text-sm
-                font-bold
-                text-white/90
-                transition
-                hover:text-white
-              "
-            >
-              <FaWhatsapp className="text-lg text-green-400" />
-              Get Urbania Quote on WhatsApp
-            </a>
-          </div>
-
-          {/* RIGHT BOOKING CARD */}
-          <div className="lg:justify-self-end">
-            <div className="w-full max-w-md rounded-2xl border border-white/15 bg-white/95 p-5 text-slate-900 shadow-2xl backdrop-blur-xl sm:p-6">
-              {/* Card heading */}
-              <div className="mb-5">
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">
-                  Chiku Cabs
-                </p>
-
-                <h2 className="mt-1 text-2xl font-black tracking-tight">
-                  Book Urbania Traveller
-                </h2>
-
-                <p className="mt-1 text-sm text-slate-500">
-                  12 & 17 seater options available
-                </p>
-              </div>
-
-              {/* Pickup */}
-              <div className="space-y-3">
-                <div>
-                  <label
-                    htmlFor="urbania-pickup"
-                    className="mb-1.5 block text-xs font-bold text-slate-700"
-                  >
-                    Pickup Location
-                  </label>
-
-                  <input
-                    id="urbania-pickup"
-                    type="text"
-                    placeholder={`Pickup in ${city}`}
-                    className="
-                      h-12
-                      w-full
-                      rounded-xl
-                      border
-                      border-slate-200
-                      bg-slate-50
-                      px-4
-                      text-sm
-                      outline-none
-                      transition
-                      placeholder:text-slate-400
-                      focus:border-primary
-                      focus:bg-white
-                      focus:ring-2
-                      focus:ring-primary/10
-                    "
-                  />
-                </div>
-
-                {/* Destination */}
-                <div>
-                  <label
-                    htmlFor="urbania-drop"
-                    className="mb-1.5 block text-xs font-bold text-slate-700"
-                  >
-                    Destination
-                  </label>
-
-                  <input
-                    id="urbania-drop"
-                    type="text"
-                    placeholder="Where do you want to go?"
-                    className="
-                      h-12
-                      w-full
-                      rounded-xl
-                      border
-                      border-slate-200
-                      bg-slate-50
-                      px-4
-                      text-sm
-                      outline-none
-                      transition
-                      placeholder:text-slate-400
-                      focus:border-primary
-                      focus:bg-white
-                      focus:ring-2
-                      focus:ring-primary/10
-                    "
-                  />
-                </div>
-
-                {/* Vehicle */}
-                <div>
-                  <label
-                    htmlFor="urbania-seater"
-                    className="mb-1.5 block text-xs font-bold text-slate-700"
-                  >
-                    Urbania Traveller
-                  </label>
-
-                  <select
-                    id="urbania-seater"
-                    defaultValue="12"
-                    className="
-                      h-12
-                      w-full
-                      rounded-xl
-                      border
-                      border-slate-200
-                      bg-slate-50
-                      px-4
-                      text-sm
-                      font-medium
-                      outline-none
-                      transition
-                      focus:border-primary
-                      focus:bg-white
-                      focus:ring-2
-                      focus:ring-primary/10
-                    "
-                  >
-                    <option value="12">12 Seater Urbania</option>
-                    <option value="17">17 Seater Urbania</option>
-                  </select>
-                </div>
-                <div className="mb-5 rounded-2xl border border-primary/20 bg-primary/5 p-4">
-  <div className="flex items-center justify-between gap-4">
-    <div>
-      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
-        Urbania Starting Fare
-      </p>
-
-      <p className="mt-1 text-lg font-black text-slate-900">
-        ₹28 <span className="text-sm text-slate-700">/ KM</span>
-      </p>
-    </div>
-
-    <div className="rounded-xl bg-white px-3 py-2 text-right shadow-sm">
-      <p className="text-[9px] font-bold uppercase text-slate-700">
-        Available
-      </p>
-
-      <p className="text-xs font-black text-slate-800">
-        12 & 17 Seater
-      </p>
-    </div>
-  </div>
-</div>
-
-                {/* CTA */}
-                <a
-                  href={getWhatsAppUrl(city)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    flex
-                    h-12
-                    w-full
-                    items-center
-                    justify-center
-                    gap-2
-                    rounded-xl
-                    bg-primary
-                    px-5
-                    text-sm
-                    font-extrabold
-                    text-white
-                    transition
-                    hover:bg-primary/90
-                  "
-                >
-                  <FaWhatsapp />
-                  Get Best Fare
-                </a>
-              </div>
-
-              {/* Bottom trust */}
-              <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 text-[11px] font-semibold text-slate-500">
-                <span>✓ Transparent Pricing</span>
-                <span>✓ Verified Drivers</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section className="relative isolate overflow-hidden bg-black text-white py-12 lg:py-16 px-4">
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-30">
+        <Image
+          src="/outstation.webp"
+          alt={`Urbania Traveller Rental in ${formattedCity} by Chiku Cabs`}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
       </div>
 
-      {/* MOBILE STICKY CTA */}
-      <div
-        className="
-          fixed
-          inset-x-0
-          bottom-0
-          z-50
-          border-t
-          border-slate-200
-          bg-white/95
-          p-2
-          shadow-[0_-8px_30px_rgba(0,0,0,0.12)]
-          backdrop-blur-md
-          lg:hidden
-        "
-      >
-        <div className="mx-auto grid max-w-lg grid-cols-2 gap-2">
-          <a
-            href={`tel:${PHONE_NUMBER}`}
-            className="
-              flex
-              h-11
-              items-center
-              justify-center
-              gap-2
-              rounded-lg
-              border
-              border-slate-200
-              bg-white
-              text-xs
-              font-extrabold
-              text-slate-900
-            "
-          >
-            <FaPhoneAlt className="text-primary" />
-            Call Now
-          </a>
+      {/* Dark Overlay for Text Readability */}
+      <div className="absolute inset-0 -z-20 bg-black/60" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/90 via-black/75 to-black/50" />
 
-          <a
-            href={getWhatsAppUrl(city)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              flex
-              h-11
-              items-center
-              justify-center
-              gap-2
-              rounded-lg
-              bg-green-600
-              text-xs
-              font-extrabold
-              text-white
-            "
-          >
-            <FaWhatsapp />
-            WhatsApp
-          </a>
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center relative z-10">
+        {/* ================= LEFT CONTENT ================= */}
+        <div>
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-amber-300 border border-white/15 mb-4">
+            <FaStar className="text-amber-400" />
+            <span>4.9 / 5 Rated (3,450+ Completed Group Trips)</span>
+          </div>
+
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4">
+            Force Urbania in {formattedCity}
+          </h1>
+
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-6 max-w-xl">
+            Rent luxury 12 & 17 seater Force Urbania in <strong className="text-white">{formattedCity}</strong> for
+            outstation tours, corporate events, family weddings, and VIP airport transfers.
+            Starting at only <strong className="text-white underline decoration-primary decoration-2 underline-offset-4">₹28/km</strong> or{" "}
+            <strong className="text-white">{formatCurrency(startingOutstationFare)}</strong> for intercity trips.
+            Ultra-luxury reclining captain seats with polite verified chauffeurs.
+          </p>
+
+          {/* Quick Trip Badges */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8 max-w-lg">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3">
+              <div className="flex items-center gap-2 text-primary font-bold text-sm mb-0.5">
+                <FaCar /> Rate Per KM
+              </div>
+              <div className="text-lg font-black">₹28 / KM</div>
+              <div className="text-[11px] text-slate-400">12 & 17 Seater</div>
+            </div>
+
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3">
+              <div className="flex items-center gap-2 text-primary font-bold text-sm mb-0.5">
+                <FaClock /> Local 8Hr/80Km
+              </div>
+              <div className="text-lg font-black">From ₹6,500</div>
+              <div className="text-[11px] text-slate-400">Sightseeing / Events</div>
+            </div>
+
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3 col-span-2 sm:col-span-1">
+              <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm mb-0.5">
+                <FaShieldAlt /> Chauffeur
+              </div>
+              <div className="text-lg font-black text-emerald-400">Verified</div>
+              <div className="text-[11px] text-slate-400">Police Background Checked</div>
+            </div>
+          </div>
+
+          {/* Trust Guarantees */}
+          <div className="space-y-2 text-sm text-slate-300 mb-8">
+            <div className="flex items-center gap-2.5">
+              <FaCheckCircle className="text-emerald-400 shrink-0" />
+              <span>Doorstep pickup across all sectors, hotels & terminals in {formattedCity}</span>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <FaCheckCircle className="text-emerald-400 shrink-0" />
+              <span>Transparent billing: Chauffeur allowance, fuel & GST included</span>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <FaCheckCircle className="text-emerald-400 shrink-0" />
+              <span>Free cancellation up to 24 hours prior to scheduled departure</span>
+            </div>
+          </div>
+
+          {/* Quick Phone & WhatsApp Actions */}
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href={`tel:${PHONE_NUMBER}`}
+              className="inline-flex items-center justify-center gap-3 rounded-xl bg-primary px-7 py-3.5 font-bold text-base text-white shadow-lg transition hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <FaPhoneAlt /> Call {DISPLAY_PHONE}
+            </a>
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                `Hi Chiku Cabs, I want to rent a Force Urbania in ${formattedCity}. Please share the best quote.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-3 rounded-xl bg-[#25D366] px-7 py-3.5 font-bold text-base text-white shadow-lg transition hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <FaWhatsapp className="text-lg" /> Instant WhatsApp
+            </a>
+          </div>
+        </div>
+
+        {/* ================= RIGHT BOOKING FORM CARD ================= */}
+        <div
+          id="urbania-booking"
+          className="bg-white text-slate-900 rounded-2xl p-6 sm:p-7 shadow-2xl border border-slate-100"
+        >
+          <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
+            <div>
+              <span className="text-[11px] uppercase tracking-wider font-extrabold text-primary">
+                Instant Fare Estimator
+              </span>
+              <h2 className="text-xl font-black text-slate-900">
+                Book Urbania in {formattedCity}
+              </h2>
+            </div>
+            <span className="text-xs bg-slate-100 font-semibold px-2.5 py-1 rounded-md text-slate-700">
+              12 & 17 Seater
+            </span>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Trip Type Selector */}
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">
+                Trip Category
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setFormData({ ...formData, tripType: "outstation" })}
+                  className={`py-2 text-xs font-bold rounded-lg border transition ${
+                    formData.tripType === "outstation"
+                      ? "bg-primary text-white border-primary shadow-sm"
+                      : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                  }`}
+                >
+                  Outstation
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFormData({ ...formData, tripType: "local" })}
+                  className={`py-2 text-xs font-bold rounded-lg border transition ${
+                    formData.tripType === "local"
+                      ? "bg-primary text-white border-primary shadow-sm"
+                      : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                  }`}
+                >
+                  Local 8H/80K
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFormData({ ...formData, tripType: "airport" })}
+                  className={`py-2 text-xs font-bold rounded-lg border transition ${
+                    formData.tripType === "airport"
+                      ? "bg-primary text-white border-primary shadow-sm"
+                      : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                  }`}
+                >
+                  Airport
+                </button>
+              </div>
+            </div>
+
+            {/* Pickup */}
+            <div>
+              <label htmlFor="urbania-city-pickup" className="block text-xs font-bold text-slate-700 mb-1">
+                Pickup Location in {formattedCity}
+              </label>
+              <div className="relative">
+                <IoLocationSharp className="absolute left-3.5 top-1/2 -translate-y-1/2 text-primary text-base" />
+                <input
+                  id="urbania-city-pickup"
+                  type="text"
+                  required
+                  value={formData.pickup}
+                  onChange={(e) => setFormData({ ...formData, pickup: e.target.value })}
+                  placeholder={`Enter pickup address in ${formattedCity}`}
+                  className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:border-primary focus:bg-white outline-none transition"
+                />
+              </div>
+            </div>
+
+            {/* Drop / Destination */}
+            <div>
+              <label htmlFor="urbania-city-drop" className="block text-xs font-bold text-slate-700 mb-1">
+                {formData.tripType === "outstation"
+                  ? "Destination City"
+                  : formData.tripType === "airport"
+                  ? "Airport Terminal"
+                  : "Local Sightseeing Drop"}
+              </label>
+              <div className="relative">
+                <IoLocationSharp className="absolute left-3.5 top-1/2 -translate-y-1/2 text-primary text-base" />
+                <input
+                  id="urbania-city-drop"
+                  type="text"
+                  required
+                  value={formData.drop}
+                  onChange={(e) => setFormData({ ...formData, drop: e.target.value })}
+                  placeholder={
+                    formData.tripType === "outstation"
+                      ? "Enter destination city (e.g. Agra, Jaipur, Ayodhya)"
+                      : formData.tripType === "airport"
+                      ? "Enter Airport (Terminal 1, 2, or 3)"
+                      : "Full day local itinerary / Hotels"
+                  }
+                  className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:border-primary focus:bg-white outline-none transition"
+                />
+              </div>
+            </div>
+
+            {/* Date + Time */}
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label htmlFor="urbania-city-date" className="block text-xs font-bold text-slate-700 mb-1">
+                  Travel Date
+                </label>
+                <input
+                  id="urbania-city-date"
+                  type="date"
+                  required
+                  value={formData.date}
+                  onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                  min={new Date().toISOString().split("T")[0]}
+                  className="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:border-primary focus:bg-white outline-none transition"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="urbania-city-time" className="block text-xs font-bold text-slate-700 mb-1">
+                  Pickup Time
+                </label>
+                <input
+                  id="urbania-city-time"
+                  type="time"
+                  required
+                  value={formData.time}
+                  onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                  className="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:border-primary focus:bg-white outline-none transition"
+                />
+              </div>
+            </div>
+
+            {/* Vehicle Selection */}
+            <div>
+              <label htmlFor="urbania-city-vehicle" className="block text-xs font-bold text-slate-700 mb-1">
+                Select Urbania Seating Variant
+              </label>
+              <select
+                id="urbania-city-vehicle"
+                value={formData.vehicleId}
+                onChange={(e) => setFormData({ ...formData, vehicleId: e.target.value })}
+                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:border-primary focus:bg-white outline-none transition font-medium"
+              >
+                {URBANIA_FLEET.map((fleet) => (
+                  <option key={fleet.id} value={fleet.id}>
+                    {fleet.name} ({fleet.seats}) — ₹{fleet.ratePerKm}/km
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Live Fare Summary Box */}
+            <div className="rounded-xl border border-primary/25 bg-primary/5 p-4 flex items-center justify-between">
+              <div>
+                <p className="text-xs font-semibold text-slate-600">
+                  {formData.tripType === "local"
+                    ? "Local 8 Hr / 80 Km Package"
+                    : formData.tripType === "airport"
+                    ? "Airport Pickup / Drop Package"
+                    : `Estimated Outstation Fare (~${DEFAULT_DISTANCE} km)`}
+                </p>
+                <div className="text-2xl font-black text-primary">
+                  {formatCurrency(estimatedFare)}
+                </div>
+                <p className="text-[11px] text-slate-500">
+                  Fuel, driver allowance & GST included
+                </p>
+              </div>
+              <div className="text-right">
+                <span className="text-xs font-bold text-slate-800">
+                  ~{formatCurrency(perSeatCost)} / seat
+                </span>
+                <p className="text-[11px] text-slate-500">
+                  {selectedVehicle.seats}
+                </p>
+              </div>
+            </div>
+
+            {/* Submit */}
+            <button
+              type="submit"
+              className="w-full rounded-xl bg-primary py-3.5 text-base font-black text-white shadow-md transition hover:bg-primary/95 flex items-center justify-center gap-2"
+            >
+              <FaWhatsapp className="text-lg" /> Get Final Booking on WhatsApp
+            </button>
+
+            <div className="flex flex-wrap items-center justify-center gap-3 text-[11px] text-slate-500 pt-1">
+              <span className="flex items-center gap-1">
+                <FaCheckCircle className="text-emerald-500" /> Quick Response
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1">
+                <FaCheckCircle className="text-emerald-500" /> Best Rate Guaranteed
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1">
+                <FaCheckCircle className="text-emerald-500" /> Instant Confirmation
+              </span>
+            </div>
+          </form>
         </div>
       </div>
     </section>

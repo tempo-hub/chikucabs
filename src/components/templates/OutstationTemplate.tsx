@@ -28,6 +28,7 @@ import {
   FaRoute,
   FaPlaneArrival,
   FaMapMarkedAlt,
+  FaWhatsapp,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { cityCabRoutes, CITY_DISPLAY_NAMES } from "@/data/cityCabRoutes";
@@ -275,36 +276,52 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
 
 const generateFAQs = (vehicle: string): FAQItem[] => [
   {
-    q: "How do I book an outstation cab with Chiku Cabs?",
-    a: "You can book an outstation cab through the Chiku Cabs website by entering your pickup city, destination, travel date and vehicle requirement. You can also contact our booking team for assistance.",
+    q: "How is the outstation cab fare calculated per km with Chiku Cabs?",
+    a: "Outstation taxi fares with Chiku Cabs are calculated transparently based on total travel distance, selected vehicle category, and trip type (one-way or round-trip). Rates start at ₹9/km for executive Sedans (Dzire, Amaze), ₹13/km for 6-seater SUVs (Ertiga), ₹16/km for luxury 7-seater Innova Crysta, and ₹28/km for tempo travellers. Quoted base fares include vehicle rental, fuel expenses, and standard driver allowance (₹500/day). Highway toll taxes and inter-state permits are billed at actuals with zero hidden charges.",
   },
   {
-    q: "How is the outstation cab fare calculated?",
-    a: "Outstation cab fares are generally calculated based on the selected vehicle, travel distance, trip type and applicable charges. The final fare is confirmed before booking so you know the expected cost.",
+    q: "Can I book a dedicated one-way outstation cab without paying return fare?",
+    a: "Yes, 100%. Chiku Cabs is a pioneer in point-to-point one-way outstation taxi booking across thousands of Indian cities and routes. You only pay for the exact one-way distance traveled from your doorstep in the origin city to your destination drop address. You are never billed for the driver's return trip or empty return mileage.",
   },
   {
-    q: "Do you provide one-way and round-trip outstation cabs?",
-    a: "Yes. Chiku Cabs provides both one-way and round-trip outstation cab services. You can choose the trip type according to your travel requirement.",
+    q: "Are toll charges, driver allowance (batta), and state border permits included in the fare?",
+    a: "Base outstation fares transparently bundle vehicle hire, fuel charges, driver allowance (batta), and 5% GST. Highway toll charges are passed on at actuals through computerized Fastag receipts. If your road trip crosses state borders, commercial passenger state entry permits and specific airport/monument parking charges are payable at actuals with full electronic receipt clarity.",
   },
   {
-    q: "What is included in the outstation cab fare?",
-    a: "The fare depends on the selected vehicle and booking type. Applicable charges such as driver allowance, tolls, parking or state taxes may vary by route and should be confirmed in your final quote.",
+    q: "Which vehicle is best suited for family, elder, or pilgrimage outstation road trips?",
+    a: `For solo commuters or couples with 1-2 bags, an executive Sedan (Dzire or Amaze) delivers optimum economy and AC comfort. For families with children and luggage, the 6-seater Maruti Ertiga offers expansive boot space and dual air conditioning. For long-distance spiritual yatras (Varanasi, Ayodhya, Gaya, Shirdi, Tirupati) or senior citizens requiring superior highway shock absorption, the 7-seater Toyota Innova Crysta is highly recommended. Groups of 9 to 12 can reserve our luxury Force Tempo Travellers.`,
   },
   {
-    q: "Can I choose a specific car for my outstation trip?",
-    a: `Yes. You can select a suitable ${vehicle} or another available vehicle based on your group size, luggage and travel requirements.`,
+    q: "How far in advance should I book an outstation taxi, and is late-night dispatch available?",
+    a: "While booking 12 to 24 hours in advance guarantees your preferred car model and chauffeur, Chiku Cabs operates 24×7 and provides on-demand emergency outstation dispatch within 2 to 3 hours across major hubs (Delhi NCR, Varanasi, Lucknow, Jaipur, Mumbai, Pune, Bangalore). You can reserve round the clock online, via WhatsApp at +91-628-082-0037, or by calling +91-844-844-5504.",
   },
   {
-    q: "Are the vehicles clean and sanitized?",
-    a: "Yes. Vehicles are cleaned and maintained before trips to provide a comfortable travel experience for passengers.",
+    q: "What is Chiku Cabs' cancellation and refund policy for outstation bookings?",
+    a: "We offer a zero-risk 100% refund policy. If your travel schedule changes, you can cancel your outstation cab booking up to 24 hours prior to scheduled departure with zero cancellation fees. Refunds are processed immediately to your original payment method (UPI or bank account) within 24 to 48 hours. Cancellations within 24 hours of pickup incur only a nominal chauffeur dispatch charge.",
   },
   {
-    q: "Can I cancel my outstation cab booking?",
-    a: "Yes, cancellation is available according to the applicable booking and cancellation policy. Cancellation charges may apply depending on how close the cancellation is to the scheduled pickup time.",
+    q: "Can we request food, washroom, and sightseeing pauses along the highway?",
+    a: "Yes, absolutely. Unlike rigid train or public bus schedules, one of the greatest benefits of booking a private outstation cab with Chiku Cabs is total route flexibility. Our polite, verified chauffeurs gladly accommodate stops at hygienic family highway dhabas, clean restrooms, fuel stations, and en-route tourist attractions or temples without any extra waiting penalty.",
   },
   {
-    q: "What payment options are available for outstation cab bookings?",
-    a: "Payment options may include UPI, online payment and other available methods. The available payment option can be confirmed during the booking process.",
+    q: "Is there a night driving allowance or driver night charge for outstation journeys?",
+    a: "Daytime driver allowance is already bundled into your standard quote. A nominal night driving charge (typically ₹250 to ₹300) applies only if the vehicle is actively in transit during overnight hours between 10:00 PM and 6:00 AM, compensating the chauffeur for overnight highway driving.",
+  },
+  {
+    q: "Do you offer doorstep pickup from my home, hotel, railway station, or airport?",
+    a: "Yes. Every Chiku Cabs outstation booking includes 100% doorstep pickup from any residential address, hotel lobby, railway junction, or airport terminal in the origin city, followed by doorstep drop directly at your final destination address with zero hidden city pick-and-drop surcharges.",
+  },
+  {
+    q: "How does Chiku Cabs guarantee passenger safety for female, elderly, and family travelers?",
+    a: "Every Chiku Cabs vehicle is GPS-tracked with 24×7 live monitoring by our centralized operations desk. Our chauffeurs undergo rigorous background checks, commercial license verification, and highway etiquette training. Vehicles undergo routine 30-point safety and AC hygiene inspections before every long-distance journey.",
+  },
+  {
+    q: "What payment modes are accepted for outstation cab bookings?",
+    a: "We support all modern and convenient payment channels including UPI (Google Pay, PhonePe, Paytm, BHIM), Net Banking, Debit/Credit Cards, and cash or digital transfer to the driver upon trip completion. You can confirm your ride with a small advance deposit and pay the remaining balance comfortably during your trip.",
+  },
+  {
+    q: "Can I book customized multi-city outstation tour packages with Chiku Cabs?",
+    a: "Yes. In addition to direct one-way outstation drops, we organize customized multi-day, multi-city outstation tour circuits (such as Delhi–Agra–Jaipur Golden Triangle, Varanasi–Ayodhya–Prayagraj pilgrimage tours, Mumbai–Pune–Mahabaleshwar getaways, or Bangalore–Coorg–Ooty hill station tours) with dedicated vehicles, experienced chauffeurs, and competitive all-inclusive day package pricing.",
   },
 ];
 
@@ -415,8 +432,24 @@ useEffect(() => {
       reviewCount: "1250",
     },
     priceRange:
-      "₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}",
+      `₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}`,
   };
+
+  const faqSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
+        },
+      })),
+    }),
+    [faqs],
+  );
 
   const handleGetEstimate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -527,6 +560,12 @@ Please share the fare estimate.`;
         id="organization-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+      />
+
+      <Script
+        id="faq-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <div className="bg-background min-h-screen">
@@ -915,7 +954,7 @@ Please share the fare estimate.`;
         </section>
 
         {/* Available Vehicles */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-12 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -1045,7 +1084,7 @@ Please share the fare estimate.`;
         </section>
 
         {/* Why Choose Chiku Cabs */}
-        <section className="py-16 bg-white">
+        <section className="py-12 bg-white">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -1122,7 +1161,7 @@ Please share the fare estimate.`;
         </section>
 
         {/* Services We Offer */}
-        <section className="py-16 bg-gradient-to-r from-primary to-primary/80">
+        <section className="py-12 bg-gradient-to-r from-primary to-primary/80">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
@@ -1157,7 +1196,7 @@ Please share the fare estimate.`;
         </section>
 
         {/* Route Calculator with Slider */}
-        <section className="py-24 bg-gradient-to-r from-primary/5 to-secondary/5">
+        <section className="py-12 bg-gradient-to-r from-primary/5 to-secondary/5">
           <div className="max-w-4xl mx-auto px-4">
             <div className="text-center mb-12">
               <div className="section-badge mx-auto">CALCULATE FARE</div>
@@ -1304,7 +1343,7 @@ Please share the fare estimate.`;
         </section>
 
         {/* Popular Travel Destinations - Enhanced UI */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-12 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-gray-800 mb-2">
@@ -1450,7 +1489,7 @@ Please share the fare estimate.`;
         </section>
 
         {/* Popular Routes Table - Dynamic Pricing */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-12 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -1533,7 +1572,7 @@ Please share the fare estimate.`;
         </section>
 
         {/* Outstation Travel Benefits */}
-        <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-12 bg-gradient-to-b from-white to-gray-50">
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="text-center mb-12">
               <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-4">
@@ -1684,7 +1723,7 @@ Please share the fare estimate.`;
         </section>
 
         {/* How It Works */}
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-12 bg-gradient-to-b from-white to-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="section-badge mx-auto animate-pulse">
@@ -1740,6 +1779,381 @@ Please share the fare estimate.`;
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW SECTION 1: CAB VS TRAIN VS BUS COMPARISON TABLE
+        ====================================================== */}
+        <section className="py-12 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                Smart Comparison
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Outstation Cab vs. Train vs. Public Bus
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                Why booking a private outstation cab with Chiku Cabs is the most convenient, flexible, and comfortable choice for families, elders, and travelers with luggage.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm bg-white">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
+                  <tr>
+                    <th className="px-5 py-3.5">Feature</th>
+                    <th className="px-5 py-3.5 text-primary">Chiku Cabs (Private Outstation Cab)</th>
+                    <th className="px-5 py-3.5 text-slate-600">Train (IRCTC)</th>
+                    <th className="px-5 py-3.5 text-slate-600">Public / Sleeper Bus</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-xs sm:text-sm">
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Door-to-Door Pickup</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ 100% Doorstep Pickup & Drop at your home or hotel
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Reach station via auto/cab</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Must reach bus depot / bypass</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Departure Flexibility</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ Depart 24×7 at your exact convenient schedule
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Fixed timetable / waitlists</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Fixed evening schedules</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Senior Citizen Friendly</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ Direct gate drop with zero stairs or crowds
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Overbridge stairs & crowded platforms</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ High steps & jerky motion</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Luggage Handling</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ Dedicated boot trunk & safe carrier space
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Heavy lifting across platforms & coolie charges</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Limited & insecure luggage hold</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Travel Privacy</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ 100% Private sanitized AC car with family
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Crowded shared coach</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Shared cabin with strangers</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">En-Route Sightseeing</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ Flexible stops at highway dhabas, temples & viewpoints
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ No midway stops permitted</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Strict scheduled stops only</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW SECTION 2: OUTSTATION FLEET RATE CARD & PER-KM MATRIX
+        ====================================================== */}
+        <section className="py-12 px-4 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                Transparent Pricing
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Outstation Cab Rates & Vehicle Options
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                Clear per-kilometre outstation pricing across India. All bookings include clean AC vehicles, fuel, and experienced highway chauffeurs.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm bg-white">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
+                  <tr>
+                    <th className="px-5 py-4">Vehicle Category</th>
+                    <th className="px-4 py-4">Seating & Luggage</th>
+                    <th className="px-4 py-4">Rate / KM</th>
+                    <th className="px-4 py-4">Sample 250 KM Fare</th>
+                    <th className="px-4 py-4">Best For</th>
+                    <th className="px-4 py-4 text-center">Instant Quote</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {[
+                    {
+                      name: "Sedan (Dzire / Amaze / Etios)",
+                      seats: "4 Passengers + 2 Bags",
+                      rate: "₹9/km",
+                      fare: calculateFareByDistance(250, 9),
+                      best: "Couples, small families & business travelers",
+                      tag: "Popular",
+                    },
+                    {
+                      name: "Compact SUV (Maruti Ertiga)",
+                      seats: "6 Passengers + 3 Bags",
+                      rate: "₹13/km",
+                      fare: calculateFareByDistance(250, 13),
+                      best: "Families with extra luggage & weekend road trips",
+                      tag: "Best Value",
+                    },
+                    {
+                      name: "Premium SUV (Innova Crysta)",
+                      seats: "7 Passengers + 4 Bags",
+                      rate: "₹16/km",
+                      fare: calculateFareByDistance(250, 16),
+                      best: "Pilgrimage groups, executive comfort & mountain tours",
+                      tag: "Top Rated",
+                    },
+                    {
+                      name: "Luxury Mini Coach (Tempo Traveller)",
+                      seats: "9 to 12 Passengers + 8 Bags",
+                      rate: "₹28/km",
+                      fare: calculateFareByDistance(250, 28),
+                      best: "Joint families, wedding guests & pilgrimage yatras",
+                      tag: "Group Travel",
+                    },
+                  ].map((item, index) => (
+                    <tr key={index} className="hover:bg-slate-50/80 transition-colors">
+                      <td className="px-5 py-4">
+                        <div className="font-bold text-slate-900 flex items-center gap-2">
+                          {item.name}
+                          {item.tag && (
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                              {item.tag}
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-xs text-slate-700">{item.seats}</td>
+                      <td className="px-4 py-4 font-bold text-slate-900">{item.rate}</td>
+                      <td className="px-4 py-4">
+                        <span className="font-black text-primary text-base">
+                          ₹{item.fare.toLocaleString()}
+                        </span>
+                        <span className="text-[10px] text-slate-500 block">Incl. Fuel & Driver</span>
+                      </td>
+                      <td className="px-4 py-4 text-xs text-slate-600">{item.best}</td>
+                      <td className="px-4 py-4 text-center">
+                        <a
+                          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                            `Hi Chiku Cabs, I want to book an outstation cab for ${item.name}.`
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition"
+                        >
+                          <FaWhatsapp className="text-sm" /> Book Now
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 px-2">
+              <p>*Estimated fare calculated with base rate and standard driver allowance. Highway Fastag tolls at actuals.</p>
+              <p className="font-semibold text-slate-700">Verified Rates • 2026 Season</p>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW SECTION 3: DOORSTEP PICKUP & DROP COVERAGE
+        ====================================================== */}
+        <section className="py-12 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                Pan-India Presence
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Doorstep Outstation Pickup & Drop Hubs
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                We serve thousands of routes across North, West, South, and Central India with zero hidden charges and verified local chauffeurs.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Region 1: Delhi NCR & North India */}
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                  <IoLocationSharp className="text-primary text-lg" /> Delhi NCR & Northern Hubs
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Delhi to Agra, Jaipur, Chandigarh, Shimla
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Noida & Greater Noida Doorstep Pickup
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Gurgaon (Cyber Hub, Sohna Rd, Golf Course)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> IGI Airport (T1, T2, T3) Direct Transfers
+                  </li>
+                </ul>
+              </div>
+
+              {/* Region 2: Uttar Pradesh & Pilgrimage */}
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                  <IoLocationSharp className="text-primary text-lg" /> UP & Spiritual Corridors
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Varanasi to Gaya, Bodh Gaya & Prayagraj
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Ayodhya Ram Mandir & Lucknow Circuits
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Mathura, Vrindavan & Agra Heritage Trips
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Cantt & DDU Railway Station Pickups
+                  </li>
+                </ul>
+              </div>
+
+              {/* Region 3: Western India */}
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                  <IoLocationSharp className="text-primary text-lg" /> Western India Routes
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Mumbai to Pune, Shirdi, Nashik, Lonavala
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Pune to Mahabaleshwar & Goa
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Ahmedabad to Udaipur, Surat, Vadodara
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Mumbai CSMIA Airport Outstation Pickups
+                  </li>
+                </ul>
+              </div>
+
+              {/* Region 4: Southern India */}
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                  <IoLocationSharp className="text-primary text-lg" /> Southern India Corridors
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Bangalore to Mysore, Coorg, Ooty, Chikmagalur
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Chennai to Pondicherry, Tirupati, Vellore
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Hyderabad to Vijayawada, Srisailam, Warangal
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Kempegowda (BLR) Airport Outstation Trips
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW SECTION 4: INCLUSIONS, EXCLUSIONS & BOOKING TERMS
+        ====================================================== */}
+        <section className="py-12 px-4 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                100% Transparent
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Fare Inclusions, Exclusions & Rental Terms
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                No surprises at the end of your trip. Here is our full fare transparency policy for all outstation bookings.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Inclusions */}
+              <div className="bg-emerald-50/50 border border-emerald-200 rounded-2xl p-6 shadow-sm">
+                <h3 className="font-bold text-emerald-900 text-lg mb-4 flex items-center gap-2">
+                  <FaCheckCircle className="text-emerald-600" /> What is Included in Your Fare
+                </h3>
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span><strong>Base Vehicle Hire:</strong> Clean, sanitized AC Sedan, SUV, or Tempo Traveller for your route.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span><strong>Fuel & Maintenance:</strong> All fuel charges (petrol, diesel, CNG) are included in the quoted fare.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span><strong>Driver Allowance:</strong> Daily driver bata/allowance and food expenses are 100% covered.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span><strong>Doorstep Pickup & Drop:</strong> Direct pickup from your home, office, hotel, or station with zero city surcharges.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span><strong>Applicable GST:</strong> Goods and Services Tax included with an official commercial GST invoice.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Exclusions & Terms */}
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-lg mb-4 flex items-center gap-2">
+                  <FaShieldAlt className="text-primary" /> Exclusions & Operational Terms
+                </h3>
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>Highway Toll Taxes:</strong> Payable at actual Fastag booths en route with complete electronic receipt clarity.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>State Border Tax Permits:</strong> Inter-state passenger commercial road tax permits payable at actuals if crossing state borders.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>Airport Parking / Monument Entry:</strong> Parking receipts payable only if vehicle enters paid airport/monument zones.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>24-Hour Free Cancellation:</strong> 100% full refund on bookings cancelled up to 24 hours prior to scheduled departure.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>24×7 Human Support:</strong> Direct WhatsApp and phone re-dispatch assistance available around the clock.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
@@ -1843,10 +2257,10 @@ Please share the fare estimate.`;
             <div className="text-center mb-16">
               <div className="section-badge mx-auto inline-flex">FAQ</div>
               <h2 className="section-title">
-                Frequently Asked Questions About {vehicle} Rental
+                Frequently Asked Questions About Outstation Cab Service
               </h2>
               <p className="text-muted-foreground mt-4">
-                Everything you need to know before booking your {vehicle}
+                Everything you need to know about outstation taxi fares, vehicle options, doorstep pickup, toll policies &amp; booking terms across India.
               </p>
             </div>
             <div className="space-y-4">
@@ -1870,7 +2284,7 @@ Please share the fare estimate.`;
         </section>
 
         {/* About Outstation Cab Service */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-12 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-800 mb-6">

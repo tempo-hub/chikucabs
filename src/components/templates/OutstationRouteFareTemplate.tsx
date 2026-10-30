@@ -242,6 +242,21 @@ export default function OutstationRouteFareTemplate({
 
   const estimatedHours = calculateTravelHours(distance);
 
+  const isVaranasi = useMemo(() => {
+    const s = startCity.toLowerCase();
+    return s.includes("varanasi") || s.includes("kashi") || s.includes("banaras");
+  }, [startCity]);
+
+  const isGaya = useMemo(() => {
+    const e = endCity.toLowerCase();
+    return e.includes("gaya");
+  }, [endCity]);
+
+  const isBodhGaya = useMemo(() => {
+    const e = endCity.toLowerCase();
+    return e.includes("bodh gaya") || e.includes("bodhgaya");
+  }, [endCity]);
+
 
   // ----------------------------------------------------------
   // VEHICLE
@@ -363,44 +378,60 @@ export default function OutstationRouteFareTemplate({
   const faqs: FAQ[] = useMemo(
     () => [
       {
-        q: `What is the ${startCity} to ${endCity} cab fare?`,
-        a: `The ${startCity} to ${endCity} cab fare depends on the vehicle selected, route distance and trip type. Available vehicles include Dzire, Amaze, Ertiga, Innova Crysta and Tempo Traveller. The estimated fare shown on this page is calculated using the available vehicle rate and the route distance. Contact Chiku Cabs for the final booking quote.`,
+        q: `What is the ${startCity} to ${endCity} cab fare for one-way and round-trip?`,
+        a: `The ${startCity} to ${endCity} one-way cab fare starts from ${formatCurrency(
+          calculateFare(distance, 9),
+        )} for an executive AC Sedan (Dzire / Amaze at ₹9/km). Spacious 6-seater SUVs (Maruti Ertiga) start from ${formatCurrency(
+          calculateFare(distance, 13),
+        )} (₹13/km), premium 7-seater Toyota Innova Crysta starts from ${formatCurrency(
+          calculateFare(distance, 16),
+        )} (₹16/km), and 9–12 seater Tempo Travellers start from ${formatCurrency(
+          calculateFare(distance, 28),
+        )} (₹28/km). Round-trip bookings enjoy up to 10% discount on the total return mileage.`,
       },
       {
-        q: `What is the distance from ${startCity} to ${endCity} by cab?`,
-        a: `The approximate road distance from ${startCity} to ${endCity} is ${distance} km based on the route information available on this page. Actual distance can vary depending on the pickup point, drop location and route taken.`,
+        q: `What is the exact road distance and driving time from ${startCity} to ${endCity}?`,
+        a: `The road distance between ${startCity} and ${endCity} is approximately ${distance} km via the primary national highway corridor. Under normal driving conditions with standard bio-breaks and dining pauses, the journey takes around ${estimatedHours} hours. Exact travel duration can vary slightly depending on city exit traffic, highway toll plaza queues, and weather conditions.`,
       },
       {
-        q: `How long does it take to travel from ${startCity} to ${endCity}?`,
-        a: `The estimated travel time from ${startCity} to ${endCity} is around ${estimatedHours} hours. Actual journey time can vary due to traffic, road conditions, weather, breaks and the exact pickup and drop locations.`,
+        q: `Can I book a dedicated one-way taxi from ${startCity} to ${endCity} without paying return charges?`,
+        a: `Yes, 100%. Chiku Cabs guarantees dedicated point-to-point one-way taxi booking on the ${startCity} to ${endCity} route. You only pay for the one-way distance of ${distance} km from your doorstep pickup point to your destination drop address. You are never billed for the driver's return trip or empty return mileage.`,
       },
       {
-        q: `Do you offer one-way cabs from ${startCity} to ${endCity}?`,
-        a: `Yes. Chiku Cabs provides one-way taxi booking options for the ${startCity} to ${endCity} route. You can select your vehicle, pickup location and travel date and request the final fare through the booking form.`,
+        q: `Are highway toll taxes, state border permits, and GST included in the fare?`,
+        a: `Base quotes transparently cover vehicle hire, fuel expenses, driver allowance (batta), and applicable 5% GST. Highway toll charges across toll plazas on the route are billed at actuals via electronic Fastag receipts. If traveling across state borders, commercial road entry permits and parking fees (if any) are payable at actuals with zero hidden surcharges.`,
       },
       {
-        q: `Can I book a round-trip taxi from ${startCity} to ${endCity}?`,
-        a: `Yes. Round-trip taxi service is available subject to vehicle and driver availability. Select Round Trip in the booking form and provide your travel and return dates to request a fare.`,
+        q: `Which car is best recommended for travel from ${startCity} to ${endCity}?`,
+        a: `For solo travelers or couples with 1–2 bags, an AC Sedan (Maruti Suzuki Dzire or Honda Amaze) is the most economical and comfortable. For families with children or up to 4 luggage bags, the 6-seater Maruti Ertiga offers ample legroom. For long highway journeys, elderly passengers, or groups prioritizing luxury, the 7-seater Toyota Innova Crysta is ideal. For groups of 9 to 12 passengers, our Force Tempo Traveller mini coach is best suited.`,
       },
       {
-        q: `Which cars are available from ${startCity} to ${endCity}?`,
-        a: `Depending on availability, the route can be served by Maruti Suzuki Dzire, Honda Amaze, Maruti Ertiga, Toyota Innova Crysta and Tempo Traveller. Vehicle availability can vary by travel date and booking requirements.`,
+        q: `Does Chiku Cabs provide doorstep pickup in ${startCity} and drop across ${endCity}?`,
+        a: `Yes. We provide 100% doorstep pickup from any residential colony, hotel, railway station, or airport in ${startCity}, and drop you directly at your specific hotel, residence, temple, or office address in ${endCity} with zero hidden local pick-up or drop surcharges.`,
       },
       {
-        q: `Is toll included in the ${startCity} to ${endCity} cab fare?`,
-        a: `Toll charges can vary according to the route and applicable toll plazas. Confirm the final fare and whether toll, parking or state entry charges are included when making your booking.`,
+        q: `Can we stop for meals, tea, and washrooms along the ${startCity} to ${endCity} route?`,
+        a: `Yes, definitely. Our professional chauffeurs are familiar with the ${startCity} to ${endCity} highway corridor and gladly pause at clean family highway restaurants, sanitized washroom facilities, and tea stalls at your convenience with zero waiting charge during transit.`,
       },
       {
-        q: `Can I book an Innova Crysta from ${startCity} to ${endCity}?`,
-        a: `Yes, Toyota Innova Crysta can be requested for the ${startCity} to ${endCity} route, subject to availability. It is suitable for passengers looking for a larger and more comfortable vehicle for long-distance travel.`,
+        q: `What is the cancellation and refund policy for a ${startCity} to ${endCity} taxi booking?`,
+        a: `Chiku Cabs offers a 100% risk-free cancellation policy. You can cancel your ${startCity} to ${endCity} cab booking up to 24 hours prior to the scheduled pickup time for a full 100% refund with zero cancellation penalty. Refunds are processed back to your original payment mode within 24–48 hours.`,
       },
       {
-        q: `How can I book a cab from ${startCity} to ${endCity}?`,
-        a: `Enter your pickup location, destination, travel date and preferred vehicle in the booking form. You can then request the fare through WhatsApp or call Chiku Cabs at ${DISPLAY_PHONE}.`,
+        q: `Is 24×7 and late-night cab booking available from ${startCity} to ${endCity}?`,
+        a: `Yes. Chiku Cabs operates 24 hours a day, 7 days a week. You can book an early morning or late-night cab from ${startCity} to ${endCity}. A standard night driving allowance (₹250) applies only if the journey is actively underway between 10:00 PM and 6:00 AM.`,
       },
       {
-        q: `What affects the final ${startCity} to ${endCity} taxi fare?`,
-        a: `The final fare can depend on the selected vehicle, actual travel distance, trip type, tolls, parking charges, state taxes where applicable and other route-specific requirements. Confirm the complete fare before your trip.`,
+        q: `Can I book an Innova Crysta or Tempo Traveller from ${startCity} to ${endCity}?`,
+        a: `Yes. Toyota Innova Crysta (6+1 and 7+1 configurations) and Force Tempo Travellers (9, 12, 16, and 20 seaters) can be reserved easily for the ${startCity} to ${endCity} route. These vehicles come equipped with pushback captain seats, strong dual AC, ample luggage boot space, and certified highway drivers.`,
+      },
+      {
+        q: `How do I book a cab from ${startCity} to ${endCity} and what payment options are accepted?`,
+        a: `Booking takes less than 2 minutes online via our booking form, or directly via WhatsApp (+91-628-082-0037) and phone (+91-${DISPLAY_PHONE}). We accept UPI (Google Pay, PhonePe, Paytm), Debit/Credit Cards, Net Banking, and cash or digital balance payment to the chauffeur upon arrival.`,
+      },
+      {
+        q: `How does Chiku Cabs ensure passenger safety for families, elders, and women travelers?`,
+        a: `All vehicles on the ${startCity} to ${endCity} route are GPS-enabled with real-time tracking monitored by our 24×7 operations support. Our chauffeurs undergo rigorous background checks, police verification, and highway safety training. Clean, sanitized cabs with working AC, seatbelts, and luggage carriers ensure a secure and peaceful road journey.`,
       },
     ],
     [
@@ -914,8 +945,8 @@ Please confirm the final fare and availability.`;
           <div className="absolute inset-0 -z-20">
 
             <Image
-              src="/home/home.png"
-              alt={`${pageVehicle.name} for ${startCity} to ${endCity} taxi service`}
+              src="/outstation.webp"
+              alt={`${pageVehicle.name} for ${startCity} to ${endCity} outstation taxi service by Chiku Cabs`}
               fill
               priority
               sizes="100vw"
@@ -1763,6 +1794,356 @@ Please confirm the final fare and availability.`;
 
         </section>
 
+        {/* =====================================================
+            NEW SECTION 1: CAB VS TRAIN VS BUS COMPARISON TABLE
+        ====================================================== */}
+        <section className="py-12 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                Smart Comparison
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Outstation Cab vs. Train vs. Public Bus: {startCity} to {endCity}
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                Why taking a private outstation cab is the most convenient, flexible, and comfortable choice for families, elders, and travelers with luggage.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm bg-white">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
+                  <tr>
+                    <th className="px-5 py-3.5">Feature</th>
+                    <th className="px-5 py-3.5 text-primary">Chiku Cabs (Private Outstation Cab)</th>
+                    <th className="px-5 py-3.5 text-slate-600">Train (IRCTC)</th>
+                    <th className="px-5 py-3.5 text-slate-600">Public / Sleeper Bus</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-xs sm:text-sm">
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Door-to-Door Pickup</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ 100% Doorstep Pickup & Drop in {startCity} & {endCity}
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Reach station via auto/cab</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Must reach bus depot / bypass</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Departure Flexibility</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ Depart 24×7 at your exact convenient time
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Fixed timetable / waitlists</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Fixed evening schedules</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Senior Citizen Friendly</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ Direct gate drop at hotels, temples & homes
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Overbridge stairs & crowded platforms</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ High steps & jerky motion</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Luggage Handling</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ Dedicated boot trunk & safe carrier space
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Heavy lifting across platforms & coolie charges</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Limited & insecure luggage hold</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Travel Privacy</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ 100% Private sanitized AC car with family
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Crowded shared coach</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Shared cabin with strangers</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW SECTION 2: HIGHWAY TRANSIT & EN-ROUTE REST STOPS
+        ====================================================== */}
+        <section className="py-12 px-4 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                Highway Insights
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                {startCity} to {endCity} Route Distance & Travel Details
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                Key highway transit milestones, road conditions, and recommended rest stops for your journey.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <div className="text-xs text-slate-500 font-semibold uppercase">Total Highway Distance</div>
+                <div className="text-3xl font-black text-slate-900 mt-1">{distance} KM</div>
+                <p className="text-xs text-slate-600 mt-2">
+                  Optimal driving route mapped via national and state express corridors.
+                </p>
+              </div>
+
+              <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <div className="text-xs text-slate-500 font-semibold uppercase">Average Travel Time</div>
+                <div className="text-3xl font-black text-slate-900 mt-1">~{estimatedHours}+ Hours</div>
+                <p className="text-xs text-slate-600 mt-2">
+                  Smooth 4-to-6 lane highway cruising with comfortable bio-breaks and dining pauses.
+                </p>
+              </div>
+
+              <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <div className="text-xs text-slate-500 font-semibold uppercase">Primary Corridor</div>
+                <div className="text-2xl font-black text-slate-900 mt-1">
+                  {isVaranasi && (isGaya || isBodhGaya) ? "NH-19 (Grand Trunk Road)" : "National Highway Corridor"}
+                </div>
+                <p className="text-xs text-slate-600 mt-2">
+                  {isVaranasi && (isGaya || isBodhGaya)
+                    ? "Well-paved multi-lane highway via Mohania, Sasaram, and Aurangabad."
+                    : "Comfortable toll highway with ample family dhabas, petrol bunks, and clean washrooms."}
+                </p>
+              </div>
+            </div>
+
+            {/* Contextual Highway En-route Highlights */}
+            {isVaranasi && (isGaya || isBodhGaya) && (
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                  <FaRoute className="text-primary" /> Key Highway Stops between Varanasi & Gaya
+                </h3>
+                <div className="grid sm:grid-cols-3 gap-4 text-xs text-slate-700">
+                  <div className="p-3.5 rounded-xl bg-white border border-slate-200">
+                    <span className="font-bold text-slate-900 block mb-1">Karmanasa UP-Bihar Border</span>
+                    Chauffeur handles all commercial vehicle tax permits smoothly with zero passenger hassle.
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-white border border-slate-200">
+                    <span className="font-bold text-slate-900 block mb-1">Sasaram (Sher Shah Suri Tomb)</span>
+                    Popular heritage stop on the GT Road for sightseeing and traditional Indian lunch breaks.
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-white border border-slate-200">
+                    <span className="font-bold text-slate-900 block mb-1">Aurangabad Dhabas</span>
+                    Hygienic vegetarian family restaurants with separate washrooms and tea stalls.
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW SECTION 3: POPULAR PICKUP & DROP POINTS
+        ====================================================== */}
+        <section className="py-12 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                Extensive Coverage
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Popular Pickup & Drop Points
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                Direct doorstep pickup across all residential colonies, railway junctions, and
+                airports in {startCity} with drop anywhere in {endCity}.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Pickup in Origin */}
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-lg mb-4 flex items-center gap-2">
+                  <IoLocationSharp className="text-primary text-xl" /> Top Pickup Hubs in {startCity}
+                </h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-700">
+                  {isVaranasi ? (
+                    <>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Varanasi Cantt Railway Station
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Banaras (Manduadih) Station
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Pt. Deen Dayal Upadhyaya (DDU)
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> LBS International Airport (Babatpur)
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Godowlia & Dashashwamedh Ghat
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Assi Ghat & Lanka (BHU)
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Main Central Railway Station
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> City Domestic / Int'l Airport
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Central Interstate Bus Terminal
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> City Center & Major Hotels
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Gated Residential Townships
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Highway Toll & Bypass Junctions
+                      </li>
+                    </>
+                  )}
+                </ul>
+              </div>
+
+              {/* Drop in Destination */}
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-lg mb-4 flex items-center gap-2">
+                  <FaMapMarkerAlt className="text-primary" /> Top Drop Locations in {endCity}
+                </h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-700">
+                  {isGaya ? (
+                    <>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Vishnupad Mandir Gate
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Phalgu River & Devghat
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Gaya Junction Railway Station
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Akshay Vat & Mangla Gauri Mandir
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Gaya Airport (GAY)
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Bodh Gaya Monastery & Mahabodhi Temple
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> {endCity} Main Railway Terminal
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> {endCity} Airport Terminal
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Prominent City Hotels & Resorts
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Commercial Hubs & Markets
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Pilgrimage Shrines & Temples
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <FaCheckCircle className="text-primary" /> Doorstep Residential Drop
+                      </li>
+                    </>
+                  )}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW SECTION 4: INCLUSIONS, EXCLUSIONS & BOOKING TERMS
+        ====================================================== */}
+        <section className="py-12 px-4 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                100% Transparent
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Fare Inclusions, Exclusions & Rental Terms
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                No surprises at the end of your trip. Here is our full fare transparency policy for {startCity} to {endCity}.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Inclusions */}
+              <div className="bg-emerald-50/50 border border-emerald-200 rounded-2xl p-6 shadow-sm">
+                <h3 className="font-bold text-emerald-900 text-lg mb-4 flex items-center gap-2">
+                  <FaCheckCircle className="text-emerald-600" /> What is Included in Your Fare
+                </h3>
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span><strong>Base Vehicle Hire:</strong> Clean AC Sedan, SUV, or Tempo Traveller for the full journey.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span><strong>Fuel & Maintenance:</strong> All petrol/diesel costs are covered in the quoted fare.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span><strong>Driver Allowance:</strong> Daily driver fee & food allowance are completely included.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span><strong>Doorstep Pickup & Drop:</strong> No surcharge for picking up from home, hotel, or station in {startCity}.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span><strong>Applicable GST:</strong> Goods and Services Tax included with official invoice.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Exclusions & Terms */}
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-lg mb-4 flex items-center gap-2">
+                  <FaShieldAlt className="text-primary" /> Exclusions & Operational Terms
+                </h3>
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>Highway Toll Taxes:</strong> Payable at actual Fastag booths en route.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>Inter-State Passenger Taxes:</strong> Border road tax entry permits payable at actuals if crossing state lines.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>Airport Parking / Entry:</strong> Terminal parking fee applicable only if airport pickup is requested.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>Free Cancellation:</strong> 100% refund on cancellations requested at least 24 hours prior to pickup.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>24×7 Human Support:</strong> Immediate re-dispatch assistance available via phone and WhatsApp.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* =====================================================
             ABOUT JOURNEY
