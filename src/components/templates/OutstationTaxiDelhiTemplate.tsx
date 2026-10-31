@@ -1,32 +1,88 @@
 import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function OutstationTaxiDelhiTemplate() {
   const faqs = [
     {
       q: "What is the starting fare for outstation taxi from Delhi?",
-      a: "Outstation taxi fare from Delhi starts from affordable per km rates depending on cab type, route, trip duration, and season.",
+      a: "Outstation taxi fares from Delhi start from ₹9/km for compact sedans (Maruti Dzire/Honda Amaze), ₹13/km for comfortable SUVs (Maruti Ertiga), and ₹16/km for premium Toyota Innova Crysta. All quotes include fuel, clean AC vehicle, and experienced driver allowance.",
     },
     {
-      q: "Do you provide one way taxi from Delhi?",
-      a: "Yes, we provide one way as well as round trip taxi services from Delhi to all major destinations.",
+      q: "Do you provide dedicated one-way outstation cabs from Delhi?",
+      a: "Yes. Chiku Cabs offers dedicated one-way drop taxis from Delhi to major cities including Jaipur, Agra, Chandigarh, Haridwar, Rishikesh, Dehradun, and Lucknow. You only pay for one side with zero return fare charges, saving up to 50%.",
     },
     {
-      q: "Which vehicles are available?",
-      a: "Sedan, SUV, Ertiga, Innova, Crysta, Tempo Traveller and luxury vehicles are available.",
+      q: "Which vehicles are available for Delhi outstation cab booking?",
+      a: "Our well-maintained outstation fleet includes Sedans (Dzire, Amaze, Etios), SUVs (Ertiga, Carens), Premium SUVs (Innova Crysta, Fortuner), and Luxury Force Tempo Travellers (9, 12, 16, 20, and 26-seater) for group and family journeys.",
     },
     {
-      q: "Are toll tax and parking included?",
-      a: "Toll tax, parking and state tax are shared transparently before booking depending on route.",
+      q: "Are expressway tolls and state border taxes included in the fare?",
+      a: "The base fare includes vehicle rental, fuel, driver allowance, and GST. Expressway tolls (Yamuna Expressway, Delhi-Mumbai Expressway, Eastern Peripheral) and state border commercial permits are payable at actuals as per digital Fastag receipts.",
     },
     {
-      q: "How can I book instantly?",
-      a: "You can call or WhatsApp us anytime for quick booking confirmation and live fare quote.",
+      q: "Can I book a Delhi airport pickup for a direct outstation trip?",
+      a: "Yes. We offer 24×7 direct doorstep pickups from Delhi IGI Airport (Terminal 1, Terminal 2, and Terminal 3) with live flight monitoring and 45-minute complimentary waiting time after landing.",
+    },
+    {
+      q: "How experienced are your chauffeurs for highway and hill station driving?",
+      a: "Every Chiku Cabs driver has a minimum of 7+ years of highway driving experience, valid commercial badge, police verification, and specialized training for mountain ghats (Shimla, Manali, Nainital, Mussoorie) and night expressway transit.",
+    },
+    {
+      q: "Can I book outstation cabs from Noida, Gurugram, Ghaziabad, or Faridabad?",
+      a: "Yes, 100% doorstep pickup is available anywhere across Delhi NCR, including Gurugram Cyber City, Noida, Greater Noida, Ghaziabad, Indirapuram, Faridabad, Dwarka, and Rohini at no extra local pickup surcharge.",
+    },
+    {
+      q: "What is the cancellation policy for Delhi outstation taxi bookings?",
+      a: "We offer zero-fee cancellation up to 24 hours before your scheduled pickup time. If your travel plans change unexpectedly, contact our 24/7 support desk for instant free rescheduling or cancellation.",
+    },
+    {
+      q: "Do you provide multi-day round-trip packages from Delhi?",
+      a: "Yes, we specialize in multi-day road trip itineraries including the Golden Triangle (Delhi-Agra-Jaipur), Himachal tours (Shimla, Manali, Dharamshala), Uttarakhand pilgrimages (Char Dham, Haridwar, Rishikesh), and Rajasthan heritage circuits.",
+    },
+    {
+      q: "Can we request multiple refreshment halts and sightseeing breaks en route?",
+      a: "Absolutely. You enjoy full flexibility to stop at verified highway dhabas (like Murthal or Shiva Tourist Dhaba), family restaurants, washrooms, and popular tourist monuments along your travel corridor.",
+    },
+    {
+      q: "Are computerized GST tax invoices provided for corporate outstation travel?",
+      a: "Yes. Computerized GST tax invoices with your company name and GSTIN are automatically generated and emailed immediately upon trip completion for corporate reimbursement.",
+    },
+    {
+      q: "How can I book an outstation taxi from Delhi instantly?",
+      a: "You can book instantly online on chikucabs.com, call our 24/7 hotline at 8448445504, or connect with our dispatch team on WhatsApp (+91 6280820037) for live car photos and confirmed booking receipts in under 5 minutes.",
     },
   ];
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
   return (
-    <div className="bg-background min-h-screen">
+    <>
+      <Head>
+        <title>Outstation Taxi Delhi | Best Fare Cab Booking – Chiku Cabs</title>
+        <meta
+          name="description"
+          content="Book one-way and round-trip outstation taxi from Delhi to Jaipur, Agra, Chandigarh, Haridwar, Dehradun & all India destinations. Starting ₹9/km. Call 8448445504."
+        />
+        <link rel="canonical" href="https://chikucabs.com/outstation-taxi-delhi" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      </Head>
+
+      <div className="bg-background min-h-screen">
       {/* Hero */}
       <section className="py-24 px-4 bg-muted/30">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
@@ -240,5 +296,6 @@ export default function OutstationTaxiDelhiTemplate() {
       {/* Whatsapp Float */}
       <WhatsAppFloat />
     </div>
+    </>
   );
 }

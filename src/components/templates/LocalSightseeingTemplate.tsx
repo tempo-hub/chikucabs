@@ -35,6 +35,7 @@ import {
   FaGem,
   FaMicrochip,
   FaRegLightbulb,
+  FaWhatsapp,
 } from "react-icons/fa";
 import { CiClock1 } from "react-icons/ci";
 import toast from "react-hot-toast";
@@ -241,51 +242,59 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
   }
 
   return {
-  ...baseDetails,
-  description: `Book a ${vehicle} for local sightseeing and city tours. Travel comfortably with a professional driver for sightseeing, shopping, local attractions and multiple stops with transparent pricing and easy booking.`,
-};
+    ...baseDetails,
+    description: `Book a ${vehicle} for local sightseeing and city tours. Travel comfortably with a professional driver for sightseeing, shopping, local attractions and multiple stops with transparent pricing and easy booking.`,
+  };
 };
 
 const generateFAQs = (vehicle: string): FAQItem[] => [
   {
-    q: "What is included in the local sightseeing taxi package?",
-    a: "Our local sightseeing taxi package includes a private cab with a professional driver, pickup and drop service, fuel charges, and sightseeing assistance. Packages are available for half-day and full-day city tours.",
+    q: "What is included in the Chiku Cabs local sightseeing taxi package?",
+    a: "Base sightseeing packages include a dedicated, clean air-conditioned private vehicle, professional uniformed chauffeur, fuel charges, doorstep pickup and drop from your hotel/home, and 5% GST. The driver assists with navigation and itinerary coordination for all agreed local tourist attractions.",
   },
   {
-    q: "How many hours are included in local sightseeing packages?",
-    a: "We offer multiple sightseeing packages including 4 Hours / 40 KM, 8 Hours / 80 KM, 10 Hours / 100 KM, and 12 Hours / 120 KM. You can choose the package according to your travel needs.",
+    q: "What hourly and kilometre sightseeing packages are available?",
+    a: "We offer multiple sightseeing packages tailored to your schedule: Half Day (4 Hours / 40 KM), Full Day (8 Hours / 80 KM), Extended City Tour (10 Hours / 100 KM), and All-Day City Sightseeing (12 Hours / 120 KM). You can select the package that matches your sightseeing plan during booking.",
   },
   {
-    q: "Can I customize my sightseeing itinerary?",
-    a: "Yes, absolutely. You can customize your sightseeing route and choose the places you want to visit. Our team can also suggest popular tourist attractions and hidden gems in the city.",
+    q: "Can I customize my city sightseeing route and visit off-beat places?",
+    a: "Yes, 100%. Our local sightseeing tours are completely customizable. You have full freedom to decide the tourist spots, temples, historical monuments, shopping bazaars, and restaurants you wish to visit. You can also ask our experienced local driver for personalized recommendations.",
   },
   {
-    q: "Do you provide local sightseeing taxis for families and groups?",
-    a: "Yes. We offer Dzire, Amaze, Ertiga, Innova Crysta, and Tempo Traveller options suitable for solo travelers, families, and large groups.",
+    q: "Which vehicle is best suited for local sightseeing with family or elders?",
+    a: "For solo travelers or couples, an AC Sedan (Dzire / Amaze) offers great fuel economy and nimble city navigation. For families of 4 to 6 with kids, the Maruti Ertiga provides extra legroom and dual AC. For senior citizens or luxury comfort, the Toyota Innova Crysta offers supreme ride quality. For large groups of 9 to 26, our Force Tempo Travellers keep the entire group together.",
   },
   {
-    q: "Are toll taxes and parking charges included in the fare?",
-    a: "The package fare generally includes fuel and driver charges. Parking fees, monument entry tickets, and toll charges (if applicable) may be charged extra depending on the sightseeing route.",
+    q: "Are monument entry tickets, parking fees, and toll taxes included?",
+    a: "Base sightseeing quotes cover car rental, fuel, and chauffeur allowance. Parking slips at specific monuments/malls and monument entry tickets are payable at actuals. Toll charges within municipal city limits are generally not applicable, but any outer bypass toll is billed as per actual electronic Fastag receipt.",
   },
   {
-    q: "Can I book a local sightseeing taxi for the same day?",
-    a: "Yes, same-day bookings are available subject to vehicle availability. However, we recommend booking in advance for weekends, holidays, and festival seasons.",
+    q: "What happens if my sightseeing trip exceeds the package hours or kilometres?",
+    a: "If your trip exceeds the booked duration or distance (for example, beyond 8 Hours or 80 KM), nominal overtime charges apply: extra km starting at ₹12/km for Sedans and ₹15/km for SUVs, and extra waiting time at ₹150/hour. All overtime charges are transparently calculated and presented with zero hidden fees.",
   },
   {
-    q: "Do your drivers know local tourist attractions?",
-    a: "Yes. Our experienced drivers are familiar with major tourist attractions, temples, markets, restaurants, and local landmarks. They can help make your sightseeing trip smooth and enjoyable.",
+    q: "Do your local chauffeurs act as local guides or know the city landmarks?",
+    a: "Yes. Our local chauffeurs are thoroughly familiar with city landmarks, historical monuments, opening/closing hours of temples and museums, clean dining spots, and traffic shortcuts. While they are professional drivers, their local expertise ensures a hassle-free, well-paced sightseeing tour.",
   },
   {
-    q: "What vehicles are available for local sightseeing?",
-    a: "We provide Dzire, Amaze, Ertiga, Innova Crysta, and Tempo Traveller vehicles for local sightseeing tours. Vehicle selection depends on the number of passengers and travel requirements.",
+    q: "Can I book a same-day or urgent local sightseeing cab?",
+    a: "Yes. While advance booking is recommended during peak tourist weekends and holiday seasons, Chiku Cabs operates 24×7 and offers fast local dispatch within 45 to 60 minutes across major metro and heritage cities. Call us at +91-844-844-5504 or WhatsApp at +91-628-082-0037 for immediate booking.",
   },
   {
-    q: "Can I extend my sightseeing package during the trip?",
-    a: "Yes. If you wish to continue your trip beyond the booked duration, additional hourly and per-kilometer charges will apply. The driver will assist you with the extension process.",
+    q: "What is the cancellation and rescheduling policy for sightseeing bookings?",
+    a: "Chiku Cabs offers a 100% free cancellation policy up to 24 hours prior to the scheduled pickup time with zero cancellation charges and instant refund. You can also reschedule your sightseeing date or time free of cost by contacting our 24×7 support desk.",
   },
   {
-    q: "How can I book a local sightseeing taxi?",
-    a: "You can book online through our website, call our customer support team, or connect with us on WhatsApp. We provide instant booking confirmation and 24×7 assistance.",
+    q: "Do you provide doorstep pickup from railway stations, airports, or hotels?",
+    a: "Yes. We provide 100% doorstep pickup and drop from any location in the city—including hotel lobbies, railway junctions, airport terminals, or residential addresses—at no additional surcharge.",
+  },
+  {
+    q: "How does Chiku Cabs ensure safety for female travelers, children, and elderly tourists?",
+    a: "All Chiku Cabs vehicles are GPS-tracked in real time with continuous operations monitoring. Our chauffeurs undergo mandatory police background verification and passenger etiquette training. Cabs are thoroughly sanitized and air-conditioned for a secure, worry-free tour.",
+  },
+  {
+    q: "What payment modes are accepted for local sightseeing cab bookings?",
+    a: "We accept all popular payment modes including UPI (Google Pay, PhonePe, Paytm, BHIM), Net Banking, Credit/Debit Cards, and cash or digital wallet transfer to the chauffeur at the end of the trip. You can confirm your booking with a small token advance and settle the balance at trip completion.",
   },
 ];
 
@@ -381,8 +390,24 @@ export default function LocalSightseeingTemplate({
       reviewCount: "1250",
     },
     priceRange:
-      "₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}",
+      `₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}`,
   };
+
+  const faqSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
+        },
+      })),
+    }),
+    [faqs],
+  );
 
   // Handle get estimate
   const handleGetEstimate = (e: React.FormEvent) => {
@@ -493,12 +518,17 @@ Please share the best fare.`;
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
       />
 
+      <Script
+        id="faq-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       <div className="bg-background min-h-screen">
         {/* Sticky CTA Bar with Promo Code */}
         <div
-          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${
-            isScrolled ? "translate-y-0" : "translate-y-full"
-          }`}
+          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${isScrolled ? "translate-y-0" : "translate-y-full"
+            }`}
         >
           <div className="bg-gray-900 text-white shadow-2xl">
             <div className="max-w-7xl mx-auto px-4 py-3">
@@ -673,22 +703,20 @@ Please share the best fare.`;
                     <button
                       type="button"
                       onClick={() => setTripType("one-way")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${
-                        tripType === "one-way"
+                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "one-way"
                           ? "bg-primary text-white shadow-lg shadow-primary/20"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
+                        }`}
                     >
                       One Way
                     </button>
                     <button
                       type="button"
                       onClick={() => setTripType("round-trip")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${
-                        tripType === "round-trip"
+                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "round-trip"
                           ? "bg-primary text-white shadow-lg shadow-primary/20"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
+                        }`}
                     >
                       Round Trip
                     </button>
@@ -877,38 +905,6 @@ Please share the best fare.`;
           </div>
         </section>
 
-        {/* Local Taxi Packages */}
-        <section className="py-12 bg-muted/30 border-b border-slate-300">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4">Local Taxi Packages</h2>
-              <p className="text-muted-foreground max-w-3xl mx-auto">
-                Flexible local taxi packages for sightseeing, shopping, temple
-                visits, business meetings and city tours.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-4 gap-6">
-              {[
-                { hours: "4 Hrs", kms: "40 KM" },
-                { hours: "8 Hrs", kms: "80 KM" },
-                { hours: "10 Hrs", kms: "100 KM" },
-                { hours: "12 Hrs", kms: "120 KM" },
-              ].map((pkg, i) => (
-                <div key={i} className="premium-card text-center">
-                  <h3 className="text-3xl font-bold text-primary">
-                    {pkg.hours}
-                  </h3>
-                  <p className="mt-2">{pkg.kms}</p>
-                  <button className="mt-5 w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
-                    Book Now
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Available Vehicles */}
         <section className="py-12 bg-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
@@ -1010,7 +1006,7 @@ Please share the best fare.`;
 
               {/* Vehicle 4 - Innova Crysta */}
               <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="h-48 bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
+                <div className="h-48 bg-gradient-to-br from-emerald-400 to-primary flex items-center justify-center">
                   <img
                     src="/innova-crysta.png"
                     alt="Toyota Innova Crysta"
@@ -1034,83 +1030,6 @@ Please share the best fare.`;
                     Book Now
                   </button>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Choose Chiku Cabs */}
-        <section className="py-12 bg-white/95 border-b border-slate-300">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Why Choose Chiku Cabs?
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                We provide the best outstation taxi service with unmatched
-                benefits
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Feature 1 */}
-              <div className="text-center group">
-                <div className="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500 transition-colors duration-300">
-                  <span className="text-3xl group-hover:text-white transition-colors">
-                    🕐
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
-                  24/7 Customer Support
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Round the clock assistance for all your travel needs
-                </p>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="text-center group">
-                <div className="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-500 transition-colors duration-300">
-                  <span className="text-3xl group-hover:text-white transition-colors">
-                    🧼
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
-                  100% Hygienic Cars
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Regularly sanitized vehicles for your safety
-                </p>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="text-center group">
-                <div className="w-20 h-20 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-500 transition-colors duration-300">
-                  <span className="text-3xl group-hover:text-white transition-colors">
-                    ⚡
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
-                  Instant Booking
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Quick confirmation within minutes
-                </p>
-              </div>
-
-              {/* Feature 4 */}
-              <div className="text-center group">
-                <div className="w-20 h-20 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 transition-colors duration-300">
-                  <span className="text-3xl group-hover:text-white transition-colors">
-                    💰
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
-                  No Hidden Charges
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Transparent pricing with no surprises
-                </p>
               </div>
             </div>
           </div>
@@ -1217,11 +1136,10 @@ Please share the best fare.`;
                             dist * vehicleDetails.pricePerKm + DRIVER_CHARGE;
                           setEstimatedPrice(newPrice);
                         }}
-                        className={`py-2 rounded-lg text-sm font-medium transition-all ${
-                          Number(formData.distance) === dist
+                        className={`py-2 rounded-lg text-sm font-medium transition-all ${Number(formData.distance) === dist
                             ? "bg-primary text-white"
                             : "bg-muted hover:bg-primary/20"
-                        }`}
+                          }`}
                       >
                         {dist} km
                       </button>
@@ -1585,6 +1503,380 @@ Please share the best fare.`;
                   happy customers
                 </span>
                 <FaArrowRight className="text-primary text-sm" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW SECTION 1: SIGHTSEEING CAB VS AUTO VS BUS VS SELF-DRIVE
+        ====================================================== */}
+        <section className="py-12 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                Smart Comparison
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Private Sightseeing Cab vs. Auto vs. Public Bus vs. Self-Drive
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                Why booking a dedicated local sightseeing cab with Chiku Cabs is the most convenient, comfortable, and cost-effective choice for exploring the city.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm bg-white">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
+                  <tr>
+                    <th className="px-5 py-3.5">Feature</th>
+                    <th className="px-5 py-3.5 text-primary">Chiku Cabs (Dedicated Cab)</th>
+                    <th className="px-5 py-3.5 text-slate-600">Auto-Rickshaw / E-Rickshaw</th>
+                    <th className="px-5 py-3.5 text-slate-600">Public Bus / Metro</th>
+                    <th className="px-5 py-3.5 text-slate-600">Self-Drive Rental</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-xs sm:text-sm">
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Climate Comfort</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ 100% Chilled AC comfort all day
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Heat, dust, humidity & traffic fumes</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Crowded & long walking transfers</td>
+                    <td className="px-5 py-3.5 text-slate-600">✔ AC car available</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Doorstep Hotel Pickup</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ Direct porch pickup & doorstep drop
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Must haggle on street corners</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Must walk to bus stops/stations</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Must visit vehicle depot</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Itinerary Flexibility</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ Stop anywhere for food, photos & shopping
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Meter disputes & refused destinations</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Fixed rigid transit lines</td>
+                    <td className="px-5 py-3.5 text-slate-600">✔ Flexible routing</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Parking & Navigation</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ Driver handles heavy traffic & parking
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Driver drops only on busy main roads</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ No personalized parking</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Stressful parking search & fines</td>
+                  </tr>
+                  <tr>
+                    <td className="px-5 py-3.5 font-bold text-slate-900">Elder & Family Friendly</td>
+                    <td className="px-5 py-3.5 text-emerald-700 font-semibold bg-emerald-50/40">
+                      ✔ Direct gate drop at monuments & temples
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Bumpy suspension & jerky rides</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Crowded coaches & stairs</td>
+                    <td className="px-5 py-3.5 text-slate-600">❌ Driver fatigue for family member</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW SECTION 2: LOCAL SIGHTSEEING PACKAGES & RATE CARD
+        ====================================================== */}
+        <section className="py-12 px-4 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                Transparent Packages
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Local Sightseeing Rental Packages & Vehicle Rates
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                Choose the package that fits your day plan. Every booking includes a sanitized vehicle, verified chauffeur, and fuel.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm bg-white">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
+                  <tr>
+                    <th className="px-5 py-4">Vehicle Category</th>
+                    <th className="px-4 py-4">Seating & Luggage</th>
+                    <th className="px-4 py-4">Half Day (4h / 40km)</th>
+                    <th className="px-4 py-4">Full Day (8h / 80km)</th>
+                    <th className="px-4 py-4">Extended (12h / 120km)</th>
+                    <th className="px-4 py-4">Extra KM / Hr</th>
+                    <th className="px-4 py-4 text-center">Instant Booking</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {[
+                    {
+                      name: "Sedan (Dzire / Amaze / Etios)",
+                      seats: "4 Passengers + 2 Bags",
+                      halfDay: "₹1,299",
+                      fullDay: "₹1,999",
+                      extDay: "₹2,699",
+                      extra: "₹12/km • ₹150/hr",
+                      tag: "Most Popular",
+                    },
+                    {
+                      name: "Spacious SUV (Maruti Ertiga)",
+                      seats: "6 Passengers + 3 Bags",
+                      halfDay: "₹1,799",
+                      fullDay: "₹2,799",
+                      extDay: "₹3,699",
+                      extra: "₹15/km • ₹150/hr",
+                      tag: "Family Choice",
+                    },
+                    {
+                      name: "Premium SUV (Innova Crysta)",
+                      seats: "7 Passengers + 4 Bags",
+                      halfDay: "₹2,499",
+                      fullDay: "₹3,899",
+                      extDay: "₹4,999",
+                      extra: "₹18/km • ₹200/hr",
+                      tag: "Luxury Travel",
+                    },
+                    {
+                      name: "Mini Coach (Tempo Traveller)",
+                      seats: "9 to 16 Passengers",
+                      halfDay: "₹3,499",
+                      fullDay: "₹5,499",
+                      extDay: "₹7,299",
+                      extra: "₹24/km • ₹300/hr",
+                      tag: "Group Tour",
+                    },
+                  ].map((item, index) => (
+                    <tr key={index} className="hover:bg-slate-50/80 transition-colors">
+                      <td className="px-5 py-4">
+                        <div className="font-bold text-slate-900 flex items-center gap-2">
+                          {item.name}
+                          {item.tag && (
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                              {item.tag}
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-xs text-slate-700">{item.seats}</td>
+                      <td className="px-4 py-4 font-bold text-slate-900">{item.halfDay}</td>
+                      <td className="px-4 py-4 font-black text-primary text-base">{item.fullDay}</td>
+                      <td className="px-4 py-4 font-bold text-slate-900">{item.extDay}</td>
+                      <td className="px-4 py-4 text-xs text-slate-600">{item.extra}</td>
+                      <td className="px-4 py-4 text-center">
+                        <a
+                          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                            `Hi Chiku Cabs, I want to book a local sightseeing package for ${item.name}.`
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition"
+                        >
+                          <FaWhatsapp className="text-sm" /> Book Now
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 px-2">
+              <p>*Package includes base hours, kilometres, fuel, driver allowance, and GST. Monument entry tickets & parking slips payable at actuals.</p>
+              <p className="font-semibold text-slate-700">Verified Pricing • Current Season</p>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW SECTION 3: TOP SIGHTSEEING TRAILS & COVERAGE
+        ====================================================== */}
+        <section className="py-12 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                Citywide Excursions
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Curated Sightseeing Trails & Doorstep Pickup Hubs
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                Discover the best of the city with our expertly planned local circuits and 100% doorstep hotel or residential pickup.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Trail 1: Heritage & History */}
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                  <IoLocationSharp className="text-primary text-lg" /> Heritage & Historical Forts
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Historic Forts, Palaces & Museums
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> UNESCO World Heritage Monuments
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Colonial Landmarks & Architecture
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Guided pacing without driver rush
+                  </li>
+                </ul>
+              </div>
+
+              {/* Trail 2: Temples & Spirituality */}
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                  <IoLocationSharp className="text-primary text-lg" /> Temples & Spiritual Shrines
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Famous Morning / Evening Aarti Visits
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Direct drop near temple entry gates
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Elder-friendly assistance & shoe stands
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Sacred river ghats & pilgrimage spots
+                  </li>
+                </ul>
+              </div>
+
+              {/* Trail 3: Markets & Shopping */}
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                  <IoLocationSharp className="text-primary text-lg" /> Bazaars & Traditional Handicrafts
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Famous street markets & silk emporiums
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Safe luggage storage while you shop
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Local souvenir & artisan workshops
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Driver coordinates pickup on phone call
+                  </li>
+                </ul>
+              </div>
+
+              {/* Trail 4: Food & Culinary */}
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                  <IoLocationSharp className="text-primary text-lg" /> Culinary & Food Hotspots
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-600">
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Iconic street food lanes & sweets
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Traditional family restaurants & thalis
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> High-end rooftop dining & cafes
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCheckCircle className="text-primary text-xs" /> Late evening return safely to hotel
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            NEW SECTION 4: INCLUSIONS, EXCLUSIONS & SIGHTSEEING TERMS
+        ====================================================== */}
+        <section className="py-12 px-4 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                100% Transparent
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Sightseeing Inclusions, Exclusions & Booking Terms
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                Zero surprise charges at the end of your day. Full clarity on inclusions, exclusions, and booking rules.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Inclusions */}
+              <div className="bg-emerald-50/50 border border-emerald-200 rounded-2xl p-6 shadow-sm">
+                <h3 className="font-bold text-emerald-900 text-lg mb-4 flex items-center gap-2">
+                  <FaCheckCircle className="text-primary" /> What is Included in Your Package
+                </h3>
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-primary font-bold">✓</span>
+                    <span><strong>Dedicated Vehicle:</strong> Full private AC car reserved exclusively for your family.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-primary font-bold">✓</span>
+                    <span><strong>Fuel & Maintenance:</strong> All petrol, diesel, or CNG expenses covered within the package limits.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-primary font-bold">✓</span>
+                    <span><strong>Chauffeur Allowance:</strong> Driver fee, city navigation, and duty allowance included.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-primary font-bold">✓</span>
+                    <span><strong>Doorstep Pickup & Drop:</strong> Direct pickup and drop at any hotel, residence, or station in the city.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-primary font-bold">✓</span>
+                    <span><strong>Applicable Taxes:</strong> Goods and Services Tax (GST 5%) included with invoice.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Exclusions & Terms */}
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <h3 className="font-bold text-slate-900 text-lg mb-4 flex items-center gap-2">
+                  <FaShieldAlt className="text-primary" /> Exclusions & Operational Terms
+                </h3>
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>Monument & Temple Entry:</strong> Entrance tickets to monuments, museums, or shrines payable directly.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>Parking Charges:</strong> Municipal or monument parking fees payable at actual receipts if applicable.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>Extra Kilometres & Hours:</strong> Transparent nominal overtime rates applied only if package limits are exceeded.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>Free Cancellation:</strong> 100% full refund on cancellations made at least 24 hours prior to departure.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-500 font-bold">•</span>
+                    <span><strong>24×7 Operations Desk:</strong> Immediate assistance, route adjustments, and support via WhatsApp and phone.</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

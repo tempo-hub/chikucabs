@@ -269,9 +269,9 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
   }
 
   return {
-  ...baseDetails,
-  description: `Book a ${vehicle} for comfortable outstation travel. Enjoy well-maintained vehicles, professional drivers, spacious seating and reliable service for family trips, group journeys and long-distance travel.`,
-};
+    ...baseDetails,
+    description: `Book a ${vehicle} for comfortable outstation travel. Enjoy well-maintained vehicles, professional drivers, spacious seating and reliable service for family trips, group journeys and long-distance travel.`,
+  };
 };
 
 const generateFAQs = (vehicle: string): FAQItem[] => [
@@ -363,30 +363,30 @@ export default function OutstationTemplate({
   }, []);
 
   const calculateFare = useCallback(() => {
-  const distance = parseFloat(formData.distance);
+    const distance = parseFloat(formData.distance);
 
-  if (!isNaN(distance) && distance > 0) {
-    const totalDistance =
-      tripType === "round-trip" ? distance * 2 : distance;
+    if (!isNaN(distance) && distance > 0) {
+      const totalDistance =
+        tripType === "round-trip" ? distance * 2 : distance;
 
-    const finalFare = calculateFareByDistance(
-      totalDistance,
-      vehicleDetails.pricePerKm,
-    );
+      const finalFare = calculateFareByDistance(
+        totalDistance,
+        vehicleDetails.pricePerKm,
+      );
 
-    setEstimatedPrice(finalFare);
-  } else {
-    setEstimatedPrice(null);
-  }
-}, [
-  formData.distance,
-  vehicleDetails.pricePerKm,
-  tripType,
-]);
+      setEstimatedPrice(finalFare);
+    } else {
+      setEstimatedPrice(null);
+    }
+  }, [
+    formData.distance,
+    vehicleDetails.pricePerKm,
+    tripType,
+  ]);
 
-useEffect(() => {
-  calculateFare();
-}, [calculateFare]);
+  useEffect(() => {
+    calculateFare();
+  }, [calculateFare]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -571,9 +571,8 @@ Please share the fare estimate.`;
       <div className="bg-background min-h-screen">
         {/* Sticky CTA Bar with Promo Code */}
         <div
-          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${
-            isScrolled ? "translate-y-0" : "translate-y-full"
-          }`}
+          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${isScrolled ? "translate-y-0" : "translate-y-full"
+            }`}
         >
           <div className="bg-gray-900 text-white shadow-2xl">
             <div className="max-w-7xl mx-auto px-4 py-3">
@@ -749,22 +748,20 @@ Please share the fare estimate.`;
                     <button
                       type="button"
                       onClick={() => setTripType("one-way")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${
-                        tripType === "one-way"
+                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "one-way"
                           ? "bg-primary text-white shadow-lg shadow-primary/20"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
+                        }`}
                     >
                       One Way
                     </button>
                     <button
                       type="button"
                       onClick={() => setTripType("round-trip")}
-                      className={`py-3 rounded-xl font-semibold transition-all ${
-                        tripType === "round-trip"
+                      className={`py-3 rounded-xl font-semibold transition-all ${tripType === "round-trip"
                           ? "bg-primary text-white shadow-lg shadow-primary/20"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      }`}
+                        }`}
                     >
                       Round Trip
                     </button>
@@ -1083,83 +1080,6 @@ Please share the fare estimate.`;
           </div>
         </section>
 
-        {/* Why Choose Chiku Cabs */}
-        <section className="py-12 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Why Choose Chiku Cabs?
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                We provide the best outstation taxi service with unmatched
-                benefits
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Feature 1 */}
-              <div className="text-center group">
-                <div className="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500 transition-colors duration-300">
-                  <span className="text-3xl group-hover:text-white transition-colors">
-                    🕐
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
-                  24/7 Customer Support
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Round the clock assistance for all your travel needs
-                </p>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="text-center group">
-                <div className="w-20 h-20 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-500 transition-colors duration-300">
-                  <span className="text-3xl group-hover:text-white transition-colors">
-                    🧼
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
-                  100% Hygienic Cars
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Regularly sanitized vehicles for your safety
-                </p>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="text-center group">
-                <div className="w-20 h-20 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-500 transition-colors duration-300">
-                  <span className="text-3xl group-hover:text-white transition-colors">
-                    ⚡
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
-                  Instant Booking
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Quick confirmation within minutes
-                </p>
-              </div>
-
-              {/* Feature 4 */}
-              <div className="text-center group">
-                <div className="w-20 h-20 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 transition-colors duration-300">
-                  <span className="text-3xl group-hover:text-white transition-colors">
-                    💰
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-gray-800 mb-2">
-                  No Hidden Charges
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Transparent pricing with no surprises
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Services We Offer */}
         <section className="py-12 bg-gradient-to-r from-primary to-primary/80">
           <div className="max-w-7xl mx-auto px-4">
@@ -1256,11 +1176,10 @@ Please share the fare estimate.`;
                           }));
                           setEstimatedPrice(calculateFareByDistance(dist));
                         }}
-                        className={`py-2 rounded-lg text-sm font-medium transition-all ${
-                          Number(formData.distance) === dist
+                        className={`py-2 rounded-lg text-sm font-medium transition-all ${Number(formData.distance) === dist
                             ? "bg-primary text-white"
                             : "bg-muted hover:bg-primary/20"
-                        }`}
+                          }`}
                       >
                         {dist} km
                       </button>

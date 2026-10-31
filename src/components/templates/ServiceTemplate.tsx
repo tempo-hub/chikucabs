@@ -367,6 +367,22 @@ const generateFAQs = (vehicle: string): FAQItem[] => [
     q: `Can I modify my ${vehicle} booking after confirmation?`,
     a: `Yes! Free modifications are allowed up to 12 hours before your scheduled trip. You can change pickup time, drop location, or date. Call our customer support at ${PHONE_NUMBER} for any modifications. Last-minute changes depend on vehicle availability.`,
   },
+  {
+    q: `Are computerized GST invoices provided for corporate business bookings?`,
+    a: `Yes. We provide official computerized GST tax invoices with your business name and GSTIN for all ${vehicle} bookings to ensure seamless corporate accounting and input tax credit claims.`,
+  },
+  {
+    q: `Can I book an airport taxi pickup with live flight tracking for ${vehicle}?`,
+    a: `Yes! Chiku Cabs provides 24×7 dedicated airport transfer services for ${vehicle}. Our dispatch desk monitors your flight status in real time and offers 45 minutes of complimentary waiting time after landing.`,
+  },
+  {
+    q: `Are pet-friendly travel options available when hiring ${vehicle}?`,
+    a: `Yes, we welcome pets on selected ${vehicle} rentals upon prior request. Please mention that you are traveling with pets at the time of booking so we can assign an accommodating vehicle and driver.`,
+  },
+  {
+    q: `What payment options are accepted for ${vehicle} rental?`,
+    a: `We accept all convenient payment modes including UPI (Google Pay, PhonePe, Paytm), net banking, debit/credit cards, and cash payment to the chauffeur after completion of your ride.`,
+  },
 ];
 
 // --- Main Component ---
@@ -387,7 +403,6 @@ export default function ServiceTemplate({
   });
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const faqs = useMemo(() => generateFAQs(vehicle), [vehicle]);
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropLocation, setDropLocation] = useState("");
   const [travelDate, setTravelDate] = useState("");
@@ -458,8 +473,25 @@ export default function ServiceTemplate({
       reviewCount: "1250",
     },
     priceRange:
-      "₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}",
+      `₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}`,
   };
+
+  const faqs = useMemo(() => generateFAQs(vehicle), [vehicle]);
+  const faqSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: f.a,
+        },
+      })),
+    }),
+    [faqs]
+  );
 
   const handleGetEstimate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -555,6 +587,12 @@ export default function ServiceTemplate({
         id="organization-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+      />
+
+      <Script
+        id="service-faq-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <div className="bg-background min-h-screen">

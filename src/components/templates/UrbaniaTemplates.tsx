@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
+import Head from "next/head";
 import {
   FaArrowRight,
   FaCheckCircle,
@@ -132,8 +133,86 @@ Estimated fare: ${
     );
   };
 
+  const urbaniaFaqs = useMemo(
+    () => [
+      {
+        q: `What is the Urbania Traveller fare in ${normalizedCity || "India"}?`,
+        a: `Force Urbania fares start from ₹28 per kilometre. For a standard 250 km outstation trip, the estimated fare is approximately ₹11,000 including vehicle hire, driver allowance, and GST.`,
+      },
+      {
+        q: "What seating capacities are available for Force Urbania on rent?",
+        a: "Force Urbania is available in 10, 12, and 17-seater configurations with ultra-luxury 1x1 or 2x1 pushback captain chairs, ample aisle walking room, and wide panoramic windows.",
+      },
+      {
+        q: "Can I book a 12 seater Urbania for family or corporate trips?",
+        a: "Yes! The 12-seater Urbania is our most popular luxury group tourer, featuring individual AC blowers, USB charging at every seat, and huge luggage space.",
+      },
+      {
+        q: "What is the luggage capacity of Force Urbania?",
+        a: "The Urbania features a spacious rear boot compartment accommodating 12-15 large trolley suitcases, plus an optional overhead roof luggage carrier for bulky bags.",
+      },
+      {
+        q: `Can I hire Force Urbania for outstation and hill station trips from ${normalizedCity || "my city"}?`,
+        a: "Yes, Urbania is engineered with Mercedes-derived monocoque chassis, superior suspension, and electronic stability control, making it extremely smooth on steep mountain ghats and expressways.",
+      },
+      {
+        q: "Does the fare include driver allowance, fuel, and taxes?",
+        a: "The base rate of ₹28/km covers fuel, commercial vehicle hire, GST, and professional chauffeur service. Expressway tolls and state border permits are payable at actual Fastag tolls.",
+      },
+      {
+        q: "Can I book Force Urbania for wedding guest transfers and VIP events?",
+        a: "Yes, Urbania is widely hired for wedding baraats, corporate VIP delegations, airport luxury transfers, and celebrity convoys with uniform-clad chauffeurs.",
+      },
+      {
+        q: `Is doorstep pickup available across ${normalizedCity || "all locations"}?`,
+        a: "Yes, 100% doorstep pickup and drop from your residence, corporate office, railway station, or airport terminal.",
+      },
+      {
+        q: "How early should I reserve an Urbania Traveller?",
+        a: "Due to high demand for Force Urbania luxury vans, we recommend booking at least 3-7 days in advance for weekend trips and peak wedding dates.",
+      },
+      {
+        q: "Can we request multiple halts for food and temple sightseeing?",
+        a: "Yes, our drivers are courteous and flexible, allowing your group to take food stops at clean highway restaurants and explore tourist monuments at your pace.",
+      },
+      {
+        q: "What safety features are equipped in the Force Urbania?",
+        a: "Force Urbania complies with the highest safety crash standards, featuring dual airbags, ABS with EBD, rollover mitigation, speed governor (80 km/h), and 24/7 GPS tracking.",
+      },
+      {
+        q: "How do I confirm my Force Urbania booking with Chiku Cabs?",
+        a: "Simply enter your travel distance or route, click the WhatsApp booking button, or call 8448445504 to receive vehicle photos and instant booking confirmation.",
+      },
+    ],
+    [normalizedCity]
+  );
+
+  const faqSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: urbaniaFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
+        },
+      })),
+    }),
+    [urbaniaFaqs]
+  );
+
   return (
-    <main className="min-h-screen bg-white/90">
+    <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      </Head>
+
+      <main className="min-h-screen bg-white/90">
 
       {/* =====================================================
           HERO
@@ -938,55 +1017,20 @@ Estimated fare: ${
           </div>
 
           <div className="mt-10 space-y-3">
-
-            {[
-              {
-                q: `What is the Urbania fare in ${normalizedCity}?`,
-                a: `Urbania fares depend on the total travel distance, trip type and booking requirements. The standard calculation used on this page is based on ₹28 per kilometre with the applicable trip multiplier and fixed amount.`,
-              },
-              {
-                q: "What is the Urbania rate per kilometre?",
-                a: "The Urbania rate shown on this page is ₹28 per kilometre.",
-              },
-              {
-                q: "Can I book a 12 seater Urbania?",
-                a: "Yes. A 12 seater Urbania is suitable for medium-sized groups and family or corporate travel.",
-              },
-              {
-                q: "Can I book a 17 seater Urbania?",
-                a: "Yes. A 17 seater Urbania can be booked for larger groups, subject to availability.",
-              },
-              {
-                q: `Can I book an Urbania from ${normalizedCity} for an outstation trip?`,
-                a: `Yes. Urbania Traveller bookings can be requested from ${normalizedCity} for suitable outstation routes.`,
-              },
-              {
-                q: "How can I confirm my Urbania booking?",
-                a: "Enter your approximate distance and use the WhatsApp booking button to share your trip details and check availability.",
-              },
-            ].map((faq) => (
-
+            {urbaniaFaqs.map((faq) => (
               <details
                 key={faq.q}
                 className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
               >
-
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-black text-slate-900 sm:text-base">
-
                   <span>{faq.q}</span>
-
                   <FaChevronDown className="shrink-0 text-xs text-slate-400 transition group-open:rotate-180" />
-
                 </summary>
-
                 <p className="mt-4 pr-6 text-sm leading-7 text-slate-600">
                   {faq.a}
                 </p>
-
               </details>
-
             ))}
-
           </div>
 
         </div>
@@ -1054,6 +1098,7 @@ Estimated fare: ${
 
       </section>
 
-    </main>
+      </main>
+    </>
   );
 }

@@ -318,6 +318,65 @@ Please share booking confirmation and vehicle pictures.`;
     window.open(buildWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
   };
 
+  // 12 High-Intent SEO FAQs
+  const routeFaqs = useMemo(
+    () => [
+      {
+        q: `How much does a Tempo Traveller cost from ${startCity} to ${endCity}?`,
+        a: `The Tempo Traveller fare from ${startCity} to ${endCity} starts from ₹${startingFare} for a 9-10 Seater Maharaja Tempo Traveller (~₹${startingPerPerson} per seat), ₹${calculateFare(distance, 22)} for a 12-13 Seater AC Traveller, and ₹${calculateFare(distance, 25)} for a 16-17 Seater vehicle for ${distance} km. Base fuel, driver allowance, and GST are included.`,
+      },
+      {
+        q: `Which Tempo Traveller seating size is best for our group from ${startCity} to ${endCity}?`,
+        a: `For small family or VIP groups of up to 9 people, the 9-10 seater Maharaja Tempo Traveller with 1x1 recliners is the most luxurious. For 10-13 people, the 12-13 seater is the most popular choice. Larger groups of 14-26 can pick our 16, 20, or 26-seater Force Travellers.`,
+      },
+      {
+        q: `Can our entire group travel with luggage?`,
+        a: `Yes, all Chiku Cabs Tempo Travellers feature generous dedicated boot trunk storage space as well as robust waterproof covered roof luggage carriers to carry multiple large suitcases, duffel bags, and ritual puja samagri comfortably.`,
+      },
+      {
+        q: `What is the road distance and travel time from ${startCity} to ${endCity}?`,
+        a: `The road distance between ${startCity} and ${endCity} is approximately ${distance} km. The journey typically takes about ${travelHours} hours via the main highway corridor, depending on highway traffic and en-route refreshment stops.`,
+      },
+      {
+        q: `Are highway toll taxes and state border permits included?`,
+        a: `The base fare covers the vehicle hire, fuel, driver allowance, and GST. Highway toll charges and inter-state commercial passenger border taxes are payable at actuals at Fastag booths and border checkposts.`,
+      },
+      {
+        q: isGaya
+          ? `Can we book a same-day or multi-day Tempo Traveller for Pind Daan rituals in Gaya from ${startCity}?`
+          : `Can we make stops for food or sightseeing between ${startCity} and ${endCity}?`,
+        a: isGaya
+          ? `Yes! We provide specialized same-day and multi-day packages for Pind Daan rituals at Vishnupad Mandir, Phalgu River, and Bodh Gaya. The driver stays with your family until all ceremonies are completed and drops you safely back at ${startCity}.`
+          : `Yes, you can request en-route meal, tea, and restroom breaks at hygienic highway restaurants. If you wish to visit specific tourist or pilgrimage spots along the way, simply mention them during booking.`,
+      },
+      {
+        q: `Is doorstep pickup available in ${startCity}?`,
+        a: `Yes, 100% doorstep service. The Tempo Traveller will arrive directly at your residence, hotel, airport terminal, or railway junction in ${startCity} and take your group directly to your destination in ${endCity}.`,
+      },
+      {
+        q: `How early should I book a Tempo Traveller from ${startCity}?`,
+        a: `We recommend booking at least 2 to 4 days in advance, especially during wedding seasons, long weekends, and auspicious pilgrimage periods to ensure your preferred seating capacity is reserved.`,
+      },
+      {
+        q: `Are music sound systems, TV screens, and USB mobile chargers available on board?`,
+        a: `Yes! All our luxury Maharaja and executive Tempo Travellers are equipped with LED TVs, high-fidelity sound systems, and individual mobile fast-charging ports beside each pushback seat for passenger convenience.`,
+      },
+      {
+        q: `Can we book a round-trip or multi-day outstation tour from ${startCity} to ${endCity}?`,
+        a: `Yes, we offer both dedicated one-way drops and multi-day round-trip packages with customized itineraries, flexible night stays, and continuous chauffeur service throughout your journey.`,
+      },
+      {
+        q: `Is the Tempo Traveller comfortable and accessible for elderly family members and children?`,
+        a: `Yes. Our Tempo Travellers are equipped with easy-access retractable side foot-steps, wide center gangway aisles, and ergonomic pushback recliners, ensuring senior citizens travel safely without fatigue.`,
+      },
+      {
+        q: `What payment methods are supported for Tempo Traveller booking?`,
+        a: `You can confirm your booking with a nominal advance token payment via UPI, Google Pay, PhonePe, credit/debit card, or net banking. The remaining balance can be settled directly upon completion of your trip.`,
+      },
+    ],
+    [startCity, endCity, distance, startingFare, startingPerPerson, travelHours, isGaya]
+  );
+
   // Structured Data (JSON-LD)
   const structuredData = useMemo(() => {
     const canonicalUrl = `${SITE_URL}/${citySlug}/tempo-traveller-hire-${citySlug}-to-${endCitySlug}`;
@@ -375,55 +434,21 @@ Please share booking confirmation and vehicle pictures.`;
     const faqSchema = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: `How much does a Tempo Traveller cost from ${startCity} to ${endCity}?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `The Tempo Traveller fare from ${startCity} to ${endCity} starts from ₹${startingFare} for a 9-10 Seater Luxury Maharaja Tempo Traveller (~₹${startingPerPerson} per seat), ₹${calculateFare(distance, 22)} for a 12-13 Seater AC Traveller, and ₹${calculateFare(distance, 25)} for a 16-17 Seater vehicle for ${distance} km. Fuel, driver allowance, and GST are included.`,
-          },
+      mainEntity: routeFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
         },
-        {
-          "@type": "Question",
-          name: `Which Tempo Traveller seating capacity is best for travel from ${startCity} to ${endCity}?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `For small groups of 6-9 people with elders, a 9-10 seater Maharaja Tempo Traveller with 1x1 recliners is ideal. Medium families of 10-13 prefer the 12-13 seater, while wedding parties and pilgrimage groups of 14-26 passengers can book 16, 20, or 26 seater Force Travellers.`,
-          },
-        },
-        {
-          "@type": "Question",
-          name: `What is the road distance and travel time from ${startCity} to ${endCity}?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `The road distance between ${startCity} and ${endCity} is approximately ${distance} km. The journey typically takes around ${travelHours} hours by Tempo Traveller via the main highway corridor, including comfortable food and refreshment breaks.`,
-          },
-        },
-        {
-          "@type": "Question",
-          name: `Is there enough space for luggage in the Tempo Traveller?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `Yes, all our Tempo Travellers come equipped with dedicated boot luggage compartments and heavy-duty, waterproof covered roof carriers to safely carry all bags, suitcases, and ritual puja samagri for the entire group.`,
-          },
-        },
-        {
-          "@type": "Question",
-          name: `Are highway toll taxes and state border permits included?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `Your base fare includes the vehicle rental, fuel, driver allowance, and GST. Highway toll charges and inter-state passenger border tax receipts are payable at actual Fastag and entry booths en route.`,
-          },
-        },
-      ],
+      })),
     };
 
     return JSON.stringify({
       "@context": "https://schema.org",
       "@graph": [breadcrumbs, taxiService, faqSchema],
     });
-  }, [startCity, endCity, citySlug, endCitySlug, distance, startingFare, startingPerPerson, travelHours]);
+  }, [startCity, endCity, citySlug, endCitySlug, distance, startingFare, startingPerPerson, travelHours, routeFaqs]);
 
   return (
     <>
@@ -477,7 +502,7 @@ Please share booking confirmation and vehicle pictures.`;
                 <strong className="text-white underline decoration-primary decoration-2 underline-offset-4">
                   {formatCurrency(startingFare)}
                 </strong>{" "}
-                
+
               </p>
 
               {/* Quick Trip Badges */}
@@ -506,7 +531,7 @@ Please share booking confirmation and vehicle pictures.`;
                   <div className="text-[11px] text-slate-400">9-10 Seater AC</div>
                 </div>
 
-                
+
               </div>
 
               {/* Trust Guarantees */}
@@ -652,7 +677,7 @@ Please share booking confirmation and vehicle pictures.`;
                     <div className="text-2xl font-black text-primary">
                       {formatCurrency(dynamicEstimatedPrice)}
                     </div>
-                    
+
                   </div>
                   <div className="text-right">
                     <span className="text-xs font-bold text-slate-800">
@@ -727,7 +752,7 @@ Please share booking confirmation and vehicle pictures.`;
                     <th className="px-4 py-4">Seating & Luggage Capacity</th>
                     <th className="px-4 py-4">Rate / KM</th>
                     <th className="px-4 py-4">Approx. Total Fare</th>
-                    
+
                     <th className="px-4 py-4 text-center">Instant Booking</th>
                   </tr>
                 </thead>
@@ -761,7 +786,7 @@ Please share booking confirmation and vehicle pictures.`;
                           </div>
                           <div className="text-[11px] text-slate-500">Incl. Fuel & Driver</div>
                         </td>
-                        
+
                         <td className="px-4 py-4 text-center">
                           <button
                             type="button"
@@ -822,8 +847,8 @@ Please share booking confirmation and vehicle pictures.`;
                   {isGaya || isBodhGaya
                     ? `Dedicated Tempo service for sacred Pind Daan rituals at Vishnupad Mandir & Bodh Gaya monasteries. Pushback comfort for elders and roof carriers for puja samagri.`
                     : isAyodhya || isVaranasi
-                    ? `Comfortable darshan tours with direct drop at temple gates, assistance for elderly devotees, and ample boot space for prasad and ritual items.`
-                    : `Enjoy long journeys with family members without feeling cramped. AC pushback recliners make travel relaxing for senior citizens and young kids.`}
+                      ? `Comfortable darshan tours with direct drop at temple gates, assistance for elderly devotees, and ample boot space for prasad and ritual items.`
+                      : `Enjoy long journeys with family members without feeling cramped. AC pushback recliners make travel relaxing for senior citizens and young kids.`}
                 </p>
               </div>
 
@@ -1360,44 +1385,7 @@ Please share booking confirmation and vehicle pictures.`;
             </div>
 
             <div className="space-y-3.5 max-w-4xl mx-auto">
-              {[
-                {
-                  q: `How much does a Tempo Traveller cost from ${startCity} to ${endCity}?`,
-                  a: `The Tempo Traveller fare from ${startCity} to ${endCity} starts from ₹${startingFare} for a 9-10 Seater Maharaja Tempo Traveller (~₹${startingPerPerson} per seat), ₹${calculateFare(distance, 22)} for a 12-13 Seater AC Traveller, and ₹${calculateFare(distance, 25)} for a 16-17 Seater vehicle for ${distance} km. Base fuel, driver allowance, and GST are included.`,
-                },
-                {
-                  q: `Which Tempo Traveller seating size is best for our group?`,
-                  a: `For small family or VIP groups of up to 9 people, the 9-10 seater Maharaja Tempo Traveller with 1x1 recliners is the most luxurious. For 10-13 people, the 12-13 seater is the most popular choice. Larger groups of 14-26 can pick our 16, 20, or 26-seater Force Travellers.`,
-                },
-                {
-                  q: `Can our entire group travel with luggage?`,
-                  a: `Yes, all Chiku Cabs Tempo Travellers feature generous dedicated boot trunk storage space as well as robust waterproof covered roof luggage carriers to carry multiple large suitcases, duffel bags, and ritual puja samagri comfortably.`,
-                },
-                {
-                  q: `What is the road distance and travel time from ${startCity} to ${endCity}?`,
-                  a: `The road distance between ${startCity} and ${endCity} is approximately ${distance} km. The journey typically takes about ${travelHours} hours via the main highway corridor, depending on highway traffic and en-route refreshment stops.`,
-                },
-                {
-                  q: `Are highway toll taxes and state border permits included?`,
-                  a: `The base fare covers the vehicle hire, fuel, driver allowance, and GST. Highway toll charges and inter-state commercial passenger border taxes are payable at actuals at Fastag booths and border checkposts.`,
-                },
-                {
-                  q: isGaya
-                    ? `Can we book a same-day or multi-day Tempo Traveller for Pind Daan rituals in Gaya from ${startCity}?`
-                    : `Can we make stops for food or sightseeing between ${startCity} and ${endCity}?`,
-                  a: isGaya
-                    ? `Yes! We provide specialized same-day and multi-day packages for Pind Daan rituals at Vishnupad Mandir, Phalgu River, and Bodh Gaya. The driver stays with your family until all ceremonies are completed and drops you safely back at ${startCity}.`
-                    : `Yes, you can request en-route meal, tea, and restroom breaks at hygienic highway restaurants. If you wish to visit specific tourist or pilgrimage spots along the way, simply mention them during booking.`,
-                },
-                {
-                  q: `Is doorstep pickup available in ${startCity}?`,
-                  a: `Yes, 100% doorstep service. The Tempo Traveller will arrive directly at your residence, hotel, airport terminal, or railway junction in ${startCity} and take your group directly to your destination in ${endCity}.`,
-                },
-                {
-                  q: `How early should I book a Tempo Traveller from ${startCity}?`,
-                  a: `We recommend booking at least 2 to 4 days in advance, especially during wedding seasons, long weekends, and auspicious pilgrimage periods to ensure your preferred seating capacity is reserved.`,
-                },
-              ].map((faq, i) => (
+              {routeFaqs.map((faq, i) => (
                 <details
                   key={i}
                   className="group rounded-xl border border-slate-200 bg-slate-50 p-4 transition open:bg-white open:shadow-sm"

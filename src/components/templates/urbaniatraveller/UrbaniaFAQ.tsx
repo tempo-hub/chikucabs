@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Head from "next/head";
 import {
   FaChevronDown,
   FaQuestionCircle,
@@ -62,6 +63,21 @@ const FAQS = (city: string): FAQItem[] => [
     answer:
       "Share your pickup location, destination, travel date, passenger count and preferred Urbania size. Chiku Cabs can then help you check availability and provide the applicable fare before confirmation.",
   },
+  {
+    question: "What is the luggage capacity and carrier facility in Force Urbania?",
+    answer:
+      "Force Urbania features a generous rear boot compartment for 12-15 trolley bags, along with a secure waterproof rooftop carrier to ensure all passenger luggage travels safely without cramping cabin legroom.",
+  },
+  {
+    question: "Are expressway tolls and state border taxes included in the fare?",
+    answer:
+      "The base fare includes vehicle hire, fuel, driver allowance, and GST. Expressway tolls (Fastag receipts) and inter-state passenger commercial taxes are payable at actual checkposts with complete digital billing transparency.",
+  },
+  {
+    question: "Is Force Urbania suitable for long-distance highway and hill station travel?",
+    answer:
+      "Yes, Force Urbania is built on a Mercedes-derived monocoque chassis with independent front suspension, dual-zone high-performance AC, individual charging ports, and ABS with EBD, making it exceptionally safe for mountain roads and long highway drives.",
+  },
 ];
 
 export default function UrbaniaFAQ({
@@ -71,15 +87,35 @@ export default function UrbaniaFAQ({
 
   const faqs = FAQS(city);
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   const whatsappMessage = encodeURIComponent(
     `Hi Chiku Cabs, I want to enquire about booking a ${city} Urbania Traveller. Please share the fare and availability.`
   );
 
   return (
-    <section
-      id="urbania-faq"
-      className="bg-white/90 px-4 py-12 sm:px-6 sm:py-12 lg:px-8 lg:py-12 border-b border-slate-100"
-    >
+    <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      </Head>
+      <section
+        id="urbania-faq"
+        className="bg-white/90 px-4 py-12 sm:px-6 sm:py-12 lg:px-8 lg:py-12 border-b border-slate-100"
+      >
       <div className="mx-auto max-w-5xl">
         {/* HEADER */}
         <div className="mx-auto max-w-3xl text-center">
@@ -243,5 +279,6 @@ export default function UrbaniaFAQ({
         </div>
       </div>
     </section>
+    </>
   );
 }

@@ -35,6 +35,7 @@ import {
   FaGem,
   FaMicrochip,
   FaRegLightbulb,
+  FaWhatsapp,
 } from "react-icons/fa";
 import { CiClock1 } from "react-icons/ci";
 import toast from "react-hot-toast";
@@ -332,51 +333,59 @@ const getVehicleDetails = (vehicle: string): VehicleDetails => {
   }
 
   return {
-  ...baseDetails,
-  description: `Book a ${vehicle} for a comfortable one way journey. Travel from your pickup city to your destination with a professional driver, reliable service and transparent pricing. Ideal for family trips, business travel and outstation journeys.`,
-};
+    ...baseDetails,
+    description: `Book a ${vehicle} for a comfortable one way journey. Travel from your pickup city to your destination with a professional driver, reliable service and transparent pricing. Ideal for family trips, business travel and outstation journeys.`,
+  };
 };
 
 const generateFAQs = (vehicle: string): FAQItem[] => [
   {
-    q: `Can I book a ${vehicle} for a one-way trip?`,
-    a: `Yes. You can book a ${vehicle} for one-way travel from your pickup location to your destination. One-way bookings are suitable for inter-city travel, airport transfers, relocation, and outstation trips.`,
+    q: `Why is booking a one-way ${vehicle} cab more cost-effective than a round-trip taxi?`,
+    a: `With Chiku Cabs one-way service, you only pay for the exact distance traveled from your origin to destination. Unlike traditional taxi operators who force you to pay two-way round-trip fares and double driver allowances, our one-way dropped pricing saves you up to 50% on intercity travel.`,
+  },
+  {
+    q: `Do I have to pay for the cab's return journey or empty kilometer charges?`,
+    a: `No! Absolutely never. You are only billed for the one-way drop route. We never charge return journey fuel, dead kilometers, or empty run-back charges for any confirmed one-way trip.`,
   },
   {
     q: `How is the one-way ${vehicle} fare calculated?`,
-    a: `The one-way ${vehicle} fare depends on the pickup location, destination, travel distance, vehicle type, route and applicable booking charges. Share your travel details with Chiku Cabs to get the applicable one-way fare.`,
+    a: `One-way fares are calculated based on transparent per-kilometer rates for the specific vehicle category (e.g., ₹9/km for Sedans, ₹13/km for SUVs, ₹16/km for Innova Crysta) multiplied by the standardized highway route distance, plus standard driver day allowance.`,
   },
   {
-    q: `Do I have to pay for the return journey on a one-way cab?`,
-    a: `A one-way booking is priced according to the applicable one-way route and booking terms. Return-trip charges are not automatically added simply because the journey is one-way. The final fare is confirmed before booking.`,
+    q: `Are highway toll taxes, state border permits, and GST included in the fare?`,
+    a: `We provide complete transparency before you travel. Base one-way packages cover vehicle rental, fuel, and chauffeur charges. Fastag highway toll plazas and inter-state commercial road entry permits are either clearly included in all-inclusive packages or billed at actual government toll gate receipts.`,
   },
   {
-    q: `What is included in the one-way ${vehicle} fare?`,
-    a: `The fare depends on the selected route and booking package. Vehicle and driver charges are included according to the applicable fare structure, while tolls, parking, permits, taxes or other route-specific charges may apply depending on the trip.`,
+    q: `Can we take meal stops or short sightseeing breaks during our one-way drive?`,
+    a: `Yes! Your dedicated one-way chauffeur will gladly stop at hygienic highway food courts, rest areas, or popular roadside attractions along your route for refreshments, tea breaks, and restroom visits at no extra waiting penalty.`,
   },
   {
-    q: `Can I book a ${vehicle} for an airport one-way transfer?`,
-    a: `Yes. You can book a ${vehicle} for one-way airport pickup or drop service. Share your airport, pickup or drop location, travel date and passenger requirements to get the applicable fare.`,
+    q: `Does Chiku Cabs provide guaranteed doorstep pickup and drop at residential addresses?`,
+    a: `Yes. Unlike public buses or trains where you have to lug luggage to crowded stations, our chauffeur arrives right at your home doorstep, society gate, hotel lobby, or airport terminal, and drops you precisely at your final destination address.`,
   },
   {
-    q: `Can I make stops during my one-way ${vehicle} journey?`,
-    a: `Planned stops can generally be included in a one-way journey, subject to the agreed route, travel duration and booking terms. Inform the booking team about additional stops when making your reservation.`,
+    q: `What vehicle options are available for one-way intercity travel?`,
+    a: `We offer fuel-efficient Hatchbacks (WagonR), spacious Sedans (Dzire, Etios, Amaze), family SUVs (Ertiga), executive luxury MPVs (Innova Crysta), and 9 to 26 seater Tempo Travellers for larger group movements.`,
   },
   {
-    q: `How early should I book a one-way ${vehicle}?`,
-    a: `Advance booking is recommended for weekends, holidays, peak travel periods and long-distance journeys. Last-minute bookings may also be available depending on vehicle and driver availability.`,
+    q: `How far in advance should I reserve a one-way cab?`,
+    a: `While we accept on-demand bookings with just 1 to 2 hours dispatch notice depending on city availability, we recommend booking 12 to 24 hours in advance to secure preferred vehicle models and confirmed chauffeur assignment.`,
   },
   {
-    q: `What safety measures are followed for ${vehicle} bookings?`,
-    a: `We aim to provide a comfortable and reliable travel experience with maintained vehicles and professional drivers. Driver and vehicle details can be shared for confirmed bookings according to the service and booking requirements.`,
+    q: `What safety protocols and emergency roadside support do you provide?`,
+    a: `All vehicles undergo thorough multi-point safety inspections, tire pressure checks, and sanitized cabins before dispatch. Every ride is tracked via real-time GPS by our 24/7 central support team, with instant replacement vehicle dispatch in the rare event of mechanical trouble.`,
   },
   {
-    q: `Can I cancel my one-way ${vehicle} booking?`,
-    a: `Cancellation terms depend on the booking type and the time of cancellation. Contact our booking team before cancelling if you need help with cancellation, refund or rescheduling.`,
+    q: `Are your drivers licensed with commercial badges and experienced on highways?`,
+    a: `Yes, 100% of Chiku Cabs chauffeurs possess verified commercial yellow-badge licenses, verified police backgrounds, and a minimum of 5+ years of highway long-distance driving experience.`,
   },
   {
-    q: `Can I modify my ${vehicle} booking after confirmation?`,
-    a: `Booking changes may be possible depending on vehicle and driver availability. You can contact ${PHONE_NUMBER} to request changes to the travel date, pickup time, destination or other booking details.`,
+    q: `What is the cancellation and refund policy for one-way bookings?`,
+    a: `We offer a 100% free cancellation guarantee when canceled up to 24 hours prior to scheduled departure. Any advance booking token is refunded immediately with zero cancellation deductions.`,
+  },
+  {
+    q: `Can I book an early-morning or late-night one-way cab safely?`,
+    a: `Yes. Our dispatch operations run 24x7x365. Chauffeurs are assigned and verified for late-night airport departures and early 4:00 AM pickups with active SOS safety tracking throughout the night drive.`,
   },
 ];
 
@@ -401,6 +410,21 @@ export default function OneWayTemplate({
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const faqs = useMemo(() => generateFAQs(vehicle), [vehicle]);
+  const faqSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
+        },
+      })),
+    }),
+    [faqs]
+  );
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropLocation, setDropLocation] = useState("");
   const [travelDate, setTravelDate] = useState("");
@@ -570,12 +594,17 @@ export default function OneWayTemplate({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
       />
 
+      <Script
+        id="faq-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       <div className="bg-background min-h-screen">
         {/* Sticky CTA Bar with Promo Code */}
         <div
-          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${
-            isScrolled ? "translate-y-0" : "translate-y-full"
-          }`}
+          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${isScrolled ? "translate-y-0" : "translate-y-full"
+            }`}
         >
           <div className="bg-gray-900 text-white shadow-2xl">
             <div className="max-w-7xl mx-auto px-4 py-3">
@@ -941,7 +970,7 @@ export default function OneWayTemplate({
 
               {/* Vehicle 4 - Innova Crysta */}
               <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="h-48 bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
+                <div className="h-48 bg-gradient-to-br from-emerald-400 to-primary flex items-center justify-center">
                   <img
                     src="/innova-crysta.png"
                     alt="Toyota Innova Crysta"
@@ -1100,11 +1129,10 @@ export default function OneWayTemplate({
                             dist * vehicleDetails.pricePerKm + DRIVER_CHARGE;
                           setEstimatedPrice(newPrice);
                         }}
-                        className={`py-2 rounded-lg text-sm font-medium transition-all ${
-                          Number(formData.distance) === dist
+                        className={`py-2 rounded-lg text-sm font-medium transition-all ${Number(formData.distance) === dist
                             ? "bg-primary text-white"
                             : "bg-muted hover:bg-primary/20"
-                        }`}
+                          }`}
                       >
                         {dist} km
                       </button>
@@ -1501,83 +1529,303 @@ export default function OneWayTemplate({
           </div>
         </section>
 
-        {/* Feature Grid - Modern UI with React Icons */}
-        <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-primary/5 border-b border-slate-300">
-          <div className="max-w-7xl mx-auto px-4">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-                <FaShieldAlt className="text-primary text-sm" />
-                <span className="text-primary font-bold text-sm uppercase tracking-wider">
-                  WHY CHIKU CABS
-                </span>
+        {/* =====================================================
+            AUDIT SECTION 1: SMART ONE-WAY COMPARISON MATRIX
+        ====================================================== */}
+        <section className="py-20 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <div className="section-badge inline-flex mb-3">
+                SMART TRAVEL COMPARISON
               </div>
-              <h2 className="text-4xl md:text-5xl font-black mb-4">
-                Why We're India's{" "}
-                <span className="gradient-text">Most Trusted</span> Cab Service
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+                One-Way Cab vs Round-Trip Taxi, Bus &amp; Train
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Experience the difference with our premium features and
-                customer-first approach
+              <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto mt-3">
+                See why thousands of intercity travelers choose Chiku Cabs dedicated one-way drops to save up to 50% without compromising comfort or schedule.
               </p>
             </div>
 
-            {/* Feature Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {FEATURES.map((feature, i) => (
-                <div
-                  key={i}
-                  className="group relative bg-white rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-gray-100 overflow-hidden"
-                >
-                  {/* Background Gradient on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-xl bg-white">
+              <table className="w-full text-left border-collapse min-w-[720px]">
+                <thead>
+                  <tr className="bg-slate-900 text-white text-sm uppercase tracking-wider">
+                    <th className="p-4 md:p-5 font-semibold">Travel Parameter</th>
+                    <th className="p-4 md:p-5 font-bold text-amber-400 bg-slate-800">
+                      Chiku One-Way Cab
+                    </th>
+                    <th className="p-4 md:p-5 font-medium text-slate-300">
+                      Traditional Round-Trip Taxi
+                    </th>
+                    <th className="p-4 md:p-5 font-medium text-slate-300">
+                      State / Private Bus
+                    </th>
+                    <th className="p-4 md:p-5 font-medium text-slate-300">
+                      Indian Railways
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-sm md:text-base">
+                  <tr className="hover:bg-amber-50/40 transition-colors">
+                    <td className="p-4 md:p-5 font-bold text-slate-900 flex items-center gap-2">
+                      <FaMoneyBillWave className="text-primary text-lg" /> Billing Fairness &amp; Dead-KM
+                    </td>
+                    <td className="p-4 md:p-5 font-semibold text-emerald-700 bg-amber-50/60">
+                      Pay ONLY for One-Way Distance (Save Up to 50%)
+                    </td>
+                    <td className="p-4 md:p-5 text-slate-600">Forces 2x return journey &amp; double driver charges</td>
+                    <td className="p-4 md:p-5 text-slate-600">Fixed ticket per seat, expensive for families</td>
+                    <td className="p-4 md:p-5 text-slate-600">Dynamic surge fares in premium quotas</td>
+                  </tr>
+                  <tr className="hover:bg-amber-50/40 transition-colors">
+                    <td className="p-4 md:p-5 font-bold text-slate-900 flex items-center gap-2">
+                      <FaMapMarkerAlt className="text-primary text-lg" /> Doorstep Pickup &amp; Drop
+                    </td>
+                    <td className="p-4 md:p-5 font-semibold text-emerald-700 bg-amber-50/60">
+                      100% Home Doorstep Pickup to Exact Destination Drop
+                    </td>
+                    <td className="p-4 md:p-5 text-slate-600">Often demands extra pickup point allowance</td>
+                    <td className="p-4 md:p-5 text-slate-600">Strict bus terminal pickup; auto required to reach</td>
+                    <td className="p-4 md:p-5 text-slate-600">Crowded stations; expensive local cab needed</td>
+                  </tr>
+                  <tr className="hover:bg-amber-50/40 transition-colors">
+                    <td className="p-4 md:p-5 font-bold text-slate-900 flex items-center gap-2">
+                      <FaSuitcase className="text-primary text-lg" /> Luggage Space &amp; Handling
+                    </td>
+                    <td className="p-4 md:p-5 font-semibold text-emerald-700 bg-amber-50/60">
+                      Private Dedicated Boot Space, Zero Luggage Fee
+                    </td>
+                    <td className="p-4 md:p-5 text-slate-600">Dedicated boot space, but high overall rental cost</td>
+                    <td className="p-4 md:p-5 text-slate-600">Strict luggage limits, baggage risk in public belly</td>
+                    <td className="p-4 md:p-5 text-slate-600">Staircase climbing &amp; expensive coolie charges</td>
+                  </tr>
+                  <tr className="hover:bg-amber-50/40 transition-colors">
+                    <td className="p-4 md:p-5 font-bold text-slate-900 flex items-center gap-2">
+                      <FaRegClock className="text-primary text-lg" /> Schedule &amp; Timing Flexibility
+                    </td>
+                    <td className="p-4 md:p-5 font-semibold text-emerald-700 bg-amber-50/60">
+                      24x7 On-Demand Departure, Free Highway Meal Breaks
+                    </td>
+                    <td className="p-4 md:p-5 text-slate-600">Flexible departure, but strict calendar day minimums</td>
+                    <td className="p-4 md:p-5 text-slate-600">Rigid timetables, no unscheduled bathroom stops</td>
+                    <td className="p-4 md:p-5 text-slate-600">Fixed timings with notorious seasonal fog delays</td>
+                  </tr>
+                  <tr className="hover:bg-amber-50/40 transition-colors">
+                    <td className="p-4 md:p-5 font-bold text-slate-900 flex items-center gap-2">
+                      <FaShieldAlt className="text-primary text-lg" /> Safety, Privacy &amp; Hygiene
+                    </td>
+                    <td className="p-4 md:p-5 font-semibold text-emerald-700 bg-amber-50/60">
+                      Verified Commercial Chauffeur, Sanitized Private Car
+                    </td>
+                    <td className="p-4 md:p-5 text-slate-600">Private car, but unverified independent operators</td>
+                    <td className="p-4 md:p-5 text-slate-600">Shared cabin with zero privacy or sanitization</td>
+                    <td className="p-4 md:p-5 text-slate-600">Overcrowded coaches and compromised hygiene</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
 
-                  {/* Icon with Animation */}
-                  <div className="relative">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center mb-5 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                      <span className="text-white text-2xl">
-                        {feature.icon}
-                      </span>
-                    </div>
+        {/* =====================================================
+            AUDIT SECTION 3: ONE-WAY CORRIDORS & PICKUP HUBS
+        ====================================================== */}
+        <section className="py-20 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <div className="section-badge inline-flex mb-3">
+                HIGHWAY NETWORKS &amp; COVERAGE
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+                Pan-India One-Way Corridors &amp; Doorstep Pickup Hubs
+              </h2>
+              <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto mt-3">
+                Connecting top tier-1, tier-2 cities, commercial hubs, and remote destinations with reliable one-way intercity drops.
+              </p>
+            </div>
 
-                    {/* Decorative Circle */}
-                    <div className="absolute -top-2 -right-2 w-20 h-20 bg-primary/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {[
+                {
+                  icon: "🏙️",
+                  title: "Metropolitan Intercity",
+                  desc: "Frequent one-way drops between major industrial and business capitals with express expressway routing.",
+                  tag: "Delhi • Mumbai • Bangalore • Hyderabad",
+                },
+                {
+                  icon: "✈️",
+                  title: "Airport One-Way Transfers",
+                  desc: "Guaranteed on-time drops to international and domestic airport terminals from peripheral cities and towns.",
+                  tag: "IGI Delhi • BOM Mumbai • BLR Airport",
+                },
+                {
+                  icon: "🏔️",
+                  title: "Hill Station Gateways",
+                  desc: "Safe mountain journeys to Shimla, Manali, Nainital, Mussoorie, Ooty, and Coorg with verified hill chauffeurs.",
+                  tag: "Scenic Hill Route Specialist",
+                },
+                {
+                  icon: "🛕",
+                  title: "Pilgrimage One-Way Drops",
+                  desc: "Dedicated spiritual drops to Varanasi, Ayodhya, Prayagraj, Haridwar, Rishikesh, Mathura, and Tirupati.",
+                  tag: "Elderly & Family Friendly",
+                },
+              ].map((card, cIdx) => (
+                <div key={cIdx} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-md hover:shadow-xl transition-all">
+                  <div className="text-4xl mb-4">{card.icon}</div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">{card.title}</h3>
+                  <p className="text-sm text-slate-600 mb-4 leading-relaxed">{card.desc}</p>
+                  <div className="bg-amber-50 rounded-lg p-2.5 text-xs font-semibold text-amber-900 border border-amber-200/60">
+                    📍 {card.tag}
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed text-sm">
-                    {feature.desc}
-                  </p>
-
-                  {/* Hover Underline Effect */}
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-primary/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 </div>
               ))}
             </div>
 
-            {/* Bottom CTA */}
-            <div className="text-center mt-12">
-              <div className="inline-flex items-center gap-4 bg-white px-6 py-3 rounded-full shadow-md">
-                <div className="flex -space-x-2">
-                  {[...Array(4)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs border-2 border-white"
-                    >
-                      {String.fromCharCode(65 + i)}
-                    </div>
-                  ))}
+            {/* Doorstep Pickup Hubs */}
+            <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-lg">
+              <div className="flex items-center gap-3 mb-4">
+                <IoLocationSharp className="text-primary text-2xl" />
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900">
+                  Doorstep Pickup Across Residential &amp; Transit Hubs
+                </h3>
+              </div>
+              <p className="text-sm md:text-base text-slate-600 leading-relaxed mb-6">
+                No need to haul your baggage across the city. Our chauffeur arrives directly at your specified residential colony, society gate, business park, or transit terminal:
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                {[
+                  "Residential Townships & Apartment Gates",
+                  "Airport Departure & Arrival Curbs",
+                  "Railway Stations & Bus Transit Terminals",
+                  "Corporate Tech Parks & SEZ Campuses",
+                  "Hotels, Guest Houses & Resorts",
+                  "University & College Campuses",
+                  "Suburban Highway Toll Interchanges",
+                  "Hospitals & Medical Care Centers",
+                ].map((hub, hIdx) => (
+                  <span
+                    key={hIdx}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-100 hover:bg-amber-100 text-slate-700 hover:text-amber-900 text-xs md:text-sm font-semibold rounded-full border border-slate-200 transition-colors"
+                  >
+                    <FaCheckCircle className="text-emerald-500 text-xs" /> {hub}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            AUDIT SECTION 4: INCLUSIONS, EXCLUSIONS & BOOKING TERMS
+        ====================================================== */}
+        <section className="py-20 px-4 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <div className="section-badge inline-flex mb-3">
+                TRANSPARENCY &amp; INTEGRITY
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+                One-Way Inclusions, Exclusions &amp; Booking Guidelines
+              </h2>
+              <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto mt-3">
+                Clear policies with zero hidden surprises. What you see is what you pay.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              {/* Inclusions */}
+              <div className="bg-emerald-50/50 rounded-2xl p-7 border border-emerald-200 shadow-md">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-xl">
+                    ✓
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900">What is Included</h3>
                 </div>
-                <span className="text-sm font-medium text-muted-foreground">
-                  Join <span className="text-primary font-bold">50,000+</span>{" "}
-                  happy customers
-                </span>
-                <FaArrowRight className="text-primary text-sm" />
+                <ul className="space-y-3.5 text-slate-700 text-sm md:text-base">
+                  <li className="flex items-start gap-2.5">
+                    <FaCheckCircle className="text-primary text-base flex-shrink-0 mt-1" />
+                    <span><strong>Dedicated One-Way Vehicle &amp; Fuel:</strong> 100% private sanitized AC car reserved exclusively for your route.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <FaCheckCircle className="text-primary text-base flex-shrink-0 mt-1" />
+                    <span><strong>Commercial Yellow-Badge Driver:</strong> Background-verified, polite chauffeur experienced on national and state expressways.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <FaCheckCircle className="text-primary text-base flex-shrink-0 mt-1" />
+                    <span><strong>Doorstep Pickup &amp; Destination Drop:</strong> Exact pickup from your home gate to your destination address with zero mid-route transfer.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <FaCheckCircle className="text-primary text-base flex-shrink-0 mt-1" />
+                    <span><strong>Flexible Highway Breaks:</strong> Stop at clean highway dhabas, food plazas, or restroom facilities along the highway at your convenience.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <FaCheckCircle className="text-primary text-base flex-shrink-0 mt-1" />
+                    <span><strong>GST Tax Invoice &amp; Live Tracking:</strong> Transparent digital GST billing and continuous 24x7 control room GPS monitoring.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Exclusions & Guidelines */}
+              <div className="bg-amber-50/40 rounded-2xl p-7 border border-amber-200 shadow-md">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-xl">
+                    ℹ️
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900">What is Excluded &amp; Payable at Actuals</h3>
+                </div>
+                <ul className="space-y-3.5 text-slate-700 text-sm md:text-base">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                    <span><strong>Fastag Highway Tolls &amp; State Entry Permits:</strong> Electronic toll plaza charges and inter-state road taxes billed at actuals (unless booked under an all-inclusive package).</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                    <span><strong>Airport / Railway Parking Slips:</strong> Official parking fees at airport pick/drop lanes paid at actual government receipts.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                    <span><strong>No Return Journey Charges:</strong> You will never be billed for the driver's return trip or dead kilometer run back.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                    <span><strong>100% Free Cancellation:</strong> Cancel without any deduction up to 24 hours before your scheduled pickup time.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                    <span><strong>Night Travel Allowance:</strong> Standard night driver allowance (₹250–₹300) applies only if driving between 10:00 PM and 6:00 AM.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Quick Action Banner */}
+            <div className="bg-gradient-to-r from-slate-900 via-gray-900 to-slate-900 rounded-2xl p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+              <div>
+                <h4 className="text-2xl md:text-3xl font-black mb-2 text-white">
+                  Ready to Book Your One-Way Cab?
+                </h4>
+                <p className="text-slate-300 text-sm md:text-base max-w-xl">
+                  Get instant confirmation and driver assignment within minutes. Contact our 24/7 one-way dispatch desk.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                    `Hello Chiku Cabs, I need to book a one-way cab. Please share the best fare.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 py-3.5 px-6 rounded-xl bg-primary hover:bg-emerald-700 text-white font-bold text-sm md:text-base transition-all shadow-lg"
+                >
+                  <FaWhatsapp className="text-xl" /> WhatsApp Booking
+                </a>
+                <a
+                  href={`tel:${PHONE_NUMBER}`}
+                  className="inline-flex items-center gap-2 py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm md:text-base transition-all shadow-lg"
+                >
+                  Call +91-8448445504
+                </a>
               </div>
             </div>
           </div>

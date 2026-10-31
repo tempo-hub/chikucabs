@@ -38,6 +38,8 @@ import {
   FaGem,
   FaMicrochip,
   FaRegLightbulb,
+  FaWhatsapp,
+  FaShieldAlt,
 } from "react-icons/fa";
 import { FaLocationDot, FaRegClock } from "react-icons/fa6";
 import { TbTargetArrow } from "react-icons/tb";
@@ -502,6 +504,70 @@ export default function TempoTravellerTemplate({
       "₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}",
   };
 
+  const TEMPO_FAQS = useMemo(() => [
+    {
+      q: `What seating capacities are available for Tempo Traveller rental in ${city !== "India" ? city : "India"}?`,
+      a: `Chiku Cabs offers 9, 10, 12, 15, 16, 17, 18, 20, and 26-seater luxury and maharaja tempo travellers in ${city !== "India" ? city : "all major Indian cities"}. Configurations include 1x1 Maharaja pushback captain seats, 2x1 executive pushbacks, and 2x2 spacious group seating—all equipped with individual AC vents and high boot space.`,
+    },
+    {
+      q: `What is the starting per-kilometer fare for Tempo Traveller hire in ${city !== "India" ? city : "India"}?`,
+      a: `Tempo Traveller rentals start from ₹20/km for 9-seaters, ₹22/km for 12-seaters, ₹25/km for 16-seaters, and ₹29/km for 20-seaters. Outstation journeys have a standard 250 km or 300 km daily billing minimum. Local 8h/80km packages start from ₹4,500.`,
+    },
+    {
+      q: `Are toll taxes, interstate permits, and driver charges included in the fare?`,
+      a: `Our quotation clearly itemizes all costs. The base fare covers vehicle rental, fuel, and chauffeur services. State entry border permits, highway toll plazas, and parking slips are charged at actual government receipts. Night driver allowance (typically ₹400–₹500) applies only if travel extends beyond 10:00 PM.`,
+    },
+    {
+      q: `What luxury amenities and entertainment systems are equipped in the vehicle?`,
+      a: `Every Chiku Cabs tempo traveller is equipped with powerful dual-blower AC, ergonomic reclining pushback seats, individual USB mobile charging points, LED television with multimedia USB/Bluetooth audio, reading lights, ambient ceiling lighting, and clean neck rests for long journeys.`,
+    },
+    {
+      q: `How much luggage capacity is available for 9, 12, 16, and 20 seater Tempo Travellers?`,
+      a: `Our tempo travellers feature dedicated rear luggage compartments capable of carrying 8 to 25+ trolley suitcases depending on vehicle size. For extra gear or pilgrimage baggage, secure heavy-duty rooftop luggage carriers with waterproof tarpaulin protection are provided.`,
+    },
+    {
+      q: `Can we book a Tempo Traveller for outstation round-trips and multi-day hill station tours?`,
+      a: `Yes! Chiku Cabs specializes in outstation family tours, Char Dham pilgrimages, Rajasthan heritage trails, Himachal and Uttarakhand hill station excursions, and coastal trips. Our commercial-badge drivers have extensive mountain and highway experience.`,
+    },
+    {
+      q: `Does the air conditioning work while driving in mountain ghats and hilly routes?`,
+      a: `Yes, all our tempo travellers have heavy-duty engine and dual AC compressors. However, on steep uphill mountain hairpin bends, drivers may briefly moderate AC cooling to maintain optimal vehicle power and climbing safety, as per standard automotive protocols.`,
+    },
+    {
+      q: `Can I hire a Tempo Traveller for wedding guest transfers and corporate offsites in ${city !== "India" ? city : "India"}?`,
+      a: `Yes! We provide multi-vehicle fleets for wedding processions (baraat transfers), airport/railway station bulk arrivals, and corporate employee offsite conferences. We can coordinate multi-tempo logistics with designated on-ground supervisors.`,
+    },
+    {
+      q: `What safety protocols and emergency roadside support do you provide?`,
+      a: `All vehicles undergo rigorous 40-point fitness inspections before dispatch, including brake tests, tire health, and sanitization. Each tempo is equipped with GPS live tracking, a commercial speed governor (80 km/h compliance), a certified fire extinguisher, and a comprehensive first aid medical kit.`,
+    },
+    {
+      q: `What is the cancellation, modification, and refund policy?`,
+      a: `We provide complete flexibility with 100% free cancellation if canceled up to 24 hours prior to scheduled departure. Advance booking deposits are refunded instantly to your original payment mode without hidden penalty deductions.`,
+    },
+    {
+      q: `How far in advance should I reserve a Tempo Traveller during peak holiday seasons?`,
+      a: `For peak holiday seasons, summer vacations, wedding dates, and festive long weekends, we recommend reserving your tempo traveller 5 to 7 days in advance to guarantee your preferred seating layout and newest vehicle models.`,
+    },
+    {
+      q: `How do I confirm my booking and verify vehicle photos/videos before the trip?`,
+      a: `You can reserve instantly by calling +91-9818022327 or messaging our 24/7 WhatsApp desk at 916280820037. Our reservations team will share authentic photos and video walkarounds of the exact tempo traveller assigned to your journey along with driver credentials.`,
+    },
+  ], [city]);
+
+  const faqSchema = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: TEMPO_FAQS.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  }), [TEMPO_FAQS]);
+
   // Handle get estimate
   const handleGetEstimate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -654,6 +720,12 @@ Please share the best fare.`;
         id="organization-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+      />
+
+      <Script
+        id="faq-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <div className="bg-background min-h-screen">
@@ -1833,6 +1905,319 @@ Please share the best fare.`;
           </div>
         </section>
 
+        {/* =====================================================
+            AUDIT SECTION 1: SMART TRAVEL COMPARISON MATRIX
+        ====================================================== */}
+        <section className="py-20 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <div className="section-badge inline-flex mb-3">
+                SMART GROUP TRAVEL COMPARISON
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+                Tempo Traveller vs Multiple Cabs, Bus &amp; Train
+              </h2>
+              <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto mt-3">
+                See why hiring a single verified Chiku Cabs Tempo Traveller saves up to 40% in cost while keeping your entire family or team united throughout the journey.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-xl bg-white">
+              <table className="w-full text-left border-collapse min-w-[720px]">
+                <thead>
+                  <tr className="bg-slate-900 text-white text-sm uppercase tracking-wider">
+                    <th className="p-4 md:p-5 font-semibold">Travel Parameter</th>
+                    <th className="p-4 md:p-5 font-bold text-amber-400 bg-slate-800">
+                      Chiku Tempo Traveller
+                    </th>
+                    <th className="p-4 md:p-5 font-medium text-slate-300">
+                      Multiple Small Cabs
+                    </th>
+                    <th className="p-4 md:p-5 font-medium text-slate-300">
+                      Private / State Bus
+                    </th>
+                    <th className="p-4 md:p-5 font-medium text-slate-300">
+                      Train Tickets
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-sm md:text-base">
+                  <tr className="hover:bg-amber-50/40 transition-colors">
+                    <td className="p-4 md:p-5 font-bold text-slate-900 flex items-center gap-2">
+                      <FaUsers className="text-primary text-lg" /> Group Bonding &amp; Privacy
+                    </td>
+                    <td className="p-4 md:p-5 font-semibold text-emerald-700 bg-amber-50/60">
+                      100% Private, Entire Group Travels Together
+                    </td>
+                    <td className="p-4 md:p-5 text-slate-600">Split into 2-3 separate cars</td>
+                    <td className="p-4 md:p-5 text-slate-600">Public crowd, zero privacy</td>
+                    <td className="p-4 md:p-5 text-slate-600">Scattered berths &amp; coaches</td>
+                  </tr>
+                  <tr className="hover:bg-amber-50/40 transition-colors">
+                    <td className="p-4 md:p-5 font-bold text-slate-900 flex items-center gap-2">
+                      <FaMapMarkerAlt className="text-primary text-lg" /> Doorstep Pickup &amp; Stops
+                    </td>
+                    <td className="p-4 md:p-5 font-semibold text-emerald-700 bg-amber-50/60">
+                      Single Doorstep Pickup, Unlimited Sightseeing Stops
+                    </td>
+                    <td className="p-4 md:p-5 text-slate-600">Multiple coordination headaches</td>
+                    <td className="p-4 md:p-5 text-slate-600">Fixed bus stops, no detour flex</td>
+                    <td className="p-4 md:p-5 text-slate-600">Station only, extra taxi needed</td>
+                  </tr>
+                  <tr className="hover:bg-amber-50/40 transition-colors">
+                    <td className="p-4 md:p-5 font-bold text-slate-900 flex items-center gap-2">
+                      <FaSuitcase className="text-primary text-lg" /> Luggage &amp; Rooftop Carrier
+                    </td>
+                    <td className="p-4 md:p-5 font-semibold text-emerald-700 bg-amber-50/60">
+                      Deep Boot + Waterproof Rooftop Luggage Carrier
+                    </td>
+                    <td className="p-4 md:p-5 text-slate-600">Boot space crammed by CNG cylinders</td>
+                    <td className="p-4 md:p-5 text-slate-600">Baggage lost risk in shared hold</td>
+                    <td className="p-4 md:p-5 text-slate-600">Difficult luggage carrying &amp; coolie fees</td>
+                  </tr>
+                  <tr className="hover:bg-amber-50/40 transition-colors">
+                    <td className="p-4 md:p-5 font-bold text-slate-900 flex items-center gap-2">
+                      <FaMoneyBillWave className="text-primary text-lg" /> Cost per Person
+                    </td>
+                    <td className="p-4 md:p-5 font-semibold text-emerald-700 bg-amber-50/60">
+                      Most Economical (From ₹300-₹500 / person)
+                    </td>
+                    <td className="p-4 md:p-5 text-slate-600">3x toll, 3x parking &amp; fuel costs</td>
+                    <td className="p-4 md:p-5 text-slate-600">Individual high seasonal ticket pricing</td>
+                    <td className="p-4 md:p-5 text-slate-600">Dynamic surge tatkal fares</td>
+                  </tr>
+                  <tr className="hover:bg-amber-50/40 transition-colors">
+                    <td className="p-4 md:p-5 font-bold text-slate-900 flex items-center gap-2">
+                      <FaSnowflake className="text-primary text-lg" /> AC &amp; Reclining Comfort
+                    </td>
+                    <td className="p-4 md:p-5 font-semibold text-emerald-700 bg-amber-50/60">
+                      Individual AC Vents + Pushback Reclining Seats
+                    </td>
+                    <td className="p-4 md:p-5 text-slate-600">Standard sedan cramped legroom</td>
+                    <td className="p-4 md:p-5 text-slate-600">Uneven central AC &amp; fixed seats</td>
+                    <td className="p-4 md:p-5 text-slate-600">No pushback reclining in chair cars</td>
+                  </tr>
+                  <tr className="hover:bg-amber-50/40 transition-colors">
+                    <td className="p-4 md:p-5 font-bold text-slate-900 flex items-center gap-2">
+                      <FaShieldAlt className="text-primary text-lg" /> Chauffeur &amp; Safety
+                    </td>
+                    <td className="p-4 md:p-5 font-semibold text-emerald-700 bg-amber-50/60">
+                      Verified Heavy-Commercial Badge Highway Chauffeur
+                    </td>
+                    <td className="p-4 md:p-5 text-slate-600">Varying driver skills &amp; convoy lag</td>
+                    <td className="p-4 md:p-5 text-slate-600">Unregulated speed &amp; rash driving</td>
+                    <td className="p-4 md:p-5 text-slate-600">Safe, but frequent waitlist cancellations</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            AUDIT SECTION 3: CURATED GROUP ROUTES & PICKUP HUBS
+        ====================================================== */}
+        <section className="py-20 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <div className="section-badge inline-flex mb-3">
+                POPULAR USE CASES &amp; COVERAGE
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+                Curated Group Travel Routes &amp; Doorstep Pickup Hubs
+              </h2>
+              <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto mt-3">
+                Seamless group transportation across {city !== "India" ? city : "all major Indian cities"} for family holidays, corporate events, weddings, and pilgrimage yatras.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {[
+                {
+                  icon: "🏔️",
+                  title: "Outstation & Hill Stations",
+                  desc: "Scenic family vacations to Manali, Shimla, Rishikesh, Nainital, Ooty, Munnar & Mahabaleshwar with hill-expert chauffeurs.",
+                  benefits: "Mountain driving specialist, roof luggage rack with rain cover.",
+                },
+                {
+                  icon: "💼",
+                  title: "Corporate Team Offsites",
+                  desc: "Hassle-free group commute for leadership conclaves, factory visits, tech summits, and annual employee retreats.",
+                  benefits: "GST invoice with SAC code, onboard WiFi hotspot & USB ports.",
+                },
+                {
+                  icon: "💒",
+                  title: "Weddings & Baraat Transport",
+                  desc: "Coordinated luxury convoy for guest pickups from airports, sangeet venues, hotel check-ins, and baraat processions.",
+                  benefits: "Uniformed chauffeurs, decorated tempo option, on-time fleet coordination.",
+                },
+                {
+                  icon: "🛕",
+                  title: "Pilgrimage & Sacred Yatras",
+                  desc: "Comfortable spiritual circuits for elders: Char Dham, Varanasi-Ayodhya, Tirupati, Shirdi-Shani Shingnapur, and Golden Temple.",
+                  benefits: "Low-step boarding assistance, generous leg space, elder-friendly stops.",
+                },
+              ].map((card, cIdx) => (
+                <div key={cIdx} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-md hover:shadow-xl transition-all">
+                  <div className="text-4xl mb-4">{card.icon}</div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">{card.title}</h3>
+                  <p className="text-sm text-slate-600 mb-4 leading-relaxed">{card.desc}</p>
+                  <div className="bg-amber-50 rounded-lg p-3 text-xs font-semibold text-amber-900 border border-amber-200/60">
+                    ⭐ {card.benefits}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Doorstep Pickup Hubs */}
+            <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-lg">
+              <div className="flex items-center gap-3 mb-4">
+                <IoLocationSharp className="text-primary text-2xl" />
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900">
+                  Doorstep Tempo Traveller Pickup Across {city !== "India" ? city : "India"}
+                </h3>
+              </div>
+              <p className="text-sm md:text-base text-slate-600 leading-relaxed mb-6">
+                Our chauffeurs arrive directly at your society gate, hotel lobby, corporate campus, or airport terminal 15 minutes before scheduled departure. We service all primary transport hubs, railway junctions, and suburban neighborhoods:
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                {[
+                  "International & Domestic Airport Terminals",
+                  "Central Railway Stations & Intercity Bus Terminals",
+                  "Major Tech Parks & Special Economic Zones",
+                  "Gated Residential Townships & Societies",
+                  "Destination Wedding Resorts & Luxury Banquet Halls",
+                  "Heritage Sites & Outstation Highway Junctions",
+                  "Suburban Commercial Hubs & Metro Junctions",
+                  "Industrial Corridors & Corporate Training Campuses",
+                ].map((hub, hIdx) => (
+                  <span
+                    key={hIdx}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-100 hover:bg-amber-100 text-slate-700 hover:text-amber-900 text-xs md:text-sm font-semibold rounded-full border border-slate-200 transition-colors"
+                  >
+                    <FaCheckCircle className="text-emerald-500 text-xs" /> {hub}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            AUDIT SECTION 4: INCLUSIONS, EXCLUSIONS & RENTAL TERMS
+        ====================================================== */}
+        <section className="py-20 px-4 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <div className="section-badge inline-flex mb-3">
+                TRANSPARENCY &amp; TRUST
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+                Tempo Traveller Inclusions, Exclusions &amp; Guidelines
+              </h2>
+              <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto mt-3">
+                100% crystal-clear terms with no hidden add-ons so your group can travel with complete peace of mind.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              {/* Inclusions */}
+              <div className="bg-emerald-50/50 rounded-2xl p-7 border border-emerald-200 shadow-md">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-xl">
+                    ✓
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900">What is Included</h3>
+                </div>
+                <ul className="space-y-3.5 text-slate-700 text-sm md:text-base">
+                  <li className="flex items-start gap-2.5">
+                    <FaCheckCircle className="text-primary text-base flex-shrink-0 mt-1" />
+                    <span><strong>Dedicated Vehicle &amp; Fuel:</strong> Fully dedicated clean AC tempo traveller with all fuel expenses included for booked distance.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <FaCheckCircle className="text-primary text-base flex-shrink-0 mt-1" />
+                    <span><strong>Licensed Commercial Chauffeur:</strong> Heavy-passenger badge driver experienced with highway safety and mountain ghat navigation.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <FaCheckCircle className="text-primary text-base flex-shrink-0 mt-1" />
+                    <span><strong>Sanitization &amp; Safety Pack:</strong> Pre-trip deep sanitization, first aid kit, commercial speed governors (80 km/h), and fire extinguisher.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <FaCheckCircle className="text-primary text-base flex-shrink-0 mt-1" />
+                    <span><strong>Complimentary Luggage Carrier:</strong> Heavy-duty rooftop carrier with waterproof tarpaulin cover for bulky group bags.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <FaCheckCircle className="text-primary text-base flex-shrink-0 mt-1" />
+                    <span><strong>GST Invoice &amp; 24x7 Control Room:</strong> Official corporate tax invoice with live GPS tracking support throughout the trip.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Exclusions & Guidelines */}
+              <div className="bg-amber-50/40 rounded-2xl p-7 border border-amber-200 shadow-md">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-xl">
+                    ℹ️
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900">What is Excluded &amp; Payable at Actuals</h3>
+                </div>
+                <ul className="space-y-3.5 text-slate-700 text-sm md:text-base">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                    <span><strong>Highway Tolls &amp; State Border Tax:</strong> Inter-state commercial vehicle entry permits and Fastag toll plazas payable directly as per actual receipts.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                    <span><strong>Airport &amp; Monument Parking Slips:</strong> Parking charges at tourist monuments, hotels, or airports paid at actuals.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                    <span><strong>Driver Night Allowance:</strong> Nominal charge (₹400–₹500/night) applies only if driving occurs between 10:00 PM and 6:00 AM.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                    <span><strong>Free Cancellation:</strong> 100% refundable advance deposit upon cancellation 24 hours prior to journey pickup time.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-amber-600 font-bold flex-shrink-0 mt-0.5">•</span>
+                    <span><strong>Minimum Outstation Run:</strong> Standard 250 km or 300 km daily calendar-day average billing applies for outstation multi-day bookings.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Quick Action CTA Banner */}
+            <div className="bg-gradient-to-r from-slate-900 via-gray-900 to-slate-900 rounded-2xl p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+              <div>
+                <h4 className="text-2xl md:text-3xl font-black mb-2 text-white">
+                  Need a Custom Tempo Quote for Your Group?
+                </h4>
+                <p className="text-slate-300 text-sm md:text-base max-w-xl">
+                  Talk to our senior fleet manager for customized hill station tours, wedding packages, or corporate bulk reservations.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                    `Hello Chiku Cabs, I need an immediate tempo traveller quotation for ${city !== "India" ? city : "India"}.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 py-3.5 px-6 rounded-xl bg-primary hover:bg-emerald-700 text-white font-bold text-sm md:text-base transition-all shadow-lg"
+                >
+                  <FaWhatsapp className="text-xl" /> WhatsApp Booking
+                </a>
+                <a
+                  href={`tel:${PHONE_NUMBER}`}
+                  className="inline-flex items-center gap-2 py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm md:text-base transition-all shadow-lg"
+                >
+                  Call +91-8448445504
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Testimonials */}
         <section className="py-12 px-4 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
@@ -1961,52 +2346,7 @@ Please share the best fare.`;
       </h2>
     </div>
 
-    {[
-      {
-        q: `What seating options are available for Tempo Traveller on rent in ${city}?`,
-        a: `Chiku Cabs offers Tempo Traveller options in 9, 10, 12, 15, 16, 17, 18, 20 and 26-seater configurations, subject to availability. Choose a vehicle according to your group size, luggage requirements and travel plans.`,
-      },
-      {
-        q: `What is the starting price of a Tempo Traveller in ${city}?`,
-        a: `Tempo Traveller rental rates start from ₹20 per kilometre, depending on the vehicle, seating capacity, route and booking terms. Additional charges may apply. Contact Chiku Cabs with your itinerary for an accurate fare quote.`,
-      },
-      {
-        q: `How do I choose the right Tempo Traveller seating capacity?`,
-        a: `Choose a 9 or 10-seater for smaller groups, a 12, 15, 16 or 17-seater for medium-sized groups, and an 18, 20 or 26-seater for larger groups. The best option depends on passenger count, luggage and vehicle availability.`,
-      },
-      {
-        q: `Can I book a Tempo Traveller for an outstation trip from ${city}?`,
-        a: `Yes, you can enquire about Tempo Traveller bookings from ${city} for outstation journeys, family holidays, group tours and intercity travel. Share your destination and travel dates to receive a suitable vehicle option and fare quote.`,
-      },
-      {
-        q: `Can I hire a Tempo Traveller for local sightseeing in ${city}?`,
-        a: `Yes, you can book a Tempo Traveller for local sightseeing in ${city}, family outings, corporate trips, events and group excursions. Share your planned stops and travel duration to get a suitable booking option.`,
-      },
-      {
-        q: `Are Tempo Travellers available for weddings and corporate events in ${city}?`,
-        a: `Tempo Travellers can be suitable for wedding guest transfers, corporate outings, conferences and group events in ${city}. Seating capacity and availability depend on your travel date and requirements.`,
-      },
-      {
-        q: `What amenities are available in a Tempo Traveller?`,
-        a: `Depending on the selected vehicle, amenities may include air conditioning, comfortable seating, luggage space and a music system. Confirm the specific amenities with the booking team before making your reservation.`,
-      },
-      {
-        q: `Does Tempo Traveller rental in ${city} include a driver?`,
-        a: `Driver arrangements and applicable charges are confirmed during booking. Contact Chiku Cabs with your route and travel schedule to clarify the driver service, allowances and other applicable costs.`,
-      },
-      {
-        q: `How is the Tempo Traveller fare calculated?`,
-        a: `The fare depends on the selected seating capacity, per-kilometre rate, trip distance, duration, route and applicable additional charges. Request a detailed quote before confirming your booking.`,
-      },
-      {
-        q: `Can I book a one-way Tempo Traveller from ${city}?`,
-        a: `You can enquire about one-way Tempo Traveller trips from ${city}. Availability and pricing depend on the destination, vehicle type, travel date and booking terms. Share your itinerary to confirm the available options.`,
-      },
-      {
-        q: `How can I book a Tempo Traveller in ${city}?`,
-        a: `Contact Chiku Cabs at 9818022327 with your pickup location, destination, travel date and passenger count. The team can help you check vehicle availability and confirm the applicable fare.`,
-      },
-    ].map((faq, i) => (
+    {TEMPO_FAQS.map((faq, i) => (
       <details key={i} className="faq-item">
         <summary>
           {faq.q}

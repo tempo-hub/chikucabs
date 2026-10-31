@@ -1,4 +1,5 @@
 "use client";
+import Head from "next/head";
 import { useState } from "react";
 
 interface FAQProps {
@@ -90,37 +91,56 @@ export default function FAQ({ vehicle, city }: FAQProps) {
     },
   ];
 
-//   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
 
   return (
-    <section>
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-10">
-           <div
-            className="section-badge mx-auto"
-            style={{ display: "inline-flex" }}
-          >
-            FAQ
+    <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      </Head>
+      <section>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <div
+              className="section-badge mx-auto"
+              style={{ display: "inline-flex" }}
+            >
+              FAQ
+            </div>
+
+            <h2 className="section-title">
+              {vehicle} Rental Questions {city !== "India" ? `for ${city}` : ""}
+            </h2>
           </div>
 
-          <h2 className="section-title">
-            {vehicle} Rental Questions {city !== "India" ? `for ${city}` : ""}
-          </h2>
+          {faqs.map((faq, i) => (
+            <details key={i} className="faq-item">
+              <summary>
+                {faq.question}
+                <span className="faq-chevron">▼</span>
+              </summary>
+
+              <div className="faq-answer">
+                {faq.answer}
+              </div>
+            </details>
+          ))}
         </div>
-
-        {faqs.map((faq, i) => (
-          <details key={i} className="faq-item">
-            <summary>
-              {faq.question}
-              <span className="faq-chevron">▼</span>
-            </summary>
-
-            <div className="faq-answer">
-              {faq.answer}
-            </div>
-          </details>
-        ))}
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
