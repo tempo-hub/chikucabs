@@ -210,6 +210,60 @@ Please share booking confirmation and driver assignment.`;
     window.open(buildWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
   };
 
+  const innovaRouteFaqs = useMemo(
+    () => [
+      {
+        q: `What is the Innova and Innova Crysta cab fare from ${startCity} to ${endCity}?`,
+        a: `Innova taxi rentals start at ₹14/km for standard Innova and ₹17/km for Toyota Innova Crysta. Total fare from ${startCity} to ${endCity} starts from ₹${startingFare} (standard) and ₹${crystaFare} (Crysta) for ${distance} km, including vehicle rental, fuel expenses, and driver allowances with zero hidden charges.`,
+      },
+      {
+        q: `What seating configurations are available in Innova Crysta rentals?`,
+        a: `We offer both 6+1 (luxurious middle-row captain seats with dual armrests) and 7+1 (comfortable bench seating for larger families) configurations. All variants include individual AC cooling vents across all three rows and ergonomic lumbar support.`,
+      },
+      {
+        q: `What is the driving distance and travel duration between ${startCity} and ${endCity}?`,
+        a: `The highway distance between ${startCity} and ${endCity} is approximately ${distance} km, which typically takes around ${travelHours} hours via major national expressways. Our chauffeurs plan the best routes to bypass city traffic bottlenecks.`,
+      },
+      {
+        q: `How much luggage can fit in an Innova Crysta cab?`,
+        a: `With 6 to 7 passengers, the rear boot accommodates 3 to 4 medium trolley bags plus duffels. If traveling with 4 to 5 passengers, the third-row 50:50 split seats can be folded to carry 6 to 8 large suitcases easily. Overhead carrier options are also available on request.`,
+      },
+      {
+        q: `Are tolls, state entry taxes, and parking fees included in the fare?`,
+        a: `Our fare quote clearly distinguishes between base trip rates and en-route statutory charges. FASTag toll charges, inter-state border entry road permits, and destination parking fees can be included in an all-inclusive package or billed transparently as per actual highway receipts.`,
+      },
+      {
+        q: `Can we take multiple sightseeing breaks or highway food stops during the trip?`,
+        a: `Yes, absolutely! When you rent an Innova taxi from ${startCity} to ${endCity}, you have total flexibility. You can halt at clean highway restaurants, scenic viewpoints, or local temples along the route without any extra driver objection.`,
+      },
+      {
+        q: `Are Chiku Cabs Innova drivers experienced and background verified?`,
+        a: `Every chauffeur assigned to our Innova outstation fleet is thoroughly background-verified, commercially licensed, and carries at least 5+ years of highway driving expertise with defensive driving certifications.`,
+      },
+      {
+        q: `Is Innova Crysta available for round-trip outstation tours and multi-day packages?`,
+        a: `Yes, we provide round-trip packages from ${startCity} to ${endCity} and back, as well as extended multi-day holiday circuits. Minimum daily running average is 250 km, offering substantial savings compared to daily point-to-point bookings.`,
+      },
+      {
+        q: `Do you provide Innova Crysta pickups from the airport or railway station in ${startCity}?`,
+        a: `Yes, we provide dedicated doorstep pickups from your residential address, airport terminal, or railway station in ${startCity} with flight tracking and 45 minutes complimentary wait time for delayed flights.`,
+      },
+      {
+        q: `Can I hire an Innova Crysta for wedding guest transport or corporate delegates in ${startCity}?`,
+        a: `Yes, we offer premium spotless Innova Crysta fleets for weddings, corporate events, and VIP delegations in ${startCity} with uniformed drivers, customized welcome signboards, and route fleet coordination.`,
+      },
+      {
+        q: `What is the booking advance and cancellation policy for Innova cab rentals?`,
+        a: `You can confirm your Innova booking with a minimal 15-20% advance token. We offer free cancellation and 100% full advance refund up to 24 hours prior to scheduled departure time.`,
+      },
+      {
+        q: `How do I book an Innova cab from ${startCity} to ${endCity}?`,
+        a: `You can book directly on chikucabs.com, call our 24/7 customer booking desk at 844-844-5504, or WhatsApp our dispatch team at 916280820037 for instant confirmation and driver assignment details.`,
+      },
+    ],
+    [startCity, endCity, startingFare, crystaFare, distance, travelHours],
+  );
+
   // Structured Data (JSON-LD)
   const structuredData = useMemo(() => {
     const canonicalUrl = `${SITE_URL}/${startCity.toLowerCase()}/${startCity.toLowerCase()}-to-${endCity.toLowerCase()}-innova-crysta`;
@@ -267,39 +321,21 @@ Please share booking confirmation and driver assignment.`;
     const faqSchema = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: `What is the Innova Crysta fare from ${startCity} to ${endCity}?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `The Innova Crysta fare from ${startCity} to ${endCity} starts from ₹${crystaFare} for ${distance} km at ₹17/km. Standard Innova starts at ₹${startingFare} (₹14/km). Base fuel, driver allowance, and GST are included.`,
-          },
+      mainEntity: innovaRouteFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
         },
-        {
-          "@type": "Question",
-          name: `How many passengers can travel comfortably in an Innova Crysta?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `Our Innova Crysta models comfortably seat 6 to 7 passengers with captain seat recliners, dual AC vents, and massive trunk space for 4 to 5 large suitcases.`,
-          },
-        },
-        {
-          "@type": "Question",
-          name: `What is the road distance and travel time from ${startCity} to ${endCity}?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `The road distance between ${startCity} and ${endCity} is approximately ${distance} km, which typically takes around ${travelHours} hours by Innova Crysta via the national highway corridor.`,
-          },
-        },
-      ],
+      })),
     };
 
     return JSON.stringify({
       "@context": "https://schema.org",
       "@graph": [breadcrumbs, taxiService, faqSchema],
     });
-  }, [startCity, endCity, distance, startingFare, crystaFare, travelHours]);
+  }, [startCity, endCity, distance, startingFare, crystaFare, travelHours, innovaRouteFaqs]);
 
   return (
     <>
@@ -1262,48 +1298,7 @@ Please share booking confirmation and driver assignment.`;
               </div>
               <h2 className="section-title">Innova Booking Questions</h2>
             </div>
-            {[
-              {
-                q: `How much does an Innova Crysta on rent cost from ${startCity} to ${endCity}?`,
-                a: `Innova rentals normally start from ₹14/km, while the premium Innova Crysta on rent is ₹17/km. Total fare for your Innova taxi service depends on distance and trip type. Call 9818022327 for a transparent quote.`,
-              },
-              {
-                q: "Which model should I choose for my luxury cab booking?",
-                a: "For budget family travel, the standard Innova is great. For premium luxury cab booking with captain seats and extra legroom, we highly recommend the Innova Crysta on rent.",
-              },
-              {
-                q: "How many passengers can fit during an Innova cab booking?",
-                a: "All our models for Innova cab booking seat 7+1 (7 passengers + 1 driver) comfortably. The Crysta is particularly famous for its spacious cabin and premium upholstery.",
-              },
-              {
-                q: "Can I stop at multiple locations during my outstation taxi service?",
-                a: "Yes! Our Innova taxi service is highly flexible. You can plan your itinerary with multiple stops for sightseeing or meals along the way from ${startCity} to ${endCity}.",
-              },
-              {
-                q: `What makes Chiku Cabs the best for Innova Crysta on rent in ${startCity}?`,
-                a: `We provide immaculately clean cars, highly professional chauffeurs, and 100% transparent luxury cab booking prices with zero hidden costs.`,
-              },
-              {
-                q: `Do you provide Innova cab booking for airport transfer to ${endCity}?`,
-                a: `Absolutely. We offer specialized airport taxi services with Innova Crysta on rent for direct outstation drops to ${endCity} at fixed, affordable rates.`,
-              },
-              {
-                q: `Are the drivers for Innova taxi service verified?`,
-                a: `Yes, all our drivers for luxury cab booking and Innova taxi service are police-verified and have extensive experience in long-distance highway driving.`,
-              },
-              {
-                q: `Is the Innova Crysta on rent suitable for a group of 6 with luggage?`,
-                a: `Perfectly! The Innova Crysta on rent has a versatile seating arrangement and ample boot space, making it the #1 choice for family cab booking.`,
-              },
-              {
-                q: `How do I book an Innova for a wedding in ${startCity}?`,
-                a: `You can book an Innova Crysta on rent for weddings by calling 9818022327. We offer both guest transfers and premium decorated cars for the bridal party.`,
-              },
-              {
-                q: `What if I need to cancel my luxury cab booking?`,
-                a: `We offer a user-friendly cancellation policy. You can cancel your Innova cab booking up to 24 hours before your trip without any penalty.`,
-              },
-            ].map((faq, i) => (
+            {innovaRouteFaqs.map((faq, i) => (
               <details key={i} className="faq-item">
                 <summary>
                   {faq.q}

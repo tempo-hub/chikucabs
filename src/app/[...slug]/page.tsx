@@ -65,120 +65,120 @@ export async function generateMetadata({
     "online cab booking",
     "car rental India",
   ];
-  
 
- if (
-  parsed.routeType === "Outstation Route" &&
-  slugValue.includes("tempo-traveller-hire")
-) {
-  title = `${parsed.origin} to ${parsed.destination} Tempo Traveller, Chiku Cabs @ ₹20/KM – Book Now `;
 
-  description = `Book a Tempo Traveller from ${parsed.origin} to ${parsed.destination} for comfortable group travel. Get spacious vehicles, professional drivers, transparent pricing and easy booking with Chiku Cabs. Call 9818022327 to book now.`;
+  if (
+    parsed.routeType === "Outstation Route" &&
+    slugValue.includes("tempo-traveller-hire")
+  ) {
+    title = `${parsed.origin} to ${parsed.destination} Tempo Traveller, Chiku Cabs @ ₹20/KM – Book Now `;
 
-  keywords = [
-    `${parsed.origin} to ${parsed.destination} tempo traveller`,
-    `${parsed.origin} to ${parsed.destination} tempo traveller hire`,
-    `${parsed.origin} to ${parsed.destination} tempo traveller booking`,
-    `tempo traveller from ${parsed.origin} to ${parsed.destination}`,
-    `tempo traveller hire in ${parsed.origin}`,
-    `tempo traveller rental ${parsed.origin}`,
-    `${parsed.origin} tempo traveller`,
-    `${parsed.destination} tempo traveller`,
-    "Chiku Cabs",
-  ];
+    description = `Book a Tempo Traveller from ${parsed.origin} to ${parsed.destination} for comfortable group travel. Get spacious vehicles, professional drivers, transparent pricing and easy booking with Chiku Cabs. Call 9818022327 to book now.`;
+
+    keywords = [
+      `${parsed.origin} to ${parsed.destination} tempo traveller`,
+      `${parsed.origin} to ${parsed.destination} tempo traveller hire`,
+      `${parsed.origin} to ${parsed.destination} tempo traveller booking`,
+      `tempo traveller from ${parsed.origin} to ${parsed.destination}`,
+      `tempo traveller hire in ${parsed.origin}`,
+      `tempo traveller rental ${parsed.origin}`,
+      `${parsed.origin} tempo traveller`,
+      `${parsed.destination} tempo traveller`,
+      "Chiku Cabs",
+    ];
 
   } else if (parsed.routeType === "Tempo Traveller Fare") {
-  const city = parsed.origin || "";
+    const city = parsed.origin || "";
 
-  title = `Tempo Traveller Fare in ${city} | Chiku Cabs @ ₹20/KM – Book Now`;
+    title = `Tempo Traveller Fare in ${city} | Chiku Cabs @ ₹20/KM – Book Now`;
 
-  description = `Check Tempo Traveller fare in ${city}. Compare 9, 12, 16, 20 and 26 seater Tempo Traveller options for family trips, group travel, sightseeing, weddings and outstation journeys with Chiku Cabs. Call 9818022327 to book now.`;
+    description = `Check Tempo Traveller fare in ${city}. Compare 9, 12, 16, 20 and 26 seater Tempo Traveller options for family trips, group travel, sightseeing, weddings and outstation journeys with Chiku Cabs. Call 9818022327 to book now.`;
 
-  keywords = [
-    `tempo traveller fare in ${city}`,
-    `tempo traveller price in ${city}`,
-    `tempo traveller rental in ${city}`,
-    `tempo traveller booking in ${city}`,
-    `tempo traveller hire in ${city}`,
-    `${city} tempo traveller fare`,
-    `${city} tempo traveller price`,
-    `${city} tempo traveller booking`,
-    `tempo traveller on rent in ${city}`,
-    `tempo traveller in ${city}`,
-    "Chiku Cabs",
-  ];
+    keywords = [
+      `tempo traveller fare in ${city}`,
+      `tempo traveller price in ${city}`,
+      `tempo traveller rental in ${city}`,
+      `tempo traveller booking in ${city}`,
+      `tempo traveller hire in ${city}`,
+      `${city} tempo traveller fare`,
+      `${city} tempo traveller price`,
+      `${city} tempo traveller booking`,
+      `tempo traveller on rent in ${city}`,
+      `tempo traveller in ${city}`,
+      "Chiku Cabs",
+    ];
 
 
 
   } else if (
-  parsed.routeType === "Urbania Route Fare" ||
-  (parsed.routeType === "Urbania Fare" && parsed.destination)
-) {
+    parsed.routeType === "Urbania Route Fare" ||
+    (parsed.routeType === "Urbania Fare" && parsed.destination)
+  ) {
 
-  let rawOrigin = parsed.origin || "";
-  let rawDestination = parsed.destination || "";
+    let rawOrigin = parsed.origin || "";
+    let rawDestination = parsed.destination || "";
 
-  if (rawOrigin.toLowerCase() === "urbania" && parsed.slugs?.length > 1) {
-    const routeSegment = parsed.slugs.find((s: string) => s.includes("-to-")) || "";
-    const clean = routeSegment.replace(/-urbania-fare$/i, "").replace(/^urbania[\/-]/i, "");
-    const parts = clean.split("-to-");
-    if (parts.length === 2) {
-      rawOrigin = parts[0];
-      rawDestination = parts[1];
+    if (rawOrigin.toLowerCase() === "urbania" && parsed.slugs?.length > 1) {
+      const routeSegment = parsed.slugs.find((s: string) => s.includes("-to-")) || "";
+      const clean = routeSegment.replace(/-urbania-fare$/i, "").replace(/^urbania[\/-]/i, "");
+      const parts = clean.split("-to-");
+      if (parts.length === 2) {
+        rawOrigin = parts[0];
+        rawDestination = parts[1];
+      }
     }
-  }
 
-  const fromCity = rawOrigin
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+    const fromCity = rawOrigin
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (char) => char.toUpperCase());
 
-  const toCity = rawDestination
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+    const toCity = rawDestination
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (char) => char.toUpperCase());
 
-  title = `${fromCity} to ${toCity} Urbania Fare  @ ₹28/km | Get 500 OFF Extra`;
+    title = `${fromCity} to ${toCity} Urbania Fare  @ ₹28/km | Get 500 OFF Extra`;
 
-  description = `Check Force Urbania fare from ${fromCity} to ${toCity}. Book 12 Seater or 17 Seater luxury Urbania Traveller for outstation tours, family trips, weddings, and group journeys with Chiku Cabs. Call 9818022327 to book now.`;
+    description = `Check Force Urbania fare from ${fromCity} to ${toCity}. Book 12 Seater or 17 Seater luxury Urbania Traveller for outstation tours, family trips, weddings, and group journeys with Chiku Cabs. Call 9818022327 to book now.`;
 
-  keywords = [
-    `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania fare`,
-    `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania price`,
-    `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania rental`,
-    `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania booking`,
-    `12 seater urbania ${fromCity.toLowerCase()} to ${toCity.toLowerCase()}`,
-    `17 seater urbania ${fromCity.toLowerCase()} to ${toCity.toLowerCase()}`,
-    "Force Urbania on Rent",
-    "Urbania Traveller",
-    "Chiku Cabs",
-  ];
+    keywords = [
+      `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania fare`,
+      `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania price`,
+      `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania rental`,
+      `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania booking`,
+      `12 seater urbania ${fromCity.toLowerCase()} to ${toCity.toLowerCase()}`,
+      `17 seater urbania ${fromCity.toLowerCase()} to ${toCity.toLowerCase()}`,
+      "Force Urbania on Rent",
+      "Urbania Traveller",
+      "Chiku Cabs",
+    ];
 
-} else if (parsed.routeType === "Urbania Fare") {
-  // Handles single-city pages like: /urbania-fare-in-delhi
-  const city = parsed.origin || "";
+  } else if (parsed.routeType === "Urbania Fare") {
+    // Handles single-city pages like: /urbania-fare-in-delhi
+    const city = parsed.origin || "";
 
-  const formattedCity = city
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+    const formattedCity = city
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (char) => char.toUpperCase());
 
-  title = `Urbania Fare in ${formattedCity} 12 & 17 Seater  @ ₹28/km | Get 500 OFF Extra`;
+    title = `Urbania Fare in ${formattedCity} 12 & 17 Seater  @ ₹28/km | Get 500 OFF Extra`;
 
-  description = `Check Urbania fare in ${formattedCity}. Book 12 Seater or 17 Seater Urbania Traveller for family trips, group travel, weddings, corporate travel and outstation journeys with Chiku Cabs. Call 9818022327 to book now.`;
+    description = `Check Urbania fare in ${formattedCity}. Book 12 Seater or 17 Seater Urbania Traveller for family trips, group travel, weddings, corporate travel and outstation journeys with Chiku Cabs. Call 9818022327 to book now.`;
 
-  keywords = [
-    `urbania fare in ${formattedCity}`,
-    `urbania price in ${formattedCity}`,
-    `urbania rental in ${formattedCity}`,
-    `urbania booking in ${formattedCity}`,
-    `urbania hire in ${formattedCity}`,
-    `12 seater urbania in ${formattedCity}`,
-    `17 seater urbania in ${formattedCity}`,
-    `${formattedCity} urbania fare`,
-    `${formattedCity} urbania booking`,
-    "Urbania Traveller",
-    "Chiku Cabs",
-  ];
+    keywords = [
+      `urbania fare in ${formattedCity}`,
+      `urbania price in ${formattedCity}`,
+      `urbania rental in ${formattedCity}`,
+      `urbania booking in ${formattedCity}`,
+      `urbania hire in ${formattedCity}`,
+      `12 seater urbania in ${formattedCity}`,
+      `17 seater urbania in ${formattedCity}`,
+      `${formattedCity} urbania fare`,
+      `${formattedCity} urbania booking`,
+      "Urbania Traveller",
+      "Chiku Cabs",
+    ];
 
-} else if (parsed.routeType === "Outstation Route") {
+  } else if (parsed.routeType === "Outstation Route") {
     const startCity = parsed.origin || "Origin";
     const endCity = parsed.destination || "Destination";
     const normalizedStart = startCity.toLowerCase().trim();
@@ -287,152 +287,152 @@ export async function generateMetadata({
     }
 
 
-  }else if(parsed.isVehicleRental){
-   const vehicle = parsed.vehicle || "Car";
+  } else if (parsed.isVehicleRental) {
+    const vehicle = parsed.vehicle || "Car";
 
-  const price =
-    parsed.vehicleCategory === "dzire"
-      ? 10
-      : parsed.vehicleCategory === "ertiga"
-        ? 13
-        : parsed.vehicleCategory === "innova"
-          ? 16
-          : 20;
+    const price =
+      parsed.vehicleCategory === "dzire"
+        ? 10
+        : parsed.vehicleCategory === "ertiga"
+          ? 13
+          : parsed.vehicleCategory === "innova"
+            ? 16
+            : 20;
 
-  let location = "";
+    let location = "";
 
-  if (parsed.slugs.length >= 3) {
-    const city = parsed.slugs[0];
-    const locality = parsed.slugs[1];
+    if (parsed.slugs.length >= 3) {
+      const city = parsed.slugs[0];
+      const locality = parsed.slugs[1];
 
-    const formatLocation = (value: string) =>
-      value
+      const formatLocation = (value: string) =>
+        value
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (char) => char.toUpperCase());
+
+      location = `${formatLocation(locality)}, ${formatLocation(city)}`;
+    } else if (parsed.slugs.length === 2) {
+      location = parsed.slugs[0]
         .replace(/-/g, " ")
         .replace(/\b\w/g, (char) => char.toUpperCase());
+    }
 
-    location = `${formatLocation(locality)}, ${formatLocation(city)}`;
-  } else if (parsed.slugs.length === 2) {
-    location = parsed.slugs[0]
-      .replace(/-/g, " ")
-      .replace(/\b\w/g, (char) => char.toUpperCase());
-  }
+    title = location
+      ? `${vehicle} on Rent in ${location} @ ₹${price}/KM – UPTO 500 OFF`
+      : `${vehicle} on Rent, Chiku Cabs Starting @ ₹${price}/KM – Book Now`;
 
-  title = location
-    ? `${vehicle} on Rent in ${location} @ ₹${price}/KM – UPTO 500 OFF`
-    : `${vehicle} on Rent, Chiku Cabs Starting @ ₹${price}/KM – Book Now`;
+    description = location
+      ? `Hire verified ${vehicle} in ${location} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`
+      : `Hire verified ${vehicle} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`;
 
-  description = location
-    ? `Hire verified ${vehicle} in ${location} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`
-    : `Hire verified ${vehicle} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`;
-
-  keywords = [
-    `${vehicle.toLowerCase()} on rent`,
-    `hire ${vehicle.toLowerCase()}`,
-    `${vehicle.toLowerCase()} rental`,
-    `${vehicle.toLowerCase()} on rent in ${location.toLowerCase()}`,
-    `hire ${vehicle.toLowerCase()} in ${location.toLowerCase()}`,
-    "Chiku Cabs",
-  ];
+    keywords = [
+      `${vehicle.toLowerCase()} on rent`,
+      `hire ${vehicle.toLowerCase()}`,
+      `${vehicle.toLowerCase()} rental`,
+      `${vehicle.toLowerCase()} on rent in ${location.toLowerCase()}`,
+      `hire ${vehicle.toLowerCase()} in ${location.toLowerCase()}`,
+      "Chiku Cabs",
+    ];
 
 
   }
   else if (
-  parsed.routeType === "Local Service" &&
-  parsed.vehicleCategory === "tempo-traveller"
-) {
-  title = `Tempo Traveller on Rent in ${parsed.origin} | 9-26 Seater | Chiku Cabs`;
+    parsed.routeType === "Local Service" &&
+    parsed.vehicleCategory === "tempo-traveller"
+  ) {
+    title = `Tempo Traveller on Rent in ${parsed.origin} | 9-26 Seater | Chiku Cabs`;
 
-  description = `Hire a Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9-26 seater options with AC comfort. Call 9818022327.`;
+    description = `Hire a Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9-26 seater options with AC comfort. Call 9818022327.`;
 
-  keywords = [
-  // Primary keywords
-  `tempo traveller on rent in ${parsed.origin}`,
-  `tempo traveller in ${parsed.origin}`,
-  `tempo traveller rental in ${parsed.origin}`,
-  `tempo traveller hire in ${parsed.origin}`,
-  `tempo traveller booking in ${parsed.origin}`,
-  `tempo traveller fare in ${parsed.origin}`,
-  `tempo traveller price in ${parsed.origin}`,
-  `tempo traveller per km rate in ${parsed.origin}`,
+    keywords = [
+      // Primary keywords
+      `tempo traveller on rent in ${parsed.origin}`,
+      `tempo traveller in ${parsed.origin}`,
+      `tempo traveller rental in ${parsed.origin}`,
+      `tempo traveller hire in ${parsed.origin}`,
+      `tempo traveller booking in ${parsed.origin}`,
+      `tempo traveller fare in ${parsed.origin}`,
+      `tempo traveller price in ${parsed.origin}`,
+      `tempo traveller per km rate in ${parsed.origin}`,
 
-  // Alternative spelling: Traveler
-  `tempo traveler in ${parsed.origin}`,
-  `tempo traveler on rent in ${parsed.origin}`,
-  `tempo traveler booking in ${parsed.origin}`,
-  `tempo traveler rental in ${parsed.origin}`,
+      // Alternative spelling: Traveler
+      `tempo traveler in ${parsed.origin}`,
+      `tempo traveler on rent in ${parsed.origin}`,
+      `tempo traveler booking in ${parsed.origin}`,
+      `tempo traveler rental in ${parsed.origin}`,
 
-  // Seater-specific keywords
-  `9 seater tempo traveller in ${parsed.origin}`,
-  `10 seater tempo traveller in ${parsed.origin}`,
-  `12 seater tempo traveller in ${parsed.origin}`,
-  `15 seater tempo traveller in ${parsed.origin}`,
-  `16 seater tempo traveller in ${parsed.origin}`,
-  `17 seater tempo traveller in ${parsed.origin}`,
-  `18 seater tempo traveller in ${parsed.origin}`,
-  `20 seater tempo traveller in ${parsed.origin}`,
-  `26 seater tempo traveller in ${parsed.origin}`,
+      // Seater-specific keywords
+      `9 seater tempo traveller in ${parsed.origin}`,
+      `10 seater tempo traveller in ${parsed.origin}`,
+      `12 seater tempo traveller in ${parsed.origin}`,
+      `15 seater tempo traveller in ${parsed.origin}`,
+      `16 seater tempo traveller in ${parsed.origin}`,
+      `17 seater tempo traveller in ${parsed.origin}`,
+      `18 seater tempo traveller in ${parsed.origin}`,
+      `20 seater tempo traveller in ${parsed.origin}`,
+      `26 seater tempo traveller in ${parsed.origin}`,
 
-  // Tourist van and group travel
-  `tourist van rental in ${parsed.origin}`,
-  `tourist van on rent in ${parsed.origin}`,
-  `group travel vehicle in ${parsed.origin}`,
-  `group tour vehicle rental in ${parsed.origin}`,
-  `family trip tempo traveller in ${parsed.origin}`,
-  `outstation tempo traveller from ${parsed.origin}`,
-  `local sightseeing tempo traveller in ${parsed.origin}`,
+      // Tourist van and group travel
+      `tourist van rental in ${parsed.origin}`,
+      `tourist van on rent in ${parsed.origin}`,
+      `group travel vehicle in ${parsed.origin}`,
+      `group tour vehicle rental in ${parsed.origin}`,
+      `family trip tempo traveller in ${parsed.origin}`,
+      `outstation tempo traveller from ${parsed.origin}`,
+      `local sightseeing tempo traveller in ${parsed.origin}`,
 
-  // Luxury and premium travel
-  `luxury tempo traveller in ${parsed.origin}`,
-  `premium tempo traveller on rent in ${parsed.origin}`,
-  `luxury traveller booking in ${parsed.origin}`,
-  `premium traveller rental in ${parsed.origin}`,
-  `AC tempo traveller in ${parsed.origin}`,
-  `comfortable group travel in ${parsed.origin}`,
+      // Luxury and premium travel
+      `luxury tempo traveller in ${parsed.origin}`,
+      `premium tempo traveller on rent in ${parsed.origin}`,
+      `luxury traveller booking in ${parsed.origin}`,
+      `premium traveller rental in ${parsed.origin}`,
+      `AC tempo traveller in ${parsed.origin}`,
+      `comfortable group travel in ${parsed.origin}`,
 
-  // Booking-related keywords
-  `online tempo traveller booking in ${parsed.origin}`,
-  `book tempo traveller online in ${parsed.origin}`,
-  `tempo traveller hire charges in ${parsed.origin}`,
-  `tempo traveller rental packages in ${parsed.origin}`,
-  `tempo traveller for family trips in ${parsed.origin}`,
-  `tempo traveller for weddings in ${parsed.origin}`,
-  `tempo traveller for corporate trips in ${parsed.origin}`,
+      // Booking-related keywords
+      `online tempo traveller booking in ${parsed.origin}`,
+      `book tempo traveller online in ${parsed.origin}`,
+      `tempo traveller hire charges in ${parsed.origin}`,
+      `tempo traveller rental packages in ${parsed.origin}`,
+      `tempo traveller for family trips in ${parsed.origin}`,
+      `tempo traveller for weddings in ${parsed.origin}`,
+      `tempo traveller for corporate trips in ${parsed.origin}`,
 
-  // Brand keyword
-  "Chiku Cabs",
-  `Chiku Cabs tempo traveller in ${parsed.origin}`,
-];
-} else if (
-  parsed.routeType === "Local Service" &&
-  parsed.vehicleCategory === "innova"
-) {
-  title = `Innova & Crysta on Rent in ${parsed.origin} @ ₹16/KM - UPTO 500 OFF`;
+      // Brand keyword
+      "Chiku Cabs",
+      `Chiku Cabs tempo traveller in ${parsed.origin}`,
+    ];
+  } else if (
+    parsed.routeType === "Local Service" &&
+    parsed.vehicleCategory === "innova"
+  ) {
+    title = `Innova & Crysta on Rent in ${parsed.origin} @ ₹16/KM - UPTO 500 OFF`;
 
-  description = `Hire an Innova Crysta in ${parsed.origin} for family trips, sightseeing, airport transfers and outstation travel. Enjoy AC comfort and professional drivers. Call 9818022327.`;
+    description = `Hire an Innova Crysta in ${parsed.origin} for family trips, sightseeing, airport transfers and outstation travel. Enjoy AC comfort and professional drivers. Call 9818022327.`;
 
-  keywords = [
-    `innova crysta on rent in ${parsed.origin}`,
-    `innova crysta in ${parsed.origin}`,
-    `innova taxi in ${parsed.origin}`,
-    `6 seater innova in ${parsed.origin}`,
-    `7 seater innova in ${parsed.origin}`,
-    `innova booking ${parsed.origin}`,
-    "Chiku Cabs",
-  ];
-} else if (parsed.routeType === "Local Service") {
-  title = `Cab Service in ${parsed.origin} | Local Taxi Booking | Chiku Cabs`;
+    keywords = [
+      `innova crysta on rent in ${parsed.origin}`,
+      `innova crysta in ${parsed.origin}`,
+      `innova taxi in ${parsed.origin}`,
+      `6 seater innova in ${parsed.origin}`,
+      `7 seater innova in ${parsed.origin}`,
+      `innova booking ${parsed.origin}`,
+      "Chiku Cabs",
+    ];
+  } else if (parsed.routeType === "Local Service") {
+    title = `Cab Service in ${parsed.origin} | Local Taxi Booking | Chiku Cabs`;
 
-  description = `Book a reliable cab in ${parsed.origin} for local travel, sightseeing, airport transfers and outstation trips. Enjoy comfortable rides with professional drivers. Call 9818022327.`;
+    description = `Book a reliable cab in ${parsed.origin} for local travel, sightseeing, airport transfers and outstation trips. Enjoy comfortable rides with professional drivers. Call 9818022327.`;
 
-  keywords = [
-    `cab service in ${parsed.origin}`,
-    `taxi service in ${parsed.origin}`,
-    `cab booking in ${parsed.origin}`,
-    `local cab ${parsed.origin}`,
-    `airport taxi ${parsed.origin}`,
-    `${parsed.origin} sightseeing cab`,
-    "Chiku Cabs",
-  ];
+    keywords = [
+      `cab service in ${parsed.origin}`,
+      `taxi service in ${parsed.origin}`,
+      `cab booking in ${parsed.origin}`,
+      `local cab ${parsed.origin}`,
+      `airport taxi ${parsed.origin}`,
+      `${parsed.origin} sightseeing cab`,
+      "Chiku Cabs",
+    ];
 
   } else if (parsed.routeType === "Driver Service") {
     const cityStr = parsed.origin ? ` in ${parsed.origin}` : "";
@@ -711,63 +711,63 @@ export default async function DynamicRoutePage({
   const faqItems =
     parsed.routeType === "Driver Service"
       ? [
-          {
-            q: `How much does it cost to hire a driver${parsed.origin ? ` in ${parsed.origin}` : ""}?`,
-            a: `Hiring a driver starts at competitive rates for local travel. For outstation trips, the driver allowance is typically fixed per day depending on the route.`,
-          },
-          {
-            q: `Are the drivers verified and safe?`,
-            a: `Yes, all Chiku Cabs drivers undergo mandatory police verification, rigorous background checks, and driving tests before fulfilling any trips.`,
-          },
-          {
-            q: `Can I hire a driver for an outstation trip?`,
-            a: `Absolutely. You can hire an experienced outstation driver who is fully familiar with highway navigation and hill driving.`,
-          },
-        ]
+        {
+          q: `How much does it cost to hire a driver${parsed.origin ? ` in ${parsed.origin}` : ""}?`,
+          a: `Hiring a driver starts at competitive rates for local travel. For outstation trips, the driver allowance is typically fixed per day depending on the route.`,
+        },
+        {
+          q: `Are the drivers verified and safe?`,
+          a: `Yes, all Chiku Cabs drivers undergo mandatory police verification, rigorous background checks, and driving tests before fulfilling any trips.`,
+        },
+        {
+          q: `Can I hire a driver for an outstation trip?`,
+          a: `Absolutely. You can hire an experienced outstation driver who is fully familiar with highway navigation and hill driving.`,
+        },
+      ]
       : parsed.vehicleCategory === "tempo-traveller"
         ? [
-            {
-              q: `How much does a Tempo Traveller cost${parsed.origin ? ` from ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""}?`,
-              a: `Tempo Traveller pricing starts from ₹18/km for a 12-seater and goes up to ₹28/km for a 26-seater. The total cost depends on distance, number of days, and seating capacity. Call 9818022327 for an instant quote.`,
-            },
-            {
-              q: "What seating options are available in Tempo Travellers?",
-              a: "We offer 12 seater, 16 seater, 20 seater, and 26 seater AC Tempo Travellers. All come with pushback reclining seats, music system, charging points, and ample luggage space.",
-            },
-            {
-              q: "Are Chiku Cabs Tempo Travellers safe for long trips?",
-              a: "Yes. All Tempo Travellers are GPS-tracked, regularly serviced, and driven by background-verified, experienced drivers. We also provide first-aid kits, fire extinguishers, and 24/7 roadside assistance.",
-            },
-          ]
+          {
+            q: `How much does a Tempo Traveller cost${parsed.origin ? ` from ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""}?`,
+            a: `Tempo Traveller pricing starts from ₹18/km for a 12-seater and goes up to ₹28/km for a 26-seater. The total cost depends on distance, number of days, and seating capacity. Call 9818022327 for an instant quote.`,
+          },
+          {
+            q: "What seating options are available in Tempo Travellers?",
+            a: "We offer 12 seater, 16 seater, 20 seater, and 26 seater AC Tempo Travellers. All come with pushback reclining seats, music system, charging points, and ample luggage space.",
+          },
+          {
+            q: "Are Chiku Cabs Tempo Travellers safe for long trips?",
+            a: "Yes. All Tempo Travellers are GPS-tracked, regularly serviced, and driven by background-verified, experienced drivers. We also provide first-aid kits, fire extinguishers, and 24/7 roadside assistance.",
+          },
+        ]
         : parsed.vehicleCategory === "innova"
           ? [
-              {
-                q: `What is the Innova Crysta rental price${parsed.origin ? ` in ${parsed.origin}` : ""}?`,
-                a: `Innova rental starts from ₹14/km, Crysta from ₹17/km, and HyCross from ₹20/km. Prices include fuel, driver allowance, and GST. Call 9818022327 for exact pricing.`,
-              },
-              {
-                q: "What's the difference between Innova and Innova Crysta?",
-                a: "The standard Innova offers good comfort at a lower price. The Innova Crysta features premium captain seats, automatic climate control, better suspension, and more luxurious interiors. The HyCross adds a hybrid engine and panoramic sunroof.",
-              },
-              {
-                q: "Can I hire an Innova for a wedding?",
-                a: "Yes, Chiku Cabs offers decorated and non-decorated Innovas for weddings, including baarat, guest transfers, and VIP transportation. Book in advance for the best availability.",
-              },
-            ]
+            {
+              q: `What is the Innova Crysta rental price${parsed.origin ? ` in ${parsed.origin}` : ""}?`,
+              a: `Innova rental starts from ₹14/km, Crysta from ₹17/km, and HyCross from ₹20/km. Prices include fuel, driver allowance, and GST. Call 9818022327 for exact pricing.`,
+            },
+            {
+              q: "What's the difference between Innova and Innova Crysta?",
+              a: "The standard Innova offers good comfort at a lower price. The Innova Crysta features premium captain seats, automatic climate control, better suspension, and more luxurious interiors. The HyCross adds a hybrid engine and panoramic sunroof.",
+            },
+            {
+              q: "Can I hire an Innova for a wedding?",
+              a: "Yes, Chiku Cabs offers decorated and non-decorated Innovas for weddings, including baarat, guest transfers, and VIP transportation. Book in advance for the best availability.",
+            },
+          ]
           : [
-              {
-                q: `How do I book a cab${parsed.origin ? ` in ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""} with Chiku Cabs?`,
-                a: `Simply call 9818022327 or WhatsApp us with your travel details. You'll get an instant quote and confirmation. No app download required. We offer 24/7 booking across 100+ Indian cities.`,
-              },
-              {
-                q: `What is the cab fare${parsed.origin ? ` from ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""}?`,
-                a: `Sedan fares start from ₹9/km, SUV from ₹12/km, Innova from ₹15/km. All fares include driver allowance, fuel, and GST. Toll charges are at actuals. We offer a price match guarantee.`,
-              },
-              {
-                q: "Why should I choose Chiku Cabs over Uber/Ola?",
-                a: "Chiku Cabs offers fixed pricing (no surge), verified & dedicated drivers, 24/7 human support, free cancellation up to 24 hours, and vehicles specifically maintained for outstation/long-distance travel. With 1 Lakh+ completed trips since 2015, we're India's most trusted outstation cab service.",
-              },
-            ];
+            {
+              q: `How do I book a cab${parsed.origin ? ` in ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""} with Chiku Cabs?`,
+              a: `Simply call 9818022327 or WhatsApp us with your travel details. You'll get an instant quote and confirmation. No app download required. We offer 24/7 booking across 100+ Indian cities.`,
+            },
+            {
+              q: `What is the cab fare${parsed.origin ? ` from ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""}?`,
+              a: `Sedan fares start from ₹9/km, SUV from ₹12/km, Innova from ₹15/km. All fares include driver allowance, fuel, and GST. Toll charges are at actuals. We offer a price match guarantee.`,
+            },
+            {
+              q: "Why should I choose Chiku Cabs over Uber/Ola?",
+              a: "Chiku Cabs offers fixed pricing (no surge), verified & dedicated drivers, 24/7 human support, free cancellation up to 24 hours, and vehicles specifically maintained for outstation/long-distance travel. With 1 Lakh+ completed trips since 2015, we're India's most trusted outstation cab service.",
+            },
+          ];
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -833,73 +833,73 @@ export default async function DynamicRoutePage({
       return <TempoTravellerTemplate parsedData={parsed} />;
     }
     // ========================================
-// URBANIA ROUTE
-// /urbania/ayodhya-to-haridwar-urbania-fare
-// ========================================
+    // URBANIA ROUTE
+    // /urbania/ayodhya-to-haridwar-urbania-fare
+    // ========================================
 
-const isUrbaniaRouteSlug =
-  slugValue.startsWith("urbania/") &&
-  slugValue.endsWith("-urbania-fare");
+    const isUrbaniaRouteSlug =
+      slugValue.startsWith("urbania/") &&
+      slugValue.endsWith("-urbania-fare");
 
-if (isUrbaniaRouteSlug) {
-  const routeSlug = slugValue
-    .replace(/^urbania\//, "")
-    .replace(/-urbania-fare$/, "");
+    if (isUrbaniaRouteSlug) {
+      const routeSlug = slugValue
+        .replace(/^urbania\//, "")
+        .replace(/-urbania-fare$/, "");
 
-  const [fromSlug, toSlug] = routeSlug.split("-to-");
+      const [fromSlug, toSlug] = routeSlug.split("-to-");
 
-  if (!fromSlug || !toSlug) {
-    notFound();
-  }
+      if (!fromSlug || !toSlug) {
+        notFound();
+      }
 
-  const fromCity = fromSlug
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+      const fromCity = fromSlug
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (char) => char.toUpperCase());
 
-  const toCity = toSlug
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+      const toCity = toSlug
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (char) => char.toUpperCase());
 
-  const routeData = URBANIA_ROUTES.find(
-    (route) =>
-      route.fromCity.toLowerCase() === fromCity.toLowerCase() &&
-      route.toCity.toLowerCase() === toCity.toLowerCase()
-  );
+      const routeData = URBANIA_ROUTES.find(
+        (route) =>
+          route.fromCity.toLowerCase() === fromCity.toLowerCase() &&
+          route.toCity.toLowerCase() === toCity.toLowerCase()
+      );
 
-  if (!routeData) {
-    notFound();
-  }
+      if (!routeData) {
+        notFound();
+      }
 
-  return (
-    <UrbaniaRouteTemplate
-      fromCity={routeData.fromCity}
-      toCity={routeData.toCity}
-      distance={routeData.distance}
-    />
-  );
-}
+      return (
+        <UrbaniaRouteTemplate
+          fromCity={routeData.fromCity}
+          toCity={routeData.toCity}
+          distance={routeData.distance}
+        />
+      );
+    }
 
 
-// ========================================
-// NORMAL URBANIA CITY PAGE
-// /urbania-fare-in-ayodhya
-// ========================================
+    // ========================================
+    // NORMAL URBANIA CITY PAGE
+    // /urbania-fare-in-ayodhya
+    // ========================================
 
-if (parsed.routeType === "Urbania Fare") {
-  return (
-    <UrbaniaTemplate
-      city={parsed.origin || ""}
-    />
-  );
+    if (parsed.routeType === "Urbania Fare") {
+      return (
+        <UrbaniaTemplate
+          city={parsed.origin || ""}
+        />
+      );
 
-}
+    }
     if (parsed.routeType === "Tempo Traveller Fare") {
-  return (
-    <TempoTravellerFareTemplate
-      city={parsed.origin || ""}
-    />
-  );
-}
+      return (
+        <TempoTravellerFareTemplate
+          city={parsed.origin || ""}
+        />
+      );
+    }
     if (parsed.vehicleCategory === "tempo-traveller") {
       if (
         parsed.routeType === "Outstation Route" ||
@@ -918,10 +918,10 @@ if (parsed.routeType === "Urbania Fare") {
       }
       return <InnovaServiceTemplate parsedData={parsed} />;
     }
-    if(parsed.vehicleCategory === "ertiga"){
+    if (parsed.vehicleCategory === "ertiga") {
       return <ErtigaServiceTemplate parsedData={parsed} />;
     }
-    if (parsed.vehicleCategory === "dzire"){
+    if (parsed.vehicleCategory === "dzire") {
       return <DzireServiceTemplate parsedData={parsed} />
     }
     if (parsed.routeType === "Driver Service") {

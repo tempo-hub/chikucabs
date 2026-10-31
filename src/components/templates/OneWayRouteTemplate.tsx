@@ -220,6 +220,65 @@ Please share the final fare and booking confirmation.`;
     window.open(buildWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
   };
 
+  // 12 High-Intent SEO FAQs
+  const routeFaqs = useMemo(
+    () => [
+      {
+        q: `Do I have to pay for the return trip if I book a ${startCity} to ${endCity} one-way cab?`,
+        a: `No, you do not have to pay for any return journey. Chiku Cabs offers dedicated one-way drop taxis where you strictly pay for the ${distance} km traveled. There are no dead-run or return kilometers charged to the customer.`,
+      },
+      {
+        q: `What is the total one-way cab fare from ${startCity} to ${endCity}?`,
+        a: `The one-way cab fare from ${startCity} to ${endCity} starts at ₹${startingFare} for an AC Sedan (Maruti Dzire / Honda Amaze), ₹${calculateFare(distance, 12)} for an SUV (Maruti Ertiga), and ₹${calculateFare(distance, 16)} for a Toyota Innova Crysta. Driver allowance and GST are already factored in.`,
+      },
+      {
+        q: `What is the road distance and travel time from ${startCity} to ${endCity}?`,
+        a: `The road distance from ${startCity} to ${endCity} is approximately ${distance} km. The journey usually takes around ${travelHours} hours by cab via the main national highway, allowing for comfortable cruising speeds and quick highway breaks.`,
+      },
+      {
+        q: `Are highway toll taxes included in the fare?`,
+        a: `Highway toll taxes are payable at actual Fastag booths en route as per government toll plaza rates. For a one-way trip, you only pay single-side tolls. State commercial permits and fuel are covered.`,
+      },
+      {
+        q: isGaya
+          ? `Can I book a same-day round trip for Pind Daan in Gaya from ${startCity}?`
+          : `Can I make stops or take a detour during my ${startCity} to ${endCity} journey?`,
+        a: isGaya
+          ? `Yes, same-day and multi-day round-trip packages are available specifically for Pind Daan rituals at Vishnupad Mandir and Phalgu River. The driver will wait while you complete the ceremonies and bring you back safely to ${startCity}.`
+          : `Yes, you can request en-route food and rest stops along the highway. If you have specific planned sightseeing detours, please inform us at the time of booking so the itinerary can be scheduled accordingly.`,
+      },
+      {
+        q: `Is the ${startCity} to ${endCity} cab service door-to-door?`,
+        a: `Yes, 100% door-to-door. Our chauffeur will pick you up directly from your doorstep, home, hotel, or railway station in ${startCity} and drop you directly at your specified destination in ${endCity}.`,
+      },
+      {
+        q: `What is the cancellation policy for ${startCity} to ${endCity} cabs?`,
+        a: `Chiku Cabs offers a zero cancellation fee policy up to 24 hours before your scheduled pickup time. If your plans change, simply notify our customer support team for an instant cancellation.`,
+      },
+      {
+        q: `Which cars are available for ${startCity} to ${endCity} travel?`,
+        a: `You can choose from Maruti Suzuki Dzire, Honda Amaze, Toyota Etios, Maruti Ertiga, Toyota Innova Crysta, and Force Tempo Travellers (12, 16, and 26 seaters) depending on your group size and luggage requirements.`,
+      },
+      {
+        q: `How much luggage can I carry in a one-way sedan or SUV?`,
+        a: `AC Sedans (Dzire/Amaze) carry 2 large trolley bags plus 2 cabin duffels. SUVs (Ertiga/Innova Crysta) carry 4 to 5 large suitcases comfortably with spacious trunk compartments and split rear seating.`,
+      },
+      {
+        q: `Can I book an airport or railway station pickup in ${startCity} for direct drop to ${endCity}?`,
+        a: `Yes! We provide 24×7 pickup from airports and major railway junctions in ${startCity}. Our driver will track your arrival schedule and be waiting at the designated terminal pickup point.`,
+      },
+      {
+        q: `Are digital Fastag toll receipts and GST invoices provided?`,
+        a: `Yes. All highway toll charges are billed accurately through electronic Fastag logs, and an official computerized GST tax invoice is automatically generated and sent to your email after trip completion.`,
+      },
+      {
+        q: `How do I book a ${startCity} to ${endCity} one-way cab instantly?`,
+        a: `You can book online on chikucabs.com, call our customer support at 8448445504, or connect via WhatsApp at +91 6280820037 for instant booking confirmation and driver assignment.`,
+      },
+    ],
+    [startCity, endCity, distance, startingFare, travelHours, isGaya]
+  );
+
   // Structured Data (JSON-LD)
   const structuredData = useMemo(() => {
     const canonicalUrl = `${SITE_URL}/${startCity.toLowerCase()}/${startCity.toLowerCase()}-to-${endCity.toLowerCase()}-cab`;
@@ -262,7 +321,7 @@ Please share the final fare and booking confirmation.`;
         aggregateRating: {
           "@type": "AggregateRating",
           ratingValue: "4.9",
-          reviewCount: "3450",
+          reviewCount: "2840",
         },
       },
       areaServed: [startCity, endCity],
@@ -277,47 +336,21 @@ Please share the final fare and booking confirmation.`;
     const faqSchema = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: `Do I have to pay for the return trip if I book a ${startCity} to ${endCity} one-way cab?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `No, you do not pay for any return journey. With Chiku Cabs, one-way drops are strictly charged for one-way travel (${distance} km). You save up to 50% compared to traditional round-trip taxi operators.`,
-          },
+      mainEntity: routeFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
         },
-        {
-          "@type": "Question",
-          name: `What is the total cab fare from ${startCity} to ${endCity}?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `The one-way cab fare from ${startCity} to ${endCity} starts from ₹${startingFare} for an AC Sedan (Dzire/Etios), ₹${calculateFare(distance, 12)} for an SUV (Ertiga), and ₹${calculateFare(distance, 16)} for an Innova Crysta. Toll taxes at actual booths are payable en route.`,
-          },
-        },
-        {
-          "@type": "Question",
-          name: `What is the road distance and travel time from ${startCity} to ${endCity}?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `The road distance between ${startCity} and ${endCity} is approximately ${distance} km, which typically takes around ${travelHours} hours by cab via the primary highway corridor, depending on traffic and stops.`,
-          },
-        },
-        {
-          "@type": "Question",
-          name: `Are highway toll taxes included in the fare?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `Highway toll taxes are payable at actual toll booths as per Fastag receipts. For one-way drops, you only pay single-side tolls. Your base fare includes fuel, driver allowance, and GST.`,
-          },
-        },
-      ],
+      })),
     };
 
     return JSON.stringify({
       "@context": "https://schema.org",
       "@graph": [breadcrumbs, taxiService, faqSchema],
     });
-  }, [startCity, endCity, distance, startingFare, travelHours]);
+  }, [startCity, endCity, distance, startingFare, travelHours, routeFaqs]);
 
   return (
     <>
@@ -1095,44 +1128,7 @@ Please share the final fare and booking confirmation.`;
             </div>
 
             <div className="space-y-3.5">
-              {[
-                {
-                  q: `Do I have to pay for the return trip if I book a ${startCity} to ${endCity} one-way cab?`,
-                  a: `No, you do not have to pay for any return journey. Chiku Cabs offers dedicated one-way drop taxis where you strictly pay for the ${distance} km traveled. There are no dead-run or return kilometers charged to the customer.`,
-                },
-                {
-                  q: `What is the total one-way cab fare from ${startCity} to ${endCity}?`,
-                  a: `The one-way cab fare from ${startCity} to ${endCity} starts at ₹${startingFare} for an AC Sedan (Maruti Dzire / Honda Amaze), ₹${calculateFare(distance, 12)} for an SUV (Maruti Ertiga), and ₹${calculateFare(distance, 16)} for a Toyota Innova Crysta. Driver allowance and GST are already factored in.`,
-                },
-                {
-                  q: `What is the road distance and travel time from ${startCity} to ${endCity}?`,
-                  a: `The road distance from ${startCity} to ${endCity} is approximately ${distance} km. The journey usually takes around ${travelHours} hours by cab via the main national highway, allowing for comfortable cruising speeds and quick highway breaks.`,
-                },
-                {
-                  q: `Are highway toll taxes included in the fare?`,
-                  a: `Highway toll taxes are payable at actual Fastag booths en route as per government toll plaza rates. For a one-way trip, you only pay single-side tolls. State commercial permits and fuel are covered.`,
-                },
-                {
-                  q: isGaya
-                    ? `Can I book a same-day round trip for Pind Daan in Gaya from ${startCity}?`
-                    : `Can I make stops or take a detour during my ${startCity} to ${endCity} journey?`,
-                  a: isGaya
-                    ? `Yes, same-day and multi-day round-trip packages are available specifically for Pind Daan rituals at Vishnupad Mandir and Phalgu River. The driver will wait while you complete the ceremonies and bring you back safely to ${startCity}.`
-                    : `Yes, you can request en-route food and rest stops along the highway. If you have specific planned sightseeing detours, please inform us at the time of booking so the itinerary can be scheduled accordingly.`,
-                },
-                {
-                  q: `Is the ${startCity} to ${endCity} cab service door-to-door?`,
-                  a: `Yes, 100% door-to-door. Our chauffeur will pick you up directly from your doorstep, home, hotel, or railway station in ${startCity} and drop you directly at your specified destination in ${endCity}.`,
-                },
-                {
-                  q: `What is the cancellation policy for ${startCity} to ${endCity} cabs?`,
-                  a: `Chiku Cabs offers a zero cancellation fee policy up to 24 hours before your scheduled pickup time. If your plans change, simply notify our customer support team for an instant cancellation.`,
-                },
-                {
-                  q: `Which cars are available for ${startCity} to ${endCity} travel?`,
-                  a: `You can choose from Maruti Suzuki Dzire, Honda Amaze, Toyota Etios, Maruti Ertiga, Toyota Innova Crysta, and Force Tempo Travellers (12, 16, and 26 seaters) depending on your group size and luggage requirements.`,
-                },
-              ].map((faq, i) => (
+              {routeFaqs.map((faq, i) => (
                 <details
                   key={i}
                   className="group rounded-xl border border-slate-200 bg-slate-50 p-4 transition open:bg-white open:shadow-sm"

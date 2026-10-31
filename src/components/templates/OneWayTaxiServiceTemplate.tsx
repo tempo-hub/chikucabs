@@ -322,8 +322,23 @@ export default function OneWayTaxiServiceTemplate({
     drop: "",
     date: "",
     distance: "50",
-  });
+    });
   const faqs = useMemo(() => generateFAQs(), []);
+  const faqSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
+        },
+      })),
+    }),
+    [faqs],
+  );
 
   const timeOptions = useMemo(() => generateTimes(), []);
 
@@ -462,6 +477,14 @@ Please share the best fare estimate.`;
               },
             },
           }),
+        }}
+      />
+
+      <Script
+        id="oneway-taxi-faq-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
         }}
       />
 

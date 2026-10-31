@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import {
   FaChevronDown,
   FaQuestionCircle,
@@ -56,17 +57,49 @@ export default function UrbaniaRouteFAQ({
       question: `How can I book an Urbania from ${fromCity} to ${toCity}?`,
       answer: `Use the booking form on this page to share your name, mobile number, travel date and passenger count. You can then continue the enquiry through WhatsApp with Chiku Cabs.`,
     },
+    {
+      question: `Can we make en-route food and sightseeing halts between ${fromCity} and ${toCity}?`,
+      answer: `Yes. Our chauffeurs are experienced and flexible, accommodating meal breaks at verified highway dhabas, tea halts, and tourist sightseeing stops along the ${fromCity} to ${toCity} corridor.`,
+    },
+    {
+      question: `Is there sufficient luggage space for groups traveling from ${fromCity} to ${toCity}?`,
+      answer: `Yes. Force Urbania comes with a dedicated spacious rear boot compartment and an optional covered rooftop carrier to safely accommodate 12-18 large suitcases without cramping passenger leg space.`,
+    },
+    {
+      question: `Are toll taxes and driver allowance included in the ${fromCity} to ${toCity} quote?`,
+      answer: `The base quote includes vehicle hire, fuel, driver allowance, and GST. Toll charges and inter-state passenger border permits are payable at actual Fastag and entry booths en route.`,
+    },
   ];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
 
   const whatsappMessage = encodeURIComponent(
     `Hi Chiku Cabs, I want to enquire about an Urbania Traveller from ${fromCity} to ${toCity}. Please share the fare and availability.`
   );
 
   return (
-    <section
-      id="urbania-faq"
-      className="px-4 py-12 sm:px-6 lg:px-8 lg:py-12 bg-white/90 border-b border-slate-100"
-    >
+    <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      </Head>
+      <section
+        id="urbania-faq"
+        className="px-4 py-12 sm:px-6 lg:px-8 lg:py-12 bg-white/90 border-b border-slate-100"
+      >
       <div className="mx-auto max-w-5xl">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
@@ -143,5 +176,6 @@ export default function UrbaniaRouteFAQ({
         </div>
       </div>
     </section>
+    </>
   );
 }

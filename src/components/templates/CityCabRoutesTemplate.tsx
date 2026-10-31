@@ -128,9 +128,9 @@ export default function CityCabRoutesTemplate({ city }: { city: string }) {
   const routes =
     cityCabRoutes[city as keyof typeof cityCabRoutes] ||
     cityCabRoutes[
-      (Object.keys(cityCabRoutes).find(
-        (k) => k.toLowerCase() === city.toLowerCase(),
-      ) || city) as keyof typeof cityCabRoutes
+    (Object.keys(cityCabRoutes).find(
+      (k) => k.toLowerCase() === city.toLowerCase(),
+    ) || city) as keyof typeof cityCabRoutes
     ] ||
     [];
 
@@ -194,6 +194,60 @@ Please share booking confirmation and driver assignment.`;
     return s.includes("varanasi") || s.includes("kashi") || s.includes("banaras");
   }, [city]);
 
+  const cityCabFaqs = useMemo(
+    () => [
+      {
+        q: `What payment options are available for cab booking in ${formattedCity}?`,
+        a: `You can pay seamlessly via UPI, credit/debit cards, Net Banking, or cash to driver upon trip completion. A small initial booking token confirms your cab booking.`,
+      },
+      {
+        q: `Can I cancel or reschedule my cab booking in ${formattedCity}?`,
+        a: `Yes, you can cancel or reschedule your ride free of charge up to 24 hours prior to scheduled departure. Zero cancellation fee applies for advance modifications.`,
+      },
+      {
+        q: `Are toll, parking and state taxes included in the cab fare?`,
+        a: `Base fare covers vehicle rental, fuel expenses, and driver allowances. Highway FASTag tolls, inter-state entry taxes, and parking fees are either billed at actuals or bundled into customized all-inclusive outstation quotes.`,
+      },
+      {
+        q: `What is the minimum kilometre limit for outstation trips from ${formattedCity}?`,
+        a: `Outstation round-trips are billed on a standard 250 km per day minimum running average. One-way taxi drops are billed solely based on exact point-to-point highway distance with zero return fare charges.`,
+      },
+      {
+        q: `Is there any extra charge for night travel or driver allowance?`,
+        a: `A transparent driver allowance of ₹300 to ₹500 applies for multi-day outstation trips. Night driving allowance applies only if traveling between 10:00 PM and 6:00 AM.`,
+      },
+      {
+        q: `How early should I book a cab in ${formattedCity}?`,
+        a: `For local sightseeing and airport transfers, booking 2–4 hours in advance is recommended. For outstation weekend trips, holidays, or wedding logistics, booking 24–48 hours ahead ensures guaranteed vehicle availability and model preference.`,
+      },
+      {
+        q: `Can I book a round-trip or multi-day outstation cab from ${formattedCity}?`,
+        a: `Yes. We offer one-way, round-trip, and multi-day holiday packages from ${formattedCity}, retaining the same dedicated car and experienced chauffeur throughout your complete journey.`,
+      },
+      {
+        q: `Which popular outstation destinations can I travel to from ${formattedCity}?`,
+        a: `Chiku Cabs connects ${formattedCity} to major tourist hubs, pilgrimage centers, business capitals, and hill stations nationwide with 24/7 on-demand highway dispatch.`,
+      },
+      {
+        q: `How many passengers and how much luggage can the vehicle carry?`,
+        a: `Sedans (Dzire, Etios) seat 4 passengers with 2 large bags. SUVs (Ertiga, Innova Crysta) seat 6–7 passengers with 4–5 bags. Tempo Travellers seat 9 to 26 passengers with dedicated rear luggage trunks.`,
+      },
+      {
+        q: `Do you offer local sightseeing or hourly cab rental in ${formattedCity}?`,
+        a: `Yes, we provide 4-hr/40km, 8-hr/80km, and 12-hr/120km local car rental packages with dedicated drivers for shopping, business appointments, and monument sightseeing in ${formattedCity}.`,
+      },
+      {
+        q: `Is cab service available for early morning or late-night pickups?`,
+        a: `Yes, our operations run 24 hours a day, 365 days a year. Whether you need a 3 AM airport drop or late-night railway station pickup in ${formattedCity}, our verified drivers arrive on time.`,
+      },
+      {
+        q: `Can I book a Tempo Traveller for a group trip from ${formattedCity}?`,
+        a: `Yes, luxury Tempo Travellers in 9, 12, 16, 20, and 26-seater variants are readily available in ${formattedCity} for family vacations, weddings, pilgrimage yatras, and corporate events.`,
+      },
+    ],
+    [formattedCity],
+  );
+
   // Structured Data (JSON-LD)
   const structuredData = useMemo(() => {
     const canonicalUrl = `${SITE_URL}/${city.toLowerCase()}-cab-service`;
@@ -248,11 +302,24 @@ Please share booking confirmation and driver assignment.`;
       },
     };
 
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: cityCabFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
+        },
+      })),
+    };
+
     return JSON.stringify({
       "@context": "https://schema.org",
-      "@graph": [breadcrumbs, taxiService],
+      "@graph": [breadcrumbs, taxiService, faqSchema],
     });
-  }, [city, formattedCity, startingFare]);
+  }, [city, formattedCity, startingFare, cityCabFaqs]);
 
   const services = [
     {
@@ -1461,56 +1528,7 @@ Please share booking confirmation and driver assignment.`;
                 {city !== "India" ? `for ${formattedCity}` : ""}
               </h2>
             </div>
-            {[
-              {
-  q: `What payment options are available for cab booking in ${formattedCity}?`,
-  a: `You can pay via UPI, online payment, or other available methods. The accepted payment options are confirmed during booking.`,
-},
-{
-  q: `Can I cancel or reschedule my cab booking in ${formattedCity}?`,
-  a: `Yes, bookings can be cancelled or rescheduled as per our cancellation policy. Charges may apply depending on how close the change is to your pickup time.`,
-},
-{
-  q: `Are toll, parking and state taxes included in the cab fare?`,
-  a: `Toll, parking and interstate taxes are charged additionally where applicable, depending on your route. Applicable charges are shared when you confirm your booking.`,
-},
-{
-  q: `What is the minimum kilometre limit for outstation trips from ${formattedCity}?`,
-  a: `Outstation round trips are billed on a minimum daily kilometre limit; one-way trips are charged by route distance. // TODO: add your actual km/day figure`,
-},
-{
-  q: `Is there any extra charge for night travel or driver allowance?`,
-  a: `Night charges and driver allowance may apply on outstation and late-night trips. // TODO: add your actual night-charge and allowance amounts`,
-},
-{
-  q: `How early should I book a cab in ${formattedCity}?`,
-  a: `For local and airport rides, booking a few hours ahead is usually enough. For outstation trips, weddings, and festival or peak season travel, book at least 1–2 days in advance to guarantee availability.`,
-},
-{
-  q: `Can I book a round-trip or multi-day outstation cab from ${formattedCity}?`,
-  a: `Yes. We offer one-way, round-trip, and multi-day outstation cabs from ${formattedCity}, with the same car and driver for the full journey on round trips.`,
-},
-{
-  q: `Which popular outstation destinations can I travel to from ${formattedCity}?`,
-  a: `You can book cabs from ${formattedCity} to nearby cities, pilgrimage destinations, and hill stations across North India. // UNIQUE-PER-CITY: replace with 4–5 real destinations pulled from masterRoutes for this city`,
-},
-{
-  q: `How many passengers and how much luggage can the vehicle carry?`,
-  a: `Sedans like Dzire and Amaze seat 4 passengers, Ertiga and Innova Crysta seat 6–7, and Tempo Travellers seat larger groups. Tell us your group size and luggage when booking so we can suggest the right vehicle.`,
-},
-{
-  q: `Do you offer local sightseeing or hourly cab rental in ${formattedCity}?`,
-  a: `Yes, you can hire a cab with driver in ${formattedCity} for local sightseeing, shopping, and day-long city travel with flexible stops.`,
-},
-{
-  q: `Is cab service available for early morning or late-night pickups?`,
-  a: `Yes, our service runs 24/7, including early-morning and late-night airport and railway station transfers in ${formattedCity}. Share your pickup time in advance for guaranteed availability.`,
-},
-{
-  q: `Can I book a Tempo Traveller for a group trip from ${formattedCity}?`,
-  a: `Yes. Tempo Travellers in 12, 16, 20 and 24-seater options are available from ${formattedCity} for family trips, pilgrimages, weddings, and corporate group travel.`,
-},
-            ].map((faq, i) => (
+            {cityCabFaqs.map((faq, i) => (
               <details key={i} className="faq-item">
                 <summary>
                   {faq.q}

@@ -1,3 +1,5 @@
+import Head from "next/head";
+import { useMemo } from "react";
 import { ParsedRouteData } from "@/lib/urlParser";
 import EEATSection from "@/components/shared/EEATSection";
 import InternalLinks from "@/components/shared/InternalLinks";
@@ -26,8 +28,85 @@ export default function LocalServiceTemplate({
   };
   const vDetails = getVehicleDetails(vehicle);
 
+  const localFaqs = useMemo(
+    () => [
+      {
+        q: `How much does a local taxi service cost in ${city}?`,
+        a: `A local taxi service in ${city} starts from ₹999 for a 4-hour (40 km) package. Our 8-hour (80 km) cab booking is the most popular, starting at ₹1,499. Use our app or call 844-844-5504 for real-time rates and instant confirmation.`,
+      },
+      {
+        q: `Can I get an airport taxi for pickup or drop in ${city}?`,
+        a: `Yes! We provide 24/7 airport taxi and airport transfer services in ${city}. Our drivers track flight status in real-time and provide 45 minutes of complimentary wait time for delayed flights.`,
+      },
+      {
+        q: `Are the drivers for your taxi service in ${city} verified?`,
+        a: `Every driver at Chiku Cabs undergoes a mandatory background check and police verification. They are local experts who know all routes, traffic shortcuts, and major landmarks in ${city} perfectly.`,
+      },
+      {
+        q: `Can I extend my local taxi service rental hours during the trip?`,
+        a: `Certainly! You can extend your cab booking via our 24/7 support desk or by informing the driver directly. Extra km and additional hours are charged at nominal, transparent per-hour/per-km rates.`,
+      },
+      {
+        q: `Do you offer outstation cabs from ${city} as part of this service?`,
+        a: `While this package is tailored for local city travel, we also offer dedicated outstation cabs from ${city} to any destination in India at competitive one-way and round-trip per km rates.`,
+      },
+      {
+        q: `What vehicle options are available for local cab booking in ${city}?`,
+        a: `You can choose from compact hatchbacks (WagonR, Swift), comfortable sedans (Dzire, Etios), premium SUVs (Innova Crysta, Ertiga), or luxury tempo travellers (9 to 26 seats) for group outings in ${city}.`,
+      },
+      {
+        q: `Is car rental with a driver available for 12 hours in ${city}?`,
+        a: `Yes, we offer specialized 12-hour/120km car rental packages which are ideal for multi-stop corporate meetings, wedding logistics, or extensive sightseeing tours across ${city}.`,
+      },
+      {
+        q: `Do you provide luxury cab booking for local events in ${city}?`,
+        a: `Absolutely. We offer luxury cab booking including Mercedes, Audi, and premium Innova Crysta for high-end corporate delegates, VIP airport transfers, and weddings in ${city}.`,
+      },
+      {
+        q: `Is the airport transfer service available at midnight in ${city}?`,
+        a: `Yes, Chiku Cabs operates round-the-clock (24/7/365). Whether you need an airport taxi at 2 AM or an early morning railway station transfer, our verified drivers are always available on schedule.`,
+      },
+      {
+        q: `How do I get the cheapest taxi service in ${city}?`,
+        a: `To get the best rates for your local cab booking, pre-book your ride on our website or mobile app and take advantage of seasonal coupon discounts and corporate offers in ${city}.`,
+      },
+      {
+        q: `What is your cancellation and rescheduling policy for local cab bookings in ${city}?`,
+        a: `We offer 100% free cancellation and instant rescheduling when requested up to 2 hours prior to your scheduled pickup time in ${city}, ensuring total flexibility for your travel plans.`,
+      },
+      {
+        q: `Do you provide GST invoices for corporate cab bookings and business travel in ${city}?`,
+        a: `Yes, we provide compliant GST e-invoices with company name and GSTIN for all local car rentals and chauffeur bookings in ${city}, making reimbursement fast and seamless.`,
+      },
+    ],
+    [city],
+  );
+
+  const faqSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: localFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
+        },
+      })),
+    }),
+    [localFaqs],
+  );
+
   return (
-    <div className="bg-background min-h-screen">
+    <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      </Head>
+      <div className="bg-background min-h-screen">
       {/* Hero Section */}
      <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-white via-white to-slate-50">
   {/* Background Glow */}
@@ -743,48 +822,7 @@ export default function LocalServiceTemplate({
               Frequently Asked Questions about {city} Cabs
             </h2>
           </div>
-          {[
-            {
-              q: `How much does a local taxi service cost in ${city}?`,
-              a: `A local taxi service in ${city} starts from ₹999 for a 4-hour (40 km) package. Our 8-hour (80 km) cab booking is the most popular, starting at ₹1,499. Use our app for real-time rates.`,
-            },
-            {
-              q: `Can I get an airport taxi for pickup or drop in ${city}?`,
-              a: `Yes! We provide 24/7 airport taxi and airport transfer services in ${city}. Our drivers are punctual and prioritize your schedule for a stress-free flight.`,
-            },
-            {
-              q: `Are the drivers for your taxi service in ${city} verified?`,
-              a: `Every driver at Chiku Cabs undergoes a mandatory background check and police verification. They are local experts who know all the routes in ${city} perfectly.`,
-            },
-            {
-              q: `Can I extend my local taxi service rental hours during the trip?`,
-              a: `Certainly! You can extend your cab booking via the app or by informing the driver. Extra km and hours are charged at nominal rates for your convenience in ${city}.`,
-            },
-            {
-              q: `Do you offer outstation cabs from ${city} as part of this service?`,
-              a: `While this package is for local use, we also offer dedicated outstation cabs from ${city} to any destination in India at very competitive per km rates.`,
-            },
-            {
-              q: `What vehicle options are available for local cab booking in ${city}?`,
-              a: `You can choose from Hatchbacks, Sedans, SUVs like Innova, or even a tempo traveller on rent for bulk group travel during your ${city} tour.`,
-            },
-            {
-              q: `Is car rental with a driver available for 12 hours in ${city}?`,
-              a: `Yes, we offer a specialized 12-hour/120km car rental package which is ideal for business meetings or extensive city sightseeing in ${city}.`,
-            },
-            {
-              q: `Do you provide luxury cab booking for local events in ${city}?`,
-              a: `Absolutely. We offer luxury cab booking including Mercedes, Audi, and premium Innova Crysta for high-end local transit and weddings in ${city}.`,
-            },
-            {
-              q: `Is the airport transfer service available at midnight in ${city}?`,
-              a: `Yes, Chiku Cabs operates 24/7. Whether you need an airport taxi at 3 AM or a local taxi service for early morning travel, we are always available.`,
-            },
-            {
-              q: `How do I get the cheapest taxi service in ${city}?`,
-              a: `To get the best rates for your local cab booking, pre-book your ride on our website or app and check our latest seasonal discount offers for ${city}.`,
-            },
-          ].map((faq, i) => (
+          {localFaqs.map((faq, i) => (
             <details key={i} className="faq-item">
               <summary>
                 {faq.q}
@@ -829,5 +867,6 @@ export default function LocalServiceTemplate({
       </section>
       <EEATSection city={city} vehicle={vehicle} />
     </div>
+    </>
   );
 }

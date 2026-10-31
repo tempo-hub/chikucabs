@@ -220,6 +220,61 @@ Please share booking confirmation and driver assignment.`;
     window.open(buildWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
   };
 
+  // 12 High-Intent SEO FAQs
+  const outstationRouteFaqs = useMemo(
+    () => [
+      {
+        q: `How much does a ${vehicleName} from ${startCity} to ${endCity} cost for outstation taxi service?`,
+        a: `The ${vehicleName} fare from ${startCity} to ${endCity} starts from ₹${startingFare} for a sedan Dzire. Prices vary based on vehicle type and trip type. Our transparent cab booking ensure you get the best outstation cabs rates without hidden fees.`,
+      },
+      {
+        q: `How long does the ${startCity} to ${endCity} taxi service journey take?`,
+        a: `The ${startCity} to ${endCity} journey typically takes ~${travelHours} hours. Our professional drivers for outstation cabs are familiar with the fastest routes and prioritize your safety.`,
+      },
+      {
+        q: `Can I book a one-way cab from ${startCity} to ${endCity}?`,
+        a: `Yes! We are specialists in one-way cab booking. It saves you up to 50% compared to round-trip taxi service charges. Perfect for those needing a dedicated drop taxi.`,
+      },
+      {
+        q: `Is it safe to travel by outstation cabs from ${startCity} to ${endCity}?`,
+        a: `Absolutely. Chiku Cabs provides 24/7 GPS-tracked taxi service, police-verified drivers, and SOS support, ensuring a secure outstation cabs experience for families and solo travelers.`,
+      },
+      {
+        q: `What vehicle options are available for cab booking through Chiku Cabs?`,
+        a: `Our fleet for outstation cabs includes Hatchbacks, Sedans, SUVs like Innova Crysta, and even a tempo traveller on rent for larger groups traveling to ${endCity}.`,
+      },
+      {
+        q: `How do I book an airport taxi for ${startCity} to ${endCity}?`,
+        a: `You can easily book an airport taxi for outstation drops via our website or by calling 8448445504. We provide punctual pickups directly from the airport arrival.`,
+      },
+      {
+        q: `Are there any hidden charges in your outstation taxi service?`,
+        a: `No. We believe in 100% transparent cab booking. Your quote includes the base fare, driver allowance, and GST. Tolls and parking are paid as per actuals.`,
+      },
+      {
+        q: `Do you provide a tempo traveller on rent for this route?`,
+        a: `Yes, for group travel to ${endCity}, we highly recommend booking a tempo traveller on rent. It offers more comfort and is cheaper than booking multiple outstation cabs.`,
+      },
+      {
+        q: `What if I need to cancel my taxi service booking?`,
+        a: `We offer free cancellation for all outstation cabs up to 24 hours before your scheduled pickup. Flexibility is key to our premium cab booking experience.`,
+      },
+      {
+        q: `Do you offer luxury cab booking for the ${startCity} to ${endCity} route?`,
+        a: `Yes, for a more premium experience, you can choose luxury cab booking options like the Innova Crysta, featuring captain seats and extra legroom.`,
+      },
+      {
+        q: `Can we request multiple food stops and sightseeing breaks between ${startCity} and ${endCity}?`,
+        a: `Yes, our drivers are courteous and flexible, allowing you to stop for breakfast, tea, lunch, or en-route landmark visits along the highway at your convenience.`,
+      },
+      {
+        q: `Are digital Fastag toll receipts and GST invoices provided?`,
+        a: `Yes. All highway toll charges are billed accurately through electronic Fastag logs, and an official computerized GST tax invoice is automatically generated and sent to your email after trip completion.`,
+      },
+    ],
+    [vehicleName, startCity, endCity, startingFare, travelHours]
+  );
+
   // Structured Data (JSON-LD)
   const structuredData = useMemo(() => {
     const canonicalUrl = `${SITE_URL}/${startCity.toLowerCase()}/${startCity.toLowerCase()}-to-${endCity.toLowerCase()}-cab`;
@@ -277,31 +332,21 @@ Please share booking confirmation and driver assignment.`;
     const faqSchema = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: `What is the cab fare from ${startCity} to ${endCity}?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `The outstation cab fare from ${startCity} to ${endCity} starts from ₹${startingFare} for an AC Sedan (Dzire/Etios), ₹${calculateFare(distance, 13)} for an SUV (Ertiga), and ₹${calculateFare(distance, 16)} for an Innova Crysta. Toll taxes as per actual Fastag are payable en route.`,
-          },
+      mainEntity: outstationRouteFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
         },
-        {
-          "@type": "Question",
-          name: `What is the road distance and travel time from ${startCity} to ${endCity}?`,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: `The road distance between ${startCity} and ${endCity} is approximately ${distance} km, which typically takes around ${travelHours} hours by cab via the primary highway corridor.`,
-          },
-        },
-      ],
+      })),
     };
 
     return JSON.stringify({
       "@context": "https://schema.org",
       "@graph": [breadcrumbs, taxiService, faqSchema],
     });
-  }, [startCity, endCity, distance, startingFare, travelHours]);
+  }, [startCity, endCity, distance, startingFare, travelHours, outstationRouteFaqs]);
 
   const getVehicleDetails = (v: string | null) => {
     const lowerV = (v || "cab").toLowerCase();
@@ -1180,14 +1225,13 @@ Please share booking confirmation and driver assignment.`;
               ].map((item, i) => (
                 <div
                   key={i}
-                  className={`premium-card relative overflow-hidden flex flex-col pt-12 pb-8 px-8 transition-all duration-300 hover:-translate-y-2 ${
-                    item.best ? "border-primary scale-105 z-10" : ""
-                  }`}
+                  className={`premium-card relative overflow-hidden flex flex-col pt-12 pb-8 px-8 transition-all duration-300 hover:-translate-y-2 ${item.best ? "border-primary scale-105 z-10" : ""
+                    }`}
                   style={
                     item.best
                       ? {
-                          boxShadow: "0 0 0 4px hsla(45,90%,50%,0.12)",
-                        }
+                        boxShadow: "0 0 0 4px hsla(45,90%,50%,0.12)",
+                      }
                       : {}
                   }
                 >
@@ -1254,18 +1298,17 @@ Please share booking confirmation and driver assignment.`;
                     href={`https://wa.me/916280820037?text=${encodeURIComponent(
                       `Hi Chiku Cabs, I am interested in booking ${item.car} from ${startCity} to ${endCity}. Please help me with the booking.`,
                     )}`}
-                    className={`w-full py-4 rounded-xl font-black tracking-tight text-center ${
-                      item.best ? "btn-primary" : ""
-                    }`}
+                    className={`w-full py-4 rounded-xl font-black tracking-tight text-center ${item.best ? "btn-primary" : ""
+                      }`}
                     style={
                       !item.best
                         ? {
-                            background: "hsl(var(--muted))",
-                            display: "block",
-                          }
+                          background: "hsl(var(--muted))",
+                          display: "block",
+                        }
                         : {
-                            display: "block",
-                          }
+                          display: "block",
+                        }
                     }
                   >
                     BOOK NOW
@@ -1476,48 +1519,7 @@ Please share booking confirmation and driver assignment.`;
               </div>
               <h2 className="section-title">Frequently Asked Questions</h2>
             </div>
-            {[
-              {
-                q: `How much does a ${vehicleName} from ${startCity} to ${endCity} cost for outstation taxi service?`,
-                a: `The ${vehicleName} fare from ${startCity} to ${endCity} starts from ₹${startingFare} for a sedan Dzire. Prices vary based on vehicle type and trip type. Our transparent cab booking ensure you get the best outstation cabs rates without hidden fees.`,
-              },
-              {
-                q: `How long does the ${startCity} to ${endCity} taxi service journey take?`,
-                a: `The ${startCity} to ${endCity} journey typically takes ~${travelHours} hours. Our professional drivers for outstation cabs are familiar with the fastest routes and prioritize your safety.`,
-              },
-              {
-                q: `Can I book a one-way cab from ${startCity} to ${endCity}?`,
-                a: `Yes! We are specialists in one-way cab booking. It saves you up to 50% compared to round-trip taxi service charges. Perfect for those needing a dedicated drop taxi.`,
-              },
-              {
-                q: `Is it safe to travel by outstation cabs from ${startCity} to ${endCity}?`,
-                a: `Absolutely. Chiku Cabs provides 24/7 GPS-tracked taxi service, police-verified drivers, and SOS support, ensuring a secure outstation cabs experience for families and solo travelers.`,
-              },
-              {
-                q: `What vehicle options are available for cab booking through Chiku Cabs?`,
-                a: `Our fleet for outstation cabs includes Hatchbacks, Sedans, SUVs like Innova Crysta, and even a tempo traveller on rent for larger groups traveling to ${endCity}.`,
-              },
-              {
-                q: `How do I book an airport taxi for ${startCity} to ${endCity}?`,
-                a: `You can easily book an airport taxi for outstation drops via our website or by calling 8448445504. We provide punctual pickups directly from the airport arrival.`,
-              },
-              {
-                q: `Are there any hidden charges in your outstation taxi service?`,
-                a: `No. We believe in 100% transparent cab booking. Your quote includes the base fare, driver allowance, and GST. Tolls and parking are paid as per actuals.`,
-              },
-              {
-                q: `Do you provide a tempo traveller on rent for this route?`,
-                a: `Yes, for group travel to ${endCity}, we highly recommend booking a tempo traveller on rent. It offers more comfort and is cheaper than booking multiple outstation cabs.`,
-              },
-              {
-                q: `What if I need to cancel my taxi service booking?`,
-                a: `We offer free cancellation for all outstation cabs up to 24 hours before your scheduled pickup. Flexibility is key to our premium cab booking experience.`,
-              },
-              {
-                q: `Do you offer luxury cab booking for the ${startCity} to ${endCity} route?`,
-                a: `Yes, for a more premium experience, you can choose luxury cab booking options like the Innova Crysta, featuring captain seats and extra legroom.`,
-              },
-            ].map((faq, i) => (
+            {outstationRouteFaqs.map((faq, i) => (
               <details key={i} className="faq-item">
                 <summary>
                   {faq.q}
