@@ -315,7 +315,9 @@ export default function TempoTravellerTemplate({
           if (toRaw) {
             const to = toRaw.replace(/-/g, " ");
             if (!grouped[routeCity]) grouped[routeCity] = [];
-            grouped[routeCity].push({ url: r.url, to });
+            if (!grouped[routeCity].some((item) => item.url === r.url)) {
+              grouped[routeCity].push({ url: r.url, to });
+            }
           }
         }
       }
@@ -324,6 +326,26 @@ export default function TempoTravellerTemplate({
   }, []);
 
   const city = parsedData.origin || "India";
+  const cityName = city !== "India" ? city : "";
+  let citySlug = "";
+
+  citySlug = cityName
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-");
+  const normalizedCitySlug =
+    citySlug === "bengaluru" ? "bangalore" : citySlug;
+
+  const cityTabKeys = useMemo(() => {
+    const keys = Object.keys(groupedTempoRoutes);
+    if (normalizedCitySlug && keys.includes(normalizedCitySlug)) {
+      return [
+        normalizedCitySlug,
+        ...keys.filter((k) => k !== normalizedCitySlug),
+      ];
+    }
+    return keys;
+  }, [groupedTempoRoutes, normalizedCitySlug]);
   const vehicle = parsedData.vehicle || DEFAULT_VEHICLE;
   const vehicleDetails = useMemo(() => getVehicleDetails(vehicle), [vehicle]);
   const [formData, setFormData] = useState<FormData>({
@@ -343,11 +365,11 @@ export default function TempoTravellerTemplate({
   const [returnDate, setReturnDate] = useState("");
   const [tripType, setTripType] = useState("one-way");
   const [selectedVehicle, setSelectedVehicle] = useState("");
-  const [selectedDestinationCity, setSelectedDestinationCity] = useState("");
+  const [selectedDestinationCity, setSelectedDestinationCity] = useState(normalizedCitySlug || "");
   const [showAllDestinations, setShowAllDestinations] = useState(false);
   const [showAllFareCities, setShowAllFareCities] = useState(false);
-  const cityName = city !== "India" ? city : "";
-  const citySlug = cityName
+
+  citySlug = cityName
     .toLowerCase()
     .trim()
     .replace(/\s+/g, "-");
@@ -362,12 +384,51 @@ export default function TempoTravellerTemplate({
   useEffect(() => {
     const cityKeys = Object.keys(groupedTempoRoutes);
 
-    if (cityKeys.length > 0 && !cityKeys.includes(selectedDestinationCity)) {
+    if (cityKeys.length > 0) {
+      if (normalizedCitySlug && cityKeys.includes(normalizedCitySlug)) {
+        setSelectedDestinationCity(normalizedCitySlug);
+      } else if (!selectedDestinationCity || !cityKeys.includes(selectedDestinationCity)) {
+        setSelectedDestinationCity(cityKeys[0]);
+      }
+    }
+    if (false) {
       setSelectedDestinationCity(cityKeys[0]);
     }
-  }, [groupedTempoRoutes, selectedDestinationCity]);
+  }, [groupedTempoRoutes, normalizedCitySlug]);
 
 
+
+  const popularDestinations = useMemo(() => {
+    const fromCityRoutes =
+      cityRoutes[city?.toLowerCase() as keyof typeof cityRoutes];
+    if (fromCityRoutes && fromCityRoutes.length > 0) {
+      return fromCityRoutes;
+    }
+    const routesFromGroup = groupedTempoRoutes[normalizedCitySlug] || [];
+    return routesFromGroup.slice(0, 12).map((r) => r.to);
+  }, [city, groupedTempoRoutes, normalizedCitySlug]);
+
+  const _x = () => {
+  };
+
+  const _unusedRoutes = () => {
+    return [] as any;
+    const fromCityRoutes =
+      cityRoutes[city?.toLowerCase() as keyof typeof cityRoutes];
+    if (fromCityRoutes && fromCityRoutes.length > 0) {
+      return fromCityRoutes.map((destination) => ({
+        to: destination,
+        url: `/${city.toLowerCase()}/tempo-traveller-hire-${city.toLowerCase()}-to-${destination
+          .toLowerCase()
+          .replace(/\s+/g, "-")}`,
+      }));
+    }
+    const routesFromGroup = groupedTempoRoutes[normalizedCitySlug] || [];
+    return routesFromGroup.slice(0, 12).map((r) => ({
+      to: r.to,
+      url: r.url,
+    }));
+  };
 
   // Scroll handler for sticky CTA
   useEffect(() => {
@@ -1528,7 +1589,7 @@ Please share the best fare.`;
             {/* City Filter Tabs */}
             <div className="mb-12">
               <div className="flex flex-wrap justify-center gap-3">
-                {Object.keys(groupedTempoRoutes).map((cityKey) => {
+                {cityTabKeys.map((cityKey) => {
                   const cityName =
                     CITY_DISPLAY_NAMES[cityKey] ??
                     cityKey
@@ -2432,7 +2493,7 @@ Please share the best fare.`;
 
               <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {(
-                  cityRoutes[city?.toLowerCase() as keyof typeof cityRoutes] ||
+                  popularDestinations ||
                   []
                 ).map((destination, i) => (
                   <Link
