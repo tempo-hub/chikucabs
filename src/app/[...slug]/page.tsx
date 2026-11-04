@@ -21,6 +21,10 @@ import OneWayTemplate from "@/components/templates/OneWayTemplate";
 import OutstationTemplate from "@/components/templates/OutstationTemplate";
 import AirportTaxiTemplate from "@/components/templates/AirportTaxiTemplate";
 import TempoTravellerTemplate from "@/components/templates/TempoTravellerTemplate";
+import TempoTravellerCityTemplate from "@/components/templates/TempoTravellerCityTemplate";
+import TempoTraveller12SeaterTemplate from "@/components/templates/TempoTraveller12SeaterTemplate";
+import TempoTraveller16SeaterTemplate from "@/components/templates/TempoTraveller16SeaterTemplate";
+import TempoTraveller20SeaterTemplate from "@/components/templates/TempoTraveller20SeaterTemplate";
 import LocalSightseeingTemplate from "@/components/templates/LocalSightseeingTemplate";
 import ErtigaServiceTemplate from "@/components/templates/ErtigaServiceTemplate";
 import DzireServiceTemplate from "@/components/templates/DzireServiceTemplate";
@@ -340,9 +344,23 @@ export async function generateMetadata({
     parsed.routeType === "Local Service" &&
     parsed.vehicleCategory === "tempo-traveller"
   ) {
-    title = `Tempo Traveller on Rent in ${parsed.origin} | 9-26 Seater | Chiku Cabs`;
+    if (slugValue.includes("12-seater")) {
+      title = `12 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹22/km | Chiku Cabs`;
+      description = `Book 12 Seater Tempo Traveller in ${parsed.origin} at ₹22/km. Pushback seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+    } else if (slugValue.includes("16-seater")) {
+      title = `16 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹25/km | Chiku Cabs`;
+      description = `Book 16 Seater Tempo Traveller in ${parsed.origin} at ₹25/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+    } else if (slugValue.includes("20-seater")) {
+      title = `20 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹29/km | Chiku Cabs`;
+      description = `Book 20 Seater Tempo Traveller in ${parsed.origin} at ₹29/km. Mini-bus luxury, pushback seats, dual AC, large boot & certified drivers. Call 8448445504.`;
+    } else if (slugValue.startsWith("tempo-traveller-in-")) {
+      title = `Tempo Traveller in ${parsed.origin} | 9 to 26 Seater on Rent | Chiku Cabs`;
+      description = `Hire Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9, 12, 16, 20 & 26 seater options with AC comfort. Call 8448445504.`;
+    } else {
+      title = `Tempo Traveller on Rent in ${parsed.origin} | 9-26 Seater | Chiku Cabs`;
+    }
 
-    description = `Hire a Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9-26 seater options with AC comfort. Call 9818022327.`;
+    if (!description || description.startsWith("Book verified")) { description = `Hire a Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9-26 seater options with AC comfort. Call 9818022327.`; }
 
     keywords = [
       // Primary keywords
@@ -906,6 +924,22 @@ export default async function DynamicRoutePage({
         parsed.routeType === "Outstation Route Fare"
       ) {
         return <TempoTravellerRouteTemplate parsedData={parsed} />;
+      }
+      if (slugValue.includes("12-seater")) {
+        return <TempoTraveller12SeaterTemplate parsedData={parsed} />;
+      }
+      if (slugValue.includes("16-seater")) {
+        return <TempoTraveller16SeaterTemplate parsedData={parsed} />;
+      }
+      if (slugValue.includes("20-seater")) {
+        return <TempoTraveller20SeaterTemplate parsedData={parsed} />;
+      }
+      if (
+        slugValue.startsWith("tempo-traveller-in-") ||
+        slugValue.startsWith("tempo-traveller-for-rent-in-") ||
+        slugValue.startsWith("tempo-traveller-on-rent-in-")
+      ) {
+        return <TempoTravellerCityTemplate parsedData={parsed} />;
       }
       return <TempoTravellerTemplate parsedData={parsed} />;
     }
