@@ -911,87 +911,78 @@ Please share the best quote.`;
           </div>
         </section>
 
-        {/* Fleet Gallery with 16 Seater Highlighted */}
+        {/* 12 Seater Features & Comfort */}
         <section className="py-16 px-4 bg-gradient-to-b from-white to-gray-50 border-b border-slate-300">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-14">
-              <div className="section-badge mx-auto">TEMPO TRAVELLER FLEET</div>
+              <div className="section-badge mx-auto">FEATURES &amp; COMFORT</div>
               <h2 className="section-title">
-                16 Seater &amp; Full Tempo Traveller Fleet
+                Relax and Travel Together in a 16 Seater
               </h2>
               <p className="section-subtitle mx-auto">
-                Compare the 16 Seater with our other popular seating capacities.
+                Thoughtful onboard amenities and spacious seating make group
+                journeys comfortable from pickup to drop-off.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {TEMPO_DATA.map((item, i) => (
-                <div
-                  key={i}
-                  className={`premium-card relative overflow-hidden flex flex-col pt-12 pb-8 px-8 transition-all duration-300 hover:-translate-y-2 ${
-                    item.seater === 16
-                      ? "border-2 border-primary shadow-2xl scale-105 z-10 bg-white"
-                      : "border hover:border-primary hover:shadow-lg"
-                  }`}
-                >
-                  {item.seater === 16 && (
-                    <div className="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-xs font-black uppercase rounded-bl-lg">
-                      ★ Highlighted Choice
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: FaUsers,
+                  title: "Comfortable Pushback Seats",
+                  description:
+                    "Roomy, reclining seats let your group relax throughout the journey.",
+                },
+                {
+                  icon: FaSnowflake,
+                  title: "Dual Air Conditioning",
+                  description:
+                    "A dual AC setup helps keep the cabin cool for every passenger.",
+                },
+                {
+                  icon: FaCarSide,
+                  title: "Music System",
+                  description:
+                    "Enjoy music together and make long drives more pleasant.",
+                },
+                {
+                  icon: FaSuitcase,
+                  title: "Room for Luggage",
+                  description:
+                    "Dedicated luggage space, with rooftop carrier options for group trips.",
+                },
+                {
+                  icon: FaShieldAlt,
+                  title: "Experienced Chauffeurs",
+                  description:
+                    "Travel with a professional driver familiar with local and outstation routes.",
+                },
+                {
+                  icon: FaCheckCircle,
+                  title: "Group-Friendly Cabin",
+                  description:
+                    "Travel together in one vehicle for family outings, events, and tours.",
+                },
+              ].map((feature) => {
+                const Icon = feature.icon;
+
+                return (
+                  <div
+                    key={feature.title}
+                    className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                  >
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon size={22} />
                     </div>
-                  )}
-
-                  <div className="absolute top-1 left-3 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-black">
-                    {item.seater} Seater
+                    <h3 className="mb-2 text-lg font-bold text-slate-900">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm leading-6 text-slate-600">
+                      {feature.description}
+                    </p>
                   </div>
-
-                  <div className="text-5xl mb-4">
-                    {item.seater <= 12 ? "🚐" : item.seater <= 16 ? "🚌" : "🚍"}
-                  </div>
-
-                  <h3 className="text-2xl font-black mb-2">
-                    Tempo Traveller <br />
-                    <span className="text-primary">{item.seater} Seater</span>
-                  </h3>
-
-                  <p className="text-muted-foreground text-sm mb-6">
-                    {item.desc}
-                  </p>
-
-                  <div className="mt-auto mb-6">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-sm font-black opacity-50">FROM</span>
-                      <span className="text-5xl font-black text-primary">
-                        ₹{item.price}
-                      </span>
-                      <span className="text-sm font-black opacity-50">/ KM</span>
-                    </div>
-                  </div>
-
-                  <ul className="space-y-2 mb-8 list-none">
-                    <li className="flex items-center gap-3 text-sm font-medium">
-                      <span className="text-primary text-lg">✓</span>
-                      {item.seating}
-                    </li>
-                    <li className="flex items-center gap-3 text-sm font-medium">
-                      <span className="text-primary text-lg">✓</span>
-                      Luggage Space: {item.luggage}
-                    </li>
-                    <li className="flex items-center gap-3 text-sm font-medium">
-                      <span className="text-primary text-lg">✓</span>
-                      Dual AC &amp; Chauffeur
-                    </li>
-                  </ul>
-
-                  <div className="space-y-3">
-                    <a
-                      href="tel:+918448445504"
-                      className="btn-primary w-full py-3.5 rounded-xl font-bold tracking-tight text-center block shadow-md"
-                    >
-                      📞 BOOK {item.seater} SEATER
-                    </a>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
