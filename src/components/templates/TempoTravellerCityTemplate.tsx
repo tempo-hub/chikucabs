@@ -601,6 +601,14 @@ export default function TempoTravellerCityTemplate({
         q: `How do I confirm my booking and verify vehicle photos/videos before the trip?`,
         a: `You can reserve instantly by calling +91-8448445504 or messaging our 24/7 WhatsApp desk at 916280820037. Our reservations team will share authentic photos and video walkarounds of the exact tempo traveller assigned to your journey along with driver credentials.`,
       },
+      {
+        q: `What details should I share to get a Tempo Traveller quote in ${city !== "India" ? city : "India"}?`,
+        a: `Share your pickup location, destination or route, travel date and time, trip duration, passenger count, and luggage needs. This helps the team check vehicle availability and provide a quote based on your itinerary.`,
+      },
+      {
+        q: `How do I choose the right Tempo Traveller seating capacity in ${city !== "India" ? city : "India"}?`,
+        a: `Choose a seating capacity based on the number of passengers and the space they need for luggage. Share both details with the booking team, who can help you compare available options for your trip.`,
+      },
     ],
     [city]
   );

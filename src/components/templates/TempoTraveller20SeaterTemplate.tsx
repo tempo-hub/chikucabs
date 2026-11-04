@@ -468,6 +468,22 @@ export default function TempoTraveller20SeaterTemplate({
         q: `How do I book a 20 Seater Tempo Traveller in ${city !== "India" ? city : "India"}?`,
         a: `Call +91-8448445504 or chat with our reservations team on WhatsApp at 916280820037. We will send actual photos of the 20 seater tempo and confirm your booking with an instant GST tax invoice.`,
       },
+      {
+        q: `Can I book a 20 Seater Tempo Traveller for local sightseeing or airport transfers?`,
+        a: `Yes. You can enquire about a 20 seater for local sightseeing, airport transfers, events, and outstation trips. Share your route and schedule to confirm availability and get a quote for your itinerary.`,
+      },
+      {
+        q: `What details are needed to get a 20 Seater Tempo Traveller fare quote?`,
+        a: `Provide your pickup city and location, destination, travel date and time, trip duration, passenger count, and luggage requirements. The team can use these details to check availability and calculate the applicable fare.`,
+      },
+      {
+        q: `Is a 20 Seater Tempo Traveller suitable for large family or corporate groups?`,
+        a: `A 20 seater can keep a larger group together in one vehicle for family journeys, corporate outings, and group events. Confirm the number of passengers and luggage when enquiring so the vehicle can be matched to your needs.`,
+      },
+      {
+        q: `How far in advance should I reserve a 20 Seater Tempo Traveller?`,
+        a: `Contact the team as early as possible, particularly for holiday dates, weekends, and weddings. Availability can vary by city and itinerary, so early enquiry helps you check your preferred travel dates.`,
+      },
     ],
     [city]
   );
