@@ -69,7 +69,23 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
   if (lowerSegment.includes("urbania")) {
   vehicle = "Urbania";
 } else if (lowerSegment.includes("tempo") || lowerSegment.includes("traveller")) {
-    vehicle = "Tempo Traveller";
+    if (lowerSegment.includes("12-seater")) {
+      vehicle = "12 Seater Tempo Traveller";
+    } else if (lowerSegment.includes("16-seater")) {
+      vehicle = "16 Seater Tempo Traveller";
+    } else if (lowerSegment.includes("20-seater")) {
+      vehicle = "20 Seater Tempo Traveller";
+    } else if (lowerSegment.includes("26-seater")) {
+      vehicle = "26 Seater Tempo Traveller";
+    } else if (lowerSegment.includes("15-seater")) {
+      vehicle = "15 Seater Tempo Traveller";
+    } else if (lowerSegment.includes("9-seater")) {
+      vehicle = "9 Seater Tempo Traveller";
+    } else if (lowerSegment.includes("10-seater")) {
+      vehicle = "10 Seater Tempo Traveller";
+    } else {
+      vehicle = "Tempo Traveller";
+    }
   } else if (lowerSegment.includes("innova")) {
     vehicle = "Innova";
     } else if (lowerSegment.includes("ertiga")) {
@@ -169,6 +185,18 @@ else if (lowerSegment.startsWith("urbania-fare-in-")) {
   origin = citySlug;
   displayCity = citySlug;
   vehicle = "Urbania";
+}
+else if (lowerSegment.startsWith("12-seater-tempo-traveller-in-")) {
+  routeType = "Local Service";
+
+  const citySlug = lowerSegment.replace(
+    "12-seater-tempo-traveller-in-",
+    ""
+  );
+
+  origin = citySlug;
+  displayCity = citySlug;
+  vehicle = "12 Seater Tempo Traveller";
 }
   // Urbania Route Fare Pages
   // Example:
@@ -314,6 +342,28 @@ else if (isVehicleRental) {
       // It's a single slug with a city name at the end, like tempo-traveller-surat
       let beforeCity = lowerSegment;
       const prefixesToRemove = [
+        "12-seater-tempo-traveller-on-rent-in-",
+        "12-seater-tempo-traveller-for-rent-in-",
+        "12-seater-tempo-traveller-in-",
+        "12-seater-tempo-traveller-on-rent-",
+        "12-seater-tempo-traveller-hire-",
+        "12-seater-tempo-traveller-",
+        "15-seater-tempo-traveller-in-",
+        "15-seater-tempo-traveller-",
+        "16-seater-tempo-traveller-on-rent-in-",
+        "16-seater-tempo-traveller-for-rent-in-",
+        "16-seater-tempo-traveller-in-",
+        "16-seater-tempo-traveller-on-rent-",
+        "16-seater-tempo-traveller-hire-",
+        "16-seater-tempo-traveller-",
+        "20-seater-tempo-traveller-on-rent-in-",
+        "20-seater-tempo-traveller-for-rent-in-",
+        "20-seater-tempo-traveller-in-",
+        "20-seater-tempo-traveller-on-rent-",
+        "20-seater-tempo-traveller-hire-",
+        "20-seater-tempo-traveller-",
+        "26-seater-tempo-traveller-in-",
+        "26-seater-tempo-traveller-",
         "tempo-traveller-for-rent-in-",
         "tempo-traveller-on-rent-in-",
         "tempo-traveller-on-rent-",
