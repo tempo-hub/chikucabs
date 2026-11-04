@@ -468,6 +468,22 @@ export default function TempoTraveller16SeaterTemplate({
         q: `How can I reserve a 16 Seater Tempo Traveller in ${city !== "India" ? city : "India"}?`,
         a: `Call +91-8448445504 or message our 24/7 WhatsApp helpdesk at 916280820037. Our team will verify availability, provide actual photos of the vehicle, and send instant confirmation.`,
       },
+      {
+        q: `Can I hire a 16 Seater Tempo Traveller for local sightseeing and airport transfers?`,
+        a: `Yes. A 16 seater can be requested for local sightseeing, airport transfers, events, and outstation journeys. Share your itinerary and travel date so the team can confirm availability and the applicable fare.`,
+      },
+      {
+        q: `What information should I provide to get a 16 Seater Tempo Traveller quote?`,
+        a: `Share your pickup city and location, destination or route, travel date and time, trip duration, passenger count, and luggage needs. These details help the team recommend a suitable vehicle and provide a trip-specific quote.`,
+      },
+      {
+        q: `Can I request a rooftop luggage carrier with a 16 Seater Tempo Traveller?`,
+        a: `Rooftop carrier availability can be requested when booking. Mention your luggage quantity and type in advance so the team can confirm the arrangement for your trip.`,
+      },
+      {
+        q: `How early should I book a 16 Seater Tempo Traveller?`,
+        a: `Book as early as possible, especially for holiday periods, weekends, and wedding dates. Availability depends on your city, travel date, and itinerary, so contact the team to check your preferred schedule.`,
+      },
     ],
     [city]
   );
@@ -1447,4 +1463,3 @@ Please share the best quote.`;
     </>
   );
 }
-

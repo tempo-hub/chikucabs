@@ -468,6 +468,22 @@ export default function TempoTraveller12SeaterTemplate({
         q: `How do I book a 12 Seater Tempo Traveller in ${city !== "India" ? city : "India"}?`,
         a: `You can instantly book by calling +91-8448445504 or contacting our 24/7 WhatsApp desk at 916280820037. We will share actual photos of the vehicle and confirm your ride with a nominal advance deposit.`,
       },
+      {
+        q: `Can I hire a 12 Seater Tempo Traveller for local sightseeing or airport transfers?`,
+        a: `Yes. You can enquire about a 12 seater for local sightseeing, airport transfers, family functions, and outstation trips. Share your itinerary and travel date so the team can check availability and provide a trip-specific quote.`,
+      },
+      {
+        q: `What details should I provide to get a 12 Seater Tempo Traveller quote?`,
+        a: `Provide your pickup location, destination or route, travel date and time, trip duration, passenger count, and luggage requirements. These details help the team check availability and calculate the applicable fare.`,
+      },
+      {
+        q: `Is a 12 Seater Tempo Traveller suitable for a family trip or group tour?`,
+        a: `A 12 seater lets a group travel together in one vehicle and is commonly considered for family outings, sightseeing, and group tours. Consider your passenger count and luggage when confirming that this seating capacity suits your trip.`,
+      },
+      {
+        q: `How early should I book a 12 Seater Tempo Traveller?`,
+        a: `Enquire as early as possible, especially for weekends, holidays, and wedding dates. Availability depends on your pickup city and travel schedule, so contact the booking team to check your preferred dates.`,
+      },
     ],
     [city]
   );
