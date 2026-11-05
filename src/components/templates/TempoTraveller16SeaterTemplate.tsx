@@ -4,12 +4,9 @@ import { ParsedRouteData } from "@/lib/urlParser";
 import EEATSection from "@/components/shared/EEATSection";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
-import { cityRoutes } from "@/data/routes";
 import toast from "react-hot-toast";
 import { CiClock1 } from "react-icons/ci";
-import { IoLocationSharp } from "react-icons/io5";
 import routeData from "@/data/routeData.json";
-import { CITY_DISPLAY_NAMES } from "@/data/cityCabRoutes";
 import {
   FaCarSide,
   FaCheckCircle,
@@ -17,33 +14,23 @@ import {
   FaSuitcase,
   FaSnowflake,
   FaShieldAlt,
-  FaWhatsapp,
   FaMoneyBillWave,
-  FaMapMarkerAlt,
 } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import Head from "next/head";
 import Script from "next/script";
 import { cities } from "@/data/cities";
+import { usePathname } from "next/navigation";
 
 // --- Type Definitions ---
 interface FormData {
-  name: string;
-  phone: string;
-  pickup: string;
-  drop: string;
-  date: string;
   distance: string;
 }
 
 interface VehicleDetails {
-  icon: string;
   image: string;
   pricePerKm: number;
-  capacity: string;
-  luggage: string;
   description: string;
-  features: string[];
 }
 
 interface StatItem {
@@ -55,7 +42,6 @@ interface StatItem {
 const PHONE_NUMBER = "+918448445504";
 const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
-const currentYear = new Date().getFullYear();
 
 const STATS: StatItem[] = [
   { num: "800+", label: "Monthly Group Trips" },
@@ -82,150 +68,11 @@ const STEPS = [
   },
 ];
 
-const TEMPO_DATAS = [
-  { seater: 9, pricePerKm: 20 },
-  { seater: 10, pricePerKm: 21 },
-  { seater: 12, pricePerKm: 22 },
-  { seater: 15, pricePerKm: 23 },
-  { seater: 16, pricePerKm: 25, highlight: true },
-  { seater: 17, pricePerKm: 26 },
-  { seater: 18, pricePerKm: 27 },
-  { seater: 20, pricePerKm: 29 },
-  { seater: 26, pricePerKm: 32 },
-];
-
-const TEMPO_DATA = [
-  {
-    seater: 9,
-    label: "9 Seater",
-    tier: "PREMIUM",
-    desc: "Perfect for small family trips & executive travel",
-    price: 20,
-    seating: "2+2+2+3 Pushback",
-    luggage: "8-10 Bags",
-    best: false,
-    popular: false,
-  },
-  {
-    seater: 10,
-    label: "10 Seater",
-    tier: "PREMIUM",
-    desc: "Ideal for small groups, family outings & comfortable travel",
-    price: 21,
-    seating: "Comfortable Pushback Seating",
-    luggage: "8-10 Bags",
-    best: false,
-    popular: false,
-  },
-  {
-    seater: 12,
-    label: "12 Seater",
-    tier: "STANDARD",
-    desc: "Ideal for medium groups & corporate outings",
-    price: 22,
-    seating: "3+3+3+3 Pushback",
-    luggage: "12-15 Bags",
-    best: false,
-    popular: false,
-  },
-  {
-    seater: 15,
-    label: "15 Seater",
-    tier: "PREMIUM",
-    desc: "Great for large families & group tours",
-    price: 23,
-    seating: "3+3+3+3+3 Pushback",
-    luggage: "15-18 Bags",
-    best: false,
-    popular: false,
-  },
-  {
-    seater: 16,
-    label: "16 Seater",
-    tier: "STANDARD",
-    desc: "Most sought after for extended family vacations, weddings & long tours",
-    price: 25,
-    seating: "4+4+4+4 Pushback",
-    luggage: "18-20 Bags",
-    best: true,
-    popular: true,
-  },
-  {
-    seater: 17,
-    label: "17 Seater",
-    tier: "PREMIUM",
-    desc: "Suitable for group tours, family functions & outstation trips",
-    price: 26,
-    seating: "Comfortable Pushback Seating",
-    luggage: "18-22 Bags",
-    best: false,
-    popular: false,
-  },
-  {
-    seater: 18,
-    label: "18 Seater",
-    tier: "PREMIUM",
-    desc: "Perfect for big groups & destination weddings",
-    price: 27,
-    seating: "3+3+3+3+3+3 Pushback",
-    luggage: "20-25 Bags",
-    best: false,
-    popular: false,
-  },
-  {
-    seater: 20,
-    label: "20 Seater",
-    tier: "LUXURY",
-    desc: "Max capacity for large events & tours",
-    price: 29,
-    seating: "4+4+4+4+4 Pushback",
-    luggage: "25-30 Bags",
-    best: false,
-    popular: false,
-  },
-  {
-    seater: 26,
-    label: "26 Seater",
-    tier: "LUXURY",
-    desc: "Ideal for large groups, corporate events & destination weddings",
-    price: 32,
-    seating: "Comfortable Pushback Seating",
-    luggage: "30+ Bags",
-    best: false,
-    popular: false,
-  },
-];
-
 export default function TempoTraveller16SeaterTemplate({
   parsedData,
 }: {
   parsedData: ParsedRouteData;
 }) {
-  const groupedTempoRoutes = useMemo(() => {
-    const tempoRoutes = (routeData as { url: string }[]).filter((r) =>
-      r.url.includes("tempo-traveller-hire-"),
-    );
-    const grouped: Record<string, { url: string; to: string }[]> = {};
-    tempoRoutes.forEach((r) => {
-      const parts = r.url.split("/");
-      if (parts.length === 3) {
-        const routeCity = parts[1];
-        const routePart = parts[2];
-        if (routePart.includes("-to-")) {
-          const toRaw = routePart.split("-to-")[1];
-          if (toRaw) {
-            const to = toRaw.replace(/-/g, " ");
-            if (!grouped[routeCity]) grouped[routeCity] = [];
-            if (!grouped[routeCity].some((item) => item.url === r.url)) {
-              grouped[routeCity].push({ url: r.url, to });
-            }
-          }
-        }
-      }
-    });
-    return grouped;
-  }, []);
-
   const rawCity = parsedData.origin || "India";
   const rawCityName = rawCity !== "India" ? rawCity : "";
   const rawCitySlug = rawCityName
@@ -255,38 +102,13 @@ export default function TempoTraveller16SeaterTemplate({
 
   const city = cityName || "India";
 
-  const cityTabKeys = useMemo(() => {
-    const keys = Object.keys(groupedTempoRoutes);
-    if (normalizedCitySlug && keys.includes(normalizedCitySlug)) {
-      return [
-        normalizedCitySlug,
-        ...keys.filter((k) => k !== normalizedCitySlug),
-      ];
-    }
-    return keys;
-  }, [groupedTempoRoutes, normalizedCitySlug]);
-
   const vehicleDetails: VehicleDetails = {
-    icon: "🚌",
     image: "/tempo_traveller.png",
     pricePerKm: 25,
-    capacity: "16 Passengers",
-    luggage: "18-20 Bags",
     description: `Travel effortlessly with our 16 Seater Tempo Traveller rental in ${cityName || "India"}. Features 4+4+4+4 pushback reclining seats, heavy-duty cooling AC, LED screen, and spacious luggage hold.`,
-    features: [
-      "16 Pushback Reclining Seats",
-      "Heavy-Duty Dual AC",
-      "LED TV & Hi-Fi Audio",
-      "Rooftop Luggage Carrier with Waterproof Cover",
-    ],
   };
 
   const [formData, setFormData] = useState<FormData>({
-    name: "",
-    phone: "",
-    pickup: "",
-    drop: "",
-    date: "",
     distance: "50",
   });
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
@@ -297,11 +119,6 @@ export default function TempoTraveller16SeaterTemplate({
   const [travelTime, setTravelTime] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [tripType, setTripType] = useState("one-way");
-  const [selectedVehicle, setSelectedVehicle] = useState("16-Seater");
-  const [selectedDestinationCity, setSelectedDestinationCity] = useState(
-    normalizedCitySlug || ""
-  );
-  const [showAllDestinations, setShowAllDestinations] = useState(false);
   const [showAllFareCities, setShowAllFareCities] = useState(false);
 
   const pageTitle = cityName
@@ -311,30 +128,6 @@ export default function TempoTraveller16SeaterTemplate({
   const pageDescription = cityName
     ? `Book 16 Seater Tempo Traveller in ${cityName} at ₹25/km with Chiku Cabs. Spacious 4+4+4+4 pushback seats, powerful dual AC, large luggage space & experienced drivers. Call +91-8448445504.`
     : "Book 16 Seater Tempo Traveller on rent across India at ₹25/km. Pushback seats, dual AC, large boot & certified highway drivers. Call +91-8448445504.";
-
-  useEffect(() => {
-    const cityKeys = Object.keys(groupedTempoRoutes);
-    if (cityKeys.length > 0) {
-      if (normalizedCitySlug && cityKeys.includes(normalizedCitySlug)) {
-        setSelectedDestinationCity(normalizedCitySlug);
-      } else if (
-        !selectedDestinationCity ||
-        !cityKeys.includes(selectedDestinationCity)
-      ) {
-        setSelectedDestinationCity(cityKeys[0]);
-      }
-    }
-  }, [groupedTempoRoutes, normalizedCitySlug, selectedDestinationCity]);
-
-  const popularDestinations = useMemo(() => {
-    const fromCityRoutes =
-      cityRoutes[city?.toLowerCase() as keyof typeof cityRoutes];
-    if (fromCityRoutes && fromCityRoutes.length > 0) {
-      return fromCityRoutes;
-    }
-    const routesFromGroup = groupedTempoRoutes[normalizedCitySlug] || [];
-    return routesFromGroup.slice(0, 12).map((r) => r.to);
-  }, [city, groupedTempoRoutes, normalizedCitySlug]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 300);
@@ -592,6 +385,63 @@ Please share the best quote.`;
   const visibleFarePickupCities = showAllFareCities
     ? farePickupCities
     : farePickupCities.slice(0, 40);
+
+  const relatedCityVehicleRoutes = useMemo(() => {
+    if (!normalizedCitySlug) return [];
+
+    const citySlugPattern = normalizedCitySlug.replace(
+      /[.*+?^${}()|[\]\\]/g,
+      "\\$&"
+    );
+    const seaterRoutePattern = new RegExp(
+      `^/(\\d+)-seater-tempo-traveller-(?:in|on-rent-in|for-rent-in)-${citySlugPattern}$`,
+      "i"
+    );
+    const fareRoutePattern = new RegExp(
+      `^/tempo-traveller-fare-in-${citySlugPattern}$`,
+      "i"
+    );
+    const rentalRoutePattern = new RegExp(
+      `^/tempo-traveller-(?:on-rent-in-|for-rent-in-|in-)${citySlugPattern}$`,
+      "i"
+    );
+
+    return (routeData as { url: string }[])
+      .map((item) => {
+        const seaterMatch = item.url.match(seaterRoutePattern);
+        const isFareRoute = fareRoutePattern.test(item.url);
+        const isRentalRoute = rentalRoutePattern.test(item.url);
+
+        if (!seaterMatch && !isFareRoute && !isRentalRoute) return null;
+
+        const seater = seaterMatch ? Number(seaterMatch[1]) : 0;
+        return {
+          url: item.url,
+          title: seaterMatch
+            ? `${seater} Seater Tempo Traveller in ${city}`
+            : isFareRoute
+              ? `Tempo Traveller Fare in ${city}`
+              : `Tempo Traveller on Rent in ${city}`,
+          seater,
+        };
+      })
+      .filter(
+        (
+          route
+        ): route is { url: string; title: string; seater: number } =>
+          route !== null
+      )
+      .sort((a, b) => {
+        if (a.seater === 0) return 1;
+        if (b.seater === 0) return -1;
+        return a.seater - b.seater;
+      });
+  }, [city, normalizedCitySlug]);
+
+  const pathname = usePathname();
+  const filteredRelatedRoutes = relatedCityVehicleRoutes.filter(
+    (route) => route.url.replace(/\/$/, "") !== pathname.replace(/\/$/, "")
+  );
 
   return (
     <>
@@ -987,63 +837,131 @@ Please share the best quote.`;
           </div>
         </section>
 
-        {/* 16 Seater Outstation Rate Table */}
-        <section className="py-16 px-4 bg-white border-y border-slate-200">
+        {/* 16 Seater Group Fit Guide */}
+        <section className="py-12 px-4 bg-white/95 border-b border-slate-200">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-10">
-              <span className="section-badge mx-auto">OUTSTATION RATES</span>
+            <div className="text-center max-w-7xl mx-auto mb-10">
+              <span className="section-badge mx-auto">BEFORE YOU BOOK</span>
               <h2 className="section-title mt-4">
-                16 Seater &amp; Full Tempo Traveller Fare Chart
+                Is a 16 Seater Tempo Traveller Right for Your Group?
               </h2>
-              <p className="max-w-3xl text-slate-700 mx-auto mt-2">
-                Standard outstation minimum billing is 250 km/day. Transparent per-km rates with zero hidden charges.
+              <p className="text-slate-700 mt-3 leading-7">
+                A 16 seater can keep your group together for a city outing or
+                an outstation journey. Check passenger numbers, luggage and
+                pickup access before confirming your Tempo Traveller booking in{" "}
+                {city}.
               </p>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
-              <table className="w-full min-w-[850px] text-left text-sm">
-                <thead className="bg-slate-900 text-white">
-                  <tr>
-                    <th className="px-5 py-4 font-semibold">Vehicle</th>
-                    <th className="px-5 py-4 font-semibold">Per KM Rate</th>
-                    <th className="px-5 py-4 font-semibold">Min Km/Day</th>
-                    <th className="px-5 py-4 font-semibold">Driver Allowance</th>
-                    <th className="px-5 py-4 font-semibold">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {TEMPO_DATAS.map((v) => (
-                    <tr
-                      key={v.seater}
-                      className={`border-t border-slate-200 hover:bg-slate-50 ${
-                        v.seater === 16 ? "bg-amber-50/70 font-semibold" : ""
-                      }`}
-                    >
-                      <td className="px-5 py-4">
-                        {v.seater} Seater Tempo Traveller
-                        {v.seater === 16 && (
-                          <span className="ml-2 px-2 py-0.5 bg-primary text-white text-xs rounded-full">
-                            Selected
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-5 py-4 font-bold text-primary">
-                        ₹{v.pricePerKm}/km
-                      </td>
-                      <td className="px-5 py-4">250 km/day</td>
-                      <td className="px-5 py-4">₹400–₹500 / day</td>
-                      <td className="px-5 py-4">
-                        <a
-                          href="tel:+918448445504"
-                          className="px-4 py-2 bg-primary text-white text-xs font-bold rounded-lg hover:opacity-90 inline-block"
-                        >
-                          Book Now
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Count passengers",
+                  description:
+                    "The vehicle is designed for up to 16 passengers. Share your final headcount when enquiring so the team can confirm that the seating arrangement suits your group.",
+                },
+                {
+                  title: "Plan for luggage",
+                  description:
+                    "The space available depends on the number and size of bags. Mention suitcases, strollers or other bulky items in advance and confirm luggage arrangements before travel.",
+                },
+                {
+                  title: "Check pickup and drop-off access",
+                  description:
+                    "Share exact pickup points and any narrow lanes, restricted-access areas or parking limitations on your route. This helps plan a suitable boarding point for a larger vehicle.",
+                },
+              ].map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                >
+                  <h3 className="text-lg font-bold text-slate-900 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-6 text-slate-600">
+                    {item.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 16 Seater Trip Planning */}
+        <section className="py-12 px-4 bg-white/95 border-y border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-7xl mx-auto mb-10">
+              <span className="section-badge mx-auto">
+                POPULAR USE CASES &amp; COVERAGE
+              </span>
+              <h2 className="section-title mt-4">
+                16 Seater Tempo Traveller Hire in {city}
+              </h2>
+              <p className="text-slate-700 mt-3 leading-7">
+                Hiring a 16 seater Tempo Traveller in {city} lets your group
+                travel together, with one pickup plan and a shared itinerary.
+                Choose the trip type first, then share your route and schedule
+                to check vehicle availability and get a quote for your journey.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Local sightseeing and airport transfers",
+                  description:
+                    "Plan your pickup and drop-off points in advance, especially when your group has several stops or flight timings to meet. Share the locations and requested hours when enquiring.",
+                },
+                {
+                  title: "Outstation, weekend and pilgrimage trips",
+                  description:
+                    "For a multi-day itinerary, include every destination, overnight halt and return date in your request. This helps the team check the route and prepare a trip-specific estimate.",
+                },
+                {
+                  title: "Weddings, family functions and group events",
+                  description:
+                    "A shared vehicle can simplify transport between hotels, venues and pickup points. Confirm passenger numbers, event timings and any luggage needs before booking.",
+                },
+              ].map((trip) => (
+                <article
+                  key={trip.title}
+                  className="rounded-2xl border border-slate-200 bg-slate-50 p-6"
+                >
+                  <h3 className="text-lg font-bold text-slate-900 mb-3">
+                    {trip.title}
+                  </h3>
+                  <p className="text-sm leading-6 text-slate-600">
+                    {trip.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
+              <h3 className="text-xl font-bold text-slate-900 mb-3">
+                What to share when requesting a 16 seater quote
+              </h3>
+              <p className="text-slate-700 leading-7">
+                Provide your pickup location in {city}, destination or full
+                route, travel dates, pickup time, trip duration, passenger
+                count and approximate luggage. For outstation journeys, mention
+                whether the trip is one-way or round-trip and list planned
+                overnight stops. The final fare and inclusions depend on your
+                confirmed itinerary, so review the quote before booking.
+              </p>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 md:p-8">
+              <h3 className="text-xl font-bold text-slate-900 mb-3">
+                Pickup and drop-off points in {city}
+              </h3>
+              <p className="text-slate-700 leading-7">
+                Pickup can be requested from locations such as airport
+                terminals, railway or bus stations, hotels, homes, offices and
+                event venues. Share the exact address and preferred time when
+                enquiring. The team can confirm serviceability, vehicle access
+                and any suitable nearby boarding point for your route.
+              </p>
             </div>
           </div>
         </section>
@@ -1138,102 +1056,59 @@ Please share the best quote.`;
           </div>
         </section>
 
-        {/* Popular Destinations */}
-        {/* <section className="py-12 bg-gray-50 border-b border-slate-300">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-gray-800 mb-2">
-                Popular 16 Seater Tempo Traveller Destinations
+        {/* Fare Transparency & Booking Terms */}
+        <section className="py-12 px-4 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-10">
+              <span className="section-badge mx-auto">
+                TRANSPARENCY &amp; TRUST
+              </span>
+              <h2 className="section-title mt-4">
+                Understand Your 16 Seater Tempo Traveller Quote
               </h2>
-              <p className="text-gray-600">
-                Explore top outstation and tourist routes across India
+              <p className="text-slate-700 mt-3 leading-7">
+                The fare calculator is an estimate. Ask for a trip-specific,
+                itemized quote based on your confirmed route and schedule before
+                you book.
               </p>
             </div>
 
-            <div className="mb-10">
-              <div className="flex flex-wrap justify-center gap-3">
-                {cityTabKeys.map((cityKey) => {
-                  const name =
-                    CITY_DISPLAY_NAMES[cityKey] ??
-                    cityKey
-                      .split("-")
-                      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-                      .join(" ");
-                  const isSelected = selectedDestinationCity === cityKey;
-                  return (
-                    <button
-                      key={cityKey}
-                      type="button"
-                      onClick={() => {
-                        setSelectedDestinationCity(cityKey);
-                        setShowAllDestinations(false);
-                      }}
-                      className={`px-5 py-2.5 rounded-full border text-sm font-semibold shadow-sm transition-all duration-300 ${
-                        isSelected
-                          ? "bg-[#BE1E23] text-white border-[#BE1E23] shadow-xl scale-105"
-                          : "bg-white text-gray-700 border-gray-200 hover:bg-[#BE1E23] hover:text-white hover:border-[#BE1E23]"
-                      }`}
-                    >
-                      {name}
-                    </button>
-                  );
-                })}
-              </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Starting rates and daily minimum",
+                  description:
+                    "The listed outstation rate starts at ₹25/km, with a standard 250 km daily billing minimum. Local 8-hour / 80-km packages start from ₹5,500, subject to availability and confirmed terms.",
+                },
+                {
+                  title: "Review route-based charges",
+                  description:
+                    "Fuel and chauffeur services are included in the per-kilometre fare. Highway tolls, state border taxes and parking are charged as per actual receipts. A ₹400–₹500 night driver allowance applies if travel extends past 10:00 PM.",
+                },
+                {
+                  title: "Confirm the trip details",
+                  description:
+                    "Have the route, travel dates, daily distance, overnight stops and applicable extras listed in your quote. This helps you understand the estimated total before confirming the booking.",
+                },
+              ].map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-2xl border border-slate-200 bg-slate-50 p-6"
+                >
+                  <h3 className="text-lg font-bold text-slate-900 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-6 text-slate-600">
+                    {item.description}
+                  </p>
+                </article>
+              ))}
             </div>
-
-            {(() => {
-              const cityKey = selectedDestinationCity;
-              const routes = groupedTempoRoutes[cityKey] ?? [];
-              const visibleRoutes = showAllDestinations
-                ? routes
-                : routes.slice(0, 18);
-
-              return (
-                <div>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    {visibleRoutes.map((route, idx) => (
-                      <Link
-                        key={`${route.url}-${idx}`}
-                        href={route.url}
-                        className="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300"
-                      >
-                        <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-3">
-                          <span className="text-lg">🚌</span>
-                        </div>
-                        <h4 className="font-bold text-gray-800 text-sm mb-1 group-hover:text-primary transition-colors capitalize">
-                          {route.to}
-                        </h4>
-                        <div className="flex items-center justify-between mt-2">
-                          <span className="text-xs font-semibold text-primary">
-                            From ₹25/km
-                          </span>
-                          <span className="text-xs text-gray-400">→</span>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-
-                  {routes.length > 18 && (
-                    <div className="flex justify-center mt-8">
-                      <button
-                        type="button"
-                        onClick={() => setShowAllDestinations((p) => !p)}
-                        className="px-7 py-3 rounded-xl bg-primary text-white font-semibold shadow-md hover:shadow-lg transition-all"
-                      >
-                        {showAllDestinations
-                          ? "View Less ↑"
-                          : `View More (${routes.length - 18} more) ↓`}
-                      </button>
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
           </div>
-        </section> */}
+        </section>
 
         {/* Choose Your Fare Pickup City */}
-        <section className="py-10 bg-white border-b border-slate-200">
+        {/* <section className="py-10 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-8">
               <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
@@ -1288,10 +1163,47 @@ Please share the best quote.`;
               </div>
             )}
           </div>
-        </section>
+        </section> */}
+
+        {filteredRelatedRoutes.length > 0 && (
+          <section className="py-12 bg-white/95 border-b border-slate-200">
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+                  Tempo Traveller Options in {city}
+                </h2>
+                <p className="mt-2 text-sm md:text-base text-slate-600">
+                  Explore available Tempo Traveller seating options and
+                  booking pages for {city}.
+                </p>
+              </div>
+
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredRelatedRoutes.map((route) => (
+                  <li key={route.url}>
+                    <Link
+                      href={route.url}
+                      className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+                    >
+                      <span className="font-semibold text-slate-800 group-hover:text-primary">
+                        {route.title}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="ml-3 text-lg text-primary"
+                      >
+                        →
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
 
         {/* Steps */}
-        <section className="py-16 bg-white border-b border-slate-200">
+        <section className="py-12 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <span className="section-badge mx-auto">EASY 3 STEPS</span>
@@ -1319,10 +1231,12 @@ Please share the best quote.`;
         </section>
 
         {/* Comparison Matrix */}
-        <section className="py-16 px-4 bg-slate-50 border-b border-slate-200">
+        <section className="py-12 px-4 bg-white/95 border-b border-slate-200">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
-              <span className="section-badge mx-auto">COMPARISON</span>
+              <span className="section-badge mx-auto">
+                SMART GROUP TRAVEL COMPARISON
+              </span>
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 mt-3">
                 16 Seater Tempo Traveller vs 4 Small Cabs
               </h2>
@@ -1393,8 +1307,8 @@ Please share the best quote.`;
         </section>
 
         {/* FAQs */}
-        <section className="bg-muted/30 py-20 border-y px-4">
-          <div className="max-w-4xl mx-auto">
+        <section className="bg-muted/30 py-12 border-y px-4">
+          <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
               <div className="section-badge mx-auto">FAQ</div>
               <h2 className="section-title">

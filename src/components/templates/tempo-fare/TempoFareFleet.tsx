@@ -43,7 +43,7 @@ const vehicles = [
   {
     seats: 26,
     luggage: 26,
-    rate: "₹30",
+    rate: "₹32",
     title: "26 Seater Tempo Traveller",
     description: "Maximum capacity for large groups & events",
   },

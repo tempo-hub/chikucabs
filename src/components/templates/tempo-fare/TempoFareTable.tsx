@@ -44,7 +44,7 @@ const fareOptions = [
   },
   {
     vehicle: "26 Seater Tempo Traveller",
-    rate: "₹30",
+    rate: "₹32",
     minKm: "250 km",
     driver: "₹500",
     luggage: "26 Bags",
