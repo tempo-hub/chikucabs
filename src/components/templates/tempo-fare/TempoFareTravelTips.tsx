@@ -69,7 +69,7 @@ export default function TempoFareTravelTips({
             Plan Your {city} Trip the Smart Way
           </h2>
 
-          <p className="mt-2 text-xs text-[#64748b]">
+          <p className="mt-2 text-base text-[#64748b]">
             Handy tips for {city} travel — from locals &amp; frequent visitors.
           </p>
         </div>
@@ -106,12 +106,12 @@ export default function TempoFareTravelTips({
                 </div>
 
                 {/* Title */}
-                <h3 className="text-sm font-extrabold text-slate-900">
+                <h3 className="text-lg font-extrabold text-slate-900">
                   {tip.title}
                 </h3>
 
                 {/* Description */}
-                <p className="mt-2 text-xs leading-4 text-slate-700">
+                <p className="mt-2 text-base leading-6 text-slate-700">
                   {tip.description}
                 </p>
               </div>

@@ -55,7 +55,7 @@ export default function TempoFareBenefits({
             Comfortable Group Travel in {city}
           </h2>
 
-          <p className="mt-3 text-sm text-[#64748b] md:text-base">
+          <p className="mt-3 text-base leading-7 text-[#64748b]">
             Book a reliable Tempo Traveller in {city} for
             local and outstation group journeys.
           </p>
@@ -103,12 +103,12 @@ export default function TempoFareBenefits({
                 </div>
 
                 {/* Title */}
-                <h3 className="text-sm font-extrabold text-[#19283e]">
+                <h3 className="text-lg font-extrabold text-[#19283e]">
                   {benefit.title}
                 </h3>
 
                 {/* Description */}
-                <p className="mt-2 text-xs leading-5 text-[#64748b]">
+                <p className="mt-2 text-base leading-6 text-[#64748b]">
                   {benefit.description}
                 </p>
               </div>

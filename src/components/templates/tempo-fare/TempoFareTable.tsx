@@ -64,7 +64,7 @@ export default function TempoFareTable({
             Tempo Traveller Fare in {city}
           </h2>
 
-          <p className="mt-2 text-sm text-[#64748b]">
+          <p className="mt-2 text-base leading-7 text-[#64748b]">
             Indicative rates — final fare depends on route, days &amp;
             season. Get an exact quote in 2 minutes.
           </p>
@@ -79,27 +79,27 @@ export default function TempoFareTable({
               {/* Header */}
               <thead>
                 <tr className="bg-[#fff1e8]">
-                  <th className="px-4 py-4 text-left text-[10px] font-extrabold uppercase tracking-wide text-primary">
+                  <th className="px-4 py-4 text-left text-sm font-extrabold uppercase tracking-wide text-primary">
                     Vehicle
                   </th>
 
-                  <th className="px-4 py-4 text-left text-[10px] font-extrabold uppercase tracking-wide text-primary">
+                  <th className="px-4 py-4 text-left text-sm font-extrabold uppercase tracking-wide text-primary">
                     Rate / KM
                   </th>
 
-                  <th className="px-4 py-4 text-left text-[10px] font-extrabold uppercase tracking-wide text-primary">
+                  <th className="px-4 py-4 text-left text-sm font-extrabold uppercase tracking-wide text-primary">
                     Min KM / Day
                   </th>
 
-                  <th className="px-4 py-4 text-left text-[10px] font-extrabold uppercase tracking-wide text-primary">
+                  <th className="px-4 py-4 text-left text-sm font-extrabold uppercase tracking-wide text-primary">
                     Driver Allowance
                   </th>
 
-                  <th className="px-4 py-4 text-left text-[10px] font-extrabold uppercase tracking-wide text-primary">
+                  <th className="px-4 py-4 text-left text-sm font-extrabold uppercase tracking-wide text-primary">
                     Luggage
                   </th>
 
-                  <th className="px-4 py-4 text-left text-[10px] font-extrabold uppercase tracking-wide text-primary">
+                  <th className="px-4 py-4 text-left text-sm font-extrabold uppercase tracking-wide text-primary">
                     Action
                   </th>
                 </tr>
@@ -117,23 +117,23 @@ export default function TempoFareTable({
                       hover:bg-[#fffaf7]
                     "
                   >
-                    <td className="px-4 py-4 text-xs font-bold text-[#19283e]">
+                    <td className="px-4 py-4 text-base font-bold text-[#19283e]">
                       {fare.vehicle}
                     </td>
 
-                    <td className="px-4 py-4 text-sm font-extrabold text-primary">
+                    <td className="px-4 py-4 text-base font-extrabold text-primary">
                       {fare.rate}
                     </td>
 
-                    <td className="px-4 py-4 text-xs text-[#64748b]">
+                    <td className="px-4 py-4 text-sm text-[#64748b]">
                       {fare.minKm}
                     </td>
 
-                    <td className="px-4 py-4 text-xs text-[#64748b]">
+                    <td className="px-4 py-4 text-sm text-[#64748b]">
                       {fare.driver}
                     </td>
 
-                    <td className="px-4 py-4 text-xs text-[#64748b]">
+                    <td className="px-4 py-4 text-sm text-[#64748b]">
                       {fare.luggage}
                     </td>
 
@@ -153,7 +153,7 @@ export default function TempoFareTable({
     bg-primary
     px-4
     py-2
-    text-[11px]
+    text-sm
     font-bold
     text-white
     shadow-sm
@@ -174,7 +174,7 @@ export default function TempoFareTable({
         </div>
 
         {/* Disclaimer */}
-        <p className="mt-4 text-center text-[10px] leading-5 text-[#64748b]">
+        <p className="mt-4 text-center text-sm leading-6 text-[#64748b]">
           * Toll, parking, state tax &amp; entry fees extra. GST applicable.
           Final quote confirmed on WhatsApp.
         </p>

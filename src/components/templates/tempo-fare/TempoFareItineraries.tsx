@@ -55,7 +55,7 @@ export default function TempoFareItineraries({
             {city} Tour Packages — 1 Day &amp; 2 Day
           </h2>
 
-          <p className="mt-2 text-xs text-[#64748b]">
+          <p className="mt-2 text-base text-[#64748b]">
             Sample itineraries we customize daily. Share your preferences
             and we'll build a route for you.
           </p>
@@ -84,7 +84,7 @@ export default function TempoFareItineraries({
 
               {/* Recommended Badge */}
               {itinerary.highlighted && (
-                <div className="absolute right-3 top-0 rounded-b-md bg-primary px-3 py-1 text-[7px] font-extrabold uppercase text-white">
+                <div className="absolute right-3 top-0 rounded-b-md bg-primary px-3 py-1 text-xs font-extrabold uppercase text-white">
                   Most Popular
                 </div>
               )}
@@ -107,7 +107,7 @@ export default function TempoFareItineraries({
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-extrabold text-[#19283e]">
+                  <h3 className="text-lg font-extrabold text-[#19283e]">
                     {itinerary.days} {city} {itinerary.title}
                   </h3>
 
@@ -140,7 +140,7 @@ export default function TempoFareItineraries({
                       {index + 1}
                     </span>
 
-                    <span className="text-sm leading-4 text-[#475569]">
+                    <span className="text-base leading-6 text-[#475569]">
                       {step}
                     </span>
                   </div>
@@ -155,7 +155,7 @@ export default function TempoFareItineraries({
                     className="shrink-0 text-primary"
                   />
 
-                  <span className="text-sm font-medium text-primary">
+                  <span className="text-base font-medium text-primary">
                     Fully customizable · Hotel stays can be arranged
                   </span>
                 </div>

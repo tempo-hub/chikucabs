@@ -74,7 +74,7 @@ export default function TempoFareFleet({ city }: Props) {
             Tempo Traveller Fleet in {city}
           </h2>
 
-          <p className="mt-2 text-xs text-[#64748b]">
+          <p className="mt-2 text-base text-[#64748b]">
             Choose a vehicle according to your group size and travel requirement.
           </p>
         </div>
@@ -108,16 +108,16 @@ export default function TempoFareFleet({ city }: Props) {
                     />
                   </div>
 
-                  <span className="rounded-full bg-white px-2.5 py-1 text-xs font-bold text-primary">
+                  <span className="rounded-full bg-white px-2.5 py-1 text-sm font-bold text-primary">
                     {vehicle.seats} Seater
                   </span>
                 </div>
 
-                <h3 className="mt-3 text-xs font-extrabold text-[#19283e]">
+                <h3 className="mt-3 text-lg font-extrabold text-[#19283e]">
                   {vehicle.title}
                 </h3>
 
-                <p className="mt-1 text-xs leading-4 text-[#64748b]">
+                <p className="mt-1 text-base leading-6 text-[#64748b]">
                   {vehicle.description}
                 </p>
               </div>
@@ -125,7 +125,7 @@ export default function TempoFareFleet({ city }: Props) {
               {/* Card Details */}
               <div className="px-3 pb-3">
 
-                <div className="mt-2 flex items-center gap-5 border-t border-[#dfe5ec] pt-2 text-xs text-[#64748b]">
+                <div className="mt-2 flex items-center gap-5 border-t border-[#dfe5ec] pt-2 text-sm text-[#64748b]">
                   <span className="flex items-center gap-1">
                     <Users size={10} />
                     {vehicle.seats} Seats
@@ -138,13 +138,13 @@ export default function TempoFareFleet({ city }: Props) {
                 </div>
 
                 <div className="mt-2 flex items-center justify-between border-t border-[#dfe5ec] pt-2">
-                  <span className="text-xs text-[#64748b]">
+                  <span className="text-sm text-[#64748b]">
                     Starting from
                   </span>
 
-                  <span className="text-sm font-black text-primary">
+                  <span className="text-base font-black text-primary">
                     {vehicle.rate}
-                    <span className="text-xs font-medium text-[#64748b]">
+                    <span className="text-sm font-medium text-[#64748b]">
                       /km
                     </span>
                   </span>
@@ -158,14 +158,14 @@ export default function TempoFareFleet({ city }: Props) {
   className="
     mt-2
     flex
-    h-8
+    h-10
     w-full
     items-center
     justify-center
     gap-1.5
     rounded-full
     bg-primary
-    text-[9px]
+    text-sm
     font-bold
     text-white
     transition

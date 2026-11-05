@@ -50,7 +50,7 @@ export default function TempoFareBookingProcess() {
                 {step.title}
               </h3>
 
-              <p className="mt-2 text-sm leading-6 text-white/65">
+              <p className="mt-2 text-base leading-7 text-white/65">
                 {step.text}
               </p>
             </div>

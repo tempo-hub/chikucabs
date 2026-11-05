@@ -36,7 +36,7 @@ export default function TempoFareComparison({
             <span className="text-[#19283e]">{city}</span>
           </h2>
 
-          <p className="mt-2 text-xs text-[#64748b]">
+          <p className="mt-2 text-base text-[#64748b]">
             See why 500+ groups choose us over local operators.
           </p>
         </div>
@@ -48,7 +48,7 @@ export default function TempoFareComparison({
             <table className="w-full min-w-[720px] border-collapse">
 
               <thead>
-                <tr className="h-8 border-b border-[#dfe5ec]">
+                <tr className="h-12 border-b border-[#dfe5ec]">
                   <th className="w-[38%] px-3 text-left text-sm font-bold uppercase text-[#475569]">
                     Feature
                   </th>
@@ -67,10 +67,10 @@ export default function TempoFareComparison({
                 {comparisonRows.map((feature) => (
                   <tr
                     key={feature}
-                    className="h-8 border-b border-[#dfe5ec] last:border-b-0"
+                    className="h-12 border-b border-[#dfe5ec] last:border-b-0"
                   >
                     {/* Feature */}
-                    <td className="px-3 py-2 text-xs font-medium text-[#19283e]">
+                    <td className="px-3 py-3 text-base font-medium text-[#19283e]">
                       {feature}
                     </td>
 

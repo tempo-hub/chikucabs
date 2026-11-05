@@ -25,7 +25,7 @@ export default function TempoFareCTA({ city }: Props) {
           ?
         </h2>
 
-        <p className="mx-auto mt-5 max-w-2xl text-white/70">
+        <p className="mx-auto mt-5 max-w-2xl text-lg leading-7 text-white/70">
           Share your group size and travel requirement to
           get the applicable Tempo Traveller price.
         </p>
