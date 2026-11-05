@@ -28,7 +28,7 @@ export default function TempoFareHero({ city }: Props) {
       <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-8 lg:py-16">
 
         {/* Breadcrumb */}
-        <div className="mb-12 text-sm">
+        <div className="mb-12 text-base">
           <span className="text-white/70">Home</span>
           <span className="mx-2 text-white/40">/</span>
           <span className="text-white/70">Cities</span>
@@ -68,7 +68,7 @@ export default function TempoFareHero({ city }: Props) {
             </p>
 
             {/* Trust points */}
-            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-base">
               <div className="flex items-center gap-2">
                 <span className="text-primary">★</span>
                 <span>4.9/5 Rating</span>
@@ -148,7 +148,7 @@ export default function TempoFareHero({ city }: Props) {
                   Plan Your City Trip
                 </h2>
 
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="mt-1 text-sm text-gray-500">
                   Tell us your group size and travel requirement.
                 </p>
               </div>
@@ -156,7 +156,7 @@ export default function TempoFareHero({ city }: Props) {
 
             {/* Pickup */}
             <div className="mb-5">
-              <label className="mb-2 flex items-center gap-2 text-xs font-medium">
+              <label className="mb-2 flex items-center gap-2 text-sm font-medium">
                 <MapPin
                   size={14}
                   className="text-primary"
@@ -167,7 +167,7 @@ export default function TempoFareHero({ city }: Props) {
               <div className="flex h-11 items-center justify-between rounded-xl bg-[#fff1e8] px-4 text-sm font-semibold">
                 <span>{city}</span>
 
-                <span className="rounded-full bg-white px-3 py-1 text-[10px] text-gray-600 shadow-sm">
+                <span className="rounded-full bg-white px-3 py-1 text-xs text-gray-600 shadow-sm">
                   ✓ Verified
                 </span>
               </div>
@@ -175,7 +175,7 @@ export default function TempoFareHero({ city }: Props) {
 
             {/* Seater */}
             <div className="mb-5">
-              <label className="mb-2 flex items-center gap-2 text-xs font-medium">
+              <label className="mb-2 flex items-center gap-2 text-sm font-medium">
                 <Users
                   size={14}
                   className="text-primary"
@@ -183,7 +183,7 @@ export default function TempoFareHero({ city }: Props) {
                 Seater Variant
               </label>
 
-              <select className="h-11 w-full rounded-xl border border-gray-200 bg-white px-4 text-sm outline-none focus:border-primary">
+              <select className="h-11 w-full rounded-xl border border-gray-200 bg-white px-4 text-base outline-none focus:border-primary">
                 <option>9 Seater Tempo Traveller</option>
                 <option>12 Seater Tempo Traveller</option>
                 <option>16 Seater Tempo Traveller</option>
@@ -221,7 +221,7 @@ export default function TempoFareHero({ city }: Props) {
             {/* Bottom trust */}
             <div className="mt-6 border-t border-gray-100 pt-5">
 
-              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-[10px] text-gray-500">
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-xs text-gray-500">
                 <span className="flex items-center gap-1">
                   <Zap size={13} className="text-primary" />
                   Response within 2 minutes

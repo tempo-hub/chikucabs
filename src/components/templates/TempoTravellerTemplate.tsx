@@ -367,7 +367,7 @@ export default function TempoTravellerTemplate({
   const [selectedVehicle, setSelectedVehicle] = useState("");
   const [selectedDestinationCity, setSelectedDestinationCity] = useState(normalizedCitySlug || "");
   const [showAllDestinations, setShowAllDestinations] = useState(false);
-  const [showAllFareCities, setShowAllFareCities] = useState(false);
+  const [showAllCityRoutes, setShowAllCityRoutes] = useState(false);
 
   citySlug = cityName
     .toLowerCase()
@@ -691,47 +691,77 @@ Please share the best fare.`;
     }
   }, []); // Empty dependency array - runs once on mount
 
-  const farePickupCities = useMemo(() => {
-    const farePrefix = "/tempo-traveller-fare-in-";
+  const cityRouteGroups = useMemo(() => {
+    const routeTypes = [
+      {
+        label: "12 Seater",
+        pattern: /^\/12-seater-tempo-traveller-in-([^/]+)\/?$/,
+      },
+      {
+        label: "16 Seater",
+        pattern: /^\/16-seater-tempo-traveller-in-([^/]+)\/?$/,
+      },
+      {
+        label: "20 Seater",
+        pattern: /^\/20-seater-tempo-traveller-in-([^/]+)\/?$/,
+      },
+      {
+        label: "Tempo Traveller Fare",
+        pattern: /^\/tempo-traveller-fare-in-([^/]+)\/?$/,
+      },
+      {
+        label: "Tempo Traveller",
+        pattern: /^\/tempo-traveller-in-([^/]+)\/?$/,
+      },
+    ];
+    const groups = new Map<
+      string,
+      { name: string; routes: { label: string; url: string }[] }
+    >();
 
-    // Get only fare URLs
-    const fareUrls = (routeData as { url: string }[])
-      .filter((item) => item.url.startsWith(farePrefix));
+    (routeData as { url: string }[]).forEach(({ url }) => {
+      for (const routeType of routeTypes) {
+        const match = url.match(routeType.pattern);
+        if (!match) continue;
 
-    return fareUrls
-      .map((item) => {
-        const slug = item.url
-          .replace(farePrefix, "")
-          .replace(/\/$/, "");
+        const slug = match[1].toLowerCase();
+        let group = groups.get(slug);
+        if (!group) {
+          const city = cities.find(
+            (item) =>
+              item.name
+                .toLowerCase()
+                .replace(/&/g, "and")
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-|-$/g, "") === slug
+          );
+          const fallbackName = slug
+            .split("-")
+            .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+            .join(" ");
 
-        const city = cities.find(
-          (city) =>
-            city.name.toLowerCase().replace(/\s+/g, "-") ===
-            slug.toLowerCase()
-        );
+          group = {
+            name: CITY_DISPLAY_NAMES[slug] || city?.name || fallbackName,
+            routes: [],
+          };
+          groups.set(slug, group);
+        }
 
-        if (!city) return null;
+        if (!group.routes.some((route) => route.url === url)) {
+          group.routes.push({ label: routeType.label, url });
+        }
+        break;
+      }
+    });
 
-        return {
-          ...city,
-          url: item.url,
-        };
-      })
-      .filter(
-        (
-          city
-        ): city is {
-          name: string;
-          description: string;
-          url: string;
-        } => city !== null
-      );
+    return Array.from(groups.entries())
+      .map(([slug, group]) => ({ slug, ...group }))
+      .sort((a, b) => a.name.localeCompare(b.name));
   }, []);
 
-  //fare list
-  const visibleFarePickupCities = showAllFareCities
-    ? farePickupCities
-    : farePickupCities.slice(0, 40);
+  const visibleCityRouteGroups = showAllCityRoutes
+    ? cityRouteGroups
+    : cityRouteGroups.slice(0, 40);
 
   return (
     <>
@@ -1724,8 +1754,6 @@ Please share the best fare.`;
           </div>
         </section>
 
-
-        {/* Choose Your Fare Pickup City */}
         {/* Choose Your Fare Pickup City */}
         <section className="py-10 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4">
@@ -1733,115 +1761,48 @@ Please share the best fare.`;
             {/* Section Header */}
             <div className="text-center mb-8">
               <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
-                Choose Your Fare Pickup City
+                Tempo Traveller Seater Options and Fares by City
               </h2>
 
               <p className="mt-2 text-sm md:text-base text-slate-500">
-                Select your pickup city to check Tempo Traveller fare and booking
-                options.
+                Browse available 12, 16 and 20 seater pages and fare routes for
+                each city.
               </p>
             </div>
 
-            {/* City Cards */}
+            {/* City route cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {visibleFarePickupCities.map((city) => (
-                <Link
-                  key={city.url}
-                  href={city.url}
-                  className="
-            group
-            relative
-            flex
-            items-center
-            justify-between
-            min-h-[84px]
-            px-5
-            py-4
-            bg-white
-            border
-            border-slate-200
-            border-l-4
-            border-l-primary
-            rounded-xl
-            shadow-sm
-            hover:shadow-md
-            hover:-translate-y-0.5
-            hover:border-primary/40
-            transition-all
-            duration-300
-          "
+              {visibleCityRouteGroups.map((city) => (
+                <article
+                  key={city.slug}
+                  className="rounded-xl border border-slate-200 border-l-4 border-l-primary bg-white p-5 shadow-sm"
                 >
-                  {/* Left Content */}
-                  <div className="flex items-center gap-4 min-w-0">
-
-                    {/* Location Icon */}
-                    <div
-                      className="
-                flex
-                h-10
-                w-10
-                shrink-0
-                items-center
-                justify-center
-                rounded-xl
-                bg-primary/10
-                text-primary
-                group-hover:bg-primary
-                group-hover:text-white
-                transition-all
-                duration-300
-              "
-                    >
-                      <FaLocationDot size={16} />
-                    </div>
-
-                    {/* City */}
-                    <div className="min-w-0">
-                      <h3 className="text-base font-bold text-slate-900 truncate">
-                        {city.name}
-                      </h3>
-
-                      <p className="mt-0.5 text-xs text-slate-500 line-clamp-2">
-                        {city.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Arrow */}
-                  <div
-                    className="
-              ml-3
-              flex
-              h-8
-              w-8
-              shrink-0
-              items-center
-              justify-center
-              rounded-full
-              bg-primary/10
-              text-primary
-              group-hover:bg-primary
-              group-hover:text-white
-              transition-all
-              duration-300
-            "
-                  >
-                    <span className="text-lg leading-none">
-                      →
-                    </span>
-                  </div>
-                </Link>
+                  <h3 className="mb-3 flex items-center gap-2 text-base font-bold text-slate-900">
+                    <FaLocationDot className="shrink-0 text-primary" />
+                    {city.name}
+                  </h3>
+                  <ul className="space-y-2">
+                    {city.routes.map((route) => (
+                      <li key={route.url}>
+                        <Link
+                          href={route.url}
+                          className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
+                        >
+                          {route.label} in {city.name} →
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
               ))}
             </div>
 
-            {/* View All Routes */}
-            {farePickupCities.length > 40 && (
+            {/* View all city routes */}
+            {cityRouteGroups.length > 40 && (
               <div className="flex justify-center mt-8">
                 <button
                   type="button"
-                  onClick={() =>
-                    setShowAllFareCities((prev) => !prev)
-                  }
+                  onClick={() => setShowAllCityRoutes((prev) => !prev)}
                   className="
             inline-flex
             items-center
@@ -1859,9 +1820,9 @@ Please share the best fare.`;
             duration-300
           "
                 >
-                  {showAllFareCities
+                  {showAllCityRoutes
                     ? "View Less ↑"
-                    : `View All Routes (${farePickupCities.length - 40} more) ↓`}
+                    : `View All Cities (${cityRouteGroups.length - 40} more) ↓`}
                 </button>
               </div>
             )}

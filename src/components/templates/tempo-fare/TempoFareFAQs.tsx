@@ -102,7 +102,7 @@ export default function TempoFareFAQs({
                 {faq.q}
               </summary>
 
-              <p className="mt-3 text-sm leading-6 text-gray-600">
+              <p className="mt-3 text-base leading-7 text-gray-600">
                 {faq.a}
               </p>
             </details>

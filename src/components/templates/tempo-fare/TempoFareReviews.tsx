@@ -50,7 +50,7 @@ export default function TempoFareReviews({
             What Our Customers Say
           </h2>
 
-          <p className="mt-2 text-xs text-[#64748b]">
+          <p className="mt-2 text-base text-[#64748b]">
             Real travel experiences from customers who booked
             Tempo Traveller services with Chiku Cabs.
           </p>
@@ -87,7 +87,7 @@ export default function TempoFareReviews({
               </div>
 
               {/* Review */}
-              <p className="mt-2 min-h-[75px] text-sm italic leading-4 text-[#475569]">
+              <p className="mt-2 min-h-[96px] text-base italic leading-6 text-[#475569]">
                 &quot;{review.review}&quot;
               </p>
 
@@ -97,16 +97,16 @@ export default function TempoFareReviews({
               {/* Customer */}
               <div className="flex items-center gap-2">
 
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-[9px] font-bold text-white">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">
                   {review.initial}
                 </div>
 
                 <div>
-                  <h3 className="text-xs font-bold text-[#19283e]">
+                  <h3 className="text-sm font-bold text-[#19283e]">
                     {review.name}
                   </h3>
 
-                  <p className="text-xs text-[#64748b]">
+                  <p className="text-sm text-[#64748b]">
                     {review.time} · {city}
                   </p>
                 </div>

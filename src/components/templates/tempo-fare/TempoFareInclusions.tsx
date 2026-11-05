@@ -128,11 +128,11 @@ export default function TempoFareInclusions({
 
                 {/* Content */}
                 <div className="min-w-0">
-                  <h3 className="text-xs font-extrabold text-[#19283e]">
+                  <h3 className="text-base font-extrabold text-[#19283e]">
                     {item.title}
                   </h3>
 
-                  <p className="mt-0.5 text-[10px] leading-4 text-[#64748b]">
+                  <p className="mt-0.5 text-sm leading-5 text-[#64748b]">
                     {item.description}
                   </p>
                 </div>

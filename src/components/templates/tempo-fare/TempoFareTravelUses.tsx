@@ -67,7 +67,7 @@ export default function TempoFareTravelUses({
             <span className="text-[#19283e]"> {city}</span>
           </h2>
 
-          <p className="mx-auto mt-3 max-w-2xl text-xs leading-5 text-[#64748b]">
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-[#64748b]">
             Whether it&apos;s a family vacation, corporate event,
             or pilgrimage tour, Tempo Traveller is perfect for
             every journey in {city}.
@@ -116,12 +116,12 @@ export default function TempoFareTravelUses({
                 </div>
 
                 {/* Title */}
-                <h3 className="text-sm font-extrabold text-[#19283e]">
+                <h3 className="text-base font-extrabold text-[#19283e]">
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="mt-2 text-xs leading-4 text-[#64748b]">
+                <p className="mt-2 text-sm leading-5 text-[#64748b]">
                   {item.description}
                 </p>
               </div>

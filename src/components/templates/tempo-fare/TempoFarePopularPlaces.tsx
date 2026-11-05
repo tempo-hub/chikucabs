@@ -34,7 +34,7 @@ export default function TempoFarePopularPlaces({
             Popular Places Around {city}
           </h2>
 
-          <p className="mt-2 text-xs text-[#64748b]">
+          <p className="mt-2 text-base text-[#64748b]">
             Plan comfortable group trips to popular attractions and nearby
             destinations.
           </p>
@@ -74,7 +74,7 @@ export default function TempoFarePopularPlaces({
                 />
               </span>
 
-              <span className="text-xs font-semibold leading-4 text-[#19283e]">
+              <span className="text-sm font-semibold leading-5 text-[#19283e]">
                 {place}
               </span>
             </div>

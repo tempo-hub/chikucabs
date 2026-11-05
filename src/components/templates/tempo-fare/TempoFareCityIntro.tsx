@@ -26,7 +26,7 @@ export default function TempoFareCityIntro({
           {/* LEFT CONTENT */}
           <div>
             {/* Location Badge */}
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#fff1e8] px-4 py-2 text-xs font-bold text-primary">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#fff1e8] px-4 py-2 text-sm font-bold text-primary">
               <MapPin size={14} />
               {city}
             </div>
@@ -40,12 +40,12 @@ export default function TempoFareCityIntro({
             </h2>
 
             {/* Description */}
-            <p className="mt-6 max-w-xl text-sm leading-7 text-[#64748b] md:text-base">
+            <p className="mt-6 max-w-xl text-base leading-7 text-[#64748b]">
               {description ||
                 `${city} is a convenient destination for family trips, sightseeing, group travel and outstation journeys.`}
             </p>
 
-            <p className="mt-5 max-w-xl text-sm leading-7 text-[#64748b] md:text-base">
+            <p className="mt-5 max-w-xl text-base leading-7 text-[#64748b]">
               Chiku Cabs provides comfortable group transportation
               for family holidays, religious journeys, sightseeing,
               weddings, corporate outings and long-distance tours
@@ -68,7 +68,7 @@ export default function TempoFareCityIntro({
     bg-primary
     px-6
     py-3
-    text-sm
+    text-base
     font-bold
     text-white
     shadow-lg
@@ -93,7 +93,7 @@ export default function TempoFareCityIntro({
                   bg-white
                   px-6
                   py-3
-                  text-sm
+                  text-base
                   font-bold
                   text-primary
                   transition
@@ -139,7 +139,7 @@ export default function TempoFareCityIntro({
                   9+
                 </span>
 
-                <span className="mt-1 text-[10px] text-[#64748b]">
+                <span className="mt-1 text-xs text-[#64748b]">
                   Seater Options
                 </span>
               </div>
@@ -161,7 +161,7 @@ export default function TempoFareCityIntro({
                   500+
                 </span>
 
-                <span className="mt-1 text-[10px] text-[#64748b]">
+                <span className="mt-1 text-xs text-[#64748b]">
                   Happy Groups
                 </span>
               </div>
@@ -183,7 +183,7 @@ export default function TempoFareCityIntro({
                   24/7
                 </span>
 
-                <span className="mt-1 text-[10px] text-[#64748b]">
+                <span className="mt-1 text-xs text-[#64748b]">
                   Support
                 </span>
               </div>
@@ -205,7 +205,7 @@ export default function TempoFareCityIntro({
                   4.9/5
                 </span>
 
-                <span className="mt-1 text-[10px] text-[#64748b]">
+                <span className="mt-1 text-xs text-[#64748b]">
                   Customer Rating
                 </span>
               </div>
@@ -222,11 +222,11 @@ export default function TempoFareCityIntro({
               </div>
 
               <div>
-                <h3 className="text-sm font-extrabold text-[#19283e]">
+                <h3 className="text-base font-extrabold text-[#19283e]">
                   Comfortable Group Journeys
                 </h3>
 
-                <p className="mt-1 text-[10px] leading-5 text-[#64748b]">
+                <p className="mt-1 text-sm leading-5 text-[#64748b]">
                   Choose the vehicle according to your group size
                   and travel requirement.
                 </p>
