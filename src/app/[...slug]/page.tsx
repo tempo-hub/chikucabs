@@ -34,6 +34,12 @@ import UrbaniaRouteTemplate from "@/components/templates/urbaniatravellerfare/Ur
 import { URBANIA_ROUTES } from "@/data/urbaniaRouteData";
 import { cityCabRoutes } from "@/data/cityCabRoutes";
 import { POPULAR_ROUTES as airportCabRoutes } from "@/data/airportRoutes";
+import TempoTraveller9SeaterTemplate from "@/components/templates/TempoTraveller9SeaterTemplate";
+import TempoTraveller10SeaterTemplate from "@/components/templates/TempoTraveller10SeaterTemplate";
+import TempoTraveller15SeaterTemplate from "@/components/templates/TempoTraveller15SeaterTemplate";
+import TempoTraveller17SeaterTemplate from "@/components/templates/TempoTraveller17SeaterTemplate";
+import TempoTraveller18SeaterTemplate from "@/components/templates/TempoTraveller18SeaterTemplate";
+import TempoTraveller26SeaterTemplate from "@/components/templates/TempoTraveller26SeaterTemplate";
 
 // We do NOT pre-render all 4476 routes at build time (causes timeout on Vercel).
 // Pages are generated on first request and cached via ISR (revalidate below).
@@ -350,6 +356,24 @@ export async function generateMetadata({
     } else if (slugValue.includes("16-seater")) {
       title = `16 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹25/km | Chiku Cabs`;
       description = `Book 16 Seater Tempo Traveller in ${parsed.origin} at ₹25/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      } else if (slugValue.includes("9-seater")) {
+      title = `9 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹20/km | Chiku Cabs`;
+      description = `Book 9 Seater Tempo Traveller in ${parsed.origin} at ₹20/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      } else if (slugValue.includes("10-seater")) {
+      title = `10 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹21/km | Chiku Cabs`;
+      description = `Book 10 Seater Tempo Traveller in ${parsed.origin} at ₹21/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      } else if (slugValue.includes("15-seater")) {
+      title = `15 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹23/km | Chiku Cabs`;
+      description = `Book 15 Seater Tempo Traveller in ${parsed.origin} at ₹23/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      } else if (slugValue.includes("17-seater")) {
+      title = `17 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹26/km | Chiku Cabs`;
+      description = `Book 17 Seater Tempo Traveller in ${parsed.origin} at ₹26/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      } else if (slugValue.includes("18-seater")) {
+      title = `18 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹27/km | Chiku Cabs`;
+      description = `Book 18 Seater Tempo Traveller in ${parsed.origin} at ₹27/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      } else if (slugValue.includes("26-seater")) {
+      title = `26 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹32/km | Chiku Cabs`;
+      description = `Book 26 Seater Tempo Traveller in ${parsed.origin} at ₹32/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
     } else if (slugValue.includes("20-seater")) {
       title = `20 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹29/km | Chiku Cabs`;
       description = `Book 20 Seater Tempo Traveller in ${parsed.origin} at ₹29/km. Mini-bus luxury, pushback seats, dual AC, large boot & certified drivers. Call 8448445504.`;
@@ -933,6 +957,19 @@ export default async function DynamicRoutePage({
       }
       if (slugValue.includes("20-seater")) {
         return <TempoTraveller20SeaterTemplate parsedData={parsed} />;
+      }
+      if (slugValue.includes("9-seater")) {
+        return <TempoTraveller9SeaterTemplate parsedData={parsed} />;
+      }if (slugValue.includes("10-seater")) {
+        return <TempoTraveller10SeaterTemplate parsedData={parsed} />;
+      }if (slugValue.includes("15-seater")) {
+        return <TempoTraveller15SeaterTemplate parsedData={parsed} />;
+      }if (slugValue.includes("17-seater")) {
+        return <TempoTraveller17SeaterTemplate parsedData={parsed} />;
+      }if (slugValue.includes("18-seater")) {
+        return <TempoTraveller18SeaterTemplate parsedData={parsed} />;
+      }if (slugValue.includes("26-seater")) {
+        return <TempoTraveller26SeaterTemplate parsedData={parsed} />;
       }
       if (
         slugValue.startsWith("tempo-traveller-in-") ||

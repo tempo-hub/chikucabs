@@ -694,6 +694,25 @@ Please share the best fare.`;
   const cityRouteGroups = useMemo(() => {
     const routeTypes = [
       {
+        label: "9 Seater",
+        pattern: /^\/9-seater-tempo-traveller-in-([^/]+)\/?$/,
+      },{
+        label: "10 Seater",
+        pattern: /^\/10-seater-tempo-traveller-in-([^/]+)\/?$/,
+      },{
+        label: "15 Seater",
+        pattern: /^\/15-seater-tempo-traveller-in-([^/]+)\/?$/,
+      },{
+        label: "17 Seater",
+        pattern: /^\/17-seater-tempo-traveller-in-([^/]+)\/?$/,
+      },{
+        label: "18 Seater",
+        pattern: /^\/18-seater-tempo-traveller-in-([^/]+)\/?$/,
+      },{
+        label: "26 Seater",
+        pattern: /^\/26-seater-tempo-traveller-in-([^/]+)\/?$/,
+      },
+      {
         label: "12 Seater",
         pattern: /^\/12-seater-tempo-traveller-in-([^/]+)\/?$/,
       },
