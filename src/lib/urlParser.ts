@@ -75,6 +75,10 @@ export function parseUrlSlug(slugs: string[]): ParsedRouteData {
       vehicle = "16 Seater Tempo Traveller";
     } else if (lowerSegment.includes("20-seater")) {
       vehicle = "20 Seater Tempo Traveller";
+    } else if (lowerSegment.includes("17-seater")) {
+      vehicle = "17 Seater Tempo Traveller";
+    } else if (lowerSegment.includes("18-seater")) {
+      vehicle = "18 Seater Tempo Traveller";
     } else if (lowerSegment.includes("26-seater")) {
       vehicle = "26 Seater Tempo Traveller";
     } else if (lowerSegment.includes("15-seater")) {
@@ -345,6 +349,12 @@ else if (isVehicleRental) {
         "12-seater-tempo-traveller-on-rent-in-",
         "12-seater-tempo-traveller-for-rent-in-",
         "12-seater-tempo-traveller-in-",
+        "9-seater-tempo-traveller-in-",
+        "10-seater-tempo-traveller-in-",
+        "15-seater-tempo-traveller-in-",
+        "17-seater-tempo-traveller-in-",
+        "18-seater-tempo-traveller-in-",
+        "26-seater-tempo-traveller-in-",
         "12-seater-tempo-traveller-on-rent-",
         "12-seater-tempo-traveller-hire-",
         "12-seater-tempo-traveller-",
