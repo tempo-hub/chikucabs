@@ -869,7 +869,7 @@ Please share the best fare for ${city}.`;
                     <span className="text-2xl">
                       <FaCarSide />
                     </span>
-                    <span className="text-sm">Sanitized Cars</span>
+                    <span className="text-sm">Sanitized Tempo Traveller</span>
                   </div>
                 </div>
               </div>
@@ -1461,43 +1461,6 @@ Please share the best fare for ${city}.`;
           </div>
         </section>
 
-        {filteredRelatedRoutes.length > 0 && (
-          <section className="py-12 bg-white/95 border-b border-slate-200">
-            <div className="max-w-7xl mx-auto px-4">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
-                  Tempo Traveller Options in {city}
-                </h2>
-                <p className="mt-2 text-sm md:text-base text-slate-600">
-                  Explore available Tempo Traveller seating options and
-                  booking pages for {city}.
-                </p>
-              </div>
-
-              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {filteredRelatedRoutes.map((route) => (
-                  <li key={route.url}>
-                    <Link
-                      href={route.url}
-                      className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
-                    >
-                      <span className="font-semibold text-slate-800 group-hover:text-primary">
-                        {route.title}
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        className="ml-3 text-lg text-primary"
-                      >
-                        →
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        )}
-
         {/* How It Works */}
         <section className="py-12 md:py-20 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4">
@@ -1992,6 +1955,43 @@ Please share the best fare for ${city}.`;
           </div>
         </section>
 
+        {filteredRelatedRoutes.length > 0 && (
+          <section className="py-12 bg-white/95 border-b border-slate-200">
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+                  Tempo Traveller Options in {city}
+                </h2>
+                <p className="mt-2 text-sm md:text-base text-slate-600">
+                  Explore other Tempo Traveller seating options and booking
+                  pages for {city}.
+                </p>
+              </div>
+
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredRelatedRoutes.map((route) => (
+                  <li key={route.url}>
+                    <Link
+                      href={route.url}
+                      className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+                    >
+                      <span className="font-semibold text-slate-800 group-hover:text-primary">
+                        {route.title}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="ml-3 text-lg text-primary"
+                      >
+                        →
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
+
         {/* Customer Reviews */}
         <section className="py-12 px-4 border-b border-slate-300">
           <div className="max-w-7xl mx-auto px-4">
@@ -2184,7 +2184,7 @@ Please share the best fare for ${city}.`;
         </section>
 
         {/* Popular Routes Section */}
-        {city !== "India" && (
+        {/* {city !== "India" && (
           <section className="py-24 px-4 bg-muted/20 border-y">
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
@@ -2241,7 +2241,7 @@ Please share the best fare for ${city}.`;
               </div>
             </div>
           </section>
-        )}
+        )} */}
 
         {/* SEO Content Section */}
         {city !== "India" && (
