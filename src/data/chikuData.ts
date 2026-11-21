@@ -1,6 +1,6 @@
 export const PHONE_NUMBER = "+919818022327";
 export const PHONE_DISPLAY = "9818022327";
-export const WHATSAPP_NUMBER = "916280820037";
+export const WHATSAPP_NUMBER = "919818022327";
 
 export const WHATSAPP_MESSAGE = encodeURIComponent(
   "Hi Chiku Cabs, I’m interested in booking a cab through your website. Please share the available options and booking details."
@@ -11,7 +11,7 @@ export const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
 export const STATS = [
   { num: "800+", label: "Monthly Group Trips" },
   { num: "₹2M+", label: "Group Savings" },
-  { num: "4.9/5", label: "Google Rating" },
+  { num: "4.2/5", label: "Google Rating" },
   { num: "Verified", label: "Local Drivers" },
 ];
 

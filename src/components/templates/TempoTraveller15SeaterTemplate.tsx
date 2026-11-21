@@ -18,7 +18,6 @@ import {
   FaMoneyBillWave,
 } from "react-icons/fa";
 import Head from "next/head";
-import Script from "next/script";
 import { usePathname } from "next/navigation";
 
 /* ------------------------------------------------------------------ */
@@ -27,8 +26,8 @@ import { usePathname } from "next/navigation";
 
 const SITE_URL = "https://chikucabs.com";
 const SITE_NAME = "Chiku Cabs";
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const PROMO_CODE = "CHIKUCABS10";
 
 // TODO: confirm the real 15 seater rate. 23 is the 12 seater rate, copied
@@ -41,7 +40,7 @@ const MIN_KM_PER_DAY = 250;
 const NIGHT_ALLOWANCE = "₹400–₹500";
 
 // TODO: only keep rating markup if it reflects real, verifiable reviews.
-const RATING_VALUE = "4.9";
+const RATING_VALUE = "4.2";
 const REVIEW_COUNT = "1250";
 
 const SEATER = 15;
@@ -57,7 +56,7 @@ const CITY_ALIASES: Record<string, string> = {
 const STATS = [
   // TODO: verify each of these figures before publishing.
   { num: "800+", label: "Monthly Group Trips" },
-  { num: "4.9/5", label: "Google Rating" },
+  { num: "4.2/5", label: "Google Rating" },
   { num: "Verified", label: "Local Drivers" },
   { num: "24/7", label: "Booking Support" },
 ];
@@ -249,10 +248,10 @@ export default function TempoTraveller15SeaterTemplate({
   const structuredData = useMemo(
     () => ({
       "@context": "https://schema.org",
-      "@type": "Product",
+      "@type": "Service",
       name: `${VEHICLE_LABEL} on Rent${inCity}`,
       description: `Hire ${VEHICLE_LABEL} on rent in ${city}. Comfortable seating for up to 15 passengers, air-conditioned cabin and luggage space. Suited to family trips, group travel, events and outstation journeys.`,
-      brand: { "@type": "Brand", name: SITE_NAME },
+      provider: { "@id": "https://chikucabs.com/#localbusiness" },
       image: `${SITE_URL}/tempo_traveller.png`,
       category: "Ground Transportation",
       offers: {
@@ -271,13 +270,6 @@ export default function TempoTraveller15SeaterTemplate({
             unitCode: "KMT",
           },
         },
-      },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: RATING_VALUE,
-        reviewCount: REVIEW_COUNT,
-        bestRating: "5",
-        worstRating: "1",
       },
       additionalProperty: [
         {
@@ -300,20 +292,7 @@ export default function TempoTraveller15SeaterTemplate({
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: SITE_NAME,
-    image: `${SITE_URL}/yt.png`,
-    telephone: PHONE_NUMBER,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: city !== "India" ? city : "Delhi",
-      addressCountry: "IN",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: RATING_VALUE,
-      reviewCount: REVIEW_COUNT,
-    },
-    priceRange: `₹${PRICE_PER_KM} per km`,
+    "@id": "https://chikucabs.com/#localbusiness",
   };
 
   const faqSchema = useMemo(
@@ -435,17 +414,17 @@ Please share the best quote.`;
         <link rel="canonical" href={`${SITE_URL}${pagePath}`} />
       </Head>
 
-      <Script
+      <script
         id="structured-data-15seater"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <Script
+      <script
         id="organization-data-15seater"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
       />
-      <Script
+      <script
         id="faq-data-15seater"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

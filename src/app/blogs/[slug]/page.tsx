@@ -28,6 +28,9 @@ export async function generateMetadata({
   return {
     title: `${blog.title} | Chiku Cabs`,
     description,
+    alternates: {
+      canonical: `https://chikucabs.com/blogs/${slug}`,
+    },
     openGraph: {
       title: blog.title,
       description,

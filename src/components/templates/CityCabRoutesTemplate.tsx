@@ -32,9 +32,9 @@ interface StatItem {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+918448445504";
-const DISPLAY_PHONE = "8448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const DISPLAY_PHONE = "9818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const SITE_URL = "https://chikucabs.com";
 const DEFAULT_VEHICLE = "Premium Cab";
@@ -64,7 +64,7 @@ const formatCityName = (cityName: string) => {
 const STATS: StatItem[] = [
   { num: "800+", label: "Monthly Group Trips" },
   { num: "₹2M+", label: "Group Savings" },
-  { num: "4.9/5", label: "Google Rating" },
+  { num: "4.2/5", label: "Google Rating" },
   { num: "Verified", label: "Local Drivers" },
 ];
 
@@ -279,20 +279,10 @@ Please share booking confirmation and driver assignment.`;
 
     const taxiService = {
       "@context": "https://schema.org",
-      "@type": "TaxiService",
+      "@type": "Service",
       name: `Chiku Cabs - ${formattedCity} Cab Service`,
-      provider: {
-        "@type": "LocalBusiness",
-        name: SITE_NAME,
-        telephone: PHONE_NUMBER,
-        url: SITE_URL,
-        priceRange: "₹₹",
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "3450",
-        },
-      },
+      serviceType: "Cab Service",
+      provider: { "@id": "https://chikucabs.com/#localbusiness" },
       areaServed: formattedCity,
       offers: {
         "@type": "Offer",
@@ -389,7 +379,7 @@ Please share booking confirmation and driver assignment.`;
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-amber-300 border border-white/15 mb-4">
                 <FaStar className="text-amber-400" />
-                <span>4.9 / 5 Rated (3,450+ Completed Intercity Trips)</span>
+                <span>4.2 / 5 Rated (3,450+ Completed Intercity Trips)</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4">
@@ -1051,7 +1041,7 @@ Please share booking confirmation and driver assignment.`;
 
               <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-slate-200/80 hover:border-primary/40 transition-all hover:-translate-y-1">
                 <div className="text-3xl md:text-5xl font-black text-amber-500 mb-2">
-                  4.9★
+                  4.2★
                 </div>
                 <div className="text-xs md:text-sm font-bold text-gray-800 uppercase tracking-wider mb-1">
                   Google & Verified Rating

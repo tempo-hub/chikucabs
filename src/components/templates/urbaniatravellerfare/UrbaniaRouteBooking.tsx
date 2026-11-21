@@ -59,7 +59,7 @@ Trip Type: ${form.tripType}
 Please share the final fare and Urbania availability.
     `.trim();
 
-    const whatsappUrl = `https://wa.me/916280820037?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/919818022327?text=${encodeURIComponent(
       message
     )}`;
 
@@ -131,7 +131,7 @@ Please share the final fare and Urbania availability.
 
             {/* Phone */}
             <a
-              href="tel:+916280820037"
+              href="tel:+919818022327"
               className="mt-8 inline-flex min-h-11 items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 text-xs font-bold text-white transition hover:border-primary/40 hover:bg-white/10"
             >
               <FaPhoneAlt className="text-primary" />

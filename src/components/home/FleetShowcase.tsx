@@ -115,7 +115,7 @@ export default function FleetShowcase() {
                       src={car.image}
                       alt={car.name}
                       fill
-                      sizes="320px"
+                      sizes="(min-width: 640px) 320px, 280px"
                       className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>

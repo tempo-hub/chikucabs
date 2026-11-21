@@ -1,8 +1,15 @@
 import { Metadata } from "next";
-import Script from "next/script";
 import { notFound } from "next/navigation";
 import { parseUrlSlug } from "@/lib/urlParser";
 import routeData from "@/data/routeData.json";
+import { getCityHub } from "@/data/cityHubs";
+import {
+  CHIKU_LOCAL_BUSINESS_ID,
+  CHIKU_LOCAL_BUSINESS_SCHEMA,
+  CHIKU_ORGANIZATION_SCHEMA,
+} from "@/data/businessSchema";
+import { createSchemaGraph } from "@/lib/structuredData";
+import PopularCityHubs from "@/components/shared/PopularCityHubs";
 
 // Import our premium modular UI templates
 import ServiceTemplate from "@/components/templates/ServiceTemplate";
@@ -44,6 +51,53 @@ import TempoTraveller26SeaterTemplate from "@/components/templates/TempoTravelle
 // We do NOT pre-render all 4476 routes at build time (causes timeout on Vercel).
 // Pages are generated on first request and cached via ISR (revalidate below).
 
+const SERVICE_LANDING_SLUGS = new Set([
+  "attach-taxi",
+  "car-rental",
+  "outstation-cabs",
+  "one-way-cabs",
+  "car-hire",
+  "local-sightseeing-taxi",
+  "bus-on-rent",
+  "taxi-on-rent",
+  "cab-on-rent",
+  "cab-service-for-round-trip",
+  "cabs-from-local-area",
+  "outstation-cabs-from-airport",
+  "hire-driver",
+  "tempo-traveller-on-rent",
+  "innova-car-rental",
+]);
+
+function formatSlugLabel(value: string) {
+  return value
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function fitMetaTitle(value: string, maxLength = 60) {
+  if (value.length <= maxLength) return value;
+
+  const suffix = " | Chiku Cabs";
+  const label = value.endsWith(suffix)
+    ? value.slice(0, -suffix.length)
+    : value;
+  return `${label.slice(0, maxLength - suffix.length).trimEnd()}${suffix}`;
+}
+
+function fitMetaDescription(value: string, maxLength = 160) {
+  const words = value.split(/\s+/);
+  let description = "";
+
+  for (const word of words) {
+    const candidate = description ? `${description} ${word}` : word;
+    if (candidate.length > maxLength) break;
+    description = candidate;
+  }
+
+  return description;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -62,11 +116,13 @@ export async function generateMetadata({
   }
 
   const parsed = parseUrlSlug(slug);
+  const cityHubSlug = slug.length === 1 ? slug[0] : "";
+  const cityHub = getCityHub(cityHubSlug);
 
   let title =
     "Chiku Cabs | India's Most Trusted Cab Booking Service Since 2015";
   let description =
-    "Book verified, GPS-tracked cabs, Tempo Travellers & Innova Crysta across 100+ cities. 1 Lakh+ trips completed. Safe & transparent. Call 9818022327 to book.";
+    "Book cabs, Tempo Travellers and airport taxis with Chiku Cabs. Contact our team for route availability and booking details. Call 9818022327.";
   let keywords: string[] = [
     "cab booking India",
     "taxi service India",
@@ -76,8 +132,29 @@ export async function generateMetadata({
     "car rental India",
   ];
 
+  if (cityHub) {
+    const city = cityHub.name;
+    const destinations = cityCabRoutes[
+      cityHubSlug as keyof typeof cityCabRoutes
+    ]
+      ?.slice(0, 2)
+      .map((route) => route.to)
+      .join(" and ");
 
-  if (
+    title = fitMetaTitle(`Cab Service in ${city} | Chiku Cabs`);
+    description = fitMetaDescription(
+      `Book cabs in ${city} for local trips, airport transfers and routes to ${destinations || "nearby destinations"}. Get verified drivers and clear fares. Call 9818022327.`,
+    );
+    keywords = [
+      `cab service in ${city}`,
+      `outstation cabs from ${city}`,
+      `taxi booking in ${city}`,
+      ...((cityCabRoutes[cityHubSlug as keyof typeof cityCabRoutes] || [])
+        .slice(0, 5)
+        .map((route) => `${city} to ${route.to} cab`)),
+      "Chiku Cabs",
+    ];
+  } else if (
     parsed.routeType === "Outstation Route" &&
     slugValue.includes("tempo-traveller-hire")
   ) {
@@ -216,7 +293,7 @@ export async function generateMetadata({
     if (parsed.vehicleCategory === "tempo-traveller") {
       const tempoStartingFare = Math.round(distance * 1.5 * 20 + 500);
       title = `${startCity} to ${endCity} Tempo Traveller on Rent @ ₹20/km | Chiku Cabs`;
-      description = `Hire 9 to 26 seater Tempo Traveller from ${startCity} to ${endCity} starting at ₹${tempoStartingFare} (~${distance} km). Luxury pushback seats, AC, verified drivers & roof luggage carrier. Call 8448445504 to book.`;
+      description = `Hire 9 to 26 seater Tempo Traveller from ${startCity} to ${endCity} starting at ₹${tempoStartingFare} (~${distance} km). Luxury pushback seats, AC, verified drivers & roof luggage carrier. Call 9818022327 to book.`;
       keywords = [
         `${startCity.toLowerCase()} to ${endCity.toLowerCase()} tempo traveller`,
         `tempo traveller hire ${startCity.toLowerCase()} to ${endCity.toLowerCase()}`,
@@ -231,7 +308,7 @@ export async function generateMetadata({
       ];
     } else {
       title = `${startCity} to ${endCity} Cab @ ₹${startingFare} | One Way Taxi (${distance} km) – Chiku Cabs`;
-      description = `Book ${startCity} to ${endCity} one-way cab starting at ₹${startingFare} (~${distance} km). AC Sedan, SUV, Innova Crysta & Tempo Traveller with verified drivers, zero return fare & 24/7 support. Call 8448445504 to book now.`;
+      description = `Book ${startCity} to ${endCity} one-way cab starting at ₹${startingFare} (~${distance} km). AC Sedan, SUV, Innova Crysta & Tempo Traveller with verified drivers, zero return fare & 24/7 support. Call 9818022327 to book now.`;
       keywords = [
         `${startCity} to ${endCity} one way cab`,
         `${startCity} to ${endCity} drop taxi`,
@@ -275,7 +352,7 @@ export async function generateMetadata({
     if (parsed.vehicleCategory === "tempo-traveller") {
       const tempoStartingFare = Math.round(distance * 1.5 * 20 + 500);
       title = `${startCity} to ${endCity} Tempo Traveller Fare from ₹${tempoStartingFare} | Chiku Cabs`;
-      description = `Check ${startCity} to ${endCity} Tempo Traveller fare (~${distance} km). Rates start at ₹20/km for 9, 12, 16, 20 & 26 seaters. Transparent group travel pricing. Call 8448445504.`;
+      description = `Check ${startCity} to ${endCity} Tempo Traveller fare (~${distance} km). Rates start at ₹20/km for 9, 12, 16, 20 & 26 seaters. Transparent group travel pricing. Call 9818022327.`;
       keywords = [
         `${startCity.toLowerCase()} to ${endCity.toLowerCase()} tempo traveller fare`,
         `${startCity.toLowerCase()} to ${endCity.toLowerCase()} tempo traveller price`,
@@ -285,7 +362,7 @@ export async function generateMetadata({
       ];
     } else {
       title = `${startCity} to ${endCity} ${parsed.vehicle || "Cab"} Fare from ₹${startingFare} | Chiku Cabs`;
-      description = `Check ${startCity} to ${endCity} ${parsed.vehicle || "cab"} fare (~${distance} km). Complete rate card starting from ₹${startingFare} with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 8448445504.`;
+      description = `Check ${startCity} to ${endCity} ${parsed.vehicle || "cab"} fare (~${distance} km). Complete rate card starting from ₹${startingFare} with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 9818022327.`;
       keywords = [
         `${startCity} to ${endCity} cab fare`,
         `${startCity} to ${endCity} taxi rate`,
@@ -352,34 +429,34 @@ export async function generateMetadata({
   ) {
     if (slugValue.includes("12-seater")) {
       title = `12 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹22/km | Chiku Cabs`;
-      description = `Book 12 Seater Tempo Traveller in ${parsed.origin} at ₹22/km. Pushback seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      description = `Book 12 Seater Tempo Traveller in ${parsed.origin} at ₹22/km. Pushback seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
     } else if (slugValue.includes("16-seater")) {
       title = `16 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹25/km | Chiku Cabs`;
-      description = `Book 16 Seater Tempo Traveller in ${parsed.origin} at ₹25/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      description = `Book 16 Seater Tempo Traveller in ${parsed.origin} at ₹25/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
       } else if (slugValue.includes("9-seater")) {
       title = `9 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹20/km | Chiku Cabs`;
-      description = `Book 9 Seater Tempo Traveller in ${parsed.origin} at ₹20/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      description = `Book 9 Seater Tempo Traveller in ${parsed.origin} at ₹20/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
       } else if (slugValue.includes("10-seater")) {
       title = `10 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹21/km | Chiku Cabs`;
-      description = `Book 10 Seater Tempo Traveller in ${parsed.origin} at ₹21/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      description = `Book 10 Seater Tempo Traveller in ${parsed.origin} at ₹21/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
       } else if (slugValue.includes("15-seater")) {
       title = `15 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹23/km | Chiku Cabs`;
-      description = `Book 15 Seater Tempo Traveller in ${parsed.origin} at ₹23/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      description = `Book 15 Seater Tempo Traveller in ${parsed.origin} at ₹23/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
       } else if (slugValue.includes("17-seater")) {
       title = `17 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹26/km | Chiku Cabs`;
-      description = `Book 17 Seater Tempo Traveller in ${parsed.origin} at ₹26/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      description = `Book 17 Seater Tempo Traveller in ${parsed.origin} at ₹26/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
       } else if (slugValue.includes("18-seater")) {
       title = `18 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹27/km | Chiku Cabs`;
-      description = `Book 18 Seater Tempo Traveller in ${parsed.origin} at ₹27/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      description = `Book 18 Seater Tempo Traveller in ${parsed.origin} at ₹27/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
       } else if (slugValue.includes("26-seater")) {
       title = `26 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹32/km | Chiku Cabs`;
-      description = `Book 26 Seater Tempo Traveller in ${parsed.origin} at ₹32/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
+      description = `Book 26 Seater Tempo Traveller in ${parsed.origin} at ₹32/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
     } else if (slugValue.includes("20-seater")) {
       title = `20 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹29/km | Chiku Cabs`;
-      description = `Book 20 Seater Tempo Traveller in ${parsed.origin} at ₹29/km. Mini-bus luxury, pushback seats, dual AC, large boot & certified drivers. Call 8448445504.`;
+      description = `Book 20 Seater Tempo Traveller in ${parsed.origin} at ₹29/km. Mini-bus luxury, pushback seats, dual AC, large boot & certified drivers. Call 9818022327.`;
     } else if (slugValue.startsWith("tempo-traveller-in-")) {
       title = `Tempo Traveller in ${parsed.origin} | 9 to 26 Seater on Rent | Chiku Cabs`;
-      description = `Hire Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9, 12, 16, 20 & 26 seater options with AC comfort. Call 8448445504.`;
+      description = `Hire Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9, 12, 16, 20 & 26 seater options with AC comfort. Call 9818022327.`;
     } else {
       title = `Tempo Traveller on Rent in ${parsed.origin} | 9-26 Seater | Chiku Cabs`;
     }
@@ -491,17 +568,15 @@ export async function generateMetadata({
     ];
 
   } else if (parsed.routeType === "Service") {
+    const serviceName = formatSlugLabel(slugValue);
     const vehicleLower = parsed.vehicle?.toLowerCase() || "cab";
-    const seaterInfo =
-      parsed.vehicleCategory === "tempo-traveller"
-        ? " | 9-26 Seater"
-        : parsed.vehicleCategory === "innova"
-          ? " | 6-7 Seater"
-          : "";
-    title = `${parsed.vehicle} on Rent Starting @ ₹9/km, Chiku Cabs${seaterInfo} | India's #1 Rental Service`;
-    description = `Rent a premium ${parsed.vehicle} with Chiku Cabs. Verified drivers, 100+ cities. Travel outstation, local or airport trips safely. Call 9818022327 to book now.`;
+    title = fitMetaTitle(`${serviceName} | Chiku Cabs`);
+    description = fitMetaDescription(
+      `Book ${serviceName.toLowerCase()} with Chiku Cabs. Enjoy verified drivers, clear fares and 24/7 support for local, airport and outstation trips. Call 9818022327.`,
+    );
     keywords = [
       `${vehicleLower} on rent`,
+      `${serviceName.toLowerCase()} India`,
       `${vehicleLower} rental`,
       `${vehicleLower} hire India`,
       `${vehicleLower} booking online`,
@@ -512,6 +587,16 @@ export async function generateMetadata({
       "Chiku Cabs",
     ];
   }
+
+  const serviceVehicleName = parsed.vehicle?.toLowerCase() || "";
+  const serviceImage =
+    serviceVehicleName.includes("innova")
+      ? "https://chikucabs.com/innova.png"
+      : serviceVehicleName.includes("tempo") ||
+          serviceVehicleName.includes("traveller") ||
+          serviceVehicleName.includes("bus")
+        ? "https://chikucabs.com/tempo_traveller.png"
+        : "https://chikucabs.com/suzuki-dzire.png";
 
   return {
     title,
@@ -542,10 +627,14 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "https://chikucabs.com/chikucabnewlogo.webp",
-          width: 200,
-          height: 60,
-          alt: "Chiku Cabs Logo",
+          url:
+            parsed.routeType === "Service"
+              ? serviceImage
+              : "https://chikucabs.com/chikucabnewlogo.webp",
+          alt:
+            parsed.routeType === "Service"
+              ? `${parsed.vehicle || "Cab"} rental service`
+              : "Chiku Cabs Logo",
         },
       ],
     },
@@ -577,134 +666,54 @@ export default async function DynamicRoutePage({
   }
 
   const parsed = parseUrlSlug(slug);
+  const is12SeaterLandingPage =
+    slug.join("-").includes("12-seater") &&
+    !parsed.routeType.includes("Outstation");
+  const cityHub = slug.length === 1 ? getCityHub(slug[0]) : undefined;
   const currentUrl = `https://chikucabs.com/${slug.join("/")}`;
 
   // --- STRUCTURED DATA (JSON-LD) ---
 
-  // 1. Product / Service Schema
+  // 1. Route service schema
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Product",
-    name: parsed.routeType.includes("Outstation")
-      ? `${parsed.vehicle} from ${parsed.origin} to ${parsed.destination}`
-      : `${parsed.vehicle} Rental Service`,
+    "@type": "Service",
+    name: is12SeaterLandingPage
+      ? "12 Seater Tempo Traveller Rental Service"
+      : parsed.routeType.includes("Outstation")
+        ? `${parsed.vehicle} from ${parsed.origin} to ${parsed.destination}`
+        : `${parsed.vehicle} Rental Service`,
     description: `Premium ${parsed.vehicle} rental service by Chiku Cabs. Verified drivers, GPS tracking, transparent pricing.`,
-    brand: { "@type": "Brand", name: "Chiku Cabs" },
+    provider: { "@id": CHIKU_LOCAL_BUSINESS_ID },
     offers: {
       "@type": "AggregateOffer",
       url: currentUrl,
       priceCurrency: "INR",
       lowPrice:
         parsed.vehicleCategory === "tempo-traveller"
-          ? "18"
+          ? is12SeaterLandingPage
+            ? "22"
+            : "18"
           : parsed.vehicleCategory === "innova"
             ? "14"
             : "9",
       highPrice:
         parsed.vehicleCategory === "tempo-traveller"
-          ? "28"
+          ? is12SeaterLandingPage
+            ? "24"
+            : "28"
           : parsed.vehicleCategory === "innova"
             ? "20"
             : "15",
       offerCount: "4",
       availability: "https://schema.org/InStock",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      bestRating: "5",
-      worstRating: "1",
-      ratingCount: "3250",
-      reviewCount: "1850",
-    },
-    review: [
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-        },
-        author: {
-          "@type": "Person",
-          name: "Nitin Agarwal",
-        },
-        reviewBody:
-          "Excellent service and politely speaking driver. The trip was very comfortable and safe.",
-      },
-      {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: "5",
-        },
-        author: {
-          "@type": "Person",
-          name: "Priya Sharma",
-        },
-        reviewBody:
-          "Booked an outstation cab with Chiku Cabs. The car was clean, AC worked perfectly, and driver was on time.",
-      },
-    ],
+    areaServed: parsed.origin
+      ? { "@type": "City", name: parsed.origin }
+      : { "@type": "Country", name: "India" },
   };
 
-  // 2. LocalBusiness with EEAT signals
-  const businessJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "TravelAgency",
-    name: "Chiku Cabs",
-    alternateName: "Chiku Cabs Pvt Ltd",
-    image: "https://chikucabs.com/chikucabnewlogo.webp",
-    "@id": "https://chikucabs.com",
-    url: "https://chikucabs.com",
-    telephone: "+91-9818022327",
-    email: "info@chikucabs.com",
-    foundingDate: "2015",
-    numberOfEmployees: {
-      "@type": "QuantitativeValue",
-      minValue: 50,
-      maxValue: 200,
-    },
-    slogan: "India's Most Trusted Cab Service",
-    knowsAbout: [
-      "Taxi Services",
-      "Outstation Cabs",
-      "Tempo Traveller Rental",
-      "Innova Car Rental",
-      "Airport Transfers",
-      "Corporate Car Rental",
-    ],
-    areaServed: {
-      "@type": "Country",
-      name: "India",
-    },
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Noida Sector 2",
-      addressLocality: "Noida",
-      addressRegion: "Uttar Pradesh",
-      postalCode: "201301",
-      addressCountry: "IN",
-    },
-    geo: { "@type": "GeoCoordinates", latitude: 28.5355, longitude: 77.391 },
-    priceRange: "₹₹",
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-      opens: "00:00",
-      closes: "23:59",
-    },
-    sameAs: ["https://wa.me/916280820037"],
-  };
-
-  // 3. BreadcrumbList for navigation
+  // BreadcrumbList for pages whose templates do not provide one.
   const breadcrumbs: { name: string; url: string }[] = [
     { name: "Home", url: "https://chikucabs.com" },
   ];
@@ -824,39 +833,47 @@ export default async function DynamicRoutePage({
     })),
   };
 
+  const templateProvidesService =
+    (Boolean(cityHub) && !is12SeaterLandingPage) ||
+    (parsed.vehicleCategory === "tempo-traveller" &&
+      parsed.routeType !== "Tempo Traveller Fare" &&
+      !is12SeaterLandingPage) ||
+    parsed.routeType === "Driver Service" ||
+    parsed.routeType === "Outstation Route" ||
+    parsed.routeType === "Outstation Route Fare" ||
+    parsed.routeType === "Urbania Route Fare" ||
+    parsed.routeType === "Urbania Fare" ||
+    parsed.routeType === "Service";
+
+  const templateProvidesFaq =
+    !is12SeaterLandingPage &&
+    (templateProvidesService ||
+      parsed.routeType === "Tempo Traveller Fare" ||
+      (parsed.routeType === "Local Service" &&
+        parsed.vehicleCategory === "cab"));
+
+  const templateProvidesBreadcrumb =
+    Boolean(cityHub) ||
+    parsed.routeType === "Outstation Route" ||
+    parsed.routeType === "Outstation Route Fare" ||
+    parsed.routeType === "Urbania Route Fare" ||
+    parsed.routeType === "Urbania Fare";
+
+  const pageStructuredData = createSchemaGraph(
+    CHIKU_ORGANIZATION_SCHEMA,
+    CHIKU_LOCAL_BUSINESS_SCHEMA,
+    ...(!templateProvidesService ? [jsonLd] : []),
+    ...(!templateProvidesBreadcrumb ? [breadcrumbJsonLd] : []),
+    ...(!templateProvidesFaq ? [faqJsonLd] : []),
+  );
+
   // Select template: Vehicle category first, then route type
   const renderTemplate = () => {
-    const CITY_SLUGS = [
-      "delhi",
-      "ujjain",
-      "indore",
-      "haridwar",
-      "mumbai",
-      "chennai",
-      "varanasi",
-      "ayodhya",
-      "lucknow",
-      "bangalore",
-      "madurai",
-      "hyderabad",
-      "rameshwaram",
-      "kanyakumari",
-      "pondicherry",
-      "mirzapur",
-      "jaunpur",
-      "sarnath",
-      "ddu-railway-station",
-      "ramnagar",
-      "bhu",
-      "secunderabad",
-      "nashik",
-      "raipur",
-    ];
-
     const slugValue = currentPath.replace(/^\/+/, "");
 
-    if (CITY_SLUGS.includes(slugValue)) {
-      return <CityCabRoutesTemplate city={slugValue} />;
+    const cityHub = getCityHub(slugValue);
+    if (cityHub) {
+      return <CityCabRoutesTemplate city={cityHub.slug} />;
     }
 
     if (slugValue === "outstation-cabs") {
@@ -1013,28 +1030,16 @@ export default async function DynamicRoutePage({
 
   return (
     <>
-      <Script
-        id="json-ld-product"
+      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <Script
-        id="json-ld-business"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
-      />
-      <Script
-        id="json-ld-breadcrumb"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <Script
-        id="json-ld-faq"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageStructuredData) }}
       />
 
       {renderTemplate()}
+
+      {slug.length === 1 && SERVICE_LANDING_SLUGS.has(slug[0]) && (
+        <PopularCityHubs />
+      )}
     </>
   );
 }

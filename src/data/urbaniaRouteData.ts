@@ -214,7 +214,6 @@ export const URBANIA_ROUTES: UrbaniaRouteData[] = [
   { fromCity: "Varanasi", toCity: "Kotdwar", distance: 750, duration: "16h 40m" },
   { fromCity: "Varanasi", toCity: "Dehradun", distance: 820, duration: "18h 13m" },
   { fromCity: "Varanasi", toCity: "Rishikesh", distance: 850, duration: "18h 53m" },
-  { fromCity: "Varanasi", toCity: "Mussoorie", distance: 850, duration: "18h 53m" },
   { fromCity: "Varanasi", toCity: "Pithoragarh", distance: 850, duration: "18h 53m" },
   { fromCity: "Varanasi", toCity: "Haridwar", distance: 900, duration: "20h" },
   { fromCity: "Varanasi", toCity: "Joshimath", distance: 950, duration: "21h 7m" },

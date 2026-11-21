@@ -1,4 +1,9 @@
 import React from "react";
+import {
+  CHIKU_LOCAL_BUSINESS_SCHEMA,
+  CHIKU_ORGANIZATION_SCHEMA,
+} from "@/data/businessSchema";
+import { createSchemaGraph } from "@/lib/structuredData";
 
 interface UrbaniaSchemaProps {
   city?: string;
@@ -50,11 +55,7 @@ export default function UrbaniaSchema({
     serviceType: "Urbania Traveller Rental",
     description: `Book a 12 Seater or 17 Seater Urbania Traveller from ${city} with Chiku Cabs for local and outstation group travel.`,
     url,
-    provider: {
-      "@type": "LocalBusiness",
-      name: "Chiku Cabs",
-      url: baseUrl,
-    },
+    provider: { "@id": "https://chikucabs.com/#localbusiness" },
     areaServed: {
       "@type": "City",
       name: city,
@@ -73,21 +74,17 @@ export default function UrbaniaSchema({
     ],
   };
 
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-      />
+  const schemaGraph = createSchemaGraph(
+    CHIKU_ORGANIZATION_SCHEMA,
+    CHIKU_LOCAL_BUSINESS_SCHEMA,
+    breadcrumbSchema,
+    serviceSchema,
+  );
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceSchema),
-        }}
-      />
-    </>
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
+    />
   );
 }

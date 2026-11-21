@@ -18,7 +18,6 @@ import {
   FaMoneyBillWave,
 } from "react-icons/fa";
 import Head from "next/head";
-import Script from "next/script";
 import { usePathname } from "next/navigation";
 
 /* ------------------------------------------------------------------ */
@@ -27,8 +26,8 @@ import { usePathname } from "next/navigation";
 
 const SITE_URL = "https://chikucabs.com";
 const SITE_NAME = "Chiku Cabs";
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const PROMO_CODE = "CHIKUCABS10";
 
 const PRICE_PER_KM = 32;
@@ -36,7 +35,7 @@ const DRIVER_CHARGE = 600;
 const MIN_KM_PER_DAY = 250;
 const NIGHT_ALLOWANCE = "₹500–₹600";
 
-const RATING_VALUE = "4.9";
+const RATING_VALUE = "4.2";
 const REVIEW_COUNT = "1420";
 
 const SEATER = 26;
@@ -51,7 +50,7 @@ const CITY_ALIASES: Record<string, string> = {
 
 const STATS = [
   { num: "1200+", label: "Large Group Trips" },
-  { num: "4.9/5", label: "Google Rating" },
+  { num: "4.2/5", label: "Google Rating" },
   { num: "Verified", label: "Commercial Drivers" },
   { num: "24/7", label: "Dispatch Desk" },
 ];
@@ -237,10 +236,10 @@ export default function TempoTraveller26SeaterTemplate({
   const structuredData = useMemo(
     () => ({
       "@context": "https://schema.org",
-      "@type": "Product",
+      "@type": "Service",
       name: `${VEHICLE_LABEL} on Rent${inCity}`,
       description: `Hire ${VEHICLE_LABEL} on rent in ${city}. Spacious seating for up to 26 passengers, dual air-conditioned cabin and large luggage carrier. Perfect for weddings, corporate groups, and outstation tours.`,
-      brand: { "@type": "Brand", name: SITE_NAME },
+      provider: { "@id": "https://chikucabs.com/#localbusiness" },
       image: `${SITE_URL}/tempo_traveller.png`,
       category: "Ground Transportation",
       offers: {
@@ -259,13 +258,6 @@ export default function TempoTraveller26SeaterTemplate({
             unitCode: "KMT",
           },
         },
-      },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: RATING_VALUE,
-        reviewCount: REVIEW_COUNT,
-        bestRating: "5",
-        worstRating: "1",
       },
       additionalProperty: [
         {
@@ -288,20 +280,7 @@ export default function TempoTraveller26SeaterTemplate({
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: SITE_NAME,
-    image: `${SITE_URL}/yt.png`,
-    telephone: PHONE_NUMBER,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: city !== "India" ? city : "Delhi",
-      addressCountry: "IN",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: RATING_VALUE,
-      reviewCount: REVIEW_COUNT,
-    },
-    priceRange: `₹${PRICE_PER_KM} per km`,
+    "@id": "https://chikucabs.com/#localbusiness",
   };
 
   const faqSchema = useMemo(
@@ -424,17 +403,17 @@ Please share the best quote with driver allowance details.`;
         <link rel="canonical" href={`${SITE_URL}${pagePath}`} />
       </Head>
 
-      <Script
+      <script
         id="structured-data-26seater"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <Script
+      <script
         id="organization-data-26seater"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
       />
-      <Script
+      <script
         id="faq-data-26seater"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

@@ -55,7 +55,7 @@ export default function TempoFareCityIntro({
             {/* Buttons */}
             <div className="mt-7 flex flex-wrap gap-3">
               <a
-  href={`https://wa.me/916280820037?text=${encodeURIComponent(
+  href={`https://wa.me/919818022327?text=${encodeURIComponent(
     `Hello Chiku Cabs, I want to book a Tempo Traveller in ${city}. Please share the available vehicles, price and booking details.`
   )}`}
   target="_blank"
@@ -202,7 +202,7 @@ export default function TempoFareCityIntro({
                 "
               >
                 <span className="text-xl font-black text-primary">
-                  4.9/5
+                  4.2/5
                 </span>
 
                 <span className="mt-1 text-xs text-[#64748b]">

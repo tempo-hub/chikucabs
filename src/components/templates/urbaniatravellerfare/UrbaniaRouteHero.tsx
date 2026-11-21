@@ -20,9 +20,9 @@ interface Props {
   duration?: string;
 }
 
-const PHONE_NUMBER = "+918448445504";
-const DISPLAY_PHONE = "8448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const DISPLAY_PHONE = "9818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const DEFAULT_DISTANCE = 250;
 const DRIVER_ALLOWANCE = 500;
 
@@ -133,7 +133,7 @@ Please share the confirmed booking and vehicle pictures.`;
         <div>
           <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-amber-300 border border-white/15 mb-4">
             <FaStar className="text-amber-400" />
-            <span>4.9 / 5 Rated (3,450+ Completed Intercity Trips)</span>
+            <span>4.2 / 5 Rated (3,450+ Completed Intercity Trips)</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4">

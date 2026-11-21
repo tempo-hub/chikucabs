@@ -30,7 +30,7 @@ export default function WhyChooseUs() {
             WHY CHIKU CABS
           </div>
           <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-            Why 1 Lakh+ Travelers Trust Us
+            Why Travelers Choose Chiku Cabs
           </h2>
         </div>
 

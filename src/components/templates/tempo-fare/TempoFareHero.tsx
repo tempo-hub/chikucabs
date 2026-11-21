@@ -71,7 +71,7 @@ export default function TempoFareHero({ city }: Props) {
             <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-base">
               <div className="flex items-center gap-2">
                 <span className="text-primary">★</span>
-                <span>4.9/5 Rating</span>
+                <span>4.2/5 Rating</span>
               </div>
 
               <div className="flex items-center gap-2">
@@ -89,7 +89,7 @@ export default function TempoFareHero({ city }: Props) {
             <div className="mt-8 flex flex-wrap gap-3">
   {/* WhatsApp */}
   <a
-    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+    href={`https://wa.me/919818022327?text=${encodeURIComponent(
       `Hello Chiku Cabs, I want to book a Tempo Traveller in ${city}. Please share the available vehicles, price and booking details.`
     )}`}
     target="_blank"
@@ -112,7 +112,7 @@ export default function TempoFareHero({ city }: Props) {
 
   {/* Call */}
   <a
-    href="tel:+918448445504"
+    href="tel:+919818022327"
     className="
       inline-flex items-center gap-2
       rounded-full
@@ -194,7 +194,7 @@ export default function TempoFareHero({ city }: Props) {
 
             {/* CTA */}
             <a
-  href={`https://wa.me/916280820037?text=${encodeURIComponent(
+  href={`https://wa.me/919818022327?text=${encodeURIComponent(
     `Hello Chiku Cabs, I want to book a Tempo Traveller in ${city}. Please share the available vehicles and fare details.`
   )}`}
   target="_blank"
@@ -236,7 +236,7 @@ export default function TempoFareHero({ city }: Props) {
                 <span className="text-primary">•</span>
 
                 <span>
-                  ★ 4.9/5 Rating
+                  ★ 4.2/5 Rating
                 </span>
               </div>
 

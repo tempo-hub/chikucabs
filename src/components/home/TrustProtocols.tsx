@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { ShieldCheck, Car, Award, RefreshCw } from "lucide-react";
 
 export default function TrustProtocols() {
@@ -28,12 +29,15 @@ export default function TrustProtocols() {
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border-y border-primary/10 overflow-hidden">
       {/* Background Cityscape/Terrace Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-bottom opacity-40 pointer-events-none"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=2000&q=80')`,
-        }}
-      />
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <Image
+          src="/cities/shimla.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-bottom"
+        />
+      </div>
       {/* Soft gradient wash */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 pointer-events-none" />
 

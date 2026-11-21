@@ -32,9 +32,9 @@ import InternalLinks from "@/components/shared/InternalLinks";
 // CONSTANTS & HELPERS
 // ============================================================
 
-const PHONE_NUMBER = "+918448445504";
-const DISPLAY_PHONE = "8448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const DISPLAY_PHONE = "9818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const SITE_URL = "https://chikucabs.com";
 
@@ -258,7 +258,7 @@ Please share booking confirmation and driver assignment.`;
       },
       {
         q: `How do I book an Innova cab from ${startCity} to ${endCity}?`,
-        a: `You can book directly on chikucabs.com, call our 24/7 customer booking desk at 844-844-5504, or WhatsApp our dispatch team at 916280820037 for instant confirmation and driver assignment details.`,
+        a: `You can book directly on chikucabs.com, call our 24/7 customer booking desk at +91 98180 22327, or WhatsApp our dispatch team at +91 62808 20037 for instant confirmation and driver assignment details.`,
       },
     ],
     [startCity, endCity, startingFare, crystaFare, distance, travelHours],
@@ -295,20 +295,10 @@ Please share booking confirmation and driver assignment.`;
 
     const taxiService = {
       "@context": "https://schema.org",
-      "@type": "TaxiService",
+      "@type": "Service",
       name: `Chiku Cabs - ${startCity} to ${endCity} Innova Crysta Cab Service`,
-      provider: {
-        "@type": "LocalBusiness",
-        name: SITE_NAME,
-        telephone: PHONE_NUMBER,
-        url: SITE_URL,
-        priceRange: "₹₹₹",
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "3450",
-        },
-      },
+      serviceType: "Outstation Cab Service",
+      provider: { "@id": "https://chikucabs.com/#localbusiness" },
       areaServed: [startCity, endCity],
       offers: {
         "@type": "Offer",
@@ -381,7 +371,7 @@ Please share booking confirmation and driver assignment.`;
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-amber-300 border border-white/15 mb-4">
                 <FaStar className="text-amber-400" />
-                <span>4.9 / 5 Rated (3,450+ Completed Intercity Trips)</span>
+                <span>4.2 / 5 Rated (3,450+ Completed Intercity Trips)</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4">
@@ -988,14 +978,14 @@ Please share booking confirmation and driver assignment.`;
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="tel:+918448445504"
+                  href="tel:+919818022327"
                   className="btn-primary text-lg px-8 py-4 shadow-2xl"
                 >
-                  📞 Get Quote — 8448445504
+                  📞 Get Quote — 9818022327
                 </a>
 
                 <a
-                  href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                  href={`https://wa.me/919818022327?text=${encodeURIComponent(
                     `Hi Chiku Cabs, I am interested in booking an Innova from ${startCity} to ${endCity}. Please help me with the booking.`,
                   )}`}
                   target="_blank"
@@ -1119,7 +1109,7 @@ Please share booking confirmation and driver assignment.`;
                     ))}
                   </ul>
                   <a
-                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
                       `Hi Chiku Cabs, I am interested in booking ${pkg.name} through your website. Please help me with the booking.`,
                     )}`}
                     target="_blank"
@@ -1323,14 +1313,14 @@ Please share booking confirmation and driver assignment.`;
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-lg px-10 py-4 shadow-2xl"
               >
-                📞 Call 8448445504
+                📞 Call 9818022327
               </a>
 
               <a
-                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                href={`https://wa.me/919818022327?text=${encodeURIComponent(
                   `Hi Chiku Cabs, I am interested in booking an Innova through your website. Please help me with the booking.`,
                 )}`}
                 target="_blank"

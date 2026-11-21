@@ -51,11 +51,7 @@ export const POPULAR_AIRPORT_CITIES: PopularAirportCity[] = [
   { name: "Nagpur", slug: "nagpur" },
   { name: "Ranchi", slug: "ranchi" },
 
-  // ---------Added Extra Route----------
-  { name: "Sarnath", slug: "sarnath" },
-  { name: "Mirzapur", slug: "mirzapur" },
   { name: "Varanasi", slug: "varanasi" },
-  { name: "DDU Railway Station", slug: "ddu-railway-station" },
 ];
 
 // Price calculation function

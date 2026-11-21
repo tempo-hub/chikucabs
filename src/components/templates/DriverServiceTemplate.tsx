@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import Head from "next/head";
-import Script from "next/script";
 import { ParsedRouteData } from "@/lib/urlParser";
 import EEATSection from "@/components/shared/EEATSection";
 import InternalLinks from "@/components/shared/InternalLinks";
@@ -17,8 +16,8 @@ import {
 } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 
 export default function DriverServiceTemplate({
   parsedData,
@@ -31,7 +30,7 @@ export default function DriverServiceTemplate({
     () => [
       {
         q: `How do I hire a verified driver in ${city !== "India" ? city : "India"} for my personal car?`,
-        a: `Hiring a professional driver with Chiku Cabs is instant. Call +91-8448445504 or WhatsApp our 24/7 dispatch desk. Share your car model (manual/automatic/luxury), pickup address, and duration (hourly, full-day, or outstation). A police-verified, uniformed chauffeur will arrive at your doorstep 15 minutes prior to departure.`,
+        a: `Hiring a professional driver with Chiku Cabs is instant. Call +91-9818022327 or WhatsApp our 24/7 dispatch desk. Share your car model (manual/automatic/luxury), pickup address, and duration (hourly, full-day, or outstation). A police-verified, uniformed chauffeur will arrive at your doorstep 15 minutes prior to departure.`,
       },
       {
         q: `What are the rates for hiring a driver for 4, 8, and 12 hours in ${city !== "India" ? city : "India"}?`,
@@ -103,11 +102,7 @@ export default function DriverServiceTemplate({
       "@type": "Service",
       name: `Professional Driver Hire Service${city !== "India" ? ` in ${city}` : ""}`,
       description: `Hire verified, experienced personal chauffeurs in ${city !== "India" ? city : "India"} for local city errands, corporate travel, night party drops, and outstation road trips.`,
-      provider: {
-        "@type": "LocalBusiness",
-        name: "Chiku Cabs",
-        telephone: PHONE_NUMBER,
-      },
+      provider: { "@id": "https://chikucabs.com/#localbusiness" },
       areaServed: {
         "@type": "City",
         name: city !== "India" ? city : "India",
@@ -140,12 +135,12 @@ export default function DriverServiceTemplate({
         />
       </Head>
 
-      <Script
+      <script
         id="driver-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <Script
+      <script
         id="driver-faq-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -169,14 +164,14 @@ export default function DriverServiceTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+918448445504"
+              href="tel:+919818022327"
               className="btn-primary text-lg px-10 py-5 shadow-2xl"
             >
-              📞 Book Driver — 8448445504
+              📞 Book Driver — 9818022327
             </a>
 
             <a
-              href={`https://wa.me/916280820037?text=${encodeURIComponent(
+              href={`https://wa.me/919818022327?text=${encodeURIComponent(
                 "Hi Chiku Cabs, I’m interested in booking a Tempo Traveller through your website. Please share the available options and booking details.",
               )}`}
               target="_blank"
@@ -197,7 +192,7 @@ export default function DriverServiceTemplate({
             {[
               { num: "800+", label: "Monthly Group Trips" },
               { num: "₹2M+", label: "Group Savings" },
-              { num: "4.9/5", label: "Google Rating" },
+              { num: "4.2/5", label: "Google Rating" },
               { num: "Verified", label: "Local Drivers" },
             ].map((stat, i) => (
               <div key={i} className="stat-item">
@@ -292,7 +287,7 @@ export default function DriverServiceTemplate({
                   ))}
                 </ul>
                 <a
-                  href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                  href={`https://wa.me/919818022327?text=${encodeURIComponent(
                     "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
                   )}`}
                   target="_blank"
@@ -666,7 +661,7 @@ export default function DriverServiceTemplate({
                   href={`tel:${PHONE_NUMBER}`}
                   className="inline-flex items-center gap-2 py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm md:text-base transition-all shadow-lg"
                 >
-                  Call +91-8448445504
+                  Call +91-9818022327
                 </a>
               </div>
             </div>

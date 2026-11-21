@@ -1,10 +1,9 @@
-"use client";
-
 import { ParsedRouteData } from "@/lib/urlParser";
 import EEATSection from "@/components/shared/EEATSection";
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import Head from "next/head";
-import Script from "next/script";
+import ServiceBookingWidget from "@/components/templates/ServiceBookingWidget";
+import LazyServiceFareCalculator from "@/components/templates/LazyServiceFareCalculator";
+import { createSchemaGraph } from "@/lib/structuredData";
+import Image from "next/image";
 import {
   FaCarSide,
   FaUserTie,
@@ -37,21 +36,8 @@ import {
   FaRegLightbulb,
 } from "react-icons/fa";
 import { CiClock1 } from "react-icons/ci";
-import toast from "react-hot-toast";
-import { FaLocationDot, FaRegClock } from "react-icons/fa6";
-import { TbTargetArrow } from "react-icons/tb";
-import { SlCalender } from "react-icons/sl";
 
 // --- Type Definitions ---
-interface FormData {
-  name: string;
-  phone: string;
-  pickup: string;
-  drop: string;
-  date: string;
-  distance: string;
-}
-
 interface VehicleDetails {
   icon: string;
   image: string;
@@ -95,8 +81,8 @@ interface CityService {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -165,7 +151,7 @@ const VEHICLE_DETAILS_MAP: Record<
 const STATS: StatItem[] = [
   { num: "800+", label: "Monthly Group Trips" },
   { num: "₹2M+", label: "Group Savings" },
-  { num: "4.9/5", label: "Google Rating" },
+  { num: "4.2/5", label: "Google Rating" },
   { num: "Verified", label: "Local Drivers" },
 ];
 
@@ -392,55 +378,15 @@ export default function ServiceTemplate({
   parsedData: ParsedRouteData;
 }) {
   const vehicle = parsedData.vehicle || DEFAULT_VEHICLE;
-  const vehicleDetails = useMemo(() => getVehicleDetails(vehicle), [vehicle]);
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    phone: "",
-    pickup: "",
-    drop: "",
-    date: "",
-    distance: "50",
-  });
-  const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [pickupLocation, setPickupLocation] = useState("");
-  const [dropLocation, setDropLocation] = useState("");
-  const [travelDate, setTravelDate] = useState("");
-  const [travelTime, setTravelTime] = useState("");
-
-  // Scroll handler for sticky CTA
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 300);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const calculateFare = useCallback(() => {
-    const distance = parseFloat(formData.distance);
-    const DRIVER_CHARGE = 500;
-
-    if (!isNaN(distance) && distance > 0) {
-      const rate = vehicleDetails?.pricePerKm || 9;
-      const fare = Math.round(distance * 1.5 * rate + DRIVER_CHARGE);
-      setEstimatedPrice(fare);
-    } else {
-      setEstimatedPrice(null);
-    }
-  }, [formData.distance, vehicleDetails?.pricePerKm]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    // Don't calculate here - let onMouseUp handle it for better UX
-  };
+  const vehicleDetails = getVehicleDetails(vehicle);
 
   // Structured Data for SEO
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "Service",
     name: `${vehicle} Rental Service`,
     description: `Book ${vehicle} for local, outstation, and airport transfers. Best price guaranteed. Professional drivers, 24/7 support.`,
-    brand: { "@type": "Brand", name: SITE_NAME },
+    provider: { "@id": "https://chikucabs.com/#localbusiness" },
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "INR",
@@ -449,208 +395,42 @@ export default function ServiceTemplate({
       offerCount: 3,
       availability: "https://schema.org/InStock",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-    },
   };
 
-  const organizationData = {
+  const faqs = generateFAQs(vehicle);
+  const faqSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: SITE_NAME,
-    image: "https://chikucabs.com/yt.png",
-    telephone: PHONE_NUMBER,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Delhi",
-      addressCountry: "IN",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-    },
-    priceRange:
-      `₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}`,
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.a,
+      },
+    })),
   };
-
-  const faqs = useMemo(() => generateFAQs(vehicle), [vehicle]);
-  const faqSchema = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: faqs.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: f.a,
-        },
-      })),
-    }),
-    [faqs]
-  );
-
-  const handleGetEstimate = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!pickupLocation || !dropLocation || !travelDate || !travelTime) {
-      toast.error("Please fill all fields");
-      return;
-    }
-
-    const message = `
-🚖 Fare Estimate Request
-
-📍 Pickup: ${pickupLocation}
-🎯 Drop: ${dropLocation}
-📅 Date: ${travelDate}
-⏰ Time: ${travelTime}
-🚘 Vehicle: ${vehicle}
-`;
-
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      message,
-    )}`;
-
-    window.open(whatsappUrl, "_blank");
-  };
-
-  const generateTimes = () => {
-    const times = [];
-
-    for (let hour = 0; hour < 24; hour++) {
-      for (let min = 0; min < 60; min += 30) {
-        const period = hour >= 12 ? "PM" : "AM";
-        const displayHour = hour % 12 || 12;
-
-        times.push(`${displayHour}:${String(min).padStart(2, "0")} ${period}`);
-      }
-    }
-
-    return times;
-  };
-
-  const timeOptions = generateTimes();
-
-  // Calculate initial fare for default 50 km with driver charge
-  useEffect(() => {
-    if (formData.distance === "50") {
-      calculateFare(); // This already includes ₹500 driver charge
-    }
-  }, []); // Empty dependency array - runs once on mount
+  const serviceSchema = createSchemaGraph(structuredData, faqSchema);
 
   return (
     <>
-      <Head>
-        <title>
-          Book {vehicle} Rental | Best {vehicle} Hire Service in India | Chiku
-          Cabs
-        </title>
-        <meta
-          name="description"
-          content={`Book ${vehicle} for local, outstation, and airport transfers. Best price guaranteed. Professional drivers, sanitized cars, 24/7 support. Call ${PHONE_NUMBER}.`}
-        />
-        <meta
-          name="keywords"
-          content={`${vehicle} rental, ${vehicle} hire, ${vehicle} on rent, cab booking, taxi service, outstation cabs, ${vehicle} cab, ${vehicle} taxi`}
-        />
-        <meta
-          property="og:title"
-          content={`Book ${vehicle} Rental | Best ${vehicle} Hire Service`}
-        />
-        <meta
-          property="og:description"
-          content={`Affordable ${vehicle} rental with professional drivers. Best price guarantee. Book now for local, outstation, and airport transfers.`}
-        />
-        <meta
-          property="og:image"
-          content={`https://chikucabs.com${vehicleDetails.image}`}
-        />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <link
-          rel="canonical"
-          href={`https://chikucabs.com/${vehicle.toLowerCase().replace(/\s+/g, "-")}-rental`}
-        />
-      </Head>
-
-      <Script
-        id="structured-data"
+      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-
-      <Script
-        id="organization-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
-      />
-
-      <Script
-        id="service-faq-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
       <div className="bg-background min-h-screen">
-        {/* Sticky CTA Bar with Promo Code */}
-        <div
-          className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 ${
-            isScrolled ? "translate-y-0" : "translate-y-full"
-          }`}
-        >
-          <div className="bg-gray-900 text-white shadow-2xl">
-            <div className="max-w-7xl mx-auto px-4 py-3">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-4 flex-wrap">
-                  <div className="flex items-center gap-2">
-                    <span className="text-yellow-400 text-xl">🎁</span>
-                    <span className="font-bold">Use Code:</span>
-                    <div className="flex items-center gap-2">
-                      <code className="bg-gray-800 px-3 py-1 rounded font-mono text-yellow-400">
-                        CHIKUCABS10
-                      </code>
-                      <button
-                        onClick={() => {
-                          navigator.clipboard.writeText("CHIKUCABS10");
-                          toast.success("Promo code copied!");
-                        }}
-                        className="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded transition"
-                      >
-                        Copy
-                      </button>
-                    </div>
-                  </div>
-                  <div className="text-sm opacity-90">
-                    to get{" "}
-                    <span className="font-bold text-yellow-400">10% OFF</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <a
-                    href="tel:+918448445504"
-                    className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
-                  >
-                    📞 Book Now
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Hero Section - Professional Redesign */}
         <section className="relative min-h-[600px] flex items-center overflow-hidden">
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
-            <img
+            <Image
               src="/cabonrent.webp"
               alt="Chiku Cabs Premium Fleet"
-              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/50" />
           </div>
@@ -661,7 +441,7 @@ export default function ServiceTemplate({
               <div className="text-white">
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 mb-6">
                   <span className="text-yellow-400">★★★★★</span>
-                  <span className="text-sm">4.9 Rating • 1250+ Reviews</span>
+                  <span className="text-sm">4.2 Rating • 1250+ Reviews</span>
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
@@ -682,14 +462,14 @@ export default function ServiceTemplate({
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
 
                   <a
-                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
                       "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
                     )}`}
                     target="_blank"
@@ -722,120 +502,7 @@ export default function ServiceTemplate({
               </div>
 
               {/* Right Content - Booking Widget (Like Uber) */}
-              <div className="bg-white rounded-2xl shadow-2xl p-6 lg:p-8">
-                <h3 className="text-2xl font-bold mb-4">Book Your {vehicle}</h3>
-                <p className="text-gray-600 mb-6">
-                  Get instant confirmation & best price
-                </p>
-
-                <form className="space-y-5">
-                  {/* Pickup Location */}
-                  <div className="relative">
-                    <FaLocationDot className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg" />
-
-                    <input
-                      type="text"
-                      value={pickupLocation}
-                      onChange={(e) => setPickupLocation(e.target.value)}
-                      placeholder="Enter Pickup Location"
-                      className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-      focus:bg-white
-      focus:border-primary
-      focus:ring-4
-      focus:ring-primary/10
-      outline-none
-      transition-all duration-300"
-                    />
-                  </div>
-
-                  {/* Drop Location */}
-                  <div className="relative">
-                    <TbTargetArrow className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-lg" />
-
-                    <input
-                      type="text"
-                      value={dropLocation}
-                      onChange={(e) => setDropLocation(e.target.value)}
-                      placeholder="Enter Drop Location"
-                      className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-      focus:bg-white
-      focus:border-primary
-      focus:ring-4
-      focus:ring-primary/10
-      outline-none
-      transition-all duration-300"
-                    />
-                  </div>
-
-                  {/* Date & Time */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Date */}
-                    <div className="relative">
-                      <SlCalender className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base" />
-
-                      <input
-                        type="date"
-                        value={travelDate}
-                        onChange={(e) => setTravelDate(e.target.value)}
-                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl
-        focus:bg-white
-        focus:border-primary
-        focus:ring-4
-        focus:ring-primary/10
-        outline-none
-        transition-all duration-300"
-                      />
-                    </div>
-
-                    {/* Time */}
-                    <div className="relative">
-                      <FaRegClock className="absolute left-4 top-1/2 -translate-y-1/2 text-primary text-base" />
-
-                      <select
-                        value={travelTime}
-                        onChange={(e) => setTravelTime(e.target.value)}
-                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl"
-                      >
-                        <option value="">Select Time</option>
-
-                        {timeOptions.map((time) => (
-                          <option key={time} value={time}>
-                            {time}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* CTA Button */}
-                  <button
-                    type="button"
-                    onClick={handleGetEstimate}
-                    className="group w-full h-14 rounded-2xl bg-primary text-white font-semibold text-lg
-    shadow-lg shadow-primary/20
-    hover:shadow-xl hover:shadow-primary/30
-    hover:-translate-y-0.5
-    active:translate-y-0
-    transition-all duration-300"
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      Get Fare Estimate
-                      <span className="group-hover:translate-x-1 transition-transform">
-                        →
-                      </span>
-                    </span>
-                  </button>
-
-                  {/* Trust Indicators */}
-                  <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-gray-500 pt-1">
-                    <span>✓ No Booking Fee</span>
-                    <span>•</span>
-                    <span>✓ Easy Cancellation</span>
-                    <span>•</span>
-                    <span>✓ 24×7 Support</span>
-                  </div>
-                </form>
-              </div>
+              <ServiceBookingWidget vehicle={vehicle} />
             </div>
           </div>
         </section>
@@ -935,7 +602,7 @@ export default function ServiceTemplate({
                     ))}
                   </ul>
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className={`w-full py-4 rounded-xl font-black tracking-tight text-center transition-all ${
                       item.best
                         ? "btn-primary shadow-lg"
@@ -1014,156 +681,10 @@ export default function ServiceTemplate({
         </section>
 
         {/* Route Calculator with Slider */}
-        <section className="py-12 bg-gradient-to-r from-primary/5 to-secondary/5 border-b border-slate-300">
-          <div className="max-w-4xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="section-badge mx-auto">CALCULATE FARE</div>
-              <h2 className="section-title">Estimate Your {vehicle} Fare</h2>
-              <p className="text-muted-foreground">
-                Slide to select distance and get instant price estimate
-              </p>
-            </div>
-
-            <div className="premium-card">
-              <div className="grid md:grid-cols-2 gap-8">
-                {/* Left Side - Slider Input */}
-                <div>
-                  <div className="mb-6">
-                    <div className="flex justify-between items-center mb-3">
-                      <label className="text-sm font-bold">
-                        Distance (in km)
-                      </label>
-                      <span className="text-2xl font-black text-primary">
-                        {formData.distance || 0} km
-                      </span>
-                    </div>
-
-                    {/* Range Slider */}
-                    <input
-                      type="range"
-                      name="distance"
-                      min="0"
-                      max="2000"
-                      step="10"
-                      value={formData.distance}
-                      onChange={handleInputChange}
-                      onMouseUp={calculateFare}
-                      onTouchEnd={calculateFare}
-                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
-                    />
-
-                    {/* Slider Markers */}
-                    <div className="flex justify-between mt-2 text-xs text-muted-foreground">
-                      <span>0 km</span>
-                      <span>500 km</span>
-                      <span>1000 km</span>
-                      <span>1500 km</span>
-                      <span>2000 km</span>
-                    </div>
-                  </div>
-
-                  {/* Quick Select Buttons - Driver charge included silently */}
-                  <div className="grid grid-cols-3 gap-2 mb-6">
-                    {[50, 100, 250, 500, 750, 1000].map((dist) => (
-                      <button
-                        key={dist}
-                        onClick={() => {
-                          // Update distance
-                          setFormData((prev) => ({
-                            ...prev,
-                            distance: dist.toString(),
-                          }));
-                          // Calculate fare WITH driver charge (hidden)
-                          const DRIVER_CHARGE = 500;
-                          const newPrice =
-                            dist * vehicleDetails.pricePerKm + DRIVER_CHARGE;
-                          setEstimatedPrice(newPrice);
-                        }}
-                        className={`py-2 rounded-lg text-sm font-medium transition-all ${
-                          Number(formData.distance) === dist
-                            ? "bg-primary text-white"
-                            : "bg-muted hover:bg-primary/20"
-                        }`}
-                      >
-                        {dist} km
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Distance Info Note */}
-                  <div className="mt-4 text-xs text-muted-foreground text-center bg-muted/30 p-3 rounded-lg">
-                    <span className="font-semibold">Tip:</span> For distances
-                    above 2000 km, additional charges apply at ₹
-                    {vehicleDetails.pricePerKm}/km
-                  </div>
-                </div>
-
-                {/* Right Side - Price Display (No driver charge visible) */}
-                <div className="text-center bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-6 border border-primary/10">
-                  {/* Estimated Distance */}
-                  <div>
-                    <p className="text-muted-foreground text-sm uppercase tracking-wide mb-2">
-                      ESTIMATED DISTANCE
-                    </p>
-                    <div className="text-5xl md:text-6xl font-black text-primary">
-                      {formData.distance
-                        ? `${Number(formData.distance).toLocaleString()}`
-                        : "---"}
-                    </div>
-                    <div className="text-xl font-semibold text-primary/70">
-                      KM
-                    </div>
-                  </div>
-
-                  <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent my-5"></div>
-
-                  {/* Your Estimated Fare - Clean, no breakdown */}
-                  <div>
-                    <p className="text-muted-foreground text-sm uppercase tracking-wide mb-2">
-                      YOUR ESTIMATED FARE
-                    </p>
-                    <div className="text-5xl md:text-7xl font-black text-primary">
-                      {estimatedPrice
-                        ? `₹${estimatedPrice.toLocaleString()}`
-                        : "---"}
-                    </div>
-                  </div>
-
-                  {/* Fixed Badge - Keep it simple */}
-                  <div className="mt-4">
-                    <span className="inline-block bg-primary/10 px-4 py-1.5 rounded-full">
-                      <p className="text-xs font-bold text-primary tracking-wide">
-                        * ONE WAY PRICE
-                      </p>
-                    </span>
-                  </div>
-
-                  {/* Distance Range Indicators */}
-                  <div className="flex justify-between items-center mt-5 px-4">
-                    <div className="text-center">
-                      <div className="text-sm font-bold text-muted-foreground">
-                        MIN
-                      </div>
-                      <div className="text-lg font-black">50 KM</div>
-                    </div>
-                    <div className="text-primary text-xl">→</div>
-                    <div className="text-center">
-                      <div className="text-sm font-bold text-muted-foreground">
-                        MAX
-                      </div>
-                      <div className="text-lg font-black">2000 KM</div>
-                    </div>
-                  </div>
-
-                  {/* Footer Note - Keep generic */}
-                  <p className="text-xs text-muted-foreground mt-5 pt-3 border-t border-border">
-                    *Includes all taxes & driver allowance | No hidden charges
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <LazyServiceFareCalculator
+          vehicle={vehicle}
+          pricePerKm={vehicleDetails.pricePerKm}
+        />
 
         {/* Service Coverage */}
         <section className="py-12 bg-white/95 border-b border-slate-300">
@@ -1780,7 +1301,7 @@ export default function ServiceTemplate({
                 </span>
                 <div className="h-4 w-px bg-gray-300 hidden sm:block"></div>
                 <span className="text-sm text-muted-foreground flex items-center gap-1">
-                  <FaChartLine className="text-green-500" /> 4.9/5 Rating
+                  <FaChartLine className="text-green-500" /> 4.2/5 Rating
                 </span>
               </div>
             </div>
@@ -1881,7 +1402,7 @@ export default function ServiceTemplate({
               </h2>
               <div className="flex justify-center items-center gap-2 mt-4">
                 <div className="flex text-yellow-400 text-xl">★★★★★</div>
-                <span className="font-bold">4.9</span>
+                <span className="font-bold">4.2</span>
                 <span className="text-gray-600">(1,250+ reviews)</span>
               </div>
             </div>
@@ -1980,7 +1501,7 @@ export default function ServiceTemplate({
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-xl px-12 py-5 shadow-2xl"
               >
                 📞 Call {PHONE_NUMBER}

@@ -5,7 +5,7 @@ interface Props {
 }
 
 export default function TempoFareCTA({ city }: Props) {
-  const whatsappNumber = "916280820037";
+  const whatsappNumber = "919818022327";
 
   const whatsappMessage = encodeURIComponent(
     `Hello Chiku Cabs, I want to book a Tempo Traveller in ${city}. Please share the available vehicles, price and booking details.`
@@ -45,7 +45,7 @@ export default function TempoFareCTA({ city }: Props) {
 
           {/* Call */}
           <a
-            href="tel:+918448445504"
+            href="tel:+919818022327"
             className="flex items-center gap-2 rounded-full bg-white px-7 py-3 font-bold text-primary transition hover:bg-gray-100"
           >
             <Phone size={18} />
