@@ -32,7 +32,7 @@ export default function LocalServiceTemplate({
     () => [
       {
         q: `How much does a local taxi service cost in ${city}?`,
-        a: `A local taxi service in ${city} starts from ₹999 for a 4-hour (40 km) package. Our 8-hour (80 km) cab booking is the most popular, starting at ₹1,499. Use our app or call 844-844-5504 for real-time rates and instant confirmation.`,
+        a: `A local taxi service in ${city} starts from ₹999 for a 4-hour (40 km) package. Our 8-hour (80 km) cab booking is the most popular, starting at ₹1,499. Use our app or call +91 98180 22327 for real-time rates and instant confirmation.`,
       },
       {
         q: `Can I get an airport taxi for pickup or drop in ${city}?`,
@@ -165,7 +165,7 @@ export default function LocalServiceTemplate({
           justify-center lg:justify-start"
         >
           <a
-            href="tel:+918448445504"
+            href="tel:+919818022327"
             className="inline-flex items-center justify-center gap-2
               min-h-14 px-7 rounded-xl bg-primary text-white
               font-bold text-base sm:text-lg
@@ -177,7 +177,7 @@ export default function LocalServiceTemplate({
           </a>
 
           <a
-            href={`https://wa.me/916280820037?text=${encodeURIComponent(
+            href={`https://wa.me/919818022327?text=${encodeURIComponent(
               `Hi Chiku Cabs, I want to book a ${vehicle} rental in ${city}. Please share the available cars and prices.`,
             )}`}
             target="_blank"
@@ -407,7 +407,7 @@ export default function LocalServiceTemplate({
               { num: "50,000+", label: "Happy Customers" },
               { num: "200+", label: "Cars in Fleet" },
               { num: "24/7", label: "Support Available" },
-              { num: "4.9 ★", label: "Average Rating" },
+              { num: "4.2 ★", label: "Average Rating" },
             ].map((stat, i) => (
               <div key={i} className="stat-item">
                 <div className="stat-number">{stat.num}</div>
@@ -501,7 +501,7 @@ export default function LocalServiceTemplate({
                   ))}
                 </ul>
                 <a
-                  href="tel:+918448445504"
+                  href="tel:+919818022327"
                   className="btn-primary w-full py-3"
                   style={{ display: "block", textAlign: "center" }}
                 >
@@ -845,14 +845,14 @@ export default function LocalServiceTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+918448445504"
+              href="tel:+919818022327"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
-              📞 Call 8448445504
+              📞 Call 9818022327
             </a>
 
             <a
-              href={`https://wa.me/916280820037?text=${encodeURIComponent(
+              href={`https://wa.me/919818022327?text=${encodeURIComponent(
                 "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
               )}`}
               target="_blank"

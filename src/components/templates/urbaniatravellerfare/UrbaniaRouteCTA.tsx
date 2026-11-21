@@ -84,7 +84,7 @@ export default function UrbaniaRouteCTA({
               </a>
 
               <a
-                href={`https://wa.me/916280820037?text=${whatsappMessage}`}
+                href={`https://wa.me/919818022327?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white/10 px-6 text-xs font-extrabold text-white transition hover:bg-white/15"
@@ -94,7 +94,7 @@ export default function UrbaniaRouteCTA({
               </a>
 
               <a
-                href="tel:+916280820037"
+                href="tel:+919818022327"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/10 px-6 text-xs font-extrabold text-white/70 transition hover:border-white/20 hover:text-white"
               >
                 <FaPhoneAlt className="text-[10px]" />

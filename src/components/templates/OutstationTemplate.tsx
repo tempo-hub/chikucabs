@@ -4,7 +4,6 @@ import { ParsedRouteData } from "@/lib/urlParser";
 import EEATSection from "@/components/shared/EEATSection";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Head from "next/head";
-import Script from "next/script";
 import {
   FaCarSide,
   FaUserTie,
@@ -72,8 +71,8 @@ interface CityService {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -156,7 +155,7 @@ const VEHICLE_DETAILS_MAP: Record<
 const STATS: StatItem[] = [
   { num: "800+", label: "Monthly Group Trips" },
   { num: "₹2M+", label: "Group Savings" },
-  { num: "4.9/5", label: "Google Rating" },
+  { num: "4.2/5", label: "Google Rating" },
   { num: "Verified", label: "Local Drivers" },
 ];
 
@@ -293,7 +292,7 @@ const generateFAQs = (vehicle: string): FAQItem[] => [
   },
   {
     q: "How far in advance should I book an outstation taxi, and is late-night dispatch available?",
-    a: "While booking 12 to 24 hours in advance guarantees your preferred car model and chauffeur, Chiku Cabs operates 24×7 and provides on-demand emergency outstation dispatch within 2 to 3 hours across major hubs (Delhi NCR, Varanasi, Lucknow, Jaipur, Mumbai, Pune, Bangalore). You can reserve round the clock online, via WhatsApp at +91-628-082-0037, or by calling +91-844-844-5504.",
+    a: "While booking 12 to 24 hours in advance guarantees your preferred car model and chauffeur, Chiku Cabs operates 24×7 and provides on-demand emergency outstation dispatch within 2 to 3 hours across major hubs (Delhi NCR, Varanasi, Lucknow, Jaipur, Mumbai, Pune, Bangalore). You can reserve round the clock online, via WhatsApp at +91 98180 22327, or by calling +91 98180 22327.",
   },
   {
     q: "What is Chiku Cabs' cancellation and refund policy for outstation bookings?",
@@ -396,10 +395,10 @@ export default function OutstationTemplate({
   // Structured Data for SEO
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "Service",
     name: `${vehicle} Rental Service`,
     description: `Book ${vehicle} for local, outstation, and airport transfers. Best price guaranteed. Professional drivers, 24/7 support.`,
-    brand: { "@type": "Brand", name: SITE_NAME },
+    provider: { "@id": "https://chikucabs.com/#localbusiness" },
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "INR",
@@ -408,31 +407,12 @@ export default function OutstationTemplate({
       offerCount: 3,
       availability: "https://schema.org/InStock",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-    },
   };
 
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: SITE_NAME,
-    image: "https://chikucabs.com/yt.png",
-    telephone: PHONE_NUMBER,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Delhi",
-      addressCountry: "IN",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-    },
-    priceRange:
-      `₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}`,
+    "@id": "https://chikucabs.com/#localbusiness",
   };
 
   const faqSchema = useMemo(
@@ -550,19 +530,19 @@ Please share the fare estimate.`;
         />
       </Head>
 
-      <Script
+      <script
         id="structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <Script
+      <script
         id="organization-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
       />
 
-      <Script
+      <script
         id="faq-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -604,7 +584,7 @@ Please share the fare estimate.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -633,7 +613,7 @@ Please share the fare estimate.`;
               <div className="text-white">
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 mb-6">
                   <span className="text-yellow-400">★★★★★</span>
-                  <span className="text-sm">4.9 Rating • 1250+ Reviews</span>
+                  <span className="text-sm">4.2 Rating • 1250+ Reviews</span>
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
@@ -652,14 +632,14 @@ Please share the fare estimate.`;
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
 
                   <a
-                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
                       "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
                     )}`}
                     target="_blank"
@@ -2089,7 +2069,7 @@ Please share the fare estimate.`;
               </h2>
               <div className="flex justify-center items-center gap-2 mt-4">
                 <div className="flex text-yellow-400 text-xl">★★★★★</div>
-                <span className="font-bold">4.9</span>
+                <span className="font-bold">4.2</span>
                 <span className="text-gray-600">(1,250+ reviews)</span>
               </div>
             </div>
@@ -2511,7 +2491,7 @@ Please share the fare estimate.`;
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-xl px-12 py-5 shadow-2xl"
               >
                 📞 Call {PHONE_NUMBER}

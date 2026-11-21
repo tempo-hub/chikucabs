@@ -333,7 +333,7 @@ export default function UrbaniaFareSection({
                 {/* CTA */}
                 <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
                   <a
-                    href={`https://wa.me/916280820037?text=${whatsappMessage}`}
+                    href={`https://wa.me/919818022327?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="
@@ -357,7 +357,7 @@ export default function UrbaniaFareSection({
                   </a>
 
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="
                       inline-flex
                       min-h-12

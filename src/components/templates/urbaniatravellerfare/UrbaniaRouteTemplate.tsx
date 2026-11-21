@@ -28,7 +28,7 @@ interface UrbaniaRouteTemplateProps {
   distance?: number;
 }
 
-const PHONE_NUMBER = "+918448445504";
+const PHONE_NUMBER = "+919818022327";
 const SITE_NAME = "Chiku Cabs";
 const SITE_URL = "https://chikucabs.com";
 const DRIVER_ALLOWANCE = 500;
@@ -125,20 +125,10 @@ export default function UrbaniaRouteTemplate({
 
     const taxiService = {
       "@context": "https://schema.org",
-      "@type": "TaxiService",
+      "@type": "Service",
       name: `Chiku Cabs - ${fromCity} to ${toCity} Force Urbania Rental`,
-      provider: {
-        "@type": "LocalBusiness",
-        name: SITE_NAME,
-        telephone: PHONE_NUMBER,
-        url: SITE_URL,
-        priceRange: "₹₹₹",
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "3450",
-        },
-      },
+      serviceType: "Urbania Rental",
+      provider: { "@id": "https://chikucabs.com/#localbusiness" },
       areaServed: [fromCity, toCity],
       offers: {
         "@type": "Offer",

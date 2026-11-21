@@ -32,9 +32,9 @@ import InternalLinks from "@/components/shared/InternalLinks";
 // CONSTANTS & HELPERS
 // ============================================================
 
-const PHONE_NUMBER = "+918448445504";
-const DISPLAY_PHONE = "8448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const DISPLAY_PHONE = "9818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const SITE_URL = "https://chikucabs.com";
 
@@ -245,7 +245,7 @@ Please share booking confirmation and driver assignment.`;
       },
       {
         q: `How do I book an airport taxi for ${startCity} to ${endCity}?`,
-        a: `You can easily book an airport taxi for outstation drops via our website or by calling 8448445504. We provide punctual pickups directly from the airport arrival.`,
+        a: `You can easily book an airport taxi for outstation drops via our website or by calling 9818022327. We provide punctual pickups directly from the airport arrival.`,
       },
       {
         q: `Are there any hidden charges in your outstation taxi service?`,
@@ -306,20 +306,10 @@ Please share booking confirmation and driver assignment.`;
 
     const taxiService = {
       "@context": "https://schema.org",
-      "@type": "TaxiService",
+      "@type": "Service",
       name: `Chiku Cabs - ${startCity} to ${endCity} Outstation Cab Service`,
-      provider: {
-        "@type": "LocalBusiness",
-        name: SITE_NAME,
-        telephone: PHONE_NUMBER,
-        url: SITE_URL,
-        priceRange: "₹₹",
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "3450",
-        },
-      },
+      serviceType: "Outstation Cab Service",
+      provider: { "@id": "https://chikucabs.com/#localbusiness" },
       areaServed: [startCity, endCity],
       offers: {
         "@type": "Offer",
@@ -399,7 +389,7 @@ Please share booking confirmation and driver assignment.`;
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-amber-300 border border-white/15 mb-4">
                 <FaStar className="text-amber-400" />
-                <span>4.9 / 5 Rated (3,450+ Completed Intercity Trips)</span>
+                <span>4.2 / 5 Rated (3,450+ Completed Intercity Trips)</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4">
@@ -1015,7 +1005,7 @@ Please share booking confirmation and driver assignment.`;
                 {[
                   { label: "DISTANCE", val: `~${distance} KM`, icon: "🛣️" },
                   { label: "EST. TIME", val: `~${travelHours} HRS`, icon: "⏱️" },
-                  { label: "RATING", val: "4.9/5", icon: "⭐" },
+                  { label: "RATING", val: "4.2/5", icon: "⭐" },
                   { label: "FLEET", val: "100+ CARS", icon: "🚗" },
                 ].map((stat, i) => (
                   <div key={i} className="premium-card p-4 text-center">
@@ -1295,7 +1285,7 @@ Please share booking confirmation and driver assignment.`;
                   </ul>
 
                   <a
-                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
                       `Hi Chiku Cabs, I am interested in booking ${item.car} from ${startCity} to ${endCity}. Please help me with the booking.`,
                     )}`}
                     className={`w-full py-4 rounded-xl font-black tracking-tight text-center ${item.best ? "btn-primary" : ""
@@ -1492,7 +1482,7 @@ Please share booking confirmation and driver assignment.`;
                 { num: "1 Lakh+", label: "Happy Customers" },
                 { num: "500+", label: "Verified Drivers" },
                 { num: "100+", label: "Cities Covered" },
-                { num: "4.9 ★", label: "Average Rating" },
+                { num: "4.2 ★", label: "Average Rating" },
               ].map((stat, i) => (
                 <div key={i} className="stat-item">
                   <div className="stat-number">{stat.num}</div>
@@ -1550,7 +1540,7 @@ Please share booking confirmation and driver assignment.`;
               </a>
 
               <a
-                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                href={`https://wa.me/919818022327?text=${encodeURIComponent(
                   `Hi Chiku Cabs, I am interested in booking a ${vehicleName} from ${startCity} to ${endCity}. Please help me with the booking.`,
                 )}`}
                 target="_blank"

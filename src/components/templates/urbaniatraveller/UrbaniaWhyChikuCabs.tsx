@@ -174,7 +174,7 @@ export default function UrbaniaWhyChikuCabs({
               </div>
 
               <a
-                href="https://wa.me/916280820037"
+                href="https://wa.me/919818022327"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="

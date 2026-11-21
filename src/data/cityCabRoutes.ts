@@ -1,3 +1,5 @@
+import { CITY_DISPLAY_NAMES } from "@/data/cityHubs";
+
 type Destination = {
   to: string;
   distance: number;
@@ -7,12 +9,7 @@ type CityDestinations = {
   [key: string]: Destination[];
 };
 
-export const CITY_DISPLAY_NAMES: Record<string, string> = {
-  "ddu-railway-station": "DDU Railway Station",
-  bhu: "BHU",
-  "pt-deen-dayal-upadhyaya-junction-ddu":
-    "Pt. Deen Dayal Upadhyaya Junction (DDU)",
-};
+export { CITY_DISPLAY_NAMES } from "@/data/cityHubs";
 
 const cityDestinations: CityDestinations = {
   varanasi: [
@@ -278,7 +275,7 @@ const cityDestinations: CityDestinations = {
     { to: "Ludhiana", distance: 310 },
     { to: "Jalandhar", distance: 390 },
     { to: "Pathankot", distance: 480 },
-    { to: "Mussoorie", distance: 290 },
+    { to: "Mussoorie", distance: 800 },
     { to: "Nainital", distance: 320 },
     { to: "Haldwani", distance: 290 },
     { to: "Ranikhet", distance: 360 },
@@ -3604,7 +3601,6 @@ const cityDestinations: CityDestinations = {
     { to: "Qila Raipur", distance: 155 },
     { to: "Nangal Chaudhry", distance: 480 },
     { to: "Amritsar Cantonment", distance: 4 },
-    { to: "Amritsar GIDC", distance: 8 },
     { to: "Amritsar Medical College", distance: 4 },
     { to: "Guru Nanak Dev University (GNDU)", distance: 5 },
     { to: "Khalsa College", distance: 4 },
@@ -3662,7 +3658,6 @@ const cityDestinations: CityDestinations = {
     { to: "Amritsar-Katra Highway", distance: 15 },
     { to: "Amritsar-Pathankot Highway", distance: 15 },
     { to: "Amritsar-Jalandhar Highway", distance: 12 },
-    { to: "Amritsar-Lahore Highway (Grand Trunk Road)", distance: 15 },
     { to: "Hussainiwala Border", distance: 120 },
     { to: "Ferozepur (via border)", distance: 118 },
     { to: "Zira (via border)", distance: 95 },

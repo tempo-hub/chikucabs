@@ -121,7 +121,7 @@ export default function UrbaniaRouteHighlights({
             </div>
 
             <a
-              href={`https://wa.me/916280820037?text=${encodeURIComponent(
+              href={`https://wa.me/919818022327?text=${encodeURIComponent(
                 `Hi Chiku Cabs, I need an Urbania Traveller from ${fromCity} to ${toCity}. Please help me choose between the 12 and 17 seater.`
               )}`}
               target="_blank"

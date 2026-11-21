@@ -32,9 +32,9 @@ import RouteMapSection from "../shared/RouteMapSection";
 // CONSTANTS
 // ============================================================
 
-const PHONE_NUMBER = "+918448445504";
-const DISPLAY_PHONE = "8448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const DISPLAY_PHONE = "9818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const SITE_URL = "https://chikucabs.com";
 
@@ -427,7 +427,7 @@ export default function OutstationRouteFareTemplate({
       },
       {
         q: `How do I book a cab from ${startCity} to ${endCity} and what payment options are accepted?`,
-        a: `Booking takes less than 2 minutes online via our booking form, or directly via WhatsApp (+91-628-082-0037) and phone (+91-${DISPLAY_PHONE}). We accept UPI (Google Pay, PhonePe, Paytm), Debit/Credit Cards, Net Banking, and cash or digital balance payment to the chauffeur upon arrival.`,
+        a: `Booking takes less than 2 minutes online via our booking form, or directly via WhatsApp (+91 98180 22327) and phone (+91-${DISPLAY_PHONE}). We accept UPI (Google Pay, PhonePe, Paytm), Debit/Credit Cards, Net Banking, and cash or digital balance payment to the chauffeur upon arrival.`,
       },
       {
         q: `How does Chiku Cabs ensure passenger safety for families, elders, and women travelers?`,
@@ -455,12 +455,7 @@ export default function OutstationRouteFareTemplate({
       name: `${startCity} to ${endCity} Cab Service`,
       description: metaDescription,
       serviceType: "Outstation Cab Service",
-      provider: {
-        "@type": "LocalBusiness",
-        name: SITE_NAME,
-        telephone: PHONE_NUMBER,
-        url: SITE_URL,
-      },
+      provider: { "@id": "https://chikucabs.com/#localbusiness" },
       areaServed: [
         {
           "@type": "City",
@@ -1015,7 +1010,7 @@ Please confirm the final fare and availability.`;
                 {/* Rating */}
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 mb-6 ml-2">
                   <span className="text-yellow-400">★★★★★</span>
-                  <span className="text-sm">4.9 Rating • 1250+ Reviews</span>
+                  <span className="text-sm">4.2 Rating • 1250+ Reviews</span>
                 </div>
 
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">

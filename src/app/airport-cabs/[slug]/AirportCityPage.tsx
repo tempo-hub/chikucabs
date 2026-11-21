@@ -35,7 +35,6 @@ import { TbClock24 } from "react-icons/tb";
 import { HiOutlineSparkles } from "react-icons/hi";
 import { BsCashStack } from "react-icons/bs";
 import toast from "react-hot-toast";
-import Script from "next/script";
 import {
   POPULAR_AIRPORT_CITIES,
   POPULAR_ROUTES,
@@ -84,8 +83,8 @@ interface VehicleDetails {
   features: string[];
 }
 
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -154,7 +153,7 @@ const VEHICLE_DETAILS_MAP: Record<
 const STATS: StatItem[] = [
   { num: "800+", label: "Monthly Group Trips" },
   { num: "₹2M+", label: "Group Savings" },
-  { num: "4.9/5", label: "Google Rating" },
+  { num: "4.2/5", label: "Google Rating" },
   { num: "Verified", label: "Local Drivers" },
 ];
 
@@ -162,7 +161,7 @@ const STATS: StatItem[] = [
 const ABOUT_STATS = [
   { number: "800+", label: "Monthly Airport Trips", icon: <MdFlightTakeoff /> },
   { number: "₹2M+", label: "Happy Customers", icon: <FaUsers /> },
-  { number: "4.9/5", label: "Average Rating", icon: <FaStar /> },
+  { number: "4.2/5", label: "Average Rating", icon: <FaStar /> },
   { number: "24/7", label: "Support Available", icon: <FaHeadset /> },
 ];
 
@@ -341,8 +340,8 @@ export default function AirportCityPage({
   const vehicle = parsedData?.vehicle || DEFAULT_VEHICLE;
   const vehicleDetails = useMemo(() => getVehicleDetails(vehicle), [vehicle]);
 
-  const PHONE_NUMBER = "+918448445504";
-  const WHATSAPP_NUMBER = "916280820037";
+  const PHONE_NUMBER = "+919818022327";
+  const WHATSAPP_NUMBER = "919818022327";
 
   // Filter routes based on active tab
   const filteredRoutes = activeTab === "pickup" ? pickupRoutes : dropRoutes;
@@ -508,7 +507,7 @@ export default function AirportCityPage({
               <div className="text-white">
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 mb-6">
                   <span className="text-yellow-400">★★★★★</span>
-                  <span className="text-sm">4.9 Rating • 1250+ Reviews</span>
+                  <span className="text-sm">4.2 Rating • 1250+ Reviews</span>
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
@@ -1263,7 +1262,7 @@ export default function AirportCityPage({
               </h2>
               <div className="flex justify-center items-center gap-2 mt-4">
                 <div className="flex text-yellow-400 text-xl">★★★★★</div>
-                <span className="font-bold">4.9</span>
+                <span className="font-bold">4.2</span>
                 <span className="text-gray-600">(1,250+ reviews)</span>
               </div>
             </div>

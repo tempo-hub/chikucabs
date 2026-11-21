@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Image from "next/image";
 import {
   Car,
   ArrowLeftRight,
@@ -104,10 +105,16 @@ const filteredDropCities = useMemo(() => {
 
   return (
     <section className="relative py-16 lg:py-16 overflow-hidden flex items-center bg-background">
-      <div
-        className="absolute inset-0 bg-cover bg-center z-0"
-        style={{ backgroundImage: `url('/home/home.png')` }}
-      />
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/home/home.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
       <div className="absolute inset-0 bg-slate-950/75 z-0" />
 
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 relative z-10">
@@ -118,8 +125,9 @@ const filteredDropCities = useMemo(() => {
               ★ INDIA&apos;S MOST TRUSTED CAB SERVICE
             </div>
             <h1 className="text-4xl sm:text-5xl xl:text-6xl font-black tracking-tight leading-tight">
-              Your Journey, <br />
-              Our <span className="text-primary">Premium</span> Ride
+              Book Cabs, <br />
+              Airport Taxis &amp;{" "}
+              <span className="text-primary">Tempo Travellers</span>
             </h1>
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl">
               Book outstation cabs, airport taxis, tempo travellers &amp; luxury car rentals across <strong>100+ cities</strong> in India. Verified drivers. Transparent pricing. Zero hidden charges.
@@ -147,7 +155,7 @@ const filteredDropCities = useMemo(() => {
                 <ShieldCheck className="w-4 h-4 text-primary" /> Verified Drivers
               </span>
               <span className="flex items-center gap-2">
-                <Star className="w-4 h-4 text-primary fill-primary" /> 4.9/5 Rating
+                <Star className="w-4 h-4 text-primary fill-primary" /> 4.2/5 Rating
               </span>
               <span className="flex items-center gap-2">
                 <Car className="w-4 h-4 text-primary" /> 1L+ Completed Trips

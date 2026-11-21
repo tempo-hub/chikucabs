@@ -75,7 +75,7 @@ const getWhatsAppUrl = (city: string, vehicle: string) => {
     }. Please share the best fare and availability.`
   );
 
-  return `https://wa.me/916280820037?text=${message}`;
+  return `https://wa.me/919818022327?text=${message}`;
 };
 
 export default function UrbaniaVehicleSection({

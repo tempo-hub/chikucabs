@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { POPULAR_AIRPORT_CITIES } from "@/data/airportRoutes";
 import AirportCityPage from "./AirportCityPage";
 
 interface PageProps {
@@ -16,10 +18,14 @@ const getCityName = (slug: string) => {
     .join(" ");
 };
 
+const isRealAirportSlug = (slug: string) =>
+  POPULAR_AIRPORT_CITIES.some(({ slug: citySlug }) => `${citySlug}-airport` === slug);
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  if (!isRealAirportSlug(slug)) notFound();
 
   const cityKey = slug.replace(/-airport$/, "");
   const cityName = getCityName(slug);
@@ -81,6 +87,7 @@ export async function generateMetadata({
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
+  if (!isRealAirportSlug(slug)) notFound();
 
   return <AirportCityPage />;
 }

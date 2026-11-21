@@ -23,23 +23,21 @@ export default function Footer() {
                 width={211}
                 height={45}
                 className="logo-img"
-                priority
               />
             </div>
 
             <p className="footer-desc">
-              India's most trusted cab service with 1 Lakh+ completed trips.
-              Premium vehicles, verified drivers, and transparent pricing across
-              100+ cities.
+              Book local and outstation cabs, airport taxis, and Tempo Travellers.
+              Contact our team to confirm route availability and fares.
             </p>
 
             <div className="footer-contact-row">
-              <a href="tel:+918448445504" className="footer-phone">
-                📞 +91-8448445504
+              <a href="tel:+919818022327" className="footer-phone">
+                📞 +91-9818022327
               </a>
 
               <a
-                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                href={`https://wa.me/919818022327?text=${encodeURIComponent(
                   "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
                 )}`}
                 className="footer-whatsapp"
@@ -175,8 +173,8 @@ export default function Footer() {
               <p>🕐 24/7 Customer Support</p>
             </div>
             <div className="footer-trust-badges">
-              <span className="trust-badge">🛡️ Verified</span>
-              <span className="trust-badge">⭐ 4.9 Rated</span>
+              <span className="trust-badge">📞 Booking support</span>
+              <span className="trust-badge">🚘 Multiple vehicle options</span>
             </div>
           </div>
         </div>

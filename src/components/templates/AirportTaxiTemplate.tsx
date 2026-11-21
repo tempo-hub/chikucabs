@@ -1,5 +1,7 @@
 "use client";
 
+import { CHIKU_LOCAL_BUSINESS_SCHEMA } from "@/data/businessSchema";
+import { createSchemaGraph } from "@/lib/structuredData";
 import Head from "next/head";
 import {
   FiPhone,
@@ -54,7 +56,6 @@ import { CiClock1 } from "react-icons/ci";
 import { FaLocationDot, FaRegClock } from "react-icons/fa6";
 import { TbTargetArrow } from "react-icons/tb";
 import { SlCalender } from "react-icons/sl";
-import Script from "next/script";
 import Link from "next/link";
 import { IoLocationSharp } from "react-icons/io5";
 import {
@@ -114,8 +115,8 @@ interface BookingFormData {
   distance: string;
 }
 
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -184,7 +185,7 @@ const VEHICLE_DETAILS_MAP: Record<
 const STATS: StatItem[] = [
   { num: "800+", label: "Monthly Group Trips" },
   { num: "₹2M+", label: "Group Savings" },
-  { num: "4.9/5", label: "Google Rating" },
+  { num: "4.2/5", label: "Google Rating" },
   { num: "Verified", label: "Local Drivers" },
 ];
 
@@ -457,12 +458,14 @@ export default function AirportTaxiTemplate({
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "TaxiService",
+    "@type": "Service",
     name: "Chiku Cabs Airport Taxi Service",
+    serviceType: "Airport Taxi Service",
     description:
       "24x7 airport taxi service for Delhi IGI Airport pickup and drop. Professional drivers, fixed pricing, flight tracking, and instant booking.",
     image: "https://chikucabs.com/cab.png",
-    telephone: "+916280820037",
+    telephone: PHONE_NUMBER,
+    provider: { "@id": "https://chikucabs.com/#localbusiness" },
     priceRange: "₹9 - ₹25 per km",
     areaServed: {
       "@type": "City",
@@ -494,31 +497,13 @@ export default function AirportTaxiTemplate({
     },
   };
 
-  const organizationData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: SITE_NAME,
-    image: "https://chikucabs.com/yt.png",
-    telephone: PHONE_NUMBER,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Delhi",
-      addressCountry: "IN",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-    },
-    priceRange:
-      `₹${vehicleDetails.pricePerKm} - ₹${vehicleDetails.pricePerKm * 2}`,
-  };
+  const organizationData = CHIKU_LOCAL_BUSINESS_SCHEMA;
 
   const AIRPORT_FAQS = useMemo(
     () => [
       {
         q: "How do I book an airport taxi for pickup or drop with Chiku Cabs?",
-        a: "You can book an airport taxi easily online via our website, on WhatsApp at +91-628-082-0037, or by calling +91-844-844-5504. Share your pickup address or airport terminal, flight number, travel date, time, and preferred vehicle category for instant confirmation.",
+        a: "You can book an airport taxi easily online via our website, on WhatsApp at +91 98180 22327, or by calling +91 98180 22327. Share your pickup address or airport terminal, flight number, travel date, time, and preferred vehicle category for instant confirmation.",
       },
       {
         q: "What are the starting rates for airport taxi transfers?",
@@ -582,6 +567,12 @@ export default function AirportTaxiTemplate({
       })),
     }),
     [AIRPORT_FAQS],
+  );
+
+  const schemaGraph = createSchemaGraph(
+    structuredData,
+    organizationData,
+    faqSchema,
   );
 
   const handleGetEstimate = (e: React.FormEvent) => {
@@ -699,28 +690,12 @@ Please share the best fare.`;
         />
         <meta name="twitter:image" content="/cab-twitter-image.jpg" />
         <link rel="canonical" href="https://chikucabs.com/airport-taxi" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
       </Head>
 
-      <Script
-        id="structured-data"
+      <script
+        id="airport-taxi-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-
-      <Script
-        id="organization-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
-      />
-
-      <Script
-        id="faq-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
       />
 
       <div className="bg-background min-h-screen">
@@ -759,7 +734,7 @@ Please share the best fare.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -788,7 +763,7 @@ Please share the best fare.`;
               <div className="text-white">
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 mb-6">
                   <span className="text-yellow-400">★★★★★</span>
-                  <span className="text-sm">4.9 Rating • 1250+ Reviews</span>
+                  <span className="text-sm">4.2 Rating • 1250+ Reviews</span>
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
@@ -808,14 +783,14 @@ Please share the best fare.`;
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
 
                   <a
-                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
                       "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
                     )}`}
                     target="_blank"
@@ -1920,7 +1895,7 @@ Please share the best fare.`;
               <p className="text-sm text-slate-500">
                 Need help with your booking?{" "}
                 <a
-                  href="tel:+918448445504"
+                  href="tel:+919818022327"
                   className="font-semibold text-primary hover:underline"
                 >
                   Call us for assistance
@@ -2006,7 +1981,7 @@ Please share the best fare.`;
                 </div>
 
                 <a
-                  href="tel:+918448445504"
+                  href="tel:+919818022327"
                   className="inline-flex items-center justify-center gap-2
             bg-primary text-white font-semibold px-6 py-3 rounded-xl
             hover:opacity-90 transition-all whitespace-nowrap"
@@ -2296,7 +2271,7 @@ Please share the best fare.`;
               </h2>
               <div className="flex justify-center items-center gap-2 mt-4">
                 <div className="flex text-yellow-400 text-xl">★★★★★</div>
-                <span className="font-bold">4.9</span>
+                <span className="font-bold">4.2</span>
                 <span className="text-gray-600">(1,250+ reviews)</span>
               </div>
             </div>

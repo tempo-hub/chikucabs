@@ -18,7 +18,6 @@ import {
 } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import Head from "next/head";
-import Script from "next/script";
 import { cities } from "@/data/cities";
 import { usePathname } from "next/navigation";
 
@@ -39,14 +38,14 @@ interface StatItem {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 
 const STATS: StatItem[] = [
   { num: "800+", label: "Monthly Group Trips" },
   { num: "₹2M+", label: "Group Savings" },
-  { num: "4.9/5", label: "Google Rating" },
+  { num: "4.2/5", label: "Google Rating" },
   { num: "Verified", label: "Local Drivers" },
 ];
 
@@ -126,8 +125,8 @@ export default function TempoTraveller20SeaterTemplate({
     : "20 Seater Tempo Traveller on Rent @ ₹29/km – Chiku Cabs";
 
   const pageDescription = cityName
-    ? `Book 20 Seater Tempo Traveller in ${cityName} at ₹29/km with Chiku Cabs. Spacious 20-passenger mini bus, pushback seats, dual AC, large boot & expert drivers. Call +91-8448445504.`
-    : "Book 20 Seater Tempo Traveller on rent across India at ₹29/km. Mini-bus luxury, pushback reclining seats, large luggage hold & certified drivers. Call +91-8448445504.";
+    ? `Book 20 Seater Tempo Traveller in ${cityName} at ₹29/km with Chiku Cabs. Spacious 20-passenger mini bus, pushback seats, dual AC, large boot & expert drivers. Call +91-9818022327.`
+    : "Book 20 Seater Tempo Traveller on rent across India at ₹29/km. Mini-bus luxury, pushback reclining seats, large luggage hold & certified drivers. Call +91-9818022327.";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 300);
@@ -155,13 +154,10 @@ export default function TempoTraveller20SeaterTemplate({
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "Service",
     name: `20 Seater Tempo Traveller on Rent${city !== "India" ? ` in ${city}` : ""}`,
     description: `Hire 20 seater tempo traveller on rent in ${city !== "India" ? city : "India"}. Features 4+4+4+4+4 pushback reclining seats, dual high-power AC, music system, and 25-30 bags luggage capacity. Best for big group tours, destination weddings, school/college excursions, and corporate events.`,
-    brand: {
-      "@type": "Brand",
-      name: "Chiku Cabs",
-    },
+    provider: { "@id": "https://chikucabs.com/#localbusiness" },
     image: "https://chikucabs.com/tempo_traveller.png",
     category: "Ground Transportation",
     offers: {
@@ -178,13 +174,6 @@ export default function TempoTraveller20SeaterTemplate({
         price: "29",
         priceCurrency: "INR",
       },
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-      bestRating: "5",
-      worstRating: "1",
     },
     additionalProperty: [
       {
@@ -219,20 +208,7 @@ export default function TempoTraveller20SeaterTemplate({
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: SITE_NAME,
-    image: "https://chikucabs.com/yt.png",
-    telephone: PHONE_NUMBER,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: city !== "India" ? city : "Delhi",
-      addressCountry: "IN",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-    },
-    priceRange: "₹29 per km",
+    "@id": "https://chikucabs.com/#localbusiness",
   };
 
   const TEMPO_FAQS = useMemo(
@@ -259,7 +235,7 @@ export default function TempoTraveller20SeaterTemplate({
       },
       {
         q: `How do I book a 20 Seater Tempo Traveller in ${city !== "India" ? city : "India"}?`,
-        a: `Call +91-8448445504 or chat with our reservations team on WhatsApp at 916280820037. We will send actual photos of the 20 seater tempo and confirm your booking with an instant GST tax invoice.`,
+        a: `Call +91-9818022327 or chat with our reservations team on WhatsApp at 919818022327. We will send actual photos of the 20 seater tempo and confirm your booking with an instant GST tax invoice.`,
       },
       {
         q: `Can I book a 20 Seater Tempo Traveller for local sightseeing or airport transfers?`,
@@ -462,17 +438,17 @@ Please share the best quote.`;
         />
       </Head>
 
-      <Script
+      <script
         id="structured-data-20seater"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <Script
+      <script
         id="organization-data-20seater"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
       />
-      <Script
+      <script
         id="faq-data-20seater"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -515,7 +491,7 @@ Please share the best quote.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book 20 Seater
@@ -542,7 +518,7 @@ Please share the best quote.`;
               <div className="text-white">
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 mb-6">
                   <span className="text-yellow-400">★★★★★</span>
-                  <span className="text-sm">4.9 Rating • 1250+ Reviews</span>
+                  <span className="text-sm">4.2 Rating • 1250+ Reviews</span>
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
@@ -563,14 +539,14 @@ Please share the best quote.`;
 
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
 
                   <a
-                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
                       `Hi Chiku Cabs, I want to book a 20 Seater Tempo Traveller in ${cityName || "India"}. Please share quotation.`
                     )}`}
                     target="_blank"
@@ -1338,14 +1314,14 @@ Please share the best quote.`;
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-lg px-10 py-4 shadow-2xl"
               >
-                📞 Call 8448445504
+                📞 Call 9818022327
               </a>
 
               <a
-                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                href={`https://wa.me/919818022327?text=${encodeURIComponent(
                   `Hi Chiku Cabs, I want to book a 20 Seater Tempo Traveller in ${city !== "India" ? city : "India"}. Please share quotation.`
                 )}`}
                 target="_blank"

@@ -4,11 +4,8 @@ import Link from "next/link";
 import { POPULAR_ROUTE_CARDS } from "@/data/chikuData";
 
 export default function PopularRoutes() {
-  // Duplicate array to achieve seamless infinite looping
-  const duplicatedRoutes = [...POPULAR_ROUTE_CARDS, ...POPULAR_ROUTE_CARDS];
-
   return (
-    <section className="py-20 px-4 bg-slate-50 overflow-hidden" id="routes">
+    <section className="py-20 px-4 bg-slate-50" id="routes">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -16,18 +13,22 @@ export default function PopularRoutes() {
             Top Outstation Routes Across India
           </h2>
           <p className="text-slate-500 text-sm max-w-xl mx-auto">
-            Serving 1200+ routes with the best rates. Here are some of our most booked tour packages.
+            Explore a selection of outstation travel routes and destinations.
           </p>
         </div>
 
-        {/* Carousel Container with Edge Fades */}
-        <div className="relative w-full overflow-hidden ">
-          <div className="animate-scroll-ltr flex gap-6 py-4">
-            {duplicatedRoutes.map((r, i) => (
+        {/* Scrollable route cards */}
+        <div className="relative w-full overflow-hidden">
+          <div
+            role="region"
+            aria-label="Popular outstation routes"
+            className="flex gap-6 py-4 overflow-x-auto snap-x snap-mandatory scroll-smooth"
+          >
+            {POPULAR_ROUTE_CARDS.map((r) => (
              <Link
                   href={r.href}
-                key={i}
-                className="w-[280px] sm:w-[320px] shrink-0 bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between overflow-hidden"
+                key={r.href}
+                className="w-[280px] sm:w-[320px] shrink-0 snap-start bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between overflow-hidden"
               >
                 <div>
                   {/* Top Image Banner */}
@@ -36,7 +37,7 @@ export default function PopularRoutes() {
                       src={r.image}
                       alt={r.title}
                       fill
-                      sizes="320px"
+                      sizes="(min-width: 640px) 320px, 280px"
                       className="object-cover hover:scale-105 transition-transform duration-500"
                     />
                   </div>
@@ -48,18 +49,6 @@ export default function PopularRoutes() {
                     </h3>
                   </div>
                 </div>
-
-                {/* Bottom Full-Width CTA Button */}
-                {/* <Link
-                  href={r.href}
-                  className={`w-full py-3 text-center text-xs font-bold tracking-wider uppercase transition-colors block ${
-                    r.buttonVariant === "red"
-                      ? "bg-[#b73c33] hover:bg-[#903828] text-white"
-                      : "bg-[#fbb03b] hover:bg-[#e69e31] text-white"
-                  }`}
-                >
-                  MORE
-                </Link> */}
               </Link>
             ))}
           </div>
@@ -71,7 +60,7 @@ export default function PopularRoutes() {
             href="/outstation-cabs"
             className="inline-block px-8 py-3 rounded border border-slate-300 bg-white hover:bg-slate-100 text-xs font-bold text-slate-800 uppercase tracking-wider transition"
           >
-            View All 1200+ Routes →
+            View Outstation Routes →
           </Link>
         </div>
       </div>

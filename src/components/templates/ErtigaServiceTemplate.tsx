@@ -112,7 +112,7 @@ export default function ErtigaServiceTemplate({
 ⏰ *Pickup Time:* ${heroForm.time || "To Confirm"}
 
 Please share the best quote and driver details.`;
-    window.open(`https://wa.me/916280820037?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/919818022327?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -149,7 +149,7 @@ Please share the best quote and driver details.`;
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3.5 py-1.5 text-xs font-semibold text-amber-300 border border-white/15 mb-4">
               <FaStar className="text-amber-400" />
-              <span>4.9 / 5 Rated (12,500+ Completed Trips in {city !== "India" ? city : "India"})</span>
+              <span>4.2 / 5 Rated (12,500+ Completed Trips in {city !== "India" ? city : "India"})</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4 text-white">
@@ -217,13 +217,13 @@ Please share the best quote and driver details.`;
             {/* Quick Action Buttons */}
             <div className="flex flex-wrap items-center gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="inline-flex items-center justify-center gap-3 rounded-xl bg-primary px-7 py-3.5 font-bold text-base text-white shadow-lg transition hover:scale-[1.02] active:scale-[0.98]"
               >
-                <FaPhoneAlt /> Call 8448445504
+                <FaPhoneAlt /> Call 9818022327
               </a>
               <a
-                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                href={`https://wa.me/919818022327?text=${encodeURIComponent(
                   `Hi Chiku Cabs, I want to book an Ertiga in ${city !== "India" ? city : "India"}. Please share the best fare.`,
                 )}`}
                 target="_blank"
@@ -354,7 +354,7 @@ Please share the best quote and driver details.`;
               { num: "1 Lakh+", label: "Trips Completed" },
               { num: "1,000+", label: "Ertigas in Fleet" },
               { num: "100+", label: "Cities Covered" },
-              { num: "4.9 ★", label: "Customer Rating" },
+              { num: "4.2 ★", label: "Customer Rating" },
             ].map((stat, i) => (
               <div key={i} className="stat-item">
                 <div
@@ -463,7 +463,7 @@ Please share the best quote and driver details.`;
                   ))}
                 </ul>
                 <a
-                  href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                  href={`https://wa.me/919818022327?text=${encodeURIComponent(
                     `Hi Chiku Cabs, I am interested in booking a ${variant.name} through your website. Please help me with the booking.`,
                   )}`}
                   target="_blank"
@@ -615,7 +615,7 @@ Please share the best quote and driver details.`;
               </div>
 
               <a
-                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                href={`https://wa.me/919818022327?text=${encodeURIComponent(
                   `Hi Chiku Cabs, I am interested in booking ${activeService.title} through your website. Please help me with the booking.`,
                 )}`}
                 target="_blank"
@@ -674,7 +674,7 @@ Please share the best quote and driver details.`;
                   <td className="px-4 py-4 text-xs text-slate-600">Parking at actuals</td>
                   <td className="px-4 py-4 text-center">
                     <a
-                      href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                      href={`https://wa.me/919818022327?text=${encodeURIComponent(
                         `Hi Chiku Cabs, I want to book an Ertiga for 4hr/40km local rental in ${city}.`,
                       )}`}
                       target="_blank"
@@ -700,7 +700,7 @@ Please share the best quote and driver details.`;
                   <td className="px-4 py-4 text-xs text-slate-600">Parking at actuals</td>
                   <td className="px-4 py-4 text-center">
                     <a
-                      href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                      href={`https://wa.me/919818022327?text=${encodeURIComponent(
                         `Hi Chiku Cabs, I want to book an Ertiga for 8hr/80km local package in ${city}.`,
                       )}`}
                       target="_blank"
@@ -726,7 +726,7 @@ Please share the best quote and driver details.`;
                   <td className="px-4 py-4 text-xs text-slate-600">Airport toll as applicable</td>
                   <td className="px-4 py-4 text-center">
                     <a
-                      href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                      href={`https://wa.me/919818022327?text=${encodeURIComponent(
                         `Hi Chiku Cabs, I need an Ertiga airport cab in ${city}.`,
                       )}`}
                       target="_blank"
@@ -752,7 +752,7 @@ Please share the best quote and driver details.`;
                   <td className="px-4 py-4 text-xs text-slate-600">One-way highway Fastag tolls</td>
                   <td className="px-4 py-4 text-center">
                     <a
-                      href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                      href={`https://wa.me/919818022327?text=${encodeURIComponent(
                         `Hi Chiku Cabs, I need an outstation one-way Ertiga cab from ${city}.`,
                       )}`}
                       target="_blank"
@@ -778,7 +778,7 @@ Please share the best quote and driver details.`;
                   <td className="px-4 py-4 text-xs text-slate-600">Tolls & state tax at actuals</td>
                   <td className="px-4 py-4 text-center">
                     <a
-                      href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                      href={`https://wa.me/919818022327?text=${encodeURIComponent(
                         `Hi Chiku Cabs, I need an Ertiga for outstation round-trip from ${city}.`,
                       )}`}
                       target="_blank"
@@ -1186,14 +1186,14 @@ Please share the best quote and driver details.`;
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+918448445504"
+              href="tel:+919818022327"
               className="btn-primary text-lg px-10 py-4 shadow-2xl"
             >
-              📞 Call 8448445504
+              📞 Call 9818022327
             </a>
 
             <a
-              href={`https://wa.me/916280820037?text=${encodeURIComponent(
+              href={`https://wa.me/919818022327?text=${encodeURIComponent(
                 "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
               )}`}
               target="_blank"

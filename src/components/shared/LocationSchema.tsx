@@ -22,10 +22,10 @@ export default function LocationSchema({
     serviceType: `${vehicle} Car Rental`,
 
     provider: {
-      "@type": "LocalBusiness",
+      "@type": "Organization",
       name: "Chiku Cabs",
-      telephone: "+91-8448445504",
-      url: "https://www.chikucabs.com",
+      telephone: "+91-9818022327",
+      url: "https://chikucabs.com",
     },
 
     areaServed: {
@@ -37,7 +37,7 @@ export default function LocationSchema({
       },
     },
 
-    url: `https://www.chikucabs.com${url}`,
+    url: `https://chikucabs.com${url}`,
   };
 
   return (

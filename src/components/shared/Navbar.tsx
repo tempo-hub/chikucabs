@@ -17,7 +17,6 @@ export default function Navbar() {
             width={211}
             height={45}
             className="logo-img"
-            priority
           />
         </Link>
 
@@ -46,11 +45,11 @@ export default function Navbar() {
         {/* Actions */}
         <div className="navbar-actions">
           <a
-            href="tel:+918448445504"
+            href="tel:+919818022327"
             className="btn-primary navbar-call-btn"
-            aria-label="Call Chiku Cabs at 8448445504"
+            aria-label="Call Chiku Cabs at 9818022327"
           >
-            📞 8448445504
+            📞 9818022327
           </a>
 
           {/* Hamburger */}

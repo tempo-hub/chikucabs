@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AirportTaxiTemplate from "@/components/templates/AirportTaxiTemplate";
+import PopularCityHubs from "@/components/shared/PopularCityHubs";
 
 export const metadata: Metadata = {
   title: "Airport Taxi Service | 24x7 Airport Pickup & Drop | Chiku Cabs",
@@ -56,5 +57,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <AirportTaxiTemplate />;
+  return (
+    <>
+      <AirportTaxiTemplate />
+      <PopularCityHubs />
+    </>
+  );
 }

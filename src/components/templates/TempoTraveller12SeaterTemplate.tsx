@@ -18,7 +18,6 @@ import {
 } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import Head from "next/head";
-import Script from "next/script";
 import { cities } from "@/data/cities";
 import { usePathname } from "next/navigation";
 
@@ -39,14 +38,14 @@ interface StatItem {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+918448445504";
-const WHATSAPP_NUMBER = "916280820037";
+const PHONE_NUMBER = "+919818022327";
+const WHATSAPP_NUMBER = "919818022327";
 const SITE_NAME = "Chiku Cabs";
 
 const STATS: StatItem[] = [
   { num: "800+", label: "Monthly Group Trips" },
   { num: "₹2M+", label: "Group Savings" },
-  { num: "4.9/5", label: "Google Rating" },
+  { num: "4.2/5", label: "Google Rating" },
   { num: "Verified", label: "Local Drivers" },
 ];
 
@@ -126,8 +125,8 @@ export default function TempoTraveller12SeaterTemplate({
     : "12 Seater Tempo Traveller on Rent @ ₹22/km – Chiku Cabs";
 
   const pageDescription = cityName
-    ? `Book 12 Seater Tempo Traveller in ${cityName} at ₹22/km with Chiku Cabs. Comfortable pushback seats, dual AC, expert drivers for outstation, local tours & weddings. Call +91-8448445504.`
-    : "Book 12 Seater Tempo Traveller on rent across India at ₹22/km. Pushback seats, dual AC, generous boot space & certified drivers. Call +91-8448445504.";
+    ? `Book 12 Seater Tempo Traveller in ${cityName} at ₹22/km with Chiku Cabs. Comfortable pushback seats, dual AC, expert drivers for outstation, local tours & weddings. Call +91-9818022327.`
+    : "Book 12 Seater Tempo Traveller on rent across India at ₹22/km. Pushback seats, dual AC, generous boot space & certified drivers. Call +91-9818022327.";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 300);
@@ -151,88 +150,6 @@ export default function TempoTraveller12SeaterTemplate({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: `12 Seater Tempo Traveller on Rent${city !== "India" ? ` in ${city}` : ""}`,
-    description: `Hire 12 seater tempo traveller on rent in ${city !== "India" ? city : "India"}. Features 3+3+3+3 pushback reclining seats, dual AC, music system, and rooftop luggage space. Best for group travel, family vacations, weddings and outstation trips.`,
-    brand: {
-      "@type": "Brand",
-      name: "Chiku Cabs",
-    },
-    image: "https://chikucabs.com/tempo_traveller.png",
-    category: "Ground Transportation",
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "INR",
-      lowPrice: "22",
-      highPrice: "24",
-      offerCount: 1,
-      availability: "https://schema.org/InStock",
-      validFrom: "2024-01-01",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        priceType: "https://schema.org/PerKilometer",
-        price: "22",
-        priceCurrency: "INR",
-      },
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-      bestRating: "5",
-      worstRating: "1",
-    },
-    additionalProperty: [
-      {
-        "@type": "PropertyValue",
-        name: "Seating Capacity",
-        value: "12 Passengers + 1 Driver",
-      },
-      {
-        "@type": "PropertyValue",
-        name: "Seating Layout",
-        value: "3+3+3+3 Pushback",
-      },
-      {
-        "@type": "PropertyValue",
-        name: "AC",
-        value: "Dual Blower AC",
-      },
-      {
-        "@type": "PropertyValue",
-        name: "Luggage Space",
-        value: "12-15 Bags + Rooftop Carrier",
-      },
-    ],
-    areaServed: {
-      "@type": "City",
-      name: city !== "India" ? city : "All Major Cities in India",
-    },
-    serviceType: "12 Seater Tempo Traveller Rental",
-    url: `https://chikucabs.com/12-seater-tempo-traveller${normalizedCitySlug ? `-${normalizedCitySlug}` : ""}`,
-  };
-
-  const organizationData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: SITE_NAME,
-    image: "https://chikucabs.com/yt.png",
-    telephone: PHONE_NUMBER,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: city !== "India" ? city : "Delhi",
-      addressCountry: "IN",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-    },
-    priceRange: "₹22 per km",
   };
 
   const TEMPO_FAQS = useMemo(
@@ -259,7 +176,7 @@ export default function TempoTraveller12SeaterTemplate({
       },
       {
         q: `How do I book a 12 Seater Tempo Traveller in ${city !== "India" ? city : "India"}?`,
-        a: `You can instantly book by calling +91-8448445504 or contacting our 24/7 WhatsApp desk at 916280820037. We will share actual photos of the vehicle and confirm your ride with a nominal advance deposit.`,
+        a: `You can instantly book by calling +91-9818022327 or contacting our 24/7 WhatsApp desk at 919818022327. We will share actual photos of the vehicle and confirm your ride with a nominal advance deposit.`,
       },
       {
         q: `Can I hire a 12 Seater Tempo Traveller for local sightseeing or airport transfers?`,
@@ -279,22 +196,6 @@ export default function TempoTraveller12SeaterTemplate({
       },
     ],
     [city]
-  );
-
-  const faqSchema = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: TEMPO_FAQS.map((faq) => ({
-        "@type": "Question",
-        name: faq.q,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faq.a,
-        },
-      })),
-    }),
-    [TEMPO_FAQS]
   );
 
   const handleGetEstimate = (e: React.FormEvent) => {
@@ -463,22 +364,6 @@ const filteredRelatedRoutes = relatedCityVehicleRoutes.filter(
         />
       </Head>
 
-      <Script
-        id="structured-data-12seater"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      <Script
-        id="organization-data-12seater"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
-      />
-      <Script
-        id="faq-data-12seater"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
       <div className="bg-background min-h-screen">
         {/* Sticky CTA Bar */}
         <div
@@ -516,7 +401,7 @@ const filteredRelatedRoutes = relatedCityVehicleRoutes.filter(
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book 12 Seater
@@ -543,7 +428,7 @@ const filteredRelatedRoutes = relatedCityVehicleRoutes.filter(
               <div className="text-white">
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur rounded-full px-4 py-2 mb-6">
                   <span className="text-yellow-400">★★★★★</span>
-                  <span className="text-sm">4.9 Rating • 1250+ Reviews</span>
+                  <span className="text-sm">4.2 Rating • 1250+ Reviews</span>
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
@@ -564,14 +449,14 @@ const filteredRelatedRoutes = relatedCityVehicleRoutes.filter(
 
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+918448445504"
+                    href="tel:+919818022327"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
 
                   <a
-                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
                       `Hi Chiku Cabs, I want to book a 12 Seater Tempo Traveller in ${cityName || "India"}. Please share details.`
                     )}`}
                     target="_blank"
@@ -1341,14 +1226,14 @@ const filteredRelatedRoutes = relatedCityVehicleRoutes.filter(
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+918448445504"
+                href="tel:+919818022327"
                 className="btn-primary text-lg px-10 py-4 shadow-2xl"
               >
-                📞 Call 8448445504
+                📞 Call 9818022327
               </a>
 
               <a
-                href={`https://wa.me/916280820037?text=${encodeURIComponent(
+                href={`https://wa.me/919818022327?text=${encodeURIComponent(
                   `Hi Chiku Cabs, I want to book a 12 Seater Tempo Traveller in ${city !== "India" ? city : "India"}. Please share best quote.`
                 )}`}
                 target="_blank"
