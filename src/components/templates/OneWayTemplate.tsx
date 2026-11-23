@@ -98,8 +98,8 @@ interface CityService {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+919818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -616,7 +616,7 @@ export default function OneWayTemplate({
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+919818022327"
+                    href="tel:918448445504"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -661,14 +661,14 @@ export default function OneWayTemplate({
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+919818022327"
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
 
                   <a
-                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
                       "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
                     )}`}
                     target="_blank"
@@ -1804,7 +1804,7 @@ export default function OneWayTemplate({
                   href={`tel:${PHONE_NUMBER}`}
                   className="inline-flex items-center gap-2 py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm md:text-base transition-all shadow-lg"
                 >
-                  Call +91-9818022327
+                  Call 918448445504
                 </a>
               </div>
             </div>
@@ -1966,7 +1966,7 @@ export default function OneWayTemplate({
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+919818022327"
+                href="tel:+918448445504"
                 className="btn-primary text-xl px-12 py-5 shadow-2xl"
               >
                 📞 Call {PHONE_NUMBER}

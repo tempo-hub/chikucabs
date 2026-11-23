@@ -24,7 +24,7 @@ export default function LocationSchema({
     provider: {
       "@type": "Organization",
       name: "Chiku Cabs",
-      telephone: "+91-9818022327",
+      telephone: "+918448445504",
       url: "https://chikucabs.com",
     },
 

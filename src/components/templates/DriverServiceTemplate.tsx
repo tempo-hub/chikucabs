@@ -16,8 +16,8 @@ import {
 } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 
-const PHONE_NUMBER = "+919818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "916280820037";
 
 export default function DriverServiceTemplate({
   parsedData,
@@ -30,7 +30,7 @@ export default function DriverServiceTemplate({
     () => [
       {
         q: `How do I hire a verified driver in ${city !== "India" ? city : "India"} for my personal car?`,
-        a: `Hiring a professional driver with Chiku Cabs is instant. Call +91-9818022327 or WhatsApp our 24/7 dispatch desk. Share your car model (manual/automatic/luxury), pickup address, and duration (hourly, full-day, or outstation). A police-verified, uniformed chauffeur will arrive at your doorstep 15 minutes prior to departure.`,
+        a: `Hiring a professional driver with Chiku Cabs is instant. Call +918448445504 or WhatsApp our 24/7 dispatch desk. Share your car model (manual/automatic/luxury), pickup address, and duration (hourly, full-day, or outstation). A police-verified, uniformed chauffeur will arrive at your doorstep 15 minutes prior to departure.`,
       },
       {
         q: `What are the rates for hiring a driver for 4, 8, and 12 hours in ${city !== "India" ? city : "India"}?`,
@@ -164,14 +164,14 @@ export default function DriverServiceTemplate({
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+919818022327"
+              href="tel:+918448445504"
               className="btn-primary text-lg px-10 py-5 shadow-2xl"
             >
-              📞 Book Driver — 9818022327
+              📞 Book Driver — 8448445504
             </a>
 
             <a
-              href={`https://wa.me/919818022327?text=${encodeURIComponent(
+              href={`https://wa.me/916280820037?text=${encodeURIComponent(
                 "Hi Chiku Cabs, I’m interested in booking a Tempo Traveller through your website. Please share the available options and booking details.",
               )}`}
               target="_blank"
@@ -287,7 +287,7 @@ export default function DriverServiceTemplate({
                   ))}
                 </ul>
                 <a
-                  href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                  href={`https://wa.me/916280820037?text=${encodeURIComponent(
                     "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
                   )}`}
                   target="_blank"
@@ -661,7 +661,7 @@ export default function DriverServiceTemplate({
                   href={`tel:${PHONE_NUMBER}`}
                   className="inline-flex items-center gap-2 py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm md:text-base transition-all shadow-lg"
                 >
-                  Call +91-9818022327
+                  Call 918448445504
                 </a>
               </div>
             </div>

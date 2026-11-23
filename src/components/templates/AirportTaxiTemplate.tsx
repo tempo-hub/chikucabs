@@ -115,8 +115,8 @@ interface BookingFormData {
   distance: string;
 }
 
-const PHONE_NUMBER = "+919818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -503,7 +503,7 @@ export default function AirportTaxiTemplate({
     () => [
       {
         q: "How do I book an airport taxi for pickup or drop with Chiku Cabs?",
-        a: "You can book an airport taxi easily online via our website, on WhatsApp at +91 98180 22327, or by calling +91 98180 22327. Share your pickup address or airport terminal, flight number, travel date, time, and preferred vehicle category for instant confirmation.",
+        a: "You can book an airport taxi easily online via our website, on WhatsApp at +91 62808 20037, or by calling +91 84484 45504. Share your pickup address or airport terminal, flight number, travel date, time, and preferred vehicle category for instant confirmation.",
       },
       {
         q: "What are the starting rates for airport taxi transfers?",
@@ -660,7 +660,7 @@ Please share the best fare.`;
         </title>
         <meta
           name="description"
-          content="Book reliable airport taxi service for Delhi IGI Airport pickup & drop. Professional drivers, fixed pricing, flight tracking, 24x7 support. Call +91-9818022327 for instant booking."
+          content="Book reliable airport taxi service for Delhi IGI Airport pickup & drop. Professional drivers, fixed pricing, flight tracking, 24x7 support. Call 918448445504 for instant booking."
         />
         <meta
           name="keywords"
@@ -734,7 +734,7 @@ Please share the best fare.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+919818022327"
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -783,14 +783,14 @@ Please share the best fare.`;
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+919818022327"
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
 
                   <a
-                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
                       "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
                     )}`}
                     target="_blank"
@@ -1895,7 +1895,7 @@ Please share the best fare.`;
               <p className="text-sm text-slate-500">
                 Need help with your booking?{" "}
                 <a
-                  href="tel:+919818022327"
+                  href="tel:+918448445504"
                   className="font-semibold text-primary hover:underline"
                 >
                   Call us for assistance
@@ -1981,7 +1981,7 @@ Please share the best fare.`;
                 </div>
 
                 <a
-                  href="tel:+919818022327"
+                  href="tel:+918448445504"
                   className="inline-flex items-center justify-center gap-2
             bg-primary text-white font-semibold px-6 py-3 rounded-xl
             hover:opacity-90 transition-all whitespace-nowrap"

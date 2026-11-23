@@ -93,7 +93,7 @@ export default function LocalDominance({ city }: LocalDominanceProps) {
 
               {/* CTA */}
               <a
-                href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
                   `Hi Chiku Cabs, I’m interested in booking a cabs in ${data.city} through your website. Please share the available options and booking details.`,
                 )}`}
                 target="_blank"

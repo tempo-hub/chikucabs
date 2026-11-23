@@ -19,7 +19,7 @@ import {
 export const metadata: Metadata = {
   title: "Book Cabs, Airport Taxis & Tempo Travellers | Chiku Cabs",
   description:
-    "Book outstation cabs, airport taxis, and tempo travellers across India. Get comfortable rides, professional drivers, and clear pricing from Chiku Cabs. Call 9818022327.",
+    "Book outstation cabs, airport taxis, and tempo travellers across India. Get comfortable rides, professional drivers, and clear pricing from Chiku Cabs. Call 8448445504.",
   keywords: [
     "cab booking India",
     "outstation cabs",

@@ -7,7 +7,7 @@ export const CHIKU_ORGANIZATION_SCHEMA = {
   name: "Chiku Cabs",
   url: "https://chikucabs.com/",
   logo: "https://chikucabs.com/chikucabnewlogo.webp",
-  telephone: "+919818022327",
+  telephone: "+918448445504",
   email: "info@chikucabs.com",
   sameAs: [
     "https://www.facebook.com/chikucabs/",
@@ -15,7 +15,7 @@ export const CHIKU_ORGANIZATION_SCHEMA = {
   ],
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+919818022327",
+    telephone: "+918448445504",
     contactType: "customer service",
     areaServed: "IN",
     availableLanguage: ["English", "Hindi"],
@@ -28,7 +28,7 @@ export const CHIKU_LOCAL_BUSINESS_SCHEMA = {
   name: "Chiku Cabs",
   url: "https://chikucabs.com/",
   image: "https://chikucabs.com/chikucabnewlogo.webp",
-  telephone: "+919818022327",
+  telephone: "+918448445504",
   email: "info@chikucabs.com",
   address: {
     "@type": "PostalAddress",
