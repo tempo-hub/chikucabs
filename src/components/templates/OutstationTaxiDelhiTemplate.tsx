@@ -50,7 +50,7 @@ export default function OutstationTaxiDelhiTemplate() {
     },
     {
       q: "How can I book an outstation taxi from Delhi instantly?",
-      a: "You can book instantly online on chikucabs.com, call our 24/7 hotline at 9818022327, or connect with our dispatch team on WhatsApp (+91 98180 22327) for live car photos and confirmed booking receipts in under 5 minutes.",
+      a: "You can book instantly online on chikucabs.com, call our 24/7 hotline at 8448445504, or connect with our dispatch team on WhatsApp (+91 62808 20037) for live car photos and confirmed booking receipts in under 5 minutes.",
     },
   ];
 
@@ -73,7 +73,7 @@ export default function OutstationTaxiDelhiTemplate() {
         <title>Outstation Taxi Delhi | Best Fare Cab Booking – Chiku Cabs</title>
         <meta
           name="description"
-          content="Book one-way and round-trip outstation taxi from Delhi to Jaipur, Agra, Chandigarh, Haridwar, Dehradun & all India destinations. Starting ₹9/km. Call 9818022327."
+          content="Book one-way and round-trip outstation taxi from Delhi to Jaipur, Agra, Chandigarh, Haridwar, Dehradun & all India destinations. Starting ₹9/km. Call 8448445504."
         />
         <link rel="canonical" href="https://chikucabs.com/outstation-taxi-delhi" />
         <script
@@ -107,14 +107,14 @@ export default function OutstationTaxiDelhiTemplate() {
 
             <div className="flex flex-wrap gap-4">
               <a
-                href="tel:+919818022327"
+                href="tel:+918448445504"
                 className="btn-primary px-8 py-4 text-lg"
               >
                 📞 Call Now
               </a>
 
               <a
-                href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
                   "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
                 )}`}
                 target="_blank"
@@ -159,7 +159,7 @@ export default function OutstationTaxiDelhiTemplate() {
                 <p className="text-muted-foreground mb-6">Starting fare</p>
 
                 <a
-                  href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                  href={`https://wa.me/916280820037?text=${encodeURIComponent(
                     "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
                   )}`}
                   target="_blank"
@@ -247,10 +247,10 @@ export default function OutstationTaxiDelhiTemplate() {
           </p>
 
           <a
-            href="tel:+919818022327"
+            href="tel:+918448445504"
             className="btn-primary px-10 py-4 text-lg"
           >
-            📞 9818022327
+            📞 8448445504
           </a>
         </div>
       </section>

@@ -168,7 +168,7 @@ export default function UrbaniaUseCases({
               </div>
 
               <a
-                href={`https://wa.me/919818022327?text=${whatsappMessage}`}
+                href={`https://wa.me/916280820037?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="

@@ -51,7 +51,7 @@ const vehicles = [
 
 export default function TempoFareFleet({ city }: Props) {
 
-     const whatsappNumber = "919818022327";
+     const whatsappNumber = "916280820037";
 
   const whatsappMessage = encodeURIComponent(
     `Hello Chiku Cabs, I want to book a Tempo Traveller in ${city}. Please share the available vehicles, price and booking details.`

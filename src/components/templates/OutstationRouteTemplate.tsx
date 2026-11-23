@@ -32,9 +32,9 @@ import InternalLinks from "@/components/shared/InternalLinks";
 // CONSTANTS & HELPERS
 // ============================================================
 
-const PHONE_NUMBER = "+919818022327";
-const DISPLAY_PHONE = "9818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const DISPLAY_PHONE = "8448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 const SITE_URL = "https://chikucabs.com";
 
@@ -245,7 +245,7 @@ Please share booking confirmation and driver assignment.`;
       },
       {
         q: `How do I book an airport taxi for ${startCity} to ${endCity}?`,
-        a: `You can easily book an airport taxi for outstation drops via our website or by calling 9818022327. We provide punctual pickups directly from the airport arrival.`,
+        a: `You can easily book an airport taxi for outstation drops via our website or by calling 918448445504. We provide punctual pickups directly from the airport arrival.`,
       },
       {
         q: `Are there any hidden charges in your outstation taxi service?`,
@@ -1285,7 +1285,7 @@ Please share booking confirmation and driver assignment.`;
                   </ul>
 
                   <a
-                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
                       `Hi Chiku Cabs, I am interested in booking ${item.car} from ${startCity} to ${endCity}. Please help me with the booking.`,
                     )}`}
                     className={`w-full py-4 rounded-xl font-black tracking-tight text-center ${item.best ? "btn-primary" : ""
@@ -1540,7 +1540,7 @@ Please share booking confirmation and driver assignment.`;
               </a>
 
               <a
-                href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
                   `Hi Chiku Cabs, I am interested in booking a ${vehicleName} from ${startCity} to ${endCity}. Please help me with the booking.`,
                 )}`}
                 target="_blank"

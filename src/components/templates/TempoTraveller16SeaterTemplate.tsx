@@ -38,8 +38,8 @@ interface StatItem {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+919818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 
 const STATS: StatItem[] = [
@@ -125,8 +125,8 @@ export default function TempoTraveller16SeaterTemplate({
     : "16 Seater Tempo Traveller on Rent @ ₹25/km – Chiku Cabs";
 
   const pageDescription = cityName
-    ? `Book 16 Seater Tempo Traveller in ${cityName} at ₹25/km with Chiku Cabs. Spacious 4+4+4+4 pushback seats, powerful dual AC, large luggage space & experienced drivers. Call +91-9818022327.`
-    : "Book 16 Seater Tempo Traveller on rent across India at ₹25/km. Pushback seats, dual AC, large boot & certified highway drivers. Call +91-9818022327.";
+    ? `Book 16 Seater Tempo Traveller in ${cityName} at ₹25/km with Chiku Cabs. Spacious 4+4+4+4 pushback seats, powerful dual AC, large luggage space & experienced drivers. Call +918448445504.`
+    : "Book 16 Seater Tempo Traveller on rent across India at ₹25/km. Pushback seats, dual AC, large boot & certified highway drivers. Call +918448445504.";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 300);
@@ -235,7 +235,7 @@ export default function TempoTraveller16SeaterTemplate({
       },
       {
         q: `How can I reserve a 16 Seater Tempo Traveller in ${city !== "India" ? city : "India"}?`,
-        a: `Call +91-9818022327 or message our 24/7 WhatsApp helpdesk at 919818022327. Our team will verify availability, provide actual photos of the vehicle, and send instant confirmation.`,
+        a: `Call +918448445504 or message our 24/7 WhatsApp helpdesk at 916280820037. Our team will verify availability, provide actual photos of the vehicle, and send instant confirmation.`,
       },
       {
         q: `Can I hire a 16 Seater Tempo Traveller for local sightseeing and airport transfers?`,
@@ -491,7 +491,7 @@ Please share the best quote.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+919818022327"
+                    href="tel:918448445504"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book 16 Seater
@@ -539,14 +539,14 @@ Please share the best quote.`;
 
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+919818022327"
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
 
                   <a
-                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
                       `Hi Chiku Cabs, I want to book a 16 Seater Tempo Traveller in ${cityName || "India"}. Please share quotation.`
                     )}`}
                     target="_blank"
@@ -1316,14 +1316,14 @@ Please share the best quote.`;
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+919818022327"
+                href="tel:+918448445504"
                 className="btn-primary text-lg px-10 py-4 shadow-2xl"
               >
-                📞 Call 9818022327
+                📞 Call 8448445504
               </a>
 
               <a
-                href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
                   `Hi Chiku Cabs, I want to book a 16 Seater Tempo Traveller in ${city !== "India" ? city : "India"}. Please share quotation.`
                 )}`}
                 target="_blank"

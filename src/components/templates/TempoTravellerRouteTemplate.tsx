@@ -38,9 +38,9 @@ import InternalLinks from "@/components/shared/InternalLinks";
 // CONSTANTS & HELPERS
 // ============================================================
 
-const PHONE_NUMBER = "+919818022327";
-const DISPLAY_PHONE = "9818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const DISPLAY_PHONE = "8448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 const SITE_URL = "https://chikucabs.com";
 

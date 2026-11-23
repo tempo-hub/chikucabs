@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Airport Taxi Service | 24x7 Airport Pickup & Drop | Chiku Cabs",
 
   description:
-    "Book reliable airport taxi service for pickup and drop across India. Get verified drivers, transparent fares and 24x7 support. Call 9818022327 to book now.",
+    "Book reliable airport taxi service for pickup and drop across India. Get verified drivers, transparent fares and 24x7 support. Call 8448445504 to book now.",
 
   keywords: [
     "airport taxi service",

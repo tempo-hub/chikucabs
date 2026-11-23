@@ -48,7 +48,7 @@ export default function UrbaniaStickyMobileCTA({
       <div className="mx-auto flex max-w-lg items-center gap-2">
         {/* Call */}
         <a
-          href="tel:+919818022327"
+          href="tel:+918448445504"
           aria-label="Call Chiku Cabs"
           className="
             flex
@@ -71,7 +71,7 @@ export default function UrbaniaStickyMobileCTA({
 
         {/* WhatsApp */}
         <a
-          href={`https://wa.me/919818022327?text=${whatsappMessage}`}
+          href={`https://wa.me/916280820037?text=${whatsappMessage}`}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat with Chiku Cabs on WhatsApp"

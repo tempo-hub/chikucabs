@@ -122,7 +122,7 @@ export async function generateMetadata({
   let title =
     "Chiku Cabs | India's Most Trusted Cab Booking Service Since 2015";
   let description =
-    "Book cabs, Tempo Travellers and airport taxis with Chiku Cabs. Contact our team for route availability and booking details. Call 9818022327.";
+    "Book cabs, Tempo Travellers and airport taxis with Chiku Cabs. Contact our team for route availability and booking details. Call 8448445504.";
   let keywords: string[] = [
     "cab booking India",
     "taxi service India",
@@ -143,7 +143,7 @@ export async function generateMetadata({
 
     title = fitMetaTitle(`Cab Service in ${city} | Chiku Cabs`);
     description = fitMetaDescription(
-      `Book cabs in ${city} for local trips, airport transfers and routes to ${destinations || "nearby destinations"}. Get verified drivers and clear fares. Call 9818022327.`,
+      `Book cabs in ${city} for local trips, airport transfers and routes to ${destinations || "nearby destinations"}. Get verified drivers and clear fares. Call 8448445504.`,
     );
     keywords = [
       `cab service in ${city}`,
@@ -160,7 +160,7 @@ export async function generateMetadata({
   ) {
     title = `${parsed.origin} to ${parsed.destination} Tempo Traveller, Chiku Cabs @ ₹20/KM – Book Now `;
 
-    description = `Book a Tempo Traveller from ${parsed.origin} to ${parsed.destination} for comfortable group travel. Get spacious vehicles, professional drivers, transparent pricing and easy booking with Chiku Cabs. Call 9818022327 to book now.`;
+    description = `Book a Tempo Traveller from ${parsed.origin} to ${parsed.destination} for comfortable group travel. Get spacious vehicles, professional drivers, transparent pricing and easy booking with Chiku Cabs. Call 8448445504 to book now.`;
 
     keywords = [
       `${parsed.origin} to ${parsed.destination} tempo traveller`,
@@ -179,7 +179,7 @@ export async function generateMetadata({
 
     title = `Tempo Traveller Fare in ${city} | Chiku Cabs @ ₹20/KM – Book Now`;
 
-    description = `Check Tempo Traveller fare in ${city}. Compare 9, 12, 16, 20 and 26 seater Tempo Traveller options for family trips, group travel, sightseeing, weddings and outstation journeys with Chiku Cabs. Call 9818022327 to book now.`;
+    description = `Check Tempo Traveller fare in ${city}. Compare 9, 12, 16, 20 and 26 seater Tempo Traveller options for family trips, group travel, sightseeing, weddings and outstation journeys with Chiku Cabs. Call 8448445504 to book now.`;
 
     keywords = [
       `tempo traveller fare in ${city}`,
@@ -225,7 +225,7 @@ export async function generateMetadata({
 
     title = `${fromCity} to ${toCity} Urbania Fare  @ ₹28/km | Get 500 OFF Extra`;
 
-    description = `Check Force Urbania fare from ${fromCity} to ${toCity}. Book 12 Seater or 17 Seater luxury Urbania Traveller for outstation tours, family trips, weddings, and group journeys with Chiku Cabs. Call 9818022327 to book now.`;
+    description = `Check Force Urbania fare from ${fromCity} to ${toCity}. Book 12 Seater or 17 Seater luxury Urbania Traveller for outstation tours, family trips, weddings, and group journeys with Chiku Cabs. Call 8448445504 to book now.`;
 
     keywords = [
       `${fromCity.toLowerCase()} to ${toCity.toLowerCase()} urbania fare`,
@@ -249,7 +249,7 @@ export async function generateMetadata({
 
     title = `Urbania Fare in ${formattedCity} 12 & 17 Seater  @ ₹28/km | Get 500 OFF Extra`;
 
-    description = `Check Urbania fare in ${formattedCity}. Book 12 Seater or 17 Seater Urbania Traveller for family trips, group travel, weddings, corporate travel and outstation journeys with Chiku Cabs. Call 9818022327 to book now.`;
+    description = `Check Urbania fare in ${formattedCity}. Book 12 Seater or 17 Seater Urbania Traveller for family trips, group travel, weddings, corporate travel and outstation journeys with Chiku Cabs. Call 8448445504 to book now.`;
 
     keywords = [
       `urbania fare in ${formattedCity}`,
@@ -293,7 +293,7 @@ export async function generateMetadata({
     if (parsed.vehicleCategory === "tempo-traveller") {
       const tempoStartingFare = Math.round(distance * 1.5 * 20 + 500);
       title = `${startCity} to ${endCity} Tempo Traveller on Rent @ ₹20/km | Chiku Cabs`;
-      description = `Hire 9 to 26 seater Tempo Traveller from ${startCity} to ${endCity} starting at ₹${tempoStartingFare} (~${distance} km). Luxury pushback seats, AC, verified drivers & roof luggage carrier. Call 9818022327 to book.`;
+      description = `Hire 9 to 26 seater Tempo Traveller from ${startCity} to ${endCity} starting at ₹${tempoStartingFare} (~${distance} km). Luxury pushback seats, AC, verified drivers & roof luggage carrier. Call 8448445504 to book.`;
       keywords = [
         `${startCity.toLowerCase()} to ${endCity.toLowerCase()} tempo traveller`,
         `tempo traveller hire ${startCity.toLowerCase()} to ${endCity.toLowerCase()}`,
@@ -308,7 +308,7 @@ export async function generateMetadata({
       ];
     } else {
       title = `${startCity} to ${endCity} Cab @ ₹${startingFare} | One Way Taxi (${distance} km) – Chiku Cabs`;
-      description = `Book ${startCity} to ${endCity} one-way cab starting at ₹${startingFare} (~${distance} km). AC Sedan, SUV, Innova Crysta & Tempo Traveller with verified drivers, zero return fare & 24/7 support. Call 9818022327 to book now.`;
+      description = `Book ${startCity} to ${endCity} one-way cab starting at ₹${startingFare} (~${distance} km). AC Sedan, SUV, Innova Crysta & Tempo Traveller with verified drivers, zero return fare & 24/7 support. Call 8448445504 to book now.`;
       keywords = [
         `${startCity} to ${endCity} one way cab`,
         `${startCity} to ${endCity} drop taxi`,
@@ -352,7 +352,7 @@ export async function generateMetadata({
     if (parsed.vehicleCategory === "tempo-traveller") {
       const tempoStartingFare = Math.round(distance * 1.5 * 20 + 500);
       title = `${startCity} to ${endCity} Tempo Traveller Fare from ₹${tempoStartingFare} | Chiku Cabs`;
-      description = `Check ${startCity} to ${endCity} Tempo Traveller fare (~${distance} km). Rates start at ₹20/km for 9, 12, 16, 20 & 26 seaters. Transparent group travel pricing. Call 9818022327.`;
+      description = `Check ${startCity} to ${endCity} Tempo Traveller fare (~${distance} km). Rates start at ₹20/km for 9, 12, 16, 20 & 26 seaters. Transparent group travel pricing. Call 8448445504.`;
       keywords = [
         `${startCity.toLowerCase()} to ${endCity.toLowerCase()} tempo traveller fare`,
         `${startCity.toLowerCase()} to ${endCity.toLowerCase()} tempo traveller price`,
@@ -362,7 +362,7 @@ export async function generateMetadata({
       ];
     } else {
       title = `${startCity} to ${endCity} ${parsed.vehicle || "Cab"} Fare from ₹${startingFare} | Chiku Cabs`;
-      description = `Check ${startCity} to ${endCity} ${parsed.vehicle || "cab"} fare (~${distance} km). Complete rate card starting from ₹${startingFare} with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 9818022327.`;
+      description = `Check ${startCity} to ${endCity} ${parsed.vehicle || "cab"} fare (~${distance} km). Complete rate card starting from ₹${startingFare} with Sedan, SUV, Innova & Tempo pricing. No hidden charges. Call 8448445504.`;
       keywords = [
         `${startCity} to ${endCity} cab fare`,
         `${startCity} to ${endCity} taxi rate`,
@@ -409,8 +409,8 @@ export async function generateMetadata({
       : `${vehicle} on Rent, Chiku Cabs Starting @ ₹${price}/KM – Book Now`;
 
     description = location
-      ? `Hire verified ${vehicle} in ${location} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`
-      : `Hire verified ${vehicle} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 9818022327.`;
+      ? `Hire verified ${vehicle} in ${location} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 8448445504.`
+      : `Hire verified ${vehicle} for local sightseeing, airport transfers & corporate travel. City-expert drivers, clean AC cars. Call 8448445504.`;
 
     keywords = [
       `${vehicle.toLowerCase()} on rent`,
@@ -429,39 +429,39 @@ export async function generateMetadata({
   ) {
     if (slugValue.includes("12-seater")) {
       title = `12 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹22/km | Chiku Cabs`;
-      description = `Book 12 Seater Tempo Traveller in ${parsed.origin} at ₹22/km. Pushback seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
+      description = `Book 12 Seater Tempo Traveller in ${parsed.origin} at ₹22/km. Pushback seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
     } else if (slugValue.includes("16-seater")) {
       title = `16 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹25/km | Chiku Cabs`;
-      description = `Book 16 Seater Tempo Traveller in ${parsed.origin} at ₹25/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
+      description = `Book 16 Seater Tempo Traveller in ${parsed.origin} at ₹25/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
       } else if (slugValue.includes("9-seater")) {
       title = `9 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹20/km | Chiku Cabs`;
-      description = `Book 9 Seater Tempo Traveller in ${parsed.origin} at ₹20/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
+      description = `Book 9 Seater Tempo Traveller in ${parsed.origin} at ₹20/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
       } else if (slugValue.includes("10-seater")) {
       title = `10 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹21/km | Chiku Cabs`;
-      description = `Book 10 Seater Tempo Traveller in ${parsed.origin} at ₹21/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
+      description = `Book 10 Seater Tempo Traveller in ${parsed.origin} at ₹21/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
       } else if (slugValue.includes("15-seater")) {
       title = `15 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹23/km | Chiku Cabs`;
-      description = `Book 15 Seater Tempo Traveller in ${parsed.origin} at ₹23/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
+      description = `Book 15 Seater Tempo Traveller in ${parsed.origin} at ₹23/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
       } else if (slugValue.includes("17-seater")) {
       title = `17 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹26/km | Chiku Cabs`;
-      description = `Book 17 Seater Tempo Traveller in ${parsed.origin} at ₹26/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
+      description = `Book 17 Seater Tempo Traveller in ${parsed.origin} at ₹26/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
       } else if (slugValue.includes("18-seater")) {
       title = `18 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹27/km | Chiku Cabs`;
-      description = `Book 18 Seater Tempo Traveller in ${parsed.origin} at ₹27/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
+      description = `Book 18 Seater Tempo Traveller in ${parsed.origin} at ₹27/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
       } else if (slugValue.includes("26-seater")) {
       title = `26 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹32/km | Chiku Cabs`;
-      description = `Book 26 Seater Tempo Traveller in ${parsed.origin} at ₹32/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 9818022327.`;
+      description = `Book 26 Seater Tempo Traveller in ${parsed.origin} at ₹32/km. Pushback luxury seats, dual AC, large luggage space & experienced drivers. Call 8448445504.`;
     } else if (slugValue.includes("20-seater")) {
       title = `20 Seater Tempo Traveller on Rent in ${parsed.origin} @ ₹29/km | Chiku Cabs`;
-      description = `Book 20 Seater Tempo Traveller in ${parsed.origin} at ₹29/km. Mini-bus luxury, pushback seats, dual AC, large boot & certified drivers. Call 9818022327.`;
+      description = `Book 20 Seater Tempo Traveller in ${parsed.origin} at ₹29/km. Mini-bus luxury, pushback seats, dual AC, large boot & certified drivers. Call 8448445504.`;
     } else if (slugValue.startsWith("tempo-traveller-in-")) {
       title = `Tempo Traveller in ${parsed.origin} | 9 to 26 Seater on Rent | Chiku Cabs`;
-      description = `Hire Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9, 12, 16, 20 & 26 seater options with AC comfort. Call 9818022327.`;
+      description = `Hire Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9, 12, 16, 20 & 26 seater options with AC comfort. Call 8448445504.`;
     } else {
       title = `Tempo Traveller on Rent in ${parsed.origin} | 9-26 Seater | Chiku Cabs`;
     }
 
-    if (!description || description.startsWith("Book verified")) { description = `Hire a Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9-26 seater options with AC comfort. Call 9818022327.`; }
+    if (!description || description.startsWith("Book verified")) { description = `Hire a Tempo Traveller in ${parsed.origin} for family trips, sightseeing, airport transfers and corporate travel. Choose 9-26 seater options with AC comfort. Call 8448445504.`; }
 
     keywords = [
       // Primary keywords
@@ -527,7 +527,7 @@ export async function generateMetadata({
   ) {
     title = `Innova & Crysta on Rent in ${parsed.origin} @ ₹16/KM - UPTO 500 OFF`;
 
-    description = `Hire an Innova Crysta in ${parsed.origin} for family trips, sightseeing, airport transfers and outstation travel. Enjoy AC comfort and professional drivers. Call 9818022327.`;
+    description = `Hire an Innova Crysta in ${parsed.origin} for family trips, sightseeing, airport transfers and outstation travel. Enjoy AC comfort and professional drivers. Call 8448445504.`;
 
     keywords = [
       `innova crysta on rent in ${parsed.origin}`,
@@ -541,7 +541,7 @@ export async function generateMetadata({
   } else if (parsed.routeType === "Local Service") {
     title = `Cab Service in ${parsed.origin} | Local Taxi Booking | Chiku Cabs`;
 
-    description = `Book a reliable cab in ${parsed.origin} for local travel, sightseeing, airport transfers and outstation trips. Enjoy comfortable rides with professional drivers. Call 9818022327.`;
+    description = `Book a reliable cab in ${parsed.origin} for local travel, sightseeing, airport transfers and outstation trips. Enjoy comfortable rides with professional drivers. Call 8448445504.`;
 
     keywords = [
       `cab service in ${parsed.origin}`,
@@ -556,7 +556,7 @@ export async function generateMetadata({
   } else if (parsed.routeType === "Driver Service") {
     const cityStr = parsed.origin ? ` in ${parsed.origin}` : "";
     title = `Hire a Driver${cityStr} | Verified Chauffeurs on Rent | Chiku Cabs`;
-    description = `Book professional, police-verified drivers${cityStr}. Driver on rent for local trips, outstation, and corporate events. 24/7 service. Call 9818022327 to book.`;
+    description = `Book professional, police-verified drivers${cityStr}. Driver on rent for local trips, outstation, and corporate events. 24/7 service. Call 8448445504 to book.`;
     keywords = [
       `hire driver${cityStr}`,
       `driver on rent${cityStr}`,
@@ -572,7 +572,7 @@ export async function generateMetadata({
     const vehicleLower = parsed.vehicle?.toLowerCase() || "cab";
     title = fitMetaTitle(`${serviceName} | Chiku Cabs`);
     description = fitMetaDescription(
-      `Book ${serviceName.toLowerCase()} with Chiku Cabs. Enjoy verified drivers, clear fares and 24/7 support for local, airport and outstation trips. Call 9818022327.`,
+      `Book ${serviceName.toLowerCase()} with Chiku Cabs. Enjoy verified drivers, clear fares and 24/7 support for local, airport and outstation trips. Call 8448445504.`,
     );
     keywords = [
       `${vehicleLower} on rent`,
@@ -779,7 +779,7 @@ export default async function DynamicRoutePage({
         ? [
           {
             q: `How much does a Tempo Traveller cost${parsed.origin ? ` from ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""}?`,
-            a: `Tempo Traveller pricing starts from ₹18/km for a 12-seater and goes up to ₹28/km for a 26-seater. The total cost depends on distance, number of days, and seating capacity. Call 9818022327 for an instant quote.`,
+            a: `Tempo Traveller pricing starts from ₹18/km for a 12-seater and goes up to ₹28/km for a 26-seater. The total cost depends on distance, number of days, and seating capacity. Call 8448445504 for an instant quote.`,
           },
           {
             q: "What seating options are available in Tempo Travellers?",
@@ -794,7 +794,7 @@ export default async function DynamicRoutePage({
           ? [
             {
               q: `What is the Innova Crysta rental price${parsed.origin ? ` in ${parsed.origin}` : ""}?`,
-              a: `Innova rental starts from ₹14/km, Crysta from ₹17/km, and HyCross from ₹20/km. Prices include fuel, driver allowance, and GST. Call 9818022327 for exact pricing.`,
+              a: `Innova rental starts from ₹14/km, Crysta from ₹17/km, and HyCross from ₹20/km. Prices include fuel, driver allowance, and GST. Call 8448445504 for exact pricing.`,
             },
             {
               q: "What's the difference between Innova and Innova Crysta?",
@@ -808,7 +808,7 @@ export default async function DynamicRoutePage({
           : [
             {
               q: `How do I book a cab${parsed.origin ? ` in ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""} with Chiku Cabs?`,
-              a: `Simply call 9818022327 or WhatsApp us with your travel details. You'll get an instant quote and confirmation. No app download required. We offer 24/7 booking across 100+ Indian cities.`,
+              a: `Simply call 8448445504 or WhatsApp us with your travel details. You'll get an instant quote and confirmation. No app download required. We offer 24/7 booking across 100+ Indian cities.`,
             },
             {
               q: `What is the cab fare${parsed.origin ? ` from ${parsed.origin}` : ""}${parsed.destination ? ` to ${parsed.destination}` : ""}?`,

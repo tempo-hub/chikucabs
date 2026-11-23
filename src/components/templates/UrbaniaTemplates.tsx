@@ -121,7 +121,7 @@ Estimated fare: ${
     }`
   );
 
-  const whatsappUrl = `https://wa.me/919818022327?text=${whatsappMessage}`;
+  const whatsappUrl = `https://wa.me/916280820037?text=${whatsappMessage}`;
 
   const handleBooking = () => {
     setSubmitted(true);
@@ -181,7 +181,7 @@ Estimated fare: ${
       },
       {
         q: "How do I confirm my Force Urbania booking with Chiku Cabs?",
-        a: "Simply enter your travel distance or route, click the WhatsApp booking button, or call 9818022327 to receive vehicle photos and instant booking confirmation.",
+        a: "Simply enter your travel distance or route, click the WhatsApp booking button, or call 8448445504 to receive vehicle photos and instant booking confirmation.",
       },
     ],
     [normalizedCity]
@@ -312,7 +312,7 @@ Estimated fare: ${
               </a>
 
               <a
-                href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
                   `Hi Chiku Cabs, I want to book an Urbania Traveller from ${normalizedCity}. Please share the best fare and availability.`
                 )}`}
                 target="_blank"
@@ -1073,7 +1073,7 @@ Estimated fare: ${
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
 
             <a
-              href={`https://wa.me/919818022327?text=${encodeURIComponent(
+              href={`https://wa.me/916280820037?text=${encodeURIComponent(
                 `Hi Chiku Cabs, I want to book an Urbania Traveller from ${normalizedCity}. Please share the best fare and availability.`
               )}`}
               target="_blank"

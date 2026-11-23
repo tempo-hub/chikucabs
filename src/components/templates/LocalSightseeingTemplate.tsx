@@ -98,8 +98,8 @@ interface CityService {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+919818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -277,7 +277,7 @@ const generateFAQs = (vehicle: string): FAQItem[] => [
   },
   {
     q: "Can I book a same-day or urgent local sightseeing cab?",
-    a: "Yes. While advance booking is recommended during peak tourist weekends and holiday seasons, Chiku Cabs operates 24×7 and offers fast local dispatch within 45 to 60 minutes across major metro and heritage cities. Call us at +91 98180 22327 or WhatsApp at +91 98180 22327 for immediate booking.",
+    a: "Yes. While advance booking is recommended during peak tourist weekends and holiday seasons, Chiku Cabs operates 24×7 and offers fast local dispatch within 45 to 60 minutes across major metro and heritage cities. Call us at +91 84484 45504 or WhatsApp at +91 62808 20037 for immediate booking.",
   },
   {
     q: "What is the cancellation and rescheduling policy for sightseeing bookings?",
@@ -540,7 +540,7 @@ Please share the best fare.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+919818022327"
+                    href="tel:918448445504"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now

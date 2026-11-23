@@ -38,8 +38,8 @@ interface StatItem {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+919818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 
 const STATS: StatItem[] = [
@@ -125,8 +125,8 @@ export default function TempoTraveller12SeaterTemplate({
     : "12 Seater Tempo Traveller on Rent @ ₹22/km – Chiku Cabs";
 
   const pageDescription = cityName
-    ? `Book 12 Seater Tempo Traveller in ${cityName} at ₹22/km with Chiku Cabs. Comfortable pushback seats, dual AC, expert drivers for outstation, local tours & weddings. Call +91-9818022327.`
-    : "Book 12 Seater Tempo Traveller on rent across India at ₹22/km. Pushback seats, dual AC, generous boot space & certified drivers. Call +91-9818022327.";
+    ? `Book 12 Seater Tempo Traveller in ${cityName} at ₹22/km with Chiku Cabs. Comfortable pushback seats, dual AC, expert drivers for outstation, local tours & weddings. Call +918448445504.`
+    : "Book 12 Seater Tempo Traveller on rent across India at ₹22/km. Pushback seats, dual AC, generous boot space & certified drivers. Call +918448445504.";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 300);
@@ -176,7 +176,7 @@ export default function TempoTraveller12SeaterTemplate({
       },
       {
         q: `How do I book a 12 Seater Tempo Traveller in ${city !== "India" ? city : "India"}?`,
-        a: `You can instantly book by calling +91-9818022327 or contacting our 24/7 WhatsApp desk at 919818022327. We will share actual photos of the vehicle and confirm your ride with a nominal advance deposit.`,
+        a: `You can instantly book by calling +918448445504 or contacting our 24/7 WhatsApp desk at 916280820037. We will share actual photos of the vehicle and confirm your ride with a nominal advance deposit.`,
       },
       {
         q: `Can I hire a 12 Seater Tempo Traveller for local sightseeing or airport transfers?`,
@@ -401,7 +401,7 @@ const filteredRelatedRoutes = relatedCityVehicleRoutes.filter(
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+919818022327"
+                    href="tel:918448445504"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book 12 Seater
@@ -449,14 +449,14 @@ const filteredRelatedRoutes = relatedCityVehicleRoutes.filter(
 
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+919818022327"
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
 
                   <a
-                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
                       `Hi Chiku Cabs, I want to book a 12 Seater Tempo Traveller in ${cityName || "India"}. Please share details.`
                     )}`}
                     target="_blank"
@@ -1226,14 +1226,14 @@ const filteredRelatedRoutes = relatedCityVehicleRoutes.filter(
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+919818022327"
+                href="tel:+918448445504"
                 className="btn-primary text-lg px-10 py-4 shadow-2xl"
               >
-                📞 Call 9818022327
+                📞 Call 8448445504
               </a>
 
               <a
-                href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                href={`https://wa.me/916280820037?text=${encodeURIComponent(
                   `Hi Chiku Cabs, I want to book a 12 Seater Tempo Traveller in ${city !== "India" ? city : "India"}. Please share best quote.`
                 )}`}
                 target="_blank"

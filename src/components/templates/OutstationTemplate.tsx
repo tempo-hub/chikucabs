@@ -71,8 +71,8 @@ interface CityService {
 }
 
 // --- Constants ---
-const PHONE_NUMBER = "+919818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 const DEFAULT_VEHICLE = "Premium Cab";
 const currentYear = new Date().getFullYear();
@@ -292,7 +292,7 @@ const generateFAQs = (vehicle: string): FAQItem[] => [
   },
   {
     q: "How far in advance should I book an outstation taxi, and is late-night dispatch available?",
-    a: "While booking 12 to 24 hours in advance guarantees your preferred car model and chauffeur, Chiku Cabs operates 24×7 and provides on-demand emergency outstation dispatch within 2 to 3 hours across major hubs (Delhi NCR, Varanasi, Lucknow, Jaipur, Mumbai, Pune, Bangalore). You can reserve round the clock online, via WhatsApp at +91 98180 22327, or by calling +91 98180 22327.",
+    a: "While booking 12 to 24 hours in advance guarantees your preferred car model and chauffeur, Chiku Cabs operates 24×7 and provides on-demand emergency outstation dispatch within 2 to 3 hours across major hubs (Delhi NCR, Varanasi, Lucknow, Jaipur, Mumbai, Pune, Bangalore). You can reserve round the clock online, via WhatsApp at +91 62808 20037, or by calling +91 84484 45504.",
   },
   {
     q: "What is Chiku Cabs' cancellation and refund policy for outstation bookings?",
@@ -584,7 +584,7 @@ Please share the fare estimate.`;
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="tel:+919818022327"
+                    href="tel:918448445504"
                     className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-lg font-bold transition flex items-center gap-2"
                   >
                     📞 Book Now
@@ -632,14 +632,14 @@ Please share the fare estimate.`;
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="tel:+919818022327"
+                    href="tel:+918448445504"
                     className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105"
                   >
                     📞 Book Now
                   </a>
 
                   <a
-                    href={`https://wa.me/919818022327?text=${encodeURIComponent(
+                    href={`https://wa.me/916280820037?text=${encodeURIComponent(
                       "Hi Chiku Cabs, I am interested in booking a cab through your website. Please help me with the booking.",
                     )}`}
                     target="_blank"
@@ -2491,7 +2491,7 @@ Please share the fare estimate.`;
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="tel:+919818022327"
+                href="tel:918448445504"
                 className="btn-primary text-xl px-12 py-5 shadow-2xl"
               >
                 📞 Call {PHONE_NUMBER}

@@ -28,7 +28,7 @@ interface UrbaniaRouteTemplateProps {
   distance?: number;
 }
 
-const PHONE_NUMBER = "+919818022327";
+const PHONE_NUMBER = "+918448445504";
 const SITE_NAME = "Chiku Cabs";
 const SITE_URL = "https://chikucabs.com";
 const DRIVER_ALLOWANCE = 500;

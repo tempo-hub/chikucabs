@@ -32,9 +32,9 @@ import InternalLinks from "@/components/shared/InternalLinks";
 // CONSTANTS & HELPERS
 // ============================================================
 
-const PHONE_NUMBER = "+919818022327";
-const DISPLAY_PHONE = "9818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const DISPLAY_PHONE = "8448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 const SITE_URL = "https://chikucabs.com";
 
@@ -273,7 +273,7 @@ Please share the final fare and booking confirmation.`;
       },
       {
         q: `How do I book a ${startCity} to ${endCity} one-way cab instantly?`,
-        a: `You can book online on chikucabs.com, call our customer support at 9818022327, or connect via WhatsApp at +91 98180 22327 for instant booking confirmation and driver assignment.`,
+        a: `You can book online on chikucabs.com, call our customer support at +91 84484 45504, or connect via WhatsApp at +91 62808 20037 for instant booking confirmation and driver assignment.`,
       },
     ],
     [startCity, endCity, distance, startingFare, travelHours, isGaya]

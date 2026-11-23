@@ -81,7 +81,7 @@ export default function UrbaniaFinalCTA({
                   <div className="mt-4 grid gap-2.5">
                     {/* WhatsApp */}
                     <a
-                      href={`https://wa.me/919818022327?text=${whatsappMessage}`}
+                      href={`https://wa.me/916280820037?text=${whatsappMessage}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="
@@ -106,7 +106,7 @@ export default function UrbaniaFinalCTA({
 
                     {/* Call */}
                     <a
-                      href="tel:+919818022327"
+                      href="tel:+918448445504"
                       className="
                         inline-flex
                         min-h-12

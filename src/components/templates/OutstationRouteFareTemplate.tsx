@@ -32,9 +32,9 @@ import RouteMapSection from "../shared/RouteMapSection";
 // CONSTANTS
 // ============================================================
 
-const PHONE_NUMBER = "+919818022327";
-const DISPLAY_PHONE = "9818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const DISPLAY_PHONE = "8448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const SITE_NAME = "Chiku Cabs";
 const SITE_URL = "https://chikucabs.com";
 
@@ -427,7 +427,7 @@ export default function OutstationRouteFareTemplate({
       },
       {
         q: `How do I book a cab from ${startCity} to ${endCity} and what payment options are accepted?`,
-        a: `Booking takes less than 2 minutes online via our booking form, or directly via WhatsApp (+91 98180 22327) and phone (+91-${DISPLAY_PHONE}). We accept UPI (Google Pay, PhonePe, Paytm), Debit/Credit Cards, Net Banking, and cash or digital balance payment to the chauffeur upon arrival.`,
+        a: `Booking takes less than 2 minutes online via our booking form, or directly via WhatsApp (916280820037) and phone (+91-${DISPLAY_PHONE}). We accept UPI (Google Pay, PhonePe, Paytm), Debit/Credit Cards, Net Banking, and cash or digital balance payment to the chauffeur upon arrival.`,
       },
       {
         q: `How does Chiku Cabs ensure passenger safety for families, elders, and women travelers?`,

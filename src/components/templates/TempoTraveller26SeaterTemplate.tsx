@@ -26,8 +26,8 @@ import { usePathname } from "next/navigation";
 
 const SITE_URL = "https://chikucabs.com";
 const SITE_NAME = "Chiku Cabs";
-const PHONE_NUMBER = "+919818022327";
-const WHATSAPP_NUMBER = "919818022327";
+const PHONE_NUMBER = "+918448445504";
+const WHATSAPP_NUMBER = "916280820037";
 const PROMO_CODE = "CHIKUCABS10";
 
 const PRICE_PER_KM = 32;
