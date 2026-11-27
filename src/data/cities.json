@@ -1,5 +1,13 @@
 [
   {
+    "name": "Abu Road",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Adas",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Adilabad",
     "description": "North Telangana Hub"
   },
@@ -24,6 +32,10 @@
     "description": "Business & Travel Hub"
   },
   {
+    "name": "Ahmedabad Airport",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Ahmednagar",
     "description": "Maharashtra Travel Hub"
   },
@@ -42,6 +54,10 @@
   {
     "name": "Alappuzha",
     "description": "Backwater Travel Hub"
+  },
+  {
+    "name": "Alibag",
+    "description": "Travel Hub"
   },
   {
     "name": "Aligarh",
@@ -72,6 +88,14 @@
     "description": "Maharashtra Travel Hub"
   },
   {
+    "name": "Amarapur, Gandhinagar",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Ambaji",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Ambajogai",
     "description": "Maharashtra Travel Hub"
   },
@@ -84,12 +108,24 @@
     "description": "Eastern UP Regional Hub"
   },
   {
+    "name": "Ambernath",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Ambur",
     "description": "Regional Travel Hub"
   },
   {
+    "name": "Amdavad",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Amethi",
     "description": "Regional Travel Hub"
+  },
+  {
+    "name": "Amod, Bharuch",
+    "description": "Travel Hub"
   },
   {
     "name": "Ampati",
@@ -98,6 +134,10 @@
   {
     "name": "Amravati",
     "description": "Vidarbha Travel Hub"
+  },
+  {
+    "name": "Amreli",
+    "description": "Travel Hub"
   },
   {
     "name": "Amritsar",
@@ -126,6 +166,18 @@
   {
     "name": "Angamaly",
     "description": "Central Kerala Travel Hub"
+  },
+  {
+    "name": "Anjar",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Anklav",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Ankleshwar",
+    "description": "Travel Hub"
   },
   {
     "name": "Anuppur",
@@ -184,6 +236,10 @@
     "description": "Eastern UP Travel Hub"
   },
   {
+    "name": "Badlapur",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Badshahpur",
     "description": "Gurugram Hub"
   },
@@ -221,6 +277,10 @@
   },
   {
     "name": "Balangir",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Balasinor",
     "description": "Travel Hub"
   },
   {
@@ -272,6 +332,10 @@
     "description": "Heritage & Travel Hub"
   },
   {
+    "name": "Banswara",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Bapatla",
     "description": "Coastal Travel Hub"
   },
@@ -308,6 +372,10 @@
     "description": "Nature Travel Hub"
   },
   {
+    "name": "Barmer",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Barnala",
     "description": "Malwa Travel Hub"
   },
@@ -321,6 +389,10 @@
   },
   {
     "name": "Basirhat",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Baska, Halol",
     "description": "Travel Hub"
   },
   {
@@ -340,6 +412,10 @@
     "description": "Travel Hub"
   },
   {
+    "name": "Becharaji",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Beed",
     "description": "Marathwada Travel Hub"
   },
@@ -356,6 +432,10 @@
     "description": "Travel Hub"
   },
   {
+    "name": "Bengaluru",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Berhampur",
     "description": "South Odisha Travel Hub"
   },
@@ -368,7 +448,19 @@
     "description": "Travel Hub"
   },
   {
+    "name": "Bhabhar",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bhachau",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Bhadrak",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bhadran",
     "description": "Travel Hub"
   },
   {
@@ -396,7 +488,15 @@
     "description": "Saurashtra Travel Hub"
   },
   {
+    "name": "Bhavnagar Airport",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Bhawanipatna",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bhilad",
     "description": "Travel Hub"
   },
   {
@@ -409,6 +509,10 @@
   },
   {
     "name": "Bhind",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bhinmal",
     "description": "Travel Hub"
   },
   {
@@ -460,6 +564,10 @@
     "description": "Chhattisgarh Travel Hub"
   },
   {
+    "name": "Bilimora",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Birbhum",
     "description": "Cultural & Pilgrimage Hub"
   },
@@ -489,6 +597,14 @@
   },
   {
     "name": "Bongaigaon",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Bopal",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Borsad",
     "description": "Travel Hub"
   },
   {
@@ -536,6 +652,10 @@
     "description": "Pilgrimage & Mountain Hub"
   },
   {
+    "name": "Champaner",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Champawat",
     "description": "Historic & Hill Travel Hub"
   },
@@ -554,6 +674,10 @@
   {
     "name": "Chandigarh",
     "description": "Tricity Travel Hub"
+  },
+  {
+    "name": "Chandod",
+    "description": "Travel Hub"
   },
   {
     "name": "Chandrapur",
@@ -596,8 +720,16 @@
     "description": "Heritage Travel Hub"
   },
   {
+    "name": "Chhota Udepur",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Chidambaram",
     "description": "Temple Tourism Hub"
+  },
+  {
+    "name": "Chikhli",
+    "description": "Travel Hub"
   },
   {
     "name": "Chikkamagaluru",
@@ -626,6 +758,18 @@
   {
     "name": "Chittur",
     "description": "Palakkad Travel Hub"
+  },
+  {
+    "name": "Chopda",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Chopda, Maharashtra",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Chotila",
+    "description": "Travel Hub"
   },
   {
     "name": "Churachandpur",
@@ -660,12 +804,28 @@
     "description": "Odisha Travel Hub"
   },
   {
+    "name": "Dabhasa",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Dabhoi",
     "description": "Central Gujarat Travel Hub"
   },
   {
+    "name": "Dahej",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Dahod",
     "description": "Gujarat Travel Hub"
+  },
+  {
+    "name": "Dakor",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Dali, Sojitra",
+    "description": "Travel Hub"
   },
   {
     "name": "Daman",
@@ -700,6 +860,10 @@
     "description": "Central Karnataka Travel Hub"
   },
   {
+    "name": "Deesa",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Dehradun",
     "description": "Capital & Travel Hub"
   },
@@ -710,6 +874,14 @@
   {
     "name": "Delhi",
     "description": "NCR Travel Hub"
+  },
+  {
+    "name": "Delhi Airport",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Deogarh",
+    "description": "Travel Hub"
   },
   {
     "name": "Deoghar",
@@ -728,6 +900,10 @@
     "description": "Nature Travel Hub"
   },
   {
+    "name": "Dhambhola",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Dhamtari",
     "description": "Nature Travel Hub"
   },
@@ -736,12 +912,24 @@
     "description": "Industrial Travel Hub"
   },
   {
+    "name": "Dhandhuka",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Dhansura",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Dhar",
     "description": "Heritage Travel Hub"
   },
   {
     "name": "Dharbandora",
     "description": "Central Goa Travel Hub"
+  },
+  {
+    "name": "Dharmaj",
+    "description": "Travel Hub"
   },
   {
     "name": "Dharmapuri",
@@ -756,12 +944,28 @@
     "description": "Heritage Travel Hub"
   },
   {
+    "name": "Dholka",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Dhoraji",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Dhrangadhra",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Dhubri",
     "description": "Cultural Travel Hub"
   },
   {
     "name": "Dhule",
     "description": "North Maharashtra Travel Hub"
+  },
+  {
+    "name": "Dhuvaran",
+    "description": "Travel Hub"
   },
   {
     "name": "Diamond Harbour",
@@ -800,12 +1004,24 @@
     "description": "Mountain Travel Hub"
   },
   {
+    "name": "Dondaicha",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Dudhani",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Dumka",
     "description": "Travel Hub"
   },
   {
     "name": "Dumraon",
     "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Dungarpur",
+    "description": "Travel Hub"
   },
   {
     "name": "Durg",
@@ -896,6 +1112,10 @@
     "description": "Telangana Travel Hub"
   },
   {
+    "name": "Galiakot",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Gandhidham",
     "description": "Kutch Travel Hub"
   },
@@ -932,6 +1152,14 @@
     "description": "Purvanchal Travel Hub"
   },
   {
+    "name": "Ghoti Khurd",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Gir National Park",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Giridih",
     "description": "Travel Hub"
   },
@@ -960,6 +1188,10 @@
     "description": "Awadh Travel Hub"
   },
   {
+    "name": "Gondal",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Gondia",
     "description": "Vidarbha Travel Hub"
   },
@@ -972,8 +1204,16 @@
     "description": "Travel Hub"
   },
   {
+    "name": "Goraj",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Gorakhpur",
     "description": "Eastern UP Travel Hub"
+  },
+  {
+    "name": "Greater Noida",
+    "description": "Travel Hub"
   },
   {
     "name": "Gudiyatham",
@@ -1040,12 +1280,24 @@
     "description": "Kolkata Region Travel Hub"
   },
   {
+    "name": "Halol",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Halvad",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Hamirpur",
     "description": "Bundelkhand Travel Hub"
   },
   {
     "name": "Hanumangarh",
     "description": "Northern Rajasthan Hub"
+  },
+  {
+    "name": "Hapa",
+    "description": "Travel Hub"
   },
   {
     "name": "Hapur",
@@ -1074,6 +1326,10 @@
   {
     "name": "Hazaribagh",
     "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Hazira",
+    "description": "Travel Hub"
   },
   {
     "name": "Himmatnagar",
@@ -1136,6 +1392,10 @@
     "description": "Hill Tourism Hub"
   },
   {
+    "name": "Igatpuri",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Imphal",
     "description": "Major Travel Hub"
   },
@@ -1192,8 +1452,20 @@
     "description": "Marathwada Travel Hub"
   },
   {
+    "name": "Jalore",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Jalpaiguri",
     "description": "Major Travel Hub"
+  },
+  {
+    "name": "Jambughoda",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Jambusar",
+    "description": "Travel Hub"
   },
   {
     "name": "Jammu",
@@ -1202,6 +1474,10 @@
   {
     "name": "Jamnagar",
     "description": "Saurashtra Travel Hub"
+  },
+  {
+    "name": "Jamnagar Airport",
+    "description": "Travel Hub"
   },
   {
     "name": "Jamshedpur",
@@ -1242,6 +1518,10 @@
   {
     "name": "Jhabua",
     "description": "Cultural Travel Hub"
+  },
+  {
+    "name": "Jhagadia",
+    "description": "Travel Hub"
   },
   {
     "name": "Jhansi",
@@ -1324,12 +1604,20 @@
     "description": "Gujarat Travel Hub"
   },
   {
+    "name": "Kalol, Gandhinagar",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Kalyan-Dombivli",
     "description": "Mumbai Metropolitan Hub"
   },
   {
     "name": "Kamareddy",
     "description": "Telangana Travel Hub"
+  },
+  {
+    "name": "Kamrej",
+    "description": "Travel Hub"
   },
   {
     "name": "Kandhamal",
@@ -1444,6 +1732,22 @@
     "description": "Nature Travel Hub"
   },
   {
+    "name": "Keshod",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Kevadia",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Khad Khambhaliya",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Khambhalia",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Khambhat",
     "description": "Anand Travel Hub"
   },
@@ -1472,8 +1776,16 @@
     "description": "Central Gujarat Travel Hub"
   },
   {
+    "name": "Khedbrahma",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Khliehriat",
     "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Khopoli",
+    "description": "Travel Hub"
   },
   {
     "name": "Khowai",
@@ -1510,6 +1822,10 @@
   {
     "name": "Kodinar",
     "description": "Saurashtra Coastal Hub"
+  },
+  {
+    "name": "Kodvav",
+    "description": "Travel Hub"
   },
   {
     "name": "Kohima",
@@ -1562,6 +1878,10 @@
   {
     "name": "Korea",
     "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Kosamba",
+    "description": "Travel Hub"
   },
   {
     "name": "Kota",
@@ -1632,6 +1952,10 @@
     "description": "Bundelkhand Travel Hub"
   },
   {
+    "name": "Lalpur, Jamnagar",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Latehar",
     "description": "Nature Travel Hub"
   },
@@ -1656,12 +1980,20 @@
     "description": "Surendranagar Travel Hub"
   },
   {
+    "name": "Limbdi, Surendranagar",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Lohardaga",
     "description": "Travel Hub"
   },
   {
     "name": "Lohit",
     "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Lonavala",
+    "description": "Travel Hub"
   },
   {
     "name": "Longleng",
@@ -1712,6 +2044,10 @@
     "description": "Pilgrimage & Heritage Hub"
   },
   {
+    "name": "Mahabaleshwar",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Mahabubnagar",
     "description": "Telangana Travel Hub"
   },
@@ -1734,6 +2070,10 @@
   {
     "name": "Mahoba",
     "description": "Bundelkhand Heritage Hub"
+  },
+  {
+    "name": "Mahudi",
+    "description": "Travel Hub"
   },
   {
     "name": "Mahuva",
@@ -1800,6 +2140,14 @@
     "description": "Saurashtra Coastal Hub"
   },
   {
+    "name": "Manilaxmi Jain Tirth",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Manmad",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Mansa",
     "description": "Malwa Regional Hub"
   },
@@ -1860,6 +2208,10 @@
     "description": "Aravalli Travel Hub"
   },
   {
+    "name": "Mehmedabad",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Mehsana",
     "description": "Gujarat Travel Hub"
   },
@@ -1886,6 +2238,10 @@
   {
     "name": "Modasa",
     "description": "Gujarat Travel Hub"
+  },
+  {
+    "name": "Modhera",
+    "description": "Travel Hub"
   },
   {
     "name": "Modinagar",
@@ -1924,6 +2280,14 @@
     "description": "Port & Coastal Travel Hub"
   },
   {
+    "name": "Moti Khavdi",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Mount Abu",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Muktsar",
     "description": "Pilgrimage & Regional Hub"
   },
@@ -1934,6 +2298,10 @@
   {
     "name": "Mumbai",
     "description": "Business & Travel Hub"
+  },
+  {
+    "name": "Mumbai Airport",
+    "description": "Travel Hub"
   },
   {
     "name": "Mundra",
@@ -2036,6 +2404,10 @@
     "description": "Pilgrimage Travel Hub"
   },
   {
+    "name": "Nandurbar",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Nandyal",
     "description": "Andhra Pradesh Travel Hub"
   },
@@ -2064,6 +2436,18 @@
     "description": "Pilgrimage & Wine Tourism Hub"
   },
   {
+    "name": "Nashik Airport",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Nathdwara",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Navapur",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Navi Mumbai",
     "description": "Mumbai Metropolitan Hub"
   },
@@ -2090,6 +2474,10 @@
   {
     "name": "Nellore",
     "description": "Major Travel Hub"
+  },
+  {
+    "name": "Netrang, Bharuch",
+    "description": "Travel Hub"
   },
   {
     "name": "Nilanga",
@@ -2128,12 +2516,28 @@
     "description": "Travel Hub"
   },
   {
+    "name": "Nurpura, Halol",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Oddanchatram",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Ode",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Okha",
     "description": "Travel Hub"
   },
   {
     "name": "Omerga",
     "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Omkareshwar",
+    "description": "Travel Hub"
   },
   {
     "name": "Ongole",
@@ -2156,8 +2560,16 @@
     "description": "Maharashtra Travel Hub"
   },
   {
+    "name": "Padan",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Padra",
     "description": "Vadodara Travel Hub"
+  },
+  {
+    "name": "Padre",
+    "description": "Travel Hub"
   },
   {
     "name": "Pakur",
@@ -2184,12 +2596,20 @@
     "description": "North Gujarat Travel Hub"
   },
   {
+    "name": "Palej",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Palghar",
     "description": "Mumbai Metropolitan Hub"
   },
   {
     "name": "Pali",
     "description": "Marwar Travel Hub"
+  },
+  {
+    "name": "Palitana",
+    "description": "Travel Hub"
   },
   {
     "name": "Pallavaram",
@@ -2264,6 +2684,10 @@
     "description": "Garhwal Hill Travel Hub"
   },
   {
+    "name": "Pavagadh",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Peddapalle",
     "description": "Industrial & Travel Hub"
   },
@@ -2278,6 +2702,10 @@
   {
     "name": "Pernem",
     "description": "North Goa Travel Hub"
+  },
+  {
+    "name": "Petlad",
+    "description": "Travel Hub"
   },
   {
     "name": "Phaltan",
@@ -2312,6 +2740,10 @@
     "description": "Mountain & Heritage Hub"
   },
   {
+    "name": "Por",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Porbandar",
     "description": "Coastal Saurashtra Hub"
   },
@@ -2338,6 +2770,10 @@
   {
     "name": "Pune",
     "description": "Education & Travel Hub"
+  },
+  {
+    "name": "Pune Airport",
+    "description": "Travel Hub"
   },
   {
     "name": "Purba Medinipur",
@@ -2412,6 +2848,10 @@
     "description": "Saurashtra Travel Hub"
   },
   {
+    "name": "Rajkot Airport",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Rajnandgaon",
     "description": "Travel Hub"
   },
@@ -2445,6 +2885,10 @@
   },
   {
     "name": "Ranaghat",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Ranavav",
     "description": "Travel Hub"
   },
   {
@@ -2548,6 +2992,10 @@
     "description": "Nature Travel Hub"
   },
   {
+    "name": "Sakariya, Waghodia",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Sakri",
     "description": "Maharashtra Travel Hub"
   },
@@ -2604,12 +3052,32 @@
     "description": "Heritage Travel Hub"
   },
   {
+    "name": "Saputara",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Saraikela",
     "description": "Cultural Travel Hub"
   },
   {
+    "name": "Sarangpur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Sarsa",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Sasan Gir",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Sasaram",
     "description": "Heritage Travel Hub"
+  },
+  {
+    "name": "Satara",
+    "description": "Travel Hub"
   },
   {
     "name": "Satna",
@@ -2618,6 +3086,10 @@
   {
     "name": "Sattari",
     "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Savar Kundla",
+    "description": "Travel Hub"
   },
   {
     "name": "Savli",
@@ -2630,6 +3102,10 @@
   {
     "name": "Sehore",
     "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Selamba",
+    "description": "Travel Hub"
   },
   {
     "name": "Selsella",
@@ -2680,6 +3156,18 @@
     "description": "Nature Travel Hub"
   },
   {
+    "name": "Shani Shingnapur",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Shankheshwar",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Shapar",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Sheopur",
     "description": "Wildlife Travel Hub"
   },
@@ -2690,6 +3178,10 @@
   {
     "name": "Shimoga",
     "description": "Nature & Travel Hub"
+  },
+  {
+    "name": "Shirdi",
+    "description": "Travel Hub"
   },
   {
     "name": "Shirpur",
@@ -2712,6 +3204,10 @@
     "description": "Buddhist & Religious Hub"
   },
   {
+    "name": "Shrirampur",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Shyamnagar",
     "description": "Kolkata Region Travel Hub"
   },
@@ -2728,6 +3224,10 @@
     "description": "Heritage Travel Hub"
   },
   {
+    "name": "Siddhpur",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Siddipet",
     "description": "Telangana Travel Hub"
   },
@@ -2740,8 +3240,16 @@
     "description": "North Gujarat Heritage Hub"
   },
   {
+    "name": "Sihor",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Sikar",
     "description": "Shekhawati Travel Hub"
+  },
+  {
+    "name": "Sikka",
+    "description": "Travel Hub"
   },
   {
     "name": "Siliguri",
@@ -2754,6 +3262,10 @@
   {
     "name": "Simdega",
     "description": "Nature Travel Hub"
+  },
+  {
+    "name": "Simej",
+    "description": "Travel Hub"
   },
   {
     "name": "Sindhudurg",
@@ -2770,6 +3282,10 @@
   {
     "name": "Sinnar",
     "description": "Maharashtra Travel Hub"
+  },
+  {
+    "name": "Sirohi",
+    "description": "Travel Hub"
   },
   {
     "name": "Sirsa",
@@ -2804,6 +3320,10 @@
     "description": "NCR Travel Hub"
   },
   {
+    "name": "Sokhda",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Solapur",
     "description": "Regional Travel Hub"
   },
@@ -2814,6 +3334,10 @@
   {
     "name": "Sonbhadra",
     "description": "Nature & Industrial Hub"
+  },
+  {
+    "name": "Songadh",
+    "description": "Travel Hub"
   },
   {
     "name": "Sonipat",
@@ -2876,6 +3400,14 @@
     "description": "Business & Travel Hub"
   },
   {
+    "name": "Surat Airport",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Surendranagar",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Surguja",
     "description": "Nature Travel Hub"
   },
@@ -2902,6 +3434,10 @@
   {
     "name": "Tarakeswar",
     "description": "Pilgrimage Travel Hub"
+  },
+  {
+    "name": "Tarapur",
+    "description": "Travel Hub"
   },
   {
     "name": "Tarn Taran",
@@ -2936,6 +3472,10 @@
     "description": "Heritage & Pilgrimage Hub"
   },
   {
+    "name": "Tharad",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Theni",
     "description": "Nature Tourism Hub"
   },
@@ -2954,6 +3494,10 @@
   {
     "name": "Thoothukudi",
     "description": "Coastal Travel Hub"
+  },
+  {
+    "name": "Thorala",
+    "description": "Travel Hub"
   },
   {
     "name": "Thoubal",
@@ -3016,6 +3560,10 @@
     "description": "Heritage Travel Hub"
   },
   {
+    "name": "Trimbak",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Tuensang",
     "description": "Hill Travel Hub"
   },
@@ -3034,6 +3582,10 @@
   {
     "name": "Udaipur",
     "description": "Tourism & Heritage Hub"
+  },
+  {
+    "name": "Udaipur Airport",
+    "description": "Travel Hub"
   },
   {
     "name": "Udalguri",
@@ -3064,8 +3616,16 @@
     "description": "Hill Travel Hub"
   },
   {
+    "name": "Ulhasnagar",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Uluberia",
     "description": "Kolkata Region Travel Hub"
+  },
+  {
+    "name": "Umargam",
+    "description": "Travel Hub"
   },
   {
     "name": "Umaria",
@@ -3074,6 +3634,14 @@
   {
     "name": "Umbergaon",
     "description": "South Gujarat Coastal Hub"
+  },
+  {
+    "name": "Umreth",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Una",
+    "description": "Travel Hub"
   },
   {
     "name": "Unakoti",
@@ -3086,6 +3654,10 @@
   {
     "name": "Unnao",
     "description": "Industrial & Regional Hub"
+  },
+  {
+    "name": "Upleta",
+    "description": "Travel Hub"
   },
   {
     "name": "Upper Dibang Valley",
@@ -3116,12 +3688,24 @@
     "description": "Kolkata Region Travel Hub"
   },
   {
+    "name": "Vadagam, Dhansura",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Vadnagar",
     "description": "Heritage Tourism Hub"
   },
   {
     "name": "Vadodara",
     "description": "Cultural & Business Hub"
+  },
+  {
+    "name": "Vadodara Airport",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Vadtal",
+    "description": "Travel Hub"
   },
   {
     "name": "Valod",
@@ -3142,6 +3726,10 @@
   {
     "name": "Varanasi",
     "description": "Pilgrimage & Travel Hub"
+  },
+  {
+    "name": "Vasad",
+    "description": "Travel Hub"
   },
   {
     "name": "Vasai-Virar",
@@ -3168,6 +3756,10 @@
     "description": "North Gujarat Travel Hub"
   },
   {
+    "name": "Vijapur, Gujarat",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Vijayapura",
     "description": "Karnataka Travel Hub"
   },
@@ -3185,6 +3777,14 @@
   },
   {
     "name": "Vinukonda",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Viral",
+    "description": "Travel Hub"
+  },
+  {
+    "name": "Viramgam",
     "description": "Travel Hub"
   },
   {
@@ -3208,12 +3808,20 @@
     "description": "South Gujarat Hub"
   },
   {
+    "name": "Waghodia",
+    "description": "Travel Hub"
+  },
+  {
     "name": "Wanaparthy",
     "description": "Travel Hub"
   },
   {
     "name": "Wani",
     "description": "Vidarbha Travel Hub"
+  },
+  {
+    "name": "Wankaner",
+    "description": "Travel Hub"
   },
   {
     "name": "Warangal",
@@ -3282,5 +3890,10 @@
   {
     "name": "Zunheboto",
     "description": "Hill Travel Hub"
+  },
+  {
+    "name": "Gujarat",
+    "slug": "gujarat",
+    "description": "Gujarat State Travel Hub"
   }
 ]

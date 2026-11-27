@@ -39,7 +39,7 @@ import TempoTravellerFareTemplate from "@/components/templates/tempo-fare/TempoT
 import UrbaniaTemplate from "@/components/templates/urbaniatraveller/UrbaniaTemplate";
 import UrbaniaRouteTemplate from "@/components/templates/urbaniatravellerfare/UrbaniaRouteTemplate";
 import { URBANIA_ROUTES } from "@/data/urbaniaRouteData";
-import { cityCabRoutes } from "@/data/cityCabRoutes";
+import { cityCabRoutes, CITY_DISPLAY_NAMES } from "@/data/cityCabRoutes";
 import { POPULAR_ROUTES as airportCabRoutes } from "@/data/airportRoutes";
 import TempoTraveller9SeaterTemplate from "@/components/templates/TempoTraveller9SeaterTemplate";
 import TempoTraveller10SeaterTemplate from "@/components/templates/TempoTraveller10SeaterTemplate";
@@ -266,26 +266,27 @@ export async function generateMetadata({
     ];
 
   } else if (parsed.routeType === "Outstation Route") {
-    const startCity = parsed.origin || "Origin";
-    const endCity = parsed.destination || "Destination";
-    const normalizedStart = startCity.toLowerCase().trim();
-    const normalizedEnd = endCity.toLowerCase().trim();
+    const rawStart = parsed.origin || "Origin";
+    const rawEnd = parsed.destination || "Destination";
+    const clean = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const cStart = clean(rawStart);
+    const cEnd = clean(rawEnd);
+
+    const matchRoute = (route: { from: string; to: string }) =>
+      clean(route.from) === cStart && clean(route.to) === cEnd;
 
     const routeInfo =
-      Object.values(cityCabRoutes)
-        .flat()
-        .find(
-          (route) =>
-            route.from.toLowerCase().trim() === normalizedStart &&
-            route.to.toLowerCase().trim() === normalizedEnd,
-        ) ||
-      Object.values(airportCabRoutes)
-        .flat()
-        .find(
-          (route) =>
-            route.from.toLowerCase().trim() === normalizedStart &&
-            route.to.toLowerCase().trim() === normalizedEnd,
-        );
+      Object.values(cityCabRoutes).flat().find(matchRoute) ||
+      Object.values(airportCabRoutes).flat().find(matchRoute);
+
+    const startCity =
+      routeInfo?.from ||
+      CITY_DISPLAY_NAMES[rawStart] ||
+      rawStart.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    const endCity =
+      routeInfo?.to ||
+      CITY_DISPLAY_NAMES[rawEnd] ||
+      rawEnd.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
     const distance = Number(routeInfo?.distance || 250);
     const startingFare = Math.round(distance * 1.5 * 9 + 500);
@@ -325,26 +326,27 @@ export async function generateMetadata({
       ];
     }
   } else if (parsed.routeType === "Outstation Route Fare") {
-    const startCity = parsed.origin || "Origin";
-    const endCity = parsed.destination || "Destination";
-    const normalizedStart = startCity.toLowerCase().trim();
-    const normalizedEnd = endCity.toLowerCase().trim();
+    const rawStart = parsed.origin || "Origin";
+    const rawEnd = parsed.destination || "Destination";
+    const clean = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const cStart = clean(rawStart);
+    const cEnd = clean(rawEnd);
+
+    const matchRoute = (route: { from: string; to: string }) =>
+      clean(route.from) === cStart && clean(route.to) === cEnd;
 
     const routeInfo =
-      Object.values(cityCabRoutes)
-        .flat()
-        .find(
-          (route) =>
-            route.from.toLowerCase().trim() === normalizedStart &&
-            route.to.toLowerCase().trim() === normalizedEnd,
-        ) ||
-      Object.values(airportCabRoutes)
-        .flat()
-        .find(
-          (route) =>
-            route.from.toLowerCase().trim() === normalizedStart &&
-            route.to.toLowerCase().trim() === normalizedEnd,
-        );
+      Object.values(cityCabRoutes).flat().find(matchRoute) ||
+      Object.values(airportCabRoutes).flat().find(matchRoute);
+
+    const startCity =
+      routeInfo?.from ||
+      CITY_DISPLAY_NAMES[rawStart] ||
+      rawStart.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    const endCity =
+      routeInfo?.to ||
+      CITY_DISPLAY_NAMES[rawEnd] ||
+      rawEnd.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
     const distance = Number(routeInfo?.distance || 250);
     const startingFare = Math.round(distance * 1.5 * 9 + 500);

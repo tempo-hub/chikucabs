@@ -108,27 +108,17 @@ export default function InnovaRouteTemplate({
 
   // Dynamic Route Info Lookup
   const routeInfo = useMemo(() => {
-    const normalizedStart = startCity.toLowerCase().trim();
-    const normalizedEnd = endCity.toLowerCase().trim();
+    const clean = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const cStart = clean(startCity);
+    const cEnd = clean(endCity);
 
-    const cityRoute = Object.values(cityCabRoutes)
-      .flat()
-      .find(
-        (route) =>
-          route.from.toLowerCase().trim() === normalizedStart &&
-          route.to.toLowerCase().trim() === normalizedEnd,
-      );
+    const matchRoute = (route: { from: string; to: string }) =>
+      clean(route.from) === cStart && clean(route.to) === cEnd;
 
+    const cityRoute = Object.values(cityCabRoutes).flat().find(matchRoute);
     if (cityRoute) return cityRoute;
 
-    const airportRoute = Object.values(airportCabRoutes)
-      .flat()
-      .find(
-        (route) =>
-          route.from.toLowerCase().trim() === normalizedStart &&
-          route.to.toLowerCase().trim() === normalizedEnd,
-      );
-
+    const airportRoute = Object.values(airportCabRoutes).flat().find(matchRoute);
     return airportRoute;
   }, [startCity, endCity]);
 

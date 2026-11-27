@@ -20,8 +20,9 @@ import {
 import { IoLocationSharp } from "react-icons/io5";
 
 import { ParsedRouteData } from "@/lib/urlParser";
-import { cityCabRoutes } from "@/data/cityCabRoutes";
+import { cityCabRoutes, CITY_DISPLAY_NAMES } from "@/data/cityCabRoutes";
 import { POPULAR_ROUTES as airportCabRoutes } from "@/data/airportRoutes";
+import { getRouteDetails } from "@/data/outstationRouteData";
 
 import EEATSection from "@/components/shared/EEATSection";
 import InternalLinks from "@/components/shared/InternalLinks";
@@ -202,8 +203,8 @@ export default function OutstationRouteFareTemplate({
 }: {
   parsedData: ParsedRouteData;
 }) {
-  const startCity = parsedData.origin || "Origin";
-  const endCity = parsedData.destination || "Destination";
+  const rawStart = parsedData.origin || "Origin";
+  const rawEnd = parsedData.destination || "Destination";
   const vehicleFromUrl = parsedData.vehicle || "";
 
   // ----------------------------------------------------------
@@ -211,16 +212,17 @@ export default function OutstationRouteFareTemplate({
   // ----------------------------------------------------------
 
   const routeInfo = useMemo(() => {
-    const normalizedStart = startCity.toLowerCase().trim();
-    const normalizedEnd = endCity.toLowerCase().trim();
+    const clean = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const cStart = clean(rawStart);
+    const cEnd = clean(rawEnd);
+
+    const matchRoute = (route: { from: string; to: string; url?: string }) => {
+      return clean(route.from) === cStart && clean(route.to) === cEnd;
+    };
 
     const cityRoute = Object.values(cityCabRoutes)
       .flat()
-      .find(
-        (route) =>
-          route.from.toLowerCase().trim() === normalizedStart &&
-          route.to.toLowerCase().trim() === normalizedEnd,
-      );
+      .find(matchRoute);
 
     if (cityRoute) {
       return cityRoute;
@@ -228,19 +230,29 @@ export default function OutstationRouteFareTemplate({
 
     const airportRoute = Object.values(airportCabRoutes)
       .flat()
-      .find(
-        (route) =>
-          route.from.toLowerCase().trim() === normalizedStart &&
-          route.to.toLowerCase().trim() === normalizedEnd,
-      );
+      .find(matchRoute);
 
     return airportRoute;
-  }, [startCity, endCity]);
+  }, [rawStart, rawEnd]);
+
+  const startCity =
+    routeInfo?.from ||
+    CITY_DISPLAY_NAMES[rawStart] ||
+    rawStart.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const endCity =
+    routeInfo?.to ||
+    CITY_DISPLAY_NAMES[rawEnd] ||
+    rawEnd.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
 
   const distance = Number(routeInfo?.distance || DEFAULT_DISTANCE);
 
   const estimatedHours = calculateTravelHours(distance);
+
+  const routeDetails = useMemo(
+    () => getRouteDetails(startCity, endCity, distance),
+    [startCity, endCity, distance]
+  );
 
   const isVaranasi = useMemo(() => {
     const s = startCity.toLowerCase();
@@ -376,71 +388,8 @@ export default function OutstationRouteFareTemplate({
   // ----------------------------------------------------------
 
   const faqs: FAQ[] = useMemo(
-    () => [
-      {
-        q: `What is the ${startCity} to ${endCity} cab fare for one-way and round-trip?`,
-        a: `The ${startCity} to ${endCity} one-way cab fare starts from ${formatCurrency(
-          calculateFare(distance, 9),
-        )} for an executive AC Sedan (Dzire / Amaze at ₹9/km). Spacious 6-seater SUVs (Maruti Ertiga) start from ${formatCurrency(
-          calculateFare(distance, 13),
-        )} (₹13/km), premium 7-seater Toyota Innova Crysta starts from ${formatCurrency(
-          calculateFare(distance, 16),
-        )} (₹16/km), and 9–12 seater Tempo Travellers start from ${formatCurrency(
-          calculateFare(distance, 28),
-        )} (₹28/km). Round-trip bookings enjoy up to 10% discount on the total return mileage.`,
-      },
-      {
-        q: `What is the exact road distance and driving time from ${startCity} to ${endCity}?`,
-        a: `The road distance between ${startCity} and ${endCity} is approximately ${distance} km via the primary national highway corridor. Under normal driving conditions with standard bio-breaks and dining pauses, the journey takes around ${estimatedHours} hours. Exact travel duration can vary slightly depending on city exit traffic, highway toll plaza queues, and weather conditions.`,
-      },
-      {
-        q: `Can I book a dedicated one-way taxi from ${startCity} to ${endCity} without paying return charges?`,
-        a: `Yes, 100%. Chiku Cabs guarantees dedicated point-to-point one-way taxi booking on the ${startCity} to ${endCity} route. You only pay for the one-way distance of ${distance} km from your doorstep pickup point to your destination drop address. You are never billed for the driver's return trip or empty return mileage.`,
-      },
-      {
-        q: `Are highway toll taxes, state border permits, and GST included in the fare?`,
-        a: `Base quotes transparently cover vehicle hire, fuel expenses, driver allowance (batta), and applicable 5% GST. Highway toll charges across toll plazas on the route are billed at actuals via electronic Fastag receipts. If traveling across state borders, commercial road entry permits and parking fees (if any) are payable at actuals with zero hidden surcharges.`,
-      },
-      {
-        q: `Which car is best recommended for travel from ${startCity} to ${endCity}?`,
-        a: `For solo travelers or couples with 1–2 bags, an AC Sedan (Maruti Suzuki Dzire or Honda Amaze) is the most economical and comfortable. For families with children or up to 4 luggage bags, the 6-seater Maruti Ertiga offers ample legroom. For long highway journeys, elderly passengers, or groups prioritizing luxury, the 7-seater Toyota Innova Crysta is ideal. For groups of 9 to 12 passengers, our Force Tempo Traveller mini coach is best suited.`,
-      },
-      {
-        q: `Does Chiku Cabs provide doorstep pickup in ${startCity} and drop across ${endCity}?`,
-        a: `Yes. We provide 100% doorstep pickup from any residential colony, hotel, railway station, or airport in ${startCity}, and drop you directly at your specific hotel, residence, temple, or office address in ${endCity} with zero hidden local pick-up or drop surcharges.`,
-      },
-      {
-        q: `Can we stop for meals, tea, and washrooms along the ${startCity} to ${endCity} route?`,
-        a: `Yes, definitely. Our professional chauffeurs are familiar with the ${startCity} to ${endCity} highway corridor and gladly pause at clean family highway restaurants, sanitized washroom facilities, and tea stalls at your convenience with zero waiting charge during transit.`,
-      },
-      {
-        q: `What is the cancellation and refund policy for a ${startCity} to ${endCity} taxi booking?`,
-        a: `Chiku Cabs offers a 100% risk-free cancellation policy. You can cancel your ${startCity} to ${endCity} cab booking up to 24 hours prior to the scheduled pickup time for a full 100% refund with zero cancellation penalty. Refunds are processed back to your original payment mode within 24–48 hours.`,
-      },
-      {
-        q: `Is 24×7 and late-night cab booking available from ${startCity} to ${endCity}?`,
-        a: `Yes. Chiku Cabs operates 24 hours a day, 7 days a week. You can book an early morning or late-night cab from ${startCity} to ${endCity}. A standard night driving allowance (₹250) applies only if the journey is actively underway between 10:00 PM and 6:00 AM.`,
-      },
-      {
-        q: `Can I book an Innova Crysta or Tempo Traveller from ${startCity} to ${endCity}?`,
-        a: `Yes. Toyota Innova Crysta (6+1 and 7+1 configurations) and Force Tempo Travellers (9, 12, 16, and 20 seaters) can be reserved easily for the ${startCity} to ${endCity} route. These vehicles come equipped with pushback captain seats, strong dual AC, ample luggage boot space, and certified highway drivers.`,
-      },
-      {
-        q: `How do I book a cab from ${startCity} to ${endCity} and what payment options are accepted?`,
-        a: `Booking takes less than 2 minutes online via our booking form, or directly via WhatsApp (916280820037) and phone (+91-${DISPLAY_PHONE}). We accept UPI (Google Pay, PhonePe, Paytm), Debit/Credit Cards, Net Banking, and cash or digital balance payment to the chauffeur upon arrival.`,
-      },
-      {
-        q: `How does Chiku Cabs ensure passenger safety for families, elders, and women travelers?`,
-        a: `All vehicles on the ${startCity} to ${endCity} route are GPS-enabled with real-time tracking monitored by our 24×7 operations support. Our chauffeurs undergo rigorous background checks, police verification, and highway safety training. Clean, sanitized cabs with working AC, seatbelts, and luggage carriers ensure a secure and peaceful road journey.`,
-      },
-    ],
-    [
-      startCity,
-      endCity,
-      distance,
-      estimatedHours,
-      DISPLAY_PHONE,
-    ],
+    () => routeDetails.faqs,
+    [routeDetails],
   );
 
 
@@ -1020,8 +969,8 @@ Please confirm the final fare and availability.`;
 
                 <p className="text-sm sm:text-base text-white/80 max-w-xl leading-relaxed mt-4 mb-4">
                   Book your outstation taxi from <strong>{startCity}</strong> to{" "}
-                  <strong>{endCity}</strong> starting at just ₹9/km. Use the online booking form to claim
-                  an extra ₹500 off on one-way and round-trip rides.
+                  <strong>{endCity}</strong> starting at just ₹9/km via{" "}
+                  <strong>{routeDetails.highway.split("(")[0].trim()}</strong>. Enjoy 100% verified doorstep pickup across {startCity} with zero hidden charges.
                 </p>
 
 
@@ -1064,11 +1013,11 @@ Please confirm the final fare and availability.`;
                     <FaCarSide className="text-primary mb-2" />
 
                     <div className="text-xs text-white/60">
-                      Vehicles
+                      Highway
                     </div>
 
-                    <div className="font-bold">
-                      {VEHICLES.length} Options
+                    <div className="font-bold text-xs truncate" title={routeDetails.highway}>
+                      {routeDetails.highway.split("(")[0].trim()}
                     </div>
 
                   </div>
@@ -1079,11 +1028,11 @@ Please confirm the final fare and availability.`;
                     <FaShieldAlt className="text-primary mb-2" />
 
                     <div className="text-xs text-white/60">
-                      Support
+                      Fastag Toll
                     </div>
 
                     <div className="font-bold">
-                      24×7
+                      ~{routeDetails.tollPlazas} Plazas
                     </div>
 
                   </div>
@@ -1531,11 +1480,11 @@ Please confirm the final fare and availability.`;
             ROUTE SUMMARY
         ====================================================== */}
 
-        <section className="py-14 px-4">
+        <section className="py-12 px-4">
 
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
 
-            <div className="text-center max-w-3xl mx-auto mb-10">
+            <div className="text-center max-w-6xl mx-auto mb-10">
 
               <span className="section-badge">
                 ROUTE OVERVIEW
@@ -1590,11 +1539,11 @@ Please confirm the final fare and availability.`;
                 <FaCarSide className="text-3xl text-primary mb-4" />
 
                 <p className="text-sm text-muted-foreground">
-                  Available Vehicles
+                  Primary Highway
                 </p>
 
-                <p className="text-2xl font-black mt-1">
-                  {VEHICLES.length} Types
+                <p className="text-lg font-bold mt-1 text-slate-800 truncate" title={routeDetails.highway}>
+                  {routeDetails.highway.split("(")[0].trim()}
                 </p>
 
               </div>
@@ -1602,18 +1551,18 @@ Please confirm the final fare and availability.`;
 
               <div className="premium-card">
 
-                <FaPhoneAlt className="text-3xl text-primary mb-4" />
+                <FaShieldAlt className="text-3xl text-primary mb-4" />
 
                 <p className="text-sm text-muted-foreground">
-                  Booking
+                  Fastag Toll Plazas
                 </p>
 
-                <a
-                  href={`tel:${PHONE_NUMBER}`}
-                  className="block text-xl font-black mt-1 hover:text-primary"
-                >
-                  {DISPLAY_PHONE}
-                </a>
+                <p className="text-2xl font-black mt-1">
+                  ~{routeDetails.tollPlazas} Plazas
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Est. ₹{routeDetails.tollEstimate} via Fastag
+                </p>
 
               </div>
 
@@ -1628,11 +1577,11 @@ Please confirm the final fare and availability.`;
             VEHICLE FARE TABLE
         ====================================================== */}
 
-        <section className="py-16 px-4 bg-muted/30 border-y">
+        <section className="py-12 px-4 bg-muted/30 border-y">
 
           <div className="max-w-7xl mx-auto">
 
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-6xl mx-auto mb-12">
 
               <span className="section-badge">
                 CAB FARE
@@ -1899,46 +1848,107 @@ Please confirm the final fare and availability.`;
 
               <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm">
                 <div className="text-xs text-slate-500 font-semibold uppercase">Primary Corridor</div>
-                <div className="text-2xl font-black text-slate-900 mt-1">
-                  {isVaranasi && (isGaya || isBodhGaya) ? "NH-19 (Grand Trunk Road)" : "National Highway Corridor"}
+                <div className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
+                  {routeDetails.highway}
                 </div>
                 <p className="text-xs text-slate-600 mt-2">
-                  {isVaranasi && (isGaya || isBodhGaya)
-                    ? "Well-paved multi-lane highway via Mohania, Sasaram, and Aurangabad."
-                    : "Comfortable toll highway with ample family dhabas, petrol bunks, and clean washrooms."}
+                  {routeDetails.roadCondition}
                 </p>
               </div>
             </div>
 
-            {/* Contextual Highway En-route Highlights */}
-            {isVaranasi && (isGaya || isBodhGaya) && (
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
-                <h3 className="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
-                  <FaRoute className="text-primary" /> Key Highway Stops between Varanasi & Gaya
-                </h3>
-                <div className="grid sm:grid-cols-3 gap-4 text-xs text-slate-700">
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200">
-                    <span className="font-bold text-slate-900 block mb-1">Karmanasa UP-Bihar Border</span>
-                    Chauffeur handles all commercial vehicle tax permits smoothly with zero passenger hassle.
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200">
-                    <span className="font-bold text-slate-900 block mb-1">Sasaram (Sher Shah Suri Tomb)</span>
-                    Popular heritage stop on the GT Road for sightseeing and traditional Indian lunch breaks.
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-white border border-slate-200">
-                    <span className="font-bold text-slate-900 block mb-1">Aurangabad Dhabas</span>
-                    Hygienic vegetarian family restaurants with separate washrooms and tea stalls.
-                  </div>
+            {/* Fastag Toll & Highway Road Conditions */}
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
+              <div className="bg-emerald-50/60 p-4 rounded-xl border border-emerald-200 flex items-start gap-3">
+                <FaCheckCircle className="text-emerald-600 text-lg flex-shrink-0 mt-0.5" />
+                <div className="text-xs text-slate-700">
+                  <strong className="text-slate-900 block mb-0.5">Fastag Toll Plaza Estimate:</strong>
+                  Approximately {routeDetails.tollPlazas} electronic toll plazas en route (Est. ₹{routeDetails.tollEstimate} via Fastag). Zero cash delay at booths.
                 </div>
               </div>
-            )}
+              <div className="bg-blue-50/60 p-4 rounded-xl border border-blue-200 flex items-start gap-3">
+                <FaRoute className="text-blue-600 text-lg flex-shrink-0 mt-0.5" />
+                <div className="text-xs text-slate-700">
+                  <strong className="text-slate-900 block mb-0.5">Highway Road Quality:</strong>
+                  {routeDetails.roadCondition}
+                </div>
+              </div>
+            </div>
+
+            {/* En-route Highway Transit Milestones */}
+            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm mb-6">
+              <h3 className="font-bold text-slate-900 text-base mb-4 flex items-center gap-2">
+                <FaRoute className="text-primary" /> Key Highway Transit Stops between {startCity} & {endCity}
+              </h3>
+              <div className="grid sm:grid-cols-3 gap-4 text-xs text-slate-700">
+                {routeDetails.majorStops.map((stop, idx) => (
+                  <div key={idx} className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                    <span className="font-bold text-slate-900 block mb-1 text-sm">{stop.name}</span>
+                    {stop.desc}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Highway Food Plazas & Dining Breaks */}
+            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
+              <h3 className="font-bold text-slate-900 text-base mb-4 flex items-center gap-2">
+                <FaCarSide className="text-primary" /> Recommended Highway Dining & Washroom Breaks
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-4 text-xs text-slate-700">
+                {routeDetails.foodStops.map((food, idx) => (
+                  <div key={idx} className="p-4 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <span className="font-bold text-slate-900 text-sm">{food.name}</span>
+                      <span className="text-[10px] bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full flex-shrink-0">{food.location}</span>
+                    </div>
+                    <p className="text-slate-600 mt-1 leading-relaxed">{food.specialty}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            POPULAR SIGHTSEEING IN & AROUND DESTINATION
+        ====================================================== */}
+        <section className="py-14 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                Explore {endCity}
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Top Places to Visit in & Around {endCity}
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                Make the most of your road trip by exploring popular sightseeing spots, historic monuments, temples, and natural getaways near {endCity}.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {routeDetails.destinationSightseeing.map((spot, idx) => (
+                <div key={idx} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-primary/10 text-primary mb-3">
+                    {spot.type}
+                  </span>
+                  <h3 className="font-bold text-slate-900 text-base mb-2">
+                    {spot.name}
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {spot.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* =====================================================
             NEW SECTION 3: POPULAR PICKUP & DROP POINTS
         ====================================================== */}
-        <section className="py-12 px-4 bg-slate-50 border-b border-slate-200">
+        <section className="py-12 px-4 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-7xl mx-auto mb-12">
               <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
@@ -1955,108 +1965,68 @@ Please confirm the final fare and availability.`;
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Pickup in Origin */}
-              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
                 <h3 className="font-bold text-slate-900 text-lg mb-4 flex items-center gap-2">
                   <IoLocationSharp className="text-primary text-xl" /> Top Pickup Hubs in {startCity}
                 </h3>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-700">
-                  {isVaranasi ? (
-                    <>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Varanasi Cantt Railway Station
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Banaras (Manduadih) Station
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Pt. Deen Dayal Upadhyaya (DDU)
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> LBS International Airport (Babatpur)
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Godowlia & Dashashwamedh Ghat
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Assi Ghat & Lanka (BHU)
-                      </li>
-                    </>
-                  ) : (
-                    <>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Main Central Railway Station
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> City Domestic / Int'l Airport
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Central Interstate Bus Terminal
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> City Center & Major Hotels
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Gated Residential Townships
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Highway Toll & Bypass Junctions
-                      </li>
-                    </>
-                  )}
+                  {routeDetails.pickupLocalities.map((loc, idx) => (
+                    <li key={idx} className="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-slate-200/70 shadow-2xs">
+                      <FaCheckCircle className="text-primary flex-shrink-0" />
+                      <span className="truncate" title={loc}>{loc}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
               {/* Drop in Destination */}
-              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
                 <h3 className="font-bold text-slate-900 text-lg mb-4 flex items-center gap-2">
                   <FaMapMarkerAlt className="text-primary" /> Top Drop Locations in {endCity}
                 </h3>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-700">
-                  {isGaya ? (
-                    <>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Vishnupad Mandir Gate
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Phalgu River & Devghat
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Gaya Junction Railway Station
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Akshay Vat & Mangla Gauri Mandir
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Gaya Airport (GAY)
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Bodh Gaya Monastery & Mahabodhi Temple
-                      </li>
-                    </>
-                  ) : (
-                    <>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> {endCity} Main Railway Terminal
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> {endCity} Airport Terminal
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Prominent City Hotels & Resorts
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Commercial Hubs & Markets
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Pilgrimage Shrines & Temples
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <FaCheckCircle className="text-primary" /> Doorstep Residential Drop
-                      </li>
-                    </>
-                  )}
+                  {routeDetails.dropPoints.map((dp, idx) => (
+                    <li key={idx} className="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-slate-200/70 shadow-2xs">
+                      <FaCheckCircle className="text-primary flex-shrink-0" />
+                      <span className="truncate" title={dp}>{dp}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            TRAVEL PURPOSES
+        ====================================================== */}
+        <section className="py-14 px-4 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                Tailored Journeys
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black mt-3 text-slate-900">
+                Travel Purposes for {startCity} to {endCity} Cab Booking
+              </h2>
+              <p className="text-slate-600 text-sm mt-2 max-w-2xl mx-auto">
+                Whether you are traveling for business, family holiday, pilgrimage or airport flight, Chiku Cabs provides customized chauffeur services.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {routeDetails.travelPurposes.map((purpose, idx) => (
+                <div key={idx} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition flex flex-col justify-between">
+                  <div>
+                    <div className="text-3xl mb-3">{purpose.icon}</div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-full mb-2 inline-block">
+                      {purpose.tag}
+                    </span>
+                    <h3 className="font-bold text-slate-900 text-sm mb-2">{purpose.title}</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">{purpose.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -2078,7 +2048,7 @@ Please confirm the final fare and availability.`;
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
               {/* Inclusions */}
               <div className="bg-emerald-50/50 border border-emerald-200 rounded-2xl p-6 shadow-sm">
                 <h3 className="font-bold text-emerald-900 text-lg mb-4 flex items-center gap-2">
@@ -2116,7 +2086,7 @@ Please confirm the final fare and availability.`;
                 <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
                   <li className="flex items-start gap-2.5">
                     <span className="text-amber-500 font-bold">•</span>
-                    <span><strong>Highway Toll Taxes:</strong> Payable at actual Fastag booths en route.</span>
+                    <span><strong>Highway Toll Taxes:</strong> Payable at actual Fastag booths en route (~{routeDetails.tollPlazas} plazas, est. ₹{routeDetails.tollEstimate}).</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="text-amber-500 font-bold">•</span>
@@ -2137,6 +2107,33 @@ Please confirm the final fare and availability.`;
                 </ul>
               </div>
             </div>
+
+            {/* Essential Booking Policies Grid */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="text-primary font-bold text-xs uppercase tracking-wider mb-1">Cancellation Policy</div>
+                <div className="text-sm font-extrabold text-slate-900 mb-1">100% Free Cancellation</div>
+                <p className="text-xs text-slate-600 leading-relaxed">{routeDetails.bookingInfo.cancellationPolicy}</p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="text-primary font-bold text-xs uppercase tracking-wider mb-1">Waiting Time</div>
+                <div className="text-sm font-extrabold text-slate-900 mb-1">45 Min Free Airport Wait</div>
+                <p className="text-xs text-slate-600 leading-relaxed">{routeDetails.bookingInfo.waitingPolicy}</p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="text-primary font-bold text-xs uppercase tracking-wider mb-1">Luggage Allowance</div>
+                <div className="text-sm font-extrabold text-slate-900 mb-1">Generous Trunk Capacity</div>
+                <p className="text-xs text-slate-600 leading-relaxed">{routeDetails.bookingInfo.luggagePolicy}</p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="text-primary font-bold text-xs uppercase tracking-wider mb-1">Night Driving Surcharge</div>
+                <div className="text-sm font-extrabold text-slate-900 mb-1">Standard ₹250 (10 PM - 6 AM)</div>
+                <p className="text-xs text-slate-600 leading-relaxed">{routeDetails.bookingInfo.nightCharges}</p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -2144,7 +2141,7 @@ Please confirm the final fare and availability.`;
             ABOUT JOURNEY
         ====================================================== */}
 
-        <section className="py-20 px-4">
+        <section className="py-12 px-4">
 
           <div className="max-w-6xl mx-auto">
 
@@ -2215,11 +2212,11 @@ Please confirm the final fare and availability.`;
             SERVICES
         ====================================================== */}
 
-        <section className="py-20 px-4 bg-muted/30">
+        <section className="py-12 px-4 bg-muted/30">
 
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
 
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-6xl mx-auto mb-12">
 
               <span className="section-badge">
                 TAXI SERVICES
@@ -2304,11 +2301,11 @@ Please confirm the final fare and availability.`;
             DISTANCE / TIME
         ====================================================== */}
 
-        <section className="py-20 px-4">
+        <section className="py-12 px-4">
 
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
 
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-6xl mx-auto mb-12">
 
               <span className="section-badge">
                 DISTANCE & TIME
@@ -2375,7 +2372,7 @@ Please confirm the final fare and availability.`;
             TRAVEL TIPS
         ====================================================== */}
 
-        <section className="py-20 px-4 bg-muted/30 border-y">
+        <section className="py-12 px-4 bg-muted/30 border-y">
 
           <div className="max-w-5xl mx-auto">
 
@@ -2480,11 +2477,11 @@ Please confirm the final fare and availability.`;
             TOLL & ADDITIONAL CHARGES
         ====================================================== */}
 
-        <section className="py-20 px-4">
+        <section className="py-12 px-4">
 
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
 
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-6xl mx-auto mb-12">
 
               <span className="section-badge">
                 FARE INFORMATION
@@ -2586,11 +2583,11 @@ Please confirm the final fare and availability.`;
             DRIVER / SERVICE EXPERIENCE
         ====================================================== */}
 
-        <section className="py-20 px-4 bg-muted/30">
+        <section className="py-12 px-4 bg-muted/30">
 
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
 
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-6xl mx-auto mb-12">
 
               <span className="section-badge">
                 CAB SERVICE
@@ -2688,12 +2685,39 @@ Please confirm the final fare and availability.`;
           estimatedHours={estimatedHours}
         />
 
+        {/* Highway Corridor & Live Route Insights Banner */}
+        <div className="max-w-7xl mx-auto px-4 -mt-12 mb-12 relative z-10">
+          <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-lg grid sm:grid-cols-3 gap-4 text-xs">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold text-base">🛣️</div>
+              <div>
+                <span className="text-slate-500 font-semibold block uppercase text-[10px]">Highway Corridor</span>
+                <span className="font-bold text-slate-900 text-sm">{routeDetails.highway}</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 font-bold text-base">🛡️</div>
+              <div>
+                <span className="text-slate-500 font-semibold block uppercase text-[10px]">Toll & Fastag</span>
+                <span className="font-bold text-slate-900 text-sm">~{routeDetails.tollPlazas} Plazas (Est. ₹{routeDetails.tollEstimate})</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-base">📍</div>
+              <div>
+                <span className="text-slate-500 font-semibold block uppercase text-[10px]">GPS Live Tracking</span>
+                <span className="font-bold text-slate-900 text-sm">24×7 Operations Monitoring</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         {/* =====================================================
             ONE WAY CAB
         ====================================================== */}
 
-        <section className="py-20 px-4">
+        <section className="py-12 px-4">
 
           <div className="max-w-6xl mx-auto">
 
@@ -2827,11 +2851,11 @@ Please confirm the final fare and availability.`;
             BOOKING PROCESS
         ====================================================== */}
 
-        <section className="py-20 px-4 bg-muted/30 border-y">
+        <section className="py-12 px-4 bg-muted/30 border-y">
 
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
 
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-6xl mx-auto mb-12">
 
               <span className="section-badge">
                 HOW TO BOOK
@@ -2909,11 +2933,11 @@ Please confirm the final fare and availability.`;
             WHY CHIKU CABS
         ====================================================== */}
 
-        <section className="py-20 px-4">
+        <section className="py-12 px-4">
 
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
 
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-6xl mx-auto mb-12">
 
               <span className="section-badge">
                 WHY CHOOSE US
@@ -3037,7 +3061,7 @@ Please confirm the final fare and availability.`;
             FAQ
         ====================================================== */}
 
-        <section className="py-20 px-4 bg-muted/30 border-y">
+        <section className="py-12 px-4 bg-muted/30 border-y">
 
           <div className="max-w-4xl mx-auto">
 
@@ -3102,7 +3126,7 @@ Please confirm the final fare and availability.`;
             RELATED LINKS
         ====================================================== */}
 
-        <section className="py-20 px-4">
+        <section className="py-12 px-4">
 
           <div className="max-w-6xl mx-auto">
 
@@ -3176,9 +3200,9 @@ Please confirm the final fare and availability.`;
             FINAL CTA
         ====================================================== */}
 
-        <section className="px-4 py-20">
+        <section className="px-4 py-12">
 
-          <div className="max-w-5xl mx-auto overflow-hidden rounded-3xl bg-gray-950 px-6 py-14 text-center text-white sm:px-12">
+          <div className="max-w-6xl mx-auto overflow-hidden rounded-3xl bg-gray-950 px-6 py-14 text-center text-white sm:px-12">
 
             <span className="inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-bold">
               READY TO TRAVEL?
