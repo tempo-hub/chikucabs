@@ -38,7 +38,7 @@ import {
 } from "react-icons/fa";
 import { CiClock1 } from "react-icons/ci";
 import toast from "react-hot-toast";
-import { cityCabRoutes, CITY_DISPLAY_NAMES } from "@/data/cityCabRoutes";
+import { cityCabRoutes, popularCityCabRoutes, CITY_DISPLAY_NAMES } from "@/data/cityCabRoutes";
 import Link from "next/link";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaLocationDot, FaRegClock } from "react-icons/fa6";
@@ -323,6 +323,8 @@ export default function LocalSightseeingTemplate({
   const [returnDate, setReturnDate] = useState("");
   const [tripType, setTripType] = useState("one-way");
   const [selectedVehicle, setSelectedVehicle] = useState("");
+  const [showAllCities, setShowAllCities] = useState(false);
+  const [selectedCity, setSelectedCity] = useState<string>("all");
 
   // Scroll handler for sticky CTA
   useEffect(() => {
@@ -450,6 +452,23 @@ Please share the best fare.`;
       calculateFare(); // This already includes ₹500 driver charge
     }
   }, []); // Empty dependency array - runs once on mount
+
+  const allCityKeys = Object.keys(popularCityCabRoutes);
+
+  // 1. City Filter Tabs: Show 20 by default, or all when "View More" is clicked
+  const filterCityKeys = showAllCities ? allCityKeys : allCityKeys.slice(0, 20);
+
+  // 2. Destination Sections: When a specific city is selected via tabs, show that city's routes;
+  // otherwise show the top cities (or all when showAllCities is true)
+  const sectionCityKeys = useMemo(() => {
+    if (
+      selectedCity !== "all" &&
+      (popularCityCabRoutes[selectedCity] || cityCabRoutes[selectedCity])
+    ) {
+      return [selectedCity];
+    }
+    return showAllCities ? allCityKeys : allCityKeys.slice(0, 8);
+  }, [selectedCity, showAllCities, allCityKeys]);
 
   return (
     <>
@@ -1209,139 +1228,207 @@ Please share the best fare.`;
                 Popular Travel Destinations
               </h2>
               <p className="text-gray-600">
-                Explore India's most beautiful destinations with Chiku Cabs
+                Explore India&apos;s most beautiful destinations with Chiku Cabs
               </p>
             </div>
 
-            {/* City Filter Tabs */}
+            {/* 1. City Filter Tabs */}
             <div className="mb-12">
               <div className="flex flex-wrap justify-center gap-3">
-                {Object.keys(cityCabRoutes).map((cityKey) => (
-                  <a
-                    key={cityKey}
-                    href={`#dest-${cityKey}`}
-                    className="
-                  px-5
-                  py-2.5
-                  rounded-full
-                  bg-white
-                  border
-                  border-gray-200
-                  text-gray-700
-                  text-sm
-                  font-semibold
-                  shadow-sm
-                  hover:bg-[#BE1E23]
-                  hover:text-white
-                  hover:border-[#BE1E23]
-                  hover:shadow-xl
-                  hover:scale-105
-                  transition-all
-                  duration-300
-                "
+                {/* All Cities Button */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedCity("all")}
+                  className={`px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm transition-all duration-300 cursor-pointer ${
+                    selectedCity === "all"
+                      ? "bg-[#BE1E23] text-white border border-[#BE1E23] shadow-md scale-105"
+                      : "bg-white border border-gray-200 text-gray-700 hover:bg-[#BE1E23] hover:text-white hover:border-[#BE1E23]"
+                  }`}
+                >
+                  All Cities
+                </button>
+
+                {filterCityKeys.map((cityKey) => {
+                  const cityName =
+                    CITY_DISPLAY_NAMES[cityKey] ??
+                    cityKey
+                      .split("-")
+                      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                      .join(" ");
+
+                  const isSelected = selectedCity === cityKey;
+
+                  return (
+                    <button
+                      key={cityKey}
+                      type="button"
+                      onClick={() => {
+                        setSelectedCity(cityKey);
+                        const el = document.getElementById(
+                          "popular-destinations-content",
+                        );
+                        if (el) {
+                          el.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
+                        }
+                      }}
+                      className={`px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm transition-all duration-300 cursor-pointer capitalize ${
+                        isSelected
+                          ? "bg-[#BE1E23] text-white border border-[#BE1E23] shadow-md scale-105"
+                          : "bg-white border border-gray-200 text-gray-700 hover:bg-[#BE1E23] hover:text-white hover:border-[#BE1E23] hover:shadow-xl hover:scale-105"
+                      }`}
+                    >
+                      {cityName}
+                    </button>
+                  );
+                })}
+
+                {/* View More / Show Less Toggle for the Filter Pills */}
+                {allCityKeys.length > 20 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowAllCities((prev) => !prev)}
+                    className="px-5 py-2.5 rounded-full bg-gray-800 text-white border border-gray-800 text-sm font-semibold shadow-sm hover:bg-gray-900 hover:shadow-md transition-all duration-300 cursor-pointer"
                   >
-                    <span className="capitalize">
-                      {CITY_DISPLAY_NAMES[cityKey] ??
-                        cityKey
-                          .split("-")
-                          .map(
-                            (word) =>
-                              word.charAt(0).toUpperCase() + word.slice(1),
-                          )
-                          .join(" ")}
-                    </span>
-                  </a>
-                ))}
+                    {showAllCities
+                      ? "Show Less Cities ↑"
+                      : `View More (+${allCityKeys.length - 20} Cities) ↓`}
+                  </button>
+                )}
               </div>
             </div>
 
-            {/* Destination Cards by City */}
-            {Object.entries(cityCabRoutes).map(([cityKey, routes]) => {
-              const cityRoutes = routes as {
-                url: string;
-                from: string;
-                to: string;
-                distance: number;
-              }[];
-              // Show first 12 destinations per city
-              const displayRoutes = cityRoutes.slice(0, 12);
-              const cityName =
-                CITY_DISPLAY_NAMES[cityKey] ??
-                cityKey
-                  .split("-")
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(" ");
-
-              return (
-                <div
-                  key={cityKey}
-                  id={`dest-${cityKey}`}
-                  className="mb-14 scroll-mt-24"
-                >
-                  {/* City Header */}
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white text-lg">
-                      <IoLocationSharp />
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-800">
-                      Top Destinations from {cityName}
-                    </h3>
-                  </div>
-
-                  {/* Cards Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    {displayRoutes.map((route, idx) => (
-                      <Link
-                        key={idx}
-                        href={route.url}
-                        className="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300"
-                      >
-                        {/* Icon */}
-                        <div className="w-10 h-10 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl flex items-center justify-center mb-3 group-hover:from-primary/20 group-hover:to-primary/10 transition-colors">
-                          <span className="text-lg">🚕</span>
-                        </div>
-
-                        {/* Destination Name */}
-                        <h4 className="font-bold text-gray-800 text-sm mb-1 group-hover:text-primary transition-colors leading-tight">
-                          {route.to}
-                        </h4>
-
-                        {/* Distance */}
-                        <p className="text-xs text-gray-400 mb-2">
-                          {route.distance} km
-                        </p>
-
-                        {/* Price Indicator */}
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-semibold text-primary">
-                            ₹
-                            {Math.round(
-                              route.distance * 10 + 500,
-                            ).toLocaleString()}
-                          </span>
-                          <span className="text-xs text-gray-400 group-hover:text-primary transition-colors">
-                            →
-                          </span>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-
-                  {/* View All Link */}
-                  {cityRoutes.length > 12 && (
-                    <div className="text-center mt-6">
-                      <Link
-                        href={`/${cityKey}`}
-                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary/10 text-primary font-semibold text-sm hover:bg-[#BE1E23] hover:text-white transition-all duration-300"
-                      >
-                        View all {cityRoutes.length} routes from {cityName}
-                        <span>→</span>
-                      </Link>
-                    </div>
-                  )}
+            {/* 2. Destination Cards by City */}
+            <div id="popular-destinations-content" className="scroll-mt-20">
+              {selectedCity !== "all" && (
+                <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
+                  <p className="text-sm text-gray-600">
+                    Showing destinations for{" "}
+                    <span className="font-bold text-gray-900 capitalize">
+                      {CITY_DISPLAY_NAMES[selectedCity] ??
+                        selectedCity.replace(/-/g, " ")}
+                    </span>
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCity("all")}
+                    className="text-xs font-semibold text-[#BE1E23] hover:underline flex items-center gap-1 cursor-pointer"
+                  >
+                    ← Show All Cities
+                  </button>
                 </div>
-              );
-            })}
+              )}
+
+              {sectionCityKeys.map((cityKey) => {
+                const cityRoutes = (popularCityCabRoutes[cityKey] ||
+                  cityCabRoutes[cityKey] ||
+                  []) as {
+                  url: string;
+                  from: string;
+                  to: string;
+                  distance: number;
+                }[];
+
+                if (!cityRoutes || cityRoutes.length === 0) return null;
+
+                const displayRoutes = cityRoutes.slice(0, 12);
+
+                const cityName =
+                  CITY_DISPLAY_NAMES[cityKey] ??
+                  cityKey
+                    .split("-")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ");
+
+                return (
+                  <div
+                    key={cityKey}
+                    id={`dest-${cityKey}`}
+                    className="mb-14 scroll-mt-24"
+                  >
+                    {/* City Header */}
+                    <div className="flex items-center justify-between gap-3 mb-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white text-lg">
+                          <IoLocationSharp />
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-800">
+                          Top Destinations from {cityName}
+                        </h3>
+                      </div>
+                      <span className="hidden sm:inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                        {cityRoutes.length} routes available
+                      </span>
+                    </div>
+
+                    {/* Cards Grid */}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                      {displayRoutes.map((route, idx) => (
+                        <Link
+                          key={idx}
+                          href={route.url}
+                          className="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm hover:shadow-xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300"
+                        >
+                          <div className="w-10 h-10 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl flex items-center justify-center mb-3 group-hover:from-primary/20 group-hover:to-primary/10 transition-colors">
+                            <span className="text-lg">🚕</span>
+                          </div>
+
+                          <h4 className="font-bold text-gray-800 text-sm mb-1 group-hover:text-primary transition-colors leading-tight">
+                            {route.to}
+                          </h4>
+
+                          <p className="text-xs text-gray-400 mb-2">
+                            {route.distance} km
+                          </p>
+
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-semibold text-primary">
+                              ₹
+                              {Math.round(
+                                route.distance * 10 + 500,
+                              ).toLocaleString("en-IN")}
+                            </span>
+                            <span className="text-xs text-gray-400 group-hover:text-primary transition-colors">
+                              →
+                            </span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+
+                    {/* View All Routes for this City */}
+                    {cityRoutes.length > 12 && (
+                      <div className="text-center mt-6">
+                        <Link
+                          href={`/${cityKey}`}
+                          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary/10 text-primary font-semibold text-sm hover:bg-[#BE1E23] hover:text-white transition-all duration-300"
+                        >
+                          View all {cityRoutes.length} routes from {cityName}
+                          <span>→</span>
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* 3. Bottom Controls */}
+            {selectedCity === "all" &&
+              !showAllCities &&
+              allCityKeys.length > 8 && (
+                <div className="text-center mt-8 pt-6 border-t border-gray-200">
+                  <button
+                    type="button"
+                    onClick={() => setShowAllCities(true)}
+                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#BE1E23] text-white font-bold text-sm shadow-md hover:bg-[#a0181c] hover:shadow-lg transition-all duration-300 cursor-pointer"
+                  >
+                    View Destinations Across All {allCityKeys.length} Cities ↓
+                  </button>
+                </div>
+              )}
           </div>
         </section>
 
